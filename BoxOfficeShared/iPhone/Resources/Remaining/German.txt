@@ -1,0 +1,61 @@
+﻿// Localizers, please read the following instructions before proceeding.
+// 
+// All text starting with // (including this line) should not be translated.  It is
+// purely for providing instructions and hints
+// 
+// Text that needs to be translated comes in the form:
+// 
+//     "1 kilometer" = "";
+// 
+// You will provide the translation on the *right hand side* of the equals (=) sign.
+// i.e. if we were translating this to french we would end up with:
+// 
+//     "1 kilometer" = "1 kilomètre";
+// 
+// Most cases should be fairly simple, however there can be slight complications.
+// Sometimes we will not know a value at this moment, but it will instead be 
+// supplied when the program runs.  i.e.:
+// 
+//     /* i.e.: 2 hours */
+//     "%d hours" = "";
+// 
+// In this case the '%d' will be replaced with a number.  This entity *must* appear
+// in your localized text.  Here are some examples of that translated into other
+// languages:
+// 
+// French: "%d hours" = "%d heures";
+// Hebrew: "%d hours" = "שעות %d";
+// 
+// Note that Hebrew switched the order of the order of the words here.
+// 
+// Finally, you will also see strings of the form:
+// 
+//     /* %@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm */
+//     "Order tickets for %@" = ""
+// 
+// As with before, the %@ will be replaced by the program when it is running and
+// *must* appear in your localized text.  Here is an example of that translated into
+// other languages:
+// 
+// French: "Order tickets for %@" = "Commander un billet pour %@";
+// German: "Order tickets for %@" = "für %@ bestellen";
+// Hebrew: "Order tickets for %@" = "%@ הזמן כרטיסים עבור";
+// 
+// Again note that the replacement text can occur wherever you think is appropriate
+// for your language.  In cases of replacements i have tried to provide helpful text
+// to explain how the values will be replaced.
+// 
+// If you have any questions, please feel free to email me at:
+// cyrus.najmabadi@gmail.com
+// 
+// Thanks very much!
+
+"%@ must first update your local movie queue before it can process your change. Please try your change again shortly." = "";
+
+"Incorrect Twitter user name or password." = "";
+
+"Logging in to Twitter" = "";
+
+"No bookmarked movies" = "";
+
+"Tweeting" = "";

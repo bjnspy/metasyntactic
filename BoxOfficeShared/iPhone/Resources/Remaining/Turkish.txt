@@ -67,6 +67,8 @@
 // %@ is replaced with the name of the program.  i.e. 'Now Playing'
 "%@ doesn't list my favorite theater. Can you add it?" = "";
 
+"%@ must first update your local movie queue before it can process your change. Please try your change again shortly." = "";
+
 // %@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic
 "%@ scores" = "";
 
@@ -75,7 +77,7 @@
 
 "Account #%d" = "";
 
-// <first name> <last name>
+// Account: <first name> <last name>
 "Account: %@ %@" = "";
 
 "Accounts" = "";
@@ -123,8 +125,6 @@
 
 // When the user wants to see only Bluray items and not DVD
 "Blu-ray Only" = "";
-
-"Bookmarks" = "";
 
 "Can you increase the maximum search distance for theaters?" = "";
 
@@ -225,6 +225,8 @@
 
 "If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!" = "";
 
+"Incorrect Twitter user name or password." = "";
+
 // Movie category
 "Independent" = "";
 
@@ -253,6 +255,8 @@
 "Local results unavailable" = "";
 
 "Log In to Existing Account" = "";
+
+"Logging in to Twitter" = "";
 
 // There will be a long wait before the movie is released
 "Long Wait" = "";
@@ -287,6 +291,8 @@
 
 "No biography available." = "";
 
+"No bookmarked movies" = "";
+
 // No listings found at 'Regal Meridian 6' on 5/18/2008
 "No listings found at '%@' on %@" = "";
 
@@ -310,13 +316,10 @@
 
 "Please Wait" = "";
 
-"Please rate it in the App Store!" = "";
+"Please rate it in the App Store.\n\nAlready rated a previous version? Please update the rating to count against the current version." = "";
 
 // The preferred movie format that the user has.  i.e. DVD or Bluray
 "Preferred Formats" = "";
-
-// This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'
-"Prioritize Bookmarks" = "";
 
 // Must be short. 1-2 words max. Label for a button a user can tap to rate this app
 "Rate It!" = "";
@@ -346,7 +349,7 @@
 
 "Safari" = "";
 
-// Button to let the user save all the posters to their photo library
+// Button to let the user save all the images to their photo library
 "Save All to Photo Library" = "";
 
 // Button to let the user save a poster to their photo library
@@ -360,7 +363,7 @@
 
 "Saving" = "";
 
-// i.e.: Saving 5 of 15.  Used when saving a list of posters
+// i.e.: Saving 5 of 15.  Used when saving a list of images
 "Saving %d of %d" = "";
 
 // Movie category
@@ -420,6 +423,8 @@
 "Top of Instant Queue" = "";
 
 "Translations" = "";
+
+"Tweeting" = "";
 
 "Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with." = "";
 
