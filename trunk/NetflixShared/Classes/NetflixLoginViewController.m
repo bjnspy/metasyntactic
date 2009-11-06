@@ -107,7 +107,7 @@
 - (void) setupButton {
   self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:LocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
-  [button setTitle:LocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
+  [button setTitle:LocalizedString(@"Please wait", nil) forState:UIControlStateDisabled];
 
   [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
