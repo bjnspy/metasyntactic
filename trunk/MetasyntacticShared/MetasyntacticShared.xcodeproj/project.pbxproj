@@ -900,10 +900,6 @@
 		10000000000000000000165F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */,
-				74E9EC1910A5DFBA00EE0EF5 /* Iterator.m */,
-				1000000000000000000016E4 /* StringUtilities.h */,
-				1000000000000000000016E7 /* StringUtilities.m */,
 				100000000000000000000FCD /* AlertUtilities.h */,
 				10000000000000000000159C /* Base64.h */,
 				10000000000000000000185A /* CollectionUtilities.h */,
@@ -912,6 +908,7 @@
 				1000000000000000000015C7 /* FileUtilities.h */,
 				100000000000000000000A4E /* HtmlUtilities.h */,
 				100000000000000000001874 /* ImageUtilities.h */,
+				74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */,
 				100000000000000000000DBD /* LocaleUtilities.h */,
 				100000000000000000000DCD /* LocationUtilities.h */,
 				100000000000000000000CA4 /* MemoryUtilities.h */,
@@ -920,6 +917,7 @@
 				10000000000000000000101F /* NSMutableArray+Utilities.h */,
 				10000000000000000000104F /* NSSet+Utilities.h */,
 				100000000000000000001658 /* Pulser.h */,
+				1000000000000000000016E4 /* StringUtilities.h */,
 				1000000000000000000015E1 /* UIColor+Utilities.h */,
 				100000000000000000000FCF /* AlertUtilities.m */,
 				1000000000000000000015CC /* Base64.m */,
@@ -929,6 +927,7 @@
 				1000000000000000000015F1 /* FileUtilities.m */,
 				100000000000000000000A50 /* HtmlUtilities.m */,
 				100000000000000000000C9A /* ImageUtilities.m */,
+				74E9EC1910A5DFBA00EE0EF5 /* Iterator.m */,
 				100000000000000000000DC1 /* LocaleUtilities.m */,
 				100000000000000000000DCF /* LocationUtilities.m */,
 				100000000000000000000F3C /* MemoryUtilities.m */,
@@ -937,6 +936,7 @@
 				100000000000000000001049 /* NSMutableArray+Utilities.m */,
 				100000000000000000001060 /* NSSet+Utilities.m */,
 				10000000000000000000165C /* Pulser.m */,
+				1000000000000000000016E7 /* StringUtilities.m */,
 				1000000000000000000015E3 /* UIColor+Utilities.m */,
 			);
 			name = Utilities;
@@ -1138,18 +1138,18 @@
 			children = (
 				74E9EC7010A5E64700EE0EF5 /* Concatenation.h */,
 				74E9ED0210A650B300EE0EF5 /* Fibonacci.h */,
+				74E9ED2510A6554400EE0EF5 /* Inserter.h */,
 				74E9EC2E10A5E1F900EE0EF5 /* Leaf.h */,
 				74E9ECFC10A6504000EE0EF5 /* Rebalancer.h */,
 				74E9EC0C10A5D7DD00EE0EF5 /* Rope.h */,
 				74E9EC1010A5DCF100EE0EF5 /* RopeEqualityChecker.h */,
 				74E9EC7110A5E64700EE0EF5 /* Concatenation.m */,
 				74E9ED0310A650B300EE0EF5 /* Fibonacci.m */,
+				74E9ED2610A6554400EE0EF5 /* Inserter.m */,
 				74E9EC2F10A5E1F900EE0EF5 /* Leaf.m */,
 				74E9ECFD10A6504000EE0EF5 /* Rebalancer.m */,
 				74E9EC0D10A5D7DD00EE0EF5 /* Rope.m */,
 				74E9EC1110A5DCF100EE0EF5 /* RopeEqualityChecker.m */,
-				74E9ED2510A6554400EE0EF5 /* Inserter.h */,
-				74E9ED2610A6554400EE0EF5 /* Inserter.m */,
 			);
 			name = Ropes;
 			sourceTree = "<group>";
