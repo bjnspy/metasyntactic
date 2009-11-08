@@ -28,7 +28,7 @@
 
 + (NSArray*) splitIntoChunks:(NSString*) string;
 
-+ (NSInteger) hashString:(NSString*) string;
++ (NSUInteger) hashString:(NSString*) string;
 
 + (unichar) starCharacter;
 + (NSString*) emptyStarString;

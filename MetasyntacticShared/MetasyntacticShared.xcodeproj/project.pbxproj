@@ -277,6 +277,22 @@
 		1000000000000000000019D1 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019CF /* xmltok_ns.c */; };
 		7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7495CEC110A4A1E000915BB2 /* InterceptingView.h */; };
 		7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495CEC210A4A1E000915BB2 /* InterceptingView.m */; };
+		74E9EC0E10A5D7DD00EE0EF5 /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC0C10A5D7DD00EE0EF5 /* Rope.h */; };
+		74E9EC0F10A5D7DD00EE0EF5 /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EC0D10A5D7DD00EE0EF5 /* Rope.m */; };
+		74E9EC1210A5DCF100EE0EF5 /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC1010A5DCF100EE0EF5 /* RopeEqualityChecker.h */; };
+		74E9EC1310A5DCF100EE0EF5 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EC1110A5DCF100EE0EF5 /* RopeEqualityChecker.m */; };
+		74E9EC1A10A5DFBA00EE0EF5 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */; };
+		74E9EC1B10A5DFBA00EE0EF5 /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EC1910A5DFBA00EE0EF5 /* Iterator.m */; };
+		74E9EC3010A5E1F900EE0EF5 /* Leaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC2E10A5E1F900EE0EF5 /* Leaf.h */; };
+		74E9EC3110A5E1F900EE0EF5 /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EC2F10A5E1F900EE0EF5 /* Leaf.m */; };
+		74E9EC7210A5E64700EE0EF5 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC7010A5E64700EE0EF5 /* Concatenation.h */; };
+		74E9EC7310A5E64700EE0EF5 /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EC7110A5E64700EE0EF5 /* Concatenation.m */; };
+		74E9ECFE10A6504000EE0EF5 /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ECFC10A6504000EE0EF5 /* Rebalancer.h */; };
+		74E9ECFF10A6504000EE0EF5 /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ECFD10A6504000EE0EF5 /* Rebalancer.m */; };
+		74E9ED0410A650B300EE0EF5 /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED0210A650B300EE0EF5 /* Fibonacci.h */; };
+		74E9ED0510A650B300EE0EF5 /* Fibonacci.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED0310A650B300EE0EF5 /* Fibonacci.m */; };
+		74E9ED2710A6554400EE0EF5 /* Inserter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED2510A6554400EE0EF5 /* Inserter.h */; };
+		74E9ED2810A6554400EE0EF5 /* Inserter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED2610A6554400EE0EF5 /* Inserter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -567,6 +583,22 @@
 		1000000000000000000019CF /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
 		7495CEC110A4A1E000915BB2 /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
 		7495CEC210A4A1E000915BB2 /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
+		74E9EC0C10A5D7DD00EE0EF5 /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
+		74E9EC0D10A5D7DD00EE0EF5 /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
+		74E9EC1010A5DCF100EE0EF5 /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
+		74E9EC1110A5DCF100EE0EF5 /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
+		74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
+		74E9EC1910A5DFBA00EE0EF5 /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
+		74E9EC2E10A5E1F900EE0EF5 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
+		74E9EC2F10A5E1F900EE0EF5 /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
+		74E9EC7010A5E64700EE0EF5 /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
+		74E9EC7110A5E64700EE0EF5 /* Concatenation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concatenation.m; sourceTree = "<group>"; };
+		74E9ECFC10A6504000EE0EF5 /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
+		74E9ECFD10A6504000EE0EF5 /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
+		74E9ED0210A650B300EE0EF5 /* Fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fibonacci.h; sourceTree = "<group>"; };
+		74E9ED0310A650B300EE0EF5 /* Fibonacci.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fibonacci.m; sourceTree = "<group>"; };
+		74E9ED2510A6554400EE0EF5 /* Inserter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inserter.h; sourceTree = "<group>"; };
+		74E9ED2610A6554400EE0EF5 /* Inserter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inserter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -868,6 +900,10 @@
 		10000000000000000000165F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */,
+				74E9EC1910A5DFBA00EE0EF5 /* Iterator.m */,
+				1000000000000000000016E4 /* StringUtilities.h */,
+				1000000000000000000016E7 /* StringUtilities.m */,
 				100000000000000000000FCD /* AlertUtilities.h */,
 				10000000000000000000159C /* Base64.h */,
 				10000000000000000000185A /* CollectionUtilities.h */,
@@ -884,7 +920,6 @@
 				10000000000000000000101F /* NSMutableArray+Utilities.h */,
 				10000000000000000000104F /* NSSet+Utilities.h */,
 				100000000000000000001658 /* Pulser.h */,
-				1000000000000000000016E4 /* StringUtilities.h */,
 				1000000000000000000015E1 /* UIColor+Utilities.h */,
 				100000000000000000000FCF /* AlertUtilities.m */,
 				1000000000000000000015CC /* Base64.m */,
@@ -902,7 +937,6 @@
 				100000000000000000001049 /* NSMutableArray+Utilities.m */,
 				100000000000000000001060 /* NSSet+Utilities.m */,
 				10000000000000000000165C /* Pulser.m */,
-				1000000000000000000016E7 /* StringUtilities.m */,
 				1000000000000000000015E3 /* UIColor+Utilities.m */,
 			);
 			name = Utilities;
@@ -1048,6 +1082,7 @@
 		100000000000000000001856 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74E9EC0B10A5D7C600EE0EF5 /* Ropes */,
 				100000000000000000001851 /* Caches */,
 				100000000000000000000FF1 /* Collections */,
 				1000000000000000000010F0 /* Data */,
@@ -1096,6 +1131,27 @@
 				10000000000000000000184F /* SynopsisCell.m */,
 			);
 			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		74E9EC0B10A5D7C600EE0EF5 /* Ropes */ = {
+			isa = PBXGroup;
+			children = (
+				74E9EC7010A5E64700EE0EF5 /* Concatenation.h */,
+				74E9ED0210A650B300EE0EF5 /* Fibonacci.h */,
+				74E9EC2E10A5E1F900EE0EF5 /* Leaf.h */,
+				74E9ECFC10A6504000EE0EF5 /* Rebalancer.h */,
+				74E9EC0C10A5D7DD00EE0EF5 /* Rope.h */,
+				74E9EC1010A5DCF100EE0EF5 /* RopeEqualityChecker.h */,
+				74E9EC7110A5E64700EE0EF5 /* Concatenation.m */,
+				74E9ED0310A650B300EE0EF5 /* Fibonacci.m */,
+				74E9EC2F10A5E1F900EE0EF5 /* Leaf.m */,
+				74E9ECFD10A6504000EE0EF5 /* Rebalancer.m */,
+				74E9EC0D10A5D7DD00EE0EF5 /* Rope.m */,
+				74E9EC1110A5DCF100EE0EF5 /* RopeEqualityChecker.m */,
+				74E9ED2510A6554400EE0EF5 /* Inserter.h */,
+				74E9ED2610A6554400EE0EF5 /* Inserter.m */,
+			);
+			name = Ropes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1246,6 +1302,14 @@
 				100000000000000000000538 /* AbstractController.h in Headers */,
 				100000000000000000000A4F /* HtmlUtilities.h in Headers */,
 				7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */,
+				74E9EC0E10A5D7DD00EE0EF5 /* Rope.h in Headers */,
+				74E9EC1210A5DCF100EE0EF5 /* RopeEqualityChecker.h in Headers */,
+				74E9EC1A10A5DFBA00EE0EF5 /* Iterator.h in Headers */,
+				74E9EC3010A5E1F900EE0EF5 /* Leaf.h in Headers */,
+				74E9EC7210A5E64700EE0EF5 /* Concatenation.h in Headers */,
+				74E9ECFE10A6504000EE0EF5 /* Rebalancer.h in Headers */,
+				74E9ED0410A650B300EE0EF5 /* Fibonacci.h in Headers */,
+				74E9ED2710A6554400EE0EF5 /* Inserter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1477,14 @@
 				10000000000000000000053A /* AbstractController.m in Sources */,
 				100000000000000000000A51 /* HtmlUtilities.m in Sources */,
 				7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */,
+				74E9EC0F10A5D7DD00EE0EF5 /* Rope.m in Sources */,
+				74E9EC1310A5DCF100EE0EF5 /* RopeEqualityChecker.m in Sources */,
+				74E9EC1B10A5DFBA00EE0EF5 /* Iterator.m in Sources */,
+				74E9EC3110A5E1F900EE0EF5 /* Leaf.m in Sources */,
+				74E9EC7310A5E64700EE0EF5 /* Concatenation.m in Sources */,
+				74E9ECFF10A6504000EE0EF5 /* Rebalancer.m in Sources */,
+				74E9ED0510A650B300EE0EF5 /* Fibonacci.m in Sources */,
+				74E9ED2810A6554400EE0EF5 /* Inserter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
