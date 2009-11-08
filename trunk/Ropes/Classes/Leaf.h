@@ -9,7 +9,7 @@
 #import "Rope.h"
 
 /**
- * A {@link RopeLeaf} is the simplest form of a {@link Rope}.  In essense it is
+ * A {@link Leaf} is the simplest form of a {@link Rope}.  In essense it is
  * just a {@link String} with a preference to not grow past a certain length.
  * If a {@link Rope} contains a leaf that is larger than that preference, and
  * it needs to perform a destructive operation on that leaf, then the leaf will

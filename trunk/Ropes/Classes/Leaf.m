@@ -46,10 +46,10 @@ static Leaf* emptyLeaf;
 
 
 /**
- * Constructor for a RopeLeaf.  Should only be called by {@link #newLeaf} and
+ * Constructor for a Leaf.  Should only be called by {@link #newLeaf} and
  * the field constructor for {@link #EMPTY_LEAF}.
  *
- * @param string the value to construct the RopeLeaf out of.
+ * @param string the value to construct the Leaf out of.
  */
 - (id) initWithString:(NSString*) string_ {
   if ((self = [super init])) {
@@ -66,12 +66,12 @@ static Leaf* emptyLeaf;
 
 
 /**
- * Factory constructor for a RopeLeaf.  Ensures that no one accidently creates
- * another {@link #EMPTY_LEAF}.  Anyone who needs to construct a RopeLeaf
+ * Factory constructor for a Leaf.  Ensures that no one accidently creates
+ * another {@link #EMPTY_LEAF}.  Anyone who needs to construct a Leaf
  * should use this method.
  *
- * @param value the value to construct the RopeLeaf out of.
- * @return the appropriate RopeLeaf that represents the value provided.
+ * @param value the value to construct the Leaf out of.
+ * @return the appropriate Leaf that represents the value provided.
  */
 + (Rope*) createLeaf:(NSString*) value {
   if (value.length == 0) {

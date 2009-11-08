@@ -9,8 +9,8 @@
 #import "Rope.h"
 
 /**
- * When a {@link Rope} grows too large to be represented by a {@link RopeLeaf},
- * a {@link RopeConcatenation} is used to break the rope up into smaller sections.
+ * When a {@link Rope} grows too large to be represented by a {@link Leaf},
+ * a {@link Concatenation} is used to break the rope up into smaller sections.
  * This has several benefits.  Because the rope is composed of small pieces,
  * destructive operations can happen within the rope without requiring large
  * memory copies (which incur too much overhead).
