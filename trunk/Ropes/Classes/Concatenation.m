@@ -202,7 +202,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (Rope*) appendRopeWorker:(Rope *)other {
+- (Rope*) ropeByAppendingRopeWorker:(Rope *)other {
   // BAP95
   // If the left argument (this) is a concatenation node whose right son is
   // a short leaf, and the right argument is also a short leaf, then we
@@ -211,7 +211,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
   if ([right isKindOfClass:[Leaf class]] && [other isKindOfClass:[Leaf class]]) {
     NSInteger finalLength = right.length + other.length;
     if (finalLength <= [Rope coalesceLeafLength]) {
-      return [left appendRope:[right appendRope:other]];
+      return [left ropeByAppendingRope:[right ropeByAppendingRope:other]];
     }
   }
   
@@ -264,7 +264,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
     newRight = [right subRope:start endIndex:end];
   }
   
-  return [newLeft appendRope:newRight];
+  return [newLeft ropeByAppendingRope:newRight];
 }
 
 
@@ -320,7 +320,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
     return self;
   }
   
-  return [newLeft appendRope:newRight];
+  return [newLeft ropeByAppendingRope:newRight];
 }
 
 

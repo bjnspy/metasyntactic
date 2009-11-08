@@ -13,17 +13,17 @@
 // limitations under the License.
 
 /**
- * A {@link Rope} is a highly tuned implementation of a {@link String} that is
+ * A {@link Rope} is a highly tuned implementation of an {@link NSString} that is
  * more suitable when one wants to perform common string operations on long
- * strings.  Like {@link String}, a {@link Rope} is an immutable structure that
+ * strings.  Like {@link NSString}, a {@link Rope} is an immutable structure that
  * produces new {@link Rope}s when operated upon.  {@link Rope}s created in
  * this manner will share much of the same data with the original, keeping
- * memory requirements low.  Because they are immutable they are threadsave and
+ * memory requirements low.  Because they are immutable they are threadsafe and
  * well suited to environments containing concurrency.
  *
  * <p>Note: if all you are doing is adding to the end of a string, and you do
  * not need to support immutability or other modification types, then you should
- * consider possibly using a {@link StringBuilder} instead if it will be faster
+ * consider possibly using an {@link NSMutableString} instead if it will be faster
  * for you.
  *
  * <p>BAP95
@@ -70,9 +70,9 @@
 - (Rope*) subRope:(NSInteger) beginIndex;
 - (Rope*) subRope:(NSInteger) beginIndex endIndex:(NSInteger) endIndex;
 
-- (Rope*) appendChar:(unichar) c;
-- (Rope*) appendString:(NSString*) string;
-- (Rope*) appendRope:(Rope*) rope;
+- (Rope*) ropeByAppendingCharacter:(unichar) c;
+- (Rope*) ropeByAppendingString:(NSString*) string;
+- (Rope*) ropeByAppendingRope:(Rope*) rope;
 
 - (Rope*) prependChar:(unichar) c;
 - (Rope*) prependString:(NSString*) string;

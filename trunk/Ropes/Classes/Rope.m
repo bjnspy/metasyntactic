@@ -107,7 +107,7 @@
  *
  * @see {@link #append(Rope)}
  */
-- (Rope*) appendRopeWorker:(Rope*) other AbstractMethod;
+- (Rope*) ropeByAppendingRopeWorker:(Rope*) other AbstractMethod;
 
 
 /**
@@ -189,8 +189,8 @@
  *
  * @see {@link #append(Rope)}
  */
-- (Rope*) appendChar:(unichar) c {
-  return [self appendString:[NSString stringWithCharacters:&c length:1]];
+- (Rope*) ropeByAppendingCharacter:(unichar) c {
+  return [self ropeByAppendingString:[NSString stringWithCharacters:&c length:1]];
 }
 
 
@@ -200,8 +200,8 @@
  *
  * @see {@link #append(Rope)}
  */
-- (Rope*) appendString:(NSString*) string {
-  return [self appendRope:[Rope createRope:string]];
+- (Rope*) ropeByAppendingString:(NSString*) string {
+  return [self ropeByAppendingRope:[Rope createRope:string]];
 }
 
 
@@ -213,7 +213,7 @@
  * @return a rope that represents the concatenation of this rope's characters
  * followed by the argument.
  */
-- (Rope*) appendRope:(Rope*) rope {
+- (Rope*) ropeByAppendingRope:(Rope*) rope {
   if (rope == nil) {
     rope = [Leaf emptyLeaf];
   }
@@ -226,7 +226,7 @@
     return self;
   }
   
-  return [self appendRopeWorker:rope];
+  return [self ropeByAppendingRopeWorker:rope];
 }
 
 
@@ -265,7 +265,7 @@
     return self;
   }
   
-  return [rope appendRope:self];
+  return [rope ropeByAppendingRope:self];
 }
 
 
@@ -362,7 +362,7 @@
   Rope* middle = rope;
   Rope* end = [self subRope:endIndex];
   
-  return [start appendRope:[middle appendRope:end]];
+  return [start ropeByAppendingRope:[middle ropeByAppendingRope:end]];
 }
 
 
