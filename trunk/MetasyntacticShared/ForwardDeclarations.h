@@ -38,7 +38,6 @@
 @class ImageCache;
 @class Invocation;
 @class Iterator;
-@class Leaf;
 @class MultiDictionary;
 @class MutableMultiDictionary;
 @class NetworkUtilities;
@@ -50,7 +49,6 @@
 @class OperationQueue;
 @class PriorityMutex;
 @class Pulser;
-@class Rope;
 @class SettingCell;
 @class SynopsisCell;
 @class TappableImageView;
