@@ -74,13 +74,13 @@
 - (Rope*) ropeByAppendingString:(NSString*) string;
 - (Rope*) ropeByAppendingRope:(Rope*) rope;
 
-- (Rope*) prependChar:(unichar) c;
-- (Rope*) prependString:(NSString*) string;
-- (Rope*) prependRope:(Rope*) rope;
+- (Rope*) ropeByPrependingCharacter:(unichar) c;
+- (Rope*) ropeByPrependingString:(NSString*) string;
+- (Rope*) ropeByPrependingRope:(Rope*) rope;
 
-- (Rope*) insertChar:(unichar) c index:(NSInteger) index;
-- (Rope*) insertString:(NSString*) string index:(NSInteger) index;
-- (Rope*) insertRope:(Rope*) rope index:(NSInteger) index;
+- (Rope*) ropeByInsertingCharacter:(unichar) c atIndex:(NSInteger) index;
+- (Rope*) ropeByInsertingString:(NSString*) string atIndex:(NSInteger) index;
+- (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index;
 
 - (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withChar:(unichar) c;
 - (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withString:(NSString*) string;

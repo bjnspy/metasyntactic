@@ -236,8 +236,8 @@
  *
  * @see {@link #prepend(Rope)}
  */
-- (Rope*) prependChar:(unichar) c {
-  return [self prependString:[NSString stringWithCharacters:&c length:1]];  
+- (Rope*) ropeByPrependingCharacter:(unichar) c {
+  return [self ropeByPrependingString:[NSString stringWithCharacters:&c length:1]];  
 }
 
 
@@ -247,8 +247,8 @@
  *
  * @see {@link #prepend(Rope)}
  */
-- (Rope*) prependString:(NSString*) string {
-  return [self prependRope:[Rope createRope:string]];
+- (Rope*) ropeByPrependingString:(NSString*) string {
+  return [self ropeByPrependingRope:[Rope createRope:string]];
 }
 
 
@@ -260,7 +260,7 @@
  * @return a rope that represents the concatenation of the argument and this
  * rope's characters.
  */
-- (Rope*) prependRope:(Rope*) rope {
+- (Rope*) ropeByPrependingRope:(Rope*) rope {
   if (rope == nil) {
     return self;
   }
@@ -275,8 +275,8 @@
  *
  * @see {@link #insert(long, Rope)}
  */
-- (Rope*) insertChar:(unichar) c index:(NSInteger) index {
-  return [self insertString:[NSString stringWithCharacters:&c length:1] index:index];
+- (Rope*) ropeByInsertingCharacter:(unichar) c atIndex:(NSInteger) index {
+  return [self ropeByInsertingString:[NSString stringWithCharacters:&c length:1] atIndex:index];
 }
 
 
@@ -286,8 +286,8 @@
  *
  * @see {@link #insert(long, Rope)}
  */
-- (Rope*) insertString:(NSString*) string index:(NSInteger) index {
-  return [self insertRope:[Rope createRope:string] index:index];
+- (Rope*) ropeByInsertingString:(NSString*) string atIndex:(NSInteger) index {
+  return [self ropeByInsertingRope:[Rope createRope:string] atIndex:index];
 }
 
 
@@ -300,7 +300,7 @@
  * @return a rope that represents the insertion of the rope argument
  * in the specified index in this rope's characters.
  */
-- (Rope*) insertRope:(Rope*) rope index:(NSInteger) index {
+- (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index {
   return [self replace:index endIndex:index withRope:rope];
 }
 
