@@ -161,12 +161,12 @@ static NSString* prefixes[] = {
 }
 
 
-+ (NSInteger) hashString:(NSString*) string {
++ (NSUInteger) hashString:(NSString*) string {
   if (string.length == 0) {
     return 0;
   }
 
-  NSInteger result = [string characterAtIndex:0];
+  unichar result = [string characterAtIndex:0];
   for (NSInteger i = 1; i < string.length; i++) {
     result = 31 * result + [string characterAtIndex:i];
   }
