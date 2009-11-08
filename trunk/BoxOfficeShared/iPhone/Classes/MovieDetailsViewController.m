@@ -524,10 +524,10 @@ const NSInteger POSTER_TAG = -1;
     [[moviePlayer retain] autorelease];
     self.moviePlayer = nil;
   }
-  
+
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification
-                                                object:nil];  
+                                                object:nil];
 }
 
 
@@ -953,7 +953,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) playTrailer {
   [self releaseMoviePlayer];
-  
+
   NSString* urlString = [trailersArray objectAtIndex:0];
   NSURL* url = [NSURL URLWithString:urlString];
   if (url == nil) {
