@@ -57,7 +57,7 @@ static const NSInteger MAX_TREE_IMBALANCE = 16;
 
 
 /**
- * Constructor for a RopeConcatenation.  This constructor will not produce a
+ * Constructor for a Concatenation.  This constructor will not produce a
  * balanced concatenation.  As such it should only be called by
  * {@link #newConcatenation} and {@link #mergeRopes}.
  *
