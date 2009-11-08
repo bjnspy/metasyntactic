@@ -53,7 +53,7 @@
 
 + (NSInteger) coalesceLeafLength;
 
-- (unichar) characterAt:(NSInteger) index;
+- (unichar) characterAtIndex:(NSInteger) index;
 
 - (NSInteger) length;
 - (BOOL) isEmpty;

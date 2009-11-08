@@ -262,15 +262,15 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (unichar) characterAt:(NSInteger)index {
+- (unichar) characterAtIndex:(NSInteger)index {
   if (index < 0 || index >= self.length) {
     @throw [NSException exceptionWithName:@"IndexOutOfBounds" reason:@"" userInfo:nil];
   }
   
   if (index < left.length) {
-    return [left characterAt:index];
+    return [left characterAtIndex:index];
   } else {
-    return [right characterAt:(index - left.length)];
+    return [right characterAtIndex:(index - left.length)];
   }
 }
 
