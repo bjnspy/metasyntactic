@@ -117,7 +117,7 @@ static Leaf* emptyLeaf;
 }
 
 
-- (Rope*) appendRopeWorker:(Rope *)other {
+- (Rope*) ropeByAppendingRopeWorker:(Rope *)other {
   // BAP95
   // For performance reasons, it is desirable to deal with the common case
   // in which the right argument is a short flat string specially. If both

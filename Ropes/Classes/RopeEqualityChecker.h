@@ -49,7 +49,7 @@
  *  <li>Set the indices (s1i and s2i) to 0.</li>
  *  <li>get the first leaf from s1 and s2, (i.e. La and Lw).</li>
  *  <li>Lw's remainder is smaller than La's, so we'll compare the chunks
- *      La[s1i, lw.length) to Lx[s2i, lw.length).</li>
+ *      La[s1i, lw.length) to Lw[s2i, lw.length).</li>
  *  <li>move to s2's next leaf 'Lx'.  Set s1i to s1i + Lw.length.  Set s2i to
  *      0.</li>
  *  <li>Lx's remainder is larger than the remainder of La. so compare chunks

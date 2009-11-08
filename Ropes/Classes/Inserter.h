@@ -15,6 +15,7 @@
 @interface Inserter : NSObject {
 @private
   NSMutableArray* balancedRopes;
+
   /** The original rope to insert.  Named 'x' to match the paper. */
   Rope* x;
   
@@ -36,7 +37,7 @@
    * until the final rope's size fits an empty bucket in the array.
    */
   NSInteger insertionPoint;
-  
+
   /**
    * The final rope to place in the array.  Note, it will start as the
    * empty rope.  As we traverse the buckets to find the right location for

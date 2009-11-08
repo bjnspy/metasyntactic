@@ -41,7 +41,7 @@ static Rope* mediumRope;
   
   for (NSInteger i = 0; i < string.length; i += [Rope coalesceLeafLength]) {
     NSInteger endIndex = MIN(string.length, i + [Rope coalesceLeafLength]);
-    result = [result appendString:[string substringWithRange:NSMakeRange(i, endIndex - i)]];
+    result = [result ropeByAppendingString:[string substringWithRange:NSMakeRange(i, endIndex - i)]];
   }
   
   return result;
@@ -173,7 +173,7 @@ NSString* append(NSString* s1, NSString* s2) {
 
 - (void) testLargeConcatenation {
   NSString* reallyLargeString = append(largeString, largeString);
-  Rope* reallyLargeRope = [largeRope appendRope:largeRope];
+  Rope* reallyLargeRope = [largeRope ropeByAppendingRope:largeRope];
   STAssertTrue([reallyLargeString isEqual:reallyLargeRope.stringValue], @"");
 }
 
@@ -190,7 +190,7 @@ NSString* append(NSString* s1, NSString* s2) {
   
   NSInteger size = 1 << 16;
   for (NSInteger i = 0; i < size; i++) {
-    rope = [rope appendChar:(unichar)('a' + (i % 26))];
+    rope = [rope ropeByAppendingCharacter:(unichar)('a' + (i % 26))];
   }
   
   [mediumRope.stringValue isEqual:rope.stringValue];
@@ -207,7 +207,7 @@ NSString* append(NSString* s1, NSString* s2) {
   Rope* middle = [mediumRope subRope:oneThird endIndex:twoThirds];
   Rope* end = [mediumRope subRope:twoThirds];
   
-  STAssertTrue([mediumRope isEqual:[[start appendRope:middle] appendRope:end]], @"");
+  STAssertTrue([mediumRope isEqual:[[start ropeByAppendingRope:middle] ropeByAppendingRope:end]], @"");
 }
 
 
@@ -272,15 +272,15 @@ NSString* append(NSString* s1, NSString* s2) {
 - (void) testEqualsLarge {
   Rope* rope1 =
   [[[[Rope createRope:append(repeat(1536, 'a'), repeat(512, 'b'))]
-     appendString:repeat(1024, 'c')]
-    appendString:repeat(1024, 'd')]
-   appendString:append(repeat(512, 'e'), repeat(1536, 'f'))];
+     ropeByAppendingString:repeat(1024, 'c')]
+    ropeByAppendingString:repeat(1024, 'd')]
+   ropeByAppendingString:append(repeat(512, 'e'), repeat(1536, 'f'))];
   
   Rope* rope2 =
   [[[Rope createRope:repeat(1536, 'a')]
-    appendString:append(append(append(repeat(512, 'b'), repeat(1024, 'c')),
+    ropeByAppendingString:append(append(append(repeat(512, 'b'), repeat(1024, 'c')),
                              repeat(1024, 'd')), repeat(512, 'e'))]
-   appendString:repeat(1536, 'f')];
+   ropeByAppendingString:repeat(1536, 'f')];
   
   STAssertTrue([rope1 isEqual:rope2], @"");
 }
@@ -294,15 +294,15 @@ NSString* append(NSString* s1, NSString* s2) {
 - (void) testHashCode2 {
   Rope* rope1 =
   [[[[Rope createRope:append(repeat(1536, 'a'), repeat(512, 'b'))]
-     appendString:repeat(1024, 'c')]
-    appendString:repeat(1024, 'd')]
-   appendString:append(repeat(512, 'e'), repeat(1536, 'f'))];
+     ropeByAppendingString:repeat(1024, 'c')]
+    ropeByAppendingString:repeat(1024, 'd')]
+   ropeByAppendingString:append(repeat(512, 'e'), repeat(1536, 'f'))];
   
   Rope* rope2 =
   [[[Rope createRope:repeat(1536, 'a')]
-    appendString:append(append(append(repeat(512, 'b'), repeat(1024, 'c')),
+    ropeByAppendingString:append(append(append(repeat(512, 'b'), repeat(1024, 'c')),
                                repeat(1024, 'd')), repeat(512, 'e'))]
-   appendString:repeat(1536, 'f')];
+   ropeByAppendingString:repeat(1536, 'f')];
   
   STAssertTrue(rope1.hash == rope2.hash, @"");
 }
