@@ -482,6 +482,7 @@
 		1000000000000000000019A2 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1000000000000000000019A9 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1000000000000000000019AB /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74E9ECF810A64D9100EE0EF5 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1142,6 +1143,7 @@
 				fa,
 				ua,
 				uk,
+				hr,
 			);
 			mainGroup = 100000000000000000000FCA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1365,6 +1367,7 @@
 				1000000000000000000019A2 /* sv */,
 				1000000000000000000019A9 /* tr */,
 				1000000000000000000019AB /* uk */,
+				74E9ECF810A64D9100EE0EF5 /* hr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
