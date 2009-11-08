@@ -15,11 +15,17 @@
 @property NSUInteger hash;
 @end
 
+// Note: all reference to BAP95 refer to the paper by Boehm, Atkinson and
+// Plass.  See the full details in Rope.java.
 
 @implementation Leaf
 
-static const NSInteger COALESCE_LEAF_LENGTH = 1 << 10;
-
+/**
+ * The empty string is always represented by this node.
+ *
+ * <p>Note the following invariant.  A rope is either only the empty leaf,
+ * or it does not contain any empty leaves.
+ */
 static Leaf* emptyLeaf;
 
 + (void) initialize {
@@ -39,6 +45,12 @@ static Leaf* emptyLeaf;
 }
 
 
+/**
+ * Constructor for a RopeLeaf.  Should only be called by {@link #newLeaf} and
+ * the field constructor for {@link #EMPTY_LEAF}.
+ *
+ * @param string the value to construct the RopeLeaf out of.
+ */
 - (id) initWithString:(NSString*) string_ {
   if ((self = [super init])) {
     self.string = string_;
@@ -53,6 +65,14 @@ static Leaf* emptyLeaf;
 }
 
 
+/**
+ * Factory constructor for a RopeLeaf.  Ensures that no one accidently creates
+ * another {@link #EMPTY_LEAF}.  Anyone who needs to construct a RopeLeaf
+ * should use this method.
+ *
+ * @param value the value to construct the RopeLeaf out of.
+ * @return the appropriate RopeLeaf that represents the value provided.
+ */
 + (Rope*) createLeaf:(NSString*) value {
   if (value.length == 0) {
     return emptyLeaf;
@@ -62,23 +82,9 @@ static Leaf* emptyLeaf;
 }
 
 
-+ (NSUInteger) hashString:(NSString*) string {
-  if (string.length == 0) {
-    return 0;
-  }
-  
-  unichar result = [string characterAtIndex:0];
-  for (NSInteger i = 1; i < string.length; i++) {
-    result = 31 * result + [string characterAtIndex:i];
-  }
-  
-  return result;
-}
-
-
 - (NSUInteger) hash {
   if (hash == 0) {
-    hash = [Leaf hashString:string];
+    hash = [Rope hashString:string];
   }
   
   return hash;
@@ -106,17 +112,33 @@ static Leaf* emptyLeaf;
 
 
 - (Rope*) appendRopeWorker:(Rope *)other {
+  // BAP95
+  // For performance reasons, it is desirable to deal with the common case
+  // in which the right argument is a short flat string specially. If both
+  // arguments are short leaves, we produce a flat rope (leaf) consisting
+  // of the concatenation.  This greatly reduces space consumption and
+  // traversal times
   if ([other isKindOfClass:[Leaf class]]) {
     NSInteger finalLength = self.length + other.length;
-    if (finalLength <= COALESCE_LEAF_LENGTH) {
-      return [Leaf createLeaf:[NSString stringWithFormat:@"%@%@", string, [(id)other string]]];
+    if (finalLength <= [Rope coalesceLeafLength]) {
+      NSMutableString* result = [NSMutableString string];
+      [result appendString:string];
+      [result appendString:[(id)other string]];
+      return [Leaf createLeaf:result];
     }
   }
   
+  // BAP95
+  // In the general case, concatenation involves simply allocating a
+  // concatenation node containing two pointers to the two arguments.
   return [Concatenation createWithLeft:self right:other];
 }
 
 
+/**
+ * BAP95
+ * We define the depth of a leaf to be 0
+ */
 - (uint8_t) depth {
   return 0;
 }
@@ -147,6 +169,8 @@ static Leaf* emptyLeaf;
                                                        withString:[NSString stringWithCharacters:&newChar length:1]];
   
   if (result == string) {
+    // If the underlying string didn't change, then we didn't change.
+    // Just return ourself.
     return self;
   }
   

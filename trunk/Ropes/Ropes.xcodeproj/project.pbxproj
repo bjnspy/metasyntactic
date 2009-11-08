@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		748ACE5C10A6854C00A98C2B /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 748ACE5B10A6854C00A98C2B /* TestRunner.m */; };
+		748ACE6B10A6859000A98C2B /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRopes.a */; };
 		74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */; };
 		74E9ED6F10A65BD700EE0EF5 /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */; };
 		74E9ED7410A65BF700EE0EF5 /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */; };
@@ -32,7 +34,26 @@
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7430063110A682EB009ABD93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = Ropes;
+		};
+		748ACE1D10A6847A00A98C2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = Ropes;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		748ACE1910A6847200A98C2B /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
+		748ACE5B10A6854C00A98C2B /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
 		74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E9ED6510A65BAE00EE0EF5 /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
 		74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
@@ -61,6 +82,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		748ACE1710A6847200A98C2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748ACE6B10A6859000A98C2B /* libRopes.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		74E9ED6110A65BAE00EE0EF5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +114,7 @@
 			children = (
 				D2AAC07E0554694100DB518D /* libRopes.a */,
 				74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */,
+				748ACE1910A6847200A98C2B /* CommandLineRunner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,7 +160,7 @@
 				74E9ED8110A65C5300EE0EF5 /* Rope.m */,
 				74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -148,6 +178,7 @@
 			children = (
 				74E9EE1110A6617500EE0EF5 /* RopeTests.h */,
 				74E9EE1210A6617500EE0EF5 /* RopeTests.m */,
+				748ACE5B10A6854C00A98C2B /* TestRunner.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -177,6 +208,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		748ACE1810A6847200A98C2B /* CommandLineRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748ACE2110A6849800A98C2B /* Build configuration list for PBXNativeTarget "CommandLineRunner" */;
+			buildPhases = (
+				748ACE1610A6847200A98C2B /* Sources */,
+				748ACE1710A6847200A98C2B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				748ACE1E10A6847A00A98C2B /* PBXTargetDependency */,
+			);
+			name = CommandLineRunner;
+			productName = CommandLineRunner;
+			productReference = 748ACE1910A6847200A98C2B /* CommandLineRunner */;
+			productType = "com.apple.product-type.tool";
+		};
 		74E9ED6310A65BAE00EE0EF5 /* RopesTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74E9ED6910A65BAF00EE0EF5 /* Build configuration list for PBXNativeTarget "RopesTests" */;
@@ -189,6 +237,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7430063210A682EB009ABD93 /* PBXTargetDependency */,
 			);
 			name = RopesTests;
 			productName = RopesTests;
@@ -227,6 +276,7 @@
 			targets = (
 				D2AAC07D0554694100DB518D /* Ropes */,
 				74E9ED6310A65BAE00EE0EF5 /* RopesTests */,
+				748ACE1810A6847200A98C2B /* CommandLineRunner */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +308,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		748ACE1610A6847200A98C2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748ACE5C10A6854C00A98C2B /* TestRunner.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		74E9ED6010A65BAE00EE0EF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +340,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7430063210A682EB009ABD93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* Ropes */;
+			targetProxy = 7430063110A682EB009ABD93 /* PBXContainerItemProxy */;
+		};
+		748ACE1E10A6847A00A98C2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* Ropes */;
+			targetProxy = 748ACE1D10A6847A00A98C2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -334,6 +405,52 @@
 			};
 			name = Release;
 		};
+		748ACE1B10A6847200A98C2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CommandLineRunner;
+			};
+			name = Debug;
+		};
+		748ACE1C10A6847200A98C2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CommandLineRunner;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		74E9ED6710A65BAF00EE0EF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -353,6 +470,8 @@
 					Foundation,
 					"-framework",
 					SenTestingKit,
+					"-ObjC",
+					"-all_load",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = RopesTests;
@@ -378,6 +497,8 @@
 					Foundation,
 					"-framework",
 					SenTestingKit,
+					"-ObjC",
+					"-all_load",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = RopesTests;
@@ -403,6 +524,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		748ACE2110A6849800A98C2B /* Build configuration list for PBXNativeTarget "CommandLineRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748ACE1B10A6847200A98C2B /* Debug */,
+				748ACE1C10A6847200A98C2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
