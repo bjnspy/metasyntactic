@@ -1,0 +1,11 @@
+be5dc5b73dd92ecaa054e73934a787ad 1ea19bc8f7e119b6a18759504af82674 ffffffffffffffffffffffffffffffff 10508 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Iterator.o
+be5dc5b775bd8ffca054e73934a798f8 2c9dbd498895ac9767a563d0f994efd4 ffffffffffffffffffffffffffffffff 21344 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/RopeEqualityChecker.o
+be5dc5b7772f09d3a054e73934a786fe 61e88008113a8bdf44330fae3c2134be ffffffffffffffffffffffffffffffff 14500 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Inserter.o
+be5dc5b73f4baa20a054e73934a79a30 24d665a51952e5960c4a39ca1ffc2746 ffffffffffffffffffffffffffffffff 21704 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Rope.o
+be5dc5b73dd92ccea054e73934a785f8 e40a2e24c5ce864898118b672682de43 ffffffffffffffffffffffffffffffff 12216 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Rebalancer.o
+be5dc5b7772f0a77a054e73934a78ea3 1cffbb5eabf6aaa4b35d51e996790448 ffffffffffffffffffffffffffffffff 18132 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Leaf.o
+be5dc5b7772f0799a054e73934a7814e 7b4594c437065830ce8280047effc376 ffffffffffffffffffffffffffffffff 8192 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Fibonacci.o
+be5dc5b7772f08a6a054e73934a7903b 1c38884f1d9a1135544f9b3e448294c5 ffffffffffffffffffffffffffffffff 24316 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/Concatenation.o
+ffffffffffffffffffffffffffffffff dac3d00009f3f83120b87c92c847ec62 ffffffffffffffffffffffffffffffff 131960 /Projects/metasyntactic/Ropes/build/Debug/libRopes.a
+000000004af61d460000000000001afe be5dc5b7772f33b3a054e73934a79f98 ffffffffffffffffffffffffffffffff 41752624 /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-arczcqpzjqlvopcwugwqkgpaptpa/Prefix.pch.gch
+ffffffffffffffffffffffffffffffff 6e3f8fc105d7ea3f82f63232e702894c ffffffffffffffffffffffffffffffff 0 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug/Ropes.build/Objects-normal/i386/RopeTests.o

@@ -1,0 +1,438 @@
+TRopesTests
+v7
+r0
+t279338522.800887
+cCheck dependencies
+cProcessInfoPlistFile /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/Info.plist RopesTests-Info.plist
+cProcessPCH /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch.gch Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Concatenation.o /Projects/metasyntactic/Ropes/Concatenation.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Fibonacci.o /Projects/metasyntactic/Ropes/Fibonacci.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Leaf.o /Projects/metasyntactic/Ropes/Leaf.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rebalancer.o /Projects/metasyntactic/Ropes/Rebalancer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rope.o /Projects/metasyntactic/Ropes/Rope.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Inserter.o /Projects/metasyntactic/Ropes/Inserter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopeEqualityChecker.o /Projects/metasyntactic/Ropes/RopeEqualityChecker.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Iterator.o /Projects/metasyntactic/Ropes/Iterator.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests normal i386
+cPhaseScriptExecution "Run Script" /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Script-74E9ED6210A65BAE00EE0EF5.sh
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
+c000000004ACF689000000000000000EE
+t1255106704
+s238
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundation.h
+c000000004ABDC7BB0000000000000A99
+t1253951419
+s2713
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004ABDC93F0000000000001355
+t1253951807
+s4949
+
+N/Projects/metasyntactic/Ropes/Concatenation.h
+c000000004AF6246100000000000001BE
+t1257645153
+s446
+i"Rope.h"
+
+N/Projects/metasyntactic/Ropes/Concatenation.m
+c000000004AF6246800000000000015FC
+t1257645160
+s5628
+i"Concatenation.h"
+i"Fibonacci.h"
+i"Leaf.h"
+i"Rebalancer.h"
+
+N/Projects/metasyntactic/Ropes/Fibonacci.h
+c000000004AF6265A0000000000000109
+t1257645658
+s265
+
+N/Projects/metasyntactic/Ropes/Fibonacci.m
+c000000004AF6251C0000000000000109
+t1257645340
+s265
+
+N/Projects/metasyntactic/Ropes/ForwardDeclarations.h
+c000000004AF625F500000000000000BE
+t1257645557
+s190
+
+N/Projects/metasyntactic/Ropes/ForwardDeclarations.m
+c000000004AF6256700000000000000E0
+t1257645415
+s224
+i"ForwardDeclarations.h"
+
+N/Projects/metasyntactic/Ropes/Inserter.h
+c000000004AF6251D0000000000000187
+t1257645341
+s391
+
+N/Projects/metasyntactic/Ropes/Inserter.m
+c000000004AF6251D0000000000000784
+t1257645341
+s1924
+i"Inserter.h"
+i"Concatenation.h"
+i"Fibonacci.h"
+
+N/Projects/metasyntactic/Ropes/Iterator.h
+c000000004AF625DC0000000000000160
+t1257645532
+s352
+
+N/Projects/metasyntactic/Ropes/Iterator.m
+c000000004AF625E300000000000003AB
+t1257645539
+s939
+i"Iterator.h"
+
+N/Projects/metasyntactic/Ropes/Leaf.h
+c000000004AF6251C0000000000000135
+t1257645340
+s309
+i"Rope.h"
+
+N/Projects/metasyntactic/Ropes/Leaf.m
+c000000004AF625FF0000000000000B4E
+t1257645567
+s2894
+i"Leaf.h"
+i"Concatenation.h"
+
+N/Projects/metasyntactic/Ropes/Macros.h
+c000000004AF6262B00000000000000F9
+t1257645611
+s249
+
+N/Projects/metasyntactic/Ropes/Macros.m
+c000000004AF6261900000000000000B9
+t1257645593
+s185
+i"Macros.h"
+
+N/Projects/metasyntactic/Ropes/Prefix.pch
+c000000004AF626380000000000000115
+t1257645624
+s277
+i<CoreFoundation/CoreFoundation.h>
+i<Foundation/Foundation.h>
+i"ForwardDeclarations.h"
+i"Macros.h"
+
+N/Projects/metasyntactic/Ropes/Rebalancer.h
+c000000004AF6251C0000000000000123
+t1257645340
+s291
+
+N/Projects/metasyntactic/Ropes/Rebalancer.m
+c000000004AF6251C00000000000005A1
+t1257645340
+s1441
+i"Rebalancer.h"
+i"Concatenation.h"
+i"Fibonacci.h"
+i"Inserter.h"
+
+N/Projects/metasyntactic/Ropes/Rope.h
+c000000004AF6251D000000000000052C
+t1257645341
+s1324
+
+N/Projects/metasyntactic/Ropes/Rope.m
+c000000004AF6251D0000000000000EAF
+t1257645341
+s3759
+i"Rope.h"
+i"Leaf.h"
+i"RopeEqualityChecker.h"
+
+N/Projects/metasyntactic/Ropes/RopeEqualityChecker.h
+c000000004AF6251D0000000000000222
+t1257645341
+s546
+i<Foundation/Foundation.h>
+
+N/Projects/metasyntactic/Ropes/RopeEqualityChecker.m
+c000000004AF6251D0000000000000D07
+t1257645341
+s3335
+i"RopeEqualityChecker.h"
+i"Iterator.h"
+i"Leaf.h"
+i"Rope.h"
+
+N/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest
+t2
+s0
+
+N/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest.dSYM
+t2
+s0
+
+N/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/Info.plist
+t1257645718
+s448
+
+N/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests
+t2
+s0
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Concatenation.o
+t1257645720
+s24576
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Fibonacci.o
+t1257645720
+s4452
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/ForwardDeclarations.o
+t2
+s0
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Inserter.o
+t1257645720
+s14764
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Iterator.o
+t1257645720
+s10720
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Leaf.o
+t1257645720
+s18396
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Macros.o
+t2
+s0
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rebalancer.o
+t1257645720
+s12480
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rope.o
+t1257645720
+s21968
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopeEqualityChecker.o
+t1257645720
+s21552
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopesTests.LinkFileList
+c000000004AF6269600000000000003BB
+t1257645718
+s955
+
+N/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Script-74E9ED6210A65BAE00EE0EF5.sh
+c000000004AF626960000000000000062
+t1257645718
+s98
+
+N/var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-cghtciavpwrhwrcxuqizuzwmzlym/Prefix.pch.gch
+t2
+s0
+
+N/var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-ctdcptlyxkgvqkfkdhwuvjzqgxsk/Prefix.pch.gch
+t2
+s0
+
+N/var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-fagvlrlfcewlkcfrfahgfzapasrm/Prefix.pch.gch
+t2
+s0
+
+N/var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch.gch
+t1257645720
+s8972848
+
+NRopesTests-Info.plist
+c000000004AF6242E0000000000000281
+t1257645102
+s641
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies279338518#279338518#0(0"0(0#1#0"4300885448#0"0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Concatenation.o /Projects/metasyntactic/Ropes/Concatenation.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.254572
+e279338520.418165
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Concatenation.o
+x/Projects/metasyntactic/Ropes/Concatenation.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@53"Compile /Projects/metasyntactic/Ropes/Concatenation.m279338520#279338520#0(0"0(0#0#45"/Projects/metasyntactic/Ropes/Concatenation.m4300885448#1995"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Concatenation.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Concatenation.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Fibonacci.o /Projects/metasyntactic/Ropes/Fibonacci.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.282072
+e279338520.351977
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Fibonacci.o
+x/Projects/metasyntactic/Ropes/Fibonacci.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@49"Compile /Projects/metasyntactic/Ropes/Fibonacci.m279338520#279338520#0(0"0(0#0#41"/Projects/metasyntactic/Ropes/Fibonacci.m4300885448#1987"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Fibonacci.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Fibonacci.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/ForwardDeclarations.o /Projects/metasyntactic/Ropes/ForwardDeclarations.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Inserter.o /Projects/metasyntactic/Ropes/Inserter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.484502
+e279338520.557516
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Inserter.o
+x/Projects/metasyntactic/Ropes/Inserter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@48"Compile /Projects/metasyntactic/Ropes/Inserter.m279338520#279338520#0(0"0(0#0#40"/Projects/metasyntactic/Ropes/Inserter.m4300885448#1985"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Inserter.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Inserter.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Iterator.o /Projects/metasyntactic/Ropes/Iterator.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.557617
+e279338520.664093
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Iterator.o
+x/Projects/metasyntactic/Ropes/Iterator.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@48"Compile /Projects/metasyntactic/Ropes/Iterator.m279338520#279338520#0(0"0(0#0#40"/Projects/metasyntactic/Ropes/Iterator.m4300885448#1985"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Iterator.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Iterator.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Leaf.o /Projects/metasyntactic/Ropes/Leaf.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.352081
+e279338520.442042
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Leaf.o
+x/Projects/metasyntactic/Ropes/Leaf.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@44"Compile /Projects/metasyntactic/Ropes/Leaf.m279338520#279338520#0(0"0(0#0#36"/Projects/metasyntactic/Ropes/Leaf.m4300885448#1977"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Leaf.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Leaf.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Macros.o /Projects/metasyntactic/Ropes/Macros.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rebalancer.o /Projects/metasyntactic/Ropes/Rebalancer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.418418
+e279338520.484400
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rebalancer.o
+x/Projects/metasyntactic/Ropes/Rebalancer.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@50"Compile /Projects/metasyntactic/Ropes/Rebalancer.m279338520#279338520#0(0"0(0#0#42"/Projects/metasyntactic/Ropes/Rebalancer.m4300885448#1989"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Rebalancer.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rebalancer.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rope.o /Projects/metasyntactic/Ropes/Rope.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.442150
+e279338520.537964
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rope.o
+x/Projects/metasyntactic/Ropes/Rope.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@44"Compile /Projects/metasyntactic/Ropes/Rope.m279338520#279338520#0(0"0(0#0#36"/Projects/metasyntactic/Ropes/Rope.m4300885448#1977"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/Rope.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/Rope.o0#
+
+CCompileC build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopeEqualityChecker.o /Projects/metasyntactic/Ropes/RopeEqualityChecker.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338520.538063
+e279338520.708098
+r1
+xCompileC
+xbuild/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopeEqualityChecker.o
+x/Projects/metasyntactic/Ropes/RopeEqualityChecker.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Projects/metasyntactic/Ropes/RopeEqualityChecker.m279338520#279338520#0(0"0(0#0#51"/Projects/metasyntactic/Ropes/RopeEqualityChecker.m4300885448#2007"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -include /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch -c /Projects/metasyntactic/Ropes/RopeEqualityChecker.m -o /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopeEqualityChecker.o0#
+
+CGenerateDSYMFile /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest.dSYM /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests
+r0
+
+CLd /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests normal i386
+s279338520.708192
+e279338521.550237
+r0
+xLd
+x/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests
+xnormal
+xi386
+oUndefined symbols:
+o  ".objc_class_name_Fibonacci", referenced from:
+o      literal-pointer@__OBJC@__cls_refs@Fibonacci in Concatenation.o
+o      literal-pointer@__OBJC@__cls_refs@Fibonacci in Rebalancer.o
+o      literal-pointer@__OBJC@__cls_refs@Fibonacci in Inserter.o
+old: symbol(s) not found
+ocollect2: ld returned 1 exit status
+lSLF07#2@91"Link /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests279338520#279338521#0(327"Undefined symbols:  ".objc_class_name_Fibonacci", referenced from:      literal-pointer@__OBJC@__cls_refs@Fibonacci in Concatenation.o      literal-pointer@__OBJC@__cls_refs@Fibonacci in Rebalancer.o      literal-pointer@__OBJC@__cls_refs@Fibonacci in Inserter.old: symbol(s) not foundcollect2: ld returned 1 exit status6(4@46"".objc_class_name_Fibonacci", referenced from:279338521#19#49#0(6@0"279338521#0#0#0#0#0"0(13@62"Literal-pointer@__OBJC@__cls_refs@Fibonacci in Concatenation.o279338521#68#69#0(6@0"279338521#0#0#0#0#0"0(13@59"Literal-pointer@__OBJC@__cls_refs@Fibonacci in Rebalancer.o279338521#137#66#0(6@0"279338521#0#0#0#0#0"0(13@57"Literal-pointer@__OBJC@__cls_refs@Fibonacci in Inserter.o279338521#203#64#0(6@0"279338521#0#0#0#0#0"0(13@19"Symbol(s) not found279338521#267#24#0(6@0"279338521#0#0#0#0#0"0(13@35"Collect2: ld returned 1 exit status279338521#291#36#0(6@0"279338521#0#0#0#0#0"0(0#0#0"4300885448#1075"    cd /Projects/metasyntactic/Ropes    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -bundle -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -L/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -filelist /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopesTests.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework SenTestingKit -framework UIKit -o /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/RopesTests1#
+
+CPhaseScriptExecution "Run Script" /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Script-74E9ED6210A65BAE00EE0EF5.sh
+s279338521.550330
+e279338522.800625
+r0
+xPhaseScriptExecution
+xRun Script
+x/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Script-74E9ED6210A65BAE00EE0EF5.sh
+o/Developer/Tools/RunPlatformUnitTests.include:412: note: Started tests for architectures 'i386'
+o/Developer/Tools/RunPlatformUnitTests.include:419: note: Running tests for architecture 'i386' (GC OFF)
+oobjc[71717]: GC: forcing GC OFF because OBJC_DISABLE_GC is set
+o2009-11-07 21:02:02.720 otest[71717:903] The executable for the test bundle at /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest could not be found.
+o/Developer/Tools/RunPlatformUnitTests.include:448: error: Failed tests for architecture 'i386' (GC OFF)
+o/Developer/Tools/RunPlatformUnitTests.include:462: note: Completed tests for architectures 'i386'
+lSLF07#2@36"Run custom shell script 'Run Script'279338521#279338522#1(20@47"Run unit tests for architecture 'i386' (GC OFF)279338522#279338522#0(446"/Developer/Tools/RunPlatformUnitTests.include:419: note: Running tests for architecture 'i386' (GC OFF)objc[71717]: GC: forcing GC OFF because OBJC_DISABLE_GC is set2009-11-07 21:02:02.720 otest[71717:903] The executable for the test bundle at /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest could not be found./Developer/Tools/RunPlatformUnitTests.include:448: error: Failed tests for architecture 'i386' (GC OFF)1(4@45"Failed tests for architecture 'i386' (GC OFF)279338522#18446744073709551615#0#0(6@0"279338522#0#0#0#0#0"0(0#0#0"0"103"/Developer/Tools/RunPlatformUnitTests.include:448: error: Failed tests for architecture 'i386' (GC OFF)0"680"/Developer/Tools/RunPlatformUnitTests.include:412: note: Started tests for architectures 'i386'/Developer/Tools/RunPlatformUnitTests.include:419: note: Running tests for architecture 'i386' (GC OFF)objc[71717]: GC: forcing GC OFF because OBJC_DISABLE_GC is set2009-11-07 21:02:02.720 otest[71717:903] The executable for the test bundle at /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest could not be found./Developer/Tools/RunPlatformUnitTests.include:448: error: Failed tests for architecture 'i386' (GC OFF)/Developer/Tools/RunPlatformUnitTests.include:462: note: Completed tests for architectures 'i386'Command /bin/sh failed with exit code 11(4@39"Command /bin/sh failed with exit code 1279338522#18446744073709551615#0#0(1@0"0(0#0#0"4300885448#16736"    cd /Projects/metasyntactic/Ropes    setenv ACTION build    setenv ALTERNATE_GROUP staff    setenv ALTERNATE_MODE u+w,go-w,a+rX    setenv ALTERNATE_OWNER cyrusn    setenv ALWAYS_SEARCH_USER_PATHS NO    setenv APPLE_INTERNAL_DEVELOPER_DIR /AppleInternal/Developer    setenv APPLE_INTERNAL_DIR /AppleInternal    setenv APPLE_INTERNAL_DOCUMENTATION_DIR /AppleInternal/Documentation    setenv APPLE_INTERNAL_LIBRARY_DIR /AppleInternal/Library    setenv APPLE_INTERNAL_TOOLS /AppleInternal/Developer/Tools    setenv APPLY_RULES_IN_COPY_FILES NO    setenv ARCHS i386    setenv ARCHS_STANDARD_32_BIT i386    setenv ARCHS_UNIVERSAL_IPHONE_OS i386    setenv BUILD_COMPONENTS "headers build"    setenv BUILD_DIR /Projects/metasyntactic/Ropes/build    setenv BUILD_ROOT /Projects/metasyntactic/Ropes/build    setenv BUILD_STYLE Debug    setenv BUILD_VARIANTS normal    setenv BUILT_PRODUCTS_DIR /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator    setenv CACHE_ROOT /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501    setenv CCHROOT /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501    setenv CHMOD /bin/chmod    setenv CHOWN /usr/sbin/chown    setenv CLASS_FILE_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/JavaClasses    setenv CLEAN_PRECOMPS YES    setenv CLONE_HEADERS NO    setenv CODESIGNING_FOLDER_PATH /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest    setenv CODE_SIGN_CONTEXT_CLASS XCCodeSignContext    setenv COMMAND_MODE legacy    setenv COMPOSITE_SDK_DIRS /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/CompositeSDKs    setenv COMPRESS_PNG_FILES YES    setenv CONFIGURATION Debug    setenv CONFIGURATION_BUILD_DIR /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator    setenv CONFIGURATION_TEMP_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator    setenv CONTENTS_FOLDER_PATH RopesTests.octest    setenv COPYING_PRESERVES_HFS_DATA NO    setenv COPY_PHASE_STRIP NO    setenv COPY_RESOURCES_FROM_STATIC_FRAMEWORKS YES    setenv CP /bin/cp    setenv CURRENT_ARCH i386    setenv CURRENT_VARIANT normal    setenv DEAD_CODE_STRIPPING NO    setenv DEBUGGING_SYMBOLS YES    setenv DEBUG_INFORMATION_FORMAT dwarf-with-dsym    setenv DEPLOYMENT_LOCATION NO    setenv DEPLOYMENT_POSTPROCESSING NO    setenv DERIVED_FILES_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources    setenv DERIVED_FILE_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources    setenv DERIVED_SOURCES_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources    setenv DEVELOPER_APPLICATIONS_DIR /Developer/Applications    setenv DEVELOPER_BIN_DIR /Developer/usr/bin    setenv DEVELOPER_DIR /Developer    setenv DEVELOPER_FRAMEWORKS_DIR /Developer/Library/Frameworks    setenv DEVELOPER_FRAMEWORKS_DIR_QUOTED "\"/Developer/Library/Frameworks\""    setenv DEVELOPER_LIBRARY_DIR /Developer/Library    setenv DEVELOPER_SDK_DIR /Developer/SDKs    setenv DEVELOPER_TOOLS_DIR /Developer/Tools    setenv DEVELOPER_USR_DIR /Developer/usr    setenv DEVELOPMENT_LANGUAGE English    setenv DOCUMENTATION_FOLDER_PATH /Documentation    setenv DO_HEADER_SCANNING_IN_JAM NO    setenv DSTROOT /tmp/Ropes.dst    setenv DWARF_DSYM_FILE_NAME RopesTests.octest.dSYM    setenv DWARF_DSYM_FOLDER_PATH /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator    setenv EFFECTIVE_PLATFORM_NAME -iphonesimulator    setenv ENABLE_HEADER_DEPENDENCIES YES    setenv ENABLE_OPENMP_SUPPORT NO    setenv EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS ".svn CVS"    setenv EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj"    setenv EXECUTABLES_FOLDER_PATH RopesTests.octest/Executables    setenv EXECUTABLE_FOLDER_PATH RopesTests.octest    setenv EXECUTABLE_NAME RopesTests    setenv EXECUTABLE_PATH RopesTests.octest/RopesTests    setenv FILE_LIST /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects/LinkFileList    setenv FIXED_FILES_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/FixedFiles    setenv FRAMEWORKS_FOLDER_PATH RopesTests.octest/Frameworks    setenv FRAMEWORK_FLAG_PREFIX -framework    setenv FRAMEWORK_SEARCH_PATHS "/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks"    setenv FRAMEWORK_VERSION A    setenv FULL_PRODUCT_NAME RopesTests.octest    setenv GCC3_VERSION 3.3    setenv GCC_C_LANGUAGE_STANDARD c99    setenv GCC_DYNAMIC_NO_PIC NO    setenv GCC_ENABLE_FIX_AND_CONTINUE NO    setenv GCC_ENABLE_OBJC_EXCEPTIONS YES    setenv GCC_INLINES_ARE_PRIVATE_EXTERN YES    setenv GCC_OPTIMIZATION_LEVEL 0    setenv GCC_PFE_FILE_C_DIALECTS "c objective-c c++ objective-c++"    setenv GCC_PRECOMPILE_PREFIX_HEADER YES    setenv GCC_PREFIX_HEADER Prefix.pch    setenv GCC_PRODUCT_TYPE_PREPROCESSOR_DEFINITIONS " __IPHONE_OS_VERSION_MIN_REQUIRED=30000"    setenv GCC_TREAT_WARNINGS_AS_ERRORS NO    setenv GCC_VERSION 4.2    setenv GCC_VERSION_IDENTIFIER __2    setenv GCC_WARN_ABOUT_RETURN_TYPE YES    setenv GCC_WARN_UNUSED_VARIABLE YES    setenv GENERATE_MASTER_OBJECT_FILE NO    setenv GENERATE_PKGINFO_FILE NO    setenv GENERATE_PROFILING_CODE NO    setenv GID 20    setenv GROUP staff    setenv HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT YES    setenv HEADERMAP_INCLUDES_FRAMEWORK_ENTRIES_FOR_ALL_PRODUCT_TYPES YES    setenv HEADERMAP_INCLUDES_NONPUBLIC_NONPRIVATE_HEADERS YES    setenv HEADERMAP_INCLUDES_PROJECT_HEADERS YES    setenv HEADER_SEARCH_PATHS "\"/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include\" "    setenv ICONV /usr/bin/iconv    setenv INFOPLIST_EXPAND_BUILD_SETTINGS YES    setenv INFOPLIST_FILE RopesTests-Info.plist    setenv INFOPLIST_OUTPUT_FORMAT binary    setenv INFOPLIST_PATH RopesTests.octest/Info.plist    setenv INFOPLIST_PREPROCESS NO    setenv INFOSTRINGS_PATH /InfoPlist.strings    setenv INSTALL_DIR /tmp/Ropes.dst    setenv INSTALL_GROUP staff    setenv INSTALL_MODE_FLAG u+w,go-w,a+rX    setenv INSTALL_OWNER cyrusn    setenv INSTALL_ROOT /tmp/Ropes.dst    setenv IPHONEOS_DEPLOYMENT_TARGET 3.1.2    setenv JAVAC_DEFAULT_FLAGS "-J-Xms64m -J-XX:NewSize=4M -J-Dfile.encoding=UTF8"    setenv JAVA_APP_STUB /System/Library/Frameworks/JavaVM.framework/Resources/MacOS/JavaApplicationStub    setenv JAVA_ARCHIVE_CLASSES YES    setenv JAVA_ARCHIVE_TYPE JAR    setenv JAVA_COMPILER /usr/bin/javac    setenv JAVA_FOLDER_PATH RopesTests.octest/Java    setenv JAVA_FRAMEWORK_RESOURCES_DIRS Resources    setenv JAVA_JAR_FLAGS cv    setenv JAVA_SOURCE_SUBDIR .    setenv JAVA_USE_DEPENDENCIES YES    setenv JAVA_ZIP_FLAGS -urg    setenv JIKES_DEFAULT_FLAGS "+E +OLDCSO"    setenv KEEP_PRIVATE_EXTERNS NO    setenv LD_GENERATE_MAP_FILE NO    setenv LD_MAP_FILE_PATH /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-LinkMap-normal-i386.txt    setenv LD_OPENMP_FLAGS -fopenmp    setenv LEX /Developer/usr/bin/lex    setenv LIBRARY_FLAG_NOSPACE YES    setenv LIBRARY_FLAG_PREFIX -l    setenv LIBRARY_SEARCH_PATHS "\"/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator\" "    setenv LINKER_DISPLAYS_MANGLED_NAMES NO    setenv LINK_FILE_LIST_normal_i386 /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal/i386/RopesTests.LinkFileList    setenv LINK_WITH_STANDARD_LIBRARIES YES    setenv LOCAL_ADMIN_APPS_DIR /Applications/Utilities    setenv LOCAL_APPS_DIR /Applications    setenv LOCAL_DEVELOPER_DIR /Library/Developer    setenv LOCAL_LIBRARY_DIR /Library    setenv MACH_O_TYPE mh_bundle    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv MAC_OS_X_VERSION_ACTUAL 1061    setenv MAC_OS_X_VERSION_MAJOR 1060    setenv MAC_OS_X_VERSION_MINOR 0601    setenv NATIVE_ARCH i386    setenv NATIVE_ARCH_32_BIT i386    setenv NATIVE_ARCH_64_BIT x86_64    setenv NATIVE_ARCH_ACTUAL x86_64    setenv NO_COMMON YES    setenv OBJECT_FILE_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects    setenv OBJECT_FILE_DIR_normal /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Objects-normal    setenv OBJROOT /Projects/metasyntactic/Ropes/build    setenv ONLY_ACTIVE_ARCH NO    setenv OPTIMIZATION_LEVEL 0    setenv OS MACOS    setenv OSAC /usr/bin/osacompile    setenv OTHER_LDFLAGS "-framework Foundation -framework SenTestingKit -framework UIKit"    setenv PACKAGE_TYPE com.apple.package-type.wrapper    setenv PASCAL_STRINGS YES    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES "/usr/include /usr/local/include /System/Library/Frameworks /System/Library/PrivateFrameworks /Developer/Headers /Developer/SDKs /Developer/Platforms"    setenv PBDEVELOPMENTPLIST_PATH RopesTests.octest/pbdevelopment.plist    setenv PFE_FILE_C_DIALECTS objective-c    setenv PKGINFO_FILE_PATH /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/PkgInfo    setenv PKGINFO_PATH RopesTests.octest/PkgInfo    setenv PLATFORM_DEVELOPER_APPLICATIONS_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/Applications    setenv PLATFORM_DEVELOPER_BIN_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin    setenv PLATFORM_DEVELOPER_LIBRARY_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/Library    setenv PLATFORM_DEVELOPER_SDK_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs    setenv PLATFORM_DEVELOPER_TOOLS_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools    setenv PLATFORM_DEVELOPER_USR_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/usr    setenv PLATFORM_DIR /Developer/Platforms/iPhoneSimulator.platform    setenv PLATFORM_NAME iphonesimulator    setenv PLIST_FILE_OUTPUT_FORMAT binary    setenv PLUGINS_FOLDER_PATH RopesTests.octest/PlugIns    setenv PREBINDING NO    setenv PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR YES    setenv PRECOMP_DESTINATION_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/PrefixHeaders    setenv PRESERVE_DEAD_CODE_INITS_AND_TERMS NO    setenv PRIVATE_HEADERS_FOLDER_PATH RopesTests.octest/PrivateHeaders    setenv PRODUCT_NAME RopesTests    setenv PRODUCT_SETTINGS_PATH /Projects/metasyntactic/Ropes/RopesTests-Info.plist    setenv PRODUCT_TYPE com.apple.product-type.bundle    setenv PROFILING_CODE NO    setenv PROJECT Ropes    setenv PROJECT_DERIVED_FILE_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/DerivedSources    setenv PROJECT_DIR /Projects/metasyntactic/Ropes    setenv PROJECT_FILE_PATH /Projects/metasyntactic/Ropes/Ropes.xcodeproj    setenv PROJECT_NAME Ropes    setenv PROJECT_TEMP_DIR /Projects/metasyntactic/Ropes/build/Ropes.build    setenv PUBLIC_HEADERS_FOLDER_PATH RopesTests.octest/Headers    setenv RECURSIVE_SEARCH_PATHS_FOLLOW_SYMLINKS YES    setenv REMOVE_CVS_FROM_RESOURCES YES    setenv REMOVE_SVN_FROM_RESOURCES YES    setenv REZ_COLLECTOR_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/ResourceManagerResources    setenv REZ_OBJECTS_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/ResourceManagerResources/Objects    setenv REZ_SEARCH_PATHS "\"/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator\" "    setenv RUN_CLANG_STATIC_ANALYZER NO    setenv SCAN_ALL_SOURCE_FILES_FOR_INCLUDES NO    setenv SCRIPTS_FOLDER_PATH RopesTests.octest/Scripts    setenv SCRIPT_INPUT_FILE_COUNT 0    setenv SCRIPT_OUTPUT_FILE_COUNT 0    setenv SDKROOT /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk    setenv SDK_DIR /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk    setenv SDK_NAME iphonesimulator3.1.2    setenv SED /usr/bin/sed    setenv SEPARATE_STRIP NO    setenv SEPARATE_SYMBOL_EDIT NO    setenv SET_DIR_MODE_OWNER_GROUP YES    setenv SET_FILE_MODE_OWNER_GROUP NO    setenv SHALLOW_BUNDLE YES    setenv SHARED_DERIVED_FILE_DIR /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/DerivedSources    setenv SHARED_FRAMEWORKS_FOLDER_PATH RopesTests.octest/SharedFrameworks    setenv SHARED_PRECOMPS_DIR /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders    setenv SHARED_SUPPORT_FOLDER_PATH RopesTests.octest/SharedSupport    setenv SKIP_INSTALL YES    setenv SOURCE_ROOT /Projects/metasyntactic/Ropes    setenv SRCROOT /Projects/metasyntactic/Ropes    setenv STANDARD_C_PLUS_PLUS_LIBRARY_TYPE dynamic    setenv STRINGS_FILE_OUTPUT_ENCODING binary    setenv STRIP_INSTALLED_PRODUCT YES    setenv STRIP_STYLE non-global    setenv SYMBOL_REPOSITORY_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/SymbolRepositories    setenv SYMROOT /Projects/metasyntactic/Ropes/build    setenv SYSTEM_ADMIN_APPS_DIR /Applications/Utilities    setenv SYSTEM_APPS_DIR /Applications    setenv SYSTEM_CORE_SERVICES_DIR /System/Library/CoreServices    setenv SYSTEM_DEMOS_DIR /Applications/Extras    setenv SYSTEM_DEVELOPER_APPS_DIR /Developer/Applications    setenv SYSTEM_DEVELOPER_BIN_DIR /Developer/usr/bin    setenv SYSTEM_DEVELOPER_DEMOS_DIR "/Developer/Applications/Utilities/Built Examples"    setenv SYSTEM_DEVELOPER_DIR /Developer    setenv SYSTEM_DEVELOPER_DOC_DIR "/Developer/ADC Reference Library"    setenv SYSTEM_DEVELOPER_GRAPHICS_TOOLS_DIR "/Developer/Applications/Graphics Tools"    setenv SYSTEM_DEVELOPER_JAVA_TOOLS_DIR "/Developer/Applications/Java Tools"    setenv SYSTEM_DEVELOPER_PERFORMANCE_TOOLS_DIR "/Developer/Applications/Performance Tools"    setenv SYSTEM_DEVELOPER_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes"    setenv SYSTEM_DEVELOPER_TOOLS /Developer/Tools    setenv SYSTEM_DEVELOPER_TOOLS_DOC_DIR "/Developer/ADC Reference Library/documentation/DeveloperTools"    setenv SYSTEM_DEVELOPER_TOOLS_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes/DeveloperTools"    setenv SYSTEM_DEVELOPER_USR_DIR /Developer/usr    setenv SYSTEM_DEVELOPER_UTILITIES_DIR /Developer/Applications/Utilities    setenv SYSTEM_DOCUMENTATION_DIR /Library/Documentation    setenv SYSTEM_LIBRARY_DIR /System/Library    setenv TARGETNAME RopesTests    setenv TARGET_BUILD_DIR /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator    setenv TARGET_NAME RopesTests    setenv TARGET_TEMP_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build    setenv TEMP_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build    setenv TEMP_FILES_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build    setenv TEMP_FILE_DIR /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build    setenv TEMP_ROOT /Projects/metasyntactic/Ropes/build    setenv UID 501    setenv UNLOCALIZED_RESOURCES_FOLDER_PATH RopesTests.octest    setenv UNSTRIPPED_PRODUCT NO    setenv USER cyrusn    setenv USER_APPS_DIR /Users/cyrusn/Applications    setenv USER_LIBRARY_DIR /Users/cyrusn/Library    setenv USE_DYNAMIC_NO_PIC YES    setenv USE_HEADERMAP YES    setenv USE_HEADER_SYMLINKS NO    setenv VALID_ARCHS i386    setenv VERBOSE_PBXCP NO    setenv VERSIONPLIST_PATH RopesTests.octest/version.plist    setenv VERSION_INFO_BUILDER cyrusn    setenv VERSION_INFO_FILE RopesTests_vers.c    setenv VERSION_INFO_STRING "\"@(#)PROGRAM:RopesTests  PROJECT:Ropes-\""    setenv WRAPPER_EXTENSION octest    setenv WRAPPER_NAME RopesTests.octest    setenv WRAPPER_SUFFIX .octest    setenv XCODE_APP_SUPPORT_DIR /Developer/Library/Xcode    setenv XCODE_VERSION_ACTUAL 0321    setenv XCODE_VERSION_MAJOR 0300    setenv XCODE_VERSION_MINOR 0320    setenv YACC /Developer/usr/bin/yacc    /bin/sh -c /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/Script-74E9ED6210A65BAE00EE0EF5.sh1#
+
+CProcessInfoPlistFile /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/Info.plist RopesTests-Info.plist
+s279338518.894706
+e279338518.898214
+r1
+xProcessInfoPlistFile
+x/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/Info.plist
+xRopesTests-Info.plist
+lSLF07#2@29"Process RopesTests-Info.plist279338518#279338518#0(0"0(0#0#51"/Projects/metasyntactic/Ropes/RopesTests-Info.plist4300885448#371"    cd /Projects/metasyntactic/Ropes    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility RopesTests-Info.plist -expandbuildsettings -format binary -platform iphonesimulator -o /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest/Info.plist0#
+
+CProcessPCH /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-cghtciavpwrhwrcxuqizuzwmzlym/Prefix.pch.gch Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-ctdcptlyxkgvqkfkdhwuvjzqgxsk/Prefix.pch.gch Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-fagvlrlfcewlkcfrfahgfzapasrm/Prefix.pch.gch Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch.gch Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s279338518.898916
+e279338520.253656
+r1
+xProcessPCH
+x/var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch.gch
+xPrefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@21"Precompile Prefix.pch279338518#279338520#0(0"0(0#0#40"/Projects/metasyntactic/Ropes/Prefix.pch4300885448#1869"    cd /Projects/metasyntactic/Ropes    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-generated-files.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-own-target-headers.hmap -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-all-target-headers.hmap -iquote /Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/RopesTests-project-headers.hmap -F/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -F/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/Developer/Library/Frameworks -I/Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/include -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources/i386 -I/Projects/metasyntactic/Ropes/build/Ropes.build/Debug-iphonesimulator/RopesTests.build/DerivedSources -c /Projects/metasyntactic/Ropes/Prefix.pch -o /var/folders/Vk/VkvmAGrMF-Oe3oiiGw-GKk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Prefix-gmzonczqjbgazudwnkekktflednr/Prefix.pch.gch0#
+
+CTouch /Projects/metasyntactic/Ropes/build/Debug-iphonesimulator/RopesTests.octest
+r0
+

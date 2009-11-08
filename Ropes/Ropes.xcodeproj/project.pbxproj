@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */; };
+		74E9ED6F10A65BD700EE0EF5 /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */; };
+		74E9ED7410A65BF700EE0EF5 /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */; };
+		74E9ED7510A65BF700EE0EF5 /* Fibonacci.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */; };
+		74E9ED7910A65C1E00EE0EF5 /* Leaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7610A65C1E00EE0EF5 /* Leaf.h */; };
+		74E9ED7A10A65C1E00EE0EF5 /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7710A65C1E00EE0EF5 /* Leaf.m */; };
+		74E9ED7E10A65C3900EE0EF5 /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */; };
+		74E9ED7F10A65C3900EE0EF5 /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */; };
+		74E9ED8310A65C5300EE0EF5 /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8010A65C5300EE0EF5 /* Rope.h */; };
+		74E9ED8410A65C5300EE0EF5 /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8110A65C5300EE0EF5 /* Rope.m */; };
+		74E9ED8810A65C7300EE0EF5 /* Inserter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8510A65C7300EE0EF5 /* Inserter.h */; };
+		74E9ED8910A65C7300EE0EF5 /* Inserter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8610A65C7300EE0EF5 /* Inserter.m */; };
+		74E9ED8D10A65C8E00EE0EF5 /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */; };
+		74E9ED8E10A65C8E00EE0EF5 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */; };
+		74E9ED9910A65CE700EE0EF5 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */; };
+		74E9EDA210A65D5200EE0EF5 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED9F10A65D5200EE0EF5 /* Iterator.h */; };
+		74E9EDA310A65D5200EE0EF5 /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EDA010A65D5200EE0EF5 /* Iterator.m */; };
+		74E9EDAD10A65D9900EE0EF5 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EDAA10A65D9900EE0EF5 /* Macros.h */; };
+		74E9EE0D10A6613000EE0EF5 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRopes.a */; };
+		74E9EE1310A6617500EE0EF5 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EE1210A6617500EE0EF5 /* RopeTests.m */; };
+		74E9EE1410A6617500EE0EF5 /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EE1110A6617500EE0EF5 /* RopeTests.h */; };
+		AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Prefix.pch */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E9ED6510A65BAE00EE0EF5 /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
+		74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
+		74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concatenation.m; sourceTree = "<group>"; };
+		74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fibonacci.h; sourceTree = "<group>"; };
+		74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fibonacci.m; sourceTree = "<group>"; };
+		74E9ED7610A65C1E00EE0EF5 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
+		74E9ED7710A65C1E00EE0EF5 /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
+		74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
+		74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
+		74E9ED8010A65C5300EE0EF5 /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
+		74E9ED8110A65C5300EE0EF5 /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
+		74E9ED8510A65C7300EE0EF5 /* Inserter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inserter.h; sourceTree = "<group>"; };
+		74E9ED8610A65C7300EE0EF5 /* Inserter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inserter.m; sourceTree = "<group>"; };
+		74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
+		74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
+		74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		74E9ED9F10A65D5200EE0EF5 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
+		74E9EDA010A65D5200EE0EF5 /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
+		74E9EDAA10A65D9900EE0EF5 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74E9EE1110A6617500EE0EF5 /* RopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeTests.h; sourceTree = "<group>"; };
+		74E9EE1210A6617500EE0EF5 /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
+		AA747D9E0F9514B9006C5449 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74E9ED6110A65BAE00EE0EF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E9EE0D10A6613000EE0EF5 /* libRopes.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libRopes.a */,
+				74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* Ropes */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				034768DFFF38A50411DB9C8B /* Products */,
+				74E9EE1010A6613600EE0EF5 /* Tests */,
+				74E9ED6510A65BAE00EE0EF5 /* RopesTests-Info.plist */,
+			);
+			name = Ropes;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */,
+				74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */,
+				74E9ED8510A65C7300EE0EF5 /* Inserter.h */,
+				74E9ED9F10A65D5200EE0EF5 /* Iterator.h */,
+				74E9ED7610A65C1E00EE0EF5 /* Leaf.h */,
+				74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */,
+				74E9ED8010A65C5300EE0EF5 /* Rope.h */,
+				74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */,
+				74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */,
+				74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */,
+				74E9ED8610A65C7300EE0EF5 /* Inserter.m */,
+				74E9EDA010A65D5200EE0EF5 /* Iterator.m */,
+				74E9ED7710A65C1E00EE0EF5 /* Leaf.m */,
+				74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */,
+				74E9ED8110A65C5300EE0EF5 /* Rope.m */,
+				74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA747D9E0F9514B9006C5449 /* Prefix.pch */,
+				74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */,
+				74E9EDAA10A65D9900EE0EF5 /* Macros.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		74E9EE1010A6613600EE0EF5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				74E9EE1110A6617500EE0EF5 /* RopeTests.h */,
+				74E9EE1210A6617500EE0EF5 /* RopeTests.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */,
+				74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */,
+				74E9ED7410A65BF700EE0EF5 /* Fibonacci.h in Headers */,
+				74E9ED7910A65C1E00EE0EF5 /* Leaf.h in Headers */,
+				74E9ED7E10A65C3900EE0EF5 /* Rebalancer.h in Headers */,
+				74E9ED8310A65C5300EE0EF5 /* Rope.h in Headers */,
+				74E9ED8810A65C7300EE0EF5 /* Inserter.h in Headers */,
+				74E9ED8D10A65C8E00EE0EF5 /* RopeEqualityChecker.h in Headers */,
+				74E9ED9910A65CE700EE0EF5 /* ForwardDeclarations.h in Headers */,
+				74E9EDA210A65D5200EE0EF5 /* Iterator.h in Headers */,
+				74E9EDAD10A65D9900EE0EF5 /* Macros.h in Headers */,
+				74E9EE1410A6617500EE0EF5 /* RopeTests.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		74E9ED6310A65BAE00EE0EF5 /* RopesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74E9ED6910A65BAF00EE0EF5 /* Build configuration list for PBXNativeTarget "RopesTests" */;
+			buildPhases = (
+				74E9ED5F10A65BAE00EE0EF5 /* Resources */,
+				74E9ED6010A65BAE00EE0EF5 /* Sources */,
+				74E9ED6110A65BAE00EE0EF5 /* Frameworks */,
+				74E9ED6210A65BAE00EE0EF5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RopesTests;
+			productName = RopesTests;
+			productReference = 74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		D2AAC07D0554694100DB518D /* Ropes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Ropes" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ropes;
+			productName = Ropes;
+			productReference = D2AAC07E0554694100DB518D /* libRopes.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Ropes" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* Ropes */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* Ropes */,
+				74E9ED6310A65BAE00EE0EF5 /* RopesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74E9ED5F10A65BAE00EE0EF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		74E9ED6210A65BAE00EE0EF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74E9ED6010A65BAE00EE0EF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E9EE1310A6617500EE0EF5 /* RopeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E9ED6F10A65BD700EE0EF5 /* Concatenation.m in Sources */,
+				74E9ED7510A65BF700EE0EF5 /* Fibonacci.m in Sources */,
+				74E9ED7A10A65C1E00EE0EF5 /* Leaf.m in Sources */,
+				74E9ED7F10A65C3900EE0EF5 /* Rebalancer.m in Sources */,
+				74E9ED8410A65C5300EE0EF5 /* Rope.m in Sources */,
+				74E9ED8910A65C7300EE0EF5 /* Inserter.m in Sources */,
+				74E9ED8E10A65C8E00EE0EF5 /* RopeEqualityChecker.m in Sources */,
+				74E9EDA310A65D5200EE0EF5 /* Iterator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Release;
+		};
+		74E9ED6710A65BAF00EE0EF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "RopesTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = RopesTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		74E9ED6810A65BAF00EE0EF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "RopesTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = RopesTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Ropes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Ropes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74E9ED6910A65BAF00EE0EF5 /* Build configuration list for PBXNativeTarget "RopesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74E9ED6710A65BAF00EE0EF5 /* Debug */,
+				74E9ED6810A65BAF00EE0EF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
