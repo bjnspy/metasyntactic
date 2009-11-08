@@ -32,6 +32,13 @@
 
 @implementation RopeEqualityChecker
 
+// As we check each chunk of each rope against the other we'll use the
+// following enum to dictate what action to take.  If we've reached the end
+// and all chunks were equal, we'll return 'ARE_EQUAL' indicating that we
+// should return 'true' to the caller.  If we run into two chunks that are
+// not equal we'll return 'NOT_EQUAL' to indicate that we can return 'false'
+// immediately.  Otherwise we'll return 'KEEP_GOING' to indicate that we
+// need to move to the next chunk.
 typedef enum {
   ARE_EQUAL,
   NOT_EQUAL,
@@ -96,37 +103,72 @@ typedef enum {
 }
 
 
+// This method checks a chunk of each rope against the other and returns
+// one of three values.  If the chunks were different, or one rope has
+// finished and the other hasn't, it returns 'NotEqual'. If the chunks were
+// the same, and there is no more rope to look at, it returns 'AreEqual'.
+// Otherwise, it returns 'KeepGoing', signifying that we need to continue
+// looping.
 - (Result) checkLeafFragments {
   NSInteger leaf1SubstringLength = leaf1End - leaf1Start;
   NSInteger leaf2SubstringLength = leaf2End - leaf2Start;
   
+  // Find the smaller of the two leaves.
   NSInteger minLength = MIN(leaf1SubstringLength, leaf2SubstringLength);
   
+  // Pull out a chunk of string of that length from both leaves
+  // Note: a leaf can't ever be larger than 2^32 - 1 characters (since
+  // it encapsulates a string), so it's safe to pull out a substring of it.
   NSString* s1 = [[leaf1 subRope:leaf1Start endIndex:(leaf1Start + minLength)] stringValue];
   NSString* s2 = [[leaf2 subRope:leaf2Start endIndex:(leaf2Start + minLength)] stringValue];
   
+  // If the strings don't match, the ropes aren't equal
   if (![s1 isEqual:s2]) {
     return NOT_EQUAL;
   }
   
+  // There are now 3 possibilities.  The chunks were the same length, the
+  // first was smaller than the second, or the first was larger than the
+  // second.
+  
+  // update the start indices since we consumed a portion of each rope
   leaf1Start += minLength;
   leaf2Start += minLength;
+
+  // Note: Because the lengths of the ropes are
+  // the same, we simply need to check if we've reached the end of both
+  // sequences.  If we have, then the ropes are equal.  Otherwise we need
+  // to keep on going to later chunks.
   
   if (leaf1SubstringLength == leaf2SubstringLength) {
+    // The chunks were the same length.  This means that we read to the
+    // end of both leaves.  We have to move to the next leaf in both ropes
+    
     if (!i1.hasNext) {
+      // Neither rope had any more leaves.  These ropes are the same!
       return ARE_EQUAL;
     }
   }
   
+  // Move onto the next chunk.
   return KEEP_GOING;
 }
 
 
 - (BOOL) checkLeaves {
+  // we're guaranteed to have at least one leaf in both trees at this point
+  // Get all the leaves in order
   self.i1 = [Iterator iteratorWithEnumerator:rope1.leaves.objectEnumerator];
   self.i2 = [Iterator iteratorWithEnumerator:rope2.leaves.objectEnumerator];
   
+  // Now traverse both sequences of leaves, consuming at least one leaf
+  // from either rope each time through the loop.  If we detect a
+  // difference, fail immediately.  If we get to the end of both ropes
+  // then they were equal.
   while (YES) {
+    // Note: the first time through this loop, all the start/end indices
+    // will be equal to zero.  So we'll immediately move to the next (i.e.
+    // first) leaf in both ropes.
     BOOL moveToNextLeafInRope1 = leaf1Start == leaf1End;
     BOOL moveToNextLeafInRope2 = leaf2Start == leaf2End;
     
@@ -150,21 +192,29 @@ typedef enum {
 
 - (BOOL) check {
   if (rope1 == rope2) {
+    // simple reference equality check
     return YES;
   }
   
   if (rope1 == nil || rope2 == nil) {
+    // if they're not reference equals, and one is null, then they can't
+    // ever be equal
     return NO;
   }
   
   if (rope1.length != rope2.length) {
+    // if we have different lengths, we can't be the same value
     return NO;
   }
   
   if (rope1.isEmpty) {
+    // if i'm empty and we both have the same length, then the other is
+    // empty as well and we're the same string.
     return YES;
   }
   
+  // The simple checks didn't turn up interesting.  Go onto the complicated
+  // checks.
   return [self checkLeaves];
 }
 
