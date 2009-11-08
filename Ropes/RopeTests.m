@@ -174,7 +174,7 @@ NSString* append(NSString* s1, NSString* s2) {
 
 - (void) testCharacterAt {
   for (NSInteger i = 0; i < 10000; i++) {
-    STAssertTrue([largeString characterAtIndex:i] == [largeRope characterAt:i], @"");
+    STAssertTrue([largeString characterAtIndex:i] == [largeRope characterAtIndex:i], @"");
   }
 }
 

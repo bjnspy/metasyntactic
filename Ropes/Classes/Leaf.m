@@ -149,7 +149,7 @@ static Leaf* emptyLeaf;
 }
 
 
-- (unichar) characterAt:(NSInteger)index {
+- (unichar) characterAtIndex:(NSInteger)index {
   return [string characterAtIndex:index];
 }
 

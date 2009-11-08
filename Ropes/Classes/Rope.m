@@ -48,7 +48,7 @@
  * @return the character.
  * @see {@link String#charAt(int)}
  */
-- (unichar) characterAt:(NSInteger) index AbstractMethod;
+- (unichar) characterAtIndex:(NSInteger) index AbstractMethod;
 
 
 /**
