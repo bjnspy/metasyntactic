@@ -78,6 +78,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     [dictionary setObject:@"Marius Andrei"       forKey:@"ro"];
     [dictionary setObject:@"Aleksey Surkov"      forKey:@"ru"];
     [dictionary setObject:@"Ján Senko"           forKey:@"sk"];
+    [dictionary setObject:@"Ola Lidén"           forKey:@"sv"];
     [dictionary setObject:@"Oğuz Taş"            forKey:@"tr"];
     [dictionary setObject:@"Andriy Kasyan"       forKey:@"uk"];
     self.localizers = dictionary;
