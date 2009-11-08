@@ -28,7 +28,7 @@ public class Program {
   private Program() {
   }
 
-  public static void main1(final String... args)
+  public static void main(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       stringsFiles = new ArrayList<File>();
@@ -40,7 +40,7 @@ public class Program {
     //printForwardDeclaration();
   }
 
-  public static void main(final String... args)
+  public static void main1(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       findProjectFiles(new File(arg));
@@ -81,7 +81,7 @@ public class Program {
     }
   }
 
-  private static void processFile(
+  private static void processFile1(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
     /*
     removeUnusedImports(child);
@@ -95,7 +95,7 @@ public class Program {
   }
 
 
-  private static void processFile1(
+  private static void processFile(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
     insertCopyright(child);
     trimRight(child);
@@ -491,6 +491,11 @@ public class Program {
       printer.println();
       final String english = entry.getKey();
       String translated = entry.getValue().first;
+
+//      if (english.length() == 0 || translated.length() == 0) {
+//        continue;
+//      }
+
       if (translated.length() == 0) {
         translated = english;
       }
@@ -502,6 +507,8 @@ public class Program {
       }
 
       printer.println(comment);
+
+
       printer.println("\"" + english + "\" = \"" + translated + "\";");
 
       if (entry.getValue().first.length() == 0) {
