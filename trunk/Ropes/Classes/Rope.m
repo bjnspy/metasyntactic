@@ -316,7 +316,7 @@
  * in the specified index in this rope's characters.
  */
 - (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index {
-  return [self replace:index toIndex:index withRope:rope];
+  return [self ropeByReplacingFromIndex:index toIndex:index withRope:rope];
 }
 
 /**
@@ -332,7 +332,7 @@
  * this rope.
  */
 - (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
-  return [self replace:fromIndex toIndex:toIndex withRope:[Rope emptyRope]];
+  return [self ropeByReplacingFromIndex:fromIndex toIndex:toIndex withRope:[Rope emptyRope]];
 }
 
 
@@ -350,10 +350,14 @@
  * Removes the characters in a substring of this rope, and replaces them with
  * the specified character.
  *
- * @see {@link #replace(long, long, Rope)}
+ * @see {@link #ropeByReplacingFromIndex:toIndex:withRope:}
  */
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withCharacter:(unichar) c {
-  return [self replace:fromIndex toIndex:toIndex withString:[NSString stringWithCharacters:&c length:1]];  
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex
+                           toIndex:(NSInteger) toIndex
+                     withCharacter:(unichar) c {
+  return [self ropeByReplacingFromIndex:fromIndex
+                                toIndex:toIndex
+                             withString:[NSString stringWithCharacters:&c length:1]];  
 }
 
 
@@ -361,10 +365,12 @@
  * Removes the characters in a substring of this rope, and replaces them with
  * the specified string.
  *
- * @see {@link #replace(long, long, Rope)}
+ * @see {@link #ropeByReplacingFromIndex:toIndex:withRope:}
  */
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string {
-  return [self replace:fromIndex toIndex:toIndex withRope:[Rope createRope:string]];
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string {
+  return [self ropeByReplacingFromIndex:fromIndex
+                                toIndex:toIndex
+                               withRope:[Rope createRope:string]];
 }
 
 
@@ -378,7 +384,9 @@
  * @return a rope that represented the deletion of the specified range,
  * along with the insertion of the specified rope to this rope.
  */
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope {
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex
+                           toIndex:(NSInteger) toIndex
+                          withRope:(Rope*) rope {
   if (rope == nil) {
     rope = [Leaf emptyLeaf];
   }
