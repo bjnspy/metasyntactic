@@ -29,7 +29,6 @@
 @property (retain) Rope* right;
 @property NSInteger length;
 @property uint8_t depth;
-@property NSUInteger hash;
 @end
 
 
@@ -49,14 +48,12 @@ static const NSInteger MAX_TREE_IMBALANCE = 16;
 @synthesize right;
 @synthesize length;
 @synthesize depth;
-@synthesize hash;
 
 - (void) dealloc {
   self.left = nil;
   self.right = nil;
   self.length = 0;
   self.depth = 0;
-  self.hash = 0;
   
   [super dealloc];
 }
@@ -176,7 +173,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
     // the same result.  However, once one has successfully computed the hash
     // and stored it, it will be usable by another thread.
     // Java guarantees atomic reads/writes of ints, so this is safe.
-    self.hash = left.hash * power(31, right.length) + right.hash;
+    hash = left.hash * power(31, right.length) + right.hash;
   }
   
   return hash;
