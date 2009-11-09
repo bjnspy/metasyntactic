@@ -68,23 +68,18 @@
  * Returns the index within this rope of the first occurrence of the
  * specified character.
  *
- * <p>Note: this method accepts an integer in case you are looking for a 32 bit
- * unicode codepoint.
- *
- * @param c a character
+ * @param character a character
  * @return the index of the first occurrence of the character in this rope,
- * or {@code -1} if the character does not occur.
- *
- * @see {@link String#indexOf(int)}
+ * or {@code NSNotFound} if the character does not occur.
  */
-- (NSInteger) indexOf:(unichar) c AbstractMethod;
+- (NSInteger) indexOf:(unichar) character AbstractMethod;
 
 
 /**
  * Subclasses should implement this method to extract and return the
  * requested subrope.
  *
- * @see {@link #subRopeFromIndex(long, long)}
+ * @see {@link #subRopeFromIndex:toIndex:}
  */
 - (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger) toIndex AbstractMethod;
 
@@ -106,7 +101,7 @@
  * Subclasses should implement this method to return the rope that is
  * equivalent to {@code other} appended to themself.
  *
- * @see {@link #append(Rope)}
+ * @see {@link #ropeByAppendingRope:}
  */
 - (Rope*) ropeByAppendingRopeWorker:(Rope*) other AbstractMethod;
 
@@ -125,7 +120,7 @@
  * A string with the same characters as this rope.  Note: a rope is only
  * convertible to a string if it has less than 2^31 characters.  Note:
  * it is possible for the conversion of a large rope to a string to fail
- * if the JVM cannot allocate a contiguous sequence of memory long enough
+ * if the runtime cannot allocate a contiguous sequence of memory long enough
  * to fit all the characters in this rope.
  *
  * @return a string with the same characters as this rope.
@@ -143,11 +138,12 @@
  * @return a rope derived from this rope by replacing every occurrance of
  * oldChar with newChar
  */
-- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar)oldChar withCharacter:(unichar)newChar AbstractMethod;
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar) oldChar
+                                  withCharacter:(unichar) newChar AbstractMethod;
 
 
 /**
- * @return {@code true} if this rope is empty, {@code false} otherwise.
+ * @return {@code YES} if this rope is empty, {@code NO} otherwise.
  */
 - (BOOL) isEmpty {
   return self.length == 0;
@@ -157,7 +153,7 @@
 /**
  * @param fromIndex the beginning index, inclusive.
  *
- * @return a new rope that is a portion of this rope. The substring begins
+ * @return a new rope that is a portion of this rope. The rope begins
  * with the character at the specified index and extends to the end of this
  * rope.
  */
@@ -203,7 +199,7 @@
  * Appends the specified character to the end of this rope, producing a new
  * rope as the result.
  *
- * @see {@link #append(Rope)}
+ * @see {@link #ropeByAppendingRope:}
  */
 - (Rope*) ropeByAppendingCharacter:(unichar) character {
   return [self ropeByAppendingString:[NSString stringWithCharacter:character]];
@@ -214,7 +210,7 @@
  * Appends the specified string to the end of this rope, producing a new
  * rope as the result.
  *
- * @see {@link #append(Rope)}
+ * @see {@link #ropeByAppendingRope:}
  */
 - (Rope*) ropeByAppendingString:(NSString*) string {
   return [self ropeByAppendingRope:[Rope createRope:string]];
@@ -250,7 +246,7 @@
  * Prepends the specified character to the beginning of this rope, producing
  * a new rope as the result.
  *
- * @see {@link #prepend(Rope)}
+ * @see {@link #ropeByPrependingRope:}
  */
 - (Rope*) ropeByPrependingCharacter:(unichar) character {
   return [self ropeByPrependingString:[NSString stringWithCharacter:character]];  
@@ -261,7 +257,7 @@
  * Prepends the specified string to the beginning of this rope, producing
  * a new rope as the result.
  *
- * @see {@link #prepend(Rope)}
+ * @see {@link #ropeByPrependingRope:}
  */
 - (Rope*) ropeByPrependingString:(NSString*) string {
   return [self ropeByPrependingRope:[Rope createRope:string]];
@@ -289,7 +285,7 @@
  * Inserts the char argument into this rope at the position specified by
  * {@code index}.
  *
- * @see {@link #insert(long, Rope)}
+ * @see {@link #ropeByInsertingRope:atIndex:}
  */
 - (Rope*) ropeByInsertingCharacter:(unichar) character atIndex:(NSInteger) index {
   return [self ropeByInsertingString:[NSString stringWithCharacter:character]
@@ -301,7 +297,7 @@
  * Inserts the string argument into this rope at the position specified by
  * {@code index}.
  *
- * @see {@link #insert(long, Rope)}
+ * @see {@link #ropeByInsertingRope:atIndex:}
  */
 - (Rope*) ropeByInsertingString:(NSString*) string atIndex:(NSInteger) index {
   return [self ropeByInsertingRope:[Rope createRope:string] atIndex:index];
@@ -456,8 +452,8 @@
  * Clients are recommended to only use this method if their ropes are small.
  *
  * @param other the rope to compare against.
- * @return {@code true} if these ropes contain the same sequence of
- * characters. {@code false} otherwise.
+ * @return {@code YES} if these ropes contain the same sequence of
+ * characters. {@code NO} otherwise.
  */
 - (BOOL) isEqualToRope:(Rope*) other {
   // The implementation of 'equals' is sufficiently complex that it warrents
@@ -467,7 +463,7 @@
 
 
 /**
- * Helper method for {@link #equals}.
+ * Helper method for {@link #isEqualToRope}.
  *
  * @return all the leaves in left to right order.
  */

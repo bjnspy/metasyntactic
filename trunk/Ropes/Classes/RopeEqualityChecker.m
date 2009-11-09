@@ -30,10 +30,6 @@
 @property (retain) Iterator* i2;
 @property (retain) Leaf* leaf1;
 @property (retain) Leaf* leaf2;
-@property NSInteger leaf1Start;
-@property NSInteger leaf1End;
-@property NSInteger leaf2Start;
-@property NSInteger leaf2End;
 @end
 
 @implementation RopeEqualityChecker
@@ -41,8 +37,8 @@
 // As we check each chunk of each rope against the other we'll use the
 // following enum to dictate what action to take.  If we've reached the end
 // and all chunks were equal, we'll return 'ARE_EQUAL' indicating that we
-// should return 'true' to the caller.  If we run into two chunks that are
-// not equal we'll return 'NOT_EQUAL' to indicate that we can return 'false'
+// should return 'YES' to the caller.  If we run into two chunks that are
+// not equal we'll return 'NOT_EQUAL' to indicate that we can return 'NO'
 // immediately.  Otherwise we'll return 'KEEP_GOING' to indicate that we
 // need to move to the next chunk.
 typedef enum {
@@ -57,10 +53,6 @@ typedef enum {
 @synthesize i2;
 @synthesize leaf1;
 @synthesize leaf2;
-@synthesize leaf1Start;
-@synthesize leaf1End;
-@synthesize leaf2Start;
-@synthesize leaf2End;
 
 - (void) dealloc {
   self.rope1 = nil;
@@ -69,10 +61,6 @@ typedef enum {
   self.i2 = nil;
   self.leaf1 = nil;
   self.leaf2 = nil;
-  self.leaf1Start = 0;
-  self.leaf1End = 0;
-  self.leaf2Start = 0;
-  self.leaf2End = 0;
   
   [super dealloc];
 }
@@ -96,16 +84,16 @@ typedef enum {
 - (void) shiftRope1Leaf {
   self.leaf1 = i1.nextObject;
   
-  self.leaf1Start = 0;
-  self.leaf1End = leaf1.length;
+  leaf1Start = 0;
+  leaf1End = leaf1.length;
 }
 
 
 - (void) shiftRope2Leaf {
   self.leaf2 = i2.nextObject;
   
-  self.leaf2Start = 0;
-  self.leaf2End = leaf2.length;
+  leaf2Start = 0;
+  leaf2End = leaf2.length;
 }
 
 

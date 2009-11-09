@@ -71,7 +71,7 @@ static Leaf* emptyLeaf;
 
 /**
  * Factory constructor for a Leaf.  Ensures that no one accidently creates
- * another {@link #EMPTY_LEAF}.  Anyone who needs to construct a Leaf
+ * another {@link #emptyLeaf}.  Anyone who needs to construct a Leaf
  * should use this method.
  *
  * @param value the value to construct the Leaf out of.
@@ -110,7 +110,7 @@ static Leaf* emptyLeaf;
 }
 
 
-- (void) addToMutableString:(NSMutableString *)builder {
+- (void) addToMutableString:(NSMutableString*) builder {
   [builder appendString:string];
 }
 
