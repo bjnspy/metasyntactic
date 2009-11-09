@@ -65,27 +65,31 @@
 - (BOOL) isEmpty;
 - (NSInteger) indexOf:(unichar) c;
 
-- (Rope*) ropeByReplacingOccurrencesOfChar:(unichar) oldChar withChar:(unichar) newChar;
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar) oldChar withCharacter:(unichar) newChar;
 
 - (Rope*) subRopeFromIndex:(NSInteger) fromIndex;
-- (Rope*) subRopeToIndex:(NSInteger) toIndex;
-- (Rope*) subRopeWithRange:(NSRange) range;
 - (Rope*) subRopeFromIndex:(NSInteger) fromIndex length:(NSInteger) length;
 - (Rope*) subRopeFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex;
+- (Rope*) subRopeToIndex:(NSInteger) toIndex;
+- (Rope*) subRopeWithRange:(NSRange) range;
 
-- (Rope*) ropeByAppendingCharacter:(unichar) c;
+- (Rope*) ropeByAppendingCharacter:(unichar) character;
 - (Rope*) ropeByAppendingString:(NSString*) string;
 - (Rope*) ropeByAppendingRope:(Rope*) rope;
 
-- (Rope*) ropeByPrependingCharacter:(unichar) c;
+- (Rope*) ropeByPrependingCharacter:(unichar) character;
 - (Rope*) ropeByPrependingString:(NSString*) string;
 - (Rope*) ropeByPrependingRope:(Rope*) rope;
 
-- (Rope*) ropeByInsertingCharacter:(unichar) c atIndex:(NSInteger) index;
+- (Rope*) ropeByInsertingCharacter:(unichar) character atIndex:(NSInteger) index;
 - (Rope*) ropeByInsertingString:(NSString*) string atIndex:(NSInteger) index;
 - (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index;
 
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withChar:(unichar) c;
+- (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex;
+- (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex length:(NSInteger) length;
+- (Rope*) ropeByDeletingRange:(NSRange) range;
+
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withCharacter:(unichar) character;
 - (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string;
 - (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope;
 

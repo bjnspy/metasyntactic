@@ -310,9 +310,9 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (Rope*) ropeByReplacingOccurrencesOfChar:(unichar) oldChar withChar:(unichar) newChar {
-  Rope* newLeft = [left ropeByReplacingOccurrencesOfChar:oldChar withChar:newChar];
-  Rope* newRight = [right ropeByReplacingOccurrencesOfChar:oldChar withChar:newChar];
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar) oldChar withCharacter:(unichar) newChar {
+  Rope* newLeft = [left ropeByReplacingOccurrencesOfCharacter:oldChar withCharacter:newChar];
+  Rope* newRight = [right ropeByReplacingOccurrencesOfCharacter:oldChar withCharacter:newChar];
   
   if (newLeft == left && newRight == right) {
     // If neither our right child or left child changed, then we can just

@@ -142,7 +142,7 @@
  * @return a rope derived from this rope by replacing every occurrance of
  * oldChar with newChar
  */
-- (Rope*) ropeByReplacingOccurrencesOfChar:(unichar)oldChar withChar:(unichar)newChar AbstractMethod;
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar)oldChar withCharacter:(unichar)newChar AbstractMethod;
 
 
 /**
@@ -331,8 +331,18 @@
  * @return a rope that represents the deletion of the specified range from
  * this rope.
  */
-- (Rope*) delete:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
+- (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
   return [self replace:fromIndex toIndex:toIndex withRope:[Rope emptyRope]];
+}
+
+
+- (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex length:(NSInteger) length {
+  return [self ropeByDeletingFromIndex:fromIndex toIndex:fromIndex + length];
+}
+
+
+- (Rope*) ropeByDeletingRange:(NSRange) range {
+  return [self ropeByDeletingFromIndex:range.location length:range.length];
 }
 
 
@@ -342,7 +352,7 @@
  *
  * @see {@link #replace(long, long, Rope)}
  */
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withChar:(unichar) c {
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withCharacter:(unichar) c {
   return [self replace:fromIndex toIndex:toIndex withString:[NSString stringWithCharacters:&c length:1]];  
 }
 
