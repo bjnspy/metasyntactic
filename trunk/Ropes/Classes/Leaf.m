@@ -19,7 +19,6 @@
 
 @interface Leaf()
 @property (copy) NSString* string;
-@property NSUInteger hash;
 @end
 
 // Note: all reference to BAP95 refer to the paper by Boehm, Atkinson and
@@ -42,11 +41,9 @@ static Leaf* emptyLeaf;
 }
 
 @synthesize string;
-@synthesize hash;
 
 - (void) dealloc {
   self.string = nil;
-  self.hash = 0;
   
   [super dealloc];
 }
