@@ -24,7 +24,6 @@
 @interface Inserter()
 @property (retain) NSMutableArray* balancedRopes;
 @property (retain) Rope* x;
-@property NSInteger insertionPoint;
 @property (retain) Rope* finalRope;
 @end
 
@@ -32,13 +31,11 @@
 
 @synthesize balancedRopes;
 @synthesize x;
-@synthesize insertionPoint;
 @synthesize finalRope;
 
 - (void) dealloc {
   self.balancedRopes = nil;
   self.x = nil;
-  self.insertionPoint = 0;
   self.finalRope = nil;
   
   [super dealloc];

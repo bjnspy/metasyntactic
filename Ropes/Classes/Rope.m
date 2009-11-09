@@ -192,7 +192,7 @@
  */
 - (Rope*) subRopeFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
   if (fromIndex < 0 || toIndex > self.length || fromIndex > toIndex) {
-    @throw [NSException exceptionWithName:@"IndexOutOfBounds" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:NSRangeException reason:@"" userInfo:nil];
   }
   
   return [self subRopeFromIndexWorker:fromIndex toIndex:toIndex];
