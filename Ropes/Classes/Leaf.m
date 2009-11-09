@@ -170,7 +170,7 @@ static Leaf* emptyLeaf;
 }
 
 
-- (Rope*) ropeByReplacingOccurrencesOfChar:(unichar)oldChar withChar:(unichar)newChar {
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar)oldChar withCharacter:(unichar)newChar {
   NSString* result = [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&oldChar length:1]
                                                        withString:[NSString stringWithCharacters:&newChar length:1]];
   
