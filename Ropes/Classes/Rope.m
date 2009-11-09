@@ -53,7 +53,7 @@
  * Returns the character in this rope at the provided index.
  *
  * @return the character.
- * @see {@link String#charAt(int)}
+ * @see {@link NSString#characterAtIndex:}
  */
 - (unichar) characterAtIndex:(NSInteger) index AbstractMethod;
 
