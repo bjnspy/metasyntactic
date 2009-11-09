@@ -219,7 +219,7 @@ NSComparisonResult compareStringsNaturally(NSString* string1, NSString* string2)
 }
 
 
-NSComparisonResult compareStringsNaturally1(id i1, id i2, void* context) {
+NSComparisonResult compareStringsFunction(id i1, id i2, void* context) {
   return compareStringsNaturally(i1, i2);
 }
 
