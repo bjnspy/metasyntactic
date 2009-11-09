@@ -76,7 +76,7 @@
  * </ol>
  * <p>Note: You should not access instances of this class from multiple threads.
  * It should only be created on the stack, used by one thread, and then
- * discarded.  See {@link Rope#equals} to see the proper usage.
+ * discarded.  See {@link Rope#isEqualToRope} to see the proper usage.
  */
 @interface RopeEqualityChecker : NSObject {
 @private
