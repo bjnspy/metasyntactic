@@ -346,6 +346,38 @@
 }
 
 
+- (Rope*) ropeByReplacingRange:(NSRange) range withCharacter:(unichar) character {
+  return [self ropeByReplacingRange:range withString:[NSString stringWithCharacters:&character length:1]];
+}
+
+
+- (Rope*) ropeByReplacingRange:(NSRange) range withString:(NSString*) string {
+  return [self ropeByReplacingRange:range withRope:[Rope createRope:string]];
+}
+
+
+- (Rope*) ropeByReplacingRange:(NSRange) range withRope:(Rope*) rope {
+  return [self ropeByReplacingFromIndex:range.location length:range.length withRope:rope];
+}
+
+
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withCharacter:(unichar) character {
+  return [self ropeByReplacingFromIndex:fromIndex length:length withString:[NSString stringWithCharacters:&character length:1]];
+}
+
+
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withString:(NSString*) string {
+  return [self ropeByReplacingFromIndex:fromIndex length:length withRope:[Rope createRope:string]];
+}
+
+
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withRope:(Rope*) rope {
+  return [self ropeByReplacingFromIndex:fromIndex
+                                toIndex:fromIndex + length
+                               withRope:rope];
+}
+
+
 /**
  * Removes the characters in a substring of this rope, and replaces them with
  * the specified character.

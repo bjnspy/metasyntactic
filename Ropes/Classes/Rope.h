@@ -93,6 +93,14 @@
 - (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string;
 - (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope;
 
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withCharacter:(unichar) character;
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withString:(NSString*) string;
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withRope:(Rope*) rope;
+
+- (Rope*) ropeByReplacingRange:(NSRange) range withCharacter:(unichar) character;
+- (Rope*) ropeByReplacingRange:(NSRange) range withString:(NSString*) string;
+- (Rope*) ropeByReplacingRange:(NSRange) range withRope:(Rope*) rope;
+
 - (BOOL) isEqualToRope:(Rope*) other;
 
 - (NSString*) stringValue;
