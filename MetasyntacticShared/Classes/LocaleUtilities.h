@@ -29,4 +29,6 @@
 + (BOOL) isEnglish;
 + (BOOL) isJapanese;
 
++ (NSLocale*) currentLocale;
+
 @end
