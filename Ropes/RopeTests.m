@@ -76,7 +76,7 @@ static Rope* mediumRope;
 
 - (void) testSimpleSubRope1 {
   NSString* s1 = [largeString substringWithRange:NSMakeRange(0, 26)];
-  NSString* s2 = [largeRope subRope:0 endIndex:26].stringValue;
+  NSString* s2 = [largeRope subRopeFromIndex:0 toIndex:26].stringValue;
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -87,7 +87,7 @@ static Rope* mediumRope;
   NSInteger end = largeString.length;
   
   NSString* s1 = [largeString substringWithRange:NSMakeRange(start, end - start)];
-  NSString* s2 = [[largeRope subRope:start endIndex:end] stringValue];
+  NSString* s2 = [[largeRope subRopeFromIndex:start toIndex:end] stringValue];
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -96,7 +96,7 @@ static Rope* mediumRope;
 - (void) testSimpleSubRope3 {
   NSInteger start = largeString.length / 2;
   NSString* s1 = [largeString substringWithRange:NSMakeRange(start, 26)];
-  NSString* s2 = [[largeRope subRope:start endIndex:start + 26] stringValue];
+  NSString* s2 = [[largeRope subRopeFromIndex:start toIndex:start + 26] stringValue];
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -106,7 +106,7 @@ static Rope* mediumRope;
   // pick a range that will cross a node split
   
   NSString* s1 = [largeString substringWithRange:NSMakeRange(1000, 50)];
-  NSString* s2 = [[largeRope subRope:1000 endIndex:1050] stringValue];
+  NSString* s2 = [[largeRope subRopeFromIndex:1000 toIndex:1050] stringValue];
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -126,7 +126,7 @@ NSString* append(NSString* s1, NSString* s2) {
 }
 
 
-// The following subrope tests test all the corner cases of subRope.
+// The following subrope tests test all the corner cases of subRopeFromIndex.
 // Consider the following concatenation:
 //
 // ------------------------------------------------------------------
@@ -134,7 +134,7 @@ NSString* append(NSString* s1, NSString* s2) {
 // ------------------------------------------------------------------
 // 0, 1                  (m - 1),  m,  (m + 1)            (e - 1),  e
 //
-// We want to test every permutation of subRopes between those points.
+// We want to test every permutation of subRopeFromIndexs between those points.
 - (void) testComplexSubRope2 {
   NSString* string = append(repeat(1024, 'a'), repeat(1024, 'b'));
   Rope* rope = [RopeTests createChunkedRope:string];
@@ -144,10 +144,10 @@ NSString* append(NSString* s1, NSString* s2) {
   
   for (NSInteger i = 0; i < ArrayLength(indices); i++) {
     for (NSInteger j = i; j < ArrayLength(indices); j++) {
-      Rope* subRope = [rope subRope:i endIndex:j];
+      Rope* subRopeFromIndex = [rope subRopeFromIndex:i toIndex:j];
       NSString* substring = [string substringWithRange:NSMakeRange(i, j - i)];
       
-      STAssertTrue([substring isEqual:subRope.stringValue], @"");
+      STAssertTrue([substring isEqual:subRopeFromIndex.stringValue], @"");
     }
   }
 }
@@ -157,7 +157,7 @@ NSString* append(NSString* s1, NSString* s2) {
 // pick a range that will cross two node splits
 
   NSString* s1 = [largeString substringWithRange:NSMakeRange(1000, 1060)];
-  NSString* s2 = [[largeRope subRope:1000 endIndex:2060] stringValue];
+  NSString* s2 = [[largeRope subRopeFromIndex:1000 toIndex:2060] stringValue];
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -165,7 +165,7 @@ NSString* append(NSString* s1, NSString* s2) {
 
 - (void) testComplexSubstring3 {
   NSString* s1 = [largeString substringWithRange:NSMakeRange(200000, 600000)];
-  NSString* s2 = [[largeRope subRope:200000 endIndex:800000] stringValue];
+  NSString* s2 = [[largeRope subRopeFromIndex:200000 toIndex:800000] stringValue];
   
   STAssertTrue([s1 isEqual:s2], @"");
 }
@@ -203,9 +203,9 @@ NSString* append(NSString* s1, NSString* s2) {
   NSInteger oneThird = mediumRope.length / 3;
   NSInteger twoThirds = mediumRope.length * 2 / 3;
   
-  Rope* start = [mediumRope subRope:0 endIndex:oneThird];
-  Rope* middle = [mediumRope subRope:oneThird endIndex:twoThirds];
-  Rope* end = [mediumRope subRope:twoThirds];
+  Rope* start = [mediumRope subRopeFromIndex:0 toIndex:oneThird];
+  Rope* middle = [mediumRope subRopeFromIndex:oneThird toIndex:twoThirds];
+  Rope* end = [mediumRope subRopeFromIndex:twoThirds];
   
   STAssertTrue([mediumRope isEqual:[[start ropeByAppendingRope:middle] ropeByAppendingRope:end]], @"");
 }

@@ -67,8 +67,11 @@
 
 - (Rope*) ropeByReplacingOccurrencesOfChar:(unichar) oldChar withChar:(unichar) newChar;
 
-- (Rope*) subRope:(NSInteger) beginIndex;
-- (Rope*) subRope:(NSInteger) beginIndex endIndex:(NSInteger) endIndex;
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex;
+- (Rope*) subRopeToIndex:(NSInteger) toIndex;
+- (Rope*) subRopeWithRange:(NSRange) range;
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex length:(NSInteger) length;
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex;
 
 - (Rope*) ropeByAppendingCharacter:(unichar) c;
 - (Rope*) ropeByAppendingString:(NSString*) string;
@@ -82,9 +85,9 @@
 - (Rope*) ropeByInsertingString:(NSString*) string atIndex:(NSInteger) index;
 - (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index;
 
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withChar:(unichar) c;
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withString:(NSString*) string;
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withRope:(Rope*) rope;
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withChar:(unichar) c;
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string;
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope;
 
 - (BOOL) isEqualToRope:(Rope*) other;
 

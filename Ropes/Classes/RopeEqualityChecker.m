@@ -125,8 +125,8 @@ typedef enum {
   // Pull out a chunk of string of that length from both leaves
   // Note: a leaf can't ever be larger than 2^32 - 1 characters (since
   // it encapsulates a string), so it's safe to pull out a substring of it.
-  NSString* s1 = [[leaf1 subRope:leaf1Start endIndex:(leaf1Start + minLength)] stringValue];
-  NSString* s2 = [[leaf2 subRope:leaf2Start endIndex:(leaf2Start + minLength)] stringValue];
+  NSString* s1 = [[leaf1 subRopeFromIndex:leaf1Start toIndex:(leaf1Start + minLength)] stringValue];
+  NSString* s2 = [[leaf2 subRopeFromIndex:leaf2Start toIndex:(leaf2Start + minLength)] stringValue];
   
   // If the strings don't match, the ropes aren't equal
   if (![s1 isEqual:s2]) {

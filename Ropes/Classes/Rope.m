@@ -83,9 +83,9 @@
  * Subclasses should implement this method to extract and return the
  * requested subrope.
  *
- * @see {@link #subRope(long, long)}
+ * @see {@link #subRopeFromIndex(long, long)}
  */
-- (Rope*) subRopeWorker:(NSInteger) beginIndex endIndex:(NSInteger) endIndex AbstractMethod;
+- (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger) toIndex AbstractMethod;
 
 
 /**
@@ -154,32 +154,47 @@
 
 
 /**
- * @param beginIndex the beginning index, inclusive.
+ * @param fromIndex the beginning index, inclusive.
  *
  * @return a new rope that is a portion of this rope. The substring begins
  * with the character at the specified index and extends to the end of this
  * rope.
  */
-- (Rope*) subRope:(NSInteger) beginIndex {
-  return [self subRope:beginIndex endIndex:self.length];
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex {
+  return [self subRopeFromIndex:fromIndex toIndex:self.length];
+}
+
+
+- (Rope*) subRopeToIndex:(NSInteger) toIndex {
+  return [self subRopeFromIndex:0 toIndex:toIndex];
+}
+
+
+- (Rope*) subRopeWithRange:(NSRange) range {
+  return [self subRopeFromIndex:range.location length:range.length];
+}
+
+
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex length:(NSInteger) length {
+  return [self subRopeFromIndexWorker:fromIndex toIndex:fromIndex + length];
 }
 
 
 /**
- * @param beginIndex the beginning index, inclusive.
- * @param endIndex the end index, exclusive.
+ * @param fromIndex the beginning index, inclusive.
+ * @param toIndex the end index, exclusive.
  *
  * @return a new rope that is a portion of this rope. The portion begins at
- * the specified {@code beginIndex} and extends to the character at index
- * {@code endIndex - 1}. Thus the length of the substring is
- * {@code endIndex-beginIndex}.
+ * the specified {@code fromIndex} and extends to the character at index
+ * {@code toIndex - 1}. Thus the length of the substring is
+ * {@code toIndex-fromIndex}.
  */
-- (Rope*) subRope:(NSInteger) beginIndex endIndex:(NSInteger) endIndex {
-  if (beginIndex < 0 || endIndex > self.length || beginIndex > endIndex) {
+- (Rope*) subRopeFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
+  if (fromIndex < 0 || toIndex > self.length || fromIndex > toIndex) {
     @throw [NSException exceptionWithName:@"IndexOutOfBounds" reason:@"" userInfo:nil];
   }
   
-  return [self subRopeWorker:beginIndex endIndex:endIndex];
+  return [self subRopeFromIndexWorker:fromIndex toIndex:toIndex];
 }
 
 
@@ -301,23 +316,23 @@
  * in the specified index in this rope's characters.
  */
 - (Rope*) ropeByInsertingRope:(Rope*) rope atIndex:(NSInteger) index {
-  return [self replace:index endIndex:index withRope:rope];
+  return [self replace:index toIndex:index withRope:rope];
 }
 
 /**
  * Removes the characters in a substring of this rope. The substring begins
- * at the specified {@code beginIndex} and extends to the character at index
- * {@code endIndex - 1} or to the end of the sequence if no such character
- * exists. If {@code beginIndex} is equal to {@code endIndex}, no changes are
+ * at the specified {@code fromIndex} and extends to the character at index
+ * {@code toIndex - 1} or to the end of the sequence if no such character
+ * exists. If {@code fromIndex} is equal to {@code toIndex}, no changes are
  * made.
  *
- * @param beginIndex The beginning index, inclusive.
- * @param endIndex The ending index, exclusive.
+ * @param fromIndex The beginning index, inclusive.
+ * @param toIndex The ending index, exclusive.
  * @return a rope that represents the deletion of the specified range from
  * this rope.
  */
-- (Rope*) delete:(NSInteger) beginIndex endIndex:(NSInteger) endIndex {
-  return [self replace:beginIndex endIndex:endIndex withRope:[Rope emptyRope]];
+- (Rope*) delete:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
+  return [self replace:fromIndex toIndex:toIndex withRope:[Rope emptyRope]];
 }
 
 
@@ -327,8 +342,8 @@
  *
  * @see {@link #replace(long, long, Rope)}
  */
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withChar:(unichar) c {
-  return [self replace:beginIndex endIndex:endIndex withString:[NSString stringWithCharacters:&c length:1]];  
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withChar:(unichar) c {
+  return [self replace:fromIndex toIndex:toIndex withString:[NSString stringWithCharacters:&c length:1]];  
 }
 
 
@@ -338,8 +353,8 @@
  *
  * @see {@link #replace(long, long, Rope)}
  */
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withString:(NSString*) string {
-  return [self replace:beginIndex endIndex:endIndex withRope:[Rope createRope:string]];
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string {
+  return [self replace:fromIndex toIndex:toIndex withRope:[Rope createRope:string]];
 }
 
 
@@ -347,20 +362,20 @@
  * Removes the characters in a substring of this rope, and replaces them with
  * the specified rope.
  *
- * @param beginIndex The beginning index, inclusive.
- * @param endIndex The ending index, exclusive.
+ * @param fromIndex The beginning index, inclusive.
+ * @param toIndex The ending index, exclusive.
  * @param rope the characters to replace the removed range with
  * @return a rope that represented the deletion of the specified range,
  * along with the insertion of the specified rope to this rope.
  */
-- (Rope*) replace:(NSInteger) beginIndex endIndex:(NSInteger) endIndex withRope:(Rope*) rope {
+- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope {
   if (rope == nil) {
     rope = [Leaf emptyLeaf];
   }
   
-  Rope* start = [self subRope:0 endIndex:beginIndex];
+  Rope* start = [self subRopeFromIndex:0 toIndex:toIndex];
   Rope* middle = rope;
-  Rope* end = [self subRope:endIndex];
+  Rope* end = [self subRopeFromIndex:toIndex];
   
   return [start ropeByAppendingRope:[middle ropeByAppendingRope:end]];
 }

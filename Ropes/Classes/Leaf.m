@@ -150,8 +150,8 @@ static Leaf* emptyLeaf;
 }
 
 
-- (Rope*) subRopeWorker:(NSInteger)beginIndex endIndex:(NSInteger)endIndex {
-  return [Leaf createLeaf:[string substringWithRange:NSMakeRange(beginIndex, endIndex - beginIndex)]];
+- (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger)toIndex {
+  return [Leaf createLeaf:[string substringWithRange:NSMakeRange(fromIndex, toIndex - fromIndex)]];
 }
 
 
