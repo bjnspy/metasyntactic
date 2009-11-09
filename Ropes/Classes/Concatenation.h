@@ -60,9 +60,6 @@
   NSUInteger hash;
 }
 
-@property (readonly) NSInteger length;
-@property (readonly) uint8_t depth;
-
 + (Rope*) createWithLeft:(Rope*) left right:(Rope*) right;
 
 @end

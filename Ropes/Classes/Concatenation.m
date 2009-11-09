@@ -65,7 +65,7 @@ static const NSInteger MAX_TREE_IMBALANCE = 16;
 /**
  * Constructor for a Concatenation.  This constructor will not produce a
  * balanced concatenation.  As such it should only be called by
- * {@link #newConcatenation} and {@link #mergeRopes}.
+ * {@link #createWithLeft:right:} and {@link #mergeLeft:right:}.
  *
  * @param left the left child.
  * @param right the right child.
@@ -149,7 +149,7 @@ static const NSInteger MAX_TREE_IMBALANCE = 16;
 NSUInteger power(NSUInteger base, NSUInteger exponent) {
   if (exponent == 0) {
     return 1;
-  } else if ((exponent %2) == 1) {
+  } else if ((exponent % 2) == 1) {
     return base * power(base * base, exponent / 2);
   } else {
     return power(base * base, exponent / 2);
