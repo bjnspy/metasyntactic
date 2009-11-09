@@ -222,14 +222,14 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (Rope*) subRopeWorker:(NSInteger)beginIndex endIndex:(NSInteger)endIndex {
-  NSInteger substringLength = endIndex - beginIndex;
+- (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger)toIndex {
+  NSInteger substringLength = toIndex - fromIndex;
   if (substringLength == 0) {
     return [Leaf emptyLeaf];
   }
   
   Rope* newLeft;
-  if (beginIndex == 0 && substringLength >= left.length) {
+  if (fromIndex == 0 && substringLength >= left.length) {
     // If the span totally consumes our left child, then just use that node.
     // This helps keep memory usage down by sharing nodes between ropes.
     newLeft = left;
@@ -240,28 +240,28 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
     // Note: if the span does not consume any part of the node, then we will
     // pass an empty span.  That will then immediately terminate with the
     // check at the top of the method
-    NSInteger start = MIN(left.length, beginIndex);
+    NSInteger start = MIN(left.length, fromIndex);
     NSInteger end = MIN(left.length, start + substringLength);
     
-    newLeft = [left subRope:start endIndex:end];
+    newLeft = [left subRopeFromIndex:start toIndex:end];
   }
   
   Rope* newRight;
-  if (beginIndex <= left.length && endIndex == self.length) {
+  if (fromIndex <= left.length && toIndex == self.length) {
     newRight = right;
   } else {
     // The start index needs to be adjusted for our right child node. i.e. if
     // you have two nodes that are ten characters long, and the client asks
     // for a subrope starting at position 15, then we'll need to recurse into
     // the right child passing in index '5'.
-    NSInteger start = MAX(0, beginIndex - left.length);
+    NSInteger start = MAX(0, fromIndex - left.length);
     
     // We may have consumed some of the span in our left child.  So update
     // how much we have remaining.
     NSInteger remaining = substringLength - newLeft.length;
     NSInteger end = start + remaining;
     
-    newRight = [right subRope:start endIndex:end];
+    newRight = [right subRopeFromIndex:start toIndex:end];
   }
   
   return [newLeft ropeByAppendingRope:newRight];
