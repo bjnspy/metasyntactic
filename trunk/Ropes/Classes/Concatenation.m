@@ -278,8 +278,8 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (NSInteger) indexOf:(unichar)c {
-  NSInteger val = [left indexOf:c];
+- (NSInteger) indexOf:(unichar) character {
+  NSInteger val = [left indexOf:character];
   if (val != NSNotFound) {
     return val;
   }
@@ -298,7 +298,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
   //    }
   //  }
   
-  val = [right indexOf:c];
+  val = [right indexOf:character];
   if (val != NSNotFound) {
     return left.length + val;
   }

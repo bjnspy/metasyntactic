@@ -63,7 +63,7 @@
 
 - (NSInteger) length;
 - (BOOL) isEmpty;
-- (NSInteger) indexOf:(unichar) c;
+- (NSInteger) indexOf:(unichar) character;
 
 - (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar) oldChar withCharacter:(unichar) newChar;
 

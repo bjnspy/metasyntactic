@@ -50,8 +50,8 @@ static Leaf* emptyLeaf;
 
 
 /**
- * Constructor for a Leaf.  Should only be called by {@link #newLeaf} and
- * the field constructor for {@link #EMPTY_LEAF}.
+ * Constructor for a Leaf.  Should only be called by {@link #createLeaf} and
+ * the field constructor for {@link #emptyLeaf}.
  *
  * @param string the value to construct the Leaf out of.
  */
