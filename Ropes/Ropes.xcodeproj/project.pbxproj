@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7401DF0410A7BAF700449794 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7401DF0210A7BAF700449794 /* NSString+Utilities.h */; };
+		7401DF0510A7BAF700449794 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401DF0310A7BAF700449794 /* NSString+Utilities.m */; };
 		748ACE5C10A6854C00A98C2B /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 748ACE5B10A6854C00A98C2B /* TestRunner.m */; };
 		748ACE6B10A6859000A98C2B /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRopes.a */; };
 		74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7401DF0210A7BAF700449794 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
+		7401DF0310A7BAF700449794 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		748ACE1910A6847200A98C2B /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		748ACE5B10A6854C00A98C2B /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
 		74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +152,7 @@
 				74E9ED8510A65C7300EE0EF5 /* Inserter.h */,
 				74E9ED9F10A65D5200EE0EF5 /* Iterator.h */,
 				74E9ED7610A65C1E00EE0EF5 /* Leaf.h */,
+				7401DF0210A7BAF700449794 /* NSString+Utilities.h */,
 				74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */,
 				74E9ED8010A65C5300EE0EF5 /* Rope.h */,
 				74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */,
@@ -156,6 +161,7 @@
 				74E9ED8610A65C7300EE0EF5 /* Inserter.m */,
 				74E9EDA010A65D5200EE0EF5 /* Iterator.m */,
 				74E9ED7710A65C1E00EE0EF5 /* Leaf.m */,
+				7401DF0310A7BAF700449794 /* NSString+Utilities.m */,
 				74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */,
 				74E9ED8110A65C5300EE0EF5 /* Rope.m */,
 				74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */,
@@ -202,6 +208,7 @@
 				74E9EDA210A65D5200EE0EF5 /* Iterator.h in Headers */,
 				74E9EDAD10A65D9900EE0EF5 /* Macros.h in Headers */,
 				74E9EE1410A6617500EE0EF5 /* RopeTests.h in Headers */,
+				7401DF0410A7BAF700449794 /* NSString+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +343,7 @@
 				74E9ED8910A65C7300EE0EF5 /* Inserter.m in Sources */,
 				74E9ED8E10A65C8E00EE0EF5 /* RopeEqualityChecker.m in Sources */,
 				74E9EDA310A65D5200EE0EF5 /* Iterator.m in Sources */,
+				7401DF0510A7BAF700449794 /* NSString+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

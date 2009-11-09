@@ -15,6 +15,7 @@
 #import "Rope.h"
 
 #import "Leaf.h"
+#import "NSString+Utilities.h"
 #import "RopeEqualityChecker.h"
 
 @implementation Rope
@@ -204,8 +205,8 @@
  *
  * @see {@link #append(Rope)}
  */
-- (Rope*) ropeByAppendingCharacter:(unichar) c {
-  return [self ropeByAppendingString:[NSString stringWithCharacters:&c length:1]];
+- (Rope*) ropeByAppendingCharacter:(unichar) character {
+  return [self ropeByAppendingString:[NSString stringWithCharacter:character]];
 }
 
 
@@ -251,8 +252,8 @@
  *
  * @see {@link #prepend(Rope)}
  */
-- (Rope*) ropeByPrependingCharacter:(unichar) c {
-  return [self ropeByPrependingString:[NSString stringWithCharacters:&c length:1]];  
+- (Rope*) ropeByPrependingCharacter:(unichar) character {
+  return [self ropeByPrependingString:[NSString stringWithCharacter:character]];  
 }
 
 
@@ -290,8 +291,9 @@
  *
  * @see {@link #insert(long, Rope)}
  */
-- (Rope*) ropeByInsertingCharacter:(unichar) c atIndex:(NSInteger) index {
-  return [self ropeByInsertingString:[NSString stringWithCharacters:&c length:1] atIndex:index];
+- (Rope*) ropeByInsertingCharacter:(unichar) character atIndex:(NSInteger) index {
+  return [self ropeByInsertingString:[NSString stringWithCharacter:character]
+                             atIndex:index];
 }
 
 
@@ -347,7 +349,8 @@
 
 
 - (Rope*) ropeByReplacingRange:(NSRange) range withCharacter:(unichar) character {
-  return [self ropeByReplacingRange:range withString:[NSString stringWithCharacters:&character length:1]];
+  return [self ropeByReplacingRange:range
+                         withString:[NSString stringWithCharacter:character]];
 }
 
 
@@ -361,8 +364,12 @@
 }
 
 
-- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex length:(NSInteger) length withCharacter:(unichar) character {
-  return [self ropeByReplacingFromIndex:fromIndex length:length withString:[NSString stringWithCharacters:&character length:1]];
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex
+                            length:(NSInteger) length
+                     withCharacter:(unichar) character {
+  return [self ropeByReplacingFromIndex:fromIndex
+                                 length:length
+                             withString:[NSString stringWithCharacter:character]];
 }
 
 
@@ -386,10 +393,10 @@
  */
 - (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex
                            toIndex:(NSInteger) toIndex
-                     withCharacter:(unichar) c {
+                     withCharacter:(unichar) character {
   return [self ropeByReplacingFromIndex:fromIndex
                                 toIndex:toIndex
-                             withString:[NSString stringWithCharacters:&c length:1]];  
+                             withString:[NSString stringWithCharacter:character]];  
 }
 
 

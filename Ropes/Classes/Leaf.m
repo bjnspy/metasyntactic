@@ -15,6 +15,7 @@
 #import "Leaf.h"
 
 #import "Concatenation.h"
+#import "NSString+Utilities.h"
 
 @interface Leaf()
 @property (copy) NSString* string;
@@ -160,8 +161,8 @@ static Leaf* emptyLeaf;
 }
 
 
-- (NSInteger) indexOf:(unichar)c {
-  NSRange range = [string rangeOfString:[NSString stringWithCharacters:&c length:1]];
+- (NSInteger) indexOf:(unichar) character {
+  NSRange range = [string rangeOfString:[NSString stringWithCharacter:character]];
   if (range.length > 0) {
     return NSNotFound;
   }
@@ -170,9 +171,10 @@ static Leaf* emptyLeaf;
 }
 
 
-- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar)oldChar withCharacter:(unichar)newChar {
-  NSString* result = [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&oldChar length:1]
-                                                       withString:[NSString stringWithCharacters:&newChar length:1]];
+- (Rope*) ropeByReplacingOccurrencesOfCharacter:(unichar) oldChar
+                                  withCharacter:(unichar) newChar {
+  NSString* result = [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacter:oldChar]
+                                                       withString:[NSString stringWithCharacter:newChar]];
   
   if (result == string) {
     // If the underlying string didn't change, then we didn't change.
