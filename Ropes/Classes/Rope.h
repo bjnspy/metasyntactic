@@ -89,9 +89,9 @@
 - (Rope*) ropeByDeletingFromIndex:(NSInteger) fromIndex length:(NSInteger) length;
 - (Rope*) ropeByDeletingRange:(NSRange) range;
 
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withCharacter:(unichar) character;
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string;
-- (Rope*) replace:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope;
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withCharacter:(unichar) character;
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withString:(NSString*) string;
+- (Rope*) ropeByReplacingFromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex withRope:(Rope*) rope;
 
 - (BOOL) isEqualToRope:(Rope*) other;
 
