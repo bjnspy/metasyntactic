@@ -219,7 +219,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 }
 
 
-- (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger)toIndex {
+- (Rope*) subRopeFromIndexWorker:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
   NSInteger substringLength = toIndex - fromIndex;
   if (substringLength == 0) {
     return [Leaf emptyLeaf];
@@ -267,7 +267,7 @@ NSUInteger power(NSUInteger base, NSUInteger exponent) {
 
 - (unichar) characterAtIndex:(NSInteger)index {
   if (index < 0 || index >= self.length) {
-    @throw [NSException exceptionWithName:@"IndexOutOfBounds" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:NSRangeException reason:@"" userInfo:nil];
   }
   
   if (index < left.length) {

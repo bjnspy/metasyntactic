@@ -16,18 +16,18 @@
 
 @interface Iterator() 
 @property (retain) NSEnumerator* enumerator;
-@property (retain) id next;
+@property (retain) id nextObject;
 @end
 
 
 @implementation Iterator
 
 @synthesize enumerator;
-@synthesize next;
+@synthesize nextObject;
 
 - (void) dealloc {
   self.enumerator = nil;
-  self.next = nil;
+  self.nextObject = nil;
   [super dealloc];
 }
 
@@ -35,7 +35,7 @@
 - (id) initWithEnumerator:(NSEnumerator*) enumerator_ {
   if ((self = [super init])) {
     self.enumerator = enumerator_;
-    self.next = enumerator.nextObject;
+    self.nextObject = enumerator.nextObject;
   }
   
   return self;
@@ -47,14 +47,14 @@
 }
 
 
-- (BOOL) hasNext {
-  return next != nil;
+- (BOOL) hasNextObject {
+  return nextObject != nil;
 }
 
 
-- (id) next {
-  id result = [[next retain] autorelease];
-  self.next = enumerator.nextObject;
+- (id) nextObject {
+  id result = [[nextObject retain] autorelease];
+  self.nextObject = enumerator.nextObject;
   return result;
 }
 

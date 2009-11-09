@@ -15,12 +15,12 @@
 @interface Iterator : NSObject {
 @private
   NSEnumerator* enumerator;
-  id next;
+  id nextObject;
 }
 
 + (Iterator*) iteratorWithEnumerator:(NSEnumerator*) enumerator;
 
-- (BOOL) hasNext;
-- (id) next;
+- (BOOL) hasNextObject;
+- (id) nextObject;
 
 @end

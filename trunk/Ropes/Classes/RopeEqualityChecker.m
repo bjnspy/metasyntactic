@@ -94,7 +94,7 @@ typedef enum {
 
 
 - (void) shiftRope1Leaf {
-  self.leaf1 = i1.next;
+  self.leaf1 = i1.nextObject;
   
   self.leaf1Start = 0;
   self.leaf1End = leaf1.length;
@@ -102,7 +102,7 @@ typedef enum {
 
 
 - (void) shiftRope2Leaf {
-  self.leaf2 = i2.next;
+  self.leaf2 = i2.nextObject;
   
   self.leaf2Start = 0;
   self.leaf2End = leaf2.length;
@@ -150,7 +150,7 @@ typedef enum {
     // The chunks were the same length.  This means that we read to the
     // end of both leaves.  We have to move to the next leaf in both ropes
     
-    if (!i1.hasNext) {
+    if (!i1.hasNextObject) {
       // Neither rope had any more leaves.  These ropes are the same!
       return ARE_EQUAL;
     }
