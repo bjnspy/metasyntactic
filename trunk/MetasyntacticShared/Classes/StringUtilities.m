@@ -14,6 +14,8 @@
 
 #import "StringUtilities.h"
 
+#import "LocaleUtilities.h"
+
 @implementation StringUtilities
 
 static NSString* articles[] = {
@@ -201,6 +203,27 @@ static NSString* prefixes[] = {
     [string appendFormat:@"%c", ((rand() % 26) + 'a')];
   }
   return string;
+}
+
+
+NSInteger compareStringsNaturally(id i1, id i2) {
+  NSString* string1 = i1;
+  NSString* string2 = i2;
+  
+  static NSStringCompareOptions comparisonOptions = 
+    NSCaseInsensitiveSearch | NSNumericSearch | NSWidthInsensitiveSearch | NSForcedOrderingSearch;
+  
+  NSRange string1Range = NSMakeRange(0, string1.length);
+  
+  return [string1 compare:string2
+                  options:comparisonOptions
+                    range:string1Range
+                   locale:[LocaleUtilities currentLocale]];
+}
+
+
+NSInteger compareStringsNaturally1(id i1, id i2, void* context) {
+  return compareStringsNaturally(i1, i2);
 }
 
 @end

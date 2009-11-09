@@ -18,9 +18,12 @@
 @implementation LocaleUtilities
 
 static NSString* preferredLanguage = nil;
+static NSLocale* currentLocale = nil;
 
 + (void) initialize {
   if (self == [LocaleUtilities class]) {
+    currentLocale = [[NSLocale currentLocale] retain];
+    
     NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
     if (preferredLocalizations.count > 0) {
       NSString* language = [preferredLocalizations objectAtIndex:0];
@@ -40,6 +43,11 @@ static NSString* preferredLanguage = nil;
 
     [preferredLanguage retain];
   }
+}
+
+
++ (NSLocale*) currentLocale {
+  return currentLocale;
 }
 
 
