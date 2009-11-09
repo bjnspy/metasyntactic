@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-NSInteger compareStringsNaturally(id i1, id i2);
-NSInteger compareStringsNaturally1(id i1, id i2, void* context);
+NSComparisonResult compareStringsNaturally(NSString* i1, NSString* i2);
+NSComparisonResult compareStringsFunction(id i1, id i2, void* context);
 
 @interface StringUtilities : NSObject {
 

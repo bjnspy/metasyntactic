@@ -206,10 +206,7 @@ static NSString* prefixes[] = {
 }
 
 
-NSInteger compareStringsNaturally(id i1, id i2) {
-  NSString* string1 = i1;
-  NSString* string2 = i2;
-  
+NSComparisonResult compareStringsNaturally(NSString* string1, NSString* string2) {
   static NSStringCompareOptions comparisonOptions = 
     NSCaseInsensitiveSearch | NSNumericSearch | NSWidthInsensitiveSearch | NSForcedOrderingSearch;
   
@@ -222,7 +219,7 @@ NSInteger compareStringsNaturally(id i1, id i2) {
 }
 
 
-NSInteger compareStringsNaturally1(id i1, id i2, void* context) {
+NSComparisonResult compareStringsNaturally1(id i1, id i2, void* context) {
   return compareStringsNaturally(i1, i2);
 }
 
