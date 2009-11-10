@@ -24,6 +24,8 @@
 @private
   BOOL onBeforeViewControllerPushedCalled;
   BOOL onAfterViewControllerPushedCalled;
+
+  MPMoviePlayerController* moviePlayer;
 }
 
 - (void) majorRefresh;
@@ -48,5 +50,7 @@
 - (void) setupTitleLabel;
 
 - (BOOL) hasOverriddenBackground;
+
+- (void) playMovie:(NSString*) address;
 
 @end

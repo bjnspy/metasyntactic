@@ -25,7 +25,6 @@
 @class AmazonCache;
 @class ApplePosterDownloader;
 @class Application;
-@class ApplicationTabBarController;
 @class BlurayCache;
 @class CacheUpdater;
 @class CollapsedMovieDetailsCell;

@@ -25,6 +25,7 @@
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
 @property BOOL visible;
+@property (retain) MPMoviePlayerController* moviePlayer;
 @end
 
 
@@ -33,11 +34,13 @@
 @synthesize searchDisplayController;
 @synthesize visibleIndexPaths;
 @synthesize visible;
+@synthesize moviePlayer;
 
 - (void) dealloc {
   self.searchDisplayController = nil;
   self.visibleIndexPaths = nil;
   self.visible = NO;
+  self.moviePlayer = nil;
 
   [super dealloc];
 }
@@ -71,14 +74,62 @@
 }
 
 
+- (void) releaseMoviePlayer {
+  if (moviePlayer != nil) {
+    [moviePlayer stop];
+    [[moviePlayer retain] autorelease];
+    self.moviePlayer = nil;
+  }
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:nil];
+}
+
+
+- (void) playMovie:(NSString*) address {
+  [self releaseMoviePlayer];
+  
+  if (address.length == 0) {
+    return;
+  }
+  
+  NSURL* url = [NSURL URLWithString:address];
+  if (url == nil) {
+    return;
+  }
+  
+  [[OperationQueue operationQueue] temporarilySuspend:90];
+  self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(movieFinishedPlaying:)
+                                               name:MPMoviePlayerPlaybackDidFinishNotification
+                                             object:nil];
+  
+  [moviePlayer play];
+}
+
+
+- (void) movieFinishedPlaying:(NSNotification*) notification {
+  [self releaseMoviePlayer];
+  
+  [[OperationQueue operationQueue] resume];
+}
+
+
 - (void) onBeforeReloadTableViewData { }
 - (void) onAfterReloadTableViewData { }
 - (void) onBeforeReloadVisibleCells { }
 - (void) onAfterReloadVisibleCells { }
 - (void) onBeforeViewControllerPushed { }
 - (void) onAfterViewControllerPushed { }
-- (void) onBeforeViewControllerPopped { }
 - (void) onAfterViewControllerPopped { }
+
+
+- (void) onBeforeViewControllerPopped {
+  [self releaseMoviePlayer];
+}
 
 
 - (void) reloadTableViewData {

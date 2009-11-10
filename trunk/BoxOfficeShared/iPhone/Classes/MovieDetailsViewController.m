@@ -50,7 +50,6 @@
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) UIButton* bookmarkButton;
-@property (retain) MPMoviePlayerController* moviePlayer;
 @end
 
 
@@ -79,7 +78,6 @@ const NSInteger POSTER_TAG = -1;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
-@synthesize moviePlayer;
 
 - (void) dealloc {
   self.movie = nil;
@@ -98,7 +96,6 @@ const NSInteger POSTER_TAG = -1;
   self.posterImage = nil;
   self.posterImageView = nil;
   self.bookmarkButton = nil;
-  self.moviePlayer = nil;
 
   [super dealloc];
 }
@@ -518,28 +515,9 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) releaseMoviePlayer {
-  if (moviePlayer != nil) {
-    [moviePlayer stop];
-    [[moviePlayer retain] autorelease];
-    self.moviePlayer = nil;
-  }
-
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:MPMoviePlayerPlaybackDidFinishNotification
-                                                object:nil];
-}
-
-
 - (void) onBeforeViewControllerPushed {
   [super onBeforeViewControllerPushed];
   [self downloadPoster];
-}
-
-
-- (void) onBeforeViewControllerPopped {
-  [super onBeforeViewControllerPopped];
-  [self releaseMoviePlayer];
 }
 
 
@@ -952,30 +930,8 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
-  [self releaseMoviePlayer];
-
   NSString* urlString = [trailersArray objectAtIndex:0];
-  NSURL* url = [NSURL URLWithString:urlString];
-  if (url == nil) {
-    return;
-  }
-
-  [[OperationQueue operationQueue] temporarilySuspend:90];
-  self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
-
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(movieFinishedPlaying:)
-                                               name:MPMoviePlayerPlaybackDidFinishNotification
-                                             object:moviePlayer];
-
-  [moviePlayer play];
-}
-
-
-- (void) movieFinishedPlaying:(NSNotification*) notification {
-  [self releaseMoviePlayer];
-
-  [[OperationQueue operationQueue] resume];
+  [self playMovie:urlString];
 }
 
 
