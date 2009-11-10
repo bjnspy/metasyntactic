@@ -200,12 +200,13 @@
         frame.origin.x += 5;
       }
     }
-
+    
+    frame.size.width = (self.frame.size.width / 2) - 14;
     if (i == 0 && oddNumberOfButtons) {
-      frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
+      if (button.buttonType != UIButtonTypeCustom) {
+        frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
+      }
     } else {
-      frame.size.width = (self.frame.size.width / 2) - 14;
-
       if (backgroundImageView != nil) {
         frame.size.width -= 5;
       }
