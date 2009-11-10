@@ -23,6 +23,8 @@
 
 @implementation SplashScreen
 
+static SplashScreen* splashScreen = nil;
+
 @synthesize imagePaths;
 
 - (void) dealloc {
@@ -120,10 +122,10 @@
 
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
   // Will autorelease this in onFadeComplete
-  SplashScreen* controller = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
+  splashScreen = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
 
   UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
-  [window addSubview:controller.view];
+  [window addSubview:splashScreen.view];
   [window makeKeyAndVisible];
 }
 
@@ -134,7 +136,8 @@
   [self.view removeFromSuperview];
   [delegate onSplashScreenFinished];
   // here we release ourselves.  After this we should be gone.
-  [self autorelease];
+  [splashScreen autorelease];
+  splashScreen = nil;
 }
 
 @end

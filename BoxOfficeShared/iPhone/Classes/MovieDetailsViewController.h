@@ -40,8 +40,6 @@
   UIImage* posterImage;
   TappableImageView* posterImageView;
   NSInteger posterCount;
-
-  MPMoviePlayerController* moviePlayer;
 }
 
 - (id) initWithMovie:(Movie*) movie;

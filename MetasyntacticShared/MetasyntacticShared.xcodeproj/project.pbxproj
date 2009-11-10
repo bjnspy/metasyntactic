@@ -275,6 +275,7 @@
 		1000000000000000000019C5 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C3 /* xmltok.c */; };
 		1000000000000000000019CC /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C9 /* xmltok_impl.c */; };
 		1000000000000000000019D1 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019CF /* xmltok_ns.c */; };
+		7455910D10A92CE0008994B7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455910C10A92CE0008994B7 /* MediaPlayer.framework */; };
 		7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7495CEC110A4A1E000915BB2 /* InterceptingView.h */; };
 		7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495CEC210A4A1E000915BB2 /* InterceptingView.m */; };
 		74E9EC1A10A5DFBA00EE0EF5 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */; };
@@ -567,6 +568,7 @@
 		1000000000000000000019C9 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CD /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CF /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		7455910C10A92CE0008994B7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7495CEC110A4A1E000915BB2 /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
 		7495CEC210A4A1E000915BB2 /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
 		74E9EC1810A5DFBA00EE0EF5 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 				10000000000000000000184C /* libPMAnalytics-r64.a in Frameworks */,
 				100000000000000000001868 /* libsqlite3.dylib in Frameworks */,
 				100000000000000000000E34 /* MapKit.framework in Frameworks */,
+				7455910D10A92CE0008994B7 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +628,7 @@
 				100000000000000000001578 /* Other Sources */,
 				100000000000000000001656 /* Products */,
 				100000000000000000001664 /* Resources */,
+				7455910C10A92CE0008994B7 /* MediaPlayer.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

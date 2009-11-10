@@ -15,6 +15,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MapKit/MapKit.h>
+#import <MediaPlayer/MPMoviePlayerController.h>
 #import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../External/OAuth/OAuthConsumer.h"
 #import "../External/PinchMedia/Beacon.h"
