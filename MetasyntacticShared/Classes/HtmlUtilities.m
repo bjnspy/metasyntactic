@@ -33,6 +33,8 @@
    @"\"", @"&rdquo;",
    @"'", @"&lsquo;",
    @"'", @"&rsquo;",
+   @"<", @"&lt;",
+   @">", @"&gt;",
    nil];
 
   for (NSString* key in dictionary) {
