@@ -14,8 +14,7 @@
 
 @interface AbstractViewController : UIViewController {
 @private
-  BOOL onBeforeViewControllerPushedCalled;
-  BOOL onAfterViewControllerPushedCalled;
+  ViewControllerState* state;
 }
 
 /* @protected */
@@ -25,5 +24,7 @@
 - (void) onAfterViewControllerPopped;
 
 - (void) setupTitleLabel;
+
+- (void) playMovie:(NSString*) address;
 
 @end
