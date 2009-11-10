@@ -123,7 +123,7 @@
   }
 
   string = [self convertHtmlEntities:[self stripHtmlCodes:[self stripHtmlLinks:[self convertHtmlEncodings:string]]]];
-  return [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  return [StringUtilities nonNilString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
 @end
