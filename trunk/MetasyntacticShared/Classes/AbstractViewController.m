@@ -14,47 +14,69 @@
 
 #import "AbstractViewController.h"
 
+#import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
+
+@interface AbstractViewController()
+@property (retain) ViewControllerState* state;
+@end
 
 @implementation AbstractViewController
 
-- (void) onBeforeViewControllerPushed { }
-- (void) onAfterViewControllerPushed { }
-- (void) onBeforeViewControllerPopped { }
-- (void) onAfterViewControllerPopped { }
+@synthesize state;
+
+- (void) dealloc {
+  self.state = nil;
+
+  [super dealloc];
+}
+
+
+- (id) init {
+  if ((self = [super init])) {
+    self.state = [[[ViewControllerState alloc] init] autorelease];
+  }
+  
+  return self;
+}
+
+- (void) onBeforeViewControllerPushed { 
+}
+
+
+- (void) onAfterViewControllerPushed { 
+}
+
+
+- (void) onAfterViewControllerPopped {
+}
+
+
+- (void) onBeforeViewControllerPopped {
+}
 
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
-  if (!onBeforeViewControllerPushedCalled) {
-    onBeforeViewControllerPushedCalled = YES;
-    [self onBeforeViewControllerPushed];
-  }
+  [state viewController:self willAppear:animated];
 }
 
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-  if (!onAfterViewControllerPushedCalled) {
-    onAfterViewControllerPushedCalled = YES;
-    [self onAfterViewControllerPushed];
-  }
+  [state viewController:self didAppear:animated];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
-  if (![self.navigationController.viewControllers containsObject:self]) {
-    [self onBeforeViewControllerPopped];
-  }
+  [state viewController:self willDisappear:animated];
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
   [super viewDidDisappear:animated];
-  if (self.navigationController == nil) {
-    [self onAfterViewControllerPopped];
-  }
+  [state viewController:self didDisappear:animated];
 }
 
 
@@ -81,6 +103,11 @@
 
 - (void) onRotate {
   [self setupTitleLabel];
+}
+
+
+- (void) playMovie:(NSString*) address {
+  [state playMovie:address];
 }
 
 @end

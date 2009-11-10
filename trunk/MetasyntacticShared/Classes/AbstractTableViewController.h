@@ -22,10 +22,7 @@
   UISearchDisplayController* searchDisplayController;
 
 @private
-  BOOL onBeforeViewControllerPushedCalled;
-  BOOL onAfterViewControllerPushedCalled;
-
-  MPMoviePlayerController* moviePlayer;
+  ViewControllerState* state;
 }
 
 - (void) majorRefresh;

@@ -55,6 +55,7 @@
 @class TappableScrollView;
 @class TextFieldEditorViewController;
 @class ThreadsafeValue;
+@class ViewControllerState;
 @class ViewControllerUtilities;
 @class XmlDocument;
 @class XmlElement;

@@ -275,6 +275,8 @@
 		1000000000000000000019C5 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C3 /* xmltok.c */; };
 		1000000000000000000019CC /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C9 /* xmltok_impl.c */; };
 		1000000000000000000019D1 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019CF /* xmltok_ns.c */; };
+		744D478E10A930F300F58F5B /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 744D478C10A930F300F58F5B /* ViewControllerState.h */; };
+		744D478F10A930F300F58F5B /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 744D478D10A930F300F58F5B /* ViewControllerState.m */; };
 		7455910D10A92CE0008994B7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455910C10A92CE0008994B7 /* MediaPlayer.framework */; };
 		7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7495CEC110A4A1E000915BB2 /* InterceptingView.h */; };
 		7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495CEC210A4A1E000915BB2 /* InterceptingView.m */; };
@@ -568,6 +570,8 @@
 		1000000000000000000019C9 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CD /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CF /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		744D478C10A930F300F58F5B /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
+		744D478D10A930F300F58F5B /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
 		7455910C10A92CE0008994B7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7495CEC110A4A1E000915BB2 /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
 		7495CEC210A4A1E000915BB2 /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
@@ -959,6 +963,7 @@
 				100000000000000000000D48 /* ListPickerDelegate.h */,
 				100000000000000000000DA3 /* ListPickerViewController.h */,
 				1000000000000000000014FF /* TextFieldEditorViewController.h */,
+				744D478C10A930F300F58F5B /* ViewControllerState.h */,
 				100000000000000000001685 /* WebViewController.h */,
 				100000000000000000000619 /* AbstractCurlableTableViewController.m */,
 				10000000000000000000098B /* AbstractFlippableTableViewController.m */,
@@ -974,6 +979,7 @@
 				1000000000000000000015C3 /* EditorViewController.m */,
 				100000000000000000000DBB /* ListPickerViewController.m */,
 				100000000000000000001501 /* TextFieldEditorViewController.m */,
+				744D478D10A930F300F58F5B /* ViewControllerState.m */,
 				100000000000000000001687 /* WebViewController.m */,
 			);
 			name = ViewControllers;
@@ -1257,6 +1263,7 @@
 				100000000000000000000A4F /* HtmlUtilities.h in Headers */,
 				7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */,
 				74E9EC1A10A5DFBA00EE0EF5 /* Iterator.h in Headers */,
+				744D478E10A930F300F58F5B /* ViewControllerState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1432,7 @@
 				100000000000000000000A51 /* HtmlUtilities.m in Sources */,
 				7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */,
 				74E9EC1B10A5DFBA00EE0EF5 /* Iterator.m in Sources */,
+				744D478F10A930F300F58F5B /* ViewControllerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

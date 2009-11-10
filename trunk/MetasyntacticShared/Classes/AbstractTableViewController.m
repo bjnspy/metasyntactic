@@ -20,12 +20,13 @@
 #import "MetasyntacticStockImages.h"
 #import "OperationQueue.h"
 #import "StyleSheet.h"
+#import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
 @property BOOL visible;
-@property (retain) MPMoviePlayerController* moviePlayer;
+@property (retain) ViewControllerState* state;
 @end
 
 
@@ -34,15 +35,24 @@
 @synthesize searchDisplayController;
 @synthesize visibleIndexPaths;
 @synthesize visible;
-@synthesize moviePlayer;
+@synthesize state;
 
 - (void) dealloc {
   self.searchDisplayController = nil;
   self.visibleIndexPaths = nil;
   self.visible = NO;
-  self.moviePlayer = nil;
+  self.state = nil;
 
   [super dealloc];
+}
+
+
+- (id) initWithStyle:(UITableViewStyle) style {
+  if ((self = [super initWithStyle:style])) {
+    self.state = [[[ViewControllerState alloc] init] autorelease];
+  }
+  
+  return self;
 }
 
 
@@ -74,47 +84,8 @@
 }
 
 
-- (void) releaseMoviePlayer {
-  if (moviePlayer != nil) {
-    [moviePlayer stop];
-    [[moviePlayer retain] autorelease];
-    self.moviePlayer = nil;
-  }
-  
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:MPMoviePlayerPlaybackDidFinishNotification
-                                                object:nil];
-}
-
-
 - (void) playMovie:(NSString*) address {
-  [self releaseMoviePlayer];
-  
-  if (address.length == 0) {
-    return;
-  }
-  
-  NSURL* url = [NSURL URLWithString:address];
-  if (url == nil) {
-    return;
-  }
-  
-  [[OperationQueue operationQueue] temporarilySuspend:90];
-  self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(movieFinishedPlaying:)
-                                               name:MPMoviePlayerPlaybackDidFinishNotification
-                                             object:nil];
-  
-  [moviePlayer play];
-}
-
-
-- (void) movieFinishedPlaying:(NSNotification*) notification {
-  [self releaseMoviePlayer];
-  
-  [[OperationQueue operationQueue] resume];
+  [state playMovie:address];
 }
 
 
@@ -125,11 +96,7 @@
 - (void) onBeforeViewControllerPushed { }
 - (void) onAfterViewControllerPushed { }
 - (void) onAfterViewControllerPopped { }
-
-
-- (void) onBeforeViewControllerPopped {
-  [self releaseMoviePlayer];
-}
+- (void) onBeforeViewControllerPopped { }
 
 
 - (void) reloadTableViewData {
@@ -201,11 +168,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
-
-  if (!onBeforeViewControllerPushedCalled) {
-    onBeforeViewControllerPushedCalled = YES;
-    [self onBeforeViewControllerPushed];
-  }
+  [state viewController:self willAppear:animated];
 
   self.visible = YES;
   [self reloadTableViewData];
@@ -214,11 +177,7 @@
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-
-  if (!onAfterViewControllerPushedCalled) {
-    onAfterViewControllerPushedCalled = YES;
-    [self onAfterViewControllerPushed];
-  }
+  [state viewController:self didAppear:animated];
 
   [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
 }
@@ -227,17 +186,13 @@
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
   self.visible = NO;
-  if (![self.navigationController.viewControllers containsObject:self]) {
-    [self onBeforeViewControllerPopped];
-  }
+  [state viewController:self willDisappear:animated];
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
   [super viewDidDisappear:animated];
-  if (self.navigationController == nil) {
-    [self onAfterViewControllerPopped];
-  }
+  [state viewController:self didDisappear:animated];
 }
 
 
