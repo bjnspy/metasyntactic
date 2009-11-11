@@ -42,6 +42,13 @@
 			remoteGlobalIDString = 74FB7D1F1017A2B3001B5CB9;
 			remoteInfo = BoxOfficeShared;
 		};
+		749323B710AA5D3C00522D23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000000000005A9 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000E11 /* BoxOfficeShared */;
+			remoteInfo = BoxOfficeShared;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +239,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				749323B810AA5D3C00522D23 /* PBXTargetDependency */,
 			);
 			name = NowPlaying;
 			productName = BoxOffice;
@@ -334,6 +342,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		749323B810AA5D3C00522D23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 749323B710AA5D3C00522D23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		100000000000000000000C41 /* Localizable.strings */ = {

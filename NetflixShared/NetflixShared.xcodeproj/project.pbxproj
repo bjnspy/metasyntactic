@@ -66,7 +66,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000000D6D /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000FD7;
+			remoteGlobalIDString = 100000000000000000001020 /* MetasyntacticShared */;
 			remoteInfo = MetasyntacticShared;
 		};
 		100000000000000000001099 /* PBXContainerItemProxy */ = {

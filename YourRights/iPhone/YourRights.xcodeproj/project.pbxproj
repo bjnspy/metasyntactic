@@ -19,6 +19,7 @@
 		100000000000000000000985 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000984 /* ArticleTitleCell.m */; };
 		1000000000000000000009C5 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009B8 /* ArticlesOfConfederation.m */; };
 		1000000000000000000009E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009E8 /* CFNetwork.framework */; };
+		100000000000000000000D06 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CFF /* MediaPlayer.framework */; };
 		100000000000000000000D6D /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D68 /* Constitution.m */; };
 		100000000000000000000D95 /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D94 /* ConstitutionAmendmentViewController.m */; };
 		100000000000000000000D98 /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D97 /* ConstitutionArticleViewController.m */; };
@@ -63,7 +64,6 @@
 		100000000000000000001972 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000196B /* Model.m */; };
 		100000000000000000001996 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001991 /* libsqlite3.dylib */; };
 		1000000000000000000019A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000199C /* main.m */; };
-		100000000000000000000D06 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CFF /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000016FC /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000001020 /* MetasyntacticShared */;
+			remoteGlobalIDString = 100000000000000000001020;
 			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -107,6 +107,7 @@
 		100000000000000000000986 /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
 		1000000000000000000009B8 /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
 		1000000000000000000009E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		100000000000000000000CFF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		100000000000000000000D57 /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
 		100000000000000000000D68 /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
 		100000000000000000000D93 /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
@@ -186,7 +187,6 @@
 		10000000000000000000196B /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		100000000000000000001991 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		10000000000000000000199C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		100000000000000000000CFF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
