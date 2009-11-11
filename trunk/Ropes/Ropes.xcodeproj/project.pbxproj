@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7401DF0410A7BAF700449794 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7401DF0210A7BAF700449794 /* NSString+Utilities.h */; };
-		7401DF0510A7BAF700449794 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401DF0310A7BAF700449794 /* NSString+Utilities.m */; };
-		748ACE5C10A6854C00A98C2B /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 748ACE5B10A6854C00A98C2B /* TestRunner.m */; };
-		748ACE6B10A6859000A98C2B /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRopes.a */; };
-		74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */; };
-		74E9ED6F10A65BD700EE0EF5 /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */; };
-		74E9ED7410A65BF700EE0EF5 /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */; };
-		74E9ED7510A65BF700EE0EF5 /* Fibonacci.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */; };
-		74E9ED7910A65C1E00EE0EF5 /* Leaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7610A65C1E00EE0EF5 /* Leaf.h */; };
-		74E9ED7A10A65C1E00EE0EF5 /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7710A65C1E00EE0EF5 /* Leaf.m */; };
-		74E9ED7E10A65C3900EE0EF5 /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */; };
-		74E9ED7F10A65C3900EE0EF5 /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */; };
-		74E9ED8310A65C5300EE0EF5 /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8010A65C5300EE0EF5 /* Rope.h */; };
-		74E9ED8410A65C5300EE0EF5 /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8110A65C5300EE0EF5 /* Rope.m */; };
-		74E9ED8810A65C7300EE0EF5 /* Inserter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8510A65C7300EE0EF5 /* Inserter.h */; };
-		74E9ED8910A65C7300EE0EF5 /* Inserter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8610A65C7300EE0EF5 /* Inserter.m */; };
-		74E9ED8D10A65C8E00EE0EF5 /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */; };
-		74E9ED8E10A65C8E00EE0EF5 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */; };
-		74E9ED9910A65CE700EE0EF5 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */; };
-		74E9EDA210A65D5200EE0EF5 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9ED9F10A65D5200EE0EF5 /* Iterator.h */; };
-		74E9EDA310A65D5200EE0EF5 /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EDA010A65D5200EE0EF5 /* Iterator.m */; };
-		74E9EDAD10A65D9900EE0EF5 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EDAA10A65D9900EE0EF5 /* Macros.h */; };
-		74E9EE0D10A6613000EE0EF5 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRopes.a */; };
-		74E9EE1310A6617500EE0EF5 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E9EE1210A6617500EE0EF5 /* RopeTests.m */; };
-		74E9EE1410A6617500EE0EF5 /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E9EE1110A6617500EE0EF5 /* RopeTests.h */; };
-		AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Prefix.pch */; };
-		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		100000000000000000000DF4 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DF3 /* NSString+Utilities.h */; };
+		100000000000000000000DF6 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DF5 /* NSString+Utilities.m */; };
+		1000000000000000000015B1 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015B0 /* TestRunner.m */; };
+		10000000000000000000197A /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001979 /* libRopes.a */; };
+		10000000000000000000078D /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000078C /* Concatenation.h */; };
+		10000000000000000000078F /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000078E /* Concatenation.m */; };
+		10000000000000000000099F /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000099E /* Fibonacci.h */; };
+		1000000000000000000009A1 /* Fibonacci.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009A0 /* Fibonacci.m */; };
+		100000000000000000000C02 /* Leaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C01 /* Leaf.h */; };
+		100000000000000000000C04 /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C03 /* Leaf.m */; };
+		100000000000000000001139 /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001138 /* Rebalancer.h */; };
+		10000000000000000000113B /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113A /* Rebalancer.m */; };
+		1000000000000000000011DA /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011D9 /* Rope.h */; };
+		1000000000000000000011DC /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DB /* Rope.m */; };
+		100000000000000000000B1D /* Inserter.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B1C /* Inserter.h */; };
+		100000000000000000000B1F /* Inserter.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B1E /* Inserter.m */; };
+		1000000000000000000011DE /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DD /* RopeEqualityChecker.h */; };
+		1000000000000000000011E0 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DF /* RopeEqualityChecker.m */; };
+		1000000000000000000009C9 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009C4 /* ForwardDeclarations.h */; };
+		100000000000000000000B48 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B46 /* Iterator.h */; };
+		100000000000000000000B4C /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B4A /* Iterator.m */; };
+		100000000000000000000CB1 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CAC /* Macros.h */; };
+		10000000000000000000197B /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001979 /* libRopes.a */; };
+		1000000000000000000011E4 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E3 /* RopeTests.m */; };
+		1000000000000000000011E2 /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E1 /* RopeTests.h */; };
+		1000000000000000000010A8 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A4 /* Prefix.pch */; };
+		1000000000000000000009E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009D5 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7430063110A682EB009ABD93 /* PBXContainerItemProxy */ = {
+		100000000000000000000F86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			containerPortal = 1000000000000000000010DA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Ropes;
 		};
-		748ACE1D10A6847A00A98C2B /* PBXContainerItemProxy */ = {
+		100000000000000000000F8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			containerPortal = 1000000000000000000010DA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Ropes;
@@ -54,137 +54,137 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7401DF0210A7BAF700449794 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
-		7401DF0310A7BAF700449794 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
-		748ACE1910A6847200A98C2B /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
-		748ACE5B10A6854C00A98C2B /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
-		74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		74E9ED6510A65BAE00EE0EF5 /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
-		74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
-		74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concatenation.m; sourceTree = "<group>"; };
-		74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fibonacci.h; sourceTree = "<group>"; };
-		74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fibonacci.m; sourceTree = "<group>"; };
-		74E9ED7610A65C1E00EE0EF5 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
-		74E9ED7710A65C1E00EE0EF5 /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
-		74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
-		74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
-		74E9ED8010A65C5300EE0EF5 /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
-		74E9ED8110A65C5300EE0EF5 /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
-		74E9ED8510A65C7300EE0EF5 /* Inserter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inserter.h; sourceTree = "<group>"; };
-		74E9ED8610A65C7300EE0EF5 /* Inserter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inserter.m; sourceTree = "<group>"; };
-		74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
-		74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
-		74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		74E9ED9F10A65D5200EE0EF5 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
-		74E9EDA010A65D5200EE0EF5 /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
-		74E9EDAA10A65D9900EE0EF5 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		74E9EE1110A6617500EE0EF5 /* RopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeTests.h; sourceTree = "<group>"; };
-		74E9EE1210A6617500EE0EF5 /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
-		AA747D9E0F9514B9006C5449 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D2AAC07E0554694100DB518D /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000DF3 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000000DF5 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
+		100000000000000000000785 /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
+		1000000000000000000015B0 /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
+		1000000000000000000011E9 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1000000000000000000011E8 /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
+		10000000000000000000078C /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
+		10000000000000000000078E /* Concatenation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concatenation.m; sourceTree = "<group>"; };
+		10000000000000000000099E /* Fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fibonacci.h; sourceTree = "<group>"; };
+		1000000000000000000009A0 /* Fibonacci.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fibonacci.m; sourceTree = "<group>"; };
+		100000000000000000000C01 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
+		100000000000000000000C03 /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
+		100000000000000000001138 /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
+		10000000000000000000113A /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
+		1000000000000000000011D9 /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
+		1000000000000000000011DB /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
+		100000000000000000000B1C /* Inserter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inserter.h; sourceTree = "<group>"; };
+		100000000000000000000B1E /* Inserter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inserter.m; sourceTree = "<group>"; };
+		1000000000000000000011DD /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
+		1000000000000000000011DF /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
+		1000000000000000000009C4 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		100000000000000000000B46 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
+		100000000000000000000B4A /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
+		100000000000000000000CAC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		1000000000000000000011E1 /* RopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeTests.h; sourceTree = "<group>"; };
+		1000000000000000000011E3 /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
+		1000000000000000000010A4 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		1000000000000000000009D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		100000000000000000001979 /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		748ACE1710A6847200A98C2B /* Frameworks */ = {
+		100000000000000000000A26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				748ACE6B10A6859000A98C2B /* libRopes.a in Frameworks */,
+				10000000000000000000197A /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		74E9ED6110A65BAE00EE0EF5 /* Frameworks */ = {
+		100000000000000000000A27 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E9EE0D10A6613000EE0EF5 /* libRopes.a in Frameworks */,
+				10000000000000000000197B /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2AAC07C0554694100DB518D /* Frameworks */ = {
+		100000000000000000000A2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				1000000000000000000009E3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		034768DFFF38A50411DB9C8B /* Products */ = {
+		1000000000000000000010BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2AAC07E0554694100DB518D /* libRopes.a */,
-				74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */,
-				748ACE1910A6847200A98C2B /* CommandLineRunner */,
+				100000000000000000001979 /* libRopes.a */,
+				1000000000000000000011E9 /* RopesTests.octest */,
+				100000000000000000000785 /* CommandLineRunner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0867D691FE84028FC02AAC07 /* Ropes */ = {
+		100000000000000000001811 /* Ropes */ = {
 			isa = PBXGroup;
 			children = (
-				08FB77AEFE84172EC02AAC07 /* Classes */,
-				0867D69AFE84028FC02AAC07 /* Frameworks */,
-				32C88DFF0371C24200C91783 /* Other Sources */,
-				034768DFFF38A50411DB9C8B /* Products */,
-				74E9EE1010A6613600EE0EF5 /* Tests */,
-				74E9ED6510A65BAE00EE0EF5 /* RopesTests-Info.plist */,
+				100000000000000000000677 /* Classes */,
+				1000000000000000000009E6 /* Frameworks */,
+				100000000000000000000F0A /* Other Sources */,
+				1000000000000000000010BF /* Products */,
+				1000000000000000000015B8 /* Tests */,
+				1000000000000000000011E8 /* RopesTests-Info.plist */,
 			);
 			name = Ropes;
 			sourceTree = "<group>";
 		};
-		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+		1000000000000000000009E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				1000000000000000000009D5 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+		100000000000000000000677 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				74E9ED6C10A65BD700EE0EF5 /* Concatenation.h */,
-				74E9ED7110A65BF700EE0EF5 /* Fibonacci.h */,
-				74E9ED8510A65C7300EE0EF5 /* Inserter.h */,
-				74E9ED9F10A65D5200EE0EF5 /* Iterator.h */,
-				74E9ED7610A65C1E00EE0EF5 /* Leaf.h */,
-				7401DF0210A7BAF700449794 /* NSString+Utilities.h */,
-				74E9ED7B10A65C3900EE0EF5 /* Rebalancer.h */,
-				74E9ED8010A65C5300EE0EF5 /* Rope.h */,
-				74E9ED8A10A65C8E00EE0EF5 /* RopeEqualityChecker.h */,
-				74E9ED6D10A65BD700EE0EF5 /* Concatenation.m */,
-				74E9ED7210A65BF700EE0EF5 /* Fibonacci.m */,
-				74E9ED8610A65C7300EE0EF5 /* Inserter.m */,
-				74E9EDA010A65D5200EE0EF5 /* Iterator.m */,
-				74E9ED7710A65C1E00EE0EF5 /* Leaf.m */,
-				7401DF0310A7BAF700449794 /* NSString+Utilities.m */,
-				74E9ED7C10A65C3900EE0EF5 /* Rebalancer.m */,
-				74E9ED8110A65C5300EE0EF5 /* Rope.m */,
-				74E9ED8B10A65C8E00EE0EF5 /* RopeEqualityChecker.m */,
+				10000000000000000000078C /* Concatenation.h */,
+				10000000000000000000099E /* Fibonacci.h */,
+				100000000000000000000B1C /* Inserter.h */,
+				100000000000000000000B46 /* Iterator.h */,
+				100000000000000000000C01 /* Leaf.h */,
+				100000000000000000000DF3 /* NSString+Utilities.h */,
+				100000000000000000001138 /* Rebalancer.h */,
+				1000000000000000000011D9 /* Rope.h */,
+				1000000000000000000011DD /* RopeEqualityChecker.h */,
+				10000000000000000000078E /* Concatenation.m */,
+				1000000000000000000009A0 /* Fibonacci.m */,
+				100000000000000000000B1E /* Inserter.m */,
+				100000000000000000000B4A /* Iterator.m */,
+				100000000000000000000C03 /* Leaf.m */,
+				100000000000000000000DF5 /* NSString+Utilities.m */,
+				10000000000000000000113A /* Rebalancer.m */,
+				1000000000000000000011DB /* Rope.m */,
+				1000000000000000000011DF /* RopeEqualityChecker.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		32C88DFF0371C24200C91783 /* Other Sources */ = {
+		100000000000000000000F0A /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AA747D9E0F9514B9006C5449 /* Prefix.pch */,
-				74E9ED9610A65CE700EE0EF5 /* ForwardDeclarations.h */,
-				74E9EDAA10A65D9900EE0EF5 /* Macros.h */,
+				1000000000000000000010A4 /* Prefix.pch */,
+				1000000000000000000009C4 /* ForwardDeclarations.h */,
+				100000000000000000000CAC /* Macros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		74E9EE1010A6613600EE0EF5 /* Tests */ = {
+		1000000000000000000015B8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				74E9EE1110A6617500EE0EF5 /* RopeTests.h */,
-				74E9EE1210A6617500EE0EF5 /* RopeTests.m */,
-				748ACE5B10A6854C00A98C2B /* TestRunner.m */,
+				1000000000000000000011E1 /* RopeTests.h */,
+				1000000000000000000011E3 /* RopeTests.m */,
+				1000000000000000000015B0 /* TestRunner.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -192,72 +192,72 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D2AAC07A0554694100DB518D /* Headers */ = {
+		100000000000000000000A6E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */,
-				74E9ED6E10A65BD700EE0EF5 /* Concatenation.h in Headers */,
-				74E9ED7410A65BF700EE0EF5 /* Fibonacci.h in Headers */,
-				74E9ED7910A65C1E00EE0EF5 /* Leaf.h in Headers */,
-				74E9ED7E10A65C3900EE0EF5 /* Rebalancer.h in Headers */,
-				74E9ED8310A65C5300EE0EF5 /* Rope.h in Headers */,
-				74E9ED8810A65C7300EE0EF5 /* Inserter.h in Headers */,
-				74E9ED8D10A65C8E00EE0EF5 /* RopeEqualityChecker.h in Headers */,
-				74E9ED9910A65CE700EE0EF5 /* ForwardDeclarations.h in Headers */,
-				74E9EDA210A65D5200EE0EF5 /* Iterator.h in Headers */,
-				74E9EDAD10A65D9900EE0EF5 /* Macros.h in Headers */,
-				74E9EE1410A6617500EE0EF5 /* RopeTests.h in Headers */,
-				7401DF0410A7BAF700449794 /* NSString+Utilities.h in Headers */,
+				1000000000000000000010A8 /* Prefix.pch in Headers */,
+				10000000000000000000078D /* Concatenation.h in Headers */,
+				10000000000000000000099F /* Fibonacci.h in Headers */,
+				100000000000000000000C02 /* Leaf.h in Headers */,
+				100000000000000000001139 /* Rebalancer.h in Headers */,
+				1000000000000000000011DA /* Rope.h in Headers */,
+				100000000000000000000B1D /* Inserter.h in Headers */,
+				1000000000000000000011DE /* RopeEqualityChecker.h in Headers */,
+				1000000000000000000009C9 /* ForwardDeclarations.h in Headers */,
+				100000000000000000000B48 /* Iterator.h in Headers */,
+				100000000000000000000CB1 /* Macros.h in Headers */,
+				1000000000000000000011E2 /* RopeTests.h in Headers */,
+				100000000000000000000DF4 /* NSString+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		748ACE1810A6847200A98C2B /* CommandLineRunner */ = {
+		100000000000000000000784 /* CommandLineRunner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 748ACE2110A6849800A98C2B /* Build configuration list for PBXNativeTarget "CommandLineRunner" */;
+			buildConfigurationList = 1000000000000000000005E7 /* Build configuration list for PBXNativeTarget "CommandLineRunner" */;
 			buildPhases = (
-				748ACE1610A6847200A98C2B /* Sources */,
-				748ACE1710A6847200A98C2B /* Frameworks */,
+				100000000000000000001312 /* Sources */,
+				100000000000000000000A26 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				748ACE1E10A6847A00A98C2B /* PBXTargetDependency */,
+				100000000000000000000FF7 /* PBXTargetDependency */,
 			);
 			name = CommandLineRunner;
 			productName = CommandLineRunner;
-			productReference = 748ACE1910A6847200A98C2B /* CommandLineRunner */;
+			productReference = 100000000000000000000785 /* CommandLineRunner */;
 			productType = "com.apple.product-type.tool";
 		};
-		74E9ED6310A65BAE00EE0EF5 /* RopesTests */ = {
+		1000000000000000000011E7 /* RopesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74E9ED6910A65BAF00EE0EF5 /* Build configuration list for PBXNativeTarget "RopesTests" */;
+			buildConfigurationList = 1000000000000000000005F7 /* Build configuration list for PBXNativeTarget "RopesTests" */;
 			buildPhases = (
-				74E9ED5F10A65BAE00EE0EF5 /* Resources */,
-				74E9ED6010A65BAE00EE0EF5 /* Sources */,
-				74E9ED6110A65BAE00EE0EF5 /* Frameworks */,
-				74E9ED6210A65BAE00EE0EF5 /* ShellScript */,
+				1000000000000000000011AB /* Resources */,
+				100000000000000000001313 /* Sources */,
+				100000000000000000000A27 /* Frameworks */,
+				1000000000000000000012BE /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7430063210A682EB009ABD93 /* PBXTargetDependency */,
+				100000000000000000000FF4 /* PBXTargetDependency */,
 			);
 			name = RopesTests;
 			productName = RopesTests;
-			productReference = 74E9ED6410A65BAE00EE0EF5 /* RopesTests.octest */;
+			productReference = 1000000000000000000011E9 /* RopesTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		D2AAC07D0554694100DB518D /* Ropes */ = {
+		1000000000000000000011E6 /* Ropes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Ropes" */;
+			buildConfigurationList = 1000000000000000000005F6 /* Build configuration list for PBXNativeTarget "Ropes" */;
 			buildPhases = (
-				D2AAC07A0554694100DB518D /* Headers */,
-				D2AAC07B0554694100DB518D /* Sources */,
-				D2AAC07C0554694100DB518D /* Frameworks */,
+				100000000000000000000A6E /* Headers */,
+				100000000000000000001316 /* Sources */,
+				100000000000000000000A2A /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,31 +265,31 @@
 			);
 			name = Ropes;
 			productName = Ropes;
-			productReference = D2AAC07E0554694100DB518D /* libRopes.a */;
+			productReference = 100000000000000000001979 /* libRopes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0867D690FE84028FC02AAC07 /* Project object */ = {
+		1000000000000000000010DA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Ropes" */;
+			buildConfigurationList = 100000000000000000000647 /* Build configuration list for PBXProject "Ropes" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 0867D691FE84028FC02AAC07 /* Ropes */;
-			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			mainGroup = 100000000000000000001811 /* Ropes */;
+			productRefGroup = 1000000000000000000010BF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2AAC07D0554694100DB518D /* Ropes */,
-				74E9ED6310A65BAE00EE0EF5 /* RopesTests */,
-				748ACE1810A6847200A98C2B /* CommandLineRunner */,
+				1000000000000000000011E6 /* Ropes */,
+				1000000000000000000011E7 /* RopesTests */,
+				100000000000000000000784 /* CommandLineRunner */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		74E9ED5F10A65BAE00EE0EF5 /* Resources */ = {
+		1000000000000000000011AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,7 +299,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		74E9ED6210A65BAE00EE0EF5 /* ShellScript */ = {
+		1000000000000000000012BE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -315,67 +315,67 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		748ACE1610A6847200A98C2B /* Sources */ = {
+		100000000000000000001312 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				748ACE5C10A6854C00A98C2B /* TestRunner.m in Sources */,
+				1000000000000000000015B1 /* TestRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		74E9ED6010A65BAE00EE0EF5 /* Sources */ = {
+		100000000000000000001313 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E9EE1310A6617500EE0EF5 /* RopeTests.m in Sources */,
+				1000000000000000000011E4 /* RopeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2AAC07B0554694100DB518D /* Sources */ = {
+		100000000000000000001316 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E9ED6F10A65BD700EE0EF5 /* Concatenation.m in Sources */,
-				74E9ED7510A65BF700EE0EF5 /* Fibonacci.m in Sources */,
-				74E9ED7A10A65C1E00EE0EF5 /* Leaf.m in Sources */,
-				74E9ED7F10A65C3900EE0EF5 /* Rebalancer.m in Sources */,
-				74E9ED8410A65C5300EE0EF5 /* Rope.m in Sources */,
-				74E9ED8910A65C7300EE0EF5 /* Inserter.m in Sources */,
-				74E9ED8E10A65C8E00EE0EF5 /* RopeEqualityChecker.m in Sources */,
-				74E9EDA310A65D5200EE0EF5 /* Iterator.m in Sources */,
-				7401DF0510A7BAF700449794 /* NSString+Utilities.m in Sources */,
+				10000000000000000000078F /* Concatenation.m in Sources */,
+				1000000000000000000009A1 /* Fibonacci.m in Sources */,
+				100000000000000000000C04 /* Leaf.m in Sources */,
+				10000000000000000000113B /* Rebalancer.m in Sources */,
+				1000000000000000000011DC /* Rope.m in Sources */,
+				100000000000000000000B1F /* Inserter.m in Sources */,
+				1000000000000000000011E0 /* RopeEqualityChecker.m in Sources */,
+				100000000000000000000B4C /* Iterator.m in Sources */,
+				100000000000000000000DF6 /* NSString+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7430063210A682EB009ABD93 /* PBXTargetDependency */ = {
+		100000000000000000000FF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D2AAC07D0554694100DB518D /* Ropes */;
-			targetProxy = 7430063110A682EB009ABD93 /* PBXContainerItemProxy */;
+			target = 1000000000000000000011E6 /* Ropes */;
+			targetProxy = 100000000000000000000F86 /* PBXContainerItemProxy */;
 		};
-		748ACE1E10A6847A00A98C2B /* PBXTargetDependency */ = {
+		100000000000000000000FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D2AAC07D0554694100DB518D /* Ropes */;
-			targetProxy = 748ACE1D10A6847A00A98C2B /* PBXContainerItemProxy */;
+			target = 1000000000000000000011E6 /* Ropes */;
+			targetProxy = 100000000000000000000F8B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1DEB921F08733DC00010E9CD /* Debug */ = {
+		10000000000000000000089B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		1DEB922008733DC00010E9CD /* Release */ = {
+		100000000000000000001164 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		1DEB922308733DC00010E9CD /* Debug */ = {
+		10000000000000000000089C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -395,7 +395,7 @@
 			};
 			name = Debug;
 		};
-		1DEB922408733DC00010E9CD /* Release */ = {
+		100000000000000000001165 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -413,7 +413,7 @@
 			};
 			name = Release;
 		};
-		748ACE1B10A6847200A98C2B /* Debug */ = {
+		1000000000000000000008C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -436,7 +436,7 @@
 			};
 			name = Debug;
 		};
-		748ACE1C10A6847200A98C2B /* Release */ = {
+		100000000000000000001192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -459,7 +459,7 @@
 			};
 			name = Release;
 		};
-		74E9ED6710A65BAF00EE0EF5 /* Debug */ = {
+		1000000000000000000008CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -487,7 +487,7 @@
 			};
 			name = Debug;
 		};
-		74E9ED6810A65BAF00EE0EF5 /* Release */ = {
+		100000000000000000001193 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -518,43 +518,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Ropes" */ = {
+		1000000000000000000005F6 /* Build configuration list for PBXNativeTarget "Ropes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1DEB921F08733DC00010E9CD /* Debug */,
-				1DEB922008733DC00010E9CD /* Release */,
+				10000000000000000000089B /* Debug */,
+				100000000000000000001164 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Ropes" */ = {
+		100000000000000000000647 /* Build configuration list for PBXProject "Ropes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1DEB922308733DC00010E9CD /* Debug */,
-				1DEB922408733DC00010E9CD /* Release */,
+				10000000000000000000089C /* Debug */,
+				100000000000000000001165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		748ACE2110A6849800A98C2B /* Build configuration list for PBXNativeTarget "CommandLineRunner" */ = {
+		1000000000000000000005E7 /* Build configuration list for PBXNativeTarget "CommandLineRunner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				748ACE1B10A6847200A98C2B /* Debug */,
-				748ACE1C10A6847200A98C2B /* Release */,
+				1000000000000000000008C9 /* Debug */,
+				100000000000000000001192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74E9ED6910A65BAF00EE0EF5 /* Build configuration list for PBXNativeTarget "RopesTests" */ = {
+		1000000000000000000005F7 /* Build configuration list for PBXNativeTarget "RopesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				74E9ED6710A65BAF00EE0EF5 /* Debug */,
-				74E9ED6810A65BAF00EE0EF5 /* Release */,
+				1000000000000000000008CA /* Debug */,
+				100000000000000000001193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+	rootObject = 1000000000000000000010DA /* Project object */;
 }
