@@ -151,13 +151,6 @@
 			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
 		};
-		1000000000000000000010CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 100000000000000000000FE8 /* NetflixShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = NetflixShared;
-		};
 		1000000000000000000010C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10000000000000000000148E /* ProtocolBuffers.xcodeproj */;
@@ -165,18 +158,25 @@
 			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
 		};
-		1000000000000000000010CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 10000000000000000000148E /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
 		1000000000000000000010C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10000000000000000000148E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 100000000000000000001489;
+			remoteInfo = ProtocolBuffers;
+		};
+		1000000000000000000010CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 100000000000000000000FE8 /* NetflixShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NetflixShared;
+		};
+		1000000000000000000010CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10000000000000000000148E /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		1000000000000000000010CD /* PBXContainerItemProxy */ = {
