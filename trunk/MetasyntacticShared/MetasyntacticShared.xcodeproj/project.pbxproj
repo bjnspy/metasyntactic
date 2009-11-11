@@ -829,19 +829,6 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
-		100000000000000000001BD0 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001477 /* ColorCache.h */,
-				100000000000000000001C16 /* FontCache.h */,
-				1000000000000000000013CB /* MetasyntacticStockImages.h */,
-				100000000000000000001486 /* ColorCache.m */,
-				100000000000000000001C18 /* FontCache.m */,
-				1000000000000000000013CD /* MetasyntacticStockImages.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		100000000000000000001BCF /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +841,19 @@
 				100000000000000000001C6E /* ViewControllerUtilities.h */,
 				1000000000000000000015F9 /* NotificationCenter.m */,
 				100000000000000000001C71 /* ViewControllerUtilities.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		100000000000000000001BD0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001477 /* ColorCache.h */,
+				100000000000000000001C16 /* FontCache.h */,
+				1000000000000000000013CB /* MetasyntacticStockImages.h */,
+				100000000000000000001486 /* ColorCache.m */,
+				100000000000000000001C18 /* FontCache.m */,
+				1000000000000000000013CD /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
