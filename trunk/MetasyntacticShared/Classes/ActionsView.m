@@ -200,7 +200,7 @@
         frame.origin.x += 5;
       }
     }
-    
+
     frame.size.width = (self.frame.size.width / 2) - 14;
     if (i == 0 && oddNumberOfButtons) {
       if (button.buttonType != UIButtonTypeCustom) {

@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  ViewControllerState.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 11/10/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "ViewControllerState.h"
 
@@ -38,26 +44,26 @@
   if (address.length == 0) {
     return;
   }
-  
+
   // check if it's a local address or a web address.
   NSString* path = [[NSBundle mainBundle] pathForResource:address ofType:nil];
   if ([FileUtilities fileExists:path]) {
     address = path;
   }
-  
+
   NSURL* url = [NSURL URLWithString:address];
   if (url == nil) {
     return;
   }
-  
+
   [[OperationQueue operationQueue] temporarilySuspend:90];
   self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:moviePlayer];
-  
+
   [moviePlayer play];
 }
 
@@ -66,11 +72,11 @@
   [moviePlayer stop];
   [[moviePlayer retain] autorelease];
   self.moviePlayer = nil;
-  
+
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:nil];
-  
+
   [[OperationQueue operationQueue] resume];
 }
 
@@ -101,7 +107,7 @@
 - (void) viewController:(UIViewController*) controller didDisappear:(BOOL) animated {
   if (controller.navigationController == nil) {
     [(id)controller onAfterViewControllerPopped];
-  }  
+  }
 }
 
 @end

@@ -93,7 +93,7 @@
   if (string.length == 0) {
     return @"";
   }
-  
+
   NSInteger index = 0;
   NSRange range;
   while ((range = [string rangeOfString:@"&#x"
