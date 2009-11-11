@@ -30,9 +30,14 @@
 		100000000000000000000A65 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009E9 /* AbstractFullScreenImageListViewController.m */; };
 		100000000000000000000A90 /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A8F /* HtmlUtilities.h */; };
 		100000000000000000000A92 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A91 /* HtmlUtilities.m */; };
+		100000000000000000000B2B /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B2A /* InterceptingView.h */; };
+		100000000000000000000B2D /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B2C /* InterceptingView.m */; };
+		100000000000000000000B47 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B45 /* Iterator.h */; };
+		100000000000000000000B4B /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B49 /* Iterator.m */; };
 		100000000000000000000C73 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001804 /* IdentitySet.m */; };
 		100000000000000000000CAD /* AbstractFullScreenTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CA1 /* AbstractFullScreenTableViewController.h */; };
 		100000000000000000000CD0 /* ImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019A3 /* ImageUtilities.h */; };
+		100000000000000000000D04 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CFD /* MediaPlayer.framework */; };
 		100000000000000000000D08 /* MemoryUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D07 /* MemoryUtilities.h */; };
 		100000000000000000000D1F /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CF9 /* ImageUtilities.m */; };
 		100000000000000000000D3B /* InteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D3A /* InteractiveView.h */; };
@@ -231,6 +236,8 @@
 		100000000000000000001779 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001778 /* PriorityMutex.m */; };
 		10000000000000000000177F /* Pulser.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000177C /* Pulser.h */; };
 		100000000000000000001781 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001780 /* Pulser.m */; };
+		100000000000000000001795 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001794 /* ViewControllerState.h */; };
+		100000000000000000001797 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001796 /* ViewControllerState.m */; };
 		10000000000000000000179A /* ViewControllerUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001798 /* ViewControllerUtilities.h */; };
 		10000000000000000000179D /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000179B /* ViewControllerUtilities.m */; };
 		1000000000000000000017A0 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001747 /* FontCache.m */; };
@@ -275,13 +282,6 @@
 		100000000000000000001B6E /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001B6C /* xmltok.c */; };
 		100000000000000000001B75 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001B72 /* xmltok_impl.c */; };
 		100000000000000000001B7A /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001B78 /* xmltok_ns.c */; };
-		100000000000000000001795 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001794 /* ViewControllerState.h */; };
-		100000000000000000001797 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001796 /* ViewControllerState.m */; };
-		100000000000000000000D04 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CFD /* MediaPlayer.framework */; };
-		100000000000000000000B2B /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B2A /* InterceptingView.h */; };
-		100000000000000000000B2D /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B2C /* InterceptingView.m */; };
-		100000000000000000000B47 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B45 /* Iterator.h */; };
-		100000000000000000000B4B /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B49 /* Iterator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -307,10 +307,15 @@
 		1000000000000000000009E9 /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
 		100000000000000000000A8F /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000A91 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000B2A /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
+		100000000000000000000B2C /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
 		100000000000000000000B33 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		100000000000000000000B45 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
+		100000000000000000000B49 /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
 		100000000000000000000C74 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		100000000000000000000CA1 /* AbstractFullScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenTableViewController.h; sourceTree = "<group>"; };
 		100000000000000000000CF9 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000CFD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		100000000000000000000D07 /* MemoryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000D3A /* InteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveView.h; sourceTree = "<group>"; };
 		100000000000000000000D3C /* InteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveView.m; sourceTree = "<group>"; };
@@ -507,6 +512,8 @@
 		100000000000000000001778 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		10000000000000000000177C /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
 		100000000000000000001780 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
+		100000000000000000001794 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
+		100000000000000000001796 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
 		100000000000000000001798 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		10000000000000000000179B /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		10000000000000000000179F /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
@@ -570,13 +577,6 @@
 		100000000000000000001B72 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000000000001B76 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001B78 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		100000000000000000001794 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
-		100000000000000000001796 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
-		100000000000000000000CFD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		100000000000000000000B2A /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
-		100000000000000000000B2C /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
-		100000000000000000000B45 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
-		100000000000000000000B49 /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

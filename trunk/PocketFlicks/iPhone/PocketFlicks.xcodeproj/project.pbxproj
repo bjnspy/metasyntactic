@@ -45,7 +45,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000005AA /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000E11 /* BoxOfficeShared */;
+			remoteGlobalIDString = 100000000000000000000E11;
 			remoteInfo = BoxOfficeShared;
 		};
 /* End PBXContainerItemProxy section */
