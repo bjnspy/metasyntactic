@@ -9,6 +9,7 @@
 #import "ViewControllerState.h"
 
 #import "AbstractViewController.h"
+#import "FileUtilities.h"
 #import "OperationQueue.h"
 
 @interface ViewControllerState()
@@ -36,6 +37,12 @@
 - (void) playMovie:(NSString*) address {
   if (address.length == 0) {
     return;
+  }
+  
+  // check if it's a local address or a web address.
+  NSString* path = [[NSBundle mainBundle] pathForResource:address ofType:nil];
+  if ([FileUtilities fileExists:path]) {
+    address = path;
   }
   
   NSURL* url = [NSURL URLWithString:address];
