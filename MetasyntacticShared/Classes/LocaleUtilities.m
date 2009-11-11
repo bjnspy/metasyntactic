@@ -23,7 +23,7 @@ static NSLocale* currentLocale = nil;
 + (void) initialize {
   if (self == [LocaleUtilities class]) {
     currentLocale = [[NSLocale currentLocale] retain];
-    
+
     NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
     if (preferredLocalizations.count > 0) {
       NSString* language = [preferredLocalizations objectAtIndex:0];

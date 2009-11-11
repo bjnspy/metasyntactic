@@ -51,7 +51,7 @@
   if ((self = [super initWithStyle:style])) {
     self.state = [[[ViewControllerState alloc] init] autorelease];
   }
-  
+
   return self;
 }
 

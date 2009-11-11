@@ -207,11 +207,11 @@ static NSString* prefixes[] = {
 
 
 NSComparisonResult compareStringsNaturally(NSString* string1, NSString* string2) {
-  static NSStringCompareOptions comparisonOptions = 
+  static NSStringCompareOptions comparisonOptions =
     NSCaseInsensitiveSearch | NSNumericSearch | NSWidthInsensitiveSearch | NSForcedOrderingSearch;
-  
+
   NSRange string1Range = NSMakeRange(0, string1.length);
-  
+
   return [string1 compare:string2
                   options:comparisonOptions
                     range:string1Range

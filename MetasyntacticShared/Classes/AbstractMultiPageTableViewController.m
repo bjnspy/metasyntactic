@@ -225,7 +225,7 @@
     if (self.hasOverriddenBackground) {
       newTableView.backgroundColor = [UIColor clearColor];
     }
-    
+
     if (self.cacheTableViews) {
       [pageToTableView setObject:newTableView forKey:pageNumber];
     }

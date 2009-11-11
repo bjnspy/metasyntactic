@@ -36,15 +36,15 @@
   if ((self = [super init])) {
     self.state = [[[ViewControllerState alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
-- (void) onBeforeViewControllerPushed { 
+- (void) onBeforeViewControllerPushed {
 }
 
 
-- (void) onAfterViewControllerPushed { 
+- (void) onAfterViewControllerPushed {
 }
 
 
