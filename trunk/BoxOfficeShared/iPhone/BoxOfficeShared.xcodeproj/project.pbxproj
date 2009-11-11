@@ -18,7 +18,7 @@
 		100000000000000000000674 /* AbstractNetflixFilterableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000673 /* AbstractNetflixFilterableViewController.m */; };
 		100000000000000000000865 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000067A /* AbstractPosterCell.m */; };
 		1000000000000000000008EA /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000886 /* AbstractPosterDownloader.m */; };
-		100000000000000000000951 /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001987 /* FandangoPosterDownloader.m */; };
+		100000000000000000000951 /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001989 /* FandangoPosterDownloader.m */; };
 		100000000000000000000985 /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000984 /* AbstractScoreProvider.m */; };
 		1000000000000000000009C5 /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009B8 /* AbstractSearchDisplayController.m */; };
 		1000000000000000000009E8 /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009D6 /* AbstractWebsiteCache.m */; };
@@ -61,115 +61,115 @@
 		100000000000000000000E9A /* NowPlayingCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E99 /* NowPlayingCreditsViewController.m */; };
 		100000000000000000000E9D /* NowPlayingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E9C /* NowPlayingSettingsViewController.m */; };
 		100000000000000000000EA0 /* NowPlayingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E9F /* NowPlayingTabBarController.m */; };
-		100000000000000000001002 /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E21 /* CacheUpdater.m */; };
-		100000000000000000001007 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001006 /* CollapsedMovieDetailsCell.m */; };
-		10000000000000000000100B /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000100A /* CommonNavigationController.m */; };
-		10000000000000000000100E /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000100D /* Controller.m */; };
-		100000000000000000001018 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001017 /* DVD.m */; };
-		10000000000000000000101B /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000101A /* DVDCache.m */; };
-		10000000000000000000101E /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000101D /* DVDCell.m */; };
-		100000000000000000001022 /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001021 /* PerfectGreenMovieTitleCell.m */; };
-		100000000000000000001025 /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001024 /* Performance.m */; };
-		10000000000000000000103A /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001038 /* FavoriteTheater.m */; };
-		10000000000000000000103B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001039 /* Person.m */; };
-		10000000000000000000103E /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103D /* PersonCell.m */; };
-		100000000000000000001041 /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001040 /* PersonPosterCache.m */; };
-		10000000000000000000105B /* PocketFlicksCreditsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105A /* PocketFlicksCreditsViewController.h */; };
-		10000000000000000000105D /* PocketFlicksCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105C /* PocketFlicksCreditsViewController.m */; };
-		10000000000000000000105F /* PocketFlicksNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105E /* PocketFlicksNavigationController.h */; };
-		100000000000000000001061 /* PocketFlicksNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001060 /* PocketFlicksNavigationController.m */; };
-		100000000000000000001063 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001062 /* PocketFlicksSettingsViewController.h */; };
-		100000000000000000001065 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001064 /* PocketFlicksSettingsViewController.m */; };
-		100000000000000000001067 /* PocketFlicksViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001066 /* PocketFlicksViewController.h */; };
-		100000000000000000001069 /* PocketFlicksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001068 /* PocketFlicksViewController.m */; };
-		100000000000000000001094 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001093 /* PosterCache.m */; };
-		100000000000000000001098 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001097 /* PostersViewController.m */; };
-		10000000000000000000109A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017EA /* LocationManager.m */; };
-		1000000000000000000010A7 /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001099 /* DVDFilterViewController.m */; };
-		1000000000000000000010AD /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010AC /* PreviewNetworksPosterDownloader.m */; };
-		1000000000000000000010C5 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010C4 /* DVDNavigationController.m */; };
-		1000000000000000000010EA /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010E8 /* ProtocolBuffers.h */; };
-		100000000000000000001128 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001127 /* QuestionCell.m */; };
-		100000000000000000001132 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000112B /* GoogleDataProvider.m */; };
-		100000000000000000001140 /* RedMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113F /* RedMovieTitleCell.m */; };
-		100000000000000000001150 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001139 /* DVDViewController.m */; };
-		100000000000000000001152 /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001134 /* GoogleScoreProvider.m */; };
-		10000000000000000000119B /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000119A /* GreenMovieTitleCell.m */; };
-		1000000000000000000011B1 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B0 /* Review.m */; };
-		1000000000000000000011B4 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B3 /* ReviewBodyCell.m */; };
-		1000000000000000000011B7 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B6 /* ReviewTitleCell.m */; };
-		1000000000000000000011C2 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011C1 /* ReviewsViewController.m */; };
-		1000000000000000000011EE /* RottenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011ED /* RottenMovieTitleCell.m */; };
-		1000000000000000000011F1 /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011F0 /* RottenTomatoesScoreProvider.m */; };
-		100000000000000000001224 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001223 /* Score.m */; };
-		100000000000000000001227 /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001226 /* ScoreCache.m */; };
-		10000000000000000000122B /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000122A /* ScoreProviderViewController.m */; };
-		10000000000000000000123D /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000123C /* SearchDatePickerViewController.m */; };
-		100000000000000000001240 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000123F /* SearchDistancePickerViewController.m */; };
-		100000000000000000001248 /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001246 /* SearchRequest.m */; };
-		10000000000000000000124F /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000124D /* SearchResult.m */; };
-		10000000000000000000125B /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001259 /* HelpCache.m */; };
-		10000000000000000000127F /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000125D /* IMDbCache.m */; };
-		100000000000000000001403 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001402 /* SquareMovieTitleCell.m */; };
-		100000000000000000001597 /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000146F /* ImdbPosterDownloader.m */; };
-		100000000000000000001696 /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001695 /* Theater.m */; };
-		100000000000000000001699 /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001698 /* TheaterDetailsViewController.m */; };
-		10000000000000000000169C /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169B /* TheaterNameCell.m */; };
-		1000000000000000000016A0 /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169F /* TheatersNavigationController.m */; };
-		1000000000000000000016BB /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000012E0 /* DataProvider.m */; };
-		1000000000000000000016C4 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016C3 /* TicketsViewController.m */; };
-		1000000000000000000016CB /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CA /* TomatoMovieTitleCell.m */; };
-		1000000000000000000016E6 /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E5 /* InternationalDataCache.m */; };
-		1000000000000000000016E9 /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E8 /* LargePosterCache.m */; };
-		1000000000000000000016ED /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016EC /* TrailerCache.m */; };
-		100000000000000000001714 /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016FD /* LocalSearchDisplayController.m */; };
-		100000000000000000001746 /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001745 /* LocalSearchEngine.m */; };
-		100000000000000000001767 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001766 /* UnknownMovieTitleCell.m */; };
-		100000000000000000001773 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001772 /* UpcomingCache.m */; };
-		100000000000000000001776 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001775 /* UpcomingMovieCell.m */; };
-		100000000000000000001779 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001778 /* UpcomingMoviesNavigationController.m */; };
-		10000000000000000000177C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000177B /* UpcomingMoviesViewController.m */; };
-		100000000000000000001781 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001780 /* UserLocationCache.m */; };
-		10000000000000000000178B /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001788 /* Utilities.m */; };
-		1000000000000000000017AF /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017AE /* WarningView.m */; };
-		1000000000000000000017BC /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017BB /* WikipediaCache.m */; };
-		1000000000000000000017C6 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017C5 /* LocalizableStringsCache.m */; };
-		1000000000000000000017E2 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E1 /* YellowMovieTitleCell.m */; };
-		1000000000000000000017E8 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E7 /* LocationCache.m */; };
-		10000000000000000000196B /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000179F /* ExpandedMovieDetailsCell.m */; };
-		100000000000000000001974 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001973 /* libNetflixShared.a */; };
-		100000000000000000001979 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001977 /* libProtocolBuffers.a */; };
-		10000000000000000000197E /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000196F /* FAQViewController.m */; };
-		10000000000000000000199C /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001996 /* LookupResult.m */; };
+		100000000000000000001004 /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E21 /* CacheUpdater.m */; };
+		100000000000000000001009 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001008 /* CollapsedMovieDetailsCell.m */; };
+		10000000000000000000100D /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000100C /* CommonNavigationController.m */; };
+		100000000000000000001010 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000100F /* Controller.m */; };
+		10000000000000000000101A /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001019 /* DVD.m */; };
+		10000000000000000000101D /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000101C /* DVDCache.m */; };
+		100000000000000000001020 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000101F /* DVDCell.m */; };
+		100000000000000000001024 /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001023 /* PerfectGreenMovieTitleCell.m */; };
+		100000000000000000001027 /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001026 /* Performance.m */; };
+		10000000000000000000103C /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103A /* FavoriteTheater.m */; };
+		10000000000000000000103D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103B /* Person.m */; };
+		100000000000000000001040 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103F /* PersonCell.m */; };
+		100000000000000000001043 /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001042 /* PersonPosterCache.m */; };
+		10000000000000000000105D /* PocketFlicksCreditsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105C /* PocketFlicksCreditsViewController.h */; };
+		10000000000000000000105F /* PocketFlicksCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105E /* PocketFlicksCreditsViewController.m */; };
+		100000000000000000001061 /* PocketFlicksNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001060 /* PocketFlicksNavigationController.h */; };
+		100000000000000000001063 /* PocketFlicksNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001062 /* PocketFlicksNavigationController.m */; };
+		100000000000000000001065 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001064 /* PocketFlicksSettingsViewController.h */; };
+		100000000000000000001067 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001066 /* PocketFlicksSettingsViewController.m */; };
+		100000000000000000001069 /* PocketFlicksViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001068 /* PocketFlicksViewController.h */; };
+		10000000000000000000106B /* PocketFlicksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000106A /* PocketFlicksViewController.m */; };
+		100000000000000000001096 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001095 /* PosterCache.m */; };
+		10000000000000000000109A /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001099 /* PostersViewController.m */; };
+		10000000000000000000109C /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017EC /* LocationManager.m */; };
+		1000000000000000000010A9 /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000109B /* DVDFilterViewController.m */; };
+		1000000000000000000010AF /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010AE /* PreviewNetworksPosterDownloader.m */; };
+		1000000000000000000010C7 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010C6 /* DVDNavigationController.m */; };
+		1000000000000000000010EC /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010EA /* ProtocolBuffers.h */; };
+		10000000000000000000112A /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001129 /* QuestionCell.m */; };
+		100000000000000000001134 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000112D /* GoogleDataProvider.m */; };
+		100000000000000000001142 /* RedMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001141 /* RedMovieTitleCell.m */; };
+		100000000000000000001152 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113B /* DVDViewController.m */; };
+		100000000000000000001154 /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001136 /* GoogleScoreProvider.m */; };
+		10000000000000000000119D /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000119C /* GreenMovieTitleCell.m */; };
+		1000000000000000000011B3 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B2 /* Review.m */; };
+		1000000000000000000011B6 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B5 /* ReviewBodyCell.m */; };
+		1000000000000000000011B9 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011B8 /* ReviewTitleCell.m */; };
+		1000000000000000000011C4 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011C3 /* ReviewsViewController.m */; };
+		1000000000000000000011F0 /* RottenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011EF /* RottenMovieTitleCell.m */; };
+		1000000000000000000011F3 /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011F2 /* RottenTomatoesScoreProvider.m */; };
+		100000000000000000001226 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001225 /* Score.m */; };
+		100000000000000000001229 /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001228 /* ScoreCache.m */; };
+		10000000000000000000122D /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000122C /* ScoreProviderViewController.m */; };
+		10000000000000000000123F /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000123E /* SearchDatePickerViewController.m */; };
+		100000000000000000001242 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001241 /* SearchDistancePickerViewController.m */; };
+		10000000000000000000124A /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001248 /* SearchRequest.m */; };
+		100000000000000000001251 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000124F /* SearchResult.m */; };
+		10000000000000000000125D /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000125B /* HelpCache.m */; };
+		100000000000000000001281 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000125F /* IMDbCache.m */; };
+		100000000000000000001405 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001404 /* SquareMovieTitleCell.m */; };
+		100000000000000000001599 /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001471 /* ImdbPosterDownloader.m */; };
+		100000000000000000001698 /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001697 /* Theater.m */; };
+		10000000000000000000169B /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169A /* TheaterDetailsViewController.m */; };
+		10000000000000000000169E /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169D /* TheaterNameCell.m */; };
+		1000000000000000000016A2 /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016A1 /* TheatersNavigationController.m */; };
+		1000000000000000000016BD /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000012E2 /* DataProvider.m */; };
+		1000000000000000000016C6 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016C5 /* TicketsViewController.m */; };
+		1000000000000000000016CD /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CC /* TomatoMovieTitleCell.m */; };
+		1000000000000000000016E8 /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E7 /* InternationalDataCache.m */; };
+		1000000000000000000016EB /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016EA /* LargePosterCache.m */; };
+		1000000000000000000016EF /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016EE /* TrailerCache.m */; };
+		100000000000000000001716 /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016FF /* LocalSearchDisplayController.m */; };
+		100000000000000000001748 /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001747 /* LocalSearchEngine.m */; };
+		100000000000000000001769 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001768 /* UnknownMovieTitleCell.m */; };
+		100000000000000000001775 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001774 /* UpcomingCache.m */; };
+		100000000000000000001778 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001777 /* UpcomingMovieCell.m */; };
+		10000000000000000000177B /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000177A /* UpcomingMoviesNavigationController.m */; };
+		10000000000000000000177E /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000177D /* UpcomingMoviesViewController.m */; };
+		100000000000000000001783 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001782 /* UserLocationCache.m */; };
+		10000000000000000000178D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000178A /* Utilities.m */; };
+		1000000000000000000017B1 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017B0 /* WarningView.m */; };
+		1000000000000000000017BE /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017BD /* WikipediaCache.m */; };
+		1000000000000000000017C8 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017C7 /* LocalizableStringsCache.m */; };
+		1000000000000000000017E4 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E3 /* YellowMovieTitleCell.m */; };
+		1000000000000000000017EA /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E9 /* LocationCache.m */; };
+		10000000000000000000196D /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017A1 /* ExpandedMovieDetailsCell.m */; };
+		100000000000000000001976 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001975 /* libNetflixShared.a */; };
+		10000000000000000000197B /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001979 /* libProtocolBuffers.a */; };
+		100000000000000000001980 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001971 /* FAQViewController.m */; };
+		10000000000000000000199E /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001998 /* LookupResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		100000000000000000000F0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010EB /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 1000000000000000000010ED /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		100000000000000000000F10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010EB /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 1000000000000000000010ED /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
 		};
 		100000000000000000000F11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010EB /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 1000000000000000000010ED /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
 		};
 		100000000000000000000F12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010EB /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 1000000000000000000010ED /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1000000000000000000010E6 /* ProtocolBuffers */;
+			remoteGlobalIDString = 1000000000000000000010E8;
 			remoteInfo = ProtocolBuffers;
 		};
 		100000000000000000000F13 /* PBXContainerItemProxy */ = {
@@ -183,7 +183,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000000E5D /* NetflixShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 10000000000000000000100E /* NetflixShared */;
+			remoteGlobalIDString = 100000000000000000001010;
 			remoteInfo = NetflixShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -295,203 +295,203 @@
 		100000000000000000000E9E /* NowPlayingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingTabBarController.h; sourceTree = "<group>"; };
 		100000000000000000000E9F /* NowPlayingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingTabBarController.m; sourceTree = "<group>"; };
 		100000000000000000000F0E /* CacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUpdater.h; sourceTree = "<group>"; };
-		100000000000000000001005 /* CollapsedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapsedMovieDetailsCell.h; sourceTree = "<group>"; };
-		100000000000000000001006 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
-		100000000000000000001009 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
-		10000000000000000000100A /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNavigationController.m; sourceTree = "<group>"; };
-		10000000000000000000100C /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		10000000000000000000100D /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		10000000000000000000100F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		100000000000000000001010 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		100000000000000000001011 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		100000000000000000001016 /* DVD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVD.h; sourceTree = "<group>"; };
-		100000000000000000001017 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
-		100000000000000000001019 /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
-		10000000000000000000101A /* DVDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCache.m; sourceTree = "<group>"; };
-		10000000000000000000101C /* DVDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCell.h; sourceTree = "<group>"; };
-		10000000000000000000101D /* DVDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCell.m; sourceTree = "<group>"; };
-		10000000000000000000101F /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
-		100000000000000000001020 /* PerfectGreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreenMovieTitleCell.h; sourceTree = "<group>"; };
-		100000000000000000001021 /* PerfectGreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreenMovieTitleCell.m; sourceTree = "<group>"; };
-		100000000000000000001023 /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
-		100000000000000000001024 /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
-		100000000000000000001036 /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
-		100000000000000000001037 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		100000000000000000001038 /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
-		100000000000000000001039 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		10000000000000000000103C /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
-		10000000000000000000103D /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
-		10000000000000000000103F /* PersonPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPosterCache.h; sourceTree = "<group>"; };
-		100000000000000000001040 /* PersonPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonPosterCache.m; sourceTree = "<group>"; };
-		10000000000000000000105A /* PocketFlicksCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksCreditsViewController.h; sourceTree = "<group>"; };
-		10000000000000000000105C /* PocketFlicksCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksCreditsViewController.m; sourceTree = "<group>"; };
-		10000000000000000000105E /* PocketFlicksNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksNavigationController.h; sourceTree = "<group>"; };
-		100000000000000000001060 /* PocketFlicksNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksNavigationController.m; sourceTree = "<group>"; };
-		100000000000000000001062 /* PocketFlicksSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksSettingsViewController.h; sourceTree = "<group>"; };
-		100000000000000000001064 /* PocketFlicksSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksSettingsViewController.m; sourceTree = "<group>"; };
-		100000000000000000001066 /* PocketFlicksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksViewController.h; sourceTree = "<group>"; };
-		100000000000000000001068 /* PocketFlicksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksViewController.m; sourceTree = "<group>"; };
-		100000000000000000001092 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
-		100000000000000000001093 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
-		100000000000000000001096 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
-		100000000000000000001097 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
-		100000000000000000001099 /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
-		10000000000000000000109B /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
-		1000000000000000000010AB /* PreviewNetworksPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewNetworksPosterDownloader.h; sourceTree = "<group>"; };
-		1000000000000000000010AC /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
-		1000000000000000000010C3 /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
-		1000000000000000000010C4 /* DVDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDNavigationController.m; sourceTree = "<group>"; };
-		1000000000000000000010C6 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		1000000000000000000010C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1000000000000000000010DE /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
-		1000000000000000000010E8 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.2.0/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
-		1000000000000000000010EB /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		100000000000000000001126 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
-		100000000000000000001127 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
-		10000000000000000000112A /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
-		10000000000000000000112B /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
-		100000000000000000001133 /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
-		100000000000000000001134 /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
-		100000000000000000001139 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
-		10000000000000000000113E /* RedMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedMovieTitleCell.h; sourceTree = "<group>"; };
-		10000000000000000000113F /* RedMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedMovieTitleCell.m; sourceTree = "<group>"; };
-		100000000000000000001153 /* GreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenMovieTitleCell.h; sourceTree = "<group>"; };
-		10000000000000000000119A /* GreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenMovieTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000011AF /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
-		1000000000000000000011B0 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
-		1000000000000000000011B2 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
-		1000000000000000000011B3 /* ReviewBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewBodyCell.m; sourceTree = "<group>"; };
-		1000000000000000000011B5 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
-		1000000000000000000011B6 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000011C0 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
-		1000000000000000000011C1 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
-		1000000000000000000011EC /* RottenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenMovieTitleCell.h; sourceTree = "<group>"; };
-		1000000000000000000011ED /* RottenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenMovieTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000011EF /* RottenTomatoesScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesScoreProvider.h; sourceTree = "<group>"; };
-		1000000000000000000011F0 /* RottenTomatoesScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesScoreProvider.m; sourceTree = "<group>"; };
-		100000000000000000001222 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
-		100000000000000000001223 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
-		100000000000000000001225 /* ScoreCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCache.h; sourceTree = "<group>"; };
-		100000000000000000001226 /* ScoreCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreCache.m; sourceTree = "<group>"; };
-		100000000000000000001228 /* ScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProvider.h; sourceTree = "<group>"; };
-		100000000000000000001229 /* ScoreProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProviderViewController.h; sourceTree = "<group>"; };
-		10000000000000000000122A /* ScoreProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProviderViewController.m; sourceTree = "<group>"; };
-		10000000000000000000123B /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
-		10000000000000000000123C /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
-		10000000000000000000123E /* SearchDistancePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDistancePickerViewController.h; sourceTree = "<group>"; };
-		10000000000000000000123F /* SearchDistancePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDistancePickerViewController.m; sourceTree = "<group>"; };
-		100000000000000000001243 /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
-		100000000000000000001246 /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
-		10000000000000000000124A /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
-		10000000000000000000124D /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
-		100000000000000000001257 /* HelpCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCache.h; sourceTree = "<group>"; };
-		100000000000000000001259 /* HelpCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCache.m; sourceTree = "<group>"; };
-		10000000000000000000125C /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
-		10000000000000000000125D /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
-		10000000000000000000127E /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
-		1000000000000000000012E0 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
-		100000000000000000001401 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
-		100000000000000000001402 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
-		100000000000000000001468 /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
-		100000000000000000001469 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		10000000000000000000146F /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
-		1000000000000000000015BB /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
-		100000000000000000001694 /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
-		100000000000000000001695 /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
-		100000000000000000001697 /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
-		100000000000000000001698 /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
-		10000000000000000000169A /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
-		10000000000000000000169B /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
-		10000000000000000000169E /* TheatersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersNavigationController.h; sourceTree = "<group>"; };
-		10000000000000000000169F /* TheatersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatersNavigationController.m; sourceTree = "<group>"; };
-		1000000000000000000016BE /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000016C2 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
-		1000000000000000000016C3 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
-		1000000000000000000016C9 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
-		1000000000000000000016CA /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000016E5 /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
-		1000000000000000000016E7 /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
-		1000000000000000000016E8 /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
-		1000000000000000000016EA /* LocalSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchDisplayController.h; sourceTree = "<group>"; };
-		1000000000000000000016EB /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
-		1000000000000000000016EC /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
-		1000000000000000000016F1 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		1000000000000000000016FC /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
-		1000000000000000000016FD /* LocalSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchDisplayController.m; sourceTree = "<group>"; };
-		100000000000000000001715 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		10000000000000000000171C /* LocalSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchEngine.h; sourceTree = "<group>"; };
-		100000000000000000001745 /* LocalSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchEngine.m; sourceTree = "<group>"; };
-		100000000000000000001765 /* UnknownMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownMovieTitleCell.h; sourceTree = "<group>"; };
-		100000000000000000001766 /* UnknownMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownMovieTitleCell.m; sourceTree = "<group>"; };
-		100000000000000000001771 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
-		100000000000000000001772 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
-		100000000000000000001774 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
-		100000000000000000001775 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
-		100000000000000000001777 /* UpcomingMoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesNavigationController.h; sourceTree = "<group>"; };
-		100000000000000000001778 /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
-		10000000000000000000177A /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
-		10000000000000000000177B /* UpcomingMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesViewController.m; sourceTree = "<group>"; };
-		10000000000000000000177F /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
-		100000000000000000001780 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
-		100000000000000000001785 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		100000000000000000001788 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		10000000000000000000179F /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
-		1000000000000000000017A0 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
-		1000000000000000000017AD /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
-		1000000000000000000017AE /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
-		1000000000000000000017BA /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
-		1000000000000000000017BB /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
-		1000000000000000000017C5 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
-		1000000000000000000017E0 /* YellowMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YellowMovieTitleCell.h; sourceTree = "<group>"; };
-		1000000000000000000017E1 /* YellowMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YellowMovieTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000017E6 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
-		1000000000000000000017E7 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
-		1000000000000000000017E9 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
-		1000000000000000000017EA /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
-		1000000000000000000017F5 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = Resources/ca.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1000000000000000000017F8 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1000000000000000000017FA /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1000000000000000000017FC /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001804 /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
-		100000000000000000001805 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001807 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000180D /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Resources/fa.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000180E /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001810 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190A /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190C /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190E /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190F /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000193E /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001940 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000194D /* libBoxOfficeShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBoxOfficeShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		10000000000000000000196F /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
-		100000000000000000001972 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
-		100000000000000000001983 /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
-		100000000000000000001987 /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
-		100000000000000000001991 /* LookupResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupResult.h; sourceTree = "<group>"; };
-		100000000000000000001992 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		100000000000000000001996 /* LookupResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupResult.m; sourceTree = "<group>"; };
-		1000000000000000000019A3 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		100000000000000000001AA5 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001AA7 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B07 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B0D /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B0F /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B11 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B46 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B4B /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B52 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B54 /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001007 /* CollapsedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapsedMovieDetailsCell.h; sourceTree = "<group>"; };
+		100000000000000000001008 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
+		10000000000000000000100B /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
+		10000000000000000000100C /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNavigationController.m; sourceTree = "<group>"; };
+		10000000000000000000100E /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		10000000000000000000100F /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		100000000000000000001011 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		100000000000000000001012 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		100000000000000000001013 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		100000000000000000001018 /* DVD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVD.h; sourceTree = "<group>"; };
+		100000000000000000001019 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
+		10000000000000000000101B /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
+		10000000000000000000101C /* DVDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCache.m; sourceTree = "<group>"; };
+		10000000000000000000101E /* DVDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCell.h; sourceTree = "<group>"; };
+		10000000000000000000101F /* DVDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCell.m; sourceTree = "<group>"; };
+		100000000000000000001021 /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
+		100000000000000000001022 /* PerfectGreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreenMovieTitleCell.h; sourceTree = "<group>"; };
+		100000000000000000001023 /* PerfectGreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreenMovieTitleCell.m; sourceTree = "<group>"; };
+		100000000000000000001025 /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
+		100000000000000000001026 /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
+		100000000000000000001038 /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
+		100000000000000000001039 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		10000000000000000000103A /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
+		10000000000000000000103B /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		10000000000000000000103E /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
+		10000000000000000000103F /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
+		100000000000000000001041 /* PersonPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPosterCache.h; sourceTree = "<group>"; };
+		100000000000000000001042 /* PersonPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonPosterCache.m; sourceTree = "<group>"; };
+		10000000000000000000105C /* PocketFlicksCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksCreditsViewController.h; sourceTree = "<group>"; };
+		10000000000000000000105E /* PocketFlicksCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksCreditsViewController.m; sourceTree = "<group>"; };
+		100000000000000000001060 /* PocketFlicksNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksNavigationController.h; sourceTree = "<group>"; };
+		100000000000000000001062 /* PocketFlicksNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksNavigationController.m; sourceTree = "<group>"; };
+		100000000000000000001064 /* PocketFlicksSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksSettingsViewController.h; sourceTree = "<group>"; };
+		100000000000000000001066 /* PocketFlicksSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksSettingsViewController.m; sourceTree = "<group>"; };
+		100000000000000000001068 /* PocketFlicksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksViewController.h; sourceTree = "<group>"; };
+		10000000000000000000106A /* PocketFlicksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksViewController.m; sourceTree = "<group>"; };
+		100000000000000000001094 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
+		100000000000000000001095 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
+		100000000000000000001098 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
+		100000000000000000001099 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
+		10000000000000000000109B /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
+		10000000000000000000109D /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
+		1000000000000000000010AD /* PreviewNetworksPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewNetworksPosterDownloader.h; sourceTree = "<group>"; };
+		1000000000000000000010AE /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
+		1000000000000000000010C5 /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
+		1000000000000000000010C6 /* DVDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDNavigationController.m; sourceTree = "<group>"; };
+		1000000000000000000010C8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		1000000000000000000010C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1000000000000000000010E0 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
+		1000000000000000000010EA /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.2.0/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
+		1000000000000000000010ED /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		100000000000000000001128 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
+		100000000000000000001129 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		10000000000000000000112C /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
+		10000000000000000000112D /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
+		100000000000000000001135 /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
+		100000000000000000001136 /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
+		10000000000000000000113B /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
+		100000000000000000001140 /* RedMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedMovieTitleCell.h; sourceTree = "<group>"; };
+		100000000000000000001141 /* RedMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedMovieTitleCell.m; sourceTree = "<group>"; };
+		100000000000000000001155 /* GreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenMovieTitleCell.h; sourceTree = "<group>"; };
+		10000000000000000000119C /* GreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenMovieTitleCell.m; sourceTree = "<group>"; };
+		1000000000000000000011B1 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
+		1000000000000000000011B2 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		1000000000000000000011B4 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
+		1000000000000000000011B5 /* ReviewBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewBodyCell.m; sourceTree = "<group>"; };
+		1000000000000000000011B7 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
+		1000000000000000000011B8 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
+		1000000000000000000011C2 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000011C3 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		1000000000000000000011EE /* RottenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenMovieTitleCell.h; sourceTree = "<group>"; };
+		1000000000000000000011EF /* RottenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenMovieTitleCell.m; sourceTree = "<group>"; };
+		1000000000000000000011F1 /* RottenTomatoesScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesScoreProvider.h; sourceTree = "<group>"; };
+		1000000000000000000011F2 /* RottenTomatoesScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesScoreProvider.m; sourceTree = "<group>"; };
+		100000000000000000001224 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		100000000000000000001225 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		100000000000000000001227 /* ScoreCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCache.h; sourceTree = "<group>"; };
+		100000000000000000001228 /* ScoreCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreCache.m; sourceTree = "<group>"; };
+		10000000000000000000122A /* ScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProvider.h; sourceTree = "<group>"; };
+		10000000000000000000122B /* ScoreProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProviderViewController.h; sourceTree = "<group>"; };
+		10000000000000000000122C /* ScoreProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProviderViewController.m; sourceTree = "<group>"; };
+		10000000000000000000123D /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
+		10000000000000000000123E /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
+		100000000000000000001240 /* SearchDistancePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDistancePickerViewController.h; sourceTree = "<group>"; };
+		100000000000000000001241 /* SearchDistancePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDistancePickerViewController.m; sourceTree = "<group>"; };
+		100000000000000000001245 /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
+		100000000000000000001248 /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
+		10000000000000000000124C /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
+		10000000000000000000124F /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		100000000000000000001259 /* HelpCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCache.h; sourceTree = "<group>"; };
+		10000000000000000000125B /* HelpCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCache.m; sourceTree = "<group>"; };
+		10000000000000000000125E /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
+		10000000000000000000125F /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
+		100000000000000000001280 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
+		1000000000000000000012E2 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
+		100000000000000000001403 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
+		100000000000000000001404 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
+		10000000000000000000146A /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
+		10000000000000000000146B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		100000000000000000001471 /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
+		1000000000000000000015BD /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
+		100000000000000000001696 /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
+		100000000000000000001697 /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
+		100000000000000000001699 /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
+		10000000000000000000169A /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
+		10000000000000000000169C /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
+		10000000000000000000169D /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
+		1000000000000000000016A0 /* TheatersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersNavigationController.h; sourceTree = "<group>"; };
+		1000000000000000000016A1 /* TheatersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatersNavigationController.m; sourceTree = "<group>"; };
+		1000000000000000000016C0 /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000016C4 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000016C5 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		1000000000000000000016CB /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
+		1000000000000000000016CC /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
+		1000000000000000000016E7 /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
+		1000000000000000000016E9 /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
+		1000000000000000000016EA /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
+		1000000000000000000016EC /* LocalSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchDisplayController.h; sourceTree = "<group>"; };
+		1000000000000000000016ED /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
+		1000000000000000000016EE /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
+		1000000000000000000016F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		1000000000000000000016FE /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
+		1000000000000000000016FF /* LocalSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchDisplayController.m; sourceTree = "<group>"; };
+		100000000000000000001717 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		10000000000000000000171E /* LocalSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchEngine.h; sourceTree = "<group>"; };
+		100000000000000000001747 /* LocalSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchEngine.m; sourceTree = "<group>"; };
+		100000000000000000001767 /* UnknownMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownMovieTitleCell.h; sourceTree = "<group>"; };
+		100000000000000000001768 /* UnknownMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownMovieTitleCell.m; sourceTree = "<group>"; };
+		100000000000000000001773 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
+		100000000000000000001774 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
+		100000000000000000001776 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
+		100000000000000000001777 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
+		100000000000000000001779 /* UpcomingMoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesNavigationController.h; sourceTree = "<group>"; };
+		10000000000000000000177A /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
+		10000000000000000000177C /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
+		10000000000000000000177D /* UpcomingMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesViewController.m; sourceTree = "<group>"; };
+		100000000000000000001781 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
+		100000000000000000001782 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
+		100000000000000000001787 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		10000000000000000000178A /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		1000000000000000000017A1 /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
+		1000000000000000000017A2 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
+		1000000000000000000017AF /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
+		1000000000000000000017B0 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
+		1000000000000000000017BC /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
+		1000000000000000000017BD /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
+		1000000000000000000017C7 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
+		1000000000000000000017E2 /* YellowMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YellowMovieTitleCell.h; sourceTree = "<group>"; };
+		1000000000000000000017E3 /* YellowMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YellowMovieTitleCell.m; sourceTree = "<group>"; };
+		1000000000000000000017E8 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
+		1000000000000000000017E9 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
+		1000000000000000000017EB /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		1000000000000000000017EC /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		1000000000000000000017F7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = Resources/ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000017FA /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000017FC /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000017FE /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001806 /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
+		100000000000000000001807 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001809 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000180F /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Resources/fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001810 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001812 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000190C /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000190E /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001910 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001911 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001940 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001942 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000194F /* libBoxOfficeShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBoxOfficeShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000001971 /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
+		100000000000000000001974 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
+		100000000000000000001985 /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
+		100000000000000000001989 /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
+		100000000000000000001993 /* LookupResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupResult.h; sourceTree = "<group>"; };
+		100000000000000000001994 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		100000000000000000001998 /* LookupResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupResult.m; sourceTree = "<group>"; };
+		1000000000000000000019A5 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		100000000000000000001AA7 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001AA9 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B09 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B0F /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B11 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B13 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B48 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B4D /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B54 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B56 /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		100000000000000000001129 /* Frameworks */ = {
+		10000000000000000000112B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001979 /* libProtocolBuffers.a in Frameworks */,
-				100000000000000000001974 /* libNetflixShared.a in Frameworks */,
+				10000000000000000000197B /* libProtocolBuffers.a in Frameworks */,
+				100000000000000000001976 /* libNetflixShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,26 +501,26 @@
 		100000000000000000000DA8 /* MovieTitleCells */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001153 /* GreenMovieTitleCell.h */,
+				100000000000000000001155 /* GreenMovieTitleCell.h */,
 				100000000000000000000DA5 /* MovieTitleCell.h */,
 				100000000000000000000E7A /* NoScoreMovieTitleCell.h */,
-				100000000000000000001020 /* PerfectGreenMovieTitleCell.h */,
-				10000000000000000000113E /* RedMovieTitleCell.h */,
-				1000000000000000000011EC /* RottenMovieTitleCell.h */,
-				100000000000000000001401 /* SquareMovieTitleCell.h */,
-				1000000000000000000016C9 /* TomatoMovieTitleCell.h */,
-				100000000000000000001765 /* UnknownMovieTitleCell.h */,
-				1000000000000000000017E0 /* YellowMovieTitleCell.h */,
-				10000000000000000000119A /* GreenMovieTitleCell.m */,
+				100000000000000000001022 /* PerfectGreenMovieTitleCell.h */,
+				100000000000000000001140 /* RedMovieTitleCell.h */,
+				1000000000000000000011EE /* RottenMovieTitleCell.h */,
+				100000000000000000001403 /* SquareMovieTitleCell.h */,
+				1000000000000000000016CB /* TomatoMovieTitleCell.h */,
+				100000000000000000001767 /* UnknownMovieTitleCell.h */,
+				1000000000000000000017E2 /* YellowMovieTitleCell.h */,
+				10000000000000000000119C /* GreenMovieTitleCell.m */,
 				100000000000000000000DA6 /* MovieTitleCell.m */,
 				100000000000000000000E7B /* NoScoreMovieTitleCell.m */,
-				100000000000000000001021 /* PerfectGreenMovieTitleCell.m */,
-				10000000000000000000113F /* RedMovieTitleCell.m */,
-				1000000000000000000011ED /* RottenMovieTitleCell.m */,
-				100000000000000000001402 /* SquareMovieTitleCell.m */,
-				1000000000000000000016CA /* TomatoMovieTitleCell.m */,
-				100000000000000000001766 /* UnknownMovieTitleCell.m */,
-				1000000000000000000017E1 /* YellowMovieTitleCell.m */,
+				100000000000000000001023 /* PerfectGreenMovieTitleCell.m */,
+				100000000000000000001141 /* RedMovieTitleCell.m */,
+				1000000000000000000011EF /* RottenMovieTitleCell.m */,
+				100000000000000000001404 /* SquareMovieTitleCell.m */,
+				1000000000000000000016CC /* TomatoMovieTitleCell.m */,
+				100000000000000000001768 /* UnknownMovieTitleCell.m */,
+				1000000000000000000017E3 /* YellowMovieTitleCell.m */,
 			);
 			name = MovieTitleCells;
 			sourceTree = "<group>";
@@ -530,10 +530,10 @@
 			children = (
 				100000000000000000000CAD /* AllMoviesViewController.h */,
 				100000000000000000000D9F /* MovieDetailsViewController.h */,
-				1000000000000000000011C0 /* ReviewsViewController.h */,
+				1000000000000000000011C2 /* ReviewsViewController.h */,
 				100000000000000000000D57 /* AllMoviesViewController.m */,
 				100000000000000000000DA0 /* MovieDetailsViewController.m */,
-				1000000000000000000011C1 /* ReviewsViewController.m */,
+				1000000000000000000011C3 /* ReviewsViewController.m */,
 			);
 			name = Movies;
 			sourceTree = "<group>";
@@ -541,20 +541,20 @@
 		100000000000000000000E09 /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001009 /* CommonNavigationController.h */,
-				1000000000000000000010C3 /* DVDNavigationController.h */,
+				10000000000000000000100B /* CommonNavigationController.h */,
+				1000000000000000000010C5 /* DVDNavigationController.h */,
 				100000000000000000000DAA /* MoviesNavigationController.h */,
 				100000000000000000000E3B /* NetflixNavigationController.h */,
-				10000000000000000000169E /* TheatersNavigationController.h */,
-				100000000000000000001777 /* UpcomingMoviesNavigationController.h */,
-				10000000000000000000100A /* CommonNavigationController.m */,
-				1000000000000000000010C4 /* DVDNavigationController.m */,
+				1000000000000000000016A0 /* TheatersNavigationController.h */,
+				100000000000000000001779 /* UpcomingMoviesNavigationController.h */,
+				10000000000000000000100C /* CommonNavigationController.m */,
+				1000000000000000000010C6 /* DVDNavigationController.m */,
 				100000000000000000000DAB /* MoviesNavigationController.m */,
 				100000000000000000000E3C /* NetflixNavigationController.m */,
-				10000000000000000000169F /* TheatersNavigationController.m */,
-				100000000000000000001778 /* UpcomingMoviesNavigationController.m */,
-				10000000000000000000105E /* PocketFlicksNavigationController.h */,
-				100000000000000000001060 /* PocketFlicksNavigationController.m */,
+				1000000000000000000016A1 /* TheatersNavigationController.m */,
+				10000000000000000000177A /* UpcomingMoviesNavigationController.m */,
+				100000000000000000001060 /* PocketFlicksNavigationController.h */,
+				100000000000000000001062 /* PocketFlicksNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 				100000000000000000000E44 /* NetflixRecommendationsViewController.h */,
 				100000000000000000000E52 /* NetflixSettingsViewController.h */,
 				100000000000000000000E6F /* NetflixViewController.h */,
-				100000000000000000001066 /* PocketFlicksViewController.h */,
+				100000000000000000001068 /* PocketFlicksViewController.h */,
 				100000000000000000000673 /* AbstractNetflixFilterableViewController.m */,
 				100000000000000000000E28 /* NetflixFeedsViewController.m */,
 				100000000000000000000E2B /* NetflixGenreRecommendationsViewController.m */,
@@ -581,7 +581,7 @@
 				100000000000000000000E45 /* NetflixRecommendationsViewController.m */,
 				100000000000000000000E53 /* NetflixSettingsViewController.m */,
 				100000000000000000000E70 /* NetflixViewController.m */,
-				100000000000000000001068 /* PocketFlicksViewController.m */,
+				10000000000000000000106A /* PocketFlicksViewController.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -589,338 +589,338 @@
 		100000000000000000000F04 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000109B /* Prefix.pch */,
-				1000000000000000000010C6 /* ForwardDeclarations.h */,
-				1000000000000000000019A3 /* Macros.h */,
+				10000000000000000000109D /* Prefix.pch */,
+				1000000000000000000010C8 /* ForwardDeclarations.h */,
+				1000000000000000000019A5 /* Macros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		100000000000000000001003 /* Caches */ = {
+		100000000000000000001005 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001014 /* DVD */,
-				1000000000000000000017C7 /* Location */,
-				100000000000000000001095 /* Posters */,
-				10000000000000000000122C /* Scores */,
-				1000000000000000000017B4 /* Websites */,
+				100000000000000000001016 /* DVD */,
+				1000000000000000000017C9 /* Location */,
+				100000000000000000001097 /* Posters */,
+				10000000000000000000122E /* Scores */,
+				1000000000000000000017B6 /* Websites */,
 				100000000000000000000F0E /* CacheUpdater.h */,
-				100000000000000000001257 /* HelpCache.h */,
-				1000000000000000000015BB /* InternationalDataCache.h */,
-				1000000000000000000017A0 /* LocalizableStringsCache.h */,
-				1000000000000000000016EB /* TrailerCache.h */,
-				100000000000000000001771 /* UpcomingCache.h */,
+				100000000000000000001259 /* HelpCache.h */,
+				1000000000000000000015BD /* InternationalDataCache.h */,
+				1000000000000000000017A2 /* LocalizableStringsCache.h */,
+				1000000000000000000016ED /* TrailerCache.h */,
+				100000000000000000001773 /* UpcomingCache.h */,
 				100000000000000000000E21 /* CacheUpdater.m */,
-				100000000000000000001259 /* HelpCache.m */,
-				1000000000000000000016E5 /* InternationalDataCache.m */,
-				1000000000000000000017C5 /* LocalizableStringsCache.m */,
-				1000000000000000000016EC /* TrailerCache.m */,
-				100000000000000000001772 /* UpcomingCache.m */,
+				10000000000000000000125B /* HelpCache.m */,
+				1000000000000000000016E7 /* InternationalDataCache.m */,
+				1000000000000000000017C7 /* LocalizableStringsCache.m */,
+				1000000000000000000016EE /* TrailerCache.m */,
+				100000000000000000001774 /* UpcomingCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
 		};
-		100000000000000000001004 /* Classes */ = {
+		100000000000000000001006 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001003 /* Caches */,
-				100000000000000000001151 /* Data */,
-				10000000000000000000126F /* DataProvider */,
-				100000000000000000001232 /* Search */,
-				100000000000000000001280 /* Shared */,
-				1000000000000000000016FE /* UI */,
-				100000000000000000001782 /* Utilities */,
+				100000000000000000001005 /* Caches */,
+				100000000000000000001153 /* Data */,
+				100000000000000000001271 /* DataProvider */,
+				100000000000000000001234 /* Search */,
+				100000000000000000001282 /* Shared */,
+				100000000000000000001700 /* UI */,
+				100000000000000000001784 /* Utilities */,
 				100000000000000000000D9B /* Application.h */,
 				1000000000000000000003D1 /* AbstractBoxOfficeAppDelegate.h */,
 				100000000000000000000E12 /* BoxOfficeShared.h */,
 				100000000000000000000E14 /* BoxOfficeSharedApplication.h */,
 				100000000000000000000E18 /* BoxOfficeSharedApplicationDelegate.h */,
-				10000000000000000000100C /* Controller.h */,
+				10000000000000000000100E /* Controller.h */,
 				100000000000000000000D85 /* Model.h */,
 				100000000000000000000D9C /* Application.m */,
 				1000000000000000000003D3 /* AbstractBoxOfficeAppDelegate.m */,
 				100000000000000000000E16 /* BoxOfficeSharedApplication.m */,
-				10000000000000000000100D /* Controller.m */,
+				10000000000000000000100F /* Controller.m */,
 				100000000000000000000D8A /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		100000000000000000001012 /* Credits */ = {
+		100000000000000000001014 /* Credits */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000E98 /* NowPlayingCreditsViewController.h */,
-				10000000000000000000105A /* PocketFlicksCreditsViewController.h */,
+				10000000000000000000105C /* PocketFlicksCreditsViewController.h */,
 				100000000000000000000E99 /* NowPlayingCreditsViewController.m */,
-				10000000000000000000105C /* PocketFlicksCreditsViewController.m */,
+				10000000000000000000105E /* PocketFlicksCreditsViewController.m */,
 			);
 			name = Credits;
 			sourceTree = "<group>";
 		};
-		100000000000000000001013 /* CustomTemplate */ = {
+		100000000000000000001015 /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001004 /* Classes */,
-				1000000000000000000010DF /* Frameworks */,
+				100000000000000000001006 /* Classes */,
+				1000000000000000000010E1 /* Frameworks */,
 				100000000000000000000F04 /* Other Sources */,
-				1000000000000000000010C8 /* Products */,
-				10000000000000000000119C /* Resources */,
-				1000000000000000000016F1 /* Entitlements.plist */,
+				1000000000000000000010CA /* Products */,
+				10000000000000000000119E /* Resources */,
+				1000000000000000000016F3 /* Entitlements.plist */,
 				100000000000000000000E5D /* NetflixShared.xcodeproj */,
-				1000000000000000000010EB /* ProtocolBuffers.xcodeproj */,
+				1000000000000000000010ED /* ProtocolBuffers.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		100000000000000000001014 /* DVD */ = {
+		100000000000000000001016 /* DVD */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000003E0 /* AbstractDVDBlurayCache.h */,
 				100000000000000000000DC3 /* BlurayCache.h */,
-				100000000000000000001019 /* DVDCache.h */,
+				10000000000000000000101B /* DVDCache.h */,
 				1000000000000000000003E1 /* AbstractDVDBlurayCache.m */,
 				100000000000000000000DC4 /* BlurayCache.m */,
-				10000000000000000000101A /* DVDCache.m */,
+				10000000000000000000101C /* DVDCache.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
 		};
-		100000000000000000001015 /* DVD */ = {
+		100000000000000000001017 /* DVD */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000010DE /* DVDViewController.h */,
-				100000000000000000001139 /* DVDViewController.m */,
-				10000000000000000000101F /* DVDFilterViewController.h */,
-				100000000000000000001099 /* DVDFilterViewController.m */,
+				1000000000000000000010E0 /* DVDViewController.h */,
+				10000000000000000000113B /* DVDViewController.m */,
+				100000000000000000001021 /* DVDFilterViewController.h */,
+				10000000000000000000109B /* DVDFilterViewController.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
 		};
-		100000000000000000001095 /* Posters */ = {
+		100000000000000000001097 /* Posters */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000885 /* AbstractPosterDownloader.h */,
 				100000000000000000000D98 /* ApplePosterDownloader.h */,
-				100000000000000000001983 /* FandangoPosterDownloader.h */,
-				100000000000000000001468 /* ImdbPosterDownloader.h */,
-				1000000000000000000016E7 /* LargePosterCache.h */,
-				10000000000000000000103F /* PersonPosterCache.h */,
-				100000000000000000001092 /* PosterCache.h */,
-				1000000000000000000010AB /* PreviewNetworksPosterDownloader.h */,
+				100000000000000000001985 /* FandangoPosterDownloader.h */,
+				10000000000000000000146A /* ImdbPosterDownloader.h */,
+				1000000000000000000016E9 /* LargePosterCache.h */,
+				100000000000000000001041 /* PersonPosterCache.h */,
+				100000000000000000001094 /* PosterCache.h */,
+				1000000000000000000010AD /* PreviewNetworksPosterDownloader.h */,
 				100000000000000000000886 /* AbstractPosterDownloader.m */,
 				100000000000000000000D99 /* ApplePosterDownloader.m */,
-				100000000000000000001987 /* FandangoPosterDownloader.m */,
-				10000000000000000000146F /* ImdbPosterDownloader.m */,
-				1000000000000000000016E8 /* LargePosterCache.m */,
-				100000000000000000001040 /* PersonPosterCache.m */,
-				100000000000000000001093 /* PosterCache.m */,
-				1000000000000000000010AC /* PreviewNetworksPosterDownloader.m */,
+				100000000000000000001989 /* FandangoPosterDownloader.m */,
+				100000000000000000001471 /* ImdbPosterDownloader.m */,
+				1000000000000000000016EA /* LargePosterCache.m */,
+				100000000000000000001042 /* PersonPosterCache.m */,
+				100000000000000000001095 /* PosterCache.m */,
+				1000000000000000000010AE /* PreviewNetworksPosterDownloader.m */,
 			);
 			name = Posters;
-			sourceTree = "<group>";
-		};
-		1000000000000000000010C8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				10000000000000000000194D /* libBoxOfficeShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		1000000000000000000010C9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001977 /* libProtocolBuffers.a */,
-				100000000000000000001743 /* UnitTests.octest */,
-				100000000000000000001008 /* CommandLineTests.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		1000000000000000000010CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001973 /* libNetflixShared.a */,
+				10000000000000000000194F /* libBoxOfficeShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1000000000000000000010DF /* Frameworks */ = {
+		1000000000000000000010CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001992 /* libsqlite3.dylib */,
+				100000000000000000001979 /* libProtocolBuffers.a */,
+				100000000000000000001745 /* UnitTests.octest */,
+				10000000000000000000100A /* CommandLineTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1000000000000000000010CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001975 /* libNetflixShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1000000000000000000010E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001994 /* libsqlite3.dylib */,
 				100000000000000000000CD0 /* MapKit.framework */,
 				100000000000000000000D1F /* MessageUI.framework */,
 				100000000000000000000CA1 /* AddressBook.framework */,
 				100000000000000000000E1F /* CFNetwork.framework */,
-				10000000000000000000100F /* CoreFoundation.framework */,
-				100000000000000000001010 /* CoreGraphics.framework */,
-				100000000000000000001011 /* CoreLocation.framework */,
-				1000000000000000000010C7 /* Foundation.framework */,
+				100000000000000000001011 /* CoreFoundation.framework */,
+				100000000000000000001012 /* CoreGraphics.framework */,
+				100000000000000000001013 /* CoreLocation.framework */,
+				1000000000000000000010C9 /* Foundation.framework */,
 				100000000000000000000CF9 /* MediaPlayer.framework */,
-				100000000000000000001469 /* SystemConfiguration.framework */,
-				100000000000000000001715 /* UIKit.framework */,
+				10000000000000000000146B /* SystemConfiguration.framework */,
+				100000000000000000001717 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		100000000000000000001151 /* Data */ = {
+		100000000000000000001153 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001016 /* DVD.h */,
-				100000000000000000001036 /* FavoriteTheater.h */,
-				100000000000000000001023 /* Performance.h */,
-				100000000000000000001037 /* Person.h */,
-				1000000000000000000011AF /* Review.h */,
-				100000000000000000001222 /* Score.h */,
-				100000000000000000001694 /* Theater.h */,
-				100000000000000000001017 /* DVD.m */,
-				100000000000000000001038 /* FavoriteTheater.m */,
-				100000000000000000001024 /* Performance.m */,
-				100000000000000000001039 /* Person.m */,
-				1000000000000000000011B0 /* Review.m */,
-				100000000000000000001223 /* Score.m */,
-				100000000000000000001695 /* Theater.m */,
+				100000000000000000001018 /* DVD.h */,
+				100000000000000000001038 /* FavoriteTheater.h */,
+				100000000000000000001025 /* Performance.h */,
+				100000000000000000001039 /* Person.h */,
+				1000000000000000000011B1 /* Review.h */,
+				100000000000000000001224 /* Score.h */,
+				100000000000000000001696 /* Theater.h */,
+				100000000000000000001019 /* DVD.m */,
+				10000000000000000000103A /* FavoriteTheater.m */,
+				100000000000000000001026 /* Performance.m */,
+				10000000000000000000103B /* Person.m */,
+				1000000000000000000011B2 /* Review.m */,
+				100000000000000000001225 /* Score.m */,
+				100000000000000000001697 /* Theater.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
 		};
-		10000000000000000000119C /* Resources */ = {
+		10000000000000000000119E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000E10 /* BoxOfficeResources.bundle */,
-				100000000000000000001747 /* Localizable.strings */,
+				100000000000000000001749 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		10000000000000000000122C /* Scores */ = {
+		10000000000000000000122E /* Scores */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000983 /* AbstractScoreProvider.h */,
-				100000000000000000001133 /* GoogleScoreProvider.h */,
+				100000000000000000001135 /* GoogleScoreProvider.h */,
 				100000000000000000000D3A /* MetacriticScoreProvider.h */,
 				100000000000000000000E84 /* NoneScoreProvider.h */,
-				1000000000000000000011EF /* RottenTomatoesScoreProvider.h */,
-				100000000000000000001225 /* ScoreCache.h */,
-				100000000000000000001228 /* ScoreProvider.h */,
+				1000000000000000000011F1 /* RottenTomatoesScoreProvider.h */,
+				100000000000000000001227 /* ScoreCache.h */,
+				10000000000000000000122A /* ScoreProvider.h */,
 				100000000000000000000984 /* AbstractScoreProvider.m */,
-				100000000000000000001134 /* GoogleScoreProvider.m */,
+				100000000000000000001136 /* GoogleScoreProvider.m */,
 				100000000000000000000D3B /* MetacriticScoreProvider.m */,
 				100000000000000000000E85 /* NoneScoreProvider.m */,
-				1000000000000000000011F0 /* RottenTomatoesScoreProvider.m */,
-				100000000000000000001226 /* ScoreCache.m */,
+				1000000000000000000011F2 /* RottenTomatoesScoreProvider.m */,
+				100000000000000000001228 /* ScoreCache.m */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
 		};
-		100000000000000000001231 /* Search */ = {
+		100000000000000000001233 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000986 /* AbstractSearchDisplayController.h */,
-				1000000000000000000016EA /* LocalSearchDisplayController.h */,
+				1000000000000000000016EC /* LocalSearchDisplayController.h */,
 				100000000000000000000E4C /* NetflixSearchDisplayController.h */,
 				1000000000000000000009B8 /* AbstractSearchDisplayController.m */,
-				1000000000000000000016FD /* LocalSearchDisplayController.m */,
+				1000000000000000000016FF /* LocalSearchDisplayController.m */,
 				100000000000000000000E4D /* NetflixSearchDisplayController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
 		};
-		100000000000000000001232 /* Search */ = {
+		100000000000000000001234 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000171C /* LocalSearchEngine.h */,
+				10000000000000000000171E /* LocalSearchEngine.h */,
 				100000000000000000000E4F /* NetflixSearchEngine.h */,
-				100000000000000000001243 /* SearchRequest.h */,
-				10000000000000000000124A /* SearchResult.h */,
-				100000000000000000001745 /* LocalSearchEngine.m */,
+				100000000000000000001245 /* SearchRequest.h */,
+				10000000000000000000124C /* SearchResult.h */,
+				100000000000000000001747 /* LocalSearchEngine.m */,
 				100000000000000000000E50 /* NetflixSearchEngine.m */,
-				100000000000000000001246 /* SearchRequest.m */,
-				10000000000000000000124D /* SearchResult.m */,
+				100000000000000000001248 /* SearchRequest.m */,
+				10000000000000000000124F /* SearchResult.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
 		};
-		10000000000000000000126E /* SettingCells */ = {
+		100000000000000000001270 /* SettingCells */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001126 /* QuestionCell.h */,
-				100000000000000000001127 /* QuestionCell.m */,
+				100000000000000000001128 /* QuestionCell.h */,
+				100000000000000000001129 /* QuestionCell.m */,
 			);
 			name = SettingCells;
 			sourceTree = "<group>";
 		};
-		10000000000000000000126F /* DataProvider */ = {
+		100000000000000000001271 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000003E3 /* AbstractDataProvider.h */,
-				10000000000000000000127E /* DataProvider.h */,
-				1000000000000000000016BE /* DataProviderUpdateDelegate.h */,
-				10000000000000000000112A /* GoogleDataProvider.h */,
-				100000000000000000001804 /* LookupRequest.h */,
-				100000000000000000001991 /* LookupResult.h */,
+				100000000000000000001280 /* DataProvider.h */,
+				1000000000000000000016C0 /* DataProviderUpdateDelegate.h */,
+				10000000000000000000112C /* GoogleDataProvider.h */,
+				100000000000000000001806 /* LookupRequest.h */,
+				100000000000000000001993 /* LookupResult.h */,
 				100000000000000000000E95 /* NowPlaying.pb.h */,
 				100000000000000000000528 /* AbstractDataProvider.m */,
-				1000000000000000000012E0 /* DataProvider.m */,
-				10000000000000000000112B /* GoogleDataProvider.m */,
+				1000000000000000000012E2 /* DataProvider.m */,
+				10000000000000000000112D /* GoogleDataProvider.m */,
 				100000000000000000000C73 /* LookupRequest.m */,
-				100000000000000000001996 /* LookupResult.m */,
+				100000000000000000001998 /* LookupResult.m */,
 				100000000000000000000E96 /* NowPlaying.pb.m */,
 			);
 			name = DataProvider;
 			sourceTree = "<group>";
 		};
-		100000000000000000001270 /* Settings */ = {
+		100000000000000000001272 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001012 /* Credits */,
-				100000000000000000001972 /* FAQViewController.h */,
+				100000000000000000001014 /* Credits */,
+				100000000000000000001974 /* FAQViewController.h */,
 				100000000000000000000E9B /* NowPlayingSettingsViewController.h */,
-				100000000000000000001062 /* PocketFlicksSettingsViewController.h */,
-				100000000000000000001229 /* ScoreProviderViewController.h */,
-				10000000000000000000123B /* SearchDatePickerViewController.h */,
-				10000000000000000000123E /* SearchDistancePickerViewController.h */,
-				10000000000000000000196F /* FAQViewController.m */,
+				100000000000000000001064 /* PocketFlicksSettingsViewController.h */,
+				10000000000000000000122B /* ScoreProviderViewController.h */,
+				10000000000000000000123D /* SearchDatePickerViewController.h */,
+				100000000000000000001240 /* SearchDistancePickerViewController.h */,
+				100000000000000000001971 /* FAQViewController.m */,
 				100000000000000000000E9C /* NowPlayingSettingsViewController.m */,
-				100000000000000000001064 /* PocketFlicksSettingsViewController.m */,
-				10000000000000000000122A /* ScoreProviderViewController.m */,
-				10000000000000000000123C /* SearchDatePickerViewController.m */,
-				10000000000000000000123F /* SearchDistancePickerViewController.m */,
+				100000000000000000001066 /* PocketFlicksSettingsViewController.m */,
+				10000000000000000000122C /* ScoreProviderViewController.m */,
+				10000000000000000000123E /* SearchDatePickerViewController.m */,
+				100000000000000000001241 /* SearchDistancePickerViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		100000000000000000001280 /* Shared */ = {
+		100000000000000000001282 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000D58 /* MetasyntacticShared.h */,
 				100000000000000000000E57 /* NetflixShared.h */,
-				1000000000000000000010E8 /* ProtocolBuffers.h */,
+				1000000000000000000010EA /* ProtocolBuffers.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
 		};
-		1000000000000000000012E1 /* ImageCells */ = {
+		1000000000000000000012E3 /* ImageCells */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000531 /* AbstractImageCell.h */,
 				100000000000000000000675 /* AbstractPosterCell.h */,
-				10000000000000000000101C /* DVDCell.h */,
+				10000000000000000000101E /* DVDCell.h */,
 				100000000000000000000E22 /* NetflixCell.h */,
-				10000000000000000000103C /* PersonCell.h */,
-				100000000000000000001774 /* UpcomingMovieCell.h */,
+				10000000000000000000103E /* PersonCell.h */,
+				100000000000000000001776 /* UpcomingMovieCell.h */,
 				100000000000000000000532 /* AbstractImageCell.m */,
 				10000000000000000000067A /* AbstractPosterCell.m */,
-				10000000000000000000101D /* DVDCell.m */,
+				10000000000000000000101F /* DVDCell.m */,
 				100000000000000000000E23 /* NetflixCell.m */,
-				10000000000000000000103D /* PersonCell.m */,
-				100000000000000000001775 /* UpcomingMovieCell.m */,
+				10000000000000000000103F /* PersonCell.m */,
+				100000000000000000001777 /* UpcomingMovieCell.m */,
 			);
 			name = ImageCells;
 			sourceTree = "<group>";
 		};
-		100000000000000000001586 /* TabBarControllers */ = {
+		100000000000000000001588 /* TabBarControllers */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000E9E /* NowPlayingTabBarController.h */,
@@ -929,130 +929,130 @@
 			name = TabBarControllers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001598 /* TableViewCells */ = {
+		10000000000000000000159A /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000012E1 /* ImageCells */,
+				1000000000000000000012E3 /* ImageCells */,
 				100000000000000000000DA8 /* MovieTitleCells */,
-				10000000000000000000126E /* SettingCells */,
-				100000000000000000001005 /* CollapsedMovieDetailsCell.h */,
-				1000000000000000000016FC /* ExpandedMovieDetailsCell.h */,
+				100000000000000000001270 /* SettingCells */,
+				100000000000000000001007 /* CollapsedMovieDetailsCell.h */,
+				1000000000000000000016FE /* ExpandedMovieDetailsCell.h */,
 				100000000000000000000DA2 /* MovieShowtimesCell.h */,
 				100000000000000000000E41 /* NetflixRatingsCell.h */,
 				100000000000000000000E64 /* NetflixStatusCell.h */,
-				1000000000000000000011B2 /* ReviewBodyCell.h */,
-				1000000000000000000011B5 /* ReviewTitleCell.h */,
-				10000000000000000000169A /* TheaterNameCell.h */,
-				100000000000000000001006 /* CollapsedMovieDetailsCell.m */,
-				10000000000000000000179F /* ExpandedMovieDetailsCell.m */,
+				1000000000000000000011B4 /* ReviewBodyCell.h */,
+				1000000000000000000011B7 /* ReviewTitleCell.h */,
+				10000000000000000000169C /* TheaterNameCell.h */,
+				100000000000000000001008 /* CollapsedMovieDetailsCell.m */,
+				1000000000000000000017A1 /* ExpandedMovieDetailsCell.m */,
 				100000000000000000000DA3 /* MovieShowtimesCell.m */,
 				100000000000000000000E42 /* NetflixRatingsCell.m */,
 				100000000000000000000E65 /* NetflixStatusCell.m */,
-				1000000000000000000011B3 /* ReviewBodyCell.m */,
-				1000000000000000000011B6 /* ReviewTitleCell.m */,
-				10000000000000000000169B /* TheaterNameCell.m */,
+				1000000000000000000011B5 /* ReviewBodyCell.m */,
+				1000000000000000000011B8 /* ReviewTitleCell.m */,
+				10000000000000000000169D /* TheaterNameCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		10000000000000000000169D /* Theaters */ = {
+		10000000000000000000169F /* Theaters */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000D6D /* AllTheatersViewController.h */,
 				100000000000000000000D93 /* AllTheatersViewController.m */,
-				100000000000000000001697 /* TheaterDetailsViewController.h */,
-				100000000000000000001698 /* TheaterDetailsViewController.m */,
+				100000000000000000001699 /* TheaterDetailsViewController.h */,
+				10000000000000000000169A /* TheaterDetailsViewController.m */,
 			);
 			name = Theaters;
 			sourceTree = "<group>";
 		};
-		1000000000000000000016FE /* UI */ = {
+		100000000000000000001700 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000E09 /* NavigationControllers */,
-				100000000000000000001586 /* TabBarControllers */,
-				100000000000000000001598 /* TableViewCells */,
-				1000000000000000000017A1 /* ViewControllers */,
-				1000000000000000000017A6 /* Views */,
+				100000000000000000001588 /* TabBarControllers */,
+				10000000000000000000159A /* TableViewCells */,
+				1000000000000000000017A3 /* ViewControllers */,
+				1000000000000000000017A8 /* Views */,
 				100000000000000000000E1A /* BoxOfficeStockImages.h */,
 				100000000000000000000E1B /* BoxOfficeStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		100000000000000000001770 /* Upcoming */ = {
+		100000000000000000001772 /* Upcoming */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000177A /* UpcomingMoviesViewController.h */,
-				10000000000000000000177B /* UpcomingMoviesViewController.m */,
+				10000000000000000000177C /* UpcomingMoviesViewController.h */,
+				10000000000000000000177D /* UpcomingMoviesViewController.m */,
 			);
 			name = Upcoming;
 			sourceTree = "<group>";
 		};
-		100000000000000000001782 /* Utilities */ = {
+		100000000000000000001784 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000017E9 /* LocationManager.h */,
-				100000000000000000001785 /* Utilities.h */,
-				1000000000000000000017EA /* LocationManager.m */,
-				100000000000000000001788 /* Utilities.m */,
+				1000000000000000000017EB /* LocationManager.h */,
+				100000000000000000001787 /* Utilities.h */,
+				1000000000000000000017EC /* LocationManager.m */,
+				10000000000000000000178A /* Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		1000000000000000000017A1 /* ViewControllers */ = {
+		1000000000000000000017A3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001015 /* DVD */,
+				100000000000000000001017 /* DVD */,
 				100000000000000000000DA9 /* Movies */,
 				100000000000000000000E0F /* Netflix */,
-				100000000000000000001231 /* Search */,
-				100000000000000000001270 /* Settings */,
-				10000000000000000000169D /* Theaters */,
-				100000000000000000001770 /* Upcoming */,
+				100000000000000000001233 /* Search */,
+				100000000000000000001272 /* Settings */,
+				10000000000000000000169F /* Theaters */,
+				100000000000000000001772 /* Upcoming */,
 				10000000000000000000052A /* AbstractDetailsViewController.h */,
 				100000000000000000000534 /* AbstractMovieListViewController.h */,
-				100000000000000000001096 /* PostersViewController.h */,
-				1000000000000000000016C2 /* TicketsViewController.h */,
+				100000000000000000001098 /* PostersViewController.h */,
+				1000000000000000000016C4 /* TicketsViewController.h */,
 				10000000000000000000052B /* AbstractDetailsViewController.m */,
 				1000000000000000000005F1 /* AbstractMovieListViewController.m */,
-				100000000000000000001097 /* PostersViewController.m */,
-				1000000000000000000016C3 /* TicketsViewController.m */,
+				100000000000000000001099 /* PostersViewController.m */,
+				1000000000000000000016C5 /* TicketsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		1000000000000000000017A6 /* Views */ = {
+		1000000000000000000017A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000017AD /* WarningView.h */,
-				1000000000000000000017AE /* WarningView.m */,
+				1000000000000000000017AF /* WarningView.h */,
+				1000000000000000000017B0 /* WarningView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		1000000000000000000017B4 /* Websites */ = {
+		1000000000000000000017B6 /* Websites */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000009CA /* AbstractWebsiteCache.h */,
 				100000000000000000000D95 /* AmazonCache.h */,
-				10000000000000000000125C /* IMDbCache.h */,
-				1000000000000000000017BA /* WikipediaCache.h */,
+				10000000000000000000125E /* IMDbCache.h */,
+				1000000000000000000017BC /* WikipediaCache.h */,
 				1000000000000000000009D6 /* AbstractWebsiteCache.m */,
 				100000000000000000000D96 /* AmazonCache.m */,
-				10000000000000000000125D /* IMDbCache.m */,
-				1000000000000000000017BB /* WikipediaCache.m */,
+				10000000000000000000125F /* IMDbCache.m */,
+				1000000000000000000017BD /* WikipediaCache.m */,
 			);
 			name = Websites;
 			sourceTree = "<group>";
 		};
-		1000000000000000000017C7 /* Location */ = {
+		1000000000000000000017C9 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000017E6 /* LocationCache.h */,
-				10000000000000000000177F /* UserLocationCache.h */,
-				1000000000000000000017E7 /* LocationCache.m */,
-				100000000000000000001780 /* UserLocationCache.m */,
+				1000000000000000000017E8 /* LocationCache.h */,
+				100000000000000000001781 /* UserLocationCache.h */,
+				1000000000000000000017E9 /* LocationCache.m */,
+				100000000000000000001782 /* UserLocationCache.m */,
 			);
 			name = Location;
 			sourceTree = "<group>";
@@ -1060,7 +1060,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		100000000000000000001254 /* Headers */ = {
+		100000000000000000001256 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1068,13 +1068,13 @@
 				100000000000000000000E19 /* BoxOfficeSharedApplicationDelegate.h in Headers */,
 				100000000000000000000E13 /* BoxOfficeShared.h in Headers */,
 				1000000000000000000003D2 /* AbstractBoxOfficeAppDelegate.h in Headers */,
-				10000000000000000000105F /* PocketFlicksNavigationController.h in Headers */,
-				100000000000000000001067 /* PocketFlicksViewController.h in Headers */,
-				10000000000000000000105B /* PocketFlicksCreditsViewController.h in Headers */,
-				100000000000000000001063 /* PocketFlicksSettingsViewController.h in Headers */,
+				100000000000000000001061 /* PocketFlicksNavigationController.h in Headers */,
+				100000000000000000001069 /* PocketFlicksViewController.h in Headers */,
+				10000000000000000000105D /* PocketFlicksCreditsViewController.h in Headers */,
+				100000000000000000001065 /* PocketFlicksSettingsViewController.h in Headers */,
 				100000000000000000000E5B /* NetflixShared.h in Headers */,
 				100000000000000000000672 /* AbstractNetflixFilterableViewController.h in Headers */,
-				1000000000000000000010EA /* ProtocolBuffers.h in Headers */,
+				1000000000000000000010EC /* ProtocolBuffers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1085,25 +1085,25 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 100000000000000000000F03 /* Build configuration list for PBXNativeTarget "BoxOfficeShared" */;
 			buildPhases = (
-				100000000000000000001254 /* Headers */,
-				1000000000000000000012E2 /* Sources */,
-				100000000000000000001129 /* Frameworks */,
+				100000000000000000001256 /* Headers */,
+				1000000000000000000012E4 /* Sources */,
+				10000000000000000000112B /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				100000000000000000000F91 /* PBXTargetDependency */,
 				100000000000000000000F90 /* PBXTargetDependency */,
-				100000000000000000000F8F /* PBXTargetDependency */,
 			);
 			name = BoxOfficeShared;
 			productName = BoxOfficeShared;
-			productReference = 10000000000000000000194D /* libBoxOfficeShared.a */;
+			productReference = 10000000000000000000194F /* libBoxOfficeShared.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1000000000000000000010E0 /* Project object */ = {
+		1000000000000000000010E2 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 100000000000000000000F0D /* Build configuration list for PBXProject "BoxOfficeShared" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -1145,16 +1145,16 @@
 				uk,
 				hr,
 			);
-			mainGroup = 100000000000000000001013 /* CustomTemplate */;
+			mainGroup = 100000000000000000001015 /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1000000000000000000010CA /* Products */;
+					ProductGroup = 1000000000000000000010CC /* Products */;
 					ProjectRef = 100000000000000000000E5D /* NetflixShared.xcodeproj */;
 				},
 				{
-					ProductGroup = 1000000000000000000010C9 /* Products */;
-					ProjectRef = 1000000000000000000010EB /* ProtocolBuffers.xcodeproj */;
+					ProductGroup = 1000000000000000000010CB /* Products */;
+					ProjectRef = 1000000000000000000010ED /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1165,28 +1165,28 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		100000000000000000001008 /* CommandLineTests.app */ = {
+		10000000000000000000100A /* CommandLineTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CommandLineTests.app;
 			remoteRef = 100000000000000000000F11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		100000000000000000001743 /* UnitTests.octest */ = {
+		100000000000000000001745 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 100000000000000000000F10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		100000000000000000001973 /* libNetflixShared.a */ = {
+		100000000000000000001975 /* libNetflixShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libNetflixShared.a;
 			remoteRef = 100000000000000000000F13 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		100000000000000000001977 /* libProtocolBuffers.a */ = {
+		100000000000000000001979 /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libProtocolBuffers.a;
@@ -1196,94 +1196,94 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1000000000000000000012E2 /* Sources */ = {
+		1000000000000000000012E4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1000000000000000000003E2 /* AbstractDVDBlurayCache.m in Sources */,
 				100000000000000000000E0E /* BlurayCache.m in Sources */,
-				10000000000000000000101B /* DVDCache.m in Sources */,
-				1000000000000000000017E8 /* LocationCache.m in Sources */,
-				100000000000000000001781 /* UserLocationCache.m in Sources */,
+				10000000000000000000101D /* DVDCache.m in Sources */,
+				1000000000000000000017EA /* LocationCache.m in Sources */,
+				100000000000000000001783 /* UserLocationCache.m in Sources */,
 				1000000000000000000008EA /* AbstractPosterDownloader.m in Sources */,
 				100000000000000000000D9A /* ApplePosterDownloader.m in Sources */,
 				100000000000000000000951 /* FandangoPosterDownloader.m in Sources */,
-				100000000000000000001597 /* ImdbPosterDownloader.m in Sources */,
-				1000000000000000000016E9 /* LargePosterCache.m in Sources */,
-				100000000000000000001041 /* PersonPosterCache.m in Sources */,
-				100000000000000000001094 /* PosterCache.m in Sources */,
-				1000000000000000000010AD /* PreviewNetworksPosterDownloader.m in Sources */,
+				100000000000000000001599 /* ImdbPosterDownloader.m in Sources */,
+				1000000000000000000016EB /* LargePosterCache.m in Sources */,
+				100000000000000000001043 /* PersonPosterCache.m in Sources */,
+				100000000000000000001096 /* PosterCache.m in Sources */,
+				1000000000000000000010AF /* PreviewNetworksPosterDownloader.m in Sources */,
 				100000000000000000000985 /* AbstractScoreProvider.m in Sources */,
-				100000000000000000001152 /* GoogleScoreProvider.m in Sources */,
+				100000000000000000001154 /* GoogleScoreProvider.m in Sources */,
 				100000000000000000000D3C /* MetacriticScoreProvider.m in Sources */,
 				100000000000000000000E86 /* NoneScoreProvider.m in Sources */,
-				1000000000000000000011F1 /* RottenTomatoesScoreProvider.m in Sources */,
-				100000000000000000001227 /* ScoreCache.m in Sources */,
+				1000000000000000000011F3 /* RottenTomatoesScoreProvider.m in Sources */,
+				100000000000000000001229 /* ScoreCache.m in Sources */,
 				100000000000000000000E1C /* BoxOfficeStockImages.m in Sources */,
 				1000000000000000000009E8 /* AbstractWebsiteCache.m in Sources */,
 				100000000000000000000D97 /* AmazonCache.m in Sources */,
-				10000000000000000000127F /* IMDbCache.m in Sources */,
-				1000000000000000000017BC /* WikipediaCache.m in Sources */,
-				100000000000000000001002 /* CacheUpdater.m in Sources */,
-				10000000000000000000125B /* HelpCache.m in Sources */,
-				1000000000000000000016E6 /* InternationalDataCache.m in Sources */,
-				1000000000000000000017C6 /* LocalizableStringsCache.m in Sources */,
-				1000000000000000000016ED /* TrailerCache.m in Sources */,
-				100000000000000000001773 /* UpcomingCache.m in Sources */,
-				100000000000000000001018 /* DVD.m in Sources */,
-				10000000000000000000103A /* FavoriteTheater.m in Sources */,
-				100000000000000000001025 /* Performance.m in Sources */,
-				10000000000000000000103B /* Person.m in Sources */,
-				1000000000000000000011B1 /* Review.m in Sources */,
-				100000000000000000001224 /* Score.m in Sources */,
-				100000000000000000001696 /* Theater.m in Sources */,
+				100000000000000000001281 /* IMDbCache.m in Sources */,
+				1000000000000000000017BE /* WikipediaCache.m in Sources */,
+				100000000000000000001004 /* CacheUpdater.m in Sources */,
+				10000000000000000000125D /* HelpCache.m in Sources */,
+				1000000000000000000016E8 /* InternationalDataCache.m in Sources */,
+				1000000000000000000017C8 /* LocalizableStringsCache.m in Sources */,
+				1000000000000000000016EF /* TrailerCache.m in Sources */,
+				100000000000000000001775 /* UpcomingCache.m in Sources */,
+				10000000000000000000101A /* DVD.m in Sources */,
+				10000000000000000000103C /* FavoriteTheater.m in Sources */,
+				100000000000000000001027 /* Performance.m in Sources */,
+				10000000000000000000103D /* Person.m in Sources */,
+				1000000000000000000011B3 /* Review.m in Sources */,
+				100000000000000000001226 /* Score.m in Sources */,
+				100000000000000000001698 /* Theater.m in Sources */,
 				100000000000000000000529 /* AbstractDataProvider.m in Sources */,
-				1000000000000000000016BB /* DataProvider.m in Sources */,
-				100000000000000000001132 /* GoogleDataProvider.m in Sources */,
+				1000000000000000000016BD /* DataProvider.m in Sources */,
+				100000000000000000001134 /* GoogleDataProvider.m in Sources */,
 				100000000000000000000C74 /* LookupRequest.m in Sources */,
-				10000000000000000000199C /* LookupResult.m in Sources */,
+				10000000000000000000199E /* LookupResult.m in Sources */,
 				100000000000000000000E97 /* NowPlaying.pb.m in Sources */,
-				100000000000000000001746 /* LocalSearchEngine.m in Sources */,
+				100000000000000000001748 /* LocalSearchEngine.m in Sources */,
 				100000000000000000000E51 /* NetflixSearchEngine.m in Sources */,
-				100000000000000000001248 /* SearchRequest.m in Sources */,
-				10000000000000000000124F /* SearchResult.m in Sources */,
-				10000000000000000000100B /* CommonNavigationController.m in Sources */,
-				1000000000000000000010C5 /* DVDNavigationController.m in Sources */,
+				10000000000000000000124A /* SearchRequest.m in Sources */,
+				100000000000000000001251 /* SearchResult.m in Sources */,
+				10000000000000000000100D /* CommonNavigationController.m in Sources */,
+				1000000000000000000010C7 /* DVDNavigationController.m in Sources */,
 				100000000000000000000DAC /* MoviesNavigationController.m in Sources */,
 				100000000000000000000E3D /* NetflixNavigationController.m in Sources */,
-				1000000000000000000016A0 /* TheatersNavigationController.m in Sources */,
-				100000000000000000001779 /* UpcomingMoviesNavigationController.m in Sources */,
+				1000000000000000000016A2 /* TheatersNavigationController.m in Sources */,
+				10000000000000000000177B /* UpcomingMoviesNavigationController.m in Sources */,
 				100000000000000000000EA0 /* NowPlayingTabBarController.m in Sources */,
 				100000000000000000000533 /* AbstractImageCell.m in Sources */,
 				100000000000000000000865 /* AbstractPosterCell.m in Sources */,
-				10000000000000000000101E /* DVDCell.m in Sources */,
+				100000000000000000001020 /* DVDCell.m in Sources */,
 				100000000000000000000E24 /* NetflixCell.m in Sources */,
-				10000000000000000000103E /* PersonCell.m in Sources */,
-				100000000000000000001776 /* UpcomingMovieCell.m in Sources */,
-				10000000000000000000119B /* GreenMovieTitleCell.m in Sources */,
+				100000000000000000001040 /* PersonCell.m in Sources */,
+				100000000000000000001778 /* UpcomingMovieCell.m in Sources */,
+				10000000000000000000119D /* GreenMovieTitleCell.m in Sources */,
 				100000000000000000000DA7 /* MovieTitleCell.m in Sources */,
 				100000000000000000000E7C /* NoScoreMovieTitleCell.m in Sources */,
-				100000000000000000001022 /* PerfectGreenMovieTitleCell.m in Sources */,
-				100000000000000000001140 /* RedMovieTitleCell.m in Sources */,
-				1000000000000000000011EE /* RottenMovieTitleCell.m in Sources */,
-				100000000000000000001403 /* SquareMovieTitleCell.m in Sources */,
-				1000000000000000000016CB /* TomatoMovieTitleCell.m in Sources */,
-				100000000000000000001767 /* UnknownMovieTitleCell.m in Sources */,
-				1000000000000000000017E2 /* YellowMovieTitleCell.m in Sources */,
-				100000000000000000001128 /* QuestionCell.m in Sources */,
-				100000000000000000001007 /* CollapsedMovieDetailsCell.m in Sources */,
-				10000000000000000000196B /* ExpandedMovieDetailsCell.m in Sources */,
+				100000000000000000001024 /* PerfectGreenMovieTitleCell.m in Sources */,
+				100000000000000000001142 /* RedMovieTitleCell.m in Sources */,
+				1000000000000000000011F0 /* RottenMovieTitleCell.m in Sources */,
+				100000000000000000001405 /* SquareMovieTitleCell.m in Sources */,
+				1000000000000000000016CD /* TomatoMovieTitleCell.m in Sources */,
+				100000000000000000001769 /* UnknownMovieTitleCell.m in Sources */,
+				1000000000000000000017E4 /* YellowMovieTitleCell.m in Sources */,
+				10000000000000000000112A /* QuestionCell.m in Sources */,
+				100000000000000000001009 /* CollapsedMovieDetailsCell.m in Sources */,
+				10000000000000000000196D /* ExpandedMovieDetailsCell.m in Sources */,
 				100000000000000000000DA4 /* MovieShowtimesCell.m in Sources */,
 				100000000000000000000E43 /* NetflixRatingsCell.m in Sources */,
 				100000000000000000000E66 /* NetflixStatusCell.m in Sources */,
-				1000000000000000000011B4 /* ReviewBodyCell.m in Sources */,
-				1000000000000000000011B7 /* ReviewTitleCell.m in Sources */,
-				10000000000000000000169C /* TheaterNameCell.m in Sources */,
-				100000000000000000001150 /* DVDViewController.m in Sources */,
-				1000000000000000000010A7 /* DVDFilterViewController.m in Sources */,
+				1000000000000000000011B6 /* ReviewBodyCell.m in Sources */,
+				1000000000000000000011B9 /* ReviewTitleCell.m in Sources */,
+				10000000000000000000169E /* TheaterNameCell.m in Sources */,
+				100000000000000000001152 /* DVDViewController.m in Sources */,
+				1000000000000000000010A9 /* DVDFilterViewController.m in Sources */,
 				100000000000000000000D68 /* AllMoviesViewController.m in Sources */,
 				100000000000000000000DA1 /* MovieDetailsViewController.m in Sources */,
-				1000000000000000000011C2 /* ReviewsViewController.m in Sources */,
+				1000000000000000000011C4 /* ReviewsViewController.m in Sources */,
 				100000000000000000000E29 /* NetflixFeedsViewController.m in Sources */,
 				100000000000000000000E2C /* NetflixGenreRecommendationsViewController.m in Sources */,
 				100000000000000000000E35 /* NetflixMostPopularMoviesViewController.m in Sources */,
@@ -1293,33 +1293,33 @@
 				100000000000000000000E54 /* NetflixSettingsViewController.m in Sources */,
 				100000000000000000000E71 /* NetflixViewController.m in Sources */,
 				1000000000000000000009C5 /* AbstractSearchDisplayController.m in Sources */,
-				100000000000000000001714 /* LocalSearchDisplayController.m in Sources */,
+				100000000000000000001716 /* LocalSearchDisplayController.m in Sources */,
 				100000000000000000000E4E /* NetflixSearchDisplayController.m in Sources */,
 				100000000000000000000E9A /* NowPlayingCreditsViewController.m in Sources */,
-				10000000000000000000197E /* FAQViewController.m in Sources */,
-				10000000000000000000122B /* ScoreProviderViewController.m in Sources */,
-				10000000000000000000123D /* SearchDatePickerViewController.m in Sources */,
-				100000000000000000001240 /* SearchDistancePickerViewController.m in Sources */,
+				100000000000000000001980 /* FAQViewController.m in Sources */,
+				10000000000000000000122D /* ScoreProviderViewController.m in Sources */,
+				10000000000000000000123F /* SearchDatePickerViewController.m in Sources */,
+				100000000000000000001242 /* SearchDistancePickerViewController.m in Sources */,
 				100000000000000000000E9D /* NowPlayingSettingsViewController.m in Sources */,
 				100000000000000000000D94 /* AllTheatersViewController.m in Sources */,
-				100000000000000000001699 /* TheaterDetailsViewController.m in Sources */,
-				10000000000000000000177C /* UpcomingMoviesViewController.m in Sources */,
+				10000000000000000000169B /* TheaterDetailsViewController.m in Sources */,
+				10000000000000000000177E /* UpcomingMoviesViewController.m in Sources */,
 				10000000000000000000052F /* AbstractDetailsViewController.m in Sources */,
 				100000000000000000000642 /* AbstractMovieListViewController.m in Sources */,
-				100000000000000000001098 /* PostersViewController.m in Sources */,
-				1000000000000000000016C4 /* TicketsViewController.m in Sources */,
-				1000000000000000000017AF /* WarningView.m in Sources */,
-				10000000000000000000109A /* LocationManager.m in Sources */,
-				10000000000000000000178B /* Utilities.m in Sources */,
+				10000000000000000000109A /* PostersViewController.m in Sources */,
+				1000000000000000000016C6 /* TicketsViewController.m in Sources */,
+				1000000000000000000017B1 /* WarningView.m in Sources */,
+				10000000000000000000109C /* LocationManager.m in Sources */,
+				10000000000000000000178D /* Utilities.m in Sources */,
 				100000000000000000000D9D /* Application.m in Sources */,
-				10000000000000000000100E /* Controller.m in Sources */,
+				100000000000000000001010 /* Controller.m in Sources */,
 				100000000000000000000D8E /* Model.m in Sources */,
 				100000000000000000000E17 /* BoxOfficeSharedApplication.m in Sources */,
 				1000000000000000000003D4 /* AbstractBoxOfficeAppDelegate.m in Sources */,
-				100000000000000000001061 /* PocketFlicksNavigationController.m in Sources */,
-				100000000000000000001069 /* PocketFlicksViewController.m in Sources */,
-				10000000000000000000105D /* PocketFlicksCreditsViewController.m in Sources */,
-				100000000000000000001065 /* PocketFlicksSettingsViewController.m in Sources */,
+				100000000000000000001063 /* PocketFlicksNavigationController.m in Sources */,
+				10000000000000000000106B /* PocketFlicksViewController.m in Sources */,
+				10000000000000000000105F /* PocketFlicksCreditsViewController.m in Sources */,
+				100000000000000000001067 /* PocketFlicksSettingsViewController.m in Sources */,
 				100000000000000000000674 /* AbstractNetflixFilterableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1327,12 +1327,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		100000000000000000000F8F /* PBXTargetDependency */ = {
+		100000000000000000000F90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
 			targetProxy = 100000000000000000000F12 /* PBXContainerItemProxy */;
 		};
-		100000000000000000000F90 /* PBXTargetDependency */ = {
+		100000000000000000000F91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NetflixShared;
 			targetProxy = 100000000000000000000F14 /* PBXContainerItemProxy */;
@@ -1340,34 +1340,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		100000000000000000001747 /* Localizable.strings */ = {
+		100000000000000000001749 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1000000000000000000017F5 /* ca */,
-				1000000000000000000017F8 /* cs */,
-				1000000000000000000017FA /* da */,
-				1000000000000000000017FC /* de */,
-				100000000000000000001805 /* en */,
-				100000000000000000001807 /* es */,
-				10000000000000000000180D /* fa */,
-				10000000000000000000180E /* fi */,
-				100000000000000000001810 /* fr */,
-				10000000000000000000190A /* he */,
-				10000000000000000000190C /* hi */,
-				10000000000000000000190F /* hu */,
-				10000000000000000000193E /* it */,
-				100000000000000000001940 /* ja */,
-				100000000000000000001AA5 /* nl */,
-				100000000000000000001AA7 /* no */,
-				100000000000000000001B07 /* pl */,
-				100000000000000000001B0D /* pt */,
-				100000000000000000001B0F /* ro */,
-				100000000000000000001B11 /* ru */,
-				100000000000000000001B46 /* sk */,
-				100000000000000000001B4B /* sv */,
-				100000000000000000001B52 /* tr */,
-				100000000000000000001B54 /* uk */,
-				10000000000000000000190E /* hr */,
+				1000000000000000000017F7 /* ca */,
+				1000000000000000000017FA /* cs */,
+				1000000000000000000017FC /* da */,
+				1000000000000000000017FE /* de */,
+				100000000000000000001807 /* en */,
+				100000000000000000001809 /* es */,
+				10000000000000000000180F /* fa */,
+				100000000000000000001810 /* fi */,
+				100000000000000000001812 /* fr */,
+				10000000000000000000190C /* he */,
+				10000000000000000000190E /* hi */,
+				100000000000000000001911 /* hu */,
+				100000000000000000001940 /* it */,
+				100000000000000000001942 /* ja */,
+				100000000000000000001AA7 /* nl */,
+				100000000000000000001AA9 /* no */,
+				100000000000000000001B09 /* pl */,
+				100000000000000000001B0F /* pt */,
+				100000000000000000001B11 /* ro */,
+				100000000000000000001B13 /* ru */,
+				100000000000000000001B48 /* sk */,
+				100000000000000000001B4D /* sv */,
+				100000000000000000001B54 /* tr */,
+				100000000000000000001B56 /* uk */,
+				100000000000000000001910 /* hr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1411,13 +1411,13 @@
 			};
 			name = AdHoc;
 		};
-		100000000000000000001154 /* Release */ = {
+		100000000000000000001156 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		100000000000000000001155 /* Release */ = {
+		100000000000000000001157 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
@@ -1445,13 +1445,13 @@
 			};
 			name = Release;
 		};
-		1000000000000000000016C0 /* Debug */ = {
+		1000000000000000000016C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		1000000000000000000016EE /* Debug */ = {
+		1000000000000000000016F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
@@ -1479,7 +1479,7 @@
 			};
 			name = Debug;
 		};
-		1000000000000000000016EF /* Distribution */ = {
+		1000000000000000000016F1 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
@@ -1508,7 +1508,7 @@
 			};
 			name = Distribution;
 		};
-		1000000000000000000016F0 /* Distribution */ = {
+		1000000000000000000016F2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -1520,10 +1520,10 @@
 		100000000000000000000F03 /* Build configuration list for PBXNativeTarget "BoxOfficeShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1000000000000000000016C0 /* Debug */,
-				100000000000000000001154 /* Release */,
+				1000000000000000000016C2 /* Debug */,
+				100000000000000000001156 /* Release */,
 				100000000000000000000A65 /* AdHoc */,
-				1000000000000000000016F0 /* Distribution */,
+				1000000000000000000016F2 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1531,15 +1531,15 @@
 		100000000000000000000F0D /* Build configuration list for PBXProject "BoxOfficeShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1000000000000000000016EE /* Debug */,
-				100000000000000000001155 /* Release */,
+				1000000000000000000016F0 /* Debug */,
+				100000000000000000001157 /* Release */,
 				1000000000000000000009E9 /* AdHoc */,
-				1000000000000000000016EF /* Distribution */,
+				1000000000000000000016F1 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1000000000000000000010E0 /* Project object */;
+	rootObject = 1000000000000000000010E2 /* Project object */;
 }

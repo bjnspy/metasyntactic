@@ -9,44 +9,44 @@
 /* Begin PBXBuildFile section */
 		100000000000000000000DF6 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DF5 /* NSString+Utilities.h */; };
 		100000000000000000000DF8 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DF7 /* NSString+Utilities.m */; };
-		1000000000000000000015B3 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015B2 /* TestRunner.m */; };
-		10000000000000000000197C /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000197B /* libRopes.a */; };
+		1000000000000000000015B5 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015B4 /* TestRunner.m */; };
+		10000000000000000000197E /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000197D /* libRopes.a */; };
 		10000000000000000000078D /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000078C /* Concatenation.h */; };
 		10000000000000000000078F /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000078E /* Concatenation.m */; };
 		10000000000000000000099F /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000099E /* Fibonacci.h */; };
 		1000000000000000000009A1 /* Fibonacci.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009A0 /* Fibonacci.m */; };
 		100000000000000000000C02 /* Leaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C01 /* Leaf.h */; };
 		100000000000000000000C04 /* Leaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C03 /* Leaf.m */; };
-		10000000000000000000113B /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113A /* Rebalancer.h */; };
-		10000000000000000000113D /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113C /* Rebalancer.m */; };
-		1000000000000000000011DC /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DB /* Rope.h */; };
-		1000000000000000000011DE /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DD /* Rope.m */; };
+		10000000000000000000113D /* Rebalancer.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113C /* Rebalancer.h */; };
+		10000000000000000000113F /* Rebalancer.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000113E /* Rebalancer.m */; };
+		1000000000000000000011DE /* Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DD /* Rope.h */; };
+		1000000000000000000011E0 /* Rope.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DF /* Rope.m */; };
 		100000000000000000000B1D /* Inserter.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B1C /* Inserter.h */; };
 		100000000000000000000B1F /* Inserter.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B1E /* Inserter.m */; };
-		1000000000000000000011E0 /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011DF /* RopeEqualityChecker.h */; };
-		1000000000000000000011E2 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E1 /* RopeEqualityChecker.m */; };
+		1000000000000000000011E2 /* RopeEqualityChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E1 /* RopeEqualityChecker.h */; };
+		1000000000000000000011E4 /* RopeEqualityChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E3 /* RopeEqualityChecker.m */; };
 		1000000000000000000009C6 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009BF /* ForwardDeclarations.h */; };
 		100000000000000000000B48 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B46 /* Iterator.h */; };
 		100000000000000000000B4C /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B4A /* Iterator.m */; };
 		100000000000000000000CAE /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CA7 /* Macros.h */; };
-		10000000000000000000197D /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000197B /* libRopes.a */; };
-		1000000000000000000011E6 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E5 /* RopeTests.m */; };
-		1000000000000000000011E4 /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E3 /* RopeTests.h */; };
-		1000000000000000000010A8 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A3 /* Prefix.pch */; };
+		10000000000000000000197F /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000197D /* libRopes.a */; };
+		1000000000000000000011E8 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E7 /* RopeTests.m */; };
+		1000000000000000000011E6 /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E5 /* RopeTests.h */; };
+		1000000000000000000010AA /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A5 /* Prefix.pch */; };
 		1000000000000000000009DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009D0 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		100000000000000000000F84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010DC /* Project object */;
+			containerPortal = 1000000000000000000010DE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Ropes;
 		};
 		100000000000000000000F89 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010DC /* Project object */;
+			containerPortal = 1000000000000000000010DE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Ropes;
@@ -57,32 +57,32 @@
 		100000000000000000000DF5 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		100000000000000000000DF7 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000000000785 /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
-		1000000000000000000015B2 /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
-		1000000000000000000011EB /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1000000000000000000011EA /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
+		1000000000000000000015B4 /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
+		1000000000000000000011ED /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1000000000000000000011EC /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
 		10000000000000000000078C /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
 		10000000000000000000078E /* Concatenation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concatenation.m; sourceTree = "<group>"; };
 		10000000000000000000099E /* Fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fibonacci.h; sourceTree = "<group>"; };
 		1000000000000000000009A0 /* Fibonacci.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fibonacci.m; sourceTree = "<group>"; };
 		100000000000000000000C01 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
 		100000000000000000000C03 /* Leaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leaf.m; sourceTree = "<group>"; };
-		10000000000000000000113A /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
-		10000000000000000000113C /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
-		1000000000000000000011DB /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
-		1000000000000000000011DD /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
+		10000000000000000000113C /* Rebalancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rebalancer.h; sourceTree = "<group>"; };
+		10000000000000000000113E /* Rebalancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rebalancer.m; sourceTree = "<group>"; };
+		1000000000000000000011DD /* Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rope.h; sourceTree = "<group>"; };
+		1000000000000000000011DF /* Rope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rope.m; sourceTree = "<group>"; };
 		100000000000000000000B1C /* Inserter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inserter.h; sourceTree = "<group>"; };
 		100000000000000000000B1E /* Inserter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inserter.m; sourceTree = "<group>"; };
-		1000000000000000000011DF /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
-		1000000000000000000011E1 /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
+		1000000000000000000011E1 /* RopeEqualityChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeEqualityChecker.h; sourceTree = "<group>"; };
+		1000000000000000000011E3 /* RopeEqualityChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeEqualityChecker.m; sourceTree = "<group>"; };
 		1000000000000000000009BF /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		100000000000000000000B46 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		100000000000000000000B4A /* Iterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Iterator.m; sourceTree = "<group>"; };
 		100000000000000000000CA7 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		1000000000000000000011E3 /* RopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeTests.h; sourceTree = "<group>"; };
-		1000000000000000000011E5 /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
-		1000000000000000000010A3 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		1000000000000000000011E5 /* RopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeTests.h; sourceTree = "<group>"; };
+		1000000000000000000011E7 /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
+		1000000000000000000010A5 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		1000000000000000000009D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		10000000000000000000197B /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		10000000000000000000197D /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10000000000000000000197C /* libRopes.a in Frameworks */,
+				10000000000000000000197E /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10000000000000000000197D /* libRopes.a in Frameworks */,
+				10000000000000000000197F /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,25 +113,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1000000000000000000010C1 /* Products */ = {
+		1000000000000000000010C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000197B /* libRopes.a */,
-				1000000000000000000011EB /* RopesTests.octest */,
+				10000000000000000000197D /* libRopes.a */,
+				1000000000000000000011ED /* RopesTests.octest */,
 				100000000000000000000785 /* CommandLineRunner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000000000001813 /* Ropes */ = {
+		100000000000000000001815 /* Ropes */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000677 /* Classes */,
 				1000000000000000000009E6 /* Frameworks */,
 				100000000000000000000F08 /* Other Sources */,
-				1000000000000000000010C1 /* Products */,
-				1000000000000000000015BA /* Tests */,
-				1000000000000000000011EA /* RopesTests-Info.plist */,
+				1000000000000000000010C3 /* Products */,
+				1000000000000000000015BC /* Tests */,
+				1000000000000000000011EC /* RopesTests-Info.plist */,
 			);
 			name = Ropes;
 			sourceTree = "<group>";
@@ -153,18 +153,18 @@
 				100000000000000000000B46 /* Iterator.h */,
 				100000000000000000000C01 /* Leaf.h */,
 				100000000000000000000DF5 /* NSString+Utilities.h */,
-				10000000000000000000113A /* Rebalancer.h */,
-				1000000000000000000011DB /* Rope.h */,
-				1000000000000000000011DF /* RopeEqualityChecker.h */,
+				10000000000000000000113C /* Rebalancer.h */,
+				1000000000000000000011DD /* Rope.h */,
+				1000000000000000000011E1 /* RopeEqualityChecker.h */,
 				10000000000000000000078E /* Concatenation.m */,
 				1000000000000000000009A0 /* Fibonacci.m */,
 				100000000000000000000B1E /* Inserter.m */,
 				100000000000000000000B4A /* Iterator.m */,
 				100000000000000000000C03 /* Leaf.m */,
 				100000000000000000000DF7 /* NSString+Utilities.m */,
-				10000000000000000000113C /* Rebalancer.m */,
-				1000000000000000000011DD /* Rope.m */,
-				1000000000000000000011E1 /* RopeEqualityChecker.m */,
+				10000000000000000000113E /* Rebalancer.m */,
+				1000000000000000000011DF /* Rope.m */,
+				1000000000000000000011E3 /* RopeEqualityChecker.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -172,19 +172,19 @@
 		100000000000000000000F08 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000010A3 /* Prefix.pch */,
+				1000000000000000000010A5 /* Prefix.pch */,
 				1000000000000000000009BF /* ForwardDeclarations.h */,
 				100000000000000000000CA7 /* Macros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		1000000000000000000015BA /* Tests */ = {
+		1000000000000000000015BC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000011E3 /* RopeTests.h */,
-				1000000000000000000011E5 /* RopeTests.m */,
-				1000000000000000000015B2 /* TestRunner.m */,
+				1000000000000000000011E5 /* RopeTests.h */,
+				1000000000000000000011E7 /* RopeTests.m */,
+				1000000000000000000015B4 /* TestRunner.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -196,18 +196,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000000000010A8 /* Prefix.pch in Headers */,
+				1000000000000000000010AA /* Prefix.pch in Headers */,
 				10000000000000000000078D /* Concatenation.h in Headers */,
 				10000000000000000000099F /* Fibonacci.h in Headers */,
 				100000000000000000000C02 /* Leaf.h in Headers */,
-				10000000000000000000113B /* Rebalancer.h in Headers */,
-				1000000000000000000011DC /* Rope.h in Headers */,
+				10000000000000000000113D /* Rebalancer.h in Headers */,
+				1000000000000000000011DE /* Rope.h in Headers */,
 				100000000000000000000B1D /* Inserter.h in Headers */,
-				1000000000000000000011E0 /* RopeEqualityChecker.h in Headers */,
+				1000000000000000000011E2 /* RopeEqualityChecker.h in Headers */,
 				1000000000000000000009C6 /* ForwardDeclarations.h in Headers */,
 				100000000000000000000B48 /* Iterator.h in Headers */,
 				100000000000000000000CAE /* Macros.h in Headers */,
-				1000000000000000000011E4 /* RopeTests.h in Headers */,
+				1000000000000000000011E6 /* RopeTests.h in Headers */,
 				100000000000000000000DF6 /* NSString+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,44 +219,44 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1000000000000000000005E7 /* Build configuration list for PBXNativeTarget "CommandLineRunner" */;
 			buildPhases = (
-				100000000000000000001311 /* Sources */,
+				100000000000000000001313 /* Sources */,
 				100000000000000000000A1C /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				100000000000000000000FF6 /* PBXTargetDependency */,
+				100000000000000000000FF7 /* PBXTargetDependency */,
 			);
 			name = CommandLineRunner;
 			productName = CommandLineRunner;
 			productReference = 100000000000000000000785 /* CommandLineRunner */;
 			productType = "com.apple.product-type.tool";
 		};
-		1000000000000000000011E9 /* RopesTests */ = {
+		1000000000000000000011EB /* RopesTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1000000000000000000005F7 /* Build configuration list for PBXNativeTarget "RopesTests" */;
 			buildPhases = (
-				1000000000000000000011AA /* Resources */,
-				100000000000000000001312 /* Sources */,
+				1000000000000000000011AC /* Resources */,
+				100000000000000000001314 /* Sources */,
 				100000000000000000000A1D /* Frameworks */,
-				1000000000000000000012C0 /* ShellScript */,
+				1000000000000000000012C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				100000000000000000000FF3 /* PBXTargetDependency */,
+				100000000000000000000FF4 /* PBXTargetDependency */,
 			);
 			name = RopesTests;
 			productName = RopesTests;
-			productReference = 1000000000000000000011EB /* RopesTests.octest */;
+			productReference = 1000000000000000000011ED /* RopesTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		1000000000000000000011E7 /* Ropes */ = {
+		1000000000000000000011E9 /* Ropes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1000000000000000000005F6 /* Build configuration list for PBXNativeTarget "Ropes" */;
 			buildPhases = (
 				100000000000000000000A6A /* Headers */,
-				100000000000000000001315 /* Sources */,
+				100000000000000000001317 /* Sources */,
 				100000000000000000000A20 /* Frameworks */,
 			);
 			buildRules = (
@@ -265,31 +265,31 @@
 			);
 			name = Ropes;
 			productName = Ropes;
-			productReference = 10000000000000000000197B /* libRopes.a */;
+			productReference = 10000000000000000000197D /* libRopes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1000000000000000000010DC /* Project object */ = {
+		1000000000000000000010DE /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 100000000000000000000647 /* Build configuration list for PBXProject "Ropes" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 100000000000000000001813 /* Ropes */;
-			productRefGroup = 1000000000000000000010C1 /* Products */;
+			mainGroup = 100000000000000000001815 /* Ropes */;
+			productRefGroup = 1000000000000000000010C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1000000000000000000011E7 /* Ropes */,
-				1000000000000000000011E9 /* RopesTests */,
+				1000000000000000000011E9 /* Ropes */,
+				1000000000000000000011EB /* RopesTests */,
 				100000000000000000000784 /* CommandLineRunner */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1000000000000000000011AA /* Resources */ = {
+		1000000000000000000011AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,7 +299,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1000000000000000000012C0 /* ShellScript */ = {
+		1000000000000000000012C2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -315,33 +315,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		100000000000000000001311 /* Sources */ = {
+		100000000000000000001313 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000000000015B3 /* TestRunner.m in Sources */,
+				1000000000000000000015B5 /* TestRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		100000000000000000001312 /* Sources */ = {
+		100000000000000000001314 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000000000011E6 /* RopeTests.m in Sources */,
+				1000000000000000000011E8 /* RopeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		100000000000000000001315 /* Sources */ = {
+		100000000000000000001317 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				10000000000000000000078F /* Concatenation.m in Sources */,
 				1000000000000000000009A1 /* Fibonacci.m in Sources */,
 				100000000000000000000C04 /* Leaf.m in Sources */,
-				10000000000000000000113D /* Rebalancer.m in Sources */,
-				1000000000000000000011DE /* Rope.m in Sources */,
+				10000000000000000000113F /* Rebalancer.m in Sources */,
+				1000000000000000000011E0 /* Rope.m in Sources */,
 				100000000000000000000B1F /* Inserter.m in Sources */,
-				1000000000000000000011E2 /* RopeEqualityChecker.m in Sources */,
+				1000000000000000000011E4 /* RopeEqualityChecker.m in Sources */,
 				100000000000000000000B4C /* Iterator.m in Sources */,
 				100000000000000000000DF8 /* NSString+Utilities.m in Sources */,
 			);
@@ -350,14 +350,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		100000000000000000000FF3 /* PBXTargetDependency */ = {
+		100000000000000000000FF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1000000000000000000011E7 /* Ropes */;
+			target = 1000000000000000000011E9 /* Ropes */;
 			targetProxy = 100000000000000000000F84 /* PBXContainerItemProxy */;
 		};
-		100000000000000000000FF6 /* PBXTargetDependency */ = {
+		100000000000000000000FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1000000000000000000011E7 /* Ropes */;
+			target = 1000000000000000000011E9 /* Ropes */;
 			targetProxy = 100000000000000000000F89 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -369,7 +369,7 @@
 			};
 			name = Debug;
 		};
-		100000000000000000001160 /* Release */ = {
+		100000000000000000001162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -395,7 +395,7 @@
 			};
 			name = Debug;
 		};
-		100000000000000000001161 /* Release */ = {
+		100000000000000000001163 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -436,7 +436,7 @@
 			};
 			name = Debug;
 		};
-		10000000000000000000118E /* Release */ = {
+		100000000000000000001190 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -487,7 +487,7 @@
 			};
 			name = Debug;
 		};
-		10000000000000000000118F /* Release */ = {
+		100000000000000000001191 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -522,7 +522,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000000000891 /* Debug */,
-				100000000000000000001160 /* Release */,
+				100000000000000000001162 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -531,7 +531,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000000000892 /* Debug */,
-				100000000000000000001161 /* Release */,
+				100000000000000000001163 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -540,7 +540,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1000000000000000000008BF /* Debug */,
-				10000000000000000000118E /* Release */,
+				100000000000000000001190 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -549,12 +549,12 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1000000000000000000008C0 /* Debug */,
-				10000000000000000000118F /* Release */,
+				100000000000000000001191 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1000000000000000000010DC /* Project object */;
+	rootObject = 1000000000000000000010DE /* Project object */;
 }
