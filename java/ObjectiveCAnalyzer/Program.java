@@ -28,7 +28,7 @@ public class Program {
   private Program() {
   }
 
-  public static void main(final String... args)
+  public static void main1(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       stringsFiles = new ArrayList<File>();
@@ -40,7 +40,7 @@ public class Program {
     //printForwardDeclaration();
   }
 
-  public static void main1(final String... args)
+  public static void main(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       findProjectFiles(new File(arg));
@@ -81,7 +81,7 @@ public class Program {
     }
   }
 
-  private static void processFile1(
+  private static void processFile(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
     /*
     removeUnusedImports(child);
@@ -95,7 +95,7 @@ public class Program {
   }
 
 
-  private static void processFile(
+  private static void processFile1(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
     insertCopyright(child);
     trimRight(child);
@@ -628,16 +628,18 @@ public class Program {
   }
 
   private static void processProjectFiles() throws IOException, NoSuchAlgorithmException {
-    final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
     final SortedSet<HashAndHint> values = new TreeSet<HashAndHint>();
-
+    
     for (File child : projectFiles) {
+    final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
       final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
 
       while (matcher.find()) {
-        final HashAndHint hah = new HashAndHint(matcher.group(1),
-            matcher.group(2));
+        final String hash = matcher.group(1);
+        final String hint = matcher.group(2);
+
+        final HashAndHint hah = new HashAndHint(hash, hint);
         values.add(hah);
       }
     }
@@ -655,14 +657,19 @@ public class Program {
     }
 
     for (File child : projectFiles) {
+    final Pattern pattern = Pattern.compile("([0-9A-F]{24})");
+
       final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
       final StringBuffer sb = new StringBuffer(fileText.length());
       while (matcher.find()) {
         final String oldHash = matcher.group(1);
-        final String newHash = hashingMap.get(oldHash);
-        matcher.appendReplacement(sb,
-            newHash + " /* " + matcher.group(2) + " */");
+        String newHash = hashingMap.get(oldHash);
+        if (newHash == null) {
+          newHash = oldHash;
+        }
+        
+        matcher.appendReplacement(sb, newHash);
       }
       matcher.appendTail(sb);
 

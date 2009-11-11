@@ -27,11 +27,11 @@
 		100000000000000000000D33 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D2A /* MessageUI.framework */; };
 		100000000000000000000D4B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D42 /* MetasyntacticResources.bundle */; };
 		100000000000000000000E4B /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E48 /* NetflixResources.bundle */; };
-		100000000000000000001471 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000146C /* SystemConfiguration.framework */; };
-		100000000000000000001721 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001719 /* UIKit.framework */; };
-		100000000000000000001950 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000194E /* libBoxOfficeShared.a */; };
-		100000000000000000001998 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001994 /* libsqlite3.dylib */; };
-		1000000000000000000019A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000199D /* main.m */; };
+		100000000000000000001473 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000146E /* SystemConfiguration.framework */; };
+		100000000000000000001723 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000171B /* UIKit.framework */; };
+		100000000000000000001952 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001950 /* libBoxOfficeShared.a */; };
+		10000000000000000000199A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001996 /* libsqlite3.dylib */; };
+		1000000000000000000019A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000199F /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +42,11 @@
 			remoteGlobalIDString = 74FB7D1F1017A2B3001B5CB9;
 			remoteInfo = BoxOfficeShared;
 		};
-		749323B710AA5D3C00522D23 /* PBXContainerItemProxy */ = {
+		100000000000000000000F8E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000005A9 /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000E11 /* BoxOfficeShared */;
+			remoteGlobalIDString = 100000000000000000000E11;
 			remoteInfo = BoxOfficeShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -76,34 +76,34 @@
 		100000000000000000000D61 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000000E48 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
 		100000000000000000000E59 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
-		1000000000000000000010A2 /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
-		1000000000000000000010E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10000000000000000000146C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1000000000000000000014CB /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000001719 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1000000000000000000017F9 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1000000000000000000017FB /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1000000000000000000017FD /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = ../../BoxOfficeShared/iPhone/Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001806 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = ../../BoxOfficeShared/iPhone/Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001808 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000180F /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001811 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = ../../BoxOfficeShared/iPhone/Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190B /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = ../../BoxOfficeShared/iPhone/Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000190D /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = ../../BoxOfficeShared/iPhone/Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001910 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
-		10000000000000000000193F /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = ../../BoxOfficeShared/iPhone/Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001941 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = ../../BoxOfficeShared/iPhone/Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001994 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		10000000000000000000199D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		100000000000000000001AA6 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = ../../BoxOfficeShared/iPhone/Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001AA8 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B08 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = ../../BoxOfficeShared/iPhone/Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B0E /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = ../../BoxOfficeShared/iPhone/Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B10 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = ../../BoxOfficeShared/iPhone/Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B12 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = ../../BoxOfficeShared/iPhone/Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B47 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B4C /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001B53 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000010A4 /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
+		1000000000000000000010E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10000000000000000000146E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1000000000000000000014CD /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10000000000000000000171B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1000000000000000000017FB /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000017FD /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000017FF /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = ../../BoxOfficeShared/iPhone/Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001808 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = ../../BoxOfficeShared/iPhone/Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000180A /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001811 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001813 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = ../../BoxOfficeShared/iPhone/Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000190D /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = ../../BoxOfficeShared/iPhone/Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000000000190F /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = ../../BoxOfficeShared/iPhone/Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001912 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001941 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = ../../BoxOfficeShared/iPhone/Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001943 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = ../../BoxOfficeShared/iPhone/Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001996 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		10000000000000000000199F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		100000000000000000001AA8 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = ../../BoxOfficeShared/iPhone/Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001AAA /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B0A /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = ../../BoxOfficeShared/iPhone/Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B10 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = ../../BoxOfficeShared/iPhone/Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B12 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = ../../BoxOfficeShared/iPhone/Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B14 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = ../../BoxOfficeShared/iPhone/Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B49 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B4E /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001B55 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001950 /* libBoxOfficeShared.a in Frameworks */,
-				100000000000000000001998 /* libsqlite3.dylib in Frameworks */,
+				100000000000000000001952 /* libBoxOfficeShared.a in Frameworks */,
+				10000000000000000000199A /* libsqlite3.dylib in Frameworks */,
 				100000000000000000000463 /* AddressBook.framework in Frameworks */,
 				10000000000000000000065C /* CFNetwork.framework in Frameworks */,
 				1000000000000000000007C7 /* CoreFoundation.framework in Frameworks */,
@@ -122,8 +122,8 @@
 				100000000000000000000CE4 /* MapKit.framework in Frameworks */,
 				100000000000000000000D01 /* MediaPlayer.framework in Frameworks */,
 				100000000000000000000D33 /* MessageUI.framework in Frameworks */,
-				100000000000000000001471 /* SystemConfiguration.framework in Frameworks */,
-				100000000000000000001721 /* UIKit.framework in Frameworks */,
+				100000000000000000001473 /* SystemConfiguration.framework in Frameworks */,
+				100000000000000000001723 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +133,7 @@
 		100000000000000000000678 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000128B /* Shared */,
+				10000000000000000000128D /* Shared */,
 				100000000000000000000485 /* AppDelegate.h */,
 				10000000000000000000048B /* AppDelegate.m */,
 			);
@@ -146,8 +146,8 @@
 				100000000000000000000678 /* Classes */,
 				1000000000000000000009EE /* Frameworks */,
 				100000000000000000000F05 /* Other Sources */,
-				1000000000000000000010CB /* Products */,
-				10000000000000000000119F /* Resources */,
+				1000000000000000000010CD /* Products */,
+				1000000000000000000011A1 /* Resources */,
 				100000000000000000000921 /* Entitlements.plist */,
 				1000000000000000000005A9 /* BoxOfficeShared.xcodeproj */,
 			);
@@ -157,7 +157,7 @@
 		1000000000000000000009EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001994 /* libsqlite3.dylib */,
+				100000000000000000001996 /* libsqlite3.dylib */,
 				100000000000000000000460 /* AddressBook.framework */,
 				100000000000000000000658 /* CFNetwork.framework */,
 				1000000000000000000007C4 /* CoreFoundation.framework */,
@@ -167,8 +167,8 @@
 				100000000000000000000CD8 /* MapKit.framework */,
 				100000000000000000000CFA /* MediaPlayer.framework */,
 				100000000000000000000D2A /* MessageUI.framework */,
-				10000000000000000000146C /* SystemConfiguration.framework */,
-				100000000000000000001719 /* UIKit.framework */,
+				10000000000000000000146E /* SystemConfiguration.framework */,
+				10000000000000000000171B /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,35 +176,35 @@
 		100000000000000000000F05 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000010A2 /* Prefix.pch */,
-				10000000000000000000199D /* main.m */,
+				1000000000000000000010A4 /* Prefix.pch */,
+				10000000000000000000199F /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		1000000000000000000010CB /* Products */ = {
+		1000000000000000000010CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000014CB /* NowPlaying.app */,
+				1000000000000000000014CD /* NowPlaying.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1000000000000000000010D4 /* Products */ = {
+		1000000000000000000010D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000194E /* libBoxOfficeShared.a */,
+				100000000000000000001950 /* libBoxOfficeShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		10000000000000000000119F /* Resources */ = {
+		1000000000000000000011A1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				10000000000000000000059F /* BoxOfficeResources.bundle */,
 				100000000000000000000D42 /* MetasyntacticResources.bundle */,
 				100000000000000000000E48 /* NetflixResources.bundle */,
-				1000000000000000000010E7 /* Info.plist */,
+				1000000000000000000010E9 /* Info.plist */,
 				1000000000000000000008DE /* Default.png */,
 				100000000000000000000AE6 /* Icon.png */,
 				100000000000000000000AF6 /* Icon2.png */,
@@ -215,7 +215,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		10000000000000000000128B /* Shared */ = {
+		10000000000000000000128D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000005A5 /* BoxOfficeShared.h */,
@@ -228,28 +228,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1000000000000000000014CA /* NowPlaying */ = {
+		1000000000000000000014CC /* NowPlaying */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1000000000000000000005FD /* Build configuration list for PBXNativeTarget "NowPlaying" */;
 			buildPhases = (
-				10000000000000000000119E /* Resources */,
-				1000000000000000000012E3 /* Sources */,
+				1000000000000000000011A0 /* Resources */,
+				1000000000000000000012E5 /* Sources */,
 				1000000000000000000009EA /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				749323B810AA5D3C00522D23 /* PBXTargetDependency */,
+				100000000000000000000FFA /* PBXTargetDependency */,
 			);
 			name = NowPlaying;
 			productName = BoxOffice;
-			productReference = 1000000000000000000014CB /* NowPlaying.app */;
+			productReference = 1000000000000000000014CD /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1000000000000000000010E1 /* Project object */ = {
+		1000000000000000000010E3 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000000000064D /* Build configuration list for PBXProject "NowPlaying" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -290,19 +290,19 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1000000000000000000010D4 /* Products */;
+					ProductGroup = 1000000000000000000010D6 /* Products */;
 					ProjectRef = 1000000000000000000005A9 /* BoxOfficeShared.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				1000000000000000000014CA /* NowPlaying */,
+				1000000000000000000014CC /* NowPlaying */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		10000000000000000000194E /* libBoxOfficeShared.a */ = {
+		100000000000000000001950 /* libBoxOfficeShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libBoxOfficeShared.a;
@@ -312,7 +312,7 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		10000000000000000000119E /* Resources */ = {
+		1000000000000000000011A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -332,11 +332,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1000000000000000000012E3 /* Sources */ = {
+		1000000000000000000012E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000000000019A4 /* main.m in Sources */,
+				1000000000000000000019A6 /* main.m in Sources */,
 				100000000000000000000491 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,10 +344,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		749323B810AA5D3C00522D23 /* PBXTargetDependency */ = {
+		100000000000000000000FFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BoxOfficeShared;
-			targetProxy = 749323B710AA5D3C00522D23 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000000F8E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,27 +355,27 @@
 		100000000000000000000C41 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1000000000000000000017F9 /* cs */,
-				1000000000000000000017FB /* da */,
-				1000000000000000000017FD /* de */,
-				100000000000000000001806 /* en */,
-				100000000000000000001808 /* es */,
-				10000000000000000000180F /* fi */,
-				100000000000000000001811 /* fr */,
-				10000000000000000000190B /* he */,
-				10000000000000000000193F /* it */,
-				100000000000000000001941 /* ja */,
-				100000000000000000001AA6 /* nl */,
-				100000000000000000001AA8 /* no */,
-				100000000000000000001B08 /* pl */,
-				100000000000000000001B0E /* pt */,
-				100000000000000000001B10 /* ro */,
-				100000000000000000001B12 /* ru */,
-				100000000000000000001B47 /* sk */,
-				100000000000000000001B53 /* tr */,
-				100000000000000000001910 /* hu */,
-				10000000000000000000190D /* hi */,
-				100000000000000000001B4C /* sv */,
+				1000000000000000000017FB /* cs */,
+				1000000000000000000017FD /* da */,
+				1000000000000000000017FF /* de */,
+				100000000000000000001808 /* en */,
+				10000000000000000000180A /* es */,
+				100000000000000000001811 /* fi */,
+				100000000000000000001813 /* fr */,
+				10000000000000000000190D /* he */,
+				100000000000000000001941 /* it */,
+				100000000000000000001943 /* ja */,
+				100000000000000000001AA8 /* nl */,
+				100000000000000000001AAA /* no */,
+				100000000000000000001B0A /* pl */,
+				100000000000000000001B10 /* pt */,
+				100000000000000000001B12 /* ro */,
+				100000000000000000001B14 /* ru */,
+				100000000000000000001B49 /* sk */,
+				100000000000000000001B55 /* tr */,
+				100000000000000000001912 /* hu */,
+				10000000000000000000190F /* hi */,
+				100000000000000000001B4E /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -487,13 +487,13 @@
 			};
 			name = Distribution;
 		};
-		100000000000000000001156 /* Release */ = {
+		100000000000000000001158 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		10000000000000000000115E /* Release */ = {
+		100000000000000000001160 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
@@ -527,7 +527,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000000000887 /* Debug */,
-				100000000000000000001156 /* Release */,
+				100000000000000000001158 /* Release */,
 				100000000000000000000455 /* AdHoc */,
 				100000000000000000000904 /* Distribution */,
 			);
@@ -538,7 +538,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				10000000000000000000088E /* Debug */,
-				10000000000000000000115E /* Release */,
+				100000000000000000001160 /* Release */,
 				100000000000000000000454 /* AdHoc */,
 				100000000000000000000903 /* Distribution */,
 			);
@@ -547,5 +547,5 @@
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1000000000000000000010E1 /* Project object */;
+	rootObject = 1000000000000000000010E3 /* Project object */;
 }
