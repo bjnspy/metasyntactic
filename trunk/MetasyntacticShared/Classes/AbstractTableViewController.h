@@ -50,4 +50,6 @@
 
 - (void) playMovie:(NSString*) address;
 
+- (UIBarButtonItem*) createActivityIndicator;
+
 @end
