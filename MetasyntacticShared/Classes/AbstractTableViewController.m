@@ -379,4 +379,17 @@
   return -1;
 }
 
+
+- (UIBarButtonItem*) createActivityIndicator {
+  UIActivityIndicatorView* activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+  CGRect frame = activityIndicatorView.frame;
+  frame.size.width += 4;
+  [activityIndicatorView startAnimating];
+  
+  UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+  [activityView addSubview:activityIndicatorView];
+  
+  return [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+}
+
 @end
