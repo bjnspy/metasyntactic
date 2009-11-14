@@ -182,10 +182,15 @@
 }
 
 
+- (ImageCache*) imageCache {
+  return [ImageCache cache];
+}
+
+
 - (UIImage*) posterForMovieWorker:(Movie*) movie
                loadFromDisk:(BOOL) loadFromDisk {
   NSString* path = [self posterFilePath:movie];
-  return [self.model.imageCache imageForPath:path loadFromDisk:loadFromDisk];
+  return [self.imageCache imageForPath:path loadFromDisk:loadFromDisk];
 }
 
 
@@ -204,7 +209,7 @@
                     loadFromDisk:(BOOL) loadFromDisk {
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
 
-  UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  UIImage* image = [self.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
@@ -218,7 +223,7 @@
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
 
     UIImage* image = [UIImage imageWithData:smallPosterData];
-    [self.model.imageCache setImage:image forPath:smallPosterPath];
+    [self.imageCache setImage:image forPath:smallPosterPath];
     return image;
   }
 

@@ -27,6 +27,14 @@
 
 @implementation ImageCache
 
+static ImageCache* cache;
+
++ (void) initialize {
+  if (self == [ImageCache class]) {
+    cache = [[ImageCache alloc] init];
+  }
+}
+
 @synthesize pathToImageMap;
 @synthesize condition;
 @synthesize pathsToFault;
@@ -56,7 +64,7 @@
 
 
 + (ImageCache*) cache {
-  return [[[ImageCache alloc] init] autorelease];
+  return cache;
 }
 
 

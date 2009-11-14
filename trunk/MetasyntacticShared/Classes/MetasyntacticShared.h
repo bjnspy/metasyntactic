@@ -57,6 +57,7 @@
 #import "HtmlUtilities.h"
 #import "IdentitySet.h"
 #import "ImageCache.h"
+#import "ImageDownloader.h"
 #import "ImageUtilities.h"
 #import "InteractiveView.h"
 #import "InterceptingView.h"

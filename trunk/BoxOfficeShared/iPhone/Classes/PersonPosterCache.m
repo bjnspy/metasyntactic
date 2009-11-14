@@ -169,7 +169,7 @@
 
 - (UIImage*) posterForPerson:(Person*) person {
   NSString* path = [self posterFilePath:person];
-  return [self.model.imageCache imageForPath:path];
+  return [[ImageCache cache] imageForPath:path];
 }
 
 

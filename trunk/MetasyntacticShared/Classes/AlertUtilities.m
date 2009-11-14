@@ -20,7 +20,7 @@
 @implementation AlertUtilities
 
 + (void) showOkAlert:(NSString*) message {
-    [self showOkAlert:message withTitle:nil];
+  [self showOkAlert:message withTitle:nil];
 }
 
 

@@ -31,12 +31,11 @@ static NSCondition* emptyTrashCondition = nil;
 
 static NSMutableSet* directories;
 
-// Special directories
 static NSString* cacheDirectory = nil;
 static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
-
+static NSString* imagesDirectory = nil;
 
 + (NSString*) name {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
@@ -109,6 +108,8 @@ static NSString* trashDirectory = nil;
   }
 
   [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];
+  [self addDirectory:imagesDirectory = [cacheDirectory stringByAppendingPathComponent:@"Images"]];
+  
   dirtyFile = [[supportDirectory stringByAppendingPathComponent:@"Dirty.plist"] retain];
 
   [self createDirectories];
@@ -167,6 +168,11 @@ static NSString* trashDirectory = nil;
 
 + (NSString*) trashDirectory {
   return trashDirectory;
+}
+
+
++ (NSString*) imagesDirectory {
+  return imagesDirectory;
 }
 
 
