@@ -43,7 +43,10 @@
 + (BOOL) canSendMail;
 
 /* @protected */
-+ (NSLock*) gate;
 + (void) clearStaleData;
+
++ (void) addDirectory:(NSString*) directory;
++ (void) createDirectories;
++ (void) resetDirectories;
 
 @end
