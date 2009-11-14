@@ -49,87 +49,43 @@ static NSString* upcomingTrailersDirectory = nil;
 static NSString* internationalDirectory = nil;
 static NSString* helpDirectory = nil;
 
-static NSString** directories[] = {
-&dataDirectory,
-&imdbDirectory,
-&amazonDirectory,
-&wikipediaDirectory,
-&userLocationsDirectory,
-&dvdDirectory,
-&dvdDetailsDirectory,
-&blurayDirectory,
-&blurayDetailsDirectory,
-&helpDirectory,
-&internationalDirectory,
-&localizableStringsDirectory,
-&scoresDirectory,
-&reviewsDirectory,
-&trailersDirectory,
-&postersDirectory,
-&moviesPostersDirectory,
-&sentinelsPostersDirectory,
-&largeMoviesPostersDirectory,
-&largeMoviesPostersIndexDirectory,
-&peoplePostersDirectory,
-&largePeoplePostersDirectory,
-&upcomingDirectory,
-&upcomingCastDirectory,
-&upcomingSynopsesDirectory,
-&upcomingTrailersDirectory,
-};
-
-
-+ (void) createDirectories {
-  [[self gate] lock];
-  {
-    for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-      NSString* directory = *directories[i];
-
-      [FileUtilities createDirectory:directory];
-    }
-  }
-  [[self gate] unlock];
-}
-
-
 + (void) initializeDirectories {
-  {
-    NSString* cacheDirectory = [self cacheDirectory];
-    dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
-    imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
-    amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
-    wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
-    userLocationsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"UserLocations"] retain];
-    scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
-    reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
-    trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-    localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
-
-    postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
-    moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
-    sentinelsPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Sentinels"] retain];
-    largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
-    largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
-    peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
-    largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
-
-    dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
-    dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
-
-    blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
-    blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
-
-    upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
-    upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
-    upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
-    upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-
-    internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
-
-    helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
-
-    [self createDirectories];
-  }
+  NSString* cacheDirectory = [self cacheDirectory];
+  
+  [self addDirectory:dataDirectory = [cacheDirectory stringByAppendingPathComponent:@"Data"]];
+  [self addDirectory:imdbDirectory = [cacheDirectory stringByAppendingPathComponent:@"IMDb"]];
+  [self addDirectory:amazonDirectory = [cacheDirectory stringByAppendingPathComponent:@"Amazon"]];
+  [self addDirectory:wikipediaDirectory = [cacheDirectory stringByAppendingPathComponent:@"Wikipedia"]];
+  [self addDirectory:userLocationsDirectory = [cacheDirectory stringByAppendingPathComponent:@"UserLocations"]];
+  [self addDirectory:scoresDirectory = [cacheDirectory stringByAppendingPathComponent:@"Scores"]];
+  [self addDirectory:reviewsDirectory = [cacheDirectory stringByAppendingPathComponent:@"Reviews"]];
+  [self addDirectory:trailersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trailers"]];
+  [self addDirectory:localizableStringsDirectory = [cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"]];
+  
+  [self addDirectory:postersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Posters"]];
+  [self addDirectory:moviesPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Movies"]];
+  [self addDirectory:sentinelsPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Sentinels"]];
+  [self addDirectory:largeMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Large"]];
+  [self addDirectory:largeMoviesPostersIndexDirectory = [largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"]];
+  [self addDirectory:peoplePostersDirectory = [postersDirectory stringByAppendingPathComponent:@"People"]];
+  [self addDirectory:largePeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Large"]];
+  
+  [self addDirectory:dvdDirectory = [cacheDirectory stringByAppendingPathComponent:@"DVD"]];
+  [self addDirectory:dvdDetailsDirectory = [dvdDirectory stringByAppendingPathComponent:@"Details"]];
+  
+  [self addDirectory:blurayDirectory = [cacheDirectory stringByAppendingPathComponent:@"Bluray"]];
+  [self addDirectory:blurayDetailsDirectory = [blurayDirectory stringByAppendingPathComponent:@"Details"]];
+  
+  [self addDirectory:upcomingDirectory = [cacheDirectory stringByAppendingPathComponent:@"Upcoming"]];
+  [self addDirectory:upcomingCastDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Cast"]];
+  [self addDirectory:upcomingSynopsesDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Synopses"]];
+  [self addDirectory:upcomingTrailersDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Trailers"]];
+  
+  [self addDirectory:internationalDirectory = [cacheDirectory stringByAppendingPathComponent:@"International"]];
+  
+  [self addDirectory:helpDirectory = [cacheDirectory stringByAppendingPathComponent:@"Help"]];
+    
+  [self createDirectories];
 }
 
 

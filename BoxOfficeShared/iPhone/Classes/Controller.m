@@ -58,8 +58,6 @@ static Controller* controller = nil;
   if ((self = [super initWithModel:model])) {
     self.locationManager = [LocationManager manager];
     self.determineLocationGate = [[[NSRecursiveLock alloc] init] autorelease];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationDidReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
   }
 
   return self;
@@ -111,24 +109,6 @@ static Controller* controller = nil;
                                         withObject:[NSNumber numberWithBool:force]
                                               gate:determineLocationGate
                                           priority:Now];
-}
-
-
-- (void) onApplicationDidReceiveMemoryWarning:(id) argument {
-  [self.model.largePosterCache didReceiveMemoryWarning];
-  [self.model.imageCache didReceiveMemoryWarning];
-  [self.model.imdbCache didReceiveMemoryWarning];
-  [self.model.amazonCache didReceiveMemoryWarning];
-  [self.model.wikipediaCache didReceiveMemoryWarning];
-  [self.model.trailerCache didReceiveMemoryWarning];
-  [self.model.blurayCache didReceiveMemoryWarning];
-  [self.model.dvdCache didReceiveMemoryWarning];
-  [self.model.posterCache didReceiveMemoryWarning];
-  [self.model.scoreCache didReceiveMemoryWarning];
-  [self.model.upcomingCache didReceiveMemoryWarning];
-  [self.model.netflixCache didReceiveMemoryWarning];
-  [self.model.internationalDataCache didReceiveMemoryWarning];
-  [self.model.helpCache didReceiveMemoryWarning];
 }
 
 
