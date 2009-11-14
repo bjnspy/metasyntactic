@@ -16,6 +16,7 @@
 @private
   NSCondition* downloadImagesCondition;
   NSMutableArray* imagesToDownload;
+  NSMutableArray* priorityImagesToDownload;
 }
 
 + (ImageDownloader*) downloader;
@@ -25,5 +26,6 @@
 
 - (void) addAddressesToDownload:(NSArray*) addresses;
 - (void) addAddressToDownload:(NSString*) address;
+- (void) addAddressToDownload:(NSString*) address priority:(BOOL) priority;
 
 @end

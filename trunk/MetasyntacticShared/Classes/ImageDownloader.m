@@ -24,6 +24,7 @@
 @interface ImageDownloader()
 @property (retain) NSCondition* downloadImagesCondition;
 @property (retain) NSMutableArray* imagesToDownload;
+@property (retain) NSMutableArray* priorityImagesToDownload;
 @end
 
 
@@ -44,11 +45,13 @@ static ImageDownloader* downloader;
 
 @synthesize downloadImagesCondition;
 @synthesize imagesToDownload;
+@synthesize priorityImagesToDownload;
 
 - (void) dealloc {
   self.downloadImagesCondition = nil;
   self.imagesToDownload = nil;
-  
+  self.priorityImagesToDownload = nil;
+
   [super dealloc];
 }
 
@@ -57,13 +60,14 @@ static ImageDownloader* downloader;
   if ((self = [super init])) {
     self.downloadImagesCondition = [[[NSCondition alloc] init] autorelease];
     self.imagesToDownload = [NSMutableArray array];
-    
+    self.priorityImagesToDownload = [NSMutableArray array];
+
     [ThreadingUtilities backgroundSelector:@selector(downloadImagesBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
                                     daemon:YES];
   }
-  
+
   return self;
 }
 
@@ -82,9 +86,9 @@ static ImageDownloader* downloader;
   if (address.length == 0) {
     return;
   }
-  
+
   NSString* localPath = [self imagePath:address];
-  
+
   if (![[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
     if (data != nil) {
@@ -102,15 +106,20 @@ static ImageDownloader* downloader;
       NSString* address = nil;
       [downloadImagesCondition lock];
       {
-        while (imagesToDownload.count == 0) {
+        while (imagesToDownload.count == 0 && priorityImagesToDownload.count == 0) {
           [downloadImagesCondition wait];
         }
-        
-        address = [[imagesToDownload.lastObject retain] autorelease];
-        [imagesToDownload removeLastObject];
+
+        if (priorityImagesToDownload.count > 0) {
+          address = [[priorityImagesToDownload.lastObject retain] autorelease];
+          [priorityImagesToDownload removeLastObject];
+        } else {
+          address = [[imagesToDownload.lastObject retain] autorelease];
+          [imagesToDownload removeLastObject];
+        }
       }
       [downloadImagesCondition unlock];
-      
+
       [self downloadImage:address];
     }
     [pool release];
@@ -130,13 +139,22 @@ static ImageDownloader* downloader;
 }
 
 
-- (void) addAddressToDownload:(NSString*) address {
+- (void) addAddressToDownload:(NSString*) address priority:(BOOL) priority {
   [downloadImagesCondition lock];
   {
-    [imagesToDownload addObject:address];
+    if (priority) {
+      [priorityImagesToDownload addObject:address];
+    } else {
+      [imagesToDownload addObject:address];
+    } 
     [downloadImagesCondition broadcast];
   }
   [downloadImagesCondition unlock];
+}
+
+
+- (void) addAddressToDownload:(NSString*) address {
+  [self addAddressToDownload:address priority:NO];
 }
 
 @end
