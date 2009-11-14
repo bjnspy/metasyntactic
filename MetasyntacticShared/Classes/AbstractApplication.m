@@ -109,7 +109,7 @@ static NSString* imagesDirectory = nil;
 
   [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];
   [self addDirectory:imagesDirectory = [cacheDirectory stringByAppendingPathComponent:@"Images"]];
-  
+
   dirtyFile = [[supportDirectory stringByAppendingPathComponent:@"Dirty.plist"] retain];
 
   [self createDirectories];
