@@ -51,7 +51,7 @@ static NSString* helpDirectory = nil;
 
 + (void) initializeDirectories {
   NSString* cacheDirectory = [self cacheDirectory];
-  
+
   [self addDirectory:dataDirectory = [cacheDirectory stringByAppendingPathComponent:@"Data"]];
   [self addDirectory:imdbDirectory = [cacheDirectory stringByAppendingPathComponent:@"IMDb"]];
   [self addDirectory:amazonDirectory = [cacheDirectory stringByAppendingPathComponent:@"Amazon"]];
@@ -61,7 +61,7 @@ static NSString* helpDirectory = nil;
   [self addDirectory:reviewsDirectory = [cacheDirectory stringByAppendingPathComponent:@"Reviews"]];
   [self addDirectory:trailersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trailers"]];
   [self addDirectory:localizableStringsDirectory = [cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"]];
-  
+
   [self addDirectory:postersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Posters"]];
   [self addDirectory:moviesPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Movies"]];
   [self addDirectory:sentinelsPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Sentinels"]];
@@ -69,22 +69,22 @@ static NSString* helpDirectory = nil;
   [self addDirectory:largeMoviesPostersIndexDirectory = [largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"]];
   [self addDirectory:peoplePostersDirectory = [postersDirectory stringByAppendingPathComponent:@"People"]];
   [self addDirectory:largePeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Large"]];
-  
+
   [self addDirectory:dvdDirectory = [cacheDirectory stringByAppendingPathComponent:@"DVD"]];
   [self addDirectory:dvdDetailsDirectory = [dvdDirectory stringByAppendingPathComponent:@"Details"]];
-  
+
   [self addDirectory:blurayDirectory = [cacheDirectory stringByAppendingPathComponent:@"Bluray"]];
   [self addDirectory:blurayDetailsDirectory = [blurayDirectory stringByAppendingPathComponent:@"Details"]];
-  
+
   [self addDirectory:upcomingDirectory = [cacheDirectory stringByAppendingPathComponent:@"Upcoming"]];
   [self addDirectory:upcomingCastDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Cast"]];
   [self addDirectory:upcomingSynopsesDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Synopses"]];
   [self addDirectory:upcomingTrailersDirectory = [upcomingDirectory stringByAppendingPathComponent:@"Trailers"]];
-  
+
   [self addDirectory:internationalDirectory = [cacheDirectory stringByAppendingPathComponent:@"International"]];
-  
+
   [self addDirectory:helpDirectory = [cacheDirectory stringByAppendingPathComponent:@"Help"]];
-    
+
   [self createDirectories];
 }
 
