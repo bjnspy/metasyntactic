@@ -25,15 +25,17 @@
 @implementation AbstractApplication
 
 static NSLock* gate = nil;
+static NSString* dirtyFile = nil;
+static BOOL shutdownCleanly = NO;
+static NSCondition* emptyTrashCondition = nil;
+
+static NSMutableSet* directories;
 
 // Special directories
 static NSString* cacheDirectory = nil;
 static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
-static NSCondition* emptyTrashCondition = nil;
-static NSString* dirtyFile = nil;
-static BOOL shutdownCleanly = NO;
 
 
 + (NSString*) name {
@@ -54,35 +56,62 @@ static BOOL shutdownCleanly = NO;
 }
 
 
++ (void) addDirectory:(NSString *)directory {
+  [directories addObject:directory];
+}
+
+
++ (void) deleteDirectories {
+  [gate lock];
+  {
+    for (NSString* directory in directories) {
+      [self moveItemToTrash:directory];
+    }
+  }
+  [gate unlock];
+}
+
+
++ (void) createDirectories {
+  [gate lock];
+  {
+    for (NSString* directory in directories) {
+      [FileUtilities createDirectory:directory];
+    }
+  }
+  [gate unlock];
+}
+
+
++ (void) resetDirectories {
+  [gate lock];
+  {
+    [self deleteDirectories];
+    [self createDirectories];
+  }
+  [gate unlock];
+}
+
+
 + (void) initializeDirectories {
   tempDirectory = [NSTemporaryDirectory() retain];
-
+  
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-    [FileUtilities createDirectory:directory];
-    cacheDirectory = [directory retain];
+    [self addDirectory:cacheDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
   }
-
+  
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-    [FileUtilities createDirectory:directory];
-    supportDirectory = [directory retain];
+    [self addDirectory:supportDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
   }
-
-  {
-    NSString* directory = [cacheDirectory stringByAppendingPathComponent:@"Trash"];
-    [FileUtilities createDirectory:directory];
-    trashDirectory = [directory retain];
-  }
-
-  {
-    NSString* file = [supportDirectory stringByAppendingPathComponent:@"Dirty.plist"];
-    dirtyFile = [file retain];
-  }
+  
+  [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];
+  dirtyFile = [[supportDirectory stringByAppendingPathComponent:@"Dirty.plist"] retain];
+  
+  [self createDirectories];
 }
 
 
@@ -90,8 +119,10 @@ static BOOL shutdownCleanly = NO;
   if (self == [AbstractApplication class]) {
     gate = [[NSRecursiveLock alloc] init];
     emptyTrashCondition = [[NSCondition alloc] init];
+    directories = [[NSMutableSet alloc] init];
 
     [self initializeDirectories];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
     shutdownCleanly = ![FileUtilities fileExists:dirtyFile];
     [FileUtilities writeObject:@"" toFile:dirtyFile];
