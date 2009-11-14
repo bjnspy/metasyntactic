@@ -21,72 +21,26 @@
 // Application storage directories
 static NSString* rssDirectory = nil;
 
-static NSString** directories[] = {
-&rssDirectory,
-};
-
-
-+ (void) deleteDirectories {
-    [[self gate] lock];
-    {
-        for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            if (directory != nil) {
-                [self moveItemToTrash:directory];
-            }
-        }
-    }
-    [[self gate] unlock];
-}
-
-
-+ (void) createDirectories {
-    [[self gate] lock];
-    {
-        for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            [FileUtilities createDirectory:directory];
-        }
-    }
-    [[self gate] unlock];
-}
-
-
-+ (void) resetDirectories {
-    [[self gate] lock];
-    {
-        [self deleteDirectories];
-        [self createDirectories];
-    }
-    [[self gate] unlock];
-}
-
-
 + (void) initializeDirectories {
-    {
-        rssDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"RSS"] retain];
-
-        [self createDirectories];
-    }
+  [self addDirectory:rssDirectory = [[self cacheDirectory] stringByAppendingPathComponent:@"RSS"]];
+  [self createDirectories];
 }
 
 
 + (void) initialize {
-    if (self == [Application class]) {
-        [self initializeDirectories];
-    }
+  if (self == [Application class]) {
+    [self initializeDirectories];
+  }
 }
 
 
 + (NSArray*) directoriesToKeep {
-    return [NSArray array];
+  return [NSArray array];
 }
 
 
 + (NSString*) rssDirectory {
-    return rssDirectory;
+  return rssDirectory;
 }
 
 @end
