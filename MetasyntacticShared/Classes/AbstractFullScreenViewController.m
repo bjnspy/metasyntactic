@@ -22,19 +22,6 @@
 
 @implementation AbstractFullScreenViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (id) init {
-  if ((self = [super initWithNibName:nil bundle:nil])) {
-  }
-
-  return self;
-}
-
-
 - (AbstractNavigationController*) abstractNavigationController {
   return (id)self.navigationController;
 }
