@@ -95,22 +95,22 @@ static NSString* trashDirectory = nil;
 
 + (void) initializeDirectories {
   tempDirectory = [NSTemporaryDirectory() retain];
-  
+
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
     [self addDirectory:cacheDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
   }
-  
+
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
     [self addDirectory:supportDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
   }
-  
+
   [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];
   dirtyFile = [[supportDirectory stringByAppendingPathComponent:@"Dirty.plist"] retain];
-  
+
   [self createDirectories];
 }
 
