@@ -282,6 +282,8 @@
 		1000000000000000000020CD /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020CB /* xmltok.c */; };
 		1000000000000000000020D3 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020D1 /* xmltok_impl.c */; };
 		1000000000000000000020D9 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020D7 /* xmltok_ns.c */; };
+		7490908110AE8DD400DC5A67 /* ImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 7490907F10AE8DD400DC5A67 /* ImageDownloader.h */; };
+		7490908210AE8DD400DC5A67 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490908010AE8DD400DC5A67 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -577,6 +579,8 @@
 		1000000000000000000020D1 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000020D5 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000020D7 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		7490907F10AE8DD400DC5A67 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		7490908010AE8DD400DC5A67 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -887,6 +891,7 @@
 				100000000000000000001740 /* DifferenceEngine.h */,
 				100000000000000000001BB7 /* FileUtilities.h */,
 				100000000000000000000BF6 /* HtmlUtilities.h */,
+				7490907F10AE8DD400DC5A67 /* ImageDownloader.h */,
 				100000000000000000001F07 /* ImageUtilities.h */,
 				100000000000000000000CB8 /* Iterator.h */,
 				100000000000000000000FAF /* LocaleUtilities.h */,
@@ -906,6 +911,7 @@
 				100000000000000000001942 /* DifferenceEngine.m */,
 				100000000000000000001BEA /* FileUtilities.m */,
 				100000000000000000000BF8 /* HtmlUtilities.m */,
+				7490908010AE8DD400DC5A67 /* ImageDownloader.m */,
 				100000000000000000000E79 /* ImageUtilities.m */,
 				100000000000000000000CBC /* Iterator.m */,
 				100000000000000000000FB3 /* LocaleUtilities.m */,
@@ -1264,6 +1270,7 @@
 				100000000000000000000C9E /* InterceptingView.h in Headers */,
 				100000000000000000000CBA /* Iterator.h in Headers */,
 				100000000000000000001C6A /* ViewControllerState.h in Headers */,
+				7490908110AE8DD400DC5A67 /* ImageDownloader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1433,6 +1440,7 @@
 				100000000000000000000CA0 /* InterceptingView.m in Sources */,
 				100000000000000000000CBE /* Iterator.m in Sources */,
 				100000000000000000001C6C /* ViewControllerState.m in Sources */,
+				7490908210AE8DD400DC5A67 /* ImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
