@@ -22,6 +22,7 @@
 #import "StyleSheet.h"
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
+#import "NSArray+Utilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -117,10 +118,10 @@
     [self.tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
-      NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+      NSIndexPath* path = visibleIndexPaths.firstObject;
       if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
           path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-        [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        [self.tableView scrollToRowAtIndexPath:visibleIndexPaths.firstObject atScrollPosition:UITableViewScrollPositionNone animated:NO];
       }
 
       self.visibleIndexPaths = nil;

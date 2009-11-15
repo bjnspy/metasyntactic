@@ -14,6 +14,7 @@
 
 #import "InteractiveView.h"
 
+#import "NSArray+Utilities.h"
 
 @implementation InteractiveView
 
@@ -52,8 +53,8 @@
                    event:(UIEvent*) event {
   pinching = YES;
   NSArray* touchesArray = event.allTouches.allObjects;
-  UITouch* touch1 = [touchesArray objectAtIndex:0];
-  UITouch* touch2 = [touchesArray objectAtIndex:1];
+  UITouch* touch1 = touchesArray.firstObject;
+  UITouch* touch2 = touchesArray.firstObject;
 
   CGPoint point1 = [touch1 locationInView:self];
   CGPoint point2 = [touch2 locationInView:self];

@@ -30,6 +30,8 @@
 		100000000000000000000BE0 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AED /* AbstractFullScreenImageListViewController.m */; };
 		100000000000000000000C07 /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C06 /* HtmlUtilities.h */; };
 		100000000000000000000C09 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C08 /* HtmlUtilities.m */; };
+		100000000000000000000C82 /* ImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C81 /* ImageDownloader.h */; };
+		100000000000000000000C84 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C83 /* ImageDownloader.m */; };
 		100000000000000000000CB2 /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CB1 /* InterceptingView.h */; };
 		100000000000000000000CB4 /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CB3 /* InterceptingView.m */; };
 		100000000000000000000CCE /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CCC /* Iterator.h */; };
@@ -56,8 +58,6 @@
 		100000000000000000000F43 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F42 /* Invocation3.h */; };
 		100000000000000000000F45 /* Invocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F44 /* Invocation3.m */; };
 		100000000000000000000F47 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F46 /* LargeActivityIndicatorViewWithBackground.h */; };
-		1000000000000000000016CD /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CC /* LargeActivityIndicatorViewWithBackground.m */; };
-		1000000000000000000016CF /* ListPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CE /* ListPickerDelegate.h */; };
 		100000000000000000000F63 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001040 /* AbstractNavigationController.m */; };
 		100000000000000000000FAE /* ListPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FAA /* ListPickerViewController.h */; };
 		100000000000000000000FAF /* AbstractPersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F64 /* AbstractPersistentThreadsafeValue.h */; };
@@ -101,8 +101,8 @@
 		10000000000000000000103D /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103C /* MapPoint.h */; };
 		10000000000000000000103F /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000103E /* AbstractNavigationController.h */; };
 		1000000000000000000010A7 /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBC /* AbstractSearchResult.m */; };
-		1000000000000000000010DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010DA /* MapViewController.m */; };
 		1000000000000000000010DC /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010E1 /* MapViewControllerDelegate.h */; };
+		1000000000000000000010DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010DA /* MapViewController.m */; };
 		1000000000000000000010E0 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010AA /* MapViewController.h */; };
 		100000000000000000001249 /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001248 /* MemoryUtilities.m */; };
 		1000000000000000000013A2 /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013A1 /* AbstractStackableTableViewController.h */; };
@@ -183,6 +183,8 @@
 		1000000000000000000016B7 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015FF /* DatePickerViewController.m */; };
 		1000000000000000000016BC /* DateUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016BA /* DateUtilities.h */; };
 		1000000000000000000016BE /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016BD /* DateUtilities.m */; };
+		1000000000000000000016CD /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CC /* LargeActivityIndicatorViewWithBackground.m */; };
+		1000000000000000000016CF /* ListPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CE /* ListPickerDelegate.h */; };
 		1000000000000000000016D8 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016B2 /* Operation.m */; };
 		1000000000000000000016D9 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001510 /* BackgroundInvocation2.m */; };
 		1000000000000000000016FA /* Operation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016DB /* Operation1.h */; };
@@ -282,8 +284,6 @@
 		1000000000000000000020F7 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020F5 /* xmltok.c */; };
 		1000000000000000000020FD /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020FB /* xmltok_impl.c */; };
 		100000000000000000002103 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002101 /* xmltok_ns.c */; };
-		100000000000000000000C82 /* ImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C81 /* ImageDownloader.h */; };
-		100000000000000000000C84 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C83 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -309,6 +309,8 @@
 		100000000000000000000AED /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
 		100000000000000000000C06 /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000C08 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000C81 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		100000000000000000000C83 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		100000000000000000000CB1 /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
 		100000000000000000000CB3 /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
 		100000000000000000000CBB /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
@@ -335,8 +337,6 @@
 		100000000000000000000F42 /* Invocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation3.h; sourceTree = "<group>"; };
 		100000000000000000000F44 /* Invocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation3.m; sourceTree = "<group>"; };
 		100000000000000000000F46 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
-		1000000000000000000016CC /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
-		1000000000000000000016CE /* ListPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerDelegate.h; sourceTree = "<group>"; };
 		100000000000000000000F64 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
 		100000000000000000000F91 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "External/MGTwitterEngine/NSString+UUID.h"; sourceTree = SOURCE_ROOT; };
 		100000000000000000000FAA /* ListPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerViewController.h; sourceTree = "<group>"; };
@@ -463,6 +463,8 @@
 		1000000000000000000016B2 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
 		1000000000000000000016BA /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		1000000000000000000016BD /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
+		1000000000000000000016CC /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		1000000000000000000016CE /* ListPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerDelegate.h; sourceTree = "<group>"; };
 		1000000000000000000016DB /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation1.h; sourceTree = "<group>"; };
 		1000000000000000000016EC /* BackgroundInvocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation3.h; sourceTree = "<group>"; };
 		10000000000000000000175A /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
@@ -579,8 +581,6 @@
 		1000000000000000000020FB /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000020FF /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000002101 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		100000000000000000000C81 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
-		100000000000000000000C83 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -833,6 +833,19 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
+		100000000000000000001BFA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001487 /* ColorCache.h */,
+				100000000000000000001C41 /* FontCache.h */,
+				1000000000000000000013DB /* MetasyntacticStockImages.h */,
+				100000000000000000001496 /* ColorCache.m */,
+				100000000000000000001C43 /* FontCache.m */,
+				1000000000000000000013DD /* MetasyntacticStockImages.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		100000000000000000001BFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,19 +858,6 @@
 				100000000000000000001C9A /* ViewControllerUtilities.h */,
 				10000000000000000000160E /* NotificationCenter.m */,
 				100000000000000000001C9D /* ViewControllerUtilities.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		100000000000000000001BFA /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001487 /* ColorCache.h */,
-				100000000000000000001C41 /* FontCache.h */,
-				1000000000000000000013DB /* MetasyntacticStockImages.h */,
-				100000000000000000001496 /* ColorCache.m */,
-				100000000000000000001C43 /* FontCache.m */,
-				1000000000000000000013DD /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";

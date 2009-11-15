@@ -17,6 +17,7 @@
 #import "MetasyntacticStockImages.h"
 #import "MultiDictionary.h"
 #import "MutableMultiDictionary.h"
+#import "NSArray+Utilities.h"
 
 @interface AbstractExpandedDetailsCell()
 @property (retain) NSArray* titles;
@@ -63,7 +64,7 @@
   for (UILabel* label in titleToLabel.allValues) {
     titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
   }
-  UILabel* firstLabel = [titleToLabel objectForKey:[titles objectAtIndex:0]];
+  UILabel* firstLabel = [titleToLabel objectForKey:titles.firstObject];
   CGFloat firstTitleWidth = [firstLabel.text sizeWithFont:firstLabel.font].width;
 
   titleWidth = MAX(titleWidth + 20, firstTitleWidth + 40);

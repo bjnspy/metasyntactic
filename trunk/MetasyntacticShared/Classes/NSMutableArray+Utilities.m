@@ -40,4 +40,15 @@
 }
 
 
+- (void) transformUsingFunction:(id(*)(id)) transformer {
+  for (NSInteger i = 0; i < self.count; i++) {
+    [self replaceObjectAtIndex:i withObject:transformer([self objectAtIndex:i])];
+  }
+}
+
+
+- (void) removeFirstObject {
+  [self removeObjectAtIndex:0];
+}
+
 @end

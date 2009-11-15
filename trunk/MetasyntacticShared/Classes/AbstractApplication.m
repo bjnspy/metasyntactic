@@ -21,6 +21,7 @@
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "UIColor+Utilities.h"
+#import "NSArray+Utilities.h"
 
 @implementation AbstractApplication
 
@@ -98,13 +99,13 @@ static NSString* imagesDirectory = nil;
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    [self addDirectory:cacheDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
+    [self addDirectory:cacheDirectory = [paths.firstObject stringByAppendingPathComponent:executableName]];
   }
 
   {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
     NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    [self addDirectory:supportDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName]];
+    [self addDirectory:supportDirectory = [paths.firstObject stringByAppendingPathComponent:executableName]];
   }
 
   [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];

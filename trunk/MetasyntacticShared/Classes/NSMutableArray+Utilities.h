@@ -16,4 +16,6 @@
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index;
 - (id) removeRandomElement;
 - (void) shuffle;
+- (void) transformUsingFunction:(id(*)(id)) transformer;
+- (void) removeFirstObject;
 @end

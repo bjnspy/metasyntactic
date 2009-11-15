@@ -24,7 +24,7 @@
     return nil;
   }
 
-  id value = [self objectAtIndex:0];
+  id value = self.firstObject;
 
   for (NSInteger i = 1; i < self.count; i++) {
     id current = [self objectAtIndex:i];
@@ -46,7 +46,7 @@
     return nil;
   }
 
-  id value = [self objectAtIndex:0];
+  id value = self.firstObject;
 
   for (NSInteger i = 1; i < self.count; i++) {
     id current = [self objectAtIndex:i];
@@ -76,6 +76,22 @@
     }
   }
   return result;
+}
+
+
+- (NSArray*) transformedArrayUsingFunction:(id(*)(id)) tranformer {
+  NSMutableArray* result = [NSMutableArray arrayWithArray:self];
+  [result transformUsingFunction:tranformer];
+  return result;
+}
+
+
+- (id) firstObject {
+  if (self.count == 0) {
+    return nil;
+  }
+  
+  return [self objectAtIndex:0];
 }
 
 @end
