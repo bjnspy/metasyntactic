@@ -1399,7 +1399,7 @@ static NSString** directories[] = {
   } else {
     NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];
     if (movies.count > 0) {
-      netflixMovie = [movies objectAtIndex:0];
+      netflixMovie = movies.firstObject;
       if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
         [MetasyntacticSharedApplication minorRefresh];

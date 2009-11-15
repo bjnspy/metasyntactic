@@ -502,7 +502,7 @@ static Model* model = nil;
   if ([account isEqual:currentAccount]) {
     if (accounts.count > 0) {
       // they removed the active account.  switch the active account to the first account.
-      [self setCurrentNetflixAccount:[accounts objectAtIndex:0]];
+      [self setCurrentNetflixAccount:accounts.firstObject];
     }
   } else {
     // reset the current account unless the index changed

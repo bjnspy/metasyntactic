@@ -628,8 +628,15 @@ public class Program {
   }
 
   private static void processProjectFiles() throws IOException, NoSuchAlgorithmException {
+    Collections.sort(projectFiles, new Comparator<File>() {
+      @Override
+      public int compare(File o1, File o2) {
+        return o1.getAbsolutePath().compareTo(o2.getAbsolutePath());
+      }
+    });
+
     final SortedSet<HashAndHint> values = new TreeSet<HashAndHint>();
-    
+
     for (File child : projectFiles) {
     final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
       final String fileText = readFile(child);
@@ -682,8 +689,11 @@ public class Program {
   }
 
   private static class HashAndHint implements Comparable<HashAndHint> {
+    private static int staticIndex;
+
     private final String hash;
     private final String hint;
+    private final int index = staticIndex++;
 
     private HashAndHint(final String hash, final String hint) {
       this.hash = hash;
@@ -721,16 +731,12 @@ public class Program {
         return val;
       }
 
-      return hash.compareTo(hashAndHint.hash);
-    }
-  }
+      if (hash.equals(hashAndHint.hash)) {
+        return 0;
+      }
 
-  private static String createWhitespate(final int count) {
-    final StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < count; i++) {
-      builder.append(' ');
+      return index - hashAndHint.index;
     }
-    return builder.toString();
   }
 
   private static boolean isRestricted(final File child) {
@@ -1076,9 +1082,6 @@ public class Program {
     }
 
     System.out.println("Unsorted imports: " + child.getPath());
-    for (final String imp : sortedImports) {
-      System.out.println(imp);
-    }
 
     final PrintWriter out = new PrintWriter(new FileWriter(child));
     for (final String s : beforeImports) {

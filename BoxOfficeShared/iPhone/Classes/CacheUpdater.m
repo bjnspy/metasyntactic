@@ -87,7 +87,7 @@ static CacheUpdater* cacheUpdater = nil;
     {
       [imageOperations addObject:movie];
       if (imageOperations.count > 5) {
-        [imageOperations removeObjectAtIndex:0];
+        [imageOperations removeFirstObject];
       }
       [gate broadcast];
     }

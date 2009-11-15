@@ -126,7 +126,7 @@
   } else {
     CommonNavigationController* controller;
     if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
-      controller = [self.viewControllers objectAtIndex:0];
+      controller = self.viewControllers.firstObject;
     } else {
       controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
     }

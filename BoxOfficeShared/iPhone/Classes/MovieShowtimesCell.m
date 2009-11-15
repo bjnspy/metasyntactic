@@ -51,7 +51,7 @@
         return @"";
     }
 
-    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] timeString]];
+    NSMutableString* text = [NSMutableString stringWithString:[showtimes.firstObject timeString]];
 
     for (NSInteger i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
