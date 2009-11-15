@@ -192,8 +192,8 @@
 }
 
 
-- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) array {
-  if (updateId != [[array objectAtIndex:0] integerValue]) {
+- (void) onDataProviderUpdateFailure:(NSString*) error context:(NSArray*) array {
+  if (updateId != [array.firstObject integerValue]) {
     return;
   }
 
@@ -209,12 +209,12 @@
 }
 
 
-- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] integerValue]) {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(NSArray*) array {
+  if (updateId != [array.firstObject integerValue]) {
     return;
   }
 
-  NSDate* searchDate = [array lastObject];
+  NSDate* searchDate = array.lastObject;
 
   // Save the results.
   [self.model setSearchDate:searchDate];

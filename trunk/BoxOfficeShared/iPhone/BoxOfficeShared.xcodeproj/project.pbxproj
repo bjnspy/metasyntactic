@@ -33,7 +33,6 @@
 		100000000000000000000F40 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F3F /* MovieDetailsViewController.m */; };
 		100000000000000000000F43 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F42 /* MovieShowtimesCell.m */; };
 		100000000000000000000F46 /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F45 /* MovieTitleCell.m */; };
-		1000000000000000000016CF /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CE /* MoviesNavigationController.m */; };
 		100000000000000000000FAF /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F64 /* BlurayCache.m */; };
 		100000000000000000000FB3 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FB2 /* BoxOfficeShared.h */; };
 		100000000000000000000FB5 /* BoxOfficeSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FB4 /* BoxOfficeSharedApplication.h */; };
@@ -109,6 +108,7 @@
 		1000000000000000000016AB /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016A9 /* SearchRequest.m */; };
 		1000000000000000000016B2 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016B0 /* SearchResult.m */; };
 		1000000000000000000016BD /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016BC /* HelpCache.m */; };
+		1000000000000000000016CF /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CE /* MoviesNavigationController.m */; };
 		1000000000000000000016FE /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016BF /* IMDbCache.m */; };
 		1000000000000000000018E9 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000018E8 /* SquareMovieTitleCell.m */; };
 		100000000000000000001A90 /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000196D /* ImdbPosterDownloader.m */; };
@@ -144,26 +144,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1000000000000000000010DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9;
-			remoteInfo = CommandLineTests;
-		};
 		1000000000000000000010DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
-		};
-		1000000000000000000010E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000001499;
-			remoteInfo = ProtocolBuffers;
 		};
 		1000000000000000000010DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -172,6 +158,20 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = NetflixShared;
 		};
+		1000000000000000000010DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 100000000000000000000FFD /* NetflixShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000000000013AD;
+			remoteInfo = NetflixShared;
+		};
+		1000000000000000000010DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9;
+			remoteInfo = CommandLineTests;
+		};
 		1000000000000000000010E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
@@ -179,12 +179,12 @@
 			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
-		1000000000000000000010DE /* PBXContainerItemProxy */ = {
+		1000000000000000000010E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 100000000000000000000FFD /* NetflixShared.xcodeproj */;
+			containerPortal = 10000000000000000000149E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1000000000000000000013AD;
-			remoteInfo = NetflixShared;
+			remoteGlobalIDString = 100000000000000000001499;
+			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -239,8 +239,6 @@
 		100000000000000000000F42 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
 		100000000000000000000F44 /* MovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTitleCell.h; sourceTree = "<group>"; };
 		100000000000000000000F45 /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
-		1000000000000000000016CD /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
-		1000000000000000000016CE /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
 		100000000000000000000F63 /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
 		100000000000000000000F64 /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
 		100000000000000000000FB0 /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoxOfficeResources.bundle; sourceTree = "<group>"; };
@@ -388,6 +386,8 @@
 		1000000000000000000016BC /* HelpCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCache.m; sourceTree = "<group>"; };
 		1000000000000000000016BE /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		1000000000000000000016BF /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
+		1000000000000000000016CD /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
+		1000000000000000000016CE /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
 		1000000000000000000016EC /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
 		100000000000000000001753 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
 		1000000000000000000018E7 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
@@ -523,19 +523,6 @@
 				100000000000000000001CE4 /* YellowMovieTitleCell.m */,
 			);
 			name = MovieTitleCells;
-			sourceTree = "<group>";
-		};
-		1000000000000000000016CC /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000000E3E /* AllMoviesViewController.h */,
-				100000000000000000000F3E /* MovieDetailsViewController.h */,
-				10000000000000000000161E /* ReviewsViewController.h */,
-				100000000000000000000F03 /* AllMoviesViewController.m */,
-				100000000000000000000F3F /* MovieDetailsViewController.m */,
-				10000000000000000000161F /* ReviewsViewController.m */,
-			);
-			name = Movies;
 			sourceTree = "<group>";
 		};
 		100000000000000000000FAA /* NavigationControllers */ = {
@@ -840,6 +827,19 @@
 				100000000000000000000FED /* NetflixSearchDisplayController.m */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		1000000000000000000016CC /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000E3E /* AllMoviesViewController.h */,
+				100000000000000000000F3E /* MovieDetailsViewController.h */,
+				10000000000000000000161E /* ReviewsViewController.h */,
+				100000000000000000000F03 /* AllMoviesViewController.m */,
+				100000000000000000000F3F /* MovieDetailsViewController.m */,
+				10000000000000000000161F /* ReviewsViewController.m */,
+			);
+			name = Movies;
 			sourceTree = "<group>";
 		};
 		1000000000000000000016D8 /* SettingCells */ = {
@@ -1327,15 +1327,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		100000000000000000001249 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NetflixShared;
-			targetProxy = 1000000000000000000010DE /* PBXContainerItemProxy */;
-		};
 		100000000000000000001248 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
 			targetProxy = 1000000000000000000010E1 /* PBXContainerItemProxy */;
+		};
+		100000000000000000001249 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NetflixShared;
+			targetProxy = 1000000000000000000010DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

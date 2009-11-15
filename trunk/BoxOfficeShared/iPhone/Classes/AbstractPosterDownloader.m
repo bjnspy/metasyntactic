@@ -104,7 +104,7 @@
     return nil;
   }
 
-  NSString* url = [posterUrls objectAtIndex:0];
+  NSString* url = posterUrls.firstObject;
   return [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
 }
 

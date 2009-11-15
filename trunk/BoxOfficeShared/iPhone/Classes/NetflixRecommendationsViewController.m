@@ -62,7 +62,7 @@
   Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
   for (Movie* movie in queue.movies) {
     if (movie.genres.count > 0) {
-      NSString* genre = [movie.genres objectAtIndex:0];
+      NSString* genre = movie.genres.firstObject;
 
       [dictionary addObject:movie forKey:genre];
       [set addObject:genre];

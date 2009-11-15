@@ -930,7 +930,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
-  NSString* urlString = [trailersArray objectAtIndex:0];
+  NSString* urlString = trailersArray.firstObject;
   [self playMovie:urlString];
 }
 
@@ -1147,12 +1147,12 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] integerValue]) {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(NSArray*) array {
+  if (updateId != [array.firstObject integerValue]) {
     return;
   }
 
-  NSDate* searchDate = [array lastObject];
+  NSDate* searchDate = array.lastObject;
 
   if (![lookupResult.movies containsObject:movie]) {
     NSString* text =
@@ -1237,7 +1237,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) didSelectMapTheatersRow {
-  Theater* theater = [filteredTheatersArray objectAtIndex:0];
+  Theater* theater = filteredTheatersArray.firstObject;
   [self.abstractNavigationController pushMapWithCenter:theater
                                              locations:filteredTheatersArray
                                               delegate:self animated:YES];

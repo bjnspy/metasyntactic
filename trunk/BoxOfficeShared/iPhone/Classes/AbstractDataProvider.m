@@ -243,7 +243,7 @@
     return [NSArray array];
   }
 
-  if ([[unsureArray objectAtIndex:0] isKindOfClass:[Performance class]]) {
+  if ([unsureArray.firstObject isKindOfClass:[Performance class]]) {
     return unsureArray;
   }
 

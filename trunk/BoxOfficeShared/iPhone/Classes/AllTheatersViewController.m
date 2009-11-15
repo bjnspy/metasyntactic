@@ -480,7 +480,7 @@
 
 
 - (void) onMapTapped {
-  Theater* theater = [sortedTheaters objectAtIndex:0];
+  Theater* theater = sortedTheaters.firstObject;
   [self.abstractNavigationController pushMapWithCenter:theater locations:sortedTheaters delegate:self animated:YES];
 }
 

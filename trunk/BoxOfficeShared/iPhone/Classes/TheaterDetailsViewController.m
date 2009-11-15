@@ -309,12 +309,12 @@
 }
 
 
-- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] integerValue]) {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(NSArray*) array {
+  if (updateId != [array.firstObject integerValue]) {
     return;
   }
 
-  NSDate* searchDate = [array lastObject];
+  NSDate* searchDate = array.lastObject;
 
   if (![lookupResult.theaters containsObject:theater]) {
     NSString* text =

@@ -60,7 +60,7 @@
 
   for (Movie* movie in queue.movies) {
     NSArray* genres = movie.genres;
-    if (genres.count > 0 && [genre isEqual:[genres objectAtIndex:0]]) {
+    if (genres.count > 0 && [genre isEqual:genres.firstObject]) {
       [array addObject:movie];
     }
   }
