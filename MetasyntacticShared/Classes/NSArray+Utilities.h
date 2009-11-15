@@ -21,4 +21,6 @@
                          context2:(void*) context2;
 - (NSArray*) shuffledArray;
 - (NSArray*) filteredArrayUsingFunction:(BOOL(*)(id)) predicate;
+- (NSArray*) transformedArrayUsingFunction:(id(*)(id)) tranformer;
+- (id) firstObject;
 @end

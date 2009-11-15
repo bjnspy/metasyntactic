@@ -14,6 +14,7 @@
 
 #import "LocaleUtilities.h"
 
+#import "NSArray+Utilities.h"
 
 @implementation LocaleUtilities
 
@@ -26,7 +27,7 @@ static NSLocale* currentLocale = nil;
 
     NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
     if (preferredLocalizations.count > 0) {
-      NSString* language = [preferredLocalizations objectAtIndex:0];
+      NSString* language = preferredLocalizations.firstObject;
       NSString* canonicalLanguage = [(NSString*)CFLocaleCreateCanonicalLanguageIdentifierFromString(NULL, (CFStringRef)language) autorelease];
       if ([[NSLocale ISOLanguageCodes] containsObject:canonicalLanguage]) {
         preferredLanguage = canonicalLanguage;

@@ -18,7 +18,7 @@
 #import "StyleSheet.h"
 #import "UIColor+Utilities.h"
 #import "ViewControllerUtilities.h"
-
+#import "NSArray+Utilities.h"
 
 @implementation ViewControllerUtilities
 
@@ -48,7 +48,7 @@ static UIFont* minimumTitleFont = nil;
     return NO;
   }
 
-  return controller != [navController.viewControllers objectAtIndex:0];
+  return controller != navController.viewControllers.firstObject;
 }
 
 

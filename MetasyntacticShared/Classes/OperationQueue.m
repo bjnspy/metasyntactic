@@ -15,6 +15,8 @@
 #import "OperationQueue.h"
 
 #import "Operation3.h"
+#import "NSArray+Utilities.h"
+#import "NSMutableArray+Utilities.h"
 
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
@@ -176,10 +178,10 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 4;
   {
     if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
       // too many operations.  cancel the oldest one.
-      Operation* staleOperation = [boundedOperations objectAtIndex:0];
+      Operation* staleOperation = boundedOperations.firstObject;
       [staleOperation cancel];
 
-      [boundedOperations removeObjectAtIndex:0];
+      [boundedOperations removeFirstObject];
     }
 
     [boundedOperations addObject:operation];

@@ -19,6 +19,7 @@
 #import "MetasyntacticStockImages.h"
 #import "TappableScrollView.h"
 #import "ThreadingUtilities.h"
+#import "NSArray+Utilities.h"
 
 @interface AbstractFullScreenImageListViewController()
 @property (retain) NSMutableDictionary* pageNumberToView;
@@ -230,7 +231,7 @@ const NSInteger PAGE_RANGE = 2;
 
 
 - (void) addImageToView:(NSArray*) arguments {
-  NSNumber* index = [arguments objectAtIndex:0];
+  NSNumber* index = arguments.firstObject;
   if (index.integerValue < (currentPage - PAGE_RANGE) ||
       index.integerValue > (currentPage + PAGE_RANGE)) {
     return;
@@ -297,7 +298,7 @@ const NSInteger PAGE_RANGE = 2;
     return;
   }
 
-  NSNumber* index = [indexAndPageView objectAtIndex:0];
+  NSNumber* index = indexAndPageView.firstObject;
 
   if (index.integerValue < (currentPage - PAGE_RANGE) ||
       index.integerValue > (currentPage + PAGE_RANGE)) {
