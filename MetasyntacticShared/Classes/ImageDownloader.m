@@ -89,12 +89,14 @@ static ImageDownloader* downloader;
 
   NSString* localPath = [self imagePath:address];
 
-  if (![[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
-    if (data != nil) {
-      [data writeToFile:localPath atomically:YES];
-      [MetasyntacticSharedApplication minorRefresh];
-    }
+  if ([[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
+    return;
+  }
+  
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
+  if (data != nil) {
+    [data writeToFile:localPath atomically:YES];
+    [MetasyntacticSharedApplication minorRefresh];
   }
 }
 
