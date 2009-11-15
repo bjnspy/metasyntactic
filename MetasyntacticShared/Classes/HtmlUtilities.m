@@ -25,17 +25,17 @@
 
   NSDictionary* dictionary =
   [NSDictionary dictionaryWithObjectsAndKeys:
-   @" ", @"&nbsp;",
+   @" ",  @"&nbsp;",
    @"\"", @"&quot;",
-   @"-", @"&mdash;",
-   @"-", @"&ndash;",
-   @"&", @"&amp;",
+   @"-",  @"&mdash;",
+   @"-",  @"&ndash;",
+   @"&",  @"&amp;",
    @"\"", @"&ldquo;",
    @"\"", @"&rdquo;",
-   @"'", @"&lsquo;",
-   @"'", @"&rsquo;",
-   @"<", @"&lt;",
-   @">", @"&gt;",
+   @"'",  @"&lsquo;",
+   @"'",  @"&rsquo;",
+   @"<",  @"&lt;",
+   @">",  @"&gt;",
    nil];
 
   for (NSString* key in dictionary) {
