@@ -27,6 +27,7 @@
   [NSDictionary dictionaryWithObjectsAndKeys:
    @" ", @"&nbsp;",
    @"\"", @"&quot;",
+   @"-", @"&mdash;",
    @"-", @"&ndash;",
    @"&", @"&amp;",
    @"\"", @"&ldquo;",
