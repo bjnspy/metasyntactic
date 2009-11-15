@@ -168,6 +168,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
+  NSAssert(state != nil, @"");
   [state viewController:self willAppear:animated];
 
   self.visible = YES;
@@ -177,6 +178,7 @@
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
+  NSAssert(state != nil, @"");
   [state viewController:self didAppear:animated];
 
   [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
@@ -186,12 +188,14 @@
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
   self.visible = NO;
+  NSAssert(state != nil, @"");
   [state viewController:self willDisappear:animated];
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
   [super viewDidDisappear:animated];
+  NSAssert(state != nil, @"");
   [state viewController:self didDisappear:animated];
 }
 
