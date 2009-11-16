@@ -95,6 +95,8 @@
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.feedKey = feedKey_;
     self.backButton = self.navigationItem.leftBarButtonItem;
+    self.reorderedMovies = [IdentitySet mutableSet];
+    self.deletedMovies = [IdentitySet mutableSet];
     [self setupButtons];
   }
 
@@ -352,18 +354,30 @@
 }
 
 
-- (void) onEdit {
-  self.reorderedMovies = [IdentitySet mutableSet];
-  self.deletedMovies = [IdentitySet mutableSet];
+- (void) enterEditing {
   [self.tableView setEditing:YES animated:YES];
+  majorEditing = YES;
+}
+
+
+- (void) exitEditing {
+  [self.tableView setEditing:NO animated:YES];
+  majorEditing = NO;
+}
+
+
+- (void) onEdit {
+  [reorderedMovies removeAllObjects];
+  [deletedMovies removeAllObjects];
+  [self enterEditing];
   [self setupButtons];
 }
 
 
 - (void) onCancel {
-  self.reorderedMovies = [IdentitySet mutableSet];
-  self.deletedMovies = [IdentitySet mutableSet];
-  [self.tableView setEditing:NO animated:YES];
+  [reorderedMovies removeAllObjects];
+  [deletedMovies removeAllObjects];
+  [self exitEditing];
   [self majorRefresh];
 }
 
@@ -373,7 +387,7 @@
     // user didn't do anything.  same as a cancel.
     [self onCancel];
   } else {
-    [self.tableView setEditing:NO animated:YES];
+    [self exitEditing];
     [self enterReadonlyMode];
 
     [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
@@ -401,21 +415,8 @@
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
   }
 
-  // here's the problem.  The user may have done a 'swipe to delete' action, or
-  // they might just be making a bulk edit.  We want to commit the swipe to
-  // delete immediately.  But we want to commit a bulk edit when the user taps 'save'
-  // However, at this point there's no way to know what type of action it was.
-  // "tableView.editing" is true for both cases.  I could add an extra piece of state,
-  // but i really don't want to do that.  So, instead we just try to save on the next
-  // run loop.  If it was a swipe, then "tableView.editing" won't be true anymore and
-  // we can proceed.  However, if the user is in the middle of a bulk edit, then
-  // "tableView.editing" will still be true and we'll hold off on saving the changes.
-  [self performSelector:@selector(commitSwipeDelete) withObject:nil afterDelay:0];
-}
-
-
-- (void) commitSwipeDelete {
-  if (!self.tableView.editing) {
+  if (!majorEditing) {
+    // it was just a swipe
     [self onSave];
   }
 }

@@ -25,6 +25,10 @@
   NSMutableArray* mutableSaved;
   NSMutableSet* deletedMovies;
   NSMutableSet* reorderedMovies;
+  
+  // Editing because the 'edit' button was tapped (as opposed to editing just
+  // through a swipe).
+  BOOL majorEditing;
 }
 
 - (id) initWithFeedKey:(NSString*) feedKey;
