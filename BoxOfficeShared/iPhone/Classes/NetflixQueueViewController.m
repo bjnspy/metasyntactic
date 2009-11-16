@@ -390,7 +390,12 @@
     [self exitEditing];
     [self enterReadonlyMode];
 
-    [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
+    [self.model.netflixCache updateQueue:queue
+                        byDeletingMovies:deletedMovies
+                     andReorderingMovies:reorderedMovies
+                                      to:mutableMovies
+                                delegate:self
+                                 account:account];
   }
 }
 
@@ -416,7 +421,7 @@
   }
 
   if (!majorEditing) {
-    // it was just a swipe
+    // This was a swipe-delete.  Commit it immediately.
     [self onSave];
   }
 }
