@@ -356,36 +356,6 @@ public class Program {
     return second.trim();
   }
 
-  private static class Pair {
-    private String first;
-    private String second;
-
-    private Pair(final String first, final String second) {
-      this.first = first;
-      this.second = second;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-      if (this == o) return true;
-      if (!(o instanceof Pair)) return false;
-
-      final Pair pair = (Pair) o;
-
-      if (!first.equals(pair.first)) return false;
-      if (!second.equals(pair.second)) return false;
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = first.hashCode();
-      result = 31 * result + second.hashCode();
-      return result;
-    }
-  }
-
   private static Map<String, Pair> getLocalizableEntries(
       final File file) throws IOException {
     final Map<String, Pair> entries = new TreeMap<String, Pair>();
