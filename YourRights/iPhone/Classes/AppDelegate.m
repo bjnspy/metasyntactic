@@ -20,6 +20,7 @@
 #import "YourRightsNavigationController.h"
 
 @interface AppDelegate()
+@property (retain) IBOutlet UIWindow *window;
 @property (retain) UIViewController* viewController;
 @end
 

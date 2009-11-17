@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate()
-@property (nonatomic, retain) UIWindow* window;
+@property (retain) UIWindow* window;
 @end
 
 
