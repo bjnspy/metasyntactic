@@ -14,7 +14,7 @@
 
 #import "AbstractNavigationController.h"
 
-#import "AbstractApplication.h"
+//#import "AbstractApplication.h"
 #import "AbstractFullScreenImageListViewController.h"
 #import "MapViewController.h"
 #import "MetasyntacticStockImages.h"

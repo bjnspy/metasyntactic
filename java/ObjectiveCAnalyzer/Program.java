@@ -952,7 +952,7 @@ public class Program {
 
   private static boolean compile() throws IOException, InterruptedException {
     final Process process = Runtime.getRuntime().exec(
-        "/usr/bin/xcodebuild -project " + getProject());
+        "/usr/bin/xcodebuild -project " + getProject() + " clean build");
 
     new StreamGobbler(process.getErrorStream()).start();
     new StreamGobbler(process.getInputStream()).start();
