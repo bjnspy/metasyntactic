@@ -17,6 +17,4 @@
   IBOutlet UIWindow* window;
 }
 
-@property (readonly, nonatomic, retain) UIWindow* window;
-
 @end
