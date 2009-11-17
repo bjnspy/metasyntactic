@@ -600,7 +600,7 @@ public class Program {
     final SortedSet<HashAndHint> values = new TreeSet<HashAndHint>();
 
     for (File child : projectFiles) {
-    final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
+      final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
       final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
 
@@ -626,7 +626,7 @@ public class Program {
     }
 
     for (File child : projectFiles) {
-    final Pattern pattern = Pattern.compile("([0-9A-F]{24})");
+      final Pattern pattern = Pattern.compile("([0-9A-F]{24})");
 
       final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
@@ -637,7 +637,7 @@ public class Program {
         if (newHash == null) {
           newHash = oldHash;
         }
-        
+
         matcher.appendReplacement(sb, newHash);
       }
       matcher.appendTail(sb);
