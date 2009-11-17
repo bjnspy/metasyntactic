@@ -83,7 +83,7 @@ public class Program {
 
   private static void processFile(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-    /*
+    //*
     removeUnusedImports(child);
     /*/
     checkImports(child);
