@@ -14,7 +14,7 @@
 
 #import "MetasyntacticStockImages.h"
 
-#import "FileUtilities.h"
+//#import "FileUtilities.h"
 
 NSString* PathForName(NSString* bundle, NSString* name) {
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:nil];
