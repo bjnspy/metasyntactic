@@ -882,7 +882,7 @@ public class Program {
     final boolean canRemove1 = compile();
 
     if (canRemove1) {
-      System.out.println("\nCan remove import: " + child.getPath());
+      System.out.println("Can remove import: " + child.getPath() + "\n");
     } else {
       writeFile(child, contents);
       System.out.print("");
@@ -925,13 +925,6 @@ public class Program {
 
     out.flush();
     out.close();
-    /*
-    try {
-        //Thread.sleep(1000);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-    }
-    */
   }
 
   private static String readFile(final File child) throws IOException {

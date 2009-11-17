@@ -108,7 +108,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="5" selection-start="2580" selection-end="2580" vertical-scroll-proportion="0.32171583">
+            <state line="884" column="71" selection-start="29882" selection-end="29882" vertical-scroll-proportion="0.3324397">
               <folding />
             </state>
           </provider>
@@ -338,7 +338,7 @@
     <configuration default="false" name="MetasyntacticShared" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/MetasyntacticShared /Projects/metasyntactic/trunk/NetflixShared" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/MetasyntacticShared" />
       <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/MetasyntacticShared" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -432,7 +432,23 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <list size="7">
+    <configuration default="false" name="NetflixShared" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
+      <option name="MAIN_CLASS_NAME" value="Program" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/NetflixShared" />
+      <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/NetflixShared" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ObjectiveCAnalyzer" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Application.BookReader" />
       <item index="1" class="java.lang.String" itemvalue="Application.BoxOfficeShared" />
       <item index="2" class="java.lang.String" itemvalue="Application.ComiXologyShared" />
@@ -440,6 +456,7 @@
       <item index="4" class="java.lang.String" itemvalue="Application.ProtocolBuffers" />
       <item index="5" class="java.lang.String" itemvalue="Application.YourRights" />
       <item index="6" class="java.lang.String" itemvalue="Application.AllProject" />
+      <item index="7" class="java.lang.String" itemvalue="Application.NetflixShared" />
     </list>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <module name="" />
@@ -517,12 +534,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="108" y="22" width="1287" height="851" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38324177" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38324177" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282967" sideWeight="0.5" order="8" side_tool="false" />
@@ -698,7 +715,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="5" selection-start="2580" selection-end="2580" vertical-scroll-proportion="0.32171583">
+        <state line="884" column="71" selection-start="29882" selection-end="29882" vertical-scroll-proportion="0.3324397">
           <folding />
         </state>
       </provider>
