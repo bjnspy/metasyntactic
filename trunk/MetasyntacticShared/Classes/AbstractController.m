@@ -14,9 +14,7 @@
 
 #import "AbstractController.h"
 
-#import "AbstractApplication.h"
 #import "AbstractModel.h"
-//#import "MetasyntacticSharedApplication.h"
 
 @interface AbstractController()
 @property (retain) AbstractModel* abstractModel;

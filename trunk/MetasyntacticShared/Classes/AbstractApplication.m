@@ -20,7 +20,6 @@
 #import "LocaleUtilities.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
-#import "UIColor+Utilities.h"
 #import "NSArray+Utilities.h"
 
 @implementation AbstractApplication

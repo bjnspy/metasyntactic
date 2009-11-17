@@ -47,19 +47,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="883" class="Program" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -121,7 +108,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="954" column="70" selection-start="31669" selection-end="31669" vertical-scroll-proportion="0.39678285">
+            <state line="890" column="0" selection-start="29967" selection-end="29967" vertical-scroll-proportion="0.3324397">
               <folding />
             </state>
           </provider>
@@ -735,7 +722,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="954" column="70" selection-start="31669" selection-end="31669" vertical-scroll-proportion="0.39678285">
+        <state line="890" column="0" selection-start="29967" selection-end="29967" vertical-scroll-proportion="0.3324397">
           <folding />
         </state>
       </provider>

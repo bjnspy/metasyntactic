@@ -15,7 +15,6 @@
 #import "SynopsisCell.h"
 
 #import "FontCache.h"
-#import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
 
 @interface SynopsisCell()
