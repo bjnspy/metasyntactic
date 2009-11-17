@@ -14,7 +14,7 @@
 
 #import "AbstractTableViewController.h"
 
-#import "AbstractApplication.h"
+//#import "AbstractApplication.h"
 #import "AbstractNavigationController.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
