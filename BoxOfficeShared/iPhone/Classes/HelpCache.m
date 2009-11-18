@@ -77,9 +77,20 @@
 - (NSMutableArray*) makeReplacements:(NSArray*) array {
   NSMutableArray* result = [NSMutableArray array];
 
-  for (NSInteger i = 0; i < array.count; i++) {
-    NSString* value = [array objectAtIndex:i];
-    value = [value stringByReplacingOccurrencesOfString:@"%@" withString:[Application name]];
+  for (NSString* value in array) {
+    NSInteger i = 0;
+    NSInteger length;
+    do {
+      i++;
+      length = value.length;
+      
+      NSMutableString* before = [NSMutableString string];
+      [before appendString:@"%"];
+      [before appendFormat:@"%d$@", i];
+
+      value = [value stringByReplacingOccurrencesOfString:before withString:[Application name]];
+    } while (length != value.length);
+
     [result addObject:value];
   }
 
