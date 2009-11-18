@@ -90,6 +90,7 @@
 
       value = [value stringByReplacingOccurrencesOfString:before withString:[Application name]];
     } while (length != value.length);
+    value = [value stringByReplacingOccurrencesOfString:@"%@" withString:[Application name]];
 
     [result addObject:value];
   }
