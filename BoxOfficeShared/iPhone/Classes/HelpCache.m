@@ -83,7 +83,7 @@
     do {
       i++;
       length = value.length;
-      
+
       NSMutableString* before = [NSMutableString string];
       [before appendString:@"%"];
       [before appendFormat:@"%d$@", i];
@@ -141,7 +141,7 @@
 
 - (void) generateOnlineHelpFiles:(NSArray*) questions
                          answers:(NSArray*) answers {
-  return;
+  //return;
   NSMutableString* result = [NSMutableString string];
 
   [result appendString:@"@SuppressWarnings(\"serial\")\n"];
