@@ -83,7 +83,7 @@ public class Program {
 
   private static void processFile(
       final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-    //*
+    /*
     removeUnusedImports(child);
     /*/
     checkImports(child);
@@ -454,13 +454,6 @@ public class Program {
       final String english = entry.getKey();
       String translated = entry.getValue().first;
 
-//      if (english.length() == 0 || translated.length() == 0) {
-//        continue;
-//      }
-
-      if (translated.length() == 0) {
-        translated = english;
-      }
       final Pair englishPair = englishEntries.get(english);
       String comment = englishPair == null ? null : englishPair.second;
 
@@ -468,14 +461,10 @@ public class Program {
         comment = "/* No comment provided by engineer. */";
       }
 
+      translated = usePositionalParameters(translated);
+
       printer.println(comment);
-
-
       printer.println("\"" + english + "\" = \"" + translated + "\";");
-
-      if (entry.getValue().first.length() == 0) {
-        throw new RuntimeException("Empty translated string");
-      }
 
       checkTranslatedString(child, english, translated);
     }
@@ -487,6 +476,28 @@ public class Program {
 
     out.flush();
     out.close();
+  }
+
+  private final static Pattern parameterPattern = Pattern.compile("%(.)");
+
+  private static String usePositionalParameters(String translated) {
+    String result = translated;
+    StringBuffer sb = new StringBuffer();
+
+    int index = 1;
+    Matcher matcher = parameterPattern.matcher(translated);
+    while (matcher.find()) {
+      final String parameterType = matcher.group(1);
+      if (parameterType.charAt(0) >= '1' && parameterType.charAt(0) <= '9') {
+        // already using positional parameters
+        return translated;
+      }
+
+      matcher.appendReplacement(sb, "%" + index + "\\$" + parameterType);
+      index++;
+    }
+    matcher.appendTail(sb);
+    return sb.toString();
   }
 
   private static void checkTranslatedString(File child, String english, String translated) {
