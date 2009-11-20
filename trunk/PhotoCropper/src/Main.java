@@ -15,10 +15,15 @@ import java.util.List;
  */
 public class Main {
   public static void main(String... args) throws IOException {
-    for (String file : args) {
-      processFile(new File(file));
+    processDir(new File(args[0]));
+  }
+
+  private static void processDir(File dir) throws IOException {
+    for (File file : dir.listFiles()) {
+      processFile(file);
     }
   }
+
 
   private static void processFile(File file) throws IOException {
     BufferedImage image = ImageIO.read(file);
@@ -35,50 +40,78 @@ public class Main {
   }
 
   private static List<BufferedImage> processImage(BufferedImage image) {
-    Set<Pix> seenPixels = new HashSet<Pix>();
+    Set<Rect> seenRects = new HashSet<Rect>();
 
     List<BufferedImage> result = new ArrayList<BufferedImage>();
 
-    BufferedImage photo;
-    while ((photo = extractPhoto(image, seenPixels)) != null) {
-      result.add(photo);
+    int height = image.getHeight();
+    int width = image.getWidth();
+
+    for (int x = 0; x < width; x++) {
+      System.out.println("Moving to column: " + x);
+      for (int y = 0; y < height; y++) {
+        Pix pixel = Pix.create(x, y);
+
+        if (isWhite(image, pixel)) {
+          continue;
+        }
+        Rect rect = findRect(pixel, seenRects);
+        if (rect != null) {
+          y = rect.getY() + rect.getHeight();
+          continue;
+        }
+
+        Rect rectangle = determineEdges(image, pixel);
+
+        if (rectangle.getHeight() > 0 && rectangle.getWidth() > 0) {
+          if (rectangle.getWidth() > image.getWidth() / 5 ||
+              rectangle.getHeight() > image.getHeight() / 5) {
+            System.out.println("Adding seen rect: " + rectangle);
+            seenRects.add(rectangle);
+          }
+        }
+
+        if (largeEnough(image, rectangle)) {
+          result.add(image.getSubimage(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight()));
+        }
+      }
     }
 
     return result;
   }
 
-  private static BufferedImage extractPhoto(BufferedImage image, Set<Pix> seenPixels) {
-    int height = image.getHeight();
-    int width = image.getWidth();
-
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
-        Pix pixel = new Pix(x, y);
-        if (seenPixels.contains(pixel)) {
-          continue;
-        }
-        seenPixels.add(pixel);
-
-        if (!passesWhiteThreshold(image, pixel)) {
-          continue;
-        }
-
-        Set<Pix> flood = floodFill(image, pixel);
-        Rectangle rectangle = getBoundingRectangle(flood);
-
-        if (largeEnough(image, rectangle)) {
-          seenPixels.addAll(flood);
-          return image.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        }
+  private static Rect findRect(Pix pixel, Set<Rect> seenRects) {
+    for (Rect rect : seenRects) {
+      if (rect.containsPixel(pixel)) {
+        return rect;
       }
     }
 
     return null;
   }
 
-  private static boolean largeEnough(BufferedImage image, Rectangle rectangle) {
+  private static boolean containsPixel(Pix pixel, Set<Rect> seenRects) {
+    for (Rect rect : seenRects) {
+      if (rect.containsPixel(pixel)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private static Set<Pix> createFlood(Rectangle rectangle) {
+    Set<Pix> set = new HashSet<Pix>();
+    for (int x = rectangle.x; x < rectangle.x + rectangle.width; x++) {
+      for (int y = rectangle.y; y < rectangle.y + rectangle.height; y++) {
+        set.add(Pix.create(x, y));
+      }
+    }
+    return set;
+  }
+
+  private static boolean largeEnough(BufferedImage image, Rect rectangle) {
     return rectangle.getWidth() > image.getWidth() / 5 &&
-           rectangle.getHeight() > image.getHeight() / 5;
+        rectangle.getHeight() > image.getHeight() / 5;
   }
 
   private static Rectangle getBoundingRectangle(Set<Pix> flood) {
@@ -97,7 +130,97 @@ public class Main {
     return new Rectangle(minX, minY, maxX - minX, maxY - minY);
   }
 
-  private static Set<Pix> floodFill(BufferedImage image, Pix start) {
+  private static Rect determineEdges(BufferedImage image, Pix start) {
+    int left = 0, right = 0, up = 0, down = 0;
+
+    boolean changed;
+    do {
+      changed = false;
+
+      int count;
+      int nonWhite;
+
+      count = 0;
+      nonWhite = 0;
+      for (int x = start.getX() - left; x <= start.getX() + right; x++) {
+        Pix edge = Pix.create(x, start.getY() - (up + 1));
+        if (!inImage(image, edge)) {
+          break;
+        }
+        count++;
+        if (!isWhite(image, edge)) {
+          nonWhite++;
+        }
+      }
+      if (count > 0 && ((double) nonWhite / (double) count) > .5) {
+        up++;
+        changed = true;
+      }
+
+
+      count = 0;
+      nonWhite = 0;
+      for (int x = start.getX() - left; x <= start.getX() + right; x++) {
+        Pix edge = Pix.create(x, start.getY() + (down + 1));
+        if (!inImage(image, edge)) {
+          break;
+        }
+        count++;
+        if (!isWhite(image, edge)) {
+          nonWhite++;
+        }
+      }
+      if (count > 0 && ((double) nonWhite / (double) count) > .5) {
+        down++;
+        changed = true;
+      }
+
+
+      count = 0;
+      nonWhite = 0;
+      for (int y = start.getY() - up; y <= start.getY() + down; y++) {
+        Pix edge = Pix.create(start.getX() - (left + 1), y);
+        if (!inImage(image, edge)) {
+          break;
+        }
+        count++;
+        if (!isWhite(image, edge)) {
+          nonWhite++;
+        }
+      }
+      if (count > 0 && ((double) nonWhite / (double) count) > .5) {
+        left++;
+        changed = true;
+      }
+
+
+      count = 0;
+      nonWhite = 0;
+      for (int y = start.getY() - up; y <= start.getY() + down; y++) {
+        Pix edge = Pix.create(start.getX() + (right + 1), y);
+        if (!inImage(image, edge)) {
+          break;
+        }
+        count++;
+        if (!isWhite(image, edge)) {
+          nonWhite++;
+        }
+      }
+      if (count > 0 && ((double) nonWhite / (double) count) > .5) {
+        right++;
+        changed = true;
+      }
+    } while (changed);
+
+    int x = start.getX() - left;
+    int y = start.getY() - up;
+    int width = (start.getX() + right) - x;
+    int height = (start.getY() + down) - up;
+
+    return new Rect(x, y, width, height);
+  }
+
+  private static Set<Pix> floodFill1(BufferedImage image, Pix start) {
     Set<Pix> result = new HashSet<Pix>();
     SortedSet<Pix> worklist = new TreeSet<Pix>();
     Set<Pix> alreadySeen = new HashSet<Pix>();
@@ -118,9 +241,11 @@ public class Main {
           continue;
         }
         alreadySeen.add(neighbor);
-        if (passesWhiteThreshold(image, neighbor)) {
-          worklist.add(neighbor);
+        if (isWhite(image, neighbor)) {
+          continue;
         }
+
+        worklist.add(neighbor);
       }
     }
 
@@ -129,78 +254,19 @@ public class Main {
 
   private static boolean inImage(BufferedImage image, Pix neighbor) {
     return neighbor.getX() >= 0 && neighbor.getX() < image.getWidth() &&
-           neighbor.getY() >= 0 && neighbor.getY() < image.getHeight();
+        neighbor.getY() >= 0 && neighbor.getY() < image.getHeight();
   }
 
 
-  private static boolean passesWhiteThreshold(BufferedImage image, Pix pixel) {
+  private static boolean isWhite(BufferedImage image, Pix pixel) {
     int rgb = image.getRGB(pixel.getX(), pixel.getY());
-    Color color = new Color(rgb);
+    int b = rgb & 0xFF;
+    int g = (rgb >> 8) & 0xFF;
+    int r = (rgb >> 16) & 0xFF;
+    //Color color = new Color(rgb);
 
     int threshold = 256 - 16;
-    return color.getRed() > threshold && color.getGreen() > threshold && color.getBlue() > threshold;
+    return r > threshold && g > threshold && b > threshold;
   }
 
-  private static class Pix implements Comparable<Pix> {
-    private final int x;
-    private final int y;
-
-    private Pix(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
-
-    public int getX() {
-      return x;
-    }
-
-    public int getY() {
-      return y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (!(o instanceof Pix)) return false;
-
-      Pix pix = (Pix) o;
-
-      if (x != pix.x) return false;
-      if (y != pix.y) return false;
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = x;
-      result = 31 * result + y;
-      return result;
-    }
-
-    public int compareTo(Pix pix) {
-      int diff = getX() - pix.getX();
-      if (diff != 0) {
-        return diff;
-      }
-
-      return getY() - pix.getY();
-    }
-
-    public Pix up() {
-      return new Pix(getX(), getY() - 1);
-    }
-
-    public Pix down() {
-      return new Pix(getX(), getY() + 1);
-    }
-
-    public Pix left() {
-      return new Pix(getX() - 1, getY());
-    }
-
-    public Pix right() {
-      return new Pix(getX() + 1, getY());
-    }
-  }
 }
