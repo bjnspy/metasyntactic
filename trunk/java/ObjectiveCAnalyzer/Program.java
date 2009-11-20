@@ -258,7 +258,9 @@ public class Program {
       final File locFile = new File(locDirectory, new Locale(getLanguage(path)).getDisplayName(
           Locale.ENGLISH) + ".txt");
 
-      if (!missingStrings.isEmpty()) {
+      if (set1.isEmpty()) {
+        System.out.println("No identifiers in: " + path);
+      } else if (!missingStrings.isEmpty()) {
         System.out.println("Identifiers missing in: " + path);
 
         for (final String s : missingStrings) {
