@@ -184,22 +184,27 @@ static CacheUpdater* cacheUpdater = nil;
 }
 
 
+- (void) updateImagesBackgroundEntryPointWorker {
+  Movie* movie = nil;
+  [gate lock];
+  {
+    while (imageOperations.count == 0) {
+      [gate wait];
+    }
+    movie = [[[imageOperations lastObject] retain] autorelease];
+    [imageOperations removeLastObject];
+  }
+  [gate unlock];
+  
+  [self.model.posterCache processMovie:movie force:NO];
+}
+
+
 - (void) updateImagesBackgroundEntryPoint {
   while (YES) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      Movie* movie = nil;
-      [gate lock];
-      {
-        while (imageOperations.count == 0) {
-          [gate wait];
-        }
-        movie = [[[imageOperations lastObject] retain] autorelease];
-        [imageOperations removeLastObject];
-      }
-      [gate unlock];
-
-      [self.model.posterCache processMovie:movie force:NO];
+      [self updateImagesBackgroundEntryPointWorker];
     }
     [pool release];
   }
