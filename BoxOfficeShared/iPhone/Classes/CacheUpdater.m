@@ -195,7 +195,7 @@ static CacheUpdater* cacheUpdater = nil;
     [imageOperations removeLastObject];
   }
   [gate unlock];
-  
+
   [self.model.posterCache processMovie:movie force:NO];
 }
 

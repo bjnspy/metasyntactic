@@ -14,9 +14,9 @@
 
 #import "OperationQueue.h"
 
-#import "Operation3.h"
 #import "NSArray+Utilities.h"
 #import "NSMutableArray+Utilities.h"
+#import "Operation3.h"
 
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;

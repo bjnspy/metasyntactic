@@ -15,9 +15,9 @@
 #import "MetasyntacticSharedApplication.h"
 
 #import "ColorCache.h"
+#import "NSArray+Utilities.h"
 #import "StyleSheet.h"
 #import "ViewControllerUtilities.h"
-#import "NSArray+Utilities.h"
 
 @implementation ViewControllerUtilities
 
