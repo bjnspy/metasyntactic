@@ -16,12 +16,12 @@
 
 #import "AbstractNavigationController.h"
 #import "MetasyntacticSharedApplication.h"
+#import "NSArray+Utilities.h"
 #import "OperationQueue.h"
 #import "StyleSheet.h"
+#import "UIScrollView+Utilities.h"
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
-#import "NSArray+Utilities.h"
-#import "UIScrollView+Utilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;

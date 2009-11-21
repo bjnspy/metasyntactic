@@ -97,7 +97,7 @@ static ImageDownloader* downloader;
   if ([[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
     return;
   }
-  
+
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
   if (data != nil) {
     [data writeToFile:localPath atomically:YES];
@@ -153,7 +153,7 @@ static ImageDownloader* downloader;
       [priorityImagesToDownload addObject:address];
     } else {
       [imagesToDownload addObject:address];
-    } 
+    }
     [downloadImagesCondition broadcast];
   }
   [downloadImagesCondition unlock];

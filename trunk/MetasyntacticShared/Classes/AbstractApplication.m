@@ -18,9 +18,9 @@
 
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
+#import "NSArray+Utilities.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
-#import "NSArray+Utilities.h"
 
 @implementation AbstractApplication
 

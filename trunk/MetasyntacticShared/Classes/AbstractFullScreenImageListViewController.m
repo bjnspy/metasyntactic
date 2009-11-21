@@ -17,9 +17,9 @@
 #import "AbstractNavigationController.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
+#import "NSArray+Utilities.h"
 #import "TappableScrollView.h"
 #import "ThreadingUtilities.h"
-#import "NSArray+Utilities.h"
 #import "UIScrollView+Utilities.h"
 
 @interface AbstractFullScreenImageListViewController()
