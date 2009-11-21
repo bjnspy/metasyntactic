@@ -61,8 +61,12 @@ static Pulser* majorRefreshPulser = nil;
 }
 
 
-+ (void) minorRefresh {
-  [minorRefreshPulser tryPulse];
++ (void) minorRefresh:(BOOL) force {
+  if (force) {
+    [minorRefreshPulser forcePulse];
+  } else {
+    [minorRefreshPulser tryPulse];
+  }
 }
 
 
@@ -77,6 +81,11 @@ static Pulser* majorRefreshPulser = nil;
 
 + (void) majorRefresh {
   [self majorRefresh:NO];
+}
+
+
++ (void) minorRefresh {
+  [self minorRefresh:NO];
 }
 
 @end

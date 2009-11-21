@@ -284,6 +284,10 @@
 		1000000000000000000020F7 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020F5 /* xmltok.c */; };
 		1000000000000000000020FD /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000020FB /* xmltok_impl.c */; };
 		100000000000000000002103 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002101 /* xmltok_ns.c */; };
+		74464B5C10B765EB00B33A60 /* UIScrollView+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74464B5A10B765EB00B33A60 /* UIScrollView+Utilities.h */; };
+		74464B5D10B765EB00B33A60 /* UIScrollView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74464B5B10B765EB00B33A60 /* UIScrollView+Utilities.m */; };
+		74A58F5B10B76B78006E7BCC /* AbstractTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A58F5910B76B78006E7BCC /* AbstractTableViewCell.h */; };
+		74A58F5C10B76B78006E7BCC /* AbstractTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A58F5A10B76B78006E7BCC /* AbstractTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -581,6 +585,10 @@
 		1000000000000000000020FB /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000020FF /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000002101 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74464B5A10B765EB00B33A60 /* UIScrollView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Utilities.h"; sourceTree = "<group>"; };
+		74464B5B10B765EB00B33A60 /* UIScrollView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Utilities.m"; sourceTree = "<group>"; };
+		74A58F5910B76B78006E7BCC /* AbstractTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewCell.h; sourceTree = "<group>"; };
+		74A58F5A10B76B78006E7BCC /* AbstractTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -904,6 +912,7 @@
 				100000000000000000001C7C /* Pulser.h */,
 				100000000000000000001D10 /* StringUtilities.h */,
 				100000000000000000001BFD /* UIColor+Utilities.h */,
+				74464B5A10B765EB00B33A60 /* UIScrollView+Utilities.h */,
 				1000000000000000000013B7 /* AlertUtilities.m */,
 				100000000000000000001BE7 /* Base64.m */,
 				1000000000000000000013D6 /* CollectionUtilities.m */,
@@ -924,6 +933,7 @@
 				100000000000000000001C80 /* Pulser.m */,
 				100000000000000000001D13 /* StringUtilities.m */,
 				100000000000000000001BFF /* UIColor+Utilities.m */,
+				74464B5B10B765EB00B33A60 /* UIScrollView+Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1103,6 +1113,7 @@
 				100000000000000000000539 /* AbstractCollapsedDetailsCell.h */,
 				10000000000000000000069B /* AbstractDetailsCell.h */,
 				1000000000000000000009C3 /* AbstractExpandedDetailsCell.h */,
+				74A58F5910B76B78006E7BCC /* AbstractTableViewCell.h */,
 				1000000000000000000013B9 /* AttributeCell.h */,
 				1000000000000000000013BD /* AutoResizingCell.h */,
 				100000000000000000001CAF /* SettingCell.h */,
@@ -1111,6 +1122,7 @@
 				10000000000000000000053B /* AbstractCollapsedDetailsCell.m */,
 				1000000000000000000008DB /* AbstractDetailsCell.m */,
 				100000000000000000000A66 /* AbstractExpandedDetailsCell.m */,
+				74A58F5A10B76B78006E7BCC /* AbstractTableViewCell.m */,
 				1000000000000000000013BB /* AttributeCell.m */,
 				10000000000000000000143B /* AutoResizingCell.m */,
 				100000000000000000001CB1 /* SettingCell.m */,
@@ -1271,6 +1283,8 @@
 				100000000000000000000CCE /* Iterator.h in Headers */,
 				100000000000000000001C96 /* ViewControllerState.h in Headers */,
 				100000000000000000000C82 /* ImageDownloader.h in Headers */,
+				74464B5C10B765EB00B33A60 /* UIScrollView+Utilities.h in Headers */,
+				74A58F5B10B76B78006E7BCC /* AbstractTableViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,6 +1455,8 @@
 				100000000000000000000CD2 /* Iterator.m in Sources */,
 				100000000000000000001C98 /* ViewControllerState.m in Sources */,
 				100000000000000000000C84 /* ImageDownloader.m in Sources */,
+				74464B5D10B765EB00B33A60 /* UIScrollView+Utilities.m in Sources */,
+				74A58F5C10B76B78006E7BCC /* AbstractTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

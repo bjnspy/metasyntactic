@@ -21,6 +21,7 @@
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
 #import "NSArray+Utilities.h"
+#import "UIScrollView+Utilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -216,7 +217,7 @@
     return;
   }
 
-  if (self.tableView.dragging || self.tableView.decelerating || self.tableView.tracking) {
+  if (self.tableView.isMoving) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
     [self performSelector:selector withObject:nil afterDelay:1];
     return;
