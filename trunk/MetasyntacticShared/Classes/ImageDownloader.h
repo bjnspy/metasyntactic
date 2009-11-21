@@ -23,6 +23,7 @@
 
 - (NSString*) imagePath:(NSString*) address;
 - (UIImage*) imageForAddress:(NSString*) address;
+- (UIImage*) imageForAddress:(NSString*) address loadFromDisk:(BOOL) loadFromDisk;
 
 - (void) addAddressesToDownload:(NSArray*) addresses;
 - (void) addAddressToDownload:(NSString*) address;

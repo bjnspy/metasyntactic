@@ -20,6 +20,7 @@
 #import "TappableScrollView.h"
 #import "ThreadingUtilities.h"
 #import "NSArray+Utilities.h"
+#import "UIScrollView+Utilities.h"
 
 @interface AbstractFullScreenImageListViewController()
 @property (retain) NSMutableDictionary* pageNumberToView;
@@ -237,7 +238,7 @@ const NSInteger PAGE_RANGE = 2;
     return;
   }
 
-  if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
+  if (scrollView.isMoving) {
     // should this be 'afterDelay:0'?  That way we do it on the next run
     // loop cycle (which should happen after dragging/decelerating is done).
     // 1/30/09. Right now, i'm going with 'no'.  I'm not totally certain if this
@@ -305,7 +306,7 @@ const NSInteger PAGE_RANGE = 2;
     return;
   }
 
-  if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
+  if (scrollView.isMoving) {
     [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
     return;
   }

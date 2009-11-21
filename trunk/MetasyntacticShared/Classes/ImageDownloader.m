@@ -77,8 +77,13 @@ static ImageDownloader* downloader;
 }
 
 
+- (UIImage*) imageForAddress:(NSString*) address loadFromDisk:(BOOL) loadFromDisk {
+  return [[ImageCache cache] imageForPath:[self imagePath:address] loadFromDisk:loadFromDisk];
+}
+
+
 - (UIImage*) imageForAddress:(NSString*) address {
-  return [[ImageCache cache] imageForPath:[self imagePath:address]];
+  return [self imageForAddress:address loadFromDisk:YES];
 }
 
 
