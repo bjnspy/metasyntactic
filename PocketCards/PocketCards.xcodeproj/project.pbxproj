@@ -7,97 +7,97 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1000000000000000000013F6 /* PocketCardsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013F5 /* PocketCardsAppDelegate.m */; };
-		100000000000000000001F2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F26 /* main.m */; };
-		100000000000000000000ACD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ABE /* Foundation.framework */; };
-		100000000000000000001C1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C14 /* UIKit.framework */; };
-		100000000000000000000812 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000807 /* CoreGraphics.framework */; };
-		100000000000000000000E55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E4E /* MainWindow.xib */; };
-		100000000000000000000C70 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C60 /* Icon.png */; };
+		100000000000000000001414 /* PocketCardsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001413 /* PocketCardsAppDelegate.m */; };
+		100000000000000000001F5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F51 /* main.m */; };
+		100000000000000000000AD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ACC /* Foundation.framework */; };
+		100000000000000000001C35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C2D /* UIKit.framework */; };
+		100000000000000000000822 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000816 /* CoreGraphics.framework */; };
+		100000000000000000000E5D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E55 /* MainWindow.xib */; };
+		100000000000000000000C7A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C68 /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		100000000000000000000ABE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1000000000000000000013F4 /* PocketCardsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCardsAppDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000013F5 /* PocketCardsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketCardsAppDelegate.m; sourceTree = "<group>"; };
-		1000000000000000000019C2 /* PocketCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000001C14 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		100000000000000000000807 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		100000000000000000000E4E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		100000000000000000001F26 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		10000000000000000000149F /* PocketCards_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCards_Prefix.pch; sourceTree = "<group>"; };
-		100000000000000000000C60 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		10000000000000000000149A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000000000ACC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		100000000000000000001412 /* PocketCardsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCardsAppDelegate.h; sourceTree = "<group>"; };
+		100000000000000000001413 /* PocketCardsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketCardsAppDelegate.m; sourceTree = "<group>"; };
+		1000000000000000000019DB /* PocketCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000001C2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		100000000000000000000816 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		100000000000000000000E55 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		100000000000000000001F51 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1000000000000000000014BB /* PocketCards_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCards_Prefix.pch; sourceTree = "<group>"; };
+		100000000000000000000C68 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		1000000000000000000014B6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		100000000000000000000AEF /* Frameworks */ = {
+		100000000000000000000AFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000000ACD /* Foundation.framework in Frameworks */,
-				100000000000000000001C1A /* UIKit.framework in Frameworks */,
-				100000000000000000000812 /* CoreGraphics.framework in Frameworks */,
+				100000000000000000000AD5 /* Foundation.framework in Frameworks */,
+				100000000000000000001C35 /* UIKit.framework in Frameworks */,
+				100000000000000000000822 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10000000000000000000069F /* Classes */ = {
+		1000000000000000000006A8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000013F4 /* PocketCardsAppDelegate.h */,
-				1000000000000000000013F5 /* PocketCardsAppDelegate.m */,
+				100000000000000000001412 /* PocketCardsAppDelegate.h */,
+				100000000000000000001413 /* PocketCardsAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		100000000000000000001479 /* Products */ = {
+		1000000000000000000014A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000019C2 /* PocketCards.app */,
+				1000000000000000000019DB /* PocketCards.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000000000000885 /* CustomTemplate */ = {
+		100000000000000000000895 /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000069F /* Classes */,
-				1000000000000000000010A4 /* Other Sources */,
-				100000000000000000001601 /* Resources */,
-				100000000000000000000B9B /* Frameworks */,
-				100000000000000000001479 /* Products */,
+				1000000000000000000006A8 /* Classes */,
+				1000000000000000000010B1 /* Other Sources */,
+				10000000000000000000161D /* Resources */,
+				100000000000000000000BA4 /* Frameworks */,
+				1000000000000000000014A4 /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		1000000000000000000010A4 /* Other Sources */ = {
+		1000000000000000000010B1 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000149F /* PocketCards_Prefix.pch */,
-				100000000000000000001F26 /* main.m */,
+				1000000000000000000014BB /* PocketCards_Prefix.pch */,
+				100000000000000000001F51 /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		100000000000000000001601 /* Resources */ = {
+		10000000000000000000161D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000C60 /* Icon.png */,
-				100000000000000000000E4E /* MainWindow.xib */,
-				10000000000000000000149A /* Info.plist */,
+				100000000000000000000C68 /* Icon.png */,
+				100000000000000000000E55 /* MainWindow.xib */,
+				1000000000000000000014B6 /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		100000000000000000000B9B /* Frameworks */ = {
+		100000000000000000000BA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001C14 /* UIKit.framework */,
-				100000000000000000000ABE /* Foundation.framework */,
-				100000000000000000000807 /* CoreGraphics.framework */,
+				100000000000000000001C2D /* UIKit.framework */,
+				100000000000000000000ACC /* Foundation.framework */,
+				100000000000000000000816 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,13 +105,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1000000000000000000019C1 /* PocketCards */ = {
+		1000000000000000000019DA /* PocketCards */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000000000618 /* Build configuration list for PBXNativeTarget "PocketCards" */;
+			buildConfigurationList = 100000000000000000000625 /* Build configuration list for PBXNativeTarget "PocketCards" */;
 			buildPhases = (
-				1000000000000000000015FC /* Resources */,
-				10000000000000000000175D /* Sources */,
-				100000000000000000000AEF /* Frameworks */,
+				100000000000000000001618 /* Resources */,
+				100000000000000000001776 /* Sources */,
+				100000000000000000000AFB /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,52 +119,52 @@
 			);
 			name = PocketCards;
 			productName = PocketCards;
-			productReference = 1000000000000000000019C2 /* PocketCards.app */;
+			productReference = 1000000000000000000019DB /* PocketCards.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		100000000000000000001497 /* Project object */ = {
+		1000000000000000000014B3 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 100000000000000000000668 /* Build configuration list for PBXProject "PocketCards" */;
+			buildConfigurationList = 100000000000000000000675 /* Build configuration list for PBXProject "PocketCards" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 100000000000000000000885 /* CustomTemplate */;
+			mainGroup = 100000000000000000000895 /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1000000000000000000019C1 /* PocketCards */,
+				1000000000000000000019DA /* PocketCards */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1000000000000000000015FC /* Resources */ = {
+		100000000000000000001618 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000000E55 /* MainWindow.xib in Resources */,
-				100000000000000000000C70 /* Icon.png in Resources */,
+				100000000000000000000E5D /* MainWindow.xib in Resources */,
+				100000000000000000000C7A /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		10000000000000000000175D /* Sources */ = {
+		100000000000000000001776 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F2E /* main.m in Sources */,
-				1000000000000000000013F6 /* PocketCardsAppDelegate.m in Sources */,
+				100000000000000000001F5C /* main.m in Sources */,
+				100000000000000000001414 /* PocketCardsAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1000000000000000000008C4 /* Debug */ = {
+		1000000000000000000008E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -178,7 +178,7 @@
 			};
 			name = Debug;
 		};
-		100000000000000000001521 /* Release */ = {
+		100000000000000000001540 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +190,7 @@
 			};
 			name = Release;
 		};
-		1000000000000000000009E2 /* Distribution */ = {
+		1000000000000000000009F1 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -204,7 +204,7 @@
 			};
 			name = Distribution;
 		};
-		1000000000000000000009E3 /* Distribution */ = {
+		1000000000000000000009F2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -216,7 +216,7 @@
 			};
 			name = Distribution;
 		};
-		1000000000000000000009A3 /* Debug */ = {
+		1000000000000000000008F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -230,7 +230,7 @@
 			};
 			name = Debug;
 		};
-		1000000000000000000015E3 /* Release */ = {
+		100000000000000000001600 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -246,27 +246,27 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000000000618 /* Build configuration list for PBXNativeTarget "PocketCards" */ = {
+		100000000000000000000625 /* Build configuration list for PBXNativeTarget "PocketCards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1000000000000000000008C4 /* Debug */,
-				100000000000000000001521 /* Release */,
-				1000000000000000000009E3 /* Distribution */,
+				1000000000000000000008E0 /* Debug */,
+				100000000000000000001540 /* Release */,
+				1000000000000000000009F2 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		100000000000000000000668 /* Build configuration list for PBXProject "PocketCards" */ = {
+		100000000000000000000675 /* Build configuration list for PBXProject "PocketCards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1000000000000000000009A3 /* Debug */,
-				1000000000000000000015E3 /* Release */,
-				1000000000000000000009E2 /* Distribution */,
+				1000000000000000000008F8 /* Debug */,
+				100000000000000000001600 /* Release */,
+				1000000000000000000009F1 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 100000000000000000001497 /* Project object */;
+	rootObject = 1000000000000000000014B3 /* Project object */;
 }
