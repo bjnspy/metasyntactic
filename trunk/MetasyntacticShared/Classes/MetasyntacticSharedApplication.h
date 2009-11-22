@@ -32,4 +32,6 @@
 + (BOOL) notificationsEnabled;
 + (BOOL) screenRotationEnabled;
 
++ (NSString*) cacheDirectory;
+
 @end

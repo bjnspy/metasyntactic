@@ -61,6 +61,15 @@ static Pulser* majorRefreshPulser = nil;
 }
 
 
++ (NSString*) cacheDirectory {
+  if ([delegate respondsToSelector:@selector(cacheDirectory)]) {
+    return [delegate cacheDirectory];
+  }
+  
+  return @"";
+}
+
+
 + (void) minorRefresh:(BOOL) force {
   if (force) {
     [minorRefreshPulser forcePulse];

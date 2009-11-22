@@ -18,6 +18,7 @@
 
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
+#import "MetasyntacticShared.h"
 #import "NSArray+Utilities.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
@@ -96,9 +97,14 @@ static NSString* imagesDirectory = nil;
   tempDirectory = [NSTemporaryDirectory() retain];
 
   {
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-    NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    [self addDirectory:cacheDirectory = [paths.firstObject stringByAppendingPathComponent:executableName]];
+    NSString* delegateDirectory = [MetasyntacticSharedApplication cacheDirectory];
+    if (delegateDirectory.length > 0) {
+      [self addDirectory:cacheDirectory = delegateDirectory];
+    } else {
+      NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
+      NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+      [self addDirectory:cacheDirectory = [paths.firstObject stringByAppendingPathComponent:executableName]];
+    }
   }
 
   {
