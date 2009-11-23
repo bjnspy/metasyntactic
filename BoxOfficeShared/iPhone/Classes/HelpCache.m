@@ -100,6 +100,17 @@
 
 
 - (NSString*) convertToJavaString:(NSString*) value {
+  NSInteger length;
+  NSInteger i = 0;
+  do {
+    i++;
+    length = value.length;
+    NSMutableString* from = [NSMutableString string];
+    [from appendString:@"%"];
+    [from appendFormat:@"%d$@", i];
+    value = [value stringByReplacingOccurrencesOfString:from withString:@"%@"];
+  } while (length != value.length);
+  
   NSMutableString* result = [NSMutableString string];
   for (NSInteger i = 0; i < value.length; i++) {
     unichar c = [value characterAtIndex:i];
@@ -142,7 +153,7 @@
 
 - (void) generateOnlineHelpFiles:(NSArray*) questions
                          answers:(NSArray*) answers {
-  //return;
+  return;
   NSMutableString* result = [NSMutableString string];
 
   [result appendString:@"@SuppressWarnings(\"serial\")\n"];
@@ -153,7 +164,7 @@
     NSDictionary* dictionary = [FileUtilities readObject:path];
 
     [result appendFormat:@"  private static final String[] org_metasyntactic_BoxOffice_%@_questions = new String[] {\n", language];
-    [self generateLocLine: result dictionary: dictionary values:questions];
+    [self generateLocLine:result dictionary:dictionary values:questions];
     [result appendFormat:@"  };\n"];
 
     [result appendFormat:@"  private static final String[] org_metasyntactic_BoxOffice_%@_answers = new String[] {\n", language];
