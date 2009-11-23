@@ -110,7 +110,7 @@
     [from appendFormat:@"%d$@", i];
     value = [value stringByReplacingOccurrencesOfString:from withString:@"%@"];
   } while (length != value.length);
-  
+
   NSMutableString* result = [NSMutableString string];
   for (NSInteger i = 0; i < value.length; i++) {
     unichar c = [value characterAtIndex:i];
