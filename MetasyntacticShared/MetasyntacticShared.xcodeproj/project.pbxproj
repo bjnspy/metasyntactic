@@ -288,6 +288,8 @@
 		100000000000000000002124 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002122 /* xmltok.c */; };
 		10000000000000000000212A /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002128 /* xmltok_impl.c */; };
 		100000000000000000002130 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000212E /* xmltok_ns.c */; };
+		74A411D210BB8FB300F9567A /* UIViewController+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A411D010BB8FB300F9567A /* UIViewController+Utilities.h */; };
+		74A411D310BB8FB300F9567A /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A411D110BB8FB300F9567A /* UIViewController+Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -589,6 +591,8 @@
 		100000000000000000002128 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		10000000000000000000212C /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		10000000000000000000212E /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74A411D010BB8FB300F9567A /* UIViewController+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utilities.h"; sourceTree = "<group>"; };
+		74A411D110BB8FB300F9567A /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -913,6 +917,7 @@
 				100000000000000000001D2F /* StringUtilities.h */,
 				100000000000000000001C16 /* UIColor+Utilities.h */,
 				100000000000000000001C40 /* UIScrollView+Utilities.h */,
+				74A411D010BB8FB300F9567A /* UIViewController+Utilities.h */,
 				1000000000000000000013D5 /* AlertUtilities.m */,
 				100000000000000000001C00 /* Base64.m */,
 				1000000000000000000013F4 /* CollectionUtilities.m */,
@@ -934,6 +939,7 @@
 				100000000000000000001D32 /* StringUtilities.m */,
 				100000000000000000001C18 /* UIColor+Utilities.m */,
 				100000000000000000001C42 /* UIScrollView+Utilities.m */,
+				74A411D110BB8FB300F9567A /* UIViewController+Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1285,6 +1291,7 @@
 				100000000000000000000C8C /* ImageDownloader.h in Headers */,
 				100000000000000000001C41 /* UIScrollView+Utilities.h in Headers */,
 				10000000000000000000042D /* AbstractTableViewCell.h in Headers */,
+				74A411D210BB8FB300F9567A /* UIViewController+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,6 +1464,7 @@
 				100000000000000000000C8E /* ImageDownloader.m in Sources */,
 				100000000000000000001C43 /* UIScrollView+Utilities.m in Sources */,
 				10000000000000000000042F /* AbstractTableViewCell.m in Sources */,
+				74A411D310BB8FB300F9567A /* UIViewController+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

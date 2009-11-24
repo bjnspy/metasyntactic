@@ -21,6 +21,7 @@
 #import "TappableScrollView.h"
 #import "ThreadingUtilities.h"
 #import "UIScrollView+Utilities.h"
+#import "UIViewController+Utilities.h"
 
 @interface AbstractFullScreenImageListViewController()
 @property (retain) NSMutableDictionary* pageNumberToView;
@@ -507,7 +508,7 @@ const NSInteger PAGE_RANGE = 2;
                         otherButtonTitles:LocalizedString(@"Save to Photo Library", nil), nil] autorelease];
   }
 
-  [actionSheet showFromToolbar:self.navigationController.toolbar];
+  [self showActionSheet:actionSheet];
 }
 
 
