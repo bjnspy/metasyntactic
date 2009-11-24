@@ -10,7 +10,7 @@
 		100000000000000000000FA3 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FA2 /* NSString+Utilities.h */; };
 		100000000000000000000FA5 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FA4 /* NSString+Utilities.m */; };
 		100000000000000000001AC3 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001AC2 /* TestRunner.m */; };
-		100000000000000000001F25 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F24 /* libRopes.a */; };
+		100000000000000000001F29 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F28 /* libRopes.a */; };
 		1000000000000000000007C1 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000007C0 /* Concatenation.h */; };
 		1000000000000000000007C3 /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000007C2 /* Concatenation.m */; };
 		100000000000000000000A91 /* Fibonacci.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A90 /* Fibonacci.h */; };
@@ -29,7 +29,7 @@
 		100000000000000000000CD6 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD4 /* Iterator.h */; };
 		100000000000000000000CDA /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD8 /* Iterator.m */; };
 		100000000000000000000E46 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E3F /* Macros.h */; };
-		100000000000000000001F26 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F24 /* libRopes.a */; };
+		100000000000000000001F2A /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F28 /* libRopes.a */; };
 		100000000000000000001660 /* RopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000165F /* RopeTests.m */; };
 		10000000000000000000165E /* RopeTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000165D /* RopeTests.h */; };
 		100000000000000000001469 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001464 /* Prefix.pch */; };
@@ -37,14 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		100000000000000000001102 /* PBXContainerItemProxy */ = {
+		100000000000000000001103 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000014B4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Ropes;
 		};
-		100000000000000000001103 /* PBXContainerItemProxy */ = {
+		100000000000000000001104 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000014B4 /* Project object */;
 			proxyType = 1;
@@ -82,7 +82,7 @@
 		10000000000000000000165F /* RopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeTests.m; sourceTree = "<group>"; };
 		100000000000000000001464 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		100000000000000000000ACA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		100000000000000000001F24 /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000001F28 /* libRopes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRopes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F25 /* libRopes.a in Frameworks */,
+				100000000000000000001F29 /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F26 /* libRopes.a in Frameworks */,
+				100000000000000000001F2A /* libRopes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,14 +116,14 @@
 		1000000000000000000014A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F24 /* libRopes.a */,
+				100000000000000000001F28 /* libRopes.a */,
 				100000000000000000001665 /* RopesTests.octest */,
 				1000000000000000000007B8 /* CommandLineRunner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000000000001D35 /* Ropes */ = {
+		100000000000000000001D39 /* Ropes */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000006AC /* Classes */,
@@ -265,7 +265,7 @@
 			);
 			name = Ropes;
 			productName = Ropes;
-			productReference = 100000000000000000001F24 /* libRopes.a */;
+			productReference = 100000000000000000001F28 /* libRopes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 			buildConfigurationList = 10000000000000000000066F /* Build configuration list for PBXProject "Ropes" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 100000000000000000001D35 /* Ropes */;
+			mainGroup = 100000000000000000001D39 /* Ropes */;
 			productRefGroup = 1000000000000000000014A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -353,12 +353,12 @@
 		10000000000000000000126C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 100000000000000000001662 /* Ropes */;
-			targetProxy = 100000000000000000001102 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000001103 /* PBXContainerItemProxy */;
 		};
 		10000000000000000000126D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 100000000000000000001662 /* Ropes */;
-			targetProxy = 100000000000000000001103 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000001104 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
