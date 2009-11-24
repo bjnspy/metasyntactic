@@ -17,6 +17,7 @@
 @interface AddMovieArguments()
 @property (retain) Queue* queue;
 @property (retain) Movie* movie;
+@property (copy) NSString* format;
 @property NSInteger position;
 @property (retain) id<NetflixAddMovieDelegate> delegate;
 @end
@@ -26,12 +27,14 @@
 
 @synthesize queue;
 @synthesize movie;
+@synthesize format;
 @synthesize position;
 @synthesize delegate;
 
 - (void) dealloc {
   self.queue = nil;
   self.movie = nil;
+  self.format = nil;
   self.position = 0;
   self.delegate = nil;
   [super dealloc];
@@ -40,12 +43,14 @@
 
 - (id) initWithQueue:(Queue*) queue_
                movie:(Movie*) movie_
+              format:(NSString*) format_
             position:(NSInteger) position_
             delegate:(id<NetflixAddMovieDelegate>) delegate_
              account:(NetflixAccount*) account_ {
   if ((self = [super initWithAccount:account_])) {
     self.queue = queue_;
     self.movie = movie_;
+    self.format = format_;
     self.position = position_;
     self.delegate = delegate_;
   }
@@ -55,10 +60,11 @@
 
 + (AddMovieArguments*) argumentsWithQueue:(Queue*) queue
                                      movie:(Movie*) movie
+                                   format:(NSString*) format
                                   position:(NSInteger) position
                                   delegate:(id<NetflixAddMovieDelegate>) delegate
                                    account:(NetflixAccount*) account {
-  return [[[AddMovieArguments alloc] initWithQueue:queue movie:movie position:position delegate:delegate account:account] autorelease];
+  return [[[AddMovieArguments alloc] initWithQueue:queue movie:movie format:format position:position delegate:delegate account:account] autorelease];
 }
 
 @end

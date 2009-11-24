@@ -18,19 +18,22 @@
 @private
   Queue* queue;
   Movie* movie;
+  NSString* format;
   NSInteger position;
   id<NetflixAddMovieDelegate> delegate;
 }
 
 @property (readonly, retain) Queue* queue;
 @property (readonly, retain) Movie* movie;
+@property (readonly, copy) NSString* format;
 @property (readonly) NSInteger position;
 @property (readonly, retain) id<NetflixAddMovieDelegate> delegate;
 
 + (AddMovieArguments*) argumentsWithQueue:(Queue*) queue
-                                     movie:(Movie*) movie
-                                  position:(NSInteger) position
-                                  delegate:(id<NetflixAddMovieDelegate>) delegate
-                                   account:(NetflixAccount*) account;
+                                    movie:(Movie*) movie
+                                   format:(NSString*) format
+                                 position:(NSInteger) position
+                                 delegate:(id<NetflixAddMovieDelegate>) delegate
+                                  account:(NetflixAccount*) account;
 
 @end

@@ -104,7 +104,7 @@ property_definition(saved);
 
 
 - (BOOL) isDVDQueue {
-  return [[NetflixCache dvdQueueKey] isEqual:feed.key];
+  return [[NetflixCache discQueueKey] isEqual:feed.key];
 }
 
 

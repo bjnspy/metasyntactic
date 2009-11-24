@@ -24,6 +24,10 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
++ (NSString*) blurayFormat;
++ (NSString*) instantFormat;
++ (NSString*) dvdFormat;
+
 + (NSString*) noInformationFound;
 + (NSArray*) mostPopularTitles;
 
@@ -56,9 +60,10 @@
 - (NSString*) synopsisForMovie:(Movie*) movie;
 
 - (BOOL) isInstantWatch:(Movie*) movie;
-- (BOOL) isInstantWatchOnly:(Movie*) movie;
 - (BOOL) isDvd:(Movie*) movie;
 - (BOOL) isBluray:(Movie*) movie;
+
+- (BOOL) user:(NetflixUser*) user canRentMovie:(Movie*) movie;
 
 // Searching
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;

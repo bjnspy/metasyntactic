@@ -50,17 +50,28 @@
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) UIButton* bookmarkButton;
+@property (retain) NSDictionary* buttonIndexToActionMap;
 @end
 
 
 @implementation MovieDetailsViewController
 
-const NSInteger ADD_TO_NETFLIX_DISC_QUEUE_TAG = 1;
-const NSInteger ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG = 2;
-const NSInteger ADD_TO_NETFLIX_INSTANT_QUEUE_TAG = 3;
+//const NSInteger ADD_TO_NETFLIX_DISC_QUEUE_TAG = 1;
+//const NSInteger ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG = 2;
+//const NSInteger ADD_TO_NETFLIX_INSTANT_QUEUE_TAG = 3;
+const NSInteger ADD_TO_NETFLIX_TAG = 1;
 const NSInteger VISIT_WEBSITES_TAG = 4;
 
 const NSInteger POSTER_TAG = -1;
+
+typedef enum {
+  InstantQueue,
+  TopOfInstantQueue,
+  DVDQueue,
+  TopOfDVDQueue,
+  BlurayQueue,
+  TopOfBlurayQueue
+} AddToQueueAction;
 
 @synthesize movie;
 @synthesize dvd;
@@ -78,6 +89,7 @@ const NSInteger POSTER_TAG = -1;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
+@synthesize buttonIndexToActionMap;
 
 - (void) dealloc {
   self.movie = nil;
@@ -96,6 +108,7 @@ const NSInteger POSTER_TAG = -1;
   self.posterImage = nil;
   self.posterImageView = nil;
   self.bookmarkButton = nil;
+  self.buttonIndexToActionMap = nil;
 
   [super dealloc];
 }
@@ -181,7 +194,7 @@ const NSInteger POSTER_TAG = -1;
 
   NetflixUser* user = [self.model.netflixCache userForAccount:netflixAccount];
   if (netflixMovie != nil && netflixStatusCells.count == 0) {
-    if (user.canInstantWatch || ![self.model.netflixCache isInstantWatchOnly:netflixMovie]) {
+    if ([self.model.netflixCache user:user canRentMovie:movie]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
       [titles addObject:LocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
       [arguments addObject:[NSNull null]];
@@ -1034,6 +1047,17 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) addAction:(AddToQueueAction) action
+          withTitle:(NSString*) title
+      toActionSheet:(UIActionSheet*) actionSheet
+          actionMap:(NSMutableDictionary*) actionMap {
+  NSInteger index = [actionSheet addButtonWithTitle:title];
+  [actionMap setObject:[NSNumber numberWithInteger:action]
+                forKey:[NSNumber numberWithInteger:index]];
+  
+}
+
+
 - (void) addToQueue {
   if (readonlyMode) {
     return;
@@ -1045,30 +1069,24 @@ const NSInteger POSTER_TAG = -1;
                       cancelButtonTitle:nil
                  destructiveButtonTitle:nil
                       otherButtonTitles:nil] autorelease];
+  actionSheet.tag = ADD_TO_NETFLIX_TAG;
 
   NetflixUser* user = [self.model.netflixCache userForAccount:netflixAccount];
 
-  if ([self.model.netflixCache isInstantWatchOnly:movie]) {
-    actionSheet.tag = ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
-  } else if ([self.model.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
-    actionSheet.tag = ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG;
-  } else {
-    actionSheet.tag = ADD_TO_NETFLIX_DISC_QUEUE_TAG;
+  NSMutableDictionary* actionMap = [NSMutableDictionary dictionary];
+  if ([self.model.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
+    [self addAction:InstantQueue      withTitle:LocalizedString(@"Instant Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
+    [self addAction:TopOfInstantQueue withTitle:LocalizedString(@"Top of Instant Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-
-  // we always offer the Disc queue unless the movie is instant-only.
-  // (rare, but it does happen).
-  if (actionSheet.tag == ADD_TO_NETFLIX_DISC_QUEUE_TAG ||
-      actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG) {
-    [actionSheet addButtonWithTitle:LocalizedString(@"Disc Queue", nil)];
-    [actionSheet addButtonWithTitle:LocalizedString(@"Top of Disc Queue", nil)];
+  if ([self.model.netflixCache isDvd:movie]) {
+    [self addAction:DVDQueue      withTitle:LocalizedString(@"DVD Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
+    [self addAction:TopOfDVDQueue withTitle:LocalizedString(@"Top of DVD Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-
-  if (actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG ||
-      actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG) {
-    [actionSheet addButtonWithTitle:LocalizedString(@"Instant Queue", nil)];
-    [actionSheet addButtonWithTitle:LocalizedString(@"Top of Instant Queue", nil)];
+  if ([self.model.netflixCache isBluray:movie] && user.canBlurayWatch) {
+    [self addAction:BlurayQueue      withTitle:LocalizedString(@"Blu-ray Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
+    [self addAction:TopOfBlurayQueue withTitle:LocalizedString(@"Top of Blu-ray Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
+  self.buttonIndexToActionMap = actionMap;
 
   actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
 
@@ -1076,41 +1094,54 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) didDismissAddToNetflixQueue:(Queue*) queue
-                     withButtonIndex:(NSInteger) buttonIndex {
+- (void) didDismissAddToNetflixActionSheet:(Queue*) queue
+                                    format:(NSString*) format
+                                       top:(BOOL) top {
   [self enterReadonlyMode];
-  if (buttonIndex % 2 == 0) {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self account:netflixAccount];
+  if (top) {
+    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
   } else {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self account:netflixAccount];
+    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format delegate:self account:netflixAccount];
   }
 }
 
 
-- (void) didDismissAddToNetflixDiscQueueActionSheet:(UIActionSheet*) actionSheet
-                                    withButtonIndex:(NSInteger) buttonIndex {
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey] account:netflixAccount];
-  [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
-}
-
-
-- (void) didDismissAddToNetflixInstantQueueActionSheet:(UIActionSheet*) actionSheet
-                                       withButtonIndex:(NSInteger) buttonIndex {
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
-  [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
-
-}
-
-
-- (void) didDismissAddToNetflixDiscOrInstantQueueActionSheet:(UIActionSheet*) actionSheet
-                                             withButtonIndex:(NSInteger) buttonIndex {
-  Queue* queue;
-  if (buttonIndex <= 1) {
-    queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey] account:netflixAccount];
-  } else {
-    queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
+- (void) didDismissAddToNetflixActionSheet:(UIActionSheet*) actionSheet
+                           withButtonIndex:(NSInteger) buttonIndex {
+  AddToQueueAction action = [[buttonIndexToActionMap objectForKey:[NSNumber numberWithInt:buttonIndex]] integerValue];
+  
+  Queue* queue = nil;
+  NSString* format = nil;
+  switch (action) {
+    case InstantQueue:
+    case TopOfInstantQueue:
+      format = [NetflixCache instantFormat];
+      queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
+      break;
+    case DVDQueue:
+    case TopOfDVDQueue:
+      format = [NetflixCache dvdFormat];
+      queue = [self.model.netflixCache queueForKey:[NetflixCache discQueueKey] account:netflixAccount];
+      break;
+    case BlurayQueue:
+    case TopOfBlurayQueue:
+      format = [NetflixCache blurayFormat];
+      queue = [self.model.netflixCache queueForKey:[NetflixCache discQueueKey] account:netflixAccount];
+      break;
+    default:
+      return;
   }
-  [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
+  
+  BOOL top = NO;
+  switch (action) {
+    case TopOfInstantQueue:
+    case TopOfDVDQueue:
+    case TopOfBlurayQueue:
+      top = YES;
+      break;
+  }
+
+  [self didDismissAddToNetflixActionSheet:queue format:format top:top];
 }
 
 
@@ -1126,16 +1157,8 @@ const NSInteger POSTER_TAG = -1;
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
-
-  if (actionSheet.tag == ADD_TO_NETFLIX_DISC_QUEUE_TAG) {
-    [self didDismissAddToNetflixDiscQueueActionSheet:actionSheet
-                                     withButtonIndex:buttonIndex];
-  } else if (actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG) {
-    [self didDismissAddToNetflixDiscOrInstantQueueActionSheet:actionSheet
-                                              withButtonIndex:buttonIndex];
-  } else if (actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG) {
-    [self didDismissAddToNetflixInstantQueueActionSheet:actionSheet
-                                        withButtonIndex:buttonIndex];
+  if (actionSheet.tag == ADD_TO_NETFLIX_TAG) {
+    [self didDismissAddToNetflixActionSheet:actionSheet withButtonIndex:buttonIndex];
   } else if (actionSheet.tag == VISIT_WEBSITES_TAG) {
     [self didDismissVisitWebsitesActionSheet:actionSheet
                              withButtonIndex:buttonIndex];

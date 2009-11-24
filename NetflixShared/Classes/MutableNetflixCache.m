@@ -439,10 +439,11 @@ andReorderingMovies:[IdentitySet set]
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
+          withFormat:(NSString*) format
           toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account {
-  AddMovieArguments* arguments = [AddMovieArguments argumentsWithQueue:queue movie:movie position:position delegate:delegate account:account];
+  AddMovieArguments* arguments = [AddMovieArguments argumentsWithQueue:queue movie:movie format:format position:position delegate:delegate account:account];
 
   [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -454,9 +455,10 @@ andReorderingMovies:[IdentitySet set]
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
+          withFormat:(NSString*) format
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account {
-  [self updateQueue:queue byAddingMovie:movie toPosition:-1 delegate:delegate account:account];
+  [self updateQueue:queue byAddingMovie:movie withFormat:format toPosition:-1 delegate:delegate account:account];
 }
 
 
@@ -500,12 +502,14 @@ andReorderingMovies:[IdentitySet set]
 
 - (void) addMovieToQueueBackgroundEntryPointWorker:(AddMovieArguments*) addArguments {
   NSString* address;
+  BOOL bluray = NO;
   if ([addArguments.queue isInstantQueue]) {
     NSLog(@"Adding '%@' to instant queue.", addArguments.movie.canonicalTitle);
     address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", addArguments.account.userId];
   } else {
     NSLog(@"Adding '%@' to DVD queue.", addArguments.movie.canonicalTitle);
     address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", addArguments.account.userId];
+    bluray = [[NetflixCache blurayFormat] isEqual:addArguments.format];
   }
 
   OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:addArguments.account];
@@ -514,6 +518,9 @@ andReorderingMovies:[IdentitySet set]
   NSMutableArray* parameters = [NSMutableArray array];
   [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:addArguments.movie.identifier]];
   [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:addArguments.queue.etag]];
+  if (bluray) {
+    [parameters addObject:[OARequestParameter parameterWithName:@"format" value:[NetflixCache blurayFormat]]];
+  }
   if (addArguments.position >= 0) {
     [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", addArguments.position + 1]]];
   }
