@@ -1054,7 +1054,7 @@ typedef enum {
   NSInteger index = [actionSheet addButtonWithTitle:title];
   [actionMap setObject:[NSNumber numberWithInteger:action]
                 forKey:[NSNumber numberWithInteger:index]];
-  
+
 }
 
 
@@ -1109,7 +1109,7 @@ typedef enum {
 - (void) didDismissAddToNetflixActionSheet:(UIActionSheet*) actionSheet
                            withButtonIndex:(NSInteger) buttonIndex {
   AddToQueueAction action = [[buttonIndexToActionMap objectForKey:[NSNumber numberWithInt:buttonIndex]] integerValue];
-  
+
   Queue* queue = nil;
   NSString* format = nil;
   switch (action) {
@@ -1131,7 +1131,7 @@ typedef enum {
     default:
       return;
   }
-  
+
   BOOL top = NO;
   switch (action) {
     case TopOfInstantQueue:
