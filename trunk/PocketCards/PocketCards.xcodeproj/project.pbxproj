@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		100000000000000000001414 /* PocketCardsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001413 /* PocketCardsAppDelegate.m */; };
-		100000000000000000001F5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F51 /* main.m */; };
+		100000000000000000001F60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F55 /* main.m */; };
 		100000000000000000000AD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ACC /* Foundation.framework */; };
 		100000000000000000001C35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C2D /* UIKit.framework */; };
 		100000000000000000000822 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000816 /* CoreGraphics.framework */; };
@@ -24,7 +24,7 @@
 		100000000000000000001C2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		100000000000000000000816 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		100000000000000000000E55 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		100000000000000000001F51 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		100000000000000000001F55 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1000000000000000000014BB /* PocketCards_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketCards_Prefix.pch; sourceTree = "<group>"; };
 		100000000000000000000C68 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		1000000000000000000014B6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				1000000000000000000014BB /* PocketCards_Prefix.pch */,
-				100000000000000000001F51 /* main.m */,
+				100000000000000000001F55 /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F5C /* main.m in Sources */,
+				100000000000000000001F60 /* main.m in Sources */,
 				100000000000000000001414 /* PocketCardsAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

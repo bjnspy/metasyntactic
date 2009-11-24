@@ -29,7 +29,7 @@
 		100000000000000000000FBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBD /* CoreLocation.framework */; };
 		100000000000000000000FC1 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC0 /* CreditsViewController.m */; };
 		100000000000000000000FC8 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC7 /* Decision.m */; };
-		100000000000000000000FCE /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010C9 /* DeclarationOfIndependence.m */; };
+		100000000000000000000FCE /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010C8 /* DeclarationOfIndependence.m */; };
 		10000000000000000000104B /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F49 /* ConstitutionViewController.m */; };
 		1000000000000000000010C5 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010B4 /* DecisionCell.m */; };
 		1000000000000000000013C1 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013C0 /* DeclarationOfIndependenceViewController.m */; };
@@ -57,24 +57,24 @@
 		100000000000000000001BFF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BD1 /* MessageUI.framework */; };
 		100000000000000000001C01 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C00 /* MetasyntacticResources.bundle */; };
 		100000000000000000001C3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C2E /* UIKit.framework */; };
-		100000000000000000001C62 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C61 /* UnitedStatesConstitution.m */; };
-		100000000000000000001CE9 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001CE8 /* WrappableCell.m */; };
-		100000000000000000001D0C /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D0B /* YourRightsNavigationController.m */; };
-		100000000000000000001F1A /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F17 /* libMetasyntacticShared.a */; };
-		100000000000000000001F1C /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F16 /* Model.m */; };
-		100000000000000000001F45 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F41 /* libsqlite3.dylib */; };
-		100000000000000000001F5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F52 /* main.m */; };
+		100000000000000000001C66 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C65 /* UnitedStatesConstitution.m */; };
+		100000000000000000001CED /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001CEC /* WrappableCell.m */; };
+		100000000000000000001D10 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D0F /* YourRightsNavigationController.m */; };
+		100000000000000000001F1E /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F1B /* libMetasyntacticShared.a */; };
+		100000000000000000001F20 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F1A /* Model.m */; };
+		100000000000000000001F49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F45 /* libsqlite3.dylib */; };
+		100000000000000000001F62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F56 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		100000000000000000001104 /* PBXContainerItemProxy */ = {
+		100000000000000000001105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000001C0D /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000000000001D66;
+			remoteGlobalIDString = 100000000000000000001D6A;
 			remoteInfo = MetasyntacticShared;
 		};
-		100000000000000000001105 /* PBXContainerItemProxy */ = {
+		100000000000000000001106 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000001C0D /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
@@ -129,7 +129,7 @@
 		10000000000000000000104C /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		10000000000000000000104D /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		1000000000000000000010B4 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
-		1000000000000000000010C9 /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
+		1000000000000000000010C8 /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
 		1000000000000000000013BF /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
 		1000000000000000000013C0 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
 		1000000000000000000013C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
@@ -175,18 +175,18 @@
 		100000000000000000001C02 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001C0D /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		100000000000000000001C2E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		100000000000000000001C60 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
-		100000000000000000001C61 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
-		100000000000000000001CC4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		100000000000000000001CE7 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
-		100000000000000000001CE8 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
-		100000000000000000001D09 /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000001D0A /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
-		100000000000000000001D0B /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
-		100000000000000000001D28 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001F16 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		100000000000000000001F41 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		100000000000000000001F52 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		100000000000000000001C64 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
+		100000000000000000001C65 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
+		100000000000000000001CC8 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		100000000000000000001CEB /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
+		100000000000000000001CEC /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
+		100000000000000000001D0D /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000001D0E /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
+		100000000000000000001D0F /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
+		100000000000000000001D2C /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001F1A /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		100000000000000000001F45 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		100000000000000000001F56 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,14 +194,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F1A /* libMetasyntacticShared.a in Frameworks */,
+				100000000000000000001F1E /* libMetasyntacticShared.a in Frameworks */,
 				1000000000000000000013D6 /* Foundation.framework in Frameworks */,
 				100000000000000000001C3B /* UIKit.framework in Frameworks */,
 				100000000000000000000FBC /* CoreGraphics.framework in Frameworks */,
 				100000000000000000000AF9 /* CFNetwork.framework in Frameworks */,
 				100000000000000000001986 /* SystemConfiguration.framework in Frameworks */,
 				100000000000000000001BFF /* MessageUI.framework in Frameworks */,
-				100000000000000000001F45 /* libsqlite3.dylib in Frameworks */,
+				100000000000000000001F49 /* libsqlite3.dylib in Frameworks */,
 				100000000000000000000FBE /* CoreLocation.framework in Frameworks */,
 				100000000000000000001BCF /* MapKit.framework in Frameworks */,
 				100000000000000000000EA2 /* MediaPlayer.framework in Frameworks */,
@@ -231,11 +231,11 @@
 				100000000000000000000619 /* AppDelegate.h */,
 				10000000000000000000069D /* Application.h */,
 				10000000000000000000104C /* Controller.h */,
-				100000000000000000001CC4 /* Model.h */,
+				100000000000000000001CC8 /* Model.h */,
 				10000000000000000000066A /* AppDelegate.m */,
 				10000000000000000000069E /* Application.m */,
 				10000000000000000000104D /* Controller.m */,
-				100000000000000000001F16 /* Model.m */,
+				100000000000000000001F1A /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 			children = (
 				100000000000000000000E3E /* Classes */,
 				1000000000000000000013D8 /* Frameworks */,
-				100000000000000000001F27 /* Other Sources */,
+				100000000000000000001F2B /* Other Sources */,
 				1000000000000000000014A2 /* Products */,
 				10000000000000000000161B /* Resources */,
 				1000000000000000000013C6 /* Entitlements.plist */,
@@ -284,7 +284,7 @@
 				1000000000000000000006AB /* Article.m */,
 				100000000000000000000F18 /* Constitution.m */,
 				100000000000000000000FC7 /* Decision.m */,
-				1000000000000000000010C9 /* DeclarationOfIndependence.m */,
+				1000000000000000000010C8 /* DeclarationOfIndependence.m */,
 				10000000000000000000149C /* Item.m */,
 				1000000000000000000013F6 /* Person.m */,
 				1000000000000000000016D6 /* Section.m */,
@@ -308,7 +308,7 @@
 		1000000000000000000013D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F41 /* libsqlite3.dylib */,
+				100000000000000000001F45 /* libsqlite3.dylib */,
 				100000000000000000000AFA /* CFNetwork.framework */,
 				100000000000000000000F71 /* CoreGraphics.framework */,
 				100000000000000000000FBD /* CoreLocation.framework */,
@@ -325,7 +325,7 @@
 		1000000000000000000014A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001D09 /* YourRights.app */,
+				100000000000000000001D0D /* YourRights.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 		1000000000000000000014A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F17 /* libMetasyntacticShared.a */,
+				100000000000000000001F1B /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,11 +367,11 @@
 				1000000000000000000008EA /* ArticleBodyCell.h */,
 				100000000000000000000A74 /* ArticleTitleCell.h */,
 				100000000000000000000FC9 /* DecisionCell.h */,
-				100000000000000000001CE7 /* WrappableCell.h */,
+				100000000000000000001CEB /* WrappableCell.h */,
 				1000000000000000000008EB /* ArticleBodyCell.m */,
 				100000000000000000000A75 /* ArticleTitleCell.m */,
 				1000000000000000000010B4 /* DecisionCell.m */,
-				100000000000000000001CE8 /* WrappableCell.m */,
+				100000000000000000001CEC /* WrappableCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -381,10 +381,10 @@
 			children = (
 				100000000000000000000A77 /* ArticlesOfConfederation.h */,
 				1000000000000000000013C8 /* FederalistPapers.h */,
-				100000000000000000001C60 /* UnitedStatesConstitution.h */,
+				100000000000000000001C64 /* UnitedStatesConstitution.h */,
 				100000000000000000000AB4 /* ArticlesOfConfederation.m */,
 				1000000000000000000013C9 /* FederalistPapers.m */,
-				100000000000000000001C61 /* UnitedStatesConstitution.m */,
+				100000000000000000001C65 /* UnitedStatesConstitution.m */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -392,14 +392,14 @@
 		100000000000000000001C15 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F18 /* NavigationControllers */,
+				100000000000000000001F1C /* NavigationControllers */,
 				100000000000000000001AA9 /* TableViewCells */,
-				100000000000000000001CC5 /* ViewControllers */,
+				100000000000000000001CC9 /* ViewControllers */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		100000000000000000001CC5 /* ViewControllers */ = {
+		100000000000000000001CC9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000E45 /* Constitution */,
@@ -430,21 +430,21 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001F18 /* NavigationControllers */ = {
+		100000000000000000001F1C /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001D0A /* YourRightsNavigationController.h */,
-				100000000000000000001D0B /* YourRightsNavigationController.m */,
+				100000000000000000001D0E /* YourRightsNavigationController.h */,
+				100000000000000000001D0F /* YourRightsNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001F27 /* Other Sources */ = {
+		100000000000000000001F2B /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000016F5 /* Macros.h */,
 				100000000000000000001465 /* Prefix.pch */,
-				100000000000000000001F52 /* main.m */,
+				100000000000000000001F56 /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100000000000000000001D08 /* YourRights */ = {
+		100000000000000000001D0C /* YourRights */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 100000000000000000000AC7 /* Build configuration list for PBXNativeTarget "YourRights" */;
 			buildPhases = (
@@ -467,7 +467,7 @@
 			);
 			name = YourRights;
 			productName = YourRights;
-			productReference = 100000000000000000001D09 /* YourRights.app */;
+			productReference = 100000000000000000001D0D /* YourRights.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -495,17 +495,17 @@
 			);
 			projectRoot = "";
 			targets = (
-				100000000000000000001D08 /* YourRights */,
+				100000000000000000001D0C /* YourRights */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		100000000000000000001F17 /* libMetasyntacticShared.a */ = {
+		100000000000000000001F1B /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMetasyntacticShared.a;
-			remoteRef = 100000000000000000001104 /* PBXContainerItemProxy */;
+			remoteRef = 100000000000000000001105 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -531,12 +531,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F5E /* main.m in Sources */,
+				100000000000000000001F62 /* main.m in Sources */,
 				1000000000000000000016DB /* SectionViewController.m in Sources */,
-				100000000000000000001D0C /* YourRightsNavigationController.m in Sources */,
+				100000000000000000001D10 /* YourRightsNavigationController.m in Sources */,
 				1000000000000000000014FD /* QuestionsViewController.m in Sources */,
-				100000000000000000001F1C /* Model.m in Sources */,
-				100000000000000000001CE9 /* WrappableCell.m in Sources */,
+				100000000000000000001F20 /* Model.m in Sources */,
+				100000000000000000001CED /* WrappableCell.m in Sources */,
 				100000000000000000000550 /* AnswerViewController.m in Sources */,
 				100000000000000000001BFB /* ToughQuestionsViewController.m in Sources */,
 				100000000000000000001BF8 /* ToughAnswerViewController.m in Sources */,
@@ -569,7 +569,7 @@
 				10000000000000000000104B /* ConstitutionViewController.m in Sources */,
 				1000000000000000000013CA /* FederalistPapers.m in Sources */,
 				100000000000000000000ABB /* ArticlesOfConfederation.m in Sources */,
-				100000000000000000001C62 /* UnitedStatesConstitution.m in Sources */,
+				100000000000000000001C66 /* UnitedStatesConstitution.m in Sources */,
 				100000000000000000000696 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,7 +580,7 @@
 		10000000000000000000126E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MetasyntacticShared;
-			targetProxy = 100000000000000000001105 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000001106 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -588,7 +588,7 @@
 		10000000000000000000152E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				100000000000000000001D28 /* en */,
+				100000000000000000001D2C /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
