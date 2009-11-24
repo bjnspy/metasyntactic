@@ -213,7 +213,7 @@ typedef enum {
         cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey] account:account];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache discQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
@@ -326,7 +326,7 @@ typedef enum {
 - (void) didSelectLoggedInRow:(NSInteger) row {
   switch (row) {
     case MostPopularSection:        return [self didSelectMostPopularSection];
-    case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
+    case DVDSection:                return [self didSelectQueueRow:[NetflixCache discQueueKey]];
     case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
     case RecommendationsSection:    return [self didSelectRecomendationsRow];
     case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];

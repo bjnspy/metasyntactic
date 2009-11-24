@@ -17,7 +17,7 @@
 @interface AbstractNetflixCache : AbstractMovieCache {
 }
 
-+ (NSString*) dvdQueueKey;
++ (NSString*) discQueueKey;
 + (NSString*) instantQueueKey;
 + (NSString*) atHomeKey;
 + (NSString*) recommendationKey;

@@ -416,7 +416,7 @@ static NSString** directories[] = {
   [self checkApiResult:account element:element];
 
   NSSet* allowableFeeds = [NSSet setWithObjects:
-                           [NetflixCache dvdQueueKey],
+                           [NetflixCache discQueueKey],
                            [NetflixCache instantQueueKey],
                            [NetflixCache atHomeKey],
                            [NetflixCache recommendationKey],
@@ -829,7 +829,7 @@ static NSString** directories[] = {
 
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account {
   NSString* title = nil;
-  if ([key isEqual:[NetflixCache dvdQueueKey]]) {
+  if ([key isEqual:[NetflixCache discQueueKey]]) {
     title = LocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
   } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
     title = LocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
@@ -1758,7 +1758,7 @@ static NSString** directories[] = {
 
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:
-                           [self queueForKey:[NetflixCache dvdQueueKey] account:account],
+                           [self queueForKey:[NetflixCache discQueueKey] account:account],
                            [self queueForKey:[NetflixCache instantQueueKey] account:account],
                            [self queueForKey:[NetflixCache atHomeKey] account:account],
                            nil];
@@ -1802,23 +1802,47 @@ static NSString** directories[] = {
 }
 
 
-- (BOOL) isInstantWatch:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:@"instant"];
++ (NSString*) instantFormat {
+  return @"instant";
 }
 
 
-- (BOOL) isInstantWatchOnly:(Movie*) movie {
-  return [self isInstantWatch:movie] && ![self isDvd:movie] && ![self isBluray:movie];
++ (NSString*) dvdFormat {
+  return @"DVD";
+}
+
+
++ (NSString*) blurayFormat {
+  return @"Blu-ray";
+}
+
+
+- (BOOL) isInstantWatch:(Movie*) movie {
+  return [[self formatsForMovie:movie] containsObject:[NetflixCache instantFormat]];
 }
 
 
 - (BOOL) isDvd:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:@"DVD"];
+  return [[self formatsForMovie:movie] containsObject:[NetflixCache dvdFormat]];
 }
 
 
 - (BOOL) isBluray:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:@"Blu-ray"];
+  return [[self formatsForMovie:movie] containsObject:[NetflixCache blurayFormat]];
+}
+
+
+- (BOOL) user:(NetflixUser*) user canRentMovie:(Movie*) movie {
+  if ([self isDvd:movie]) {
+    return YES;
+  }
+  if ([self isInstantWatch:movie] && user.canInstantWatch) {
+    return YES;
+  }
+  if ([self isBluray:movie] && user.canBlurayWatch) {
+    return YES;
+  }
+  return NO;
 }
 
 @end

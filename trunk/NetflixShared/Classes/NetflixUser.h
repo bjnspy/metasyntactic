@@ -31,7 +31,7 @@
                    canInstantWatch:(BOOL) canInstantWatch
                   preferredFormats:(NSArray*) preferredFormats;
 
-
+- (BOOL) canBlurayWatch;
 - (NSDictionary*) dictionary;
 
 @end

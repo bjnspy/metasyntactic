@@ -24,7 +24,7 @@
 }
 
 
-+ (NSString*) dvdQueueKey {
++ (NSString*) discQueueKey {
   return @"http://schemas.netflix.com/feed.queues.disc";
 }
 

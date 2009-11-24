@@ -36,12 +36,14 @@
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
+          withFormat:(NSString*) format
           toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account;
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
+          withFormat:(NSString*) format
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account;
 

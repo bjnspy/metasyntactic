@@ -14,6 +14,8 @@
 
 #import "NetflixUser.h"
 
+#import "NetflixCache.h"
+
 @interface NetflixUser()
 @property (copy) NSString* firstName;
 @property (copy) NSString* lastName;
@@ -79,6 +81,11 @@ property_definition(preferredFormats);
   [dictionary setObject:[NSNumber numberWithBool:canInstantWatch] forKey:canInstantWatch_key];
   [dictionary setObject:preferredFormats forKey:preferredFormats_key];
   return dictionary;
+}
+
+
+- (BOOL) canBlurayWatch {
+  return [preferredFormats containsObject:[NetflixCache blurayFormat]];
 }
 
 @end

@@ -40,6 +40,8 @@
   UIImage* posterImage;
   TappableImageView* posterImageView;
   NSInteger posterCount;
+
+  NSDictionary* buttonIndexToActionMap;
 }
 
 - (id) initWithMovie:(Movie*) movie;
