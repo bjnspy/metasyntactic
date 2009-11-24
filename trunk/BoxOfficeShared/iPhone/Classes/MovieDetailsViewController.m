@@ -962,11 +962,7 @@ const NSInteger POSTER_TAG = -1;
   actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   //actionSheet.cancelButtonIndex = keys.count;
 
-  if ([self tabBarController] != nil) {
-    [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
-  } else {
-    [actionSheet showInView:self.view];
-  }
+  [self showActionSheet:actionSheet];
 }
 
 
@@ -1076,7 +1072,7 @@ const NSInteger POSTER_TAG = -1;
 
   actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
 
-  [actionSheet showInView:self.view];
+  [self showActionSheet:actionSheet];
 }
 
 

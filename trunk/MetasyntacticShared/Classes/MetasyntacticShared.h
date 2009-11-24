@@ -111,6 +111,7 @@
 #import "TouchableViewDelegate.h"
 #import "UIColor+Utilities.h"
 #import "UIScrollView+Utilities.h"
+#import "UIViewController+Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WebViewController.h"
 #import "XmlDocument.h"
