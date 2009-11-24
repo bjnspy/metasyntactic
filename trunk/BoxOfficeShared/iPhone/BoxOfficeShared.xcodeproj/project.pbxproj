@@ -144,19 +144,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1000000000000000000010F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10000000000000000000100A /* NetflixShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NetflixShared;
+		};
 		1000000000000000000010F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000014BA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
-		};
-		1000000000000000000010FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000014BA /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1000000000000000000014B5;
-			remoteInfo = ProtocolBuffers;
 		};
 		1000000000000000000010F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -165,18 +165,18 @@
 			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
 		};
-		1000000000000000000010F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 10000000000000000000100A /* NetflixShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = NetflixShared;
-		};
 		1000000000000000000010FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000014BA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteInfo = ProtocolBuffers;
+		};
+		1000000000000000000010FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000000000014BA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000000000014B5;
 			remoteInfo = ProtocolBuffers;
 		};
 		1000000000000000000010FC /* PBXContainerItemProxy */ = {
@@ -1411,6 +1411,12 @@
 			};
 			name = AdHoc;
 		};
+		10000000000000000000153A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
 		10000000000000000000153B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1436,12 +1442,6 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
-			};
-			name = Release;
-		};
-		10000000000000000000153A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
 			};
 			name = Release;
 		};
