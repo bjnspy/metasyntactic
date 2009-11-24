@@ -45,6 +45,7 @@ static NSString* formats_key = @"formats";
 static NSString* synopsis_key = @"synopsis";
 static NSString* similars_key = @"similars";
 static NSString* directors_key = @"directors";
+//static NSString* availability_date_key = @"availability_date";
 
 static NSArray* mostPopularTitles = nil;
 static NSDictionary* mostPopularTitlesToAddresses = nil;
@@ -482,11 +483,15 @@ static NSString** directories[] = {
   NSString* year = nil;
   NSMutableArray* genres = [NSMutableArray array];
   BOOL save = NO;
+  BOOL availableNow = YES;
   NSInteger length = 0;
+  NSString* availabilityDate = nil;
 
   for (XmlElement* child in element.children) {
     if ([@"id" isEqual:child.name]) {
       identifier = child.text;
+    } else if ([@"availability_date" isEqual:child.name]) {
+      availabilityDate = child.text;
     } else if ([@"link" isEqual:child.name]) {
       NSString* rel = [child attributeValue:@"rel"];
       if ([@"alternate" isEqual:rel]) {
@@ -528,6 +533,10 @@ static NSString** directories[] = {
       } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
         NSString* label = [child attributeValue:@"label"];
         save = [label isEqual:@"saved"];
+        availableNow = [label isEqual:@"available now"];
+        
+        label = [StringUtilities nonNilString:[availabilityMap objectForKey:label]];
+
         [additionalFields setObject:label forKey:availability_key];
       }
     } else if ([@"release_year" isEqual:child.name]) {
@@ -547,6 +556,16 @@ static NSString** directories[] = {
   if (year.length > 0) {
     date = [DateUtilities dateWithNaturalLanguageString:year];
   }
+  
+  if (!availableNow) {
+    if (availabilityDate.length > 0) {
+      NSDate* date = [NSDate dateWithTimeIntervalSince1970:[availabilityDate integerValue]];
+      NSString* string = [NSString stringWithFormat:LocalizedString(@"Available %@", nil), [DateUtilities formatShortDate:date]];
+      
+      [additionalFields setObject:string forKey:availability_key];
+    }
+  }
+  
   Movie* movie = [Movie movieWithIdentifier:identifier
                                       title:title
                                      rating:rating
@@ -1636,13 +1655,13 @@ static NSString** directories[] = {
 
 - (NSString*) availabilityForMovie:(Movie*) movie {
   NSString* availability = [movie.additionalFields objectForKey:availability_key];
-  NSString* result = [availabilityMap objectForKey:availability];
 
-  if (result.length == 0) {
-    return @"";
-  }
-
-  return result;
+  return [StringUtilities nonNilString:availability];
+//  if (result.length == 0) {
+//    return @"";
+//  }
+//
+//  return result;
 }
 
 
