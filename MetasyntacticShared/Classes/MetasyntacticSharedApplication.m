@@ -65,7 +65,7 @@ static Pulser* majorRefreshPulser = nil;
   if ([delegate respondsToSelector:@selector(cacheDirectory)]) {
     return [delegate cacheDirectory];
   }
-  
+
   return @"";
 }
 
