@@ -56,9 +56,6 @@
 
 @implementation MovieDetailsViewController
 
-//const NSInteger ADD_TO_NETFLIX_DISC_QUEUE_TAG = 1;
-//const NSInteger ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG = 2;
-//const NSInteger ADD_TO_NETFLIX_INSTANT_QUEUE_TAG = 3;
 const NSInteger ADD_TO_NETFLIX_TAG = 1;
 const NSInteger VISIT_WEBSITES_TAG = 4;
 
