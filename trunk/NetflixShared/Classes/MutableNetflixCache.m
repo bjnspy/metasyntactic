@@ -260,8 +260,8 @@
             delegate:(id<NetflixModifyQueueDelegate>) delegate
              account:(NetflixAccount*) account {
   [self updateQueue:queue
-   byDeletingMovies:[IdentitySet setWithObject:movie]
-andReorderingMovies:[IdentitySet set]
+   byDeletingMovies:[NSSet identitySetWithObject:movie]
+andReorderingMovies:[NSSet identitySet]
                  to:[NSArray array]
            delegate:delegate
             account:account];

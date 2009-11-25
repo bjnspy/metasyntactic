@@ -38,7 +38,6 @@
 		100000000000000000000CBB /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CBA /* InterceptingView.m */; };
 		100000000000000000000CD5 /* Iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD3 /* Iterator.h */; };
 		100000000000000000000CD9 /* Iterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD7 /* Iterator.m */; };
-		100000000000000000000E05 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D2C /* IdentitySet.m */; };
 		100000000000000000000E45 /* AbstractFullScreenTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E3E /* AbstractFullScreenTableViewController.h */; };
 		100000000000000000000E70 /* ImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F62 /* ImageUtilities.h */; };
 		100000000000000000000E9F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E97 /* MediaPlayer.framework */; };
@@ -103,8 +102,8 @@
 		10000000000000000000104A /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001049 /* MapPoint.h */; };
 		10000000000000000000104C /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000104B /* AbstractNavigationController.h */; };
 		1000000000000000000010B4 /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC9 /* AbstractSearchResult.m */; };
-		1000000000000000000010F8 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F9 /* MapViewController.m */; };
 		1000000000000000000010F5 /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010FB /* MapViewControllerDelegate.h */; };
+		1000000000000000000010F8 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F9 /* MapViewController.m */; };
 		1000000000000000000010FA /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010B7 /* MapViewController.h */; };
 		100000000000000000001267 /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001266 /* MemoryUtilities.m */; };
 		1000000000000000000013C0 /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013BF /* AbstractStackableTableViewController.h */; };
@@ -142,7 +141,6 @@
 		100000000000000000001453 /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001452 /* NSMutableURLRequest+Parameters.h */; };
 		100000000000000000001455 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001454 /* NSMutableURLRequest+Parameters.m */; };
 		10000000000000000000145F /* NSSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001456 /* NSSet+Utilities.h */; };
-		100000000000000000001465 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D10 /* IdentitySet.h */; };
 		100000000000000000001466 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001459 /* AutoResizingCell.m */; };
 		10000000000000000000146B /* NSSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000146A /* NSSet+Utilities.m */; };
 		100000000000000000001498 /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000146C /* NSString+URLEncoding.h */; };
@@ -232,6 +230,8 @@
 		100000000000000000001C3B /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C2E /* FileUtilities.m */; };
 		100000000000000000001C41 /* UIScrollView+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C40 /* UIScrollView+Utilities.h */; };
 		100000000000000000001C43 /* UIScrollView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C42 /* UIScrollView+Utilities.m */; };
+		100000000000000000001C55 /* UIViewController+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C54 /* UIViewController+Utilities.h */; };
+		100000000000000000001C57 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C56 /* UIViewController+Utilities.m */; };
 		100000000000000000001C62 /* PersistentStringThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C2A /* PersistentStringThreadsafeValue.m */; };
 		100000000000000000001C65 /* FontCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C64 /* FontCache.h */; };
 		100000000000000000001C8A /* PinchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C89 /* PinchableViewDelegate.h */; };
@@ -288,8 +288,12 @@
 		100000000000000000002128 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002126 /* xmltok.c */; };
 		10000000000000000000212E /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000212C /* xmltok_impl.c */; };
 		100000000000000000002134 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002132 /* xmltok_ns.c */; };
-		100000000000000000001C55 /* UIViewController+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C54 /* UIViewController+Utilities.h */; };
-		100000000000000000001C57 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C56 /* UIViewController+Utilities.m */; };
+		74EB22D910BDF1EE0084580E /* NSDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB22D710BDF1EE0084580E /* NSDictionary+Utilities.h */; };
+		74EB22DA10BDF1EE0084580E /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB22D810BDF1EE0084580E /* NSDictionary+Utilities.m */; };
+		74EB22E810BDF23A0084580E /* NSMutableDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB22E610BDF23A0084580E /* NSMutableDictionary+Utilities.h */; };
+		74EB22E910BDF23A0084580E /* NSMutableDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB22E710BDF23A0084580E /* NSMutableDictionary+Utilities.m */; };
+		74EB22F810BDF4F10084580E /* NSMutableSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */; };
+		74EB22F910BDF4F10084580E /* NSMutableSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB22F710BDF4F10084580E /* NSMutableSet+Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -390,8 +394,8 @@
 		1000000000000000000010B7 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1000000000000000000010C5 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
 		1000000000000000000010C8 /* AbstractSlidableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidableTableViewController.m; sourceTree = "<group>"; };
-		1000000000000000000010FB /* MapViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewControllerDelegate.h; sourceTree = "<group>"; };
 		1000000000000000000010F9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		1000000000000000000010FB /* MapViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewControllerDelegate.h; sourceTree = "<group>"; };
 		100000000000000000001266 /* MemoryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryUtilities.m; sourceTree = "<group>"; };
 		1000000000000000000013BF /* AbstractStackableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractStackableTableViewController.h; sourceTree = "<group>"; };
 		1000000000000000000013C1 /* AbstractStackableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractStackableTableViewController.m; sourceTree = "<group>"; };
@@ -516,6 +520,8 @@
 		100000000000000000001C2E /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
 		100000000000000000001C40 /* UIScrollView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Utilities.h"; sourceTree = "<group>"; };
 		100000000000000000001C42 /* UIScrollView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Utilities.m"; sourceTree = "<group>"; };
+		100000000000000000001C54 /* UIViewController+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000001C56 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000000001C64 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
 		100000000000000000001C66 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		100000000000000000001C89 /* PinchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinchableViewDelegate.h; sourceTree = "<group>"; };
@@ -548,14 +554,12 @@
 		100000000000000000001CFF /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		100000000000000000001D02 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		100000000000000000001D04 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
-		100000000000000000001D10 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
 		100000000000000000001D14 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001D16 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001D18 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001D1B /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
 		100000000000000000001D20 /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
 		100000000000000000001D2A /* SplashScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenDelegate.h; sourceTree = "<group>"; };
-		100000000000000000001D2C /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
 		100000000000000000001D30 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001D32 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000001D33 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
@@ -591,8 +595,12 @@
 		10000000000000000000212C /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000000000002130 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000002132 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		100000000000000000001C54 /* UIViewController+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utilities.h"; sourceTree = "<group>"; };
-		100000000000000000001C56 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
+		74EB22D710BDF1EE0084580E /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
+		74EB22D810BDF1EE0084580E /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
+		74EB22E610BDF23A0084580E /* NSMutableDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Utilities.h"; sourceTree = "<group>"; };
+		74EB22E710BDF23A0084580E /* NSMutableDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Utilities.m"; sourceTree = "<group>"; };
+		74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Utilities.h"; sourceTree = "<group>"; };
+		74EB22F710BDF4F10084580E /* NSMutableSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Utilities.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,13 +636,23 @@
 		1000000000000000000013F8 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001D10 /* IdentitySet.h */,
 				1000000000000000000013FD /* MultiDictionary.h */,
 				10000000000000000000141A /* MutableMultiDictionary.h */,
+				10000000000000000000141E /* NSArray+Utilities.h */,
+				74EB22D710BDF1EE0084580E /* NSDictionary+Utilities.h */,
+				100000000000000000001426 /* NSMutableArray+Utilities.h */,
+				74EB22E610BDF23A0084580E /* NSMutableDictionary+Utilities.h */,
+				74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */,
+				100000000000000000001456 /* NSSet+Utilities.h */,
 				100000000000000000001C93 /* PointerSet.h */,
-				100000000000000000001D2C /* IdentitySet.m */,
 				100000000000000000001418 /* MultiDictionary.m */,
 				10000000000000000000141C /* MutableMultiDictionary.m */,
+				100000000000000000001420 /* NSArray+Utilities.m */,
+				74EB22D810BDF1EE0084580E /* NSDictionary+Utilities.m */,
+				100000000000000000001450 /* NSMutableArray+Utilities.m */,
+				74EB22E710BDF23A0084580E /* NSMutableDictionary+Utilities.m */,
+				74EB22F710BDF4F10084580E /* NSMutableSet+Utilities.m */,
+				10000000000000000000146A /* NSSet+Utilities.m */,
 				100000000000000000001C95 /* PointerSet.m */,
 			);
 			name = Collections;
@@ -845,6 +863,19 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
+		100000000000000000001C13 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000014A2 /* ColorCache.h */,
+				100000000000000000001C64 /* FontCache.h */,
+				1000000000000000000013F9 /* MetasyntacticStockImages.h */,
+				1000000000000000000014B2 /* ColorCache.m */,
+				100000000000000000001C66 /* FontCache.m */,
+				1000000000000000000013FB /* MetasyntacticStockImages.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		100000000000000000001C14 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,19 +888,6 @@
 				100000000000000000001CBD /* ViewControllerUtilities.h */,
 				10000000000000000000162A /* NotificationCenter.m */,
 				100000000000000000001CC0 /* ViewControllerUtilities.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		100000000000000000001C13 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000014A2 /* ColorCache.h */,
-				100000000000000000001C64 /* FontCache.h */,
-				1000000000000000000013F9 /* MetasyntacticStockImages.h */,
-				1000000000000000000014B2 /* ColorCache.m */,
-				100000000000000000001C66 /* FontCache.m */,
-				1000000000000000000013FB /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -910,9 +928,6 @@
 				100000000000000000000FE1 /* LocationUtilities.h */,
 				100000000000000000000EA3 /* MemoryUtilities.h */,
 				100000000000000000001515 /* NetworkUtilities.h */,
-				10000000000000000000141E /* NSArray+Utilities.h */,
-				100000000000000000001426 /* NSMutableArray+Utilities.h */,
-				100000000000000000001456 /* NSSet+Utilities.h */,
 				100000000000000000001C9F /* Pulser.h */,
 				100000000000000000001D33 /* StringUtilities.h */,
 				100000000000000000001C16 /* UIColor+Utilities.h */,
@@ -932,9 +947,6 @@
 				100000000000000000000FE3 /* LocationUtilities.m */,
 				100000000000000000001266 /* MemoryUtilities.m */,
 				10000000000000000000153A /* NetworkUtilities.m */,
-				100000000000000000001420 /* NSArray+Utilities.m */,
-				100000000000000000001450 /* NSMutableArray+Utilities.m */,
-				10000000000000000000146A /* NSSet+Utilities.m */,
 				100000000000000000001CA3 /* Pulser.m */,
 				100000000000000000001D36 /* StringUtilities.m */,
 				100000000000000000001C18 /* UIColor+Utilities.m */,
@@ -1145,7 +1157,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001465 /* IdentitySet.h in Headers */,
 				1000000000000000000013FE /* MultiDictionary.h in Headers */,
 				10000000000000000000141B /* MutableMultiDictionary.h in Headers */,
 				100000000000000000001C94 /* PointerSet.h in Headers */,
@@ -1292,6 +1303,9 @@
 				100000000000000000001C41 /* UIScrollView+Utilities.h in Headers */,
 				10000000000000000000042D /* AbstractTableViewCell.h in Headers */,
 				100000000000000000001C55 /* UIViewController+Utilities.h in Headers */,
+				74EB22D910BDF1EE0084580E /* NSDictionary+Utilities.h in Headers */,
+				74EB22E810BDF23A0084580E /* NSMutableDictionary+Utilities.h in Headers */,
+				74EB22F810BDF4F10084580E /* NSMutableSet+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,7 +1374,6 @@
 				100000000000000000000F4E /* Invocation2.m in Sources */,
 				100000000000000000001046 /* MainThreadGate.m in Sources */,
 				100000000000000000001C9C /* PriorityMutex.m in Sources */,
-				100000000000000000000E05 /* IdentitySet.m in Sources */,
 				100000000000000000001419 /* MultiDictionary.m in Sources */,
 				100000000000000000001C96 /* PointerSet.m in Sources */,
 				100000000000000000001CF3 /* XmlDocument.m in Sources */,
@@ -1465,6 +1478,9 @@
 				100000000000000000001C43 /* UIScrollView+Utilities.m in Sources */,
 				10000000000000000000042F /* AbstractTableViewCell.m in Sources */,
 				100000000000000000001C57 /* UIViewController+Utilities.m in Sources */,
+				74EB22DA10BDF1EE0084580E /* NSDictionary+Utilities.m in Sources */,
+				74EB22E910BDF23A0084580E /* NSMutableDictionary+Utilities.m in Sources */,
+				74EB22F910BDF4F10084580E /* NSMutableSet+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
