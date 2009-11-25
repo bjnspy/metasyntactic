@@ -60,7 +60,7 @@ static void AutorelasingArrayReleaseCallBack(CFAllocatorRef allocator, const voi
 + (NSMutableArray*) autoreleasingArray {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
   callbacks.release = AutorelasingArrayReleaseCallBack;
-  
+
   NSMutableArray* result = (NSMutableArray*)CFArrayCreateMutable(NULL, 0, &callbacks);
   return [result autorelease];
 }
