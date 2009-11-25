@@ -95,8 +95,8 @@
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.feedKey = feedKey_;
     self.backButton = self.navigationItem.leftBarButtonItem;
-    self.reorderedMovies = [IdentitySet mutableSet];
-    self.deletedMovies = [IdentitySet mutableSet];
+    self.reorderedMovies = [NSMutableSet identitySet];
+    self.deletedMovies = [NSMutableSet identitySet];
     [self setupButtons];
   }
 
