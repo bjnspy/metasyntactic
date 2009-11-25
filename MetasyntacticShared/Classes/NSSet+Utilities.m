@@ -17,6 +17,36 @@
 
 @implementation NSSet(NSSetUtilities)
 
++ (NSSet*) autoreleasingSet {
+  return [NSMutableSet autoreleasingSet];
+}
+
+
++ (NSSet*) autoreleasingSetWithArray:(NSArray*) array {
+  return [NSMutableSet autoreleasingSetWithArray:array];
+}
+
+
++ (NSSet*) autoreleasingSetWithSet:(NSSet*) set {
+  return [NSMutableSet autoreleasingSetWithSet:set];
+}
+
+
++ (NSSet*) identitySet {
+  return [NSMutableSet identitySet];
+}
+
+
++ (NSSet*) identitySetWithObject:(id) object {
+  return [NSMutableSet identitySetWithObject:object];
+}
+
+
++ (NSSet*) identitySetWithArray:(NSArray*) values {
+  return [NSMutableSet identitySetWithArray:values];
+}
+
+
 - (NSSet*) filteredSetUsingFunction:(BOOL(*)(id)) predicate {
   NSMutableSet* result = [NSMutableSet set];
   for (id value in self) {

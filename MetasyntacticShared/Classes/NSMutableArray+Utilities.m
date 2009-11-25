@@ -51,4 +51,25 @@
   [self removeObjectAtIndex:0];
 }
 
+
+static void AutorelasingArrayReleaseCallBack(CFAllocatorRef allocator, const void *value) {
+  [(id)value autorelease];
+}
+
+
++ (NSMutableArray*) autoreleasingArray {
+  CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
+  callbacks.release = AutorelasingArrayReleaseCallBack;
+  
+  NSMutableArray* result = (NSMutableArray*)CFArrayCreateMutable(NULL, 0, &callbacks);
+  return [result autorelease];
+}
+
+
++ (NSMutableArray*) autoreleasingArrayWithArray:(NSArray*) values {
+  NSMutableArray* result = [self autoreleasingArray];
+  [result addObjectsFromArray:values];
+  return result;
+}
+
 @end
