@@ -83,7 +83,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     [dictionary setObject:@"André van Haren"     forKey:@"nl"];
     [dictionary setObject:@"Eivind Samseth"      forKey:@"no"];
     [dictionary setObject:@"Marek Wieczorek"     forKey:@"pl"];
-    [dictionary setObject:@"Pedro Pinhão"        forKey:@"pt"];
+    [dictionary setObject:@"João Sampaio"        forKey:@"pt"];
     [dictionary setObject:@"Marius Andrei"       forKey:@"ro"];
     [dictionary setObject:@"Aleksey Surkov"      forKey:@"ru"];
     [dictionary setObject:@"Ján Senko"           forKey:@"sk"];
