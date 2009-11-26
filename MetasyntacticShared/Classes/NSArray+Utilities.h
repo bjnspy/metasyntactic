@@ -13,8 +13,8 @@
 // limitations under the License.
 
 @interface NSArray(NSArrayUtilities)
-+ (NSArray*) autoreleasingArray;
-+ (NSArray*) autoreleasingArrayWithArray:(NSArray*) values;
+//+ (NSArray*) autoreleasingArray;
+//+ (NSArray*) autoreleasingArrayWithArray:(NSArray*) values;
 
 - (id) findSmallestElementUsingFunction:(NSInteger(*)(id, id, void*)) comparator
                           context:(void*) context;

@@ -13,9 +13,9 @@
 // limitations under the License.
 
 @interface NSSet(NSSetUtilities)
-+ (NSSet*) autoreleasingSet;
-+ (NSSet*) autoreleasingSetWithArray:(NSArray*) array;
-+ (NSSet*) autoreleasingSetWithSet:(NSSet*) set;
+//+ (NSSet*) autoreleasingSet;
+//+ (NSSet*) autoreleasingSetWithArray:(NSArray*) array;
+//+ (NSSet*) autoreleasingSetWithSet:(NSSet*) set;
 
 + (NSSet*) identitySet;
 + (NSSet*) identitySetWithObject:(id) object;
