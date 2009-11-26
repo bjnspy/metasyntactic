@@ -25,7 +25,7 @@
 
 @end
 
-@implementation AutoreleasingMutableArray 
+@implementation AutoreleasingMutableArray
 
 @synthesize underlyingArray;
 
