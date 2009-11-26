@@ -20,8 +20,8 @@
   ThreadsafeValue*/*NSDictionary*/ synchronizationInformationData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
   
-  // Shared amongst threads, needs to be an autoreleasing collection.
-  NSMutableDictionary* performancesData;
+  // Shared amongst threads.
+  AutoreleasingMutableDictionary* performancesData;
 
   NSMutableDictionary* cachedIsStale;
 }
