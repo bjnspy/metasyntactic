@@ -14,9 +14,9 @@
 
 @interface NSMutableSet(Utilities)
 
-+ (NSMutableSet*) autoreleasingSet;
-+ (NSMutableSet*) autoreleasingSetWithArray:(NSArray*) array;
-+ (NSMutableSet*) autoreleasingSetWithSet:(NSSet*) set;
+//+ (NSMutableSet*) autoreleasingSet;
+//+ (NSMutableSet*) autoreleasingSetWithArray:(NSArray*) array;
+//+ (NSMutableSet*) autoreleasingSetWithSet:(NSSet*) set;
 
 + (NSMutableSet*) identitySet;
 + (NSMutableSet*) identitySetWithObject:(id) object;

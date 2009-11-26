@@ -31,6 +31,8 @@
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;
 @class AbstractSearchResult;
+@class AutoreleasingArray;
+@class AutoreleasingEnumerator;
 @class BackgroundInvocation;
 @class DateUtilities;
 @class DifferenceEngine;
