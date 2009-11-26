@@ -25,7 +25,7 @@
 
 - (void) dealloc {
   self.gate = nil;
-  
+
   [super dealloc];
 }
 
@@ -33,10 +33,10 @@
 - (id) init {
   if ((self = [super init])) {
     self.gate = [[[NSCondition alloc] init] autorelease];
-    
+
     highTaskRunningCount = 0;
   }
-  
+
   return self;
 }
 

@@ -532,7 +532,7 @@ static NSString** directories[] = {
         NSString* label = [child attributeValue:@"label"];
         save = [label isEqual:@"saved"];
         availableNow = [label isEqual:@"available now"];
-        
+
         label = [StringUtilities nonNilString:[availabilityMap objectForKey:label]];
 
         [additionalFields setObject:label forKey:availability_key];
@@ -554,16 +554,16 @@ static NSString** directories[] = {
   if (year.length > 0) {
     date = [DateUtilities dateWithNaturalLanguageString:year];
   }
-  
+
   if (!availableNow) {
     if (availabilityDate.length > 0) {
       NSDate* date = [NSDate dateWithTimeIntervalSince1970:[availabilityDate integerValue]];
       NSString* string = [NSString stringWithFormat:LocalizedString(@"Available %@", nil), [DateUtilities formatShortDate:date]];
-      
+
       [additionalFields setObject:string forKey:availability_key];
     }
   }
-  
+
   Movie* movie = [Movie movieWithIdentifier:identifier
                                       title:title
                                      rating:rating

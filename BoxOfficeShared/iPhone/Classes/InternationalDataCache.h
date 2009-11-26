@@ -16,9 +16,9 @@
 @private
   DifferenceEngine* engine;
   BOOL updated;
-  
+
   ThreadsafeValue*/*NSDictionary*/ indexData;
-  
+
   // Shared amongst threads.
   AutoreleasingMutableDictionary* movieMap;
   AutoreleasingMutableDictionary* ratingAndRuntimeCache;

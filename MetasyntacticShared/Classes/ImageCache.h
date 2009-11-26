@@ -19,7 +19,7 @@
   NSInteger imageCount;
 
   NSCondition* condition;
-  
+
   // Shared amongst multiple threads.  They need to be autoreleasing collections.
   AutoreleasingMutableDictionary* pathToImageMap;
   AutoreleasingMutableArray* pathsToFault;
