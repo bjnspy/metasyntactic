@@ -94,12 +94,12 @@
     while (nextSearchRequest == nil) {
       [gate wait];
     }
-    
+
     currentlyExecutingRequest = [[nextSearchRequest retain] autorelease];
     self.nextSearchRequest = nil;
   }
   [gate unlock];
-  
+
   [self search:currentlyExecutingRequest];
 }
 

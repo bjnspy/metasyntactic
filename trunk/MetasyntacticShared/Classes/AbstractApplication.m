@@ -238,7 +238,7 @@ static NSString* imagesDirectory = nil;
     }
   }
   [emptyTrashCondition unlock];
-  
+
   [self deleteTrash];
 }
 
