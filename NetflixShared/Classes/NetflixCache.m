@@ -208,8 +208,8 @@ static NSString** directories[] = {
 
 - (id) init {
   if ((self = [super init])) {
-    self.accountToFeeds = [NSMutableDictionary dictionary];
-    self.accountToFeedKeyToQueues = [NSMutableDictionary dictionary];
+    self.accountToFeeds = [NSMutableDictionary autoreleasingDictionary];
+    self.accountToFeedKeyToQueues = [NSMutableDictionary autoreleasingDictionary];
   }
 
   return self;
@@ -282,7 +282,6 @@ static NSString** directories[] = {
   [dataGate lock];
   {
     result = [self feedsForAccountNoLock:account];
-    [[result retain] autorelease];
   }
   [dataGate unlock];
   return result;
@@ -354,7 +353,6 @@ static NSString** directories[] = {
   [dataGate lock];
   {
     queue = [self queueForFeedNoLock:feed account:account];
-    [[queue retain] autorelease];
   }
   [dataGate unlock];
   return queue;

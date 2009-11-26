@@ -294,6 +294,12 @@
 		74EB22E910BDF23A0084580E /* NSMutableDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB22E710BDF23A0084580E /* NSMutableDictionary+Utilities.m */; };
 		74EB22F810BDF4F10084580E /* NSMutableSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */; };
 		74EB22F910BDF4F10084580E /* NSMutableSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB22F710BDF4F10084580E /* NSMutableSet+Utilities.m */; };
+		74EB273710BE59B80084580E /* AutoreleasingMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB273510BE59B80084580E /* AutoreleasingMutableArray.h */; };
+		74EB273810BE59B80084580E /* AutoreleasingMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB273610BE59B80084580E /* AutoreleasingMutableArray.m */; };
+		74EB273B10BE5A4E0084580E /* AutoreleasingMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB273910BE5A4E0084580E /* AutoreleasingMutableDictionary.h */; };
+		74EB273C10BE5A4E0084580E /* AutoreleasingMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB273A10BE5A4E0084580E /* AutoreleasingMutableDictionary.m */; };
+		74EB275D10BE5B920084580E /* AutoreleasingMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EB275B10BE5B920084580E /* AutoreleasingMutableSet.h */; };
+		74EB275E10BE5B920084580E /* AutoreleasingMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB275C10BE5B920084580E /* AutoreleasingMutableSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -601,6 +607,12 @@
 		74EB22E710BDF23A0084580E /* NSMutableDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Utilities.m"; sourceTree = "<group>"; };
 		74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Utilities.h"; sourceTree = "<group>"; };
 		74EB22F710BDF4F10084580E /* NSMutableSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Utilities.m"; sourceTree = "<group>"; };
+		74EB273510BE59B80084580E /* AutoreleasingMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableArray.h; sourceTree = "<group>"; };
+		74EB273610BE59B80084580E /* AutoreleasingMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableArray.m; sourceTree = "<group>"; };
+		74EB273910BE5A4E0084580E /* AutoreleasingMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableDictionary.h; sourceTree = "<group>"; };
+		74EB273A10BE5A4E0084580E /* AutoreleasingMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableDictionary.m; sourceTree = "<group>"; };
+		74EB275B10BE5B920084580E /* AutoreleasingMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableSet.h; sourceTree = "<group>"; };
+		74EB275C10BE5B920084580E /* AutoreleasingMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableSet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,6 +648,9 @@
 		1000000000000000000013F8 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				74EB273510BE59B80084580E /* AutoreleasingMutableArray.h */,
+				74EB273910BE5A4E0084580E /* AutoreleasingMutableDictionary.h */,
+				74EB275B10BE5B920084580E /* AutoreleasingMutableSet.h */,
 				1000000000000000000013FD /* MultiDictionary.h */,
 				10000000000000000000141A /* MutableMultiDictionary.h */,
 				10000000000000000000141E /* NSArray+Utilities.h */,
@@ -645,6 +660,9 @@
 				74EB22F610BDF4F10084580E /* NSMutableSet+Utilities.h */,
 				100000000000000000001456 /* NSSet+Utilities.h */,
 				100000000000000000001C93 /* PointerSet.h */,
+				74EB273610BE59B80084580E /* AutoreleasingMutableArray.m */,
+				74EB273A10BE5A4E0084580E /* AutoreleasingMutableDictionary.m */,
+				74EB275C10BE5B920084580E /* AutoreleasingMutableSet.m */,
 				100000000000000000001418 /* MultiDictionary.m */,
 				10000000000000000000141C /* MutableMultiDictionary.m */,
 				100000000000000000001420 /* NSArray+Utilities.m */,
@@ -1306,6 +1324,9 @@
 				74EB22D910BDF1EE0084580E /* NSDictionary+Utilities.h in Headers */,
 				74EB22E810BDF23A0084580E /* NSMutableDictionary+Utilities.h in Headers */,
 				74EB22F810BDF4F10084580E /* NSMutableSet+Utilities.h in Headers */,
+				74EB273710BE59B80084580E /* AutoreleasingMutableArray.h in Headers */,
+				74EB273B10BE5A4E0084580E /* AutoreleasingMutableDictionary.h in Headers */,
+				74EB275D10BE5B920084580E /* AutoreleasingMutableSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1502,9 @@
 				74EB22DA10BDF1EE0084580E /* NSDictionary+Utilities.m in Sources */,
 				74EB22E910BDF23A0084580E /* NSMutableDictionary+Utilities.m in Sources */,
 				74EB22F910BDF4F10084580E /* NSMutableSet+Utilities.m in Sources */,
+				74EB273810BE59B80084580E /* AutoreleasingMutableArray.m in Sources */,
+				74EB273C10BE5A4E0084580E /* AutoreleasingMutableDictionary.m in Sources */,
+				74EB275E10BE5B920084580E /* AutoreleasingMutableSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import "ImageDownloader.h"
 
 #import "AbstractApplication.h"
+#import "AutoreleasingMutableArray.h"
 #import "FileUtilities.h"
 #import "ImageCache.h"
 #import "MetasyntacticSharedApplication.h"
@@ -24,8 +25,8 @@
 
 @interface ImageDownloader()
 @property (retain) NSCondition* downloadImagesCondition;
-@property (retain) NSMutableArray* imagesToDownload;
-@property (retain) NSMutableArray* priorityImagesToDownload;
+@property (retain) AutoreleasingMutableArray* imagesToDownload;
+@property (retain) AutoreleasingMutableArray* priorityImagesToDownload;
 @end
 
 
@@ -60,8 +61,8 @@ static ImageDownloader* downloader;
 - (id) init {
   if ((self = [super init])) {
     self.downloadImagesCondition = [[[NSCondition alloc] init] autorelease];
-    self.imagesToDownload = [NSMutableArray autoreleasingArray];
-    self.priorityImagesToDownload = [NSMutableArray autoreleasingArray];
+    self.imagesToDownload = [AutoreleasingMutableArray array];
+    self.priorityImagesToDownload = [AutoreleasingMutableArray array];
 
     [ThreadingUtilities backgroundSelector:@selector(downloadImagesBackgroundEntryPoint)
                                   onTarget:self

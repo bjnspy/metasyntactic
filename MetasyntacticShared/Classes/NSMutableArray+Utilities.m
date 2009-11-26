@@ -14,76 +14,6 @@
 
 #import "NSMutableArray+Utilities.h"
 
-@interface AutoreleasingMutableArray : NSMutableArray {
-@private
-  NSMutableArray* underlyingArray;
-}
-
-@property (retain) NSMutableArray* underlyingArray;
-
-+ (AutoreleasingMutableArray*) array;
-
-@end
-
-@implementation AutoreleasingMutableArray
-
-@synthesize underlyingArray;
-
-- (void) dealloc {
-  self.underlyingArray = nil;
-  [super dealloc];
-}
-
-
-- (id) init {
-  if ((self = [super init])) {
-    self.underlyingArray = [NSMutableArray array];
-  }
-  return self;
-}
-
-
-+ (AutoreleasingMutableArray*) array {
-  return [[[AutoreleasingMutableArray alloc] init] autorelease];
-}
-
-
-- (id) objectAtIndex:(NSUInteger)index {
-  return [[[underlyingArray objectAtIndex:index] retain] autorelease];
-}
-
-
-- (NSUInteger) count {
-  return [underlyingArray count];
-}
-
-
-- (void)addObject:(id)anObject {
-  [underlyingArray addObject:anObject];
-}
-
-
-- (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
-  [underlyingArray insertObject:anObject atIndex:index];
-}
-
-
-- (void)removeLastObject {
-  [underlyingArray removeLastObject];
-}
-
-
-- (void)removeObjectAtIndex:(NSUInteger)index {
-  [underlyingArray removeObjectAtIndex:index];
-}
-
-
-- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
-  [underlyingArray replaceObjectAtIndex:index withObject:anObject];
-}
-
-@end
-
 @implementation NSMutableArray(Utilities)
 
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index {
@@ -119,18 +49,6 @@
 
 - (void) removeFirstObject {
   [self removeObjectAtIndex:0];
-}
-
-
-+ (NSMutableArray*) autoreleasingArray {
-  return [AutoreleasingMutableArray array];
-}
-
-
-+ (NSMutableArray*) autoreleasingArrayWithArray:(NSArray*) values {
-  NSMutableArray* result = [self autoreleasingArray];
-  [result addObjectsFromArray:values];
-  return result;
 }
 
 @end

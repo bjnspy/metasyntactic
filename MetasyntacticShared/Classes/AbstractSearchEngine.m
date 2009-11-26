@@ -87,23 +87,28 @@
 }
 
 
+- (void) searchLoopWorker {
+  AbstractSearchRequest* currentlyExecutingRequest = nil;
+  [gate lock];
+  {
+    while (nextSearchRequest == nil) {
+      [gate wait];
+    }
+    
+    currentlyExecutingRequest = [[nextSearchRequest retain] autorelease];
+    self.nextSearchRequest = nil;
+  }
+  [gate unlock];
+  
+  [self search:currentlyExecutingRequest];
+}
+
+
 - (void) searchLoop {
   while (true) {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
-      AbstractSearchRequest* currentlyExecutingRequest = nil;
-      [gate lock];
-      {
-        while (nextSearchRequest == nil) {
-          [gate wait];
-        }
-
-        currentlyExecutingRequest = [[nextSearchRequest retain] autorelease];
-        self.nextSearchRequest = nil;
-      }
-      [gate unlock];
-
-      [self search:currentlyExecutingRequest];
+      [self searchLoopWorker];
     }
     [autoreleasePool release];
   }

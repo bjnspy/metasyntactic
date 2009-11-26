@@ -14,16 +14,19 @@
 
 #import "DateUtilities.h"
 
+#import "AutoreleasingMutableDictionary.h"
 #import "MetasyntacticSharedApplication.h"
+#import "NSMutableDictionary+Utilities.h"
 
 @implementation DateUtilities
 
-static NSMutableDictionary* timeDifferenceMap;
-static NSMutableDictionary* iso8601Map;
 static NSCalendar* calendar;
 static NSDate* today;
 static NSRecursiveLock* gate = nil;
 
+// Shared across threads.
+static AutoreleasingMutableDictionary* timeDifferenceMap;
+static AutoreleasingMutableDictionary* iso8601Map;
 
 static NSDateFormatter* shortDateFormatter;
 static NSDateFormatter* mediumDateFormatter;
@@ -44,8 +47,8 @@ static BOOL use24HourTime;
   if (self == [DateUtilities class]) {
     gate = [[NSRecursiveLock alloc] init];
 
-    timeDifferenceMap = [[NSMutableDictionary alloc] init];
-    iso8601Map = [[NSMutableDictionary alloc] init];
+    timeDifferenceMap = [[AutoreleasingMutableDictionary dictionary] retain];
+    iso8601Map = [[AutoreleasingMutableDictionary dictionary] retain];
     calendar = [[NSCalendar currentCalendar] retain];
     {
       NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
@@ -182,11 +185,16 @@ static BOOL use24HourTime;
 
 
 + (NSString*) timeSinceNow:(NSDate*) date {
-  NSString* result = [timeDifferenceMap objectForKey:date];
-  if (result == nil) {
-    result = [self timeSinceNowWorker:date];
-    [timeDifferenceMap setObject:result forKey:date];
+  NSString* result = nil;
+  [gate lock];
+  {
+    result = [timeDifferenceMap objectForKey:date];
+    if (result == nil) {
+      result = [self timeSinceNowWorker:date];
+      [timeDifferenceMap setObject:result forKey:date];
+    }
   }
+  [gate unlock];
   return result;
 }
 

@@ -24,71 +24,71 @@
 
 
 - (void) dealloc {
-    self.gate = nil;
-
-    [super dealloc];
+  self.gate = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.gate = [[[NSCondition alloc] init] autorelease];
-
-        highTaskRunningCount = 0;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.gate = [[[NSCondition alloc] init] autorelease];
+    
+    highTaskRunningCount = 0;
+  }
+  
+  return self;
 }
 
 
 + (PriorityMutex*) mutex {
-    return [[[PriorityMutex alloc] init] autorelease];
+  return [[[PriorityMutex alloc] init] autorelease];
 }
 
 
 - (void) lockHigh {
-    [gate lock];
-    {
-        highTaskRunningCount++;
-    }
-    [gate unlock];
+  [gate lock];
+  {
+    highTaskRunningCount++;
+  }
+  [gate unlock];
 }
 
 
 - (void) unlockHigh {
-    [gate lock];
-    {
-        highTaskRunningCount--;
-        if (highTaskRunningCount == 0) {
-            // wake up a low pri thread that is waiting
-            // don't wake them all up as we don't want to
-            // move right back into a condition where all the
-            // low pri threads are consuming all the resources
-            [gate signal];
-        }
+  [gate lock];
+  {
+    highTaskRunningCount--;
+    if (highTaskRunningCount == 0) {
+      // wake up a low pri thread that is waiting
+      // don't wake them all up as we don't want to
+      // move right back into a condition where all the
+      // low pri threads are consuming all the resources
+      [gate signal];
     }
-    [gate unlock];
+  }
+  [gate unlock];
 }
 
 
 - (void) lockLow {
-    [gate lock];
-    {
-        while (highTaskRunningCount > 0) {
-            [gate wait];
-        }
+  [gate lock];
+  {
+    while (highTaskRunningCount > 0) {
+      [gate wait];
     }
-    [gate unlock];
+  }
+  [gate unlock];
 }
 
 
 - (void) unlockLow {
-    [gate lock];
-    {
-        // wake up another low pri thread that might have been waiting.
-        [gate signal];
-    }
-    [gate unlock];
+  [gate lock];
+  {
+    // wake up another low pri thread that might have been waiting.
+    [gate signal];
+  }
+  [gate unlock];
 }
 
 @end

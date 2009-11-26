@@ -94,14 +94,4 @@
   return [self objectAtIndex:0];
 }
 
-
-+ (NSArray*) autoreleasingArray {
-  return [NSMutableArray autoreleasingArray];
-}
-
-
-+ (NSArray*) autoreleasingArrayWithArray:(NSArray*) values {
-  return [NSMutableArray arrayWithArray:values];
-}
-
 @end

@@ -67,7 +67,7 @@
     self.synchronizationInformationData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.synchronizationInformationFile];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
 
-    self.performancesData = [NSMutableDictionary dictionary];
+    self.performancesData = [NSMutableDictionary autoreleasingDictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
 
@@ -209,7 +209,7 @@
     bookmarksData.value = dictionary;
     synchronizationInformationData.value = result.synchronizationInformation;
 
-    self.performancesData = [NSMutableDictionary dictionary];
+    self.performancesData = [NSMutableDictionary autoreleasingDictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
   [dataGate unlock];
