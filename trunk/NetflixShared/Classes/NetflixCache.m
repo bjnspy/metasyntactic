@@ -208,8 +208,8 @@ static NSString** directories[] = {
 
 - (id) init {
   if ((self = [super init])) {
-    self.accountToFeeds = [NSMutableDictionary autoreleasingDictionary];
-    self.accountToFeedKeyToQueues = [NSMutableDictionary autoreleasingDictionary];
+    self.accountToFeeds = [AutoreleasingMutableDictionary dictionary];
+    self.accountToFeedKeyToQueues = [AutoreleasingMutableDictionary dictionary];
   }
 
   return self;

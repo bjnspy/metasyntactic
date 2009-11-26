@@ -28,7 +28,7 @@
 @property (retain) ThreadsafeValue* moviesData;
 @property (retain) ThreadsafeValue* theatersData;
 @property (retain) ThreadsafeValue* synchronizationInformationData;
-@property (retain) NSMutableDictionary* performancesData;
+@property (retain) AutoreleasingMutableDictionary* performancesData;
 @property (retain) ThreadsafeValue* bookmarksData;
 @property (retain) NSMutableDictionary* cachedIsStale;
 @end
@@ -67,7 +67,7 @@
     self.synchronizationInformationData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.synchronizationInformationFile];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
 
-    self.performancesData = [NSMutableDictionary autoreleasingDictionary];
+    self.performancesData = [AutoreleasingMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
 
@@ -209,7 +209,7 @@
     bookmarksData.value = dictionary;
     synchronizationInformationData.value = result.synchronizationInformation;
 
-    self.performancesData = [NSMutableDictionary autoreleasingDictionary];
+    self.performancesData = [AutoreleasingMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
   [dataGate unlock];
