@@ -14,7 +14,8 @@
 
 @interface LocationCache : AbstractCache {
 @private
-    NSMutableDictionary* addressToLocation;
+  // Shared amongst threads
+  AutoreleasingMutableDictionary* addressToLocation;
 }
 
 // @protected

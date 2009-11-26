@@ -14,8 +14,9 @@
 
 @interface LargePosterCache : AbstractMovieCache {
 @private
-  NSMutableDictionary* yearToMovieNames;
-  NSMutableDictionary* yearToTitleToPosterUrls;
+  // Shared amongst multiple threads.
+  AutoreleasingMutableDictionary* yearToMovieNames;
+  AutoreleasingMutableDictionary* yearToTitleToPosterUrls;
 
   BOOL updated;
 }

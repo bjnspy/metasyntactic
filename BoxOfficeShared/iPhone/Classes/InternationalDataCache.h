@@ -19,9 +19,9 @@
   
   ThreadsafeValue*/*NSDictionary*/ indexData;
   
-  // Shared amongst threads.  Needs to be autoreleasing collections
-  NSMutableDictionary* movieMap;
-  NSMutableDictionary* ratingAndRuntimeCache;
+  // Shared amongst threads.
+  AutoreleasingMutableDictionary* movieMap;
+  AutoreleasingMutableDictionary* ratingAndRuntimeCache;
 }
 
 + (InternationalDataCache*) cache;

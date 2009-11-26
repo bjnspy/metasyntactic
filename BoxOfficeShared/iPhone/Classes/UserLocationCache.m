@@ -131,7 +131,6 @@
   [runGate lock];
   {
     result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
-    [[result retain] autorelease];
   }
   [runGate unlock];
   return result;
