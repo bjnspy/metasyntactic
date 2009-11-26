@@ -14,19 +14,72 @@
 
 #import "NSMutableSet+Utilities.h"
 
+@interface AutoreleasingMutableSet : NSMutableSet {
+@private
+  NSMutableSet* underlyingSet;
+}
+
+@property (retain) NSMutableSet* underlyingSet;
+
++ (AutoreleasingMutableSet*) set;
+
+@end
+
+
+@implementation AutoreleasingMutableSet
+
+@synthesize underlyingSet;
+
+- (void) dealloc {
+  self.underlyingSet = nil;
+  [super dealloc];
+}
+
+
+- (id) init {
+  if ((self = [super init])) {
+    self.underlyingSet = [NSMutableSet set];
+  }
+  return self;
+}
+
+
++ (AutoreleasingMutableSet*) set {
+  return [[[AutoreleasingMutableSet alloc] init] autorelease];
+}
+
+
+- (NSUInteger)count {
+  return [underlyingSet count];
+}
+
+
+- (id)member:(id)object {
+  return [[[underlyingSet member:object] retain] autorelease];
+}
+
+
+- (NSEnumerator *)objectEnumerator {
+  return [underlyingSet objectEnumerator];
+}
+
+
+- (void)addObject:(id)object {
+  [underlyingSet addObject:object];
+}
+
+
+- (void)removeObject:(id)object {
+  [underlyingSet removeObject:object];
+}
+
+@end
+
 
 @implementation NSMutableSet(Utilities)
 
-static void	AutoreleasingSetReleaseCallBack(CFAllocatorRef allocator, const void *value) {
-  [(id)value autorelease];
-}
-
 + (NSMutableSet*) autoreleasingSet {
-  CFSetCallBacks callBacks = kCFTypeSetCallBacks;
-  callBacks.release = AutoreleasingSetReleaseCallBack;
-
-  NSMutableSet* set = (NSMutableSet*)CFSetCreateMutable(NULL, 0, &callBacks);
-  return [set autorelease];
+  return [AutoreleasingMutableSet set];
 }
 
 
@@ -42,6 +95,7 @@ static void	AutoreleasingSetReleaseCallBack(CFAllocatorRef allocator, const void
   [result unionSet:set];
   return result;
 }
+
 
 static void IdentitySetReleaseCallBack(CFAllocatorRef allocator, const void* value) {
   id v = (id)value;

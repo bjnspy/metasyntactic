@@ -14,29 +14,78 @@
 
 #import "NSMutableDictionary+Utilities.h"
 
+@interface AutoreleasingMutableDictionary : NSMutableDictionary {
+@private
+  NSMutableDictionary* underlyingDictionary;
+}
 
-@implementation NSMutableDictionary(Utilities)
+@property (retain) NSMutableDictionary* underlyingDictionary;
 
-static void	AutoreleasingDictionaryReleaseCallBack(CFAllocatorRef allocator, const void *value) {
-  [(id)value autorelease];
++ (AutoreleasingMutableDictionary*) dictionary;
+
+@end
+
+
+@implementation AutoreleasingMutableDictionary
+
+@synthesize underlyingDictionary;
+
+- (void) dealloc {
+  self.underlyingDictionary = nil;
+  [super dealloc];
 }
 
 
+- (id) init {
+  if ((self = [super init])) {
+    self.underlyingDictionary = [NSMutableDictionary dictionary];
+  }
+  return self;
+}
+
+
++ (AutoreleasingMutableDictionary*) dictionary {
+  return [[[AutoreleasingMutableDictionary alloc] init] autorelease];
+}
+
+
+- (NSUInteger)count {
+  return [underlyingDictionary count];
+}
+
+
+- (id)objectForKey:(id)aKey {
+  return [[[underlyingDictionary objectForKey:aKey] retain] autorelease];
+}
+
+
+- (NSEnumerator *)keyEnumerator {
+  return [underlyingDictionary keyEnumerator];
+}
+
+
+- (void)removeObjectForKey:(id)aKey {
+  [underlyingDictionary removeObjectForKey:aKey];
+}
+
+
+- (void)setObject:(id)anObject forKey:(id)aKey {
+  [underlyingDictionary setObject:anObject forKey:aKey];
+}
+
+@end
+
+
+@implementation NSMutableDictionary(Utilities)
+
 + (NSMutableDictionary*) autoreleasingDictionary {
-  CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
-  CFDictionaryValueCallBacks valueCallbacks = kCFTypeDictionaryValueCallBacks;
-
-  keyCallbacks.release = AutoreleasingDictionaryReleaseCallBack;
-  valueCallbacks.release = AutoreleasingDictionaryReleaseCallBack;
-
-  NSMutableDictionary* result = (NSMutableDictionary*)CFDictionaryCreateMutable(NULL, 0, &keyCallbacks, &valueCallbacks);
-  return [result autorelease];
+  return [AutoreleasingMutableDictionary dictionary];
 }
 
 
 + (NSMutableDictionary*) autoreleasingDictionaryWithDictionary:(NSDictionary*) dictionary {
   NSMutableDictionary* result = [self autoreleasingDictionary];
-  [result addEntriesFromDictionary:dictionary];
+  [result setDictionary:dictionary];
   return result;
 }
 

@@ -13,6 +13,6 @@
 // limitations under the License.
 
 @interface NSDictionary(Utilities)
-//+ (NSDictionary*) autoreleasingDictionary;
-//+ (NSDictionary*) autoreleasingDictionaryWithDictionary:(NSDictionary*) dictionary;
++ (NSDictionary*) autoreleasingDictionary;
++ (NSDictionary*) autoreleasingDictionaryWithDictionary:(NSDictionary*) dictionary;
 @end

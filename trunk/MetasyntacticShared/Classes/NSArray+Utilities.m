@@ -16,7 +16,7 @@
 
 #import "NSMutableArray+Utilities.h"
 
-@implementation NSArray(NSArrayUtilities)
+@implementation NSArray(Utilities)
 
 - (id) findSmallestElementUsingFunction:(NSInteger(*)(id, id, void*)) comparator
                                 context:(void*) context {
@@ -101,7 +101,7 @@
 
 
 + (NSArray*) autoreleasingArrayWithArray:(NSArray*) values {
-  return [NSMutableArray autoreleasingArrayWithArray:values];
+  return [NSMutableArray arrayWithArray:values];
 }
 
 @end
