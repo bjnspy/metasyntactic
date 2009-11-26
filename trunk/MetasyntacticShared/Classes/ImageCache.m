@@ -14,14 +14,18 @@
 
 #import "ImageCache.h"
 
+#import "AutoreleasingMutableArray.h"
+#import "AutoreleasingMutableDictionary.h"
 #import "ImageUtilities.h"
 #import "MetasyntacticSharedApplication.h"
+#import "NSMutableArray+Utilities.h"
+#import "NSMutableDictionary+Utilities.h"
 #import "ThreadingUtilities.h"
 
 @interface ImageCache()
-@property (retain) NSMutableDictionary* pathToImageMap;
+@property (retain) AutoreleasingMutableDictionary* pathToImageMap;
 @property (retain) NSCondition* condition;
-@property (retain) NSMutableArray* pathsToFault;
+@property (retain) AutoreleasingMutableArray* pathsToFault;
 @end
 
 
@@ -50,8 +54,8 @@ static ImageCache* cache;
 - (id) init {
   if ((self = [super init])) {
     self.condition = [[[NSCondition alloc] init] autorelease];
-    self.pathToImageMap = [NSMutableDictionary dictionary];
-    self.pathsToFault = [NSMutableArray array];
+    self.pathToImageMap = [AutoreleasingMutableDictionary dictionary];
+    self.pathsToFault = [AutoreleasingMutableArray array];
 
     [ThreadingUtilities backgroundSelector:@selector(faultBackgroundEntryPoint)
                                   onTarget:self
@@ -132,7 +136,7 @@ static ImageCache* cache;
 
 - (UIImage*) imageForPathWorker:(NSString*) path
                    loadFromDisk:(BOOL) loadFromDisk {
-  id result = [[[pathToImageMap objectForKey:path] retain] autorelease];
+  id result = [pathToImageMap objectForKey:path];
   if ([self objectIsImage:result]) {
     return result;
   }
@@ -149,7 +153,7 @@ static ImageCache* cache;
 
 - (UIImage*) imageForPathWorker:(NSString*) path
                           fault:(BOOL) fault {
-  id result = [[[pathToImageMap objectForKey:path] retain] autorelease];
+  id result = [pathToImageMap objectForKey:path];
   if ([self objectIsImage:result]) {
     return result;
   }
@@ -220,7 +224,7 @@ static ImageCache* cache;
       [condition wait];
     }
 
-    path = [[pathsToFault.lastObject retain] autorelease];
+    path = pathsToFault.lastObject;
     [pathsToFault removeLastObject];
   }
   [condition unlock];

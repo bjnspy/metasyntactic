@@ -16,11 +16,13 @@
 
 @interface ImageCache : AbstractCache {
 @private
-  NSMutableDictionary* pathToImageMap;
   NSInteger imageCount;
 
   NSCondition* condition;
-  NSMutableArray* pathsToFault;
+  
+  // Shared amongst multiple threads.  They need to be autoreleasing collections.
+  AutoreleasingMutableDictionary* pathToImageMap;
+  AutoreleasingMutableArray* pathsToFault;
 }
 
 + (ImageCache*) cache;

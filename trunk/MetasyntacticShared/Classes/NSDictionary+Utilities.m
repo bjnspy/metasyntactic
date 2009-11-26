@@ -17,13 +17,4 @@
 
 @implementation NSDictionary(Utilities)
 
-+ (NSDictionary*) autoreleasingDictionary {
-  return [NSMutableDictionary dictionary];
-}
-
-
-+ (NSDictionary*) autoreleasingDictionaryWithDictionary:(NSDictionary*) dictionary {
-  return [NSMutableDictionary dictionaryWithDictionary:dictionary];
-}
-
 @end

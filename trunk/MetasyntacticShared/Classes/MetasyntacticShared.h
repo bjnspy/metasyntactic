@@ -44,6 +44,8 @@
 #import "ActionsView.h"
 #import "AlertUtilities.h"
 #import "AttributeCell.h"
+#import "AutoreleasingMutableArray.h"
+#import "AutoreleasingMutableDictionary.h"
 #import "AutoResizingCell.h"
 #import "Base64.h"
 #import "CollectionUtilities.h"

@@ -16,7 +16,8 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-  // accessed from multiple threads.  Always access through property
+  // accessed from multiple threads.  Always access through property.  Must use
+  // autoreleasing collections
   NSMutableDictionary* accountToFeeds;
   NSMutableDictionary* accountToFeedKeyToQueues;
   NSDate* lastQuotaErrorDate;

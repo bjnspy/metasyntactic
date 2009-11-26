@@ -13,9 +13,6 @@
 // limitations under the License.
 
 @interface NSMutableArray(Utilities)
-+ (NSMutableArray*) autoreleasingArray;
-+ (NSMutableArray*) autoreleasingArrayWithArray:(NSArray*) values;
-
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index;
 - (id) removeRandomElement;
 - (void) shuffle;

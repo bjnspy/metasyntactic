@@ -172,10 +172,10 @@ static OperationQueue* operationQueue = nil;
 }
 
 
-const NSInteger MAX_BOUNDED_OPERATIONS = 4;
 - (void) addBoundedOperation:(Operation*) operation {
   [dataGate lock];
   {
+    const NSInteger MAX_BOUNDED_OPERATIONS = 4;
     if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
       // too many operations.  cancel the oldest one.
       Operation* staleOperation = boundedOperations.firstObject;

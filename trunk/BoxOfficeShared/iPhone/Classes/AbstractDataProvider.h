@@ -19,6 +19,8 @@
   ThreadsafeValue*/*NSArray*/ theatersData;
   ThreadsafeValue*/*NSDictionary*/ synchronizationInformationData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
+  
+  // Shared amongst threads, needs to be an autoreleasing collection.
   NSMutableDictionary* performancesData;
 
   NSMutableDictionary* cachedIsStale;

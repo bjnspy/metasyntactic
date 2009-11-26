@@ -14,13 +14,14 @@
 
 @interface InternationalDataCache : AbstractCache {
 @private
-    DifferenceEngine* engine;
-    BOOL updated;
-
-    ThreadsafeValue*/*NSDictionary*/ indexData;
-    NSMutableDictionary* movieMap;
-
-    NSMutableDictionary* ratingAndRuntimeCache;
+  DifferenceEngine* engine;
+  BOOL updated;
+  
+  ThreadsafeValue*/*NSDictionary*/ indexData;
+  
+  // Shared amongst threads.  Needs to be autoreleasing collections
+  NSMutableDictionary* movieMap;
+  NSMutableDictionary* ratingAndRuntimeCache;
 }
 
 + (InternationalDataCache*) cache;

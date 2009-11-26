@@ -187,7 +187,7 @@ static NSString* imagesDirectory = nil;
 }
 
 
-+ (void) emptyTrashBackgroundEntryPointWorker {
++ (void) deleteTrash {
   NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
   NSFileManager* manager = [[[NSFileManager alloc] init] autorelease];
   NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
@@ -230,18 +230,23 @@ static NSString* imagesDirectory = nil;
 }
 
 
++ (void) emptyTrashBackgroundEntryPointWorker {
+  [emptyTrashCondition lock];
+  {
+    while ([FileUtilities directoryContentsNames:[self trashDirectory]].count == 0) {
+      [emptyTrashCondition wait];
+    }
+  }
+  [emptyTrashCondition unlock];
+  
+  [self deleteTrash];
+}
+
+
 + (void) emptyTrashBackgroundEntryPoint {
   while (YES) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      [emptyTrashCondition lock];
-      {
-        while ([FileUtilities directoryContentsNames:[self trashDirectory]].count == 0) {
-          [emptyTrashCondition wait];
-        }
-      }
-      [emptyTrashCondition unlock];
-
       [self emptyTrashBackgroundEntryPointWorker];
     }
     [pool release];
