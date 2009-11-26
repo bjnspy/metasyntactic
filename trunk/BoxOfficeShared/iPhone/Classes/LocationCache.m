@@ -17,7 +17,7 @@
 #import "Application.h"
 
 @interface LocationCache()
-@property (retain) NSMutableDictionary* addressToLocation;
+@property (retain) AutoreleasingMutableDictionary* addressToLocation;
 @end
 
 @implementation LocationCache
@@ -32,7 +32,7 @@
 
 - (id) init {
   if ((self = [super init])) {
-    self.addressToLocation = [NSMutableDictionary dictionary];
+    self.addressToLocation = [AutoreleasingMutableDictionary dictionary];
   }
 
   return self;
@@ -133,12 +133,11 @@
   {
     result = [addressToLocation objectForKey:address];
     if (result == nil) {
-      result =[self loadLocationWorker:address];
+      result = [self loadLocationWorker:address];
       if (result != nil) {
         [addressToLocation setObject:result forKey:address];
       }
     }
-    [[result retain] autorelease];
   }
   [dataGate unlock];
 

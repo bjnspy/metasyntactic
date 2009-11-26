@@ -28,7 +28,7 @@
 @interface CacheUpdater()
 @property (retain) NSCondition* gate;
 @property (retain) NSArray* searchOperations;
-@property (retain) NSMutableArray* imageOperations;
+@property (retain) AutoreleasingMutableArray* imageOperations;
 @end
 
 
@@ -58,7 +58,7 @@ static CacheUpdater* cacheUpdater = nil;
 - (id) init {
   if ((self = [super init])) {
     self.gate = [[[NSCondition alloc] init] autorelease];
-    self.imageOperations = [NSMutableArray array];
+    self.imageOperations = [AutoreleasingMutableArray array];
     [ThreadingUtilities backgroundSelector:@selector(updateImagesBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
@@ -191,7 +191,7 @@ static CacheUpdater* cacheUpdater = nil;
     while (imageOperations.count == 0) {
       [gate wait];
     }
-    movie = [[[imageOperations lastObject] retain] autorelease];
+    movie = imageOperations.lastObject;
     [imageOperations removeLastObject];
   }
   [gate unlock];

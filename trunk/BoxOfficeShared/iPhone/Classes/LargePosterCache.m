@@ -18,8 +18,8 @@
 #import "Model.h"
 
 @interface LargePosterCache()
-@property (retain) NSMutableDictionary* yearToMovieNames;
-@property (retain) NSMutableDictionary* yearToTitleToPosterUrls;
+@property (retain) AutoreleasingMutableDictionary* yearToMovieNames;
+@property (retain) AutoreleasingMutableDictionary* yearToTitleToPosterUrls;
 @property BOOL updated;
 @end
 
@@ -43,8 +43,8 @@ const NSInteger START_YEAR = 1912;
 
 - (id) init {
   if ((self = [super init])) {
-    self.yearToMovieNames = [NSMutableDictionary dictionary];
-    self.yearToTitleToPosterUrls = [NSMutableDictionary dictionary];
+    self.yearToMovieNames = [AutoreleasingMutableDictionary dictionary];
+    self.yearToTitleToPosterUrls = [AutoreleasingMutableDictionary dictionary];
   }
 
   return self;
@@ -294,7 +294,7 @@ const NSInteger START_YEAR = 1912;
   NSArray* movieNames;
   [dataGate lock];
   {
-    movieNames = [[[yearToMovieNames objectForKey:[NSNumber numberWithInteger:year]] retain] autorelease];
+    movieNames = [yearToMovieNames objectForKey:[NSNumber numberWithInteger:year]];
   }
   [dataGate unlock];
 
@@ -367,7 +367,7 @@ const NSInteger START_YEAR = 1912;
       titleToPosterUrls = [NSMutableDictionary dictionary];
       [yearToTitleToPosterUrls setObject:titleToPosterUrls forKey:yearNumber];
     }
-    result = [[[titleToPosterUrls objectForKey:movie.canonicalTitle] retain] autorelease];
+    result = [titleToPosterUrls objectForKey:movie.canonicalTitle];
   }
   [dataGate unlock];
 

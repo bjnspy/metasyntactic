@@ -20,8 +20,8 @@
 @interface InternationalDataCache()
 @property (retain) DifferenceEngine* engine;
 @property (retain) ThreadsafeValue* indexData;
-@property (retain) NSMutableDictionary* movieMap;
-@property (retain) NSMutableDictionary* ratingAndRuntimeCache;
+@property (retain) AutoreleasingMutableDictionary* movieMap;
+@property (retain) AutoreleasingMutableDictionary* ratingAndRuntimeCache;
 @property BOOL updated;
 @end
 
@@ -73,7 +73,7 @@ static NSDictionary* countryToCode = nil;
   if ((self = [super init])) {
     self.indexData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadIndex) saveSelector:@selector(saveIndex:)];
     self.engine = [DifferenceEngine engine];
-    self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
+    self.ratingAndRuntimeCache = [AutoreleasingMutableDictionary dictionary];
   }
 
   return self;
@@ -385,8 +385,8 @@ static NSDictionary* countryToCode = nil;
   [dataGate lock];
   {
     indexData.value = dictionary;
-    self.movieMap = [NSMutableDictionary dictionary];
-    self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
+    self.movieMap = [AutoreleasingMutableDictionary dictionary];
+    self.ratingAndRuntimeCache = [AutoreleasingMutableDictionary dictionary];
   }
   [dataGate unlock];
 }
