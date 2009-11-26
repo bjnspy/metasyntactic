@@ -18,12 +18,12 @@
 @implementation NSDictionary(Utilities)
 
 + (NSDictionary*) autoreleasingDictionary {
-  return [NSMutableDictionary autoreleasingDictionary];
+  return [NSMutableDictionary dictionary];
 }
 
 
 + (NSDictionary*) autoreleasingDictionaryWithDictionary:(NSDictionary*) dictionary {
-  return [NSMutableDictionary autoreleasingDictionaryWithDictionary:dictionary];
+  return [NSMutableDictionary dictionaryWithDictionary:dictionary];
 }
 
 @end

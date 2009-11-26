@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NSMutableArray(NSMutableArrayUtilities)
-//+ (NSMutableArray*) autoreleasingArray;
-//+ (NSMutableArray*) autoreleasingArrayWithArray:(NSArray*) values;
+@interface NSMutableArray(Utilities)
++ (NSMutableArray*) autoreleasingArray;
++ (NSMutableArray*) autoreleasingArrayWithArray:(NSArray*) values;
 
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index;
 - (id) removeRandomElement;
