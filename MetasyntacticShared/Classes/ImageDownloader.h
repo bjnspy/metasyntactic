@@ -15,6 +15,9 @@
 @interface ImageDownloader : NSObject {
 @private
   NSCondition* downloadImagesCondition;
+  
+  // These arrays are shared amongst threads.  They must be protected with locks
+  // and instantiated as autoreleasing arrays.
   NSMutableArray* imagesToDownload;
   NSMutableArray* priorityImagesToDownload;
 }

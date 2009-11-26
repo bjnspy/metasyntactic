@@ -19,6 +19,7 @@
 #import "ImageCache.h"
 #import "MetasyntacticSharedApplication.h"
 #import "NetworkUtilities.h"
+#import "NSMutableArray+Utilities.h"
 #import "ThreadingUtilities.h"
 
 @interface ImageDownloader()
@@ -59,8 +60,8 @@ static ImageDownloader* downloader;
 - (id) init {
   if ((self = [super init])) {
     self.downloadImagesCondition = [[[NSCondition alloc] init] autorelease];
-    self.imagesToDownload = [NSMutableArray array];
-    self.priorityImagesToDownload = [NSMutableArray array];
+    self.imagesToDownload = [NSMutableArray autoreleasingArray];
+    self.priorityImagesToDownload = [NSMutableArray autoreleasingArray];
 
     [ThreadingUtilities backgroundSelector:@selector(downloadImagesBackgroundEntryPoint)
                                   onTarget:self
@@ -118,10 +119,10 @@ static ImageDownloader* downloader;
         }
 
         if (priorityImagesToDownload.count > 0) {
-          address = [[priorityImagesToDownload.lastObject retain] autorelease];
+          address = priorityImagesToDownload.lastObject;
           [priorityImagesToDownload removeLastObject];
         } else {
-          address = [[imagesToDownload.lastObject retain] autorelease];
+          address = imagesToDownload.lastObject;
           [imagesToDownload removeLastObject];
         }
       }
@@ -138,7 +139,10 @@ static ImageDownloader* downloader;
   [downloadImagesCondition lock];
   {
     for (NSInteger i = addresses.count - 1; i >= 0; i--) {
-      [imagesToDownload addObject:[addresses objectAtIndex:i]];
+      NSString* address = [addresses objectAtIndex:i];
+      if (address.length > 0) {
+        [imagesToDownload addObject:[addresses objectAtIndex:i]];
+      }
     }
     [downloadImagesCondition broadcast];
   }
@@ -147,6 +151,10 @@ static ImageDownloader* downloader;
 
 
 - (void) addAddressToDownload:(NSString*) address priority:(BOOL) priority {
+  if (address.length == 0) {
+    return;
+  }
+
   [downloadImagesCondition lock];
   {
     if (priority) {
