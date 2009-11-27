@@ -144,11 +144,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		100000000000000000000EE8 /* PBXContainerItemProxy */ = {
+		100000000000000000000EE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000010A4 /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteGlobalIDString = 7401C1A80F950347006D8281;
+			remoteInfo = UnitTests;
+		};
+		100000000000000000000EE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000000000010A4 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 10000000000000000000109F;
 			remoteInfo = ProtocolBuffers;
 		};
 		100000000000000000000EE6 /* PBXContainerItemProxy */ = {
@@ -158,13 +165,6 @@
 			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
 		};
-		100000000000000000000EE4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000010A4 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281;
-			remoteInfo = UnitTests;
-		};
 		100000000000000000000EE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000000E36 /* NetflixShared.xcodeproj */;
@@ -172,11 +172,11 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = NetflixShared;
 		};
-		100000000000000000000EE5 /* PBXContainerItemProxy */ = {
+		100000000000000000000EE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000010A4 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 10000000000000000000109F;
+			proxyType = 2;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		100000000000000000000EE9 /* PBXContainerItemProxy */ = {
@@ -337,8 +337,8 @@
 		10000000000000000000105D /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
 		100000000000000000001069 /* PreviewNetworksPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewNetworksPosterDownloader.h; sourceTree = "<group>"; };
 		10000000000000000000106A /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
-		10000000000000000000107E /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
 		10000000000000000000107D /* DVDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDNavigationController.m; sourceTree = "<group>"; };
+		10000000000000000000107E /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
 		10000000000000000000108E /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		10000000000000000000108F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		100000000000000000001099 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
@@ -483,6 +483,7 @@
 		100000000000000000001AF2 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001AF9 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001AFB /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74F012BB10C03C2700C4E762 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_tw; path = Resources/zh_tw.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1144,6 +1145,7 @@
 				ua,
 				uk,
 				hr,
+				zh_tw,
 			);
 			mainGroup = 100000000000000000000FD5 /* CustomTemplate */;
 			projectDirPath = "";
@@ -1327,15 +1329,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		100000000000000000000F5E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ProtocolBuffers;
-			targetProxy = 100000000000000000000EE5 /* PBXContainerItemProxy */;
-		};
 		100000000000000000000F5D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NetflixShared;
 			targetProxy = 100000000000000000000EE9 /* PBXContainerItemProxy */;
+		};
+		100000000000000000000F5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 100000000000000000000EE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1368,6 +1370,7 @@
 				100000000000000000001AF2 /* sv */,
 				100000000000000000001AF9 /* tr */,
 				100000000000000000001AFB /* uk */,
+				74F012BB10C03C2700C4E762 /* zh_tw */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
