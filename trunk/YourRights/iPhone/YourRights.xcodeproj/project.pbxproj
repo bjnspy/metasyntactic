@@ -7,444 +7,444 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1000000000000000000003D8 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003D7 /* ACLUArticlesViewController.m */; };
-		1000000000000000000003E6 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E5 /* ACLUInfoViewController.m */; };
-		10000000000000000000054F /* ACLUNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E8 /* ACLUNewsViewController.m */; };
-		100000000000000000000558 /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000556 /* Amendment.m */; };
-		10000000000000000000055B /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000055A /* AnswerViewController.m */; };
-		1000000000000000000006CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000006A1 /* AppDelegate.m */; };
-		1000000000000000000006D6 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000006D5 /* Application.m */; };
-		1000000000000000000008ED /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000006E2 /* Article.m */; };
-		100000000000000000000A09 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000922 /* ArticleBodyCell.m */; };
-		100000000000000000000AAD /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AAC /* ArticleTitleCell.m */; };
-		100000000000000000000AF2 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AEB /* ArticlesOfConfederation.m */; };
-		100000000000000000000B30 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B31 /* CFNetwork.framework */; };
-		100000000000000000000ED5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ECD /* MediaPlayer.framework */; };
-		100000000000000000000F4D /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F4B /* Constitution.m */; };
-		100000000000000000000F74 /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F73 /* ConstitutionAmendmentViewController.m */; };
-		100000000000000000000F77 /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F76 /* ConstitutionArticleViewController.m */; };
-		100000000000000000000F7A /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F79 /* ConstitutionSignersViewController.m */; };
-		100000000000000000000FA3 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000108C /* Controller.m */; };
-		100000000000000000000FFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FA4 /* CoreGraphics.framework */; };
-		100000000000000000000FFD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FFC /* CoreLocation.framework */; };
-		100000000000000000001000 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FFF /* CreditsViewController.m */; };
-		100000000000000000001007 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001006 /* Decision.m */; };
-		10000000000000000000100D /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001106 /* DeclarationOfIndependence.m */; };
-		10000000000000000000108A /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F7C /* ConstitutionViewController.m */; };
-		100000000000000000001104 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F3 /* DecisionCell.m */; };
-		100000000000000000001400 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013FF /* DeclarationOfIndependenceViewController.m */; };
-		100000000000000000001402 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001401 /* Default.png */; };
-		100000000000000000001409 /* FederalistPapers.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001408 /* FederalistPapers.m */; };
-		10000000000000000000140C /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000140B /* FederalistPapersArticleViewController.m */; };
-		10000000000000000000140F /* FederalistPapersSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000140E /* FederalistPapersSectionViewController.m */; };
-		100000000000000000001412 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001411 /* FederalistPapersViewController.m */; };
-		100000000000000000001415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001414 /* Foundation.framework */; };
-		10000000000000000000141A /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001419 /* GreatestHitsViewController.m */; };
-		100000000000000000001437 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001435 /* Person.m */; };
-		100000000000000000001498 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000141B /* Icon.png */; };
-		1000000000000000000014DD /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014DC /* Item.m */; };
-		10000000000000000000153C /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000153B /* QuestionsViewController.m */; };
-		100000000000000000001545 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001544 /* RSSCache.m */; };
-		10000000000000000000154E /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014EE /* License.txt */; };
-		10000000000000000000156E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000156D /* Localizable.strings */; };
-		100000000000000000001717 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001715 /* Section.m */; };
-		10000000000000000000171A /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001719 /* SectionViewController.m */; };
-		1000000000000000000017AB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001747 /* MainWindow.xib */; };
-		1000000000000000000019C4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019BB /* SystemConfiguration.framework */; };
-		100000000000000000001C0D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C0B /* MapKit.framework */; };
-		100000000000000000001C36 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C35 /* ToughAnswerViewController.m */; };
-		100000000000000000001C39 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C38 /* ToughQuestionsViewController.m */; };
-		100000000000000000001C3D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C0F /* MessageUI.framework */; };
-		100000000000000000001C3F /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C3E /* MetasyntacticResources.bundle */; };
-		100000000000000000001C79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C6C /* UIKit.framework */; };
-		100000000000000000001CA4 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001CA3 /* UnitedStatesConstitution.m */; };
-		100000000000000000001D2B /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D2A /* WrappableCell.m */; };
-		100000000000000000001D4E /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001D4D /* YourRightsNavigationController.m */; };
-		100000000000000000001F63 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F60 /* libMetasyntacticShared.a */; };
-		100000000000000000001F65 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F5F /* Model.m */; };
-		100000000000000000001F8E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F8A /* libsqlite3.dylib */; };
-		100000000000000000001FA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F9B /* main.m */; };
+		1000000000000000000003D7 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003D6 /* ACLUArticlesViewController.m */; };
+		1000000000000000000003E5 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E4 /* ACLUInfoViewController.m */; };
+		100000000000000000000539 /* ACLUNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E7 /* ACLUNewsViewController.m */; };
+		100000000000000000000542 /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000540 /* Amendment.m */; };
+		100000000000000000000545 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000544 /* AnswerViewController.m */; };
+		1000000000000000000006BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000690 /* AppDelegate.m */; };
+		1000000000000000000006C5 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000006C4 /* Application.m */; };
+		1000000000000000000008DF /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000006D0 /* Article.m */; };
+		100000000000000000000A02 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000915 /* ArticleBodyCell.m */; };
+		100000000000000000000AA2 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AA1 /* ArticleTitleCell.m */; };
+		100000000000000000000AE7 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AE0 /* ArticlesOfConfederation.m */; };
+		100000000000000000000B22 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000B23 /* CFNetwork.framework */; };
+		100000000000000000000EC3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EBB /* MediaPlayer.framework */; };
+		100000000000000000000F36 /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F34 /* Constitution.m */; };
+		100000000000000000000F5D /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F5C /* ConstitutionAmendmentViewController.m */; };
+		100000000000000000000F60 /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F5F /* ConstitutionArticleViewController.m */; };
+		100000000000000000000F63 /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F62 /* ConstitutionSignersViewController.m */; };
+		100000000000000000000F8B /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001070 /* Controller.m */; };
+		100000000000000000000FDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F8C /* CoreGraphics.framework */; };
+		100000000000000000000FE1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FE0 /* CoreLocation.framework */; };
+		100000000000000000000FE4 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FE3 /* CreditsViewController.m */; };
+		100000000000000000000FEB /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FEA /* Decision.m */; };
+		100000000000000000000FF1 /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010C3 /* DeclarationOfIndependence.m */; };
+		10000000000000000000106E /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F65 /* ConstitutionViewController.m */; };
+		1000000000000000000010C1 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010AE /* DecisionCell.m */; };
+		1000000000000000000013C3 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013C2 /* DeclarationOfIndependenceViewController.m */; };
+		1000000000000000000013C5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013C4 /* Default.png */; };
+		1000000000000000000013CC /* FederalistPapers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013CB /* FederalistPapers.m */; };
+		1000000000000000000013CF /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013CE /* FederalistPapersArticleViewController.m */; };
+		1000000000000000000013D2 /* FederalistPapersSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013D1 /* FederalistPapersSectionViewController.m */; };
+		1000000000000000000013D5 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013D4 /* FederalistPapersViewController.m */; };
+		1000000000000000000013D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013D7 /* Foundation.framework */; };
+		1000000000000000000013DD /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013DC /* GreatestHitsViewController.m */; };
+		1000000000000000000013FA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013F8 /* Person.m */; };
+		10000000000000000000145A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013DE /* Icon.png */; };
+		10000000000000000000149C /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001486 /* Item.m */; };
+		1000000000000000000014FD /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014FC /* QuestionsViewController.m */; };
+		100000000000000000001506 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001505 /* RSSCache.m */; };
+		10000000000000000000150D /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014AE /* License.txt */; };
+		10000000000000000000151F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000151E /* Localizable.strings */; };
+		1000000000000000000016C1 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016BF /* Section.m */; };
+		1000000000000000000016C4 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016C3 /* SectionViewController.m */; };
+		100000000000000000001759 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016F1 /* MainWindow.xib */; };
+		100000000000000000001975 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000196B /* SystemConfiguration.framework */; };
+		100000000000000000001BC1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BBF /* MapKit.framework */; };
+		100000000000000000001BE8 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BE7 /* ToughAnswerViewController.m */; };
+		100000000000000000001BEB /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BEA /* ToughQuestionsViewController.m */; };
+		100000000000000000001BEF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BC3 /* MessageUI.framework */; };
+		100000000000000000001BF1 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001BF0 /* MetasyntacticResources.bundle */; };
+		100000000000000000001C2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C1E /* UIKit.framework */; };
+		100000000000000000001C56 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001C55 /* UnitedStatesConstitution.m */; };
+		100000000000000000001CDB /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001CDA /* WrappableCell.m */; };
+		100000000000000000001CFE /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001CFD /* YourRightsNavigationController.m */; };
+		100000000000000000001F12 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F0F /* libMetasyntacticShared.a */; };
+		100000000000000000001F14 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F0E /* Model.m */; };
+		100000000000000000001F3B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F37 /* libsqlite3.dylib */; };
+		100000000000000000001F58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001F48 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		100000000000000000001142 /* PBXContainerItemProxy */ = {
+		100000000000000000001101 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 100000000000000000001C4B /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 100000000000000000001BFD /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000000000001DA8;
+			remoteGlobalIDString = 100000000000000000001D5E;
 			remoteInfo = MetasyntacticShared;
 		};
-		100000000000000000001143 /* PBXContainerItemProxy */ = {
+		100000000000000000001102 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 100000000000000000001C4B /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 100000000000000000001BFD /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 10000000000000000000141C;
+			remoteGlobalIDString = 1000000000000000000013DF;
 			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1000000000000000000003D6 /* ACLUArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUArticlesViewController.h; sourceTree = "<group>"; };
-		1000000000000000000003D7 /* ACLUArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUArticlesViewController.m; sourceTree = "<group>"; };
-		1000000000000000000003D9 /* ACLUInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUInfoViewController.h; sourceTree = "<group>"; };
-		1000000000000000000003E5 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
-		1000000000000000000003E7 /* ACLUNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsViewController.h; sourceTree = "<group>"; };
-		1000000000000000000003E8 /* ACLUNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsViewController.m; sourceTree = "<group>"; };
-		100000000000000000000552 /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
-		100000000000000000000556 /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
-		100000000000000000000559 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
-		10000000000000000000055A /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
-		10000000000000000000064F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000006A1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1000000000000000000006D4 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
-		1000000000000000000006D5 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		1000000000000000000006D7 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
-		1000000000000000000006E2 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
-		100000000000000000000921 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
-		100000000000000000000922 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
-		100000000000000000000AAB /* ArticleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTitleCell.h; sourceTree = "<group>"; };
-		100000000000000000000AAC /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
-		100000000000000000000AAE /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
-		100000000000000000000AEB /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
-		100000000000000000000B31 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		100000000000000000000ECD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		100000000000000000000F43 /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
-		100000000000000000000F4B /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
-		100000000000000000000F72 /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
-		100000000000000000000F73 /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
-		100000000000000000000F75 /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
-		100000000000000000000F76 /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
-		100000000000000000000F78 /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
-		100000000000000000000F79 /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
-		100000000000000000000F7B /* ConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionViewController.h; sourceTree = "<group>"; };
-		100000000000000000000F7C /* ConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionViewController.m; sourceTree = "<group>"; };
-		100000000000000000000FA4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		100000000000000000000FFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		100000000000000000000FFE /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
-		100000000000000000000FFF /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
-		100000000000000000001005 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
-		100000000000000000001006 /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
-		100000000000000000001008 /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
-		10000000000000000000100B /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
-		10000000000000000000108B /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		10000000000000000000108C /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		1000000000000000000010F3 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
-		100000000000000000001106 /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
-		1000000000000000000013FE /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
-		1000000000000000000013FF /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
-		100000000000000000001401 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		100000000000000000001405 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		100000000000000000001407 /* FederalistPapers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapers.h; sourceTree = "<group>"; };
-		100000000000000000001408 /* FederalistPapers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapers.m; sourceTree = "<group>"; };
-		10000000000000000000140A /* FederalistPapersArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersArticleViewController.h; sourceTree = "<group>"; };
-		10000000000000000000140B /* FederalistPapersArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersArticleViewController.m; sourceTree = "<group>"; };
-		10000000000000000000140D /* FederalistPapersSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersSectionViewController.h; sourceTree = "<group>"; };
-		10000000000000000000140E /* FederalistPapersSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersSectionViewController.m; sourceTree = "<group>"; };
-		100000000000000000001410 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
-		100000000000000000001411 /* FederalistPapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersViewController.m; sourceTree = "<group>"; };
-		100000000000000000001413 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		100000000000000000001414 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		100000000000000000001418 /* GreatestHitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatestHitsViewController.h; sourceTree = "<group>"; };
-		100000000000000000001419 /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
-		10000000000000000000141B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
-		100000000000000000001433 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		100000000000000000001435 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		1000000000000000000014A4 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		1000000000000000000014A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1000000000000000000014C6 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		1000000000000000000014DC /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		1000000000000000000014EE /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		10000000000000000000153A /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsViewController.h; sourceTree = "<group>"; };
-		10000000000000000000153B /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
-		100000000000000000001543 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
-		100000000000000000001544 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
-		100000000000000000001712 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		100000000000000000001715 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		100000000000000000001718 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
-		100000000000000000001719 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
-		100000000000000000001734 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		100000000000000000001747 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		1000000000000000000019BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		100000000000000000001C0B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		100000000000000000001C0F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		100000000000000000001C34 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
-		100000000000000000001C35 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
-		100000000000000000001C37 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
-		100000000000000000001C38 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
-		100000000000000000001C3E /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
-		100000000000000000001C40 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		100000000000000000001C4B /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
-		100000000000000000001C6C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		100000000000000000001CA2 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
-		100000000000000000001CA3 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
-		100000000000000000001D06 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		100000000000000000001D29 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
-		100000000000000000001D2A /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
-		100000000000000000001D4B /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000001D4C /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
-		100000000000000000001D4D /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
-		100000000000000000001D6A /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		100000000000000000001F5F /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		100000000000000000001F8A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		100000000000000000001F9B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1000000000000000000003D5 /* ACLUArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUArticlesViewController.h; sourceTree = "<group>"; };
+		1000000000000000000003D6 /* ACLUArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUArticlesViewController.m; sourceTree = "<group>"; };
+		1000000000000000000003D8 /* ACLUInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUInfoViewController.h; sourceTree = "<group>"; };
+		1000000000000000000003E4 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
+		1000000000000000000003E6 /* ACLUNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000003E7 /* ACLUNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsViewController.m; sourceTree = "<group>"; };
+		10000000000000000000053C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
+		100000000000000000000540 /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
+		100000000000000000000543 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		100000000000000000000544 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
+		10000000000000000000063D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		100000000000000000000690 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1000000000000000000006C3 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		1000000000000000000006C4 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		1000000000000000000006C6 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		1000000000000000000006D0 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		100000000000000000000914 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
+		100000000000000000000915 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
+		100000000000000000000AA0 /* ArticleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTitleCell.h; sourceTree = "<group>"; };
+		100000000000000000000AA1 /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
+		100000000000000000000AA3 /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
+		100000000000000000000AE0 /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
+		100000000000000000000B23 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		100000000000000000000EBB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		100000000000000000000F2C /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
+		100000000000000000000F34 /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
+		100000000000000000000F5B /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
+		100000000000000000000F5C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
+		100000000000000000000F5E /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
+		100000000000000000000F5F /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
+		100000000000000000000F61 /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
+		100000000000000000000F62 /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
+		100000000000000000000F64 /* ConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionViewController.h; sourceTree = "<group>"; };
+		100000000000000000000F65 /* ConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionViewController.m; sourceTree = "<group>"; };
+		100000000000000000000F8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		100000000000000000000FE0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		100000000000000000000FE2 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		100000000000000000000FE3 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		100000000000000000000FE9 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
+		100000000000000000000FEA /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
+		100000000000000000000FEC /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
+		100000000000000000000FEF /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
+		10000000000000000000106F /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		100000000000000000001070 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		1000000000000000000010AE /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
+		1000000000000000000010C3 /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
+		1000000000000000000013C1 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
+		1000000000000000000013C2 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
+		1000000000000000000013C4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		1000000000000000000013C8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		1000000000000000000013CA /* FederalistPapers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapers.h; sourceTree = "<group>"; };
+		1000000000000000000013CB /* FederalistPapers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapers.m; sourceTree = "<group>"; };
+		1000000000000000000013CD /* FederalistPapersArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersArticleViewController.h; sourceTree = "<group>"; };
+		1000000000000000000013CE /* FederalistPapersArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersArticleViewController.m; sourceTree = "<group>"; };
+		1000000000000000000013D0 /* FederalistPapersSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersSectionViewController.h; sourceTree = "<group>"; };
+		1000000000000000000013D1 /* FederalistPapersSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersSectionViewController.m; sourceTree = "<group>"; };
+		1000000000000000000013D3 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
+		1000000000000000000013D4 /* FederalistPapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersViewController.m; sourceTree = "<group>"; };
+		1000000000000000000013D6 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		1000000000000000000013D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1000000000000000000013DB /* GreatestHitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatestHitsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000013DC /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
+		1000000000000000000013DE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		1000000000000000000013F6 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		1000000000000000000013F8 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		100000000000000000001466 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		100000000000000000001467 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000000001488 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		100000000000000000001486 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		1000000000000000000014AE /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		1000000000000000000014FB /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000014FC /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
+		100000000000000000001504 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
+		100000000000000000001505 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
+		1000000000000000000016BC /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		1000000000000000000016BF /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		1000000000000000000016C2 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
+		1000000000000000000016C3 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
+		1000000000000000000016DE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		1000000000000000000016F1 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		10000000000000000000196B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		100000000000000000001BBF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		100000000000000000001BC3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		100000000000000000001BE6 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
+		100000000000000000001BE7 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
+		100000000000000000001BE9 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
+		100000000000000000001BEA /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
+		100000000000000000001BF0 /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
+		100000000000000000001BF2 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000001BFD /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		100000000000000000001C1E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		100000000000000000001C54 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
+		100000000000000000001C55 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
+		100000000000000000001CB3 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		100000000000000000001CD9 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
+		100000000000000000001CDA /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
+		100000000000000000001CFB /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000001CFC /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
+		100000000000000000001CFD /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
+		100000000000000000001D1A /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000000000001F0E /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		100000000000000000001F37 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		100000000000000000001F48 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		100000000000000000001416 /* Frameworks */ = {
+		1000000000000000000013D9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001F63 /* libMetasyntacticShared.a in Frameworks */,
-				100000000000000000001415 /* Foundation.framework in Frameworks */,
-				100000000000000000001C79 /* UIKit.framework in Frameworks */,
-				100000000000000000000FFB /* CoreGraphics.framework in Frameworks */,
-				100000000000000000000B30 /* CFNetwork.framework in Frameworks */,
-				1000000000000000000019C4 /* SystemConfiguration.framework in Frameworks */,
-				100000000000000000001C3D /* MessageUI.framework in Frameworks */,
-				100000000000000000001F8E /* libsqlite3.dylib in Frameworks */,
-				100000000000000000000FFD /* CoreLocation.framework in Frameworks */,
-				100000000000000000001C0D /* MapKit.framework in Frameworks */,
-				100000000000000000000ED5 /* MediaPlayer.framework in Frameworks */,
+				100000000000000000001F12 /* libMetasyntacticShared.a in Frameworks */,
+				1000000000000000000013D8 /* Foundation.framework in Frameworks */,
+				100000000000000000001C2B /* UIKit.framework in Frameworks */,
+				100000000000000000000FDF /* CoreGraphics.framework in Frameworks */,
+				100000000000000000000B22 /* CFNetwork.framework in Frameworks */,
+				100000000000000000001975 /* SystemConfiguration.framework in Frameworks */,
+				100000000000000000001BEF /* MessageUI.framework in Frameworks */,
+				100000000000000000001F3B /* libsqlite3.dylib in Frameworks */,
+				100000000000000000000FE1 /* CoreLocation.framework in Frameworks */,
+				100000000000000000001BC1 /* MapKit.framework in Frameworks */,
+				100000000000000000000EC3 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		100000000000000000000C1F /* Caches */ = {
+		100000000000000000000C11 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001543 /* RSSCache.h */,
-				100000000000000000001544 /* RSSCache.m */,
+				100000000000000000001504 /* RSSCache.h */,
+				100000000000000000001505 /* RSSCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
 		};
-		100000000000000000000E71 /* Classes */ = {
+		100000000000000000000E5E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000C1F /* Caches */,
-				100000000000000000001002 /* Data */,
-				100000000000000000001756 /* Shared */,
-				100000000000000000001B09 /* Text */,
-				100000000000000000001C53 /* UI */,
-				10000000000000000000064F /* AppDelegate.h */,
-				1000000000000000000006D4 /* Application.h */,
-				10000000000000000000108B /* Controller.h */,
-				100000000000000000001D06 /* Model.h */,
-				1000000000000000000006A1 /* AppDelegate.m */,
-				1000000000000000000006D5 /* Application.m */,
-				10000000000000000000108C /* Controller.m */,
-				100000000000000000001F5F /* Model.m */,
+				100000000000000000000C11 /* Caches */,
+				100000000000000000000FE6 /* Data */,
+				100000000000000000001705 /* Shared */,
+				100000000000000000001ABA /* Text */,
+				100000000000000000001C05 /* UI */,
+				10000000000000000000063D /* AppDelegate.h */,
+				1000000000000000000006C3 /* Application.h */,
+				10000000000000000000106F /* Controller.h */,
+				100000000000000000001CB3 /* Model.h */,
+				100000000000000000000690 /* AppDelegate.m */,
+				1000000000000000000006C4 /* Application.m */,
+				100000000000000000001070 /* Controller.m */,
+				100000000000000000001F0E /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		100000000000000000000E78 /* Constitution */ = {
+		100000000000000000000E65 /* Constitution */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000F72 /* ConstitutionAmendmentViewController.h */,
-				100000000000000000000F75 /* ConstitutionArticleViewController.h */,
-				100000000000000000000F78 /* ConstitutionSignersViewController.h */,
-				100000000000000000000F7B /* ConstitutionViewController.h */,
-				100000000000000000000F73 /* ConstitutionAmendmentViewController.m */,
-				100000000000000000000F76 /* ConstitutionArticleViewController.m */,
-				100000000000000000000F79 /* ConstitutionSignersViewController.m */,
-				100000000000000000000F7C /* ConstitutionViewController.m */,
+				100000000000000000000F5B /* ConstitutionAmendmentViewController.h */,
+				100000000000000000000F5E /* ConstitutionArticleViewController.h */,
+				100000000000000000000F61 /* ConstitutionSignersViewController.h */,
+				100000000000000000000F64 /* ConstitutionViewController.h */,
+				100000000000000000000F5C /* ConstitutionAmendmentViewController.m */,
+				100000000000000000000F5F /* ConstitutionArticleViewController.m */,
+				100000000000000000000F62 /* ConstitutionSignersViewController.m */,
+				100000000000000000000F65 /* ConstitutionViewController.m */,
 			);
 			name = Constitution;
 			sourceTree = "<group>";
 		};
-		100000000000000000001001 /* CustomTemplate */ = {
+		100000000000000000000FE5 /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000E71 /* Classes */,
-				100000000000000000001417 /* Frameworks */,
-				100000000000000000001F70 /* Other Sources */,
-				1000000000000000000014E2 /* Products */,
-				10000000000000000000165A /* Resources */,
-				100000000000000000001405 /* Entitlements.plist */,
-				100000000000000000001C4B /* MetasyntacticShared.xcodeproj */,
+				100000000000000000000E5E /* Classes */,
+				1000000000000000000013DA /* Frameworks */,
+				100000000000000000001F1F /* Other Sources */,
+				1000000000000000000014A1 /* Products */,
+				100000000000000000001606 /* Resources */,
+				1000000000000000000013C8 /* Entitlements.plist */,
+				100000000000000000001BFD /* MetasyntacticShared.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		100000000000000000001002 /* Data */ = {
+		100000000000000000000FE6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000552 /* Amendment.h */,
-				1000000000000000000006D7 /* Article.h */,
-				100000000000000000000F43 /* Constitution.h */,
-				100000000000000000001005 /* Decision.h */,
-				10000000000000000000100B /* DeclarationOfIndependence.h */,
-				1000000000000000000014C6 /* Item.h */,
-				100000000000000000001433 /* Person.h */,
-				100000000000000000001712 /* Section.h */,
-				100000000000000000000556 /* Amendment.m */,
-				1000000000000000000006E2 /* Article.m */,
-				100000000000000000000F4B /* Constitution.m */,
-				100000000000000000001006 /* Decision.m */,
-				100000000000000000001106 /* DeclarationOfIndependence.m */,
-				1000000000000000000014DC /* Item.m */,
-				100000000000000000001435 /* Person.m */,
-				100000000000000000001715 /* Section.m */,
+				10000000000000000000053C /* Amendment.h */,
+				1000000000000000000006C6 /* Article.h */,
+				100000000000000000000F2C /* Constitution.h */,
+				100000000000000000000FE9 /* Decision.h */,
+				100000000000000000000FEF /* DeclarationOfIndependence.h */,
+				100000000000000000001488 /* Item.h */,
+				1000000000000000000013F6 /* Person.h */,
+				1000000000000000000016BC /* Section.h */,
+				100000000000000000000540 /* Amendment.m */,
+				1000000000000000000006D0 /* Article.m */,
+				100000000000000000000F34 /* Constitution.m */,
+				100000000000000000000FEA /* Decision.m */,
+				1000000000000000000010C3 /* DeclarationOfIndependence.m */,
+				100000000000000000001486 /* Item.m */,
+				1000000000000000000013F8 /* Person.m */,
+				1000000000000000000016BF /* Section.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
 		};
-		100000000000000000001406 /* FederalistPapers */ = {
+		1000000000000000000013C9 /* FederalistPapers */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000000000140A /* FederalistPapersArticleViewController.h */,
-				10000000000000000000140D /* FederalistPapersSectionViewController.h */,
-				100000000000000000001410 /* FederalistPapersViewController.h */,
-				10000000000000000000140B /* FederalistPapersArticleViewController.m */,
-				10000000000000000000140E /* FederalistPapersSectionViewController.m */,
-				100000000000000000001411 /* FederalistPapersViewController.m */,
+				1000000000000000000013CD /* FederalistPapersArticleViewController.h */,
+				1000000000000000000013D0 /* FederalistPapersSectionViewController.h */,
+				1000000000000000000013D3 /* FederalistPapersViewController.h */,
+				1000000000000000000013CE /* FederalistPapersArticleViewController.m */,
+				1000000000000000000013D1 /* FederalistPapersSectionViewController.m */,
+				1000000000000000000013D4 /* FederalistPapersViewController.m */,
 			);
 			name = FederalistPapers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001417 /* Frameworks */ = {
+		1000000000000000000013DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F8A /* libsqlite3.dylib */,
-				100000000000000000000B31 /* CFNetwork.framework */,
-				100000000000000000000FA4 /* CoreGraphics.framework */,
-				100000000000000000000FFC /* CoreLocation.framework */,
-				100000000000000000001414 /* Foundation.framework */,
-				100000000000000000001C0B /* MapKit.framework */,
-				100000000000000000000ECD /* MediaPlayer.framework */,
-				100000000000000000001C0F /* MessageUI.framework */,
-				1000000000000000000019BB /* SystemConfiguration.framework */,
-				100000000000000000001C6C /* UIKit.framework */,
+				100000000000000000001F37 /* libsqlite3.dylib */,
+				100000000000000000000B23 /* CFNetwork.framework */,
+				100000000000000000000F8C /* CoreGraphics.framework */,
+				100000000000000000000FE0 /* CoreLocation.framework */,
+				1000000000000000000013D7 /* Foundation.framework */,
+				100000000000000000001BBF /* MapKit.framework */,
+				100000000000000000000EBB /* MediaPlayer.framework */,
+				100000000000000000001BC3 /* MessageUI.framework */,
+				10000000000000000000196B /* SystemConfiguration.framework */,
+				100000000000000000001C1E /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1000000000000000000014E2 /* Products */ = {
+		1000000000000000000014A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001D4B /* YourRights.app */,
+				100000000000000000001CFB /* YourRights.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1000000000000000000014E3 /* Products */ = {
+		1000000000000000000014A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F60 /* libMetasyntacticShared.a */,
+				100000000000000000001F0F /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		10000000000000000000165A /* Resources */ = {
+		100000000000000000001606 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001C3E /* MetasyntacticResources.bundle */,
-				100000000000000000001413 /* ForwardDeclarations.h */,
-				1000000000000000000014A5 /* Info.plist */,
-				100000000000000000001401 /* Default.png */,
-				10000000000000000000141B /* Icon.png */,
-				10000000000000000000156D /* Localizable.strings */,
-				1000000000000000000014EE /* License.txt */,
-				100000000000000000001747 /* MainWindow.xib */,
+				100000000000000000001BF0 /* MetasyntacticResources.bundle */,
+				1000000000000000000013D6 /* ForwardDeclarations.h */,
+				100000000000000000001467 /* Info.plist */,
+				1000000000000000000013C4 /* Default.png */,
+				1000000000000000000013DE /* Icon.png */,
+				10000000000000000000151E /* Localizable.strings */,
+				1000000000000000000014AE /* License.txt */,
+				1000000000000000000016F1 /* MainWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		100000000000000000001756 /* Shared */ = {
+		100000000000000000001705 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001C40 /* MetasyntacticShared.h */,
+				100000000000000000001BF2 /* MetasyntacticShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
 		};
-		100000000000000000001AE7 /* TableViewCells */ = {
+		100000000000000000001A98 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000921 /* ArticleBodyCell.h */,
-				100000000000000000000AAB /* ArticleTitleCell.h */,
-				100000000000000000001008 /* DecisionCell.h */,
-				100000000000000000001D29 /* WrappableCell.h */,
-				100000000000000000000922 /* ArticleBodyCell.m */,
-				100000000000000000000AAC /* ArticleTitleCell.m */,
-				1000000000000000000010F3 /* DecisionCell.m */,
-				100000000000000000001D2A /* WrappableCell.m */,
+				100000000000000000000914 /* ArticleBodyCell.h */,
+				100000000000000000000AA0 /* ArticleTitleCell.h */,
+				100000000000000000000FEC /* DecisionCell.h */,
+				100000000000000000001CD9 /* WrappableCell.h */,
+				100000000000000000000915 /* ArticleBodyCell.m */,
+				100000000000000000000AA1 /* ArticleTitleCell.m */,
+				1000000000000000000010AE /* DecisionCell.m */,
+				100000000000000000001CDA /* WrappableCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		100000000000000000001B09 /* Text */ = {
+		100000000000000000001ABA /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000AAE /* ArticlesOfConfederation.h */,
-				100000000000000000001407 /* FederalistPapers.h */,
-				100000000000000000001CA2 /* UnitedStatesConstitution.h */,
-				100000000000000000000AEB /* ArticlesOfConfederation.m */,
-				100000000000000000001408 /* FederalistPapers.m */,
-				100000000000000000001CA3 /* UnitedStatesConstitution.m */,
+				100000000000000000000AA3 /* ArticlesOfConfederation.h */,
+				1000000000000000000013CA /* FederalistPapers.h */,
+				100000000000000000001C54 /* UnitedStatesConstitution.h */,
+				100000000000000000000AE0 /* ArticlesOfConfederation.m */,
+				1000000000000000000013CB /* FederalistPapers.m */,
+				100000000000000000001C55 /* UnitedStatesConstitution.m */,
 			);
 			name = Text;
 			sourceTree = "<group>";
 		};
-		100000000000000000001C53 /* UI */ = {
+		100000000000000000001C05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001F61 /* NavigationControllers */,
-				100000000000000000001AE7 /* TableViewCells */,
-				100000000000000000001D07 /* ViewControllers */,
+				100000000000000000001F10 /* NavigationControllers */,
+				100000000000000000001A98 /* TableViewCells */,
+				100000000000000000001CB8 /* ViewControllers */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		100000000000000000001D07 /* ViewControllers */ = {
+		100000000000000000001CB8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000E78 /* Constitution */,
-				100000000000000000001406 /* FederalistPapers */,
-				1000000000000000000003D6 /* ACLUArticlesViewController.h */,
-				1000000000000000000003D9 /* ACLUInfoViewController.h */,
-				1000000000000000000003E7 /* ACLUNewsViewController.h */,
-				100000000000000000000559 /* AnswerViewController.h */,
-				100000000000000000000FFE /* CreditsViewController.h */,
-				1000000000000000000013FE /* DeclarationOfIndependenceViewController.h */,
-				100000000000000000001418 /* GreatestHitsViewController.h */,
-				10000000000000000000153A /* QuestionsViewController.h */,
-				100000000000000000001718 /* SectionViewController.h */,
-				100000000000000000001C34 /* ToughAnswerViewController.h */,
-				100000000000000000001C37 /* ToughQuestionsViewController.h */,
-				1000000000000000000003D7 /* ACLUArticlesViewController.m */,
-				1000000000000000000003E5 /* ACLUInfoViewController.m */,
-				1000000000000000000003E8 /* ACLUNewsViewController.m */,
-				10000000000000000000055A /* AnswerViewController.m */,
-				100000000000000000000FFF /* CreditsViewController.m */,
-				1000000000000000000013FF /* DeclarationOfIndependenceViewController.m */,
-				100000000000000000001419 /* GreatestHitsViewController.m */,
-				10000000000000000000153B /* QuestionsViewController.m */,
-				100000000000000000001719 /* SectionViewController.m */,
-				100000000000000000001C35 /* ToughAnswerViewController.m */,
-				100000000000000000001C38 /* ToughQuestionsViewController.m */,
+				100000000000000000000E65 /* Constitution */,
+				1000000000000000000013C9 /* FederalistPapers */,
+				1000000000000000000003D5 /* ACLUArticlesViewController.h */,
+				1000000000000000000003D8 /* ACLUInfoViewController.h */,
+				1000000000000000000003E6 /* ACLUNewsViewController.h */,
+				100000000000000000000543 /* AnswerViewController.h */,
+				100000000000000000000FE2 /* CreditsViewController.h */,
+				1000000000000000000013C1 /* DeclarationOfIndependenceViewController.h */,
+				1000000000000000000013DB /* GreatestHitsViewController.h */,
+				1000000000000000000014FB /* QuestionsViewController.h */,
+				1000000000000000000016C2 /* SectionViewController.h */,
+				100000000000000000001BE6 /* ToughAnswerViewController.h */,
+				100000000000000000001BE9 /* ToughQuestionsViewController.h */,
+				1000000000000000000003D6 /* ACLUArticlesViewController.m */,
+				1000000000000000000003E4 /* ACLUInfoViewController.m */,
+				1000000000000000000003E7 /* ACLUNewsViewController.m */,
+				100000000000000000000544 /* AnswerViewController.m */,
+				100000000000000000000FE3 /* CreditsViewController.m */,
+				1000000000000000000013C2 /* DeclarationOfIndependenceViewController.m */,
+				1000000000000000000013DC /* GreatestHitsViewController.m */,
+				1000000000000000000014FC /* QuestionsViewController.m */,
+				1000000000000000000016C3 /* SectionViewController.m */,
+				100000000000000000001BE7 /* ToughAnswerViewController.m */,
+				100000000000000000001BEA /* ToughQuestionsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001F61 /* NavigationControllers */ = {
+		100000000000000000001F10 /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001D4C /* YourRightsNavigationController.h */,
-				100000000000000000001D4D /* YourRightsNavigationController.m */,
+				100000000000000000001CFC /* YourRightsNavigationController.h */,
+				100000000000000000001CFD /* YourRightsNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
 		};
-		100000000000000000001F70 /* Other Sources */ = {
+		100000000000000000001F1F /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000001734 /* Macros.h */,
-				1000000000000000000014A4 /* Prefix.pch */,
-				100000000000000000001F9B /* main.m */,
+				1000000000000000000016DE /* Macros.h */,
+				100000000000000000001466 /* Prefix.pch */,
+				100000000000000000001F48 /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -452,30 +452,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100000000000000000001D4A /* YourRights */ = {
+		100000000000000000001CFA /* YourRights */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000000000AFE /* Build configuration list for PBXNativeTarget "YourRights" */;
+			buildConfigurationList = 100000000000000000000AF2 /* Build configuration list for PBXNativeTarget "YourRights" */;
 			buildPhases = (
-				10000000000000000000165B /* Resources */,
-				1000000000000000000017BB /* Sources */,
-				100000000000000000001416 /* Frameworks */,
+				100000000000000000001607 /* Resources */,
+				100000000000000000001769 /* Sources */,
+				1000000000000000000013D9 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1000000000000000000012AD /* PBXTargetDependency */,
+				100000000000000000001271 /* PBXTargetDependency */,
 			);
 			name = YourRights;
 			productName = YourRights;
-			productReference = 100000000000000000001D4B /* YourRights.app */;
+			productReference = 100000000000000000001CFB /* YourRights.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1000000000000000000014F1 /* Project object */ = {
+		1000000000000000000014B1 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 100000000000000000000B0F /* Build configuration list for PBXProject "YourRights" */;
+			buildConfigurationList = 100000000000000000000B03 /* Build configuration list for PBXProject "YourRights" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -485,110 +485,110 @@
 				German,
 				en,
 			);
-			mainGroup = 100000000000000000001001 /* CustomTemplate */;
+			mainGroup = 100000000000000000000FE5 /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1000000000000000000014E3 /* Products */;
-					ProjectRef = 100000000000000000001C4B /* MetasyntacticShared.xcodeproj */;
+					ProductGroup = 1000000000000000000014A2 /* Products */;
+					ProjectRef = 100000000000000000001BFD /* MetasyntacticShared.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				100000000000000000001D4A /* YourRights */,
+				100000000000000000001CFA /* YourRights */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		100000000000000000001F60 /* libMetasyntacticShared.a */ = {
+		100000000000000000001F0F /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMetasyntacticShared.a;
-			remoteRef = 100000000000000000001142 /* PBXContainerItemProxy */;
+			remoteRef = 100000000000000000001101 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		10000000000000000000165B /* Resources */ = {
+		100000000000000000001607 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000000000017AB /* MainWindow.xib in Resources */,
-				100000000000000000001498 /* Icon.png in Resources */,
-				10000000000000000000154E /* License.txt in Resources */,
-				10000000000000000000156E /* Localizable.strings in Resources */,
-				100000000000000000001402 /* Default.png in Resources */,
-				100000000000000000001C3F /* MetasyntacticResources.bundle in Resources */,
+				100000000000000000001759 /* MainWindow.xib in Resources */,
+				10000000000000000000145A /* Icon.png in Resources */,
+				10000000000000000000150D /* License.txt in Resources */,
+				10000000000000000000151F /* Localizable.strings in Resources */,
+				1000000000000000000013C5 /* Default.png in Resources */,
+				100000000000000000001BF1 /* MetasyntacticResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1000000000000000000017BB /* Sources */ = {
+		100000000000000000001769 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000000001FA9 /* main.m in Sources */,
-				10000000000000000000171A /* SectionViewController.m in Sources */,
-				100000000000000000001D4E /* YourRightsNavigationController.m in Sources */,
-				10000000000000000000153C /* QuestionsViewController.m in Sources */,
-				100000000000000000001F65 /* Model.m in Sources */,
-				100000000000000000001D2B /* WrappableCell.m in Sources */,
-				10000000000000000000055B /* AnswerViewController.m in Sources */,
-				100000000000000000001C39 /* ToughQuestionsViewController.m in Sources */,
-				100000000000000000001C36 /* ToughAnswerViewController.m in Sources */,
-				100000000000000000001007 /* Decision.m in Sources */,
-				10000000000000000000141A /* GreatestHitsViewController.m in Sources */,
-				100000000000000000001104 /* DecisionCell.m in Sources */,
-				1000000000000000000003E6 /* ACLUInfoViewController.m in Sources */,
-				100000000000000000001000 /* CreditsViewController.m in Sources */,
-				1000000000000000000006D6 /* Application.m in Sources */,
-				100000000000000000000FA3 /* Controller.m in Sources */,
-				100000000000000000001545 /* RSSCache.m in Sources */,
-				1000000000000000000014DD /* Item.m in Sources */,
-				10000000000000000000054F /* ACLUNewsViewController.m in Sources */,
-				1000000000000000000003D8 /* ACLUArticlesViewController.m in Sources */,
-				100000000000000000000AAD /* ArticleTitleCell.m in Sources */,
-				100000000000000000000A09 /* ArticleBodyCell.m in Sources */,
-				100000000000000000000F4D /* Constitution.m in Sources */,
-				1000000000000000000008ED /* Article.m in Sources */,
-				100000000000000000001717 /* Section.m in Sources */,
-				100000000000000000000F77 /* ConstitutionArticleViewController.m in Sources */,
-				100000000000000000000558 /* Amendment.m in Sources */,
-				100000000000000000000F74 /* ConstitutionAmendmentViewController.m in Sources */,
-				100000000000000000000F7A /* ConstitutionSignersViewController.m in Sources */,
-				100000000000000000001437 /* Person.m in Sources */,
-				10000000000000000000100D /* DeclarationOfIndependence.m in Sources */,
-				100000000000000000001400 /* DeclarationOfIndependenceViewController.m in Sources */,
-				100000000000000000001412 /* FederalistPapersViewController.m in Sources */,
-				10000000000000000000140C /* FederalistPapersArticleViewController.m in Sources */,
-				10000000000000000000140F /* FederalistPapersSectionViewController.m in Sources */,
-				10000000000000000000108A /* ConstitutionViewController.m in Sources */,
-				100000000000000000001409 /* FederalistPapers.m in Sources */,
-				100000000000000000000AF2 /* ArticlesOfConfederation.m in Sources */,
-				100000000000000000001CA4 /* UnitedStatesConstitution.m in Sources */,
-				1000000000000000000006CD /* AppDelegate.m in Sources */,
+				100000000000000000001F58 /* main.m in Sources */,
+				1000000000000000000016C4 /* SectionViewController.m in Sources */,
+				100000000000000000001CFE /* YourRightsNavigationController.m in Sources */,
+				1000000000000000000014FD /* QuestionsViewController.m in Sources */,
+				100000000000000000001F14 /* Model.m in Sources */,
+				100000000000000000001CDB /* WrappableCell.m in Sources */,
+				100000000000000000000545 /* AnswerViewController.m in Sources */,
+				100000000000000000001BEB /* ToughQuestionsViewController.m in Sources */,
+				100000000000000000001BE8 /* ToughAnswerViewController.m in Sources */,
+				100000000000000000000FEB /* Decision.m in Sources */,
+				1000000000000000000013DD /* GreatestHitsViewController.m in Sources */,
+				1000000000000000000010C1 /* DecisionCell.m in Sources */,
+				1000000000000000000003E5 /* ACLUInfoViewController.m in Sources */,
+				100000000000000000000FE4 /* CreditsViewController.m in Sources */,
+				1000000000000000000006C5 /* Application.m in Sources */,
+				100000000000000000000F8B /* Controller.m in Sources */,
+				100000000000000000001506 /* RSSCache.m in Sources */,
+				10000000000000000000149C /* Item.m in Sources */,
+				100000000000000000000539 /* ACLUNewsViewController.m in Sources */,
+				1000000000000000000003D7 /* ACLUArticlesViewController.m in Sources */,
+				100000000000000000000AA2 /* ArticleTitleCell.m in Sources */,
+				100000000000000000000A02 /* ArticleBodyCell.m in Sources */,
+				100000000000000000000F36 /* Constitution.m in Sources */,
+				1000000000000000000008DF /* Article.m in Sources */,
+				1000000000000000000016C1 /* Section.m in Sources */,
+				100000000000000000000F60 /* ConstitutionArticleViewController.m in Sources */,
+				100000000000000000000542 /* Amendment.m in Sources */,
+				100000000000000000000F5D /* ConstitutionAmendmentViewController.m in Sources */,
+				100000000000000000000F63 /* ConstitutionSignersViewController.m in Sources */,
+				1000000000000000000013FA /* Person.m in Sources */,
+				100000000000000000000FF1 /* DeclarationOfIndependence.m in Sources */,
+				1000000000000000000013C3 /* DeclarationOfIndependenceViewController.m in Sources */,
+				1000000000000000000013D5 /* FederalistPapersViewController.m in Sources */,
+				1000000000000000000013CF /* FederalistPapersArticleViewController.m in Sources */,
+				1000000000000000000013D2 /* FederalistPapersSectionViewController.m in Sources */,
+				10000000000000000000106E /* ConstitutionViewController.m in Sources */,
+				1000000000000000000013CC /* FederalistPapers.m in Sources */,
+				100000000000000000000AE7 /* ArticlesOfConfederation.m in Sources */,
+				100000000000000000001C56 /* UnitedStatesConstitution.m in Sources */,
+				1000000000000000000006BC /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1000000000000000000012AD /* PBXTargetDependency */ = {
+		100000000000000000001271 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MetasyntacticShared;
-			targetProxy = 100000000000000000001143 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000001102 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		10000000000000000000156D /* Localizable.strings */ = {
+		10000000000000000000151E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				100000000000000000001D6A /* en */,
+				100000000000000000001D1A /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -596,7 +596,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		100000000000000000000550 /* AdHoc */ = {
+		10000000000000000000053A /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -629,19 +629,19 @@
 			};
 			name = AdHoc;
 		};
-		100000000000000000000551 /* AdHoc */ = {
+		10000000000000000000053B /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = AdHoc;
 		};
-		100000000000000000001003 /* Debug */ = {
+		100000000000000000000FE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		100000000000000000001004 /* Debug */ = {
+		100000000000000000000FE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -673,7 +673,7 @@
 			};
 			name = Debug;
 		};
-		100000000000000000001403 /* Distribution */ = {
+		1000000000000000000013C6 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -705,19 +705,19 @@
 			};
 			name = Distribution;
 		};
-		100000000000000000001404 /* Distribution */ = {
+		1000000000000000000013C7 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Distribution;
 		};
-		100000000000000000001589 /* Release */ = {
+		100000000000000000001538 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		10000000000000000000158A /* Release */ = {
+		100000000000000000001539 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -749,29 +749,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000000000AFE /* Build configuration list for PBXNativeTarget "YourRights" */ = {
+		100000000000000000000AF2 /* Build configuration list for PBXNativeTarget "YourRights" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				100000000000000000001003 /* Debug */,
-				100000000000000000001589 /* Release */,
-				100000000000000000001404 /* Distribution */,
-				100000000000000000000551 /* AdHoc */,
+				100000000000000000000FE7 /* Debug */,
+				100000000000000000001538 /* Release */,
+				1000000000000000000013C7 /* Distribution */,
+				10000000000000000000053B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		100000000000000000000B0F /* Build configuration list for PBXProject "YourRights" */ = {
+		100000000000000000000B03 /* Build configuration list for PBXProject "YourRights" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				100000000000000000001004 /* Debug */,
-				10000000000000000000158A /* Release */,
-				100000000000000000001403 /* Distribution */,
-				100000000000000000000550 /* AdHoc */,
+				100000000000000000000FE8 /* Debug */,
+				100000000000000000001539 /* Release */,
+				1000000000000000000013C6 /* Distribution */,
+				10000000000000000000053A /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1000000000000000000014F1 /* Project object */;
+	rootObject = 1000000000000000000014B1 /* Project object */;
 }
