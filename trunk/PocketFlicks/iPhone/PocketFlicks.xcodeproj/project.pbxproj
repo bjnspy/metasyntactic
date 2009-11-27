@@ -180,18 +180,18 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		100000000000000000001091 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001019 /* PocketFlicks.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		10000000000000000000108C /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000000000018EA /* libBoxOfficeShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		100000000000000000001091 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001019 /* PocketFlicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
