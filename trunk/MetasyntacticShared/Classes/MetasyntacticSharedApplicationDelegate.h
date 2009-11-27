@@ -21,9 +21,9 @@
 - (void) saveNavigationStack:(UINavigationController*) controller;
 
 - (BOOL) notificationsEnabled;
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 
 @optional
 - (NSString*) cacheDirectory;
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 
 @end

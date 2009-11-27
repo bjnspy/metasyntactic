@@ -79,9 +79,4 @@
   return YES;
 }
 
-
-- (BOOL) screenRotationEnabled {
-  return YES;
-}
-
 @end

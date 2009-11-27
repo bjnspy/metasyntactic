@@ -57,7 +57,11 @@ static Pulser* majorRefreshPulser = nil;
 
 
 + (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-  return [delegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+  if ([delegate respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)]) {
+    return [delegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+  }
+  
+  return NO;
 }
 
 
