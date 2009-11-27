@@ -154,21 +154,21 @@
 }
 
 
-- (CGSize) sizeThatFits:(CGSize) size {
-  if (buttons.count == 0) {
-    return CGSizeZero;
-  }
-
-  CGFloat width;
-  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-    width = [UIScreen mainScreen].bounds.size.height;
-  } else {
-    width = [UIScreen mainScreen].bounds.size.width;
-  }
-
-  return CGSizeMake(width, height);
-}
+//- (CGSize) sizeThatFits:(CGSize) size {
+//  if (buttons.count == 0) {
+//    return CGSizeZero;
+//  }
+//
+//  CGFloat width;
+//  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
+//      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+//    width = [UIScreen mainScreen].bounds.size.height;
+//  } else {
+//    width = [UIScreen mainScreen].bounds.size.width;
+//  }
+//
+//  return CGSizeMake(width, height);
+//}
 
 
 - (void) layoutSubviews {

@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixRatingsCell : UITableViewCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
+@interface NetflixRatingsCell : AbstractTableViewCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private
   Movie* movie;
   NetflixAccount* account;
   NSArray* imageViews;
 }
 
-- (id) initWithMovie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie tableViewController:(UITableViewController*) tableViewController;
 
 - (void) refresh:(NetflixAccount*) account;
 

@@ -108,8 +108,8 @@
 }
 
 
-- (BOOL) screenRotationEnabled {
-  return self.model.screenRotationEnabled;
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 

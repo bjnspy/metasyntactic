@@ -151,7 +151,7 @@
     return YES;
   }
 
-  return [MetasyntacticSharedApplication screenRotationEnabled] && fullScreenImageListController == nil;
+  return [MetasyntacticSharedApplication shouldAutorotateToInterfaceOrientation:interfaceOrientation] && fullScreenImageListController == nil;
 }
 
 

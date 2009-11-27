@@ -23,6 +23,8 @@
      reuseIdentifier:(NSString *)reuseIdentifier
  tableViewController:(UITableViewController*) tableViewController;
 
+- (id) initWithReuseIdentifier:(NSString *)reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController;
 
 - (id) initWithStyle:(UITableViewCellStyle)style
  tableViewController:(UITableViewController*) tableViewController;

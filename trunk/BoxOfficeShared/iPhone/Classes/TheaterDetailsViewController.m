@@ -218,7 +218,7 @@
     static NSString* reuseIdentifier = @"showtimesReuseIdentifier";
     MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier tableViewController:self] autorelease];
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
@@ -258,7 +258,8 @@
       return tableView.rowHeight;
     } else {
       return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
-                                              stale:NO] + 18;
+                                              stale:NO
+                                tableViewController:self] + 18;
     }
   }
 }
@@ -402,7 +403,7 @@
       heightForFooterInSection:(NSInteger) section {
   WarningView* view = (id)[self tableView:tableView viewForFooterInSection:section];
   if (view != nil) {
-    return view.height;
+    return [view height:self];
   }
 
   return -1;

@@ -13,6 +13,12 @@
 		1000000000000000000003E9 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E8 /* AbstractCache.m */; };
 		10000000000000000000042D /* AbstractTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042C /* AbstractTableViewCell.h */; };
 		10000000000000000000042F /* AbstractTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042E /* AbstractTableViewCell.m */; };
+		10000000000000000000051E /* AutoreleasingMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000051D /* AutoreleasingMutableArray.h */; };
+		100000000000000000000520 /* AutoreleasingMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000051F /* AutoreleasingMutableArray.m */; };
+		100000000000000000000522 /* AutoreleasingMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000521 /* AutoreleasingMutableDictionary.h */; };
+		100000000000000000000524 /* AutoreleasingMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000523 /* AutoreleasingMutableDictionary.m */; };
+		100000000000000000000526 /* AutoreleasingMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000525 /* AutoreleasingMutableSet.h */; };
+		100000000000000000000528 /* AutoreleasingMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000527 /* AutoreleasingMutableSet.m */; };
 		100000000000000000000551 /* AbstractCollapsedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000550 /* AbstractCollapsedDetailsCell.h */; };
 		100000000000000000000553 /* AbstractCollapsedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000552 /* AbstractCollapsedDetailsCell.m */; };
 		100000000000000000000559 /* AbstractController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000557 /* AbstractController.h */; };
@@ -60,6 +66,12 @@
 		100000000000000000000F5A /* Invocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F59 /* Invocation3.m */; };
 		100000000000000000000F5C /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F5B /* LargeActivityIndicatorViewWithBackground.h */; };
 		100000000000000000000F78 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001061 /* AbstractNavigationController.m */; };
+		100000000000000000000F93 /* NSDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F92 /* NSDictionary+Utilities.h */; };
+		100000000000000000000F95 /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F94 /* NSDictionary+Utilities.m */; };
+		100000000000000000000F9B /* NSMutableDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9A /* NSMutableDictionary+Utilities.h */; };
+		100000000000000000000F9D /* NSMutableDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9C /* NSMutableDictionary+Utilities.m */; };
+		100000000000000000000F9F /* NSMutableSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9E /* NSMutableSet+Utilities.h */; };
+		100000000000000000000FA1 /* NSMutableSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FA0 /* NSMutableSet+Utilities.m */; };
 		100000000000000000000FCF /* ListPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCB /* ListPickerViewController.h */; };
 		100000000000000000000FD0 /* AbstractPersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F79 /* AbstractPersistentThreadsafeValue.h */; };
 		100000000000000000000FD2 /* AbstractPersistentThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD1 /* AbstractPersistentThreadsafeValue.m */; };
@@ -102,9 +114,9 @@
 		10000000000000000000105E /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105D /* MapPoint.h */; };
 		100000000000000000001060 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000105F /* AbstractNavigationController.h */; };
 		1000000000000000000010C8 /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FDD /* AbstractSearchResult.m */; };
-		10000000000000000000110E /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110F /* MapViewControllerDelegate.h */; };
-		10000000000000000000110C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110D /* MapViewController.m */; };
 		100000000000000000001109 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010CB /* MapViewController.h */; };
+		10000000000000000000110C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110D /* MapViewController.m */; };
+		10000000000000000000110E /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110F /* MapViewControllerDelegate.h */; };
 		10000000000000000000127B /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000127A /* MemoryUtilities.m */; };
 		1000000000000000000013D4 /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013D3 /* AbstractStackableTableViewController.h */; };
 		1000000000000000000013D6 /* AbstractStackableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013D5 /* AbstractStackableTableViewController.m */; };
@@ -288,18 +300,6 @@
 		10000000000000000000213C /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000213A /* xmltok.c */; };
 		100000000000000000002142 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002140 /* xmltok_impl.c */; };
 		100000000000000000002148 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000002146 /* xmltok_ns.c */; };
-		100000000000000000000F93 /* NSDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F92 /* NSDictionary+Utilities.h */; };
-		100000000000000000000F95 /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F94 /* NSDictionary+Utilities.m */; };
-		100000000000000000000F9B /* NSMutableDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9A /* NSMutableDictionary+Utilities.h */; };
-		100000000000000000000F9D /* NSMutableDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9C /* NSMutableDictionary+Utilities.m */; };
-		100000000000000000000F9F /* NSMutableSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F9E /* NSMutableSet+Utilities.h */; };
-		100000000000000000000FA1 /* NSMutableSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FA0 /* NSMutableSet+Utilities.m */; };
-		10000000000000000000051E /* AutoreleasingMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000051D /* AutoreleasingMutableArray.h */; };
-		100000000000000000000520 /* AutoreleasingMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000051F /* AutoreleasingMutableArray.m */; };
-		100000000000000000000522 /* AutoreleasingMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000521 /* AutoreleasingMutableDictionary.h */; };
-		100000000000000000000524 /* AutoreleasingMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000523 /* AutoreleasingMutableDictionary.m */; };
-		100000000000000000000526 /* AutoreleasingMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000525 /* AutoreleasingMutableSet.h */; };
-		100000000000000000000528 /* AutoreleasingMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000527 /* AutoreleasingMutableSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -309,6 +309,12 @@
 		1000000000000000000003E8 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		10000000000000000000042C /* AbstractTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewCell.h; sourceTree = "<group>"; };
 		10000000000000000000042E /* AbstractTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewCell.m; sourceTree = "<group>"; };
+		10000000000000000000051D /* AutoreleasingMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableArray.h; sourceTree = "<group>"; };
+		10000000000000000000051F /* AutoreleasingMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableArray.m; sourceTree = "<group>"; };
+		100000000000000000000521 /* AutoreleasingMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableDictionary.h; sourceTree = "<group>"; };
+		100000000000000000000523 /* AutoreleasingMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableDictionary.m; sourceTree = "<group>"; };
+		100000000000000000000525 /* AutoreleasingMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableSet.h; sourceTree = "<group>"; };
+		100000000000000000000527 /* AutoreleasingMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableSet.m; sourceTree = "<group>"; };
 		100000000000000000000550 /* AbstractCollapsedDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCollapsedDetailsCell.h; sourceTree = "<group>"; };
 		100000000000000000000552 /* AbstractCollapsedDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCollapsedDetailsCell.m; sourceTree = "<group>"; };
 		100000000000000000000557 /* AbstractController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractController.h; sourceTree = "<group>"; };
@@ -356,6 +362,12 @@
 		100000000000000000000F59 /* Invocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation3.m; sourceTree = "<group>"; };
 		100000000000000000000F5B /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		100000000000000000000F79 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000000000000F92 /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000000F94 /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
+		100000000000000000000F9A /* NSMutableDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000000F9C /* NSMutableDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Utilities.m"; sourceTree = "<group>"; };
+		100000000000000000000F9E /* NSMutableSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000000FA0 /* NSMutableSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000000000FB2 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "External/MGTwitterEngine/NSString+UUID.h"; sourceTree = SOURCE_ROOT; };
 		100000000000000000000FCB /* ListPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerViewController.h; sourceTree = "<group>"; };
 		100000000000000000000FD1 /* AbstractPersistentThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPersistentThreadsafeValue.m; sourceTree = "<group>"; };
@@ -601,18 +613,6 @@
 		100000000000000000002140 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000000000002144 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000000000002146 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		100000000000000000000F92 /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
-		100000000000000000000F94 /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
-		100000000000000000000F9A /* NSMutableDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Utilities.h"; sourceTree = "<group>"; };
-		100000000000000000000F9C /* NSMutableDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Utilities.m"; sourceTree = "<group>"; };
-		100000000000000000000F9E /* NSMutableSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Utilities.h"; sourceTree = "<group>"; };
-		100000000000000000000FA0 /* NSMutableSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Utilities.m"; sourceTree = "<group>"; };
-		10000000000000000000051D /* AutoreleasingMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableArray.h; sourceTree = "<group>"; };
-		10000000000000000000051F /* AutoreleasingMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableArray.m; sourceTree = "<group>"; };
-		100000000000000000000521 /* AutoreleasingMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableDictionary.h; sourceTree = "<group>"; };
-		100000000000000000000523 /* AutoreleasingMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableDictionary.m; sourceTree = "<group>"; };
-		100000000000000000000525 /* AutoreleasingMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleasingMutableSet.h; sourceTree = "<group>"; };
-		100000000000000000000527 /* AutoreleasingMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleasingMutableSet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -881,19 +881,6 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
-		100000000000000000001C28 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000014B6 /* ColorCache.h */,
-				100000000000000000001C78 /* FontCache.h */,
-				10000000000000000000140D /* MetasyntacticStockImages.h */,
-				1000000000000000000014C6 /* ColorCache.m */,
-				100000000000000000001C7A /* FontCache.m */,
-				10000000000000000000140F /* MetasyntacticStockImages.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		100000000000000000001C27 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -906,6 +893,19 @@
 				100000000000000000001CD1 /* ViewControllerUtilities.h */,
 				10000000000000000000163E /* NotificationCenter.m */,
 				100000000000000000001CD4 /* ViewControllerUtilities.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		100000000000000000001C28 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000014B6 /* ColorCache.h */,
+				100000000000000000001C78 /* FontCache.h */,
+				10000000000000000000140D /* MetasyntacticStockImages.h */,
+				1000000000000000000014C6 /* ColorCache.m */,
+				100000000000000000001C7A /* FontCache.m */,
+				10000000000000000000140F /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
