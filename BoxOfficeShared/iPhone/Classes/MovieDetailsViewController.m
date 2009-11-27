@@ -679,7 +679,7 @@ typedef enum {
 - (UITableViewCell*) createNetflixRatingsCell {
   if (netflixRatingsCell == nil) {
     self.netflixRatingsCell =
-    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie] autorelease];
+    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie tableViewController:self] autorelease];
   }
 
   return netflixRatingsCell;
@@ -768,7 +768,8 @@ typedef enum {
       Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
 
       return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
-                                              stale:[self.model isStale:theater]] + 18;
+                                              stale:[self.model isStale:theater]
+                                tableViewController:self] + 18;
     }
   }
 
@@ -795,7 +796,7 @@ typedef enum {
     static NSString* reuseIdentifier = @"detailsReuseIdentifier";
     MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier tableViewController:self] autorelease];
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 

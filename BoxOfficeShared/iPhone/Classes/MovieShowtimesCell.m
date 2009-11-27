@@ -33,149 +33,149 @@
 @synthesize warningImageView;
 
 - (void) dealloc {
-    self.showtimesLabel = nil;
-    self.showtimesData = nil;
-    self.warningImageView = nil;
-
-    [super dealloc];
+  self.showtimesLabel = nil;
+  self.showtimesData = nil;
+  self.warningImageView = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 + (NSString*) showtimesString:(NSArray*) showtimes {
-    if (showtimes.count == 0) {
-        return @"";
-    }
-
-    NSMutableString* text = [NSMutableString stringWithString:[showtimes.firstObject timeString]];
-
-    for (NSInteger i = 1; i < showtimes.count; i++) {
-        [text appendString:@", "];
-        Performance* performance = [showtimes objectAtIndex:i];
-        [text appendString:performance.timeString];
-    }
-
-    return text;
+  if (showtimes.count == 0) {
+    return @"";
+  }
+  
+  NSMutableString* text = [NSMutableString stringWithString:[showtimes.firstObject timeString]];
+  
+  for (NSInteger i = 1; i < showtimes.count; i++) {
+    [text appendString:@", "];
+    Performance* performance = [showtimes objectAtIndex:i];
+    [text appendString:performance.timeString];
+  }
+  
+  return text;
 }
 
 
 + (UIFont*) showtimesFont:(BOOL) useSmallFonts {
-    if (useSmallFonts) {
-        return [FontCache boldSystem11];
-    } else {
-        return [UIFont boldSystemFontOfSize:16];
-    }
+  if (useSmallFonts) {
+    return [FontCache boldSystem11];
+  } else {
+    return [UIFont boldSystemFontOfSize:16];
+  }
 }
 
 
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale {
-    NSString* string = [MovieShowtimesCell showtimesString:showtimes];
-    UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
-
-    CGFloat width;
-    if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        width = [UIScreen mainScreen].bounds.size.height;
-    } else {
-        width = [UIScreen mainScreen].bounds.size.width;
-    }
-
-    width -= 20; // outer margin
-
-    if (stale) {
-        width -= 32; // image
-    } else {
-        width -= 8; // left inner margin
-    }
-
-    width -= 18; // accessory
-
-    return [string sizeWithFont:font
-              constrainedToSize:CGSizeMake(width, 2000)
-                  lineBreakMode:UILineBreakModeWordWrap].height;
+                         stale:(BOOL) stale
+           tableViewController:(UITableViewController*) tableViewController {
+  NSString* string = [MovieShowtimesCell showtimesString:showtimes];
+  UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
+  
+  CGFloat width;
+  if (UIInterfaceOrientationIsLandscape(tableViewController.interfaceOrientation)) {
+    width = [UIScreen mainScreen].bounds.size.height;
+  } else {
+    width = [UIScreen mainScreen].bounds.size.width;
+  }
+  
+  width -= 20; // outer margin
+  
+  if (stale) {
+    width -= 32; // image
+  } else {
+    width -= 8; // left inner margin
+  }
+  
+  width -= 18; // accessory
+  
+  return [string sizeWithFont:font
+            constrainedToSize:CGSizeMake(width, 2000)
+                lineBreakMode:UILineBreakModeWordWrap].height;
 }
 
 
-- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:reuseIdentifier])) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-        self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        showtimesLabel.numberOfLines = 0;
-        showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
-
-        self.warningImageView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages warning16x16]] autorelease];
-        warningImageView.contentMode = UIViewContentModeCenter;
-
-        [self.contentView addSubview:showtimesLabel];
-    }
-
-    return self;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier tableViewController:tableViewController_])) {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    showtimesLabel.numberOfLines = 0;
+    showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
+    
+    self.warningImageView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages warning16x16]] autorelease];
+    warningImageView.contentMode = UIViewContentModeCenter;
+    
+    [self.contentView addSubview:showtimesLabel];
+  }
+  
+  return self;
 }
 
 
 - (void) setStale:(BOOL) stale_ {
-    stale = stale_;
-    if (stale) {
-        [self.contentView addSubview:warningImageView];
-    } else {
-        [warningImageView removeFromSuperview];
-    }
+  stale = stale_;
+  if (stale) {
+    [self.contentView addSubview:warningImageView];
+  } else {
+    [warningImageView removeFromSuperview];
+  }
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-
-    CGRect showtimesFrame = showtimesLabel.frame;
-    if (stale) {
-        showtimesFrame.origin.x = 32;
-    } else{
-        showtimesFrame.origin.x = 8;
-    }
-    showtimesFrame.origin.y = 9;
-
-    CGFloat width = self.frame.size.width;
-    width -= 20; // outer margin
-    width -= showtimesFrame.origin.x; // image
-    width -= 18; // accessory
-
-    showtimesFrame.size.width = width;
-    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
-                                                                  stale:stale];
-
-    showtimesLabel.frame = showtimesFrame;
-
-    CGRect cellFrame = self.contentView.frame;
-    CGRect imageFrame = warningImageView.frame;
-    imageFrame.origin.x = 8;
-    imageFrame.origin.y = (NSInteger)((cellFrame.size.height - imageFrame.size.height) / 2);
-    warningImageView.frame = imageFrame;
+  [super layoutSubviews];
+  
+  CGRect showtimesFrame = showtimesLabel.frame;
+  if (stale) {
+    showtimesFrame.origin.x = 32;
+  } else{
+    showtimesFrame.origin.x = 8;
+  }
+  showtimesFrame.origin.y = 9;
+  
+  CGFloat width = self.frame.size.width;
+  width -= 20; // outer margin
+  width -= showtimesFrame.origin.x; // image
+  width -= 18; // accessory
+  
+  showtimesFrame.size.width = width;
+  showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
+                                                                stale:stale
+                                                  tableViewController:self.tableViewController];
+  
+  showtimesLabel.frame = showtimesFrame;
+  
+  CGRect cellFrame = self.contentView.frame;
+  CGRect imageFrame = warningImageView.frame;
+  imageFrame.origin.x = 8;
+  imageFrame.origin.y = (NSInteger)((cellFrame.size.height - imageFrame.size.height) / 2);
+  warningImageView.frame = imageFrame;
 }
 
 
 - (void) setShowtimes:(NSArray*) showtimes_ {
-    self.showtimesData = showtimes_;
-
-    showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
-    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
+  self.showtimesData = showtimes_;
+  
+  showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
+  showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
 }
 
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
-    [super setSelected:selected animated:animated];
-    if (selected) {
-        showtimesLabel.textColor = [UIColor whiteColor];
-    } else {
-        showtimesLabel.textColor = [UIColor blackColor];
-    }
+  [super setSelected:selected animated:animated];
+  if (selected) {
+    showtimesLabel.textColor = [UIColor whiteColor];
+  } else {
+    showtimesLabel.textColor = [UIColor blackColor];
+  }
 }
 
 @end

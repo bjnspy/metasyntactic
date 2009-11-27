@@ -82,9 +82,6 @@ enum ViewControllerType {
 - (BOOL) netflixNotificationsEnabled;
 - (void) setNetflixNotificationsEnabled:(BOOL) value;
 
-- (BOOL) screenRotationEnabled;
-- (void) setScreenRotationEnabled:(BOOL) value;
-
 - (BOOL) dataProviderEnabled;
 
 - (BOOL) scoreCacheEnabled;

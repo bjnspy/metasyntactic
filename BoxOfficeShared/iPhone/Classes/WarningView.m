@@ -94,12 +94,11 @@ const NSInteger TOP_BUFFER = 5;
   }
 }
 
-- (CGFloat) height {
+- (CGFloat) height:(UITableViewController*) tableViewController {
   CGFloat imageHeight = [BoxOfficeStockImages warning32x32].size.height;
 
   CGFloat width;
-  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+  if (UIInterfaceOrientationIsLandscape(tableViewController.interfaceOrientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
     width = [UIScreen mainScreen].bounds.size.width;

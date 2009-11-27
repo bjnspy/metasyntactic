@@ -83,7 +83,7 @@ typedef enum {
   if (section == SendFeedbackSection) {
     return 1;
   } else if (section == StandardSettingsSection) {
-    return 3;
+    return 2;
   } else if (section == RefreshSection) {
     if (refreshed) {
       return 0;
@@ -130,14 +130,10 @@ typedef enum {
     BOOL on = NO;
     SEL selector = nil;
     if (row == 0) {
-      text = LocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
-      on = [MetasyntacticSharedApplication screenRotationEnabled];
-      selector = @selector(onScreenRotationEnabledChanged:);
-    } else if (row == 1) {
       text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
       on = self.model.notificationsEnabled;
       selector = @selector(onShowNotificationsChanged:);
-    } else if (row == 2) {
+    } else if (row == 1) {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
       on = self.model.loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
@@ -171,12 +167,6 @@ typedef enum {
   } else {
     return [self cellForRefreshRow:indexPath.row];
   }
-}
-
-
-
-- (void) onScreenRotationEnabledChanged:(UISwitch*) sender {
-  [self.model setScreenRotationEnabled:sender.on];
 }
 
 

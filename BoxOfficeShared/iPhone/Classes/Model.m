@@ -97,7 +97,6 @@ static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
-static NSString* SCREEN_ROTATION_DISABLED                   = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                                = @"searchDate";
 static NSString* SEARCH_RADIUS                              = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX     = @"selectedTabBarViewControllerIndex";
@@ -341,16 +340,6 @@ static Model* model = nil;
 
 - (void) setNetflixNotificationsEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_NOTIFICATIONS_DISABLED];
-}
-
-
-- (BOOL) screenRotationEnabled {
-  return ![[NSUserDefaults standardUserDefaults] boolForKey:SCREEN_ROTATION_DISABLED];
-}
-
-
-- (void) setScreenRotationEnabled:(BOOL) value {
-  [[NSUserDefaults standardUserDefaults] setBool:!value forKey:SCREEN_ROTATION_DISABLED];
 }
 
 

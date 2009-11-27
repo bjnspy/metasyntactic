@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MovieShowtimesCell : UITableViewCell {
+@interface MovieShowtimesCell : AbstractTableViewCell {
 @private
   UILabel* showtimesLabel;
 
@@ -21,13 +21,14 @@
   BOOL stale;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier tableViewController:(UITableViewController*) tableViewController;
 
 - (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale;
+                         stale:(BOOL) stale
+           tableViewController:(UITableViewController*) tableViewController;
 
 @end

@@ -20,6 +20,6 @@
 
 + (WarningView*) viewWithText:(NSString*) text;
 
-- (CGFloat) height;
+- (CGFloat) height:(UITableViewController*) tableViewController;
 
 @end

@@ -56,8 +56,8 @@ static Pulser* majorRefreshPulser = nil;
 }
 
 
-+ (BOOL) screenRotationEnabled {
-  return [delegate screenRotationEnabled];
++ (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+  return [delegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 

@@ -44,8 +44,7 @@
 
 
 - (NSInteger) halfWayPoint {
-  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-      UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
+  if (UIInterfaceOrientationIsLandscape(self.tableViewController.interfaceOrientation)) {
     return 230;
   } else {
     return 150;
@@ -156,8 +155,10 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+- (id) initWithMovie:(Movie*) movie_ tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault 
+                   reuseIdentifier:nil
+               tableViewController:tableViewController_])) {
     self.movie = movie_;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.imageViews = [NSMutableArray array];

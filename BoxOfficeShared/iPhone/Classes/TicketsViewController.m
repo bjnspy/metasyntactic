@@ -157,7 +157,7 @@
       heightForFooterInSection:(NSInteger) section {
   WarningView* view = (id)[self tableView:tableView viewForFooterInSection:section];
   if (view != nil) {
-    return view.height;
+    return [view height:self];
   }
 
   return -1;

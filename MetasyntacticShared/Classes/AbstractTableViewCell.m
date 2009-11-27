@@ -35,6 +35,12 @@
 }
 
 
+- (id) initWithReuseIdentifier:(NSString *)reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController_ {
+  return [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier tableViewController:tableViewController_];
+}
+
+
 - (id) initWithStyle:(UITableViewCellStyle)style
  tableViewController:(UITableViewController*) tableViewController_ {
   return [self initWithStyle:style reuseIdentifier:nil tableViewController:tableViewController_];
