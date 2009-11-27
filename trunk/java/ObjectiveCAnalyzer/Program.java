@@ -664,11 +664,8 @@ public class Program {
   }
 
   private static class HashAndHint implements Comparable<HashAndHint> {
-    private static int staticIndex;
-
     private final String hash;
     private final String hint;
-    private final int index = staticIndex++;
 
     private HashAndHint(final String hash, final String hint) {
       this.hash = hash;
@@ -707,11 +704,6 @@ public class Program {
       }
 
       return hash.compareTo(hashAndHint.hash);
-//      if (hash.equals(hashAndHint.hash)) {
-//        return 0;
-//      }
-//
-//      return index - hashAndHint.index;
     }
   }
 
