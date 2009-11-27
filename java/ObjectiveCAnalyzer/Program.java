@@ -706,11 +706,12 @@ public class Program {
         return val;
       }
 
-      if (hash.equals(hashAndHint.hash)) {
-        return 0;
-      }
-
-      return index - hashAndHint.index;
+      return hash.compareTo(hashAndHint.hash);
+//      if (hash.equals(hashAndHint.hash)) {
+//        return 0;
+//      }
+//
+//      return index - hashAndHint.index;
     }
   }
 
