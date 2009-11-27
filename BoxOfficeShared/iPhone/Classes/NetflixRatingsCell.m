@@ -156,7 +156,7 @@
 
 
 - (id) initWithMovie:(Movie*) movie_ tableViewController:(UITableViewController*) tableViewController_ {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault 
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
                    reuseIdentifier:nil
                tableViewController:tableViewController_])) {
     self.movie = movie_;
