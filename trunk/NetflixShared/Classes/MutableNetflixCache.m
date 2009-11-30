@@ -32,10 +32,6 @@
 #import "NetflixUtilities.h"
 #import "Queue.h"
 
-@interface NetflixCache()
-- (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
-@end
-
 @interface MutableNetflixCache()
 @property (retain) NSDictionary* presubmitRatings;
 @end
@@ -596,7 +592,7 @@ andReorderingMovies:[NSSet identitySet]
   }
 
   // TODO: what do we do if this fails?!
-  NSString* etag = [self downloadEtag:queue.feed account:account];
+  NSString* etag = [NetflixCache downloadEtag:queue.feed account:account];
   NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
   NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
   [newMovies removeObjectIdenticalTo:movie];
