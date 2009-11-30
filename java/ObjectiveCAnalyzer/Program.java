@@ -626,15 +626,33 @@ public class Program {
     }
 
     final Map<String, String> hashingMap = new LinkedHashMap<String, String>();
-    BigInteger start = new BigInteger(new byte[]{
+    BigInteger current = new BigInteger(new byte[]{
         0x10, 0, 0, 0,
         0, 0, 0, 0,
         0, 0, 0, 0
     });
+    BigInteger increment = new BigInteger(new byte[] {
+        1, 0, 0, 0, 0,
+    });
+    BigInteger bits = new BigInteger(new byte[] {
+        -1, -1, -1, -1,
+        -1, -1, -1, -1,
+        0, 0, 0, 0
+    });
+
+
+    HashAndHint lastHah = null;
     for (final HashAndHint hah : values) {
-      final String hash = start.toString(16).toUpperCase();
+      if (lastHah != null && lastHah.hint.charAt(0) != hah.hint.charAt(0)) {
+        current = current.add(increment);
+        current = current.and(bits);
+      }
+
+      final String hash = current.toString(16).toUpperCase();
       hashingMap.put(hah.hash, hash);
-      start = start.add(BigInteger.ONE);
+      current = current.add(BigInteger.ONE);
+
+      lastHah = hah;
     }
 
     for (File child : projectFiles) {
@@ -703,6 +721,10 @@ public class Program {
       }
 
       return hash.compareTo(hashAndHint.hash);
+    }
+
+    public String toString() {
+      return "(" + hint + "," + hash + ")";
     }
   }
 
