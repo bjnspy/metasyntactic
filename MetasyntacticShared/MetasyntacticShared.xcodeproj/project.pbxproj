@@ -300,6 +300,8 @@
 		10000000000000330000000D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000330000000B /* xmltok.c */; };
 		100000000000003300000013 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000011 /* xmltok_impl.c */; };
 		100000000000003300000019 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000017 /* xmltok_ns.c */; };
+		74763FA510C4888B00AC94D6 /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 74763FA310C4888B00AC94D6 /* Test.h */; };
+		74763FA610C4888B00AC94D6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 74763FA410C4888B00AC94D6 /* Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -613,6 +615,8 @@
 		100000000000003300000011 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000003300000015 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000003300000017 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74763FA310C4888B00AC94D6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		74763FA410C4888B00AC94D6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1134,11 +1138,13 @@
 				100000000000001500000129 /* MetasyntacticSharedApplication.h */,
 				10000000000000150000013E /* MetasyntacticSharedApplicationDelegate.h */,
 				100000000000002600000002 /* StyleSheet.h */,
+				74763FA310C4888B00AC94D6 /* Test.h */,
 				100000000000000700000092 /* AbstractApplication.m */,
 				100000000000000800000029 /* AbstractController.m */,
 				10000000000000120000011C /* AbstractModel.m */,
 				10000000000000150000012B /* MetasyntacticSharedApplication.m */,
 				100000000000002700000024 /* StyleSheet.m */,
+				74763FA410C4888B00AC94D6 /* Test.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1327,6 +1333,7 @@
 				1000000000000007000001B7 /* AutoreleasingMutableArray.h in Headers */,
 				1000000000000007000001BB /* AutoreleasingMutableDictionary.h in Headers */,
 				1000000000000007000001BF /* AutoreleasingMutableSet.h in Headers */,
+				74763FA510C4888B00AC94D6 /* Test.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1512,7 @@
 				1000000000000007000001B9 /* AutoreleasingMutableArray.m in Sources */,
 				1000000000000007000001BD /* AutoreleasingMutableDictionary.m in Sources */,
 				1000000000000007000001C1 /* AutoreleasingMutableSet.m in Sources */,
+				74763FA610C4888B00AC94D6 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
