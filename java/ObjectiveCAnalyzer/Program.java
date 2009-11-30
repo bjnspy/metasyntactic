@@ -631,10 +631,10 @@ public class Program {
         0, 0, 0, 0,
         0, 0, 0, 0
     });
-    BigInteger increment = new BigInteger(new byte[] {
+    BigInteger increment = new BigInteger(new byte[]{
         1, 0, 0, 0, 0,
     });
-    BigInteger bits = new BigInteger(new byte[] {
+    BigInteger bits = new BigInteger(new byte[]{
         -1, -1, -1, -1,
         -1, -1, -1, -1,
         0, 0, 0, 0
@@ -646,6 +646,7 @@ public class Program {
       if (lastHah != null && lastHah.hint.charAt(0) != hah.hint.charAt(0)) {
         current = current.add(increment);
         current = current.and(bits);
+        current = current.add(BigInteger.ONE);
       }
 
       final String hash = current.toString(16).toUpperCase();
