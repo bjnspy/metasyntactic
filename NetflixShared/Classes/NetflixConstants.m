@@ -12,12 +12,60 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractNetflixCache.h"
+#import "NetflixConstants.h"
 
-#import "NetflixAccount.h"
-#import "NetflixAuthentication.h"
 
-@implementation AbstractNetflixCache
+@implementation NetflixConstants
+
++ (NSString*) titleKey {
+  return @"title";
+}
+
+
++ (NSString*) seriesKey {
+  return @"series";
+}
+
+
++ (NSString*) averageRatingKey {
+  return @"average_rating";
+}
+
+
++ (NSString*) linkKey {
+  return @"link";
+}
+
+
++ (NSString*) availabilityKey {
+  return @"availability";
+}
+
+
++ (NSString*) castKey {
+  return @"cast";
+}
+
+
++ (NSString*) formatsKey {
+  return @"formats";
+}
+
+
++ (NSString*) synopsisKey {
+  return @"synopsis";
+}
+
+
++ (NSString*) similarsKey {
+  return @"similars";
+}
+
+
++ (NSString*) directorsKey {
+  return @"directors";
+}
+
 
 + (NSString*) recommendationKey {
   return @"http://schemas.netflix.com/feed.recommendations";
@@ -54,20 +102,18 @@
 }
 
 
-+ (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) acccount {
-  OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
-                                              secret:[NetflixAuthentication secret]];
++ (NSString*) instantFormat {
+  return @"instant";
+}
 
-  OAToken* token = [OAToken tokenWithKey:acccount.key
-                                  secret:acccount.secret];
 
-  OAMutableURLRequest* request =
-  [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
-                             consumer:consumer
-                                token:token
-                                realm:nil];
++ (NSString*) dvdFormat {
+  return @"DVD";
+}
 
-  return request;
+
++ (NSString*) blurayFormat {
+  return @"Blu-ray";
 }
 
 @end

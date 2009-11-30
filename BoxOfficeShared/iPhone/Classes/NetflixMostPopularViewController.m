@@ -47,13 +47,18 @@
 }
 
 
+- (NetflixRssCache*) netflixRssCache {
+  return [NetflixRssCache cache];
+}
+
+
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-  for (NSString* title in [NetflixCache mostPopularTitles]) {
+  for (NSString* title in [NetflixRssCache mostPopularTitles]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+      NSInteger count = [self.netflixRssCache movieCountForRSSTitle:title];
       if (count > 0) {
         [dictionary setObject:[NSNumber numberWithInteger:count] forKey:title];
       }
@@ -65,13 +70,13 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return MAX([[NetflixCache mostPopularTitles] count], 1);
+  return MAX([[NetflixRssCache mostPopularTitles] count], 1);
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-  NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:section];
+  NSString* title = [[NetflixRssCache mostPopularTitles] objectAtIndex:section];
   NSNumber* count = [titleToCount objectForKey:title];
 
   return count == nil ? 0 : 1;
@@ -92,7 +97,7 @@
     cell.textLabel.minimumFontSize = 12;
   }
 
-  NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
+  NSString* title = [[NetflixRssCache mostPopularTitles] objectAtIndex:indexPath.section];
   NSNumber* count = [titleToCount objectForKey:title];
 
   cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
@@ -103,7 +108,7 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-  NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
+  NSString* title = [[NetflixRssCache mostPopularTitles] objectAtIndex:indexPath.section];
 
   NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithCategory:title] autorelease];
   [self.navigationController pushViewController:controller animated:YES];

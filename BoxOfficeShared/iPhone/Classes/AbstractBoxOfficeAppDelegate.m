@@ -149,8 +149,13 @@
 }
 
 
+- (NetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account {
-  return [self.model.netflixCache userForAccount:account];
+  return [self.netflixCache userForAccount:account];
 }
 
 

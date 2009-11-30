@@ -49,8 +49,13 @@
 }
 
 
+- (NetflixRssCache*) netflixRssCache {
+  return [NetflixRssCache cache];
+}
+
+
 - (NSArray*) determineMovies {
-  return [self.model.netflixCache moviesForRSSTitle:category];
+  return [self.netflixRssCache moviesForRSSTitle:category];
 }
 
 @end

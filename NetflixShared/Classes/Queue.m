@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "NetflixConstants.h"
 
 @interface Queue()
 @property (retain) Feed* feed;
@@ -104,17 +105,17 @@ property_definition(saved);
 
 
 - (BOOL) isDVDQueue {
-  return [[NetflixCache discQueueKey] isEqual:feed.key];
+  return [[NetflixConstants discQueueKey] isEqual:feed.key];
 }
 
 
 - (BOOL) isInstantQueue {
-  return [[NetflixCache instantQueueKey] isEqual:feed.key];
+  return [[NetflixConstants instantQueueKey] isEqual:feed.key];
 }
 
 
 - (BOOL) isAtHomeQueue {
-  return [[NetflixCache atHomeKey] isEqual:feed.key];
+  return [[NetflixConstants atHomeKey] isEqual:feed.key];
 }
 
 

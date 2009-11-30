@@ -52,9 +52,14 @@
 }
 
 
+- (NetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (NSArray*) determineMovies {
   self.account = self.model.currentNetflixAccount;
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
+  Queue* queue = [self.netflixCache queueForKey:[NetflixConstants recommendationKey] account:account];
 
   NSMutableArray* array = [NSMutableArray array];
 

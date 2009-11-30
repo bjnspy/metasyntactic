@@ -109,12 +109,17 @@
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (void) setupTitle {
   NSString* text;
   if (readonlyMode) {
     text = LocalizedString(@"Please Wait", nil);
   } else {
-    text = [self.model.netflixCache titleForKey:feedKey includeCount:NO account:account];
+    text = [self.netflixCache titleForKey:feedKey includeCount:NO account:account];
   }
 
   self.title = text;
@@ -125,8 +130,8 @@
   [super onBeforeReloadTableViewData];
   self.account = self.model.currentNetflixAccount;
   self.tableView.rowHeight = 100;
-  self.feed = [self.model.netflixCache feedForKey:feedKey account:account];
-  self.queue = [self.model.netflixCache queueForFeed:feed account:account];
+  self.feed = [self.netflixCache feedForKey:feedKey account:account];
+  self.queue = [self.netflixCache queueForFeed:feed account:account];
   self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
   self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
   [self setupTitle];
@@ -273,12 +278,12 @@
   cell.accessoryView = activityIndicator;
 
   Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-  [self.model.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
+  [self.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
 }
 
 
 - (void) moveSucceededForMovie:(Movie*) movie {
-  self.queue = [self.model.netflixCache queueForFeed:feed account:account];
+  self.queue = [self.netflixCache queueForFeed:feed account:account];
   NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
 
   [self.tableView beginUpdates];
@@ -390,7 +395,7 @@
     [self exitEditing];
     [self enterReadonlyMode];
 
-    [self.model.netflixCache updateQueue:queue
+    [self.netflixCache updateQueue:queue
                         byDeletingMovies:deletedMovies
                      andReorderingMovies:reorderedMovies
                                       to:mutableMovies

@@ -52,8 +52,13 @@
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (void) setupNetflixRating {
-  CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie account:account] floatValue];
+  CGFloat rating = [[self.netflixCache netflixRatingForMovie:movie account:account] floatValue];
 
   NSMutableArray* array = [NSMutableArray array];
   for (NSInteger i = 0; i < 5; i++) {
@@ -146,7 +151,7 @@
 - (void) setupRating {
   [self clearRating];
 
-  NSString* userRating = [self.model.netflixCache userRatingForMovie:movie account:account];
+  NSString* userRating = [self.netflixCache userRatingForMovie:movie account:account];
   if (userRating.length > 0) {
     [self setupUserRating:userRating];
   } else {
@@ -173,7 +178,7 @@
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
   NSInteger value = imageView.tag;
-  NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie account:account] floatValue];
+  NSInteger currentUserRating = (NSInteger)[[self.netflixCache userRatingForMovie:movie account:account] floatValue];
 
   if (value == currentUserRating) {
     return;
@@ -189,7 +194,7 @@
 
   // now, update in the background.
   NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-  [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self account:account];
+  [self.netflixCache changeRatingTo:rating forMovie:movie delegate:self account:account];
 }
 
 

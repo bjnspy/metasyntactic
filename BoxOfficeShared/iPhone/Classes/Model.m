@@ -55,7 +55,6 @@
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
-@property (retain) MutableNetflixCache* netflixCache;
 @property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) HelpCache* helpCache;
 @property (retain) ThreadsafeValue* bookmarkedTitlesData;
@@ -125,7 +124,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize scoreCache;
 @synthesize trailerCache;
 @synthesize upcomingCache;
-@synthesize netflixCache;
 @synthesize internationalDataCache;
 @synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
@@ -150,7 +148,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.scoreCache = nil;
   self.trailerCache = nil;
   self.upcomingCache = nil;
-  self.netflixCache = nil;
   self.internationalDataCache = nil;
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
@@ -298,7 +295,6 @@ static Model* model = nil;
     self.posterCache = [PosterCache cache];
     self.scoreCache = [ScoreCache cache];
     self.upcomingCache = [UpcomingCache cache];
-    self.netflixCache = [MutableNetflixCache cache];
     self.internationalDataCache = [InternationalDataCache cache];
     self.helpCache = [HelpCache cache];
 
@@ -1035,13 +1031,18 @@ static Model* model = nil;
 }
 
 
+- (NetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (NSArray*) directorsForMovie:(Movie*) movie {
   NSArray* directors = movie.directors;
   if (directors.count > 0) {
     return directors;
   }
 
-  directors = [netflixCache directorsForMovie:movie];
+  directors = [self.netflixCache directorsForMovie:movie];
   if (directors.count > 0 || movie.isNetflix) {
     return directors;
   }
@@ -1066,7 +1067,7 @@ static Model* model = nil;
     return cast;
   }
 
-  cast = [netflixCache castForMovie:movie];
+  cast = [self.netflixCache castForMovie:movie];
   if (cast.count > 0 || movie.isNetflix) {
     return cast;
   }
@@ -1140,7 +1141,7 @@ static Model* model = nil;
 
 
 - (NSString*) netflixAddressForMovie:(Movie*) movie {
-  return [netflixCache netflixAddressForMovie:movie];
+  return [self.netflixCache netflixAddressForMovie:movie];
 }
 
 
@@ -1457,7 +1458,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   }
 
   if (movie.isNetflix) {
-    return [netflixCache synopsisForMovie:movie];
+    return [self.netflixCache synopsisForMovie:movie];
   }
 
   synopsis = [internationalDataCache synopsisForMovie:movie];
@@ -1476,7 +1477,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
       [options addObject:synopsis];
     }
 
-    synopsis = [netflixCache synopsisForMovie:movie];
+    synopsis = [self.netflixCache synopsisForMovie:movie];
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }

@@ -120,11 +120,17 @@ typedef enum {
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (void) setupTitle {
   self.title = [Application name];
 
-  if (self.model.netflixCache.lastQuotaErrorDate != nil &&
-      self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
+  NSDate* lastQuotaErrorDate = [[NetflixSiteStatus status] lastQuotaErrorDate];
+  if (lastQuotaErrorDate != nil &&
+      lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
     UILabel* label = [ViewControllerUtilities createTitleLabel];
     label.text = LocalizedString(@"Over Quota - Try Again Later", nil);
     self.navigationItem.titleView = label;
@@ -132,12 +138,17 @@ typedef enum {
 }
 
 
+- (NetflixRssCache*) netflixRssCache {
+  return [NetflixRssCache cache];
+}
+
+
 - (void) determinePopularMovieCount {
   NSInteger result = 0;
-  for (NSString* title in [NetflixCache mostPopularTitles]) {
+  for (NSString* title in [NetflixRssCache mostPopularTitles]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+      NSInteger count = [self.netflixRssCache movieCountForRSSTitle:title];
       result += count;
     }
     [pool release];
@@ -189,11 +200,6 @@ typedef enum {
 }
 
 
-- (NetflixCache*) netflixCache {
-  return self.model.netflixCache;
-}
-
-
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
@@ -213,19 +219,19 @@ typedef enum {
         cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache discQueueKey] account:account];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants discQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey] account:account];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants instantQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
         break;
       case RecommendationsSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey] account:account];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants recommendationKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixRecommendations.png");
         break;
       case AtHomeSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey] account:account];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants atHomeKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixHome.png");
         break;
       case RentalHistorySection:
@@ -287,9 +293,9 @@ typedef enum {
 - (void) didSelectRentalHistoryRow {
   NSArray* keys =
   [NSArray arrayWithObjects:
-   [NetflixCache rentalHistoryKey],
-   [NetflixCache rentalHistoryWatchedKey],
-   [NetflixCache rentalHistoryReturnedKey],
+   [NetflixConstants rentalHistoryKey],
+   [NetflixConstants rentalHistoryWatchedKey],
+   [NetflixConstants rentalHistoryReturnedKey],
    nil];
 
   UIViewController* controller =
@@ -326,10 +332,10 @@ typedef enum {
 - (void) didSelectLoggedInRow:(NSInteger) row {
   switch (row) {
     case MostPopularSection:        return [self didSelectMostPopularSection];
-    case DVDSection:                return [self didSelectQueueRow:[NetflixCache discQueueKey]];
-    case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
+    case DVDSection:                return [self didSelectQueueRow:[NetflixConstants discQueueKey]];
+    case InstantSection:            return [self didSelectQueueRow:[NetflixConstants instantQueueKey]];
     case RecommendationsSection:    return [self didSelectRecomendationsRow];
-    case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];
+    case AtHomeSection:             return [self didSelectQueueRow:[NetflixConstants atHomeKey]];
     case RentalHistorySection:      return [self didSelectRentalHistoryRow];
     case AboutSendFeedbackSection:  return [self didSelectAboutSendFeedbackRow];
     case AccountsSection:           return [self didSelectAccountsRow];
@@ -366,7 +372,7 @@ typedef enum {
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  NetflixUser* user = [self.model.netflixCache userForAccount:account];
+  NetflixUser* user = [self.netflixCache userForAccount:account];
 
   if (searchDisplayController.isActive ||
       self.model.netflixAccounts.count <= 1 ||

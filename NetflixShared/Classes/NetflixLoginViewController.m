@@ -14,9 +14,9 @@
 
 #import "NetflixLoginViewController.h"
 
+#import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
-#import "NetflixCache.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
 
@@ -297,7 +297,7 @@
                                                         userId:[accessToken.fields objectForKey:@"user_id"]];
 
       // Download information about the user before we proceed.
-      [NetflixCache downloadUserInformation:account];
+      [[MutableNetflixCache cache] downloadUserInformation:account];
 
       [self performSelectorOnMainThread:@selector(reportAccount:) withObject:account waitUntilDone:NO];
       return;

@@ -483,7 +483,7 @@
 		100000000000000000001AF2 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001AF9 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001AFB /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74F012BB10C03C2700C4E762 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_tw; path = Resources/zh_tw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74F012BE10C03E4B00C4E762 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1146,6 +1146,7 @@
 				uk,
 				hr,
 				zh_tw,
+				zh_TW,
 			);
 			mainGroup = 100000000000000000000FD5 /* CustomTemplate */;
 			projectDirPath = "";
@@ -1370,7 +1371,7 @@
 				100000000000000000001AF2 /* sv */,
 				100000000000000000001AF9 /* tr */,
 				100000000000000000001AFB /* uk */,
-				74F012BB10C03C2700C4E762 /* zh_tw */,
+				74F012BE10C03E4B00C4E762 /* zh_TW */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

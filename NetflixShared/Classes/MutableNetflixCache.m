@@ -22,8 +22,11 @@
 #import "NetflixAccount.h"
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixChangeRatingDelegate.h"
+#import "NetflixConstants.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
+#import "NetflixNetworking.h"
+#import "NetflixUtilities.h"
 #import "Queue.h"
 
 @interface NetflixCache()
@@ -32,15 +35,21 @@
 - (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
-- (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element;
 - (NSString*) extractErrorMessage:(XmlElement*) result;
 
-- (NSString*) downloadEtag:(Feed*) feed;
+- (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 - (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
 
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies
                         saved:(NSMutableArray*) saved;
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request
+                    account:(NetflixAccount*) account
+                   response:(NSHTTPURLResponse**) response;
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account;
+
 @end
 
 @interface MutableNetflixCache()
@@ -48,6 +57,19 @@
 @end
 
 @implementation MutableNetflixCache
+
+static MutableNetflixCache* cache;
+
++ (void) initialize {
+  if (self == [MutableNetflixCache class]) {
+    cache = [[MutableNetflixCache alloc] init];
+  }
+}
+
+
++ (MutableNetflixCache*) cache {
+  return cache;
+}
 
 @synthesize presubmitRatings;
 
@@ -62,11 +84,6 @@
     self.presubmitRatings = [NSDictionary dictionary];
   }
   return self;
-}
-
-
-+ (MutableNetflixCache*) cache {
-  return [[[MutableNetflixCache alloc] init] autorelease];
 }
 
 
@@ -141,24 +158,18 @@
   NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", account.userId, queueType];
 
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  [request setHTTPMethod:@"POST"];
-
   NSArray* parameters = [NSArray arrayWithObjects:
                          [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
                          [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
                          [OARequestParameter parameterWithName:@"etag" value:queue.etag],
                          nil];
 
-  [NSMutableURLRequestAdditions setParameters:parameters
-                                   forRequest:request];
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createPostURLRequest:address
+                                                             parameters:parameters
+                                                                account:account];
 
   NSHTTPURLResponse* response;
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                             response:&response];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account response:&response];
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
@@ -293,19 +304,16 @@ andReorderingMovies:[NSSet identitySet]
                  withIdentifier:(NSString*) identifier
                         account:(NetflixAccount*) account {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
-  OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"method" value:@"PUT"];
-  OARequestParameter* parameter2 = [OARequestParameter parameterWithName:@"rating" value:netflixRating];
-  [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObjects:parameter1, parameter2, nil]
-                                   forRequest:request];
+  NSArray* parameters = [NSArray arrayWithObjects:
+                         [OARequestParameter parameterWithName:@"method" value:@"PUT"],
+                         [OARequestParameter parameterWithName:@"rating" value:netflixRating],
+                         nil];
 
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:address parameters:parameters account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account];
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
@@ -322,20 +330,15 @@ andReorderingMovies:[NSSet identitySet]
                   withIdentifier:(NSString*) identifier
                          account:(NetflixAccount*) account {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  [request setHTTPMethod:@"POST"];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
-  OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
-  OARequestParameter* parameter2 = [OARequestParameter parameterWithName:@"rating" value:netflixRating];
-  [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObjects:parameter1, parameter2, nil]
-                                   forRequest:request];
+  NSArray* parameters = [NSArray arrayWithObjects:
+                         [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier],
+                         [OARequestParameter parameterWithName:@"rating" value:netflixRating], nil];
 
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createPostURLRequest:address parameters:parameters account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account];
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
@@ -355,12 +358,12 @@ andReorderingMovies:[NSSet identitySet]
   // to that rating.  Otherwise we will 'POST' to it.
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
-  [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
-  [request prepare];
+  NSURLRequest* request =
+    [NetflixNetworking createGetURLRequest:address
+                                parameter:[OARequestParameter parameterWithName:@"title_refs" value:movie.identifier]
+                                  account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
+  XmlElement* element = [self downloadXml:request account:account];
 
   if (element == nil) {
     // we failed.  restore the rating to its original value
@@ -509,28 +512,24 @@ andReorderingMovies:[NSSet identitySet]
   } else {
     NSLog(@"Adding '%@' to DVD queue.", addArguments.movie.canonicalTitle);
     address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", addArguments.account.userId];
-    bluray = [[NetflixCache blurayFormat] isEqual:addArguments.format];
+    bluray = [[NetflixConstants blurayFormat] isEqual:addArguments.format];
   }
-
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:addArguments.account];
-  [request setHTTPMethod:@"POST"];
 
   NSMutableArray* parameters = [NSMutableArray array];
   [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:addArguments.movie.identifier]];
   [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:addArguments.queue.etag]];
   if (bluray) {
-    [parameters addObject:[OARequestParameter parameterWithName:@"format" value:[NetflixCache blurayFormat]]];
+    [parameters addObject:[OARequestParameter parameterWithName:@"format" value:[NetflixConstants blurayFormat]]];
   }
   if (addArguments.position >= 0) {
     [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", addArguments.position + 1]]];
   }
 
-  [NSMutableURLRequestAdditions setParameters:parameters forRequest:request];
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createPostURLRequest:address
+                                                             parameters:parameters
+                                                                account:addArguments.account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:addArguments.account element:element];
+  XmlElement* element = [self downloadXml:request account:addArguments.account];
 
   NSString* error;
   Queue* finalQueue = [self processAddMovieResult:element
@@ -564,14 +563,9 @@ andReorderingMovies:[NSSet identitySet]
                  error:(NSString**) error {
   *error = nil;
 
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:movie.identifier account:account];
+  NSURLRequest* request = [NetflixNetworking createDeleteURLRequest:movie.identifier account:account];
 
-  [request setHTTPMethod:@"DELETE"];
-  [request prepare];
-
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account];
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
@@ -580,7 +574,7 @@ andReorderingMovies:[NSSet identitySet]
   }
 
   // TODO: what do we do if this fails?!
-  NSString* etag = [self downloadEtag:queue.feed];
+  NSString* etag = [self downloadEtag:queue.feed account:account];
   NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
   NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
   [newMovies removeObjectIdenticalTo:movie];
