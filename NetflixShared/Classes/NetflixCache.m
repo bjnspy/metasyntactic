@@ -17,7 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
-#import "NetflixAccountCache.h"
+#import "NetflixUserCache.h"
 #import "NetflixConstants.h"
 #import "NetflixPaths.h"
 #import "NetflixNetworking.h"
@@ -867,7 +867,7 @@
                                     force:(BOOL) force {
   if (![self canContinue:account]) { return; }
 
-  [[NetflixAccountCache cache] downloadUserInformation:account];
+  [[NetflixUserCache cache] downloadUserInformation:account];
   [self downloadFeeds:account];
   [self downloadQueues:account force:force];
 
