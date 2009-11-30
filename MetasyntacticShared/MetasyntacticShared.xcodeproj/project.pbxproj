@@ -213,8 +213,6 @@
 		100000000000001900000135 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000133 /* TappableScrollView.m */; };
 		100000000000001900000138 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000137 /* TappableScrollViewDelegate.h */; };
 		10000000000000190000013A /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000139 /* TappableViewDelegate.h */; };
-		10000000000000190000013D /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013C /* Test.h */; };
-		10000000000000190000013F /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013E /* Test.m */; };
 		10000000000000190000014C /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014B /* TextFieldEditorViewController.h */; };
 		10000000000000190000014E /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014D /* TextFieldEditorViewController.m */; };
 		100000000000001900000222 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000121 /* Operation3.h */; };
@@ -511,8 +509,6 @@
 		100000000000001900000133 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		100000000000001900000137 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		100000000000001900000139 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
-		10000000000000190000013C /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		10000000000000190000013E /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		100000000000001900000149 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		10000000000000190000014B /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		10000000000000190000014D /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
@@ -1138,13 +1134,11 @@
 				10000000000000150000012A /* MetasyntacticSharedApplication.h */,
 				10000000000000150000013F /* MetasyntacticSharedApplicationDelegate.h */,
 				100000000000002600000003 /* StyleSheet.h */,
-				10000000000000190000013C /* Test.h */,
 				100000000000000700000093 /* AbstractApplication.m */,
 				10000000000000080000002A /* AbstractController.m */,
 				10000000000000120000011D /* AbstractModel.m */,
 				10000000000000150000012C /* MetasyntacticSharedApplication.m */,
 				100000000000002700000025 /* StyleSheet.m */,
-				10000000000000190000013E /* Test.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1333,7 +1327,6 @@
 				1000000000000007000001B8 /* AutoreleasingMutableArray.h in Headers */,
 				1000000000000007000001BC /* AutoreleasingMutableDictionary.h in Headers */,
 				1000000000000007000001C0 /* AutoreleasingMutableSet.h in Headers */,
-				10000000000000190000013D /* Test.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1512,7 +1505,6 @@
 				1000000000000007000001BA /* AutoreleasingMutableArray.m in Sources */,
 				1000000000000007000001BE /* AutoreleasingMutableDictionary.m in Sources */,
 				1000000000000007000001C2 /* AutoreleasingMutableSet.m in Sources */,
-				10000000000000190000013F /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1555,7 +1547,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = Debug;
 		};
@@ -1593,7 +1585,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = Release;
 		};
