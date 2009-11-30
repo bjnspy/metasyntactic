@@ -33,7 +33,7 @@
 #import "Queue.h"
 
 @interface NetflixCache()
-- (Movie*) promoteDiscToSeries:(Movie*) disc;
++ (Movie*) promoteDiscToSeries:(Movie*) disc;
 
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 @end
@@ -114,7 +114,7 @@ static MutableNetflixCache* cache;
 
 
 - (void) removePresubmitRatingsForMovie:(Movie*) movie {
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
   [dictionary removeObjectForKey:movie];
   self.presubmitRatings = dictionary;
@@ -309,7 +309,7 @@ andReorderingMovies:[NSSet identitySet]
                delegate:(id<NetflixChangeRatingDelegate>) delegate
                 account:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], @"");
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
 
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
   [dictionary setObject:rating forKey:movie];
@@ -696,7 +696,7 @@ toModifyQueueDelegate:modifyArguments.delegate
 
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], @"");
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
 
   NSString* presubmitRating = [presubmitRatings objectForKey:movie];
   if (presubmitRating != nil) {
