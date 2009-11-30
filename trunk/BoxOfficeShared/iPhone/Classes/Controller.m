@@ -70,7 +70,7 @@ static Controller* controller = nil;
 
 
 - (NetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+  return [NetflixCache cache];
 }
 
 
@@ -134,7 +134,7 @@ static Controller* controller = nil;
 
 
 - (void) updateNetflixCache:(BOOL) force {
-  [self.netflixCache update:force];
+  [self.netflixCache update:self.model.currentNetflixAccount force:force];
 }
 
 

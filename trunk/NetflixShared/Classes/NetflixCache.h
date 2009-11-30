@@ -17,6 +17,8 @@
 @interface NetflixCache : AbstractMovieCache {
 }
 
++ (NetflixCache*) cache;
+
 + (NSString*) noInformationFound;
 
 - (void) update:(NetflixAccount*) account force:(BOOL) force;

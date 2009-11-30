@@ -120,8 +120,8 @@ typedef enum {
 }
 
 
-- (MutableNetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+- (NetflixCache*) netflixCache {
+  return [NetflixCache cache];
 }
 
 

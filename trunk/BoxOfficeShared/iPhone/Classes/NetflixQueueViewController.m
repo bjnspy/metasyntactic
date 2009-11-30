@@ -53,7 +53,7 @@
   self.deletedMovies = nil;
   self.reorderedMovies = nil;
   self.backButton = nil;
-
+  
   [super dealloc];
 }
 
@@ -66,7 +66,7 @@
 - (void) setupButtons {
   if (readonlyMode) {
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-
+    
     UIBarButtonItem* right = [self createActivityIndicator];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -84,7 +84,7 @@
       left = backButton;
       right = nil;
     }
-
+    
     [self.navigationItem setLeftBarButtonItem:left animated:YES];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
   }
@@ -99,7 +99,7 @@
     self.deletedMovies = [NSMutableSet identitySet];
     [self setupButtons];
   }
-
+  
   return self;
 }
 
@@ -109,8 +109,13 @@
 }
 
 
-- (MutableNetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+- (NetflixCache*) netflixCache {
+  return [NetflixCache cache];
+}
+
+
+- (NetflixUpdater*) netflixUpdater {
+  return [NetflixUpdater updater];
 }
 
 
@@ -121,7 +126,7 @@
   } else {
     text = [self.netflixCache titleForKey:feedKey includeCount:NO account:account];
   }
-
+  
   self.title = text;
 }
 
@@ -144,16 +149,16 @@
 }
 
 /*
-- (void) majorRefresh {
-  // do nothing.  we don't want to refresh the view (because it causes an
-  // ugly flash).  Instead, just refresh things when teh view becomes visible
-  if (mutableSaved.count == 0 && mutableMovies.count == 0) {
-    return;
-  }
-
-  [super majorRefresh];
-}
-*/
+ - (void) majorRefresh {
+ // do nothing.  we don't want to refresh the view (because it causes an
+ // ugly flash).  Instead, just refresh things when teh view becomes visible
+ if (mutableSaved.count == 0 && mutableMovies.count == 0) {
+ return;
+ }
+ 
+ [super majorRefresh];
+ }
+ */
 
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
@@ -186,7 +191,7 @@
   } else if (mutableSaved.count > 0 && section == 1) {
     return LocalizedString(@"Saved", nil);
   }
-
+  
   return nil;
 }
 
@@ -218,28 +223,28 @@
   if ([self indexPathOutOfBounds:indexPath]) {
     return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   }
-
+  
   static NSString* reuseIdentifier = @"reuseIdentifier";
-
+  
   NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-
+    
     [cell.tappableArrow addTarget:self action:@selector(onUpArrowTapped:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     //cell.tappableArrow.delegate = self;
   }
-
+  
   [self setAccessoryForCell:cell atIndexPath:indexPath];
-
+  
   Movie* movie;
   if (indexPath.section == 0) {
     movie = [mutableMovies objectAtIndex:indexPath.row];
   } else {
     movie = [mutableSaved objectAtIndex:indexPath.row];
   }
-
+  
   [cell setMovie:movie owner:self];
-
+  
   return cell;
 }
 
@@ -269,7 +274,7 @@
 
 - (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
   [self enterReadonlyMode];
-
+  
   UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
   UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
   {
@@ -281,29 +286,29 @@
     activityIndicator.frame = frame;
   }
   cell.accessoryView = activityIndicator;
-
+  
   Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-  [self.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
+  [self.netflixUpdater updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
 }
 
 
 - (void) moveSucceededForMovie:(Movie*) movie {
   self.queue = [self.netflixAccountCache queueForFeed:feed account:account];
   NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
-
+  
   [self.tableView beginUpdates];
   {
     NSIndexPath* firstRow = [NSIndexPath indexPathForRow:0 inSection:0];
     NSIndexPath* currentRow = [NSIndexPath indexPathForRow:row inSection:0];
-
+    
     [mutableMovies removeObjectAtIndex:row];
     [mutableMovies insertObject:movie atIndex:0];
-
+    
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:currentRow] withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:firstRow] withRowAnimation:UITableViewRowAnimationTop];
   }
   [self.tableView endUpdates];
-
+  
   [self exitReadonlyMode];
 }
 
@@ -311,9 +316,9 @@
 - (void) onModifyFailure:(NSString*) error {
   NSString* message = [NSString stringWithFormat:LocalizedString(@"Reordering queue failed:\n\n%@", @"Error shown when we tried to reorder a user's movie queue on the server but failed.  %@ is replaced with the actual error.  i.e.: Could not connect to server"), error];
   [AlertUtilities showOkAlert:message];
-
+  
   [self exitReadonlyMode];
-
+  
   // make sure we're in a good state.
   [self majorRefresh];
 }
@@ -335,18 +340,18 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
     return;
   }
-
+  
   if ([self indexPathOutOfBounds:indexPath]) {
     return;
   }
-
+  
   Movie* movie;
   if (indexPath.section == 0) {
     movie = [queue.movies objectAtIndex:indexPath.row];
   } else {
     movie = [queue.saved objectAtIndex:indexPath.row];
   }
-
+  
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -399,13 +404,13 @@
   } else {
     [self exitEditing];
     [self enterReadonlyMode];
-
-    [self.netflixCache updateQueue:queue
-                        byDeletingMovies:deletedMovies
-                     andReorderingMovies:reorderedMovies
-                                      to:mutableMovies
-                                delegate:self
-                                 account:account];
+    
+    [self.netflixUpdater updateQueue:queue
+                    byDeletingMovies:deletedMovies
+                 andReorderingMovies:reorderedMovies
+                                  to:mutableMovies
+                            delegate:self
+                             account:account];
   }
 }
 
@@ -423,13 +428,13 @@
       movie = [mutableSaved objectAtIndex:indexPath.row];
       [mutableSaved removeObjectAtIndex:indexPath.row];
     }
-
+    
     [deletedMovies addObject:movie];
     [reorderedMovies removeObject:movie];
-
+    
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
   }
-
+  
   if (!majorEditing) {
     // This was a swipe-delete.  Commit it immediately.
     [self onSave];
@@ -443,15 +448,15 @@
              toIndexPath:(NSIndexPath*) toIndexPath {
   NSInteger from = fromIndexPath.row;
   NSInteger to = toIndexPath.row;
-
+  
   if (from == to) {
     return;
   }
-
+  
   Movie* movie = [mutableMovies objectAtIndex:from];
   [mutableMovies removeObjectAtIndex:from];
   [mutableMovies insertObject:movie atIndex:to];
-
+  
   [reorderedMovies addObject:movie];
 }
 
@@ -473,7 +478,7 @@
   if (proposedDestinationIndexPath.section == 1) {
     return [NSIndexPath indexPathForRow:(mutableMovies.count - 1) inSection:0];
   }
-
+  
   return proposedDestinationIndexPath;
 }
 
@@ -482,7 +487,7 @@
   if (readonlyMode) {
     return;
   }
-
+  
   UITableViewCell* cell = nil;
   for (UIView* superview = button; superview != nil; superview = superview.superview) {
     if ([superview isKindOfClass:[UITableViewCell class]]) {
@@ -490,11 +495,11 @@
       break;
     }
   }
-
+  
   if (cell == nil) {
     return;
   }
-
+  
   NSIndexPath* path = [self.tableView indexPathForCell:cell];
   [self upArrowTappedForRowAtIndexPath:path];
 }

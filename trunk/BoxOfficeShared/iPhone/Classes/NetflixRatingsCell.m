@@ -52,8 +52,13 @@
 }
 
 
-- (MutableNetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+- (NetflixCache*) netflixCache {
+  return [NetflixCache cache];
+}
+
+
+- (NetflixUpdater*) netflixUpdater {
+  return [NetflixUpdater updater];
 }
 
 
@@ -194,7 +199,7 @@
 
   // now, update in the background.
   NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-  [self.netflixCache changeRatingTo:rating forMovie:movie delegate:self account:account];
+  [self.netflixUpdater changeRatingTo:rating forMovie:movie delegate:self account:account];
 }
 
 

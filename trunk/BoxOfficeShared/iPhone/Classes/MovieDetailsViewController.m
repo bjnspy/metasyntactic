@@ -116,6 +116,11 @@ typedef enum {
 }
 
 
+- (NetflixUpdater*) netflixUpdater {
+  return [NetflixUpdater updater];
+}
+
+
 - (NSMutableArray*) orderTheaters:(NSMutableArray*) theatersArray {
   [theatersArray sortUsingFunction:compareTheatersByDistance
                            context:self.model.theaterDistanceMap];
@@ -166,8 +171,8 @@ typedef enum {
 }
 
 
-- (MutableNetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+- (NetflixCache*) netflixCache {
+  return [NetflixCache cache];
 }
 
 
@@ -1107,9 +1112,9 @@ typedef enum {
                                        top:(BOOL) top {
   [self enterReadonlyMode];
   if (top) {
-    [self.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
+    [self.netflixUpdater updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
   } else {
-    [self.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format delegate:self account:netflixAccount];
+    [self.netflixUpdater updateQueue:queue byAddingMovie:netflixMovie withFormat:format delegate:self account:netflixAccount];
   }
 }
 
@@ -1325,7 +1330,7 @@ typedef enum {
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
+  [self.netflixUpdater updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
 }
 
 
@@ -1334,7 +1339,7 @@ typedef enum {
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
+  [self.netflixUpdater updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
 }
 
 
