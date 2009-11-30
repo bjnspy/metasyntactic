@@ -15,6 +15,7 @@
 #import "AbstractDataProvider.h"
 
 #import "Application.h"
+#import "BookmarkCache.h"
 #import "DataProviderUpdateDelegate.h"
 #import "FavoriteTheater.h"
 #import "LookupRequest.h"
@@ -80,6 +81,11 @@
 }
 
 
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
+}
+
+
 - (NSString*) performancesDirectory {
   return [[Application dataDirectory] stringByAppendingPathComponent:@"Performances"];
 }
@@ -137,7 +143,7 @@
 
 
 - (NSMutableDictionary*) loadBookmarks {
-  NSArray* movies = [self.model bookmarkedMovies];
+  NSArray* movies = [self.bookmarkCache bookmarkedMovies];
   if (movies.count == 0) {
     return [NSMutableDictionary dictionary];
   }
@@ -171,7 +177,7 @@
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.model setBookmarkedMovies:bookmarks.allValues];
+  [self.bookmarkCache setBookmarkedMovies:bookmarks.allValues];
 }
 
 
@@ -197,7 +203,7 @@
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in result.movies) {
-    if ([self.model isBookmarked:movie]) {
+    if ([self.bookmarkCache isBookmarked:movie]) {
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }

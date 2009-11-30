@@ -141,6 +141,8 @@
 		10000000000000000000193D /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000193B /* libProtocolBuffers.a */; };
 		100000000000000000001942 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001933 /* FAQViewController.m */; };
 		100000000000000000001965 /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000195C /* LookupResult.m */; };
+		7413151610C45CA00022D074 /* BookmarkCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7413151410C45CA00022D074 /* BookmarkCache.h */; };
+		7413151710C45CA00022D074 /* BookmarkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413151510C45CA00022D074 /* BookmarkCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -484,6 +486,8 @@
 		100000000000000000001B15 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001B17 /* uk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000000000001B3F /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7413151410C45CA00022D074 /* BookmarkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkCache.h; sourceTree = "<group>"; };
+		7413151510C45CA00022D074 /* BookmarkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -604,6 +608,8 @@
 				100000000000000000001785 /* LocalizableStringsCache.m */,
 				1000000000000000000016A3 /* TrailerCache.m */,
 				100000000000000000001731 /* UpcomingCache.m */,
+				7413151410C45CA00022D074 /* BookmarkCache.h */,
+				7413151510C45CA00022D074 /* BookmarkCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1076,6 +1082,7 @@
 				100000000000000000000E40 /* NetflixShared.h in Headers */,
 				1000000000000000000006A4 /* AbstractNetflixFilterableViewController.h in Headers */,
 				1000000000000000000010BF /* ProtocolBuffers.h in Headers */,
+				7413151610C45CA00022D074 /* BookmarkCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1324,6 +1331,7 @@
 				100000000000000000001039 /* PocketFlicksCreditsViewController.m in Sources */,
 				100000000000000000001041 /* PocketFlicksSettingsViewController.m in Sources */,
 				1000000000000000000006A6 /* AbstractNetflixFilterableViewController.m in Sources */,
+				7413151710C45CA00022D074 /* BookmarkCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

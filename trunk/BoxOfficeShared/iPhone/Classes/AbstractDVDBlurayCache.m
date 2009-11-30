@@ -14,6 +14,7 @@
 
 #import "AbstractDVDBlurayCache.h"
 
+#import "BookmarkCache.h"
 #import "CacheUpdater.h"
 #import "DVD.h"
 #import "Model.h"
@@ -56,6 +57,11 @@
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -126,7 +132,7 @@
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.model setBookmarkedDVD:bookmarks.allValues];
+  [self.bookmarkCache setBookmarkedDVD:bookmarks.allValues];
 }
 
 
@@ -313,7 +319,7 @@
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* bookmarks = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in movies) {
-    if ([self.model isBookmarked:movie]) {
+    if ([self.bookmarkCache isBookmarked:movie]) {
       [bookmarks setObject:movie forKey:movie.canonicalTitle];
     }
   }

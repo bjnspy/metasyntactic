@@ -32,6 +32,19 @@
 
 @implementation PosterCache
 
+static PosterCache* cache;
+
++ (void) initialize {
+  if (self == [PosterCache class]) {
+    cache = [[PosterCache alloc] init];
+  }
+}
+
+
++ (PosterCache*) cache {
+  return cache;
+}
+
 @synthesize imdbPosterDownloader;
 @synthesize applePosterDownloader;
 @synthesize fandangoPosterDownloader;
@@ -56,11 +69,6 @@
   }
 
   return self;
-}
-
-
-+ (PosterCache*) cache {
-  return [[[PosterCache alloc] init] autorelease];
 }
 
 

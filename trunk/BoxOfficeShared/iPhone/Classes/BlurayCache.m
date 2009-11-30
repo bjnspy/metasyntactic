@@ -15,6 +15,7 @@
 #import "BlurayCache.h"
 
 #import "Application.h"
+#import "BookmarkCache.h"
 #import "Model.h"
 
 @implementation BlurayCache
@@ -38,6 +39,11 @@ static BlurayCache* cache;
 }
 
 
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
+}
+
+
 - (void) update {
   if (!self.model.dvdMoviesShowBluray) {
     return;
@@ -48,7 +54,7 @@ static BlurayCache* cache;
 
 
 - (NSArray*) loadBookmarksArray {
-  return [self.model bookmarkedBluray];
+  return [self.bookmarkCache bookmarkedBluray];
 }
 
 

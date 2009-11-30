@@ -14,6 +14,7 @@
 
 #import "AbstractMovieListViewController.h"
 
+#import "BookmarkCache.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"
@@ -48,6 +49,11 @@
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -215,7 +221,7 @@
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
   for (Movie* movie in sortedMovies) {
-    if ([self.model isBookmarked:movie]) {
+    if ([self.bookmarkCache isBookmarked:movie]) {
       [map addObject:movie forKey:[StringUtilities starString]];
     }
   }

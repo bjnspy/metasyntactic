@@ -14,6 +14,7 @@
 
 #import "MovieTitleCell.h"
 
+#import "BookmarkCache.h"
 #import "GreenMovieTitleCell.h"
 #import "Model.h"
 #import "NoScoreMovieTitleCell.h"
@@ -62,6 +63,11 @@
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -125,7 +131,7 @@
 - (void) setMovie:(Movie*) movie {
   self.detailTextLabel.text = [self.model ratingAndRuntimeForMovie:movie];
 
-  if ([self.model isBookmarked:movie]) {
+  if ([self.bookmarkCache isBookmarked:movie]) {
     self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
   } else {
     self.textLabel.text = movie.displayTitle;

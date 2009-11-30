@@ -15,6 +15,7 @@
 #import "DVDCache.h"
 
 #import "Application.h"
+#import "BookmarkCache.h"
 #import "Model.h"
 
 @implementation DVDCache
@@ -38,6 +39,11 @@ static DVDCache* cache;
 }
 
 
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
+}
+
+
 - (void) update {
   if (!self.model.dvdMoviesShowDVDs) {
     return;
@@ -48,7 +54,7 @@ static DVDCache* cache;
 
 
 - (NSArray*) loadBookmarksArray {
-  return [self.model bookmarkedDVD];
+  return [self.bookmarkCache bookmarkedDVD];
 }
 
 

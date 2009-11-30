@@ -35,6 +35,7 @@
 		1000000000000000000009C4 /* AbstractFlippableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000993 /* AbstractFlippableTableViewController.h */; };
 		1000000000000000000009D4 /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009CC /* AbstractFlippableTableViewController.m */; };
 		1000000000000000000009F5 /* AbstractFullScreenImageListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009E2 /* AbstractFullScreenImageListViewController.h */; };
+		100000000000000000000A37 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E93 /* AbstractNavigationController.m */; };
 		100000000000000000000A6A /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009F4 /* AbstractFullScreenImageListViewController.m */; };
 		100000000000000000000A8F /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A8E /* HtmlUtilities.h */; };
 		100000000000000000000A91 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A90 /* HtmlUtilities.m */; };
@@ -65,7 +66,6 @@
 		100000000000000000000D73 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D72 /* Invocation3.h */; };
 		100000000000000000000D75 /* Invocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D74 /* Invocation3.m */; };
 		100000000000000000000D77 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D76 /* LargeActivityIndicatorViewWithBackground.h */; };
-		100000000000000000000A37 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E93 /* AbstractNavigationController.m */; };
 		100000000000000000000DA7 /* NSDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DA6 /* NSDictionary+Utilities.h */; };
 		100000000000000000000DA9 /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DA8 /* NSDictionary+Utilities.m */; };
 		100000000000000000000DAF /* NSMutableDictionary+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAE /* NSMutableDictionary+Utilities.h */; };
@@ -331,6 +331,7 @@
 		1000000000000000000009CC /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
 		1000000000000000000009E2 /* AbstractFullScreenImageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenImageListViewController.h; sourceTree = "<group>"; };
 		1000000000000000000009F4 /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
+		100000000000000000000A38 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
 		100000000000000000000A8E /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000A90 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
 		100000000000000000000B00 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
@@ -361,7 +362,6 @@
 		100000000000000000000D72 /* Invocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation3.h; sourceTree = "<group>"; };
 		100000000000000000000D74 /* Invocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation3.m; sourceTree = "<group>"; };
 		100000000000000000000D76 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
-		100000000000000000000A38 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
 		100000000000000000000DA6 /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
 		100000000000000000000DA8 /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000000000DAE /* NSMutableDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Utilities.h"; sourceTree = "<group>"; };
