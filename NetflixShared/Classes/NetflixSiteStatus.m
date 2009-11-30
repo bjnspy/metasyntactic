@@ -15,7 +15,7 @@
 #import "NetflixSiteStatus.h"
 
 @interface NetflixSiteStatus()
-@property (retain) NSDate* lastQuotaErrorDate;
+@property BOOL overQuota;
 @end
 
 
@@ -35,10 +35,10 @@ static NetflixSiteStatus* status = nil;
 }
 
 
-@synthesize lastQuotaErrorDate;
+@synthesize overQuota;
 
 - (void) dealloc {
-  self.lastQuotaErrorDate = nil;
+  self.overQuota = NO;
   [super dealloc];
 }
 
@@ -49,7 +49,7 @@ static NetflixSiteStatus* status = nil;
   // Such a total hack.  Netflix doesn't give any error code for this.  We have
   // to extract it ourselves.  Bleagh.
   if ([@"Over queries per day limit" isEqual:message]) {
-    self.lastQuotaErrorDate = [NSDate date];
+    overQuota = YES;
     [MetasyntacticSharedApplication minorRefresh];
   }
 }
