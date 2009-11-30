@@ -48,7 +48,6 @@
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) ScoreCache* scoreCache;
-@property (retain) TrailerCache* trailerCache;
 @property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) HelpCache* helpCache;
 @property (retain) ThreadsafeValue* bookmarkedTitlesData;
@@ -111,7 +110,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize posterCache;
 @synthesize largePosterCache;
 @synthesize scoreCache;
-@synthesize trailerCache;
 @synthesize internationalDataCache;
 @synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
@@ -129,7 +127,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.posterCache = nil;
   self.largePosterCache = nil;
   self.scoreCache = nil;
-  self.trailerCache = nil;
   self.internationalDataCache = nil;
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
@@ -268,7 +265,6 @@ static Model* model = nil;
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
-    self.trailerCache = [TrailerCache cache];
     self.posterCache = [PosterCache cache];
     self.scoreCache = [ScoreCache cache];
     self.internationalDataCache = [InternationalDataCache cache];
@@ -282,6 +278,26 @@ static Model* model = nil;
   }
 
   return self;
+}
+
+
+- (UpcomingCache*) upcomingCache {
+  return [UpcomingCache cache];
+}
+
+
+- (DVDCache*) dvdCache {
+  return [DVDCache cache];
+}
+
+
+- (BlurayCache*) blurayCache {
+  return [BlurayCache cache];
+}
+
+
+- (TrailerCache*) trailerCache {
+  return [TrailerCache cache];
 }
 
 
@@ -816,21 +832,6 @@ static Model* model = nil;
 
 - (BOOL) isBookmarked:(Movie*) movie {
   return [self.bookmarkedTitles containsObject:movie.canonicalTitle];
-}
-
-
-- (UpcomingCache*) upcomingCache {
-  return [UpcomingCache cache];
-}
-
-
-- (DVDCache*) dvdCache {
-  return [DVDCache cache];
-}
-
-
-- (BlurayCache*) blurayCache {
-  return [BlurayCache cache];
 }
 
 
@@ -1496,7 +1497,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     return result;
   }
 
-  result = [trailerCache trailersForMovie:movie];
+  result = [self.trailerCache trailersForMovie:movie];
   if (result.count > 0) {
     return result;
   }
