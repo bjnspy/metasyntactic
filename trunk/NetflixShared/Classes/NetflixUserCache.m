@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  NetflixAccountCache.m
-//  NetflixShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 11/29/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "NetflixUserCache.h"
 
@@ -33,26 +39,26 @@ static NetflixUserCache* cache;
 - (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account {
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  
+
   [[NetflixSiteStatus status] checkApiResult:element];
-  
+
   return element;
-  
+
 }
 
 
 - (NetflixUser*) downloadUserInformation:(NetflixAccount*) account {
   NSLog(@"NetflixCache:downloadUserInformation");
-  
+
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", account.userId];
   NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
-  
+
   XmlElement* element = [self downloadXml:request account:account];
-  
+
   NSString* firstName = [[element element:@"first_name"] text];
   NSString* lastName = [[element element:@"last_name"] text];
   BOOL canInstantWatch = [[[element element:@"can_instant_watch"] text] isEqual:@"true"];
-  
+
   NSMutableArray* preferredFormats = [NSMutableArray array];
   for (XmlElement* child in [[element element:@"preferred_formats"] children]) {
     if ([@"category" isEqual:child.name]) {
@@ -64,11 +70,11 @@ static NetflixUserCache* cache;
       }
     }
   }
-  
+
   if (firstName.length == 0 && lastName.length == 0) {
     return nil;
   }
-  
+
   [FileUtilities createDirectory:[NetflixPaths accountDirectory:account]];
   NetflixUser* user = [NetflixUser userWithFirstName:firstName lastName:lastName canInstantWatch:canInstantWatch preferredFormats:preferredFormats];
   [FileUtilities writeObject:user.dictionary toFile:[NetflixPaths userFile:account]];
@@ -80,7 +86,7 @@ static NetflixUserCache* cache;
   if (account == nil) {
     return nil;
   }
-  
+
   NSDictionary* dictionary = [FileUtilities readObject:[NetflixPaths userFile:account]];
   if (dictionary.count == 0) {
     return nil;

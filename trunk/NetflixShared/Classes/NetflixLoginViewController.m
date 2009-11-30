@@ -14,11 +14,11 @@
 
 #import "NetflixLoginViewController.h"
 
-#import "NetflixUserCache.h"
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
+#import "NetflixUserCache.h"
 
 @interface NetflixLoginViewController()
 @property (retain) UILabel* messageLabel;

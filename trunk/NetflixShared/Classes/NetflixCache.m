@@ -18,15 +18,15 @@
 #import "Movie.h"
 #import "NetflixAccount.h"
 #import "NetflixAccountCache.h"
-#import "NetflixUserCache.h"
 #import "NetflixConstants.h"
-#import "NetflixPaths.h"
 #import "NetflixNetworking.h"
+#import "NetflixPaths.h"
 #import "NetflixRssCache.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixSiteStatus.h"
 #import "NetflixUpdater.h"
 #import "NetflixUser.h"
+#import "NetflixUserCache.h"
 #import "NetflixUtilities.h"
 #import "Queue.h"
 #import "Status.h"
@@ -93,14 +93,14 @@ static NetflixCache* cache;
 + (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account
                    response:(NSHTTPURLResponse**) response {
-  
+
   BOOL outOfDate;
   XmlElement* element =
     [NetflixNetworking downloadXml:request
                            account:account
                           response:response
                          outOfDate:&outOfDate];
-  
+
   if (outOfDate) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
     NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
@@ -220,7 +220,7 @@ static NetflixCache* cache;
   if (error != NULL) {
     *error = nil;
   }
-  
+
   NSURLRequest* request =
   [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/titles"
                               parameters:[NSArray arrayWithObjects:
@@ -713,10 +713,10 @@ static NetflixCache* cache;
   if (currentRating != nil) {
     return currentRating;
   }
-  
+
   movie = [self correspondingNetflixMovie:movie];
   movie = [NetflixCache promoteDiscToSeries:movie];
-  
+
   return [FileUtilities readObject:[NetflixPaths userRatingsFile:movie account:account]];
 }
 

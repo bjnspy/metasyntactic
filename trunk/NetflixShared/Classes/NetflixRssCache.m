@@ -16,8 +16,8 @@
 
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "NetflixPaths.h"
 #import "NetflixNetworking.h"
+#import "NetflixPaths.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixSiteStatus.h"
 #import "NetflixUtilities.h"
