@@ -584,6 +584,11 @@ andReorderingMovies:[NSSet identitySet]
 
   // TODO: what do we do if this fails?!
   NSString* etag = [NetflixCache downloadEtag:queue.feed account:account];
+  if (etag.length == 0) {
+    *error = LocalizedString(@"Could not connect to Netflix.", nil);
+    return nil;
+  }
+
   NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
   NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
   [newMovies removeObjectIdenticalTo:movie];
