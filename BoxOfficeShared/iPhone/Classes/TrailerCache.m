@@ -24,6 +24,19 @@
 
 @implementation TrailerCache
 
+static TrailerCache* cache;
+
++ (void) initialize {
+  if (self == [TrailerCache class]) {
+    cache = [[TrailerCache alloc] init];
+  }
+}
+
+
++ (TrailerCache*) cache {
+  return cache;
+}
+
 @synthesize index;
 @synthesize indexKeys;
 
@@ -32,11 +45,6 @@
   self.indexKeys = nil;
 
   [super dealloc];
-}
-
-
-+ (TrailerCache*) cache {
-  return [[[TrailerCache alloc] init] autorelease];
 }
 
 

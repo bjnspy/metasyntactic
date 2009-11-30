@@ -123,7 +123,7 @@ static CacheUpdater* cacheUpdater = nil;
   [[DVDCache cache]        processMovie:movie force:force];
   [[BlurayCache cache]     processMovie:movie force:force];
   [model.scoreCache        processMovie:movie force:force];
-  [model.trailerCache      processMovie:movie force:force];
+  [[TrailerCache cache]    processMovie:movie force:force];
   [[IMDbCache cache]       processMovie:movie force:force];
   [[AmazonCache cache]     processMovie:movie force:force];
   [[WikipediaCache cache]  processMovie:movie force:force];
