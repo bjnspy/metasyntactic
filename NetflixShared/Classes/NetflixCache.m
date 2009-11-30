@@ -32,7 +32,6 @@
 
 @interface NetflixCache()
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
-- (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force;
 @end
 
 
@@ -54,8 +53,7 @@
 }
 
 
-- (void) update:(BOOL) force {
-  NetflixAccount* account = [NetflixSharedApplication currentNetflixAccount];
+- (void) update:(NetflixAccount*) account force:(BOOL) force {
   if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
     [FileUtilities createDirectory:[NetflixPaths accountDirectory:account]];
@@ -77,26 +75,22 @@
 }
 
 
-- (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element {
-  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
-
-  if (statusCode == 412) {
-    // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
-    NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
-    [self downloadQueues:account force:YES];
-    return;
-  }
-
-  [[NetflixSiteStatus status] checkApiResult:element];
-}
-
-
 - (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account
                    response:(NSHTTPURLResponse**) response {
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request response:response];
-
-  [self checkApiResult:account element:element];
+  
+  BOOL outOfDate;
+  XmlElement* element =
+    [NetflixNetworking downloadXml:request
+                           account:account
+                          response:response
+                         outOfDate:&outOfDate];
+  
+  if (outOfDate) {
+    // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
+    NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
+    [self updateQueues:account force:YES];
+  }
 
   return element;
 }
@@ -625,7 +619,7 @@
 }
 
 
-- (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force {
+- (void) updateQueues:(NetflixAccount*) account force:(BOOL) force {
   NSArray* feeds = [self.accountCache feedsForAccount:account];
 
   for (Feed* feed in feeds) {
@@ -646,7 +640,7 @@
 
   [[NetflixUserCache cache] downloadUserInformation:account];
   [self downloadFeeds:account];
-  [self downloadQueues:account force:force];
+  [self updateQueues:account force:force];
 
   [[NetflixRssCache cache] update:account];
 }

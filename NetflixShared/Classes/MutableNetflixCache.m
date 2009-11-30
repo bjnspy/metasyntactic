@@ -28,6 +28,7 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixNetworking.h"
 #import "NetflixPaths.h"
+#import "NetflixSiteStatus.h"
 #import "NetflixUtilities.h"
 #import "Queue.h"
 
@@ -35,13 +36,6 @@
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
-
-- (XmlElement*) downloadXml:(NSURLRequest*) request
-                    account:(NetflixAccount*) account
-                   response:(NSHTTPURLResponse**) response;
-
-- (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account;
-
 @end
 
 @interface MutableNetflixCache()
@@ -81,6 +75,41 @@ static MutableNetflixCache* cache;
 
 - (NetflixAccountCache*) accountCache {
   return [NetflixAccountCache cache];
+}
+
+
+- (void) checkForEtagMismatch:(NetflixAccount*) account element:(XmlElement*) element {
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
+  
+  if (statusCode == [NetflixConstants etagMismatchError]) {
+    // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
+    NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
+    [self updateQueues:account force:YES];
+  }
+}
+
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request
+                    account:(NetflixAccount*) account
+                   response:(NSHTTPURLResponse**) response {
+  BOOL outOfDate;
+  XmlElement* element = [NetflixNetworking downloadXml:request
+                                               account:account
+                                              response:response
+                                             outOfDate:&outOfDate];
+                          
+  if (outOfDate) {
+    // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
+    NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
+    [self updateQueues:account force:YES];
+  }
+
+  return element;
+}
+
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account {
+  return [self downloadXml:request account:account response:NULL];
 }
 
 

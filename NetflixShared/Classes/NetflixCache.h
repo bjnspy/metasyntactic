@@ -19,7 +19,8 @@
 
 + (NSString*) noInformationFound;
 
-- (void) update:(BOOL) force;
+- (void) update:(NetflixAccount*) account force:(BOOL) force;
+- (void) updateQueues:(NetflixAccount*) account force:(BOOL) force;
 
 - (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account;
