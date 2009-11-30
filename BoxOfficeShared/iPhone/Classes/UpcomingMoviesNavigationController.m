@@ -29,45 +29,45 @@
 @synthesize upcomingMoviesViewController;
 
 - (void) dealloc {
-    self.upcomingMoviesViewController = nil;
-
-    [super dealloc];
+  self.upcomingMoviesViewController = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.title = LocalizedString(@"Upcoming", nil);
-        self.tabBarItem.image = BoxOfficeStockImage(@"Upcoming.png");
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.title = LocalizedString(@"Upcoming", nil);
+    self.tabBarItem.image = BoxOfficeStockImage(@"Upcoming.png");
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    if (upcomingMoviesViewController == nil) {
-        self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] init] autorelease];
-        [self pushViewController:upcomingMoviesViewController animated:NO];
-    }
+  [super loadView];
+  
+  if (upcomingMoviesViewController == nil) {
+    self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] init] autorelease];
+    [self pushViewController:upcomingMoviesViewController animated:NO];
+  }
 }
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.upcomingCache.movies) {
-        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            return movie;
-        }
+  for (Movie* movie in [[UpcomingCache cache] movies]) {
+    if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+      return movie;
     }
-
-    return [super movieForTitle:canonicalTitle];
+  }
+  
+  return [super movieForTitle:canonicalTitle];
 }
 
 @end

@@ -36,7 +36,7 @@
 
 
 - (NSArray*) movies {
-  return self.model.upcomingCache.movies;
+  return [[UpcomingCache cache] movies];
 }
 
 

@@ -20,6 +20,7 @@
 #import "DataProvider.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "UpcomingCache.h"
 #import "UserLocationCache.h"
 
 @interface Controller()
@@ -123,7 +124,7 @@ static Controller* controller = nil;
 
 
 - (void) updateUpcomingCache {
-  [self.model.upcomingCache update];
+  [[UpcomingCache class] update];
 }
 
 
