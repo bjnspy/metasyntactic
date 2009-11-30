@@ -16,6 +16,7 @@
 
 #import "Feed.h"
 #import "Movie.h"
+#import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
 #import "NetflixAccountCache.h"
 #import "NetflixUserCache.h"
@@ -75,7 +76,7 @@
 }
 
 
-- (XmlElement*) downloadXml:(NSURLRequest*) request
++ (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account
                    response:(NSHTTPURLResponse**) response {
   
@@ -89,14 +90,14 @@
   if (outOfDate) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
     NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
-    [self updateQueues:account force:YES];
+    [[MutableNetflixCache cache] updateQueues:account force:YES];
   }
 
   return element;
 }
 
 
-- (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account {
++ (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account {
   return [self downloadXml:request account:account response:NULL];
 }
 
@@ -107,7 +108,7 @@
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", account.userId];
   NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
-  XmlElement* element = [self downloadXml:request account:account];
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
 
   NSSet* allowableFeeds = [NSSet setWithObjects:
                            [NetflixConstants discQueueKey],
@@ -151,7 +152,7 @@
 }
 
 
-- (NSString*) extractEtagFromElement:(XmlElement*) element andResponse:(NSHTTPURLResponse*) response {
++ (NSString*) extractEtagFromElement:(XmlElement*) element andResponse:(NSHTTPURLResponse*) response {
   NSString* etag = [[element element:@"etag"] text];
   if (etag.length > 0) {
     return etag;
@@ -168,7 +169,7 @@
 }
 
 
-- (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account {
++ (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account {
   NSRange range = [feed.url rangeOfString:@"&output=atom"];
   NSString* url = feed.url;
   if (range.length > 0) {
@@ -192,7 +193,7 @@
     return YES;
   }
 
-  NSString* serverEtag = [self downloadEtag:feed account:account];
+  NSString* serverEtag = [NetflixCache downloadEtag:feed account:account];
 
   return ![serverEtag isEqual:localEtag];
 }
@@ -215,7 +216,7 @@
                                           nil]
                                  account:account];
 
-  XmlElement* element = [self downloadXml:request account:account];
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
 
   if (element == nil) {
     if (error != NULL) {
@@ -255,11 +256,11 @@
   }
 
   NSHTTPURLResponse* response;
-  XmlElement* element = [self downloadXml:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]
+  XmlElement* element = [NetflixCache downloadXml:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]
                                   account:account
                                  response:&response];
 
-  NSString* etag = [self extractEtagFromElement:element andResponse:response];
+  NSString* etag = [NetflixCache extractEtagFromElement:element andResponse:response];
 
   NSMutableArray* movies = [NSMutableArray array];
   NSMutableArray* saved = [NSMutableArray array];
@@ -357,7 +358,7 @@
 
   NSURLRequest* request = [NetflixNetworking createGetURLRequest:seriesKey account:account];
 
-  XmlElement* element = [self downloadXml:request account:account];
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
 
   return [NetflixUtilities processMovieItem:element saved:NULL];
 }
@@ -451,7 +452,7 @@
                            parameter:[OARequestParameter parameterWithName:@"title_refs" value:movie.identifier]
                              account:account];
 
-  XmlElement* element = [self downloadXml:request account:account];
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
 
   XmlElement* ratingsItemElment = [element element:@"ratings_item"];
   if (ratingsItemElment == nil) {
@@ -521,7 +522,7 @@
 
   NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
-  XmlElement* element = [self downloadXml:request account:account];
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
 
   NSDictionary* dictionary = [NetflixUtilities extractMovieDetails:element];
   if (dictionary.count > 0) {

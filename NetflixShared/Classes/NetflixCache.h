@@ -45,6 +45,7 @@
 - (BOOL) user:(NetflixUser*) user canRentMovie:(Movie*) movie;
 
 + (Movie*) promoteDiscToSeries:(Movie*) disc;
++ (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 
 // Searching
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
