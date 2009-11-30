@@ -109,9 +109,9 @@
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.textColor = [ColorCache commandColor];
     if (indexPath.row == 0) {
-      cell.textLabel.text = LocalizedString(@"Add New Account", nil);
+      cell.textLabel.text = LocalizedString(@"Add Existing Account / Profile", nil);
     } else {
-      cell.textLabel.text = LocalizedString(@"Remove Account", nil);
+      cell.textLabel.text = LocalizedString(@"Remove Account / Profile", nil);
     }
   }
 
@@ -212,5 +212,16 @@
   }
 }
 
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+  if (!self.editing) {
+    if (section == 1) {
+      return LocalizedString(@"Usernames and passwords for your additional profiles can be found on Netflix.com under:\n\nYour Account & Help\nAccount profiles\nEdit\nSign In Name", nil); 
+    }
+  }
+  
+  return nil;
+}
 
 @end

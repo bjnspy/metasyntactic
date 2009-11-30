@@ -582,7 +582,6 @@ andReorderingMovies:[NSSet identitySet]
     return nil;
   }
 
-  // TODO: what do we do if this fails?!
   NSString* etag = [NetflixCache downloadEtag:queue.feed account:account];
   if (etag.length == 0) {
     *error = LocalizedString(@"Could not connect to Netflix.", nil);

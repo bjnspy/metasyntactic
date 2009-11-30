@@ -216,7 +216,7 @@ typedef enum {
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
         break;
       case AccountsSection:
-        cell.textLabel.text = LocalizedString(@"Accounts", nil);
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Accounts", nil), LocalizedString(@"Profiles", nil)];
         break;
     }
   } else {

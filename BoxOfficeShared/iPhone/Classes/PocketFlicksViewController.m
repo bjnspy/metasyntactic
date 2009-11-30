@@ -241,7 +241,7 @@ typedef enum {
         cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
         break;
       case AccountsSection:
-        cell.textLabel.text = LocalizedString(@"Accounts", nil);
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Accounts", nil), LocalizedString(@"Profiles", nil)];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
         break;
     }
