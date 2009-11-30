@@ -50,12 +50,12 @@
 		10000000000000180000006A /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000068 /* Section.m */; };
 		10000000000000180000006E /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000006D /* SectionViewController.m */; };
 		1000000000000018000000E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000097 /* MainWindow.xib */; };
-		100000000000001800000217 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024D /* MessageUI.framework */; };
+		100000000000001800000217 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001900000249 /* MessageUI.framework */; };
 		100000000000001800000219 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000218 /* MetasyntacticResources.bundle */; };
 		100000000000001800000278 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001800000270 /* SystemConfiguration.framework */; };
-		10000000000000190000024B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001900000248 /* MapKit.framework */; };
-		100000000000001900000276 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000275 /* ToughAnswerViewController.m */; };
-		100000000000001900000279 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000278 /* ToughQuestionsViewController.m */; };
+		100000000000001900000247 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001900000244 /* MapKit.framework */; };
+		100000000000001900000272 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000271 /* ToughAnswerViewController.m */; };
+		100000000000001900000275 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000274 /* ToughQuestionsViewController.m */; };
 		100000000000001A00000029 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000020 /* UIKit.framework */; };
 		100000000000001A00000054 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000053 /* UnitedStatesConstitution.m */; };
 		100000000000001C0000001E /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001C0000001D /* WrappableCell.m */; };
@@ -167,12 +167,12 @@
 		100000000000001800000218 /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		10000000000000180000021A /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		100000000000001800000270 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		100000000000001900000248 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		10000000000000190000024D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		100000000000001900000274 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
-		100000000000001900000275 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
-		100000000000001900000277 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
-		100000000000001900000278 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
+		100000000000001900000244 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		100000000000001900000249 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		100000000000001900000270 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
+		100000000000001900000271 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
+		100000000000001900000273 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
+		100000000000001900000274 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
 		100000000000001A00000001 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		100000000000001A00000020 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		100000000000001A00000052 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				100000000000001800000217 /* MessageUI.framework in Frameworks */,
 				100000000000002900000064 /* libsqlite3.dylib in Frameworks */,
 				10000000000000130000004D /* CoreLocation.framework in Frameworks */,
-				10000000000000190000024B /* MapKit.framework in Frameworks */,
+				100000000000001900000247 /* MapKit.framework in Frameworks */,
 				10000000000000120000008E /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +226,7 @@
 				100000000000000E00000003 /* Caches */,
 				100000000000001300000056 /* Data */,
 				1000000000000018000000A2 /* Shared */,
-				100000000000001900000149 /* Text */,
+				100000000000001900000145 /* Text */,
 				100000000000001A00000008 /* UI */,
 				100000000000000800000121 /* AppDelegate.h */,
 				10000000000000090000001D /* Application.h */,
@@ -313,9 +313,9 @@
 				100000000000000C000000E4 /* CoreGraphics.framework */,
 				10000000000000130000004C /* CoreLocation.framework */,
 				10000000000000150000011F /* Foundation.framework */,
-				100000000000001900000248 /* MapKit.framework */,
+				100000000000001900000244 /* MapKit.framework */,
 				100000000000001200000087 /* MediaPlayer.framework */,
-				10000000000000190000024D /* MessageUI.framework */,
+				100000000000001900000249 /* MessageUI.framework */,
 				100000000000001800000270 /* SystemConfiguration.framework */,
 				100000000000001A00000020 /* UIKit.framework */,
 			);
@@ -376,7 +376,7 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		100000000000001900000149 /* Text */ = {
+		100000000000001900000145 /* Text */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000C0000003F /* ArticlesOfConfederation.h */,
@@ -413,8 +413,8 @@
 				100000000000001500000123 /* GreatestHitsViewController.h */,
 				10000000000000160000000E /* QuestionsViewController.h */,
 				10000000000000180000006C /* SectionViewController.h */,
-				100000000000001900000274 /* ToughAnswerViewController.h */,
-				100000000000001900000277 /* ToughQuestionsViewController.h */,
+				100000000000001900000270 /* ToughAnswerViewController.h */,
+				100000000000001900000273 /* ToughQuestionsViewController.h */,
 				100000000000000700000092 /* ACLUArticlesViewController.m */,
 				1000000000000007000000A0 /* ACLUInfoViewController.m */,
 				1000000000000007000000A3 /* ACLUNewsViewController.m */,
@@ -424,8 +424,8 @@
 				100000000000001500000124 /* GreatestHitsViewController.m */,
 				10000000000000160000000F /* QuestionsViewController.m */,
 				10000000000000180000006D /* SectionViewController.m */,
-				100000000000001900000275 /* ToughAnswerViewController.m */,
-				100000000000001900000278 /* ToughQuestionsViewController.m */,
+				100000000000001900000271 /* ToughAnswerViewController.m */,
+				100000000000001900000274 /* ToughQuestionsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -538,8 +538,8 @@
 				10000000000000290000003F /* Model.m in Sources */,
 				100000000000001C0000001E /* WrappableCell.m in Sources */,
 				10000000000000080000002C /* AnswerViewController.m in Sources */,
-				100000000000001900000279 /* ToughQuestionsViewController.m in Sources */,
-				100000000000001900000276 /* ToughAnswerViewController.m in Sources */,
+				100000000000001900000275 /* ToughQuestionsViewController.m in Sources */,
+				100000000000001900000272 /* ToughAnswerViewController.m in Sources */,
 				10000000000000130000005B /* Decision.m in Sources */,
 				100000000000001500000125 /* GreatestHitsViewController.m in Sources */,
 				100000000000001500000005 /* DecisionCell.m in Sources */,
