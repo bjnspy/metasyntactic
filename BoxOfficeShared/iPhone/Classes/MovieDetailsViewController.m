@@ -194,7 +194,7 @@ typedef enum {
     [arguments addObject:[NSNull null]];
   }
 
-  NetflixUser* user = [self.netflixCache userForAccount:netflixAccount];
+  NetflixUser* user = [[NetflixAccountCache cache] userForAccount:netflixAccount];
   if (netflixMovie != nil && netflixStatusCells.count == 0) {
     if ([self.netflixCache user:user canRentMovie:movie]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
@@ -1074,7 +1074,7 @@ typedef enum {
                       otherButtonTitles:nil] autorelease];
   actionSheet.tag = ADD_TO_NETFLIX_TAG;
 
-  NetflixUser* user = [self.netflixCache userForAccount:netflixAccount];
+  NetflixUser* user = [[NetflixAccountCache cache] userForAccount:netflixAccount];
 
   NSMutableDictionary* actionMap = [NSMutableDictionary dictionary];
   if ([self.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
