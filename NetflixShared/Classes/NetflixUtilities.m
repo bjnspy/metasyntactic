@@ -266,4 +266,24 @@ static NSDictionary* availabilityMap = nil;
   return dictionary;
 }
 
+
++ (NSString*) extractErrorMessage:(XmlElement*) element {
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
+  if (statusCode == 412) {
+    // override this error message since the netflix message is very confusing.
+    return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
+  }
+  
+  NSString* message = [[element element:@"message"] text];
+  if (message.length > 0) {
+    return message;
+  } else if (element == nil) {
+    NSLog(@"Could not parse Netflix result.", nil);
+    return LocalizedString(@"Could not connect to Netflix.", nil);
+  } else {
+    NSLog(@"Netflix response had no 'message' element.\n%@", element);
+    return LocalizedString(@"An unknown error occurred.", nil);
+  }
+}
+
 @end

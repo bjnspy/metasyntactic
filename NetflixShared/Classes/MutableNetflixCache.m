@@ -34,8 +34,6 @@
 @interface NetflixCache()
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
-- (NSString*) extractErrorMessage:(XmlElement*) result;
-
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 
 + (void) processMovieItemList:(XmlElement*) element
@@ -176,7 +174,7 @@ static MutableNetflixCache* cache;
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
-    *error = [self extractErrorMessage:element];
+    *error = [NetflixUtilities extractErrorMessage:element];
     return nil;
   }
 
@@ -321,7 +319,7 @@ andReorderingMovies:[NSSet identitySet]
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
-    return [self extractErrorMessage:element];
+    return [NetflixUtilities extractErrorMessage:element];
   }
 
   return nil;
@@ -346,7 +344,7 @@ andReorderingMovies:[NSSet identitySet]
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
-    return [self extractErrorMessage:element];
+    return [NetflixUtilities extractErrorMessage:element];
   }
 
   return nil;
@@ -476,7 +474,7 @@ andReorderingMovies:[NSSet identitySet]
 
   NSInteger status = [[[element element:@"status_code"] text] integerValue];
   if (status < 200 || status >= 300) {
-    *error = [self extractErrorMessage:element];
+    *error = [NetflixUtilities extractErrorMessage:element];
     return nil;
   }
 
@@ -572,7 +570,7 @@ andReorderingMovies:[NSSet identitySet]
 
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
-    *error = [self extractErrorMessage:element];
+    *error = [NetflixUtilities extractErrorMessage:element];
     return nil;
   }
 
