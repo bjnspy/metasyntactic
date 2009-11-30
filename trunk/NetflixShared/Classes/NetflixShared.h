@@ -19,6 +19,7 @@
 #import "Movie.h"
 #import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixAccountsViewController.h"
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixAuthentication.h"

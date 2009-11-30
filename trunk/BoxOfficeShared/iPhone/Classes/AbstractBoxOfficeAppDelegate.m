@@ -155,7 +155,7 @@
 
 
 - (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account {
-  return [self.netflixCache userForAccount:account];
+  return [[NetflixAccountCache cache] userForAccount:account];
 }
 
 
