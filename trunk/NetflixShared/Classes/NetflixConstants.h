@@ -12,10 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
+@interface NetflixConstants : NSObject {
 
-@interface AbstractNetflixCache : AbstractMovieCache {
 }
+
++ (NSString*) titleKey;
++ (NSString*) seriesKey;
++ (NSString*) averageRatingKey;
++ (NSString*) linkKey;
++ (NSString*) availabilityKey;
++ (NSString*) castKey;
++ (NSString*) formatsKey;
++ (NSString*) synopsisKey;
++ (NSString*) similarsKey;
++ (NSString*) directorsKey;
 
 + (NSString*) discQueueKey;
 + (NSString*) instantQueueKey;
@@ -25,7 +35,8 @@
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
 
-// @protected
-+ (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) account;
++ (NSString*) blurayFormat;
++ (NSString*) instantFormat;
++ (NSString*) dvdFormat;
 
 @end

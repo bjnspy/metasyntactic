@@ -17,15 +17,20 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixConstants.h"
+#import "NetflixFileSystem.h"
+#import "NetflixNetworking.h"
+#import "NetflixRssCache.h"
 #import "NetflixSharedApplication.h"
+#import "NetflixSiteStatus.h"
 #import "NetflixUser.h"
+#import "NetflixUtilities.h"
 #import "Queue.h"
 #import "Status.h"
 
 @interface NetflixCache()
-@property (retain) NSMutableDictionary* accountToFeeds;
-@property (retain) NSMutableDictionary* accountToFeedKeyToQueues;
-@property (retain) NSDate* lastQuotaErrorDate;
+@property (retain) AutoreleasingMutableDictionary* accountToFeeds;
+@property (retain) AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
 - (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force;
@@ -34,173 +39,12 @@
 
 @implementation NetflixCache
 
-static NSString* title_key = @"title";
-static NSString* series_key = @"series";
-static NSString* average_rating_key = @"average_rating";
-static NSString* link_key = @"link";
-static NSString* availability_key = @"availability";
-
-static NSString* cast_key = @"cast";
-static NSString* formats_key = @"formats";
-static NSString* synopsis_key = @"synopsis";
-static NSString* similars_key = @"similars";
-static NSString* directors_key = @"directors";
-//static NSString* availability_date_key = @"availability_date";
-
-static NSArray* mostPopularTitles = nil;
-static NSDictionary* mostPopularTitlesToAddresses = nil;
-static NSDictionary* mostPopularAddressesToTitles = nil;
-static NSDictionary* availabilityMap = nil;
-
-static NSString* netflixDirectory = nil;
-static NSString* netflixAccountsDirectory = nil;
-static NSString* netflixSeriesDirectory = nil;
-static NSString* netflixSearchDirectory = nil;
-static NSString* netflixDetailsDirectory = nil;
-static NSString* netflixRSSDirectory = nil;
-
-static NSString** directories[] = {
-  &netflixDirectory,
-  &netflixAccountsDirectory,
-  &netflixSeriesDirectory,
-  &netflixSearchDirectory,
-  &netflixDetailsDirectory,
-  &netflixRSSDirectory,
-};
-
-
-+ (void) createDirectories {
-  for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-    NSString* directory = *directories[i];
-
-    [FileUtilities createDirectory:directory];
-  }
-}
-
-
-+ (void) initialize {
-  if (self == [NetflixCache class]) {
-    netflixDirectory = [[[AbstractApplication cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
-    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
-    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
-    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
-    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
-    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
-    [self createDirectories];
-
-    mostPopularTitles =
-    [[NSArray arrayWithObjects:
-      LocalizedString(@"Top DVDs", @"Movie category"),
-      LocalizedString(@"New DVDs", @"Movie category"),
-      LocalizedString(@"New 'Instant Watch'", @"Movie category"),
-      LocalizedString(@"Action & Adventure", @"Movie category"),
-      LocalizedString(@"Anime & Animation", @"Movie category"),
-      LocalizedString(@"Blu-ray", nil),
-      LocalizedString(@"Children & Family", @"Movie category"),
-      LocalizedString(@"Classics", @"Movie category"),
-      LocalizedString(@"Comedy", @"Movie category"),
-      LocalizedString(@"Documentary", @"Movie category"),
-      LocalizedString(@"Drama", @"Movie category"),
-      LocalizedString(@"Faith & Spirituality", @"Movie category"),
-      LocalizedString(@"Foreign", @"Movie category"),
-      LocalizedString(@"Gay & Lesbian", @"Movie category"),
-      LocalizedString(@"Horror", @"Movie category"),
-      LocalizedString(@"Independent", @"Movie category"),
-      LocalizedString(@"Music & Musicals", @"Movie category"),
-      LocalizedString(@"Romance", @"Movie category"),
-      LocalizedString(@"Sci-Fi & Fantasy", @"Movie category"),
-      LocalizedString(@"Special Interest", @"Movie category"),
-      LocalizedString(@"Sports & Fitness", @"Movie category"),
-      LocalizedString(@"Television", @"Movie category"),
-      LocalizedString(@"Thrillers", @"Movie category"),
-      nil] retain];
-
-    mostPopularTitlesToAddresses =
-    [[NSDictionary dictionaryWithObjects:
-      [NSArray arrayWithObjects:
-       @"http://rss.netflix.com/Top100RSS",
-       @"http://rss.netflix.com/NewReleasesRSS",
-       @"http://www.netflix.com/NewWatchInstantlyRSS",
-       @"http://rss.netflix.com/Top25RSS?gid=296",
-       @"http://rss.netflix.com/Top25RSS?gid=623",
-       @"http://rss.netflix.com/Top25RSS?gid=2444",
-       @"http://rss.netflix.com/Top25RSS?gid=302",
-       @"http://rss.netflix.com/Top25RSS?gid=306",
-       @"http://rss.netflix.com/Top25RSS?gid=307",
-       @"http://rss.netflix.com/Top25RSS?gid=864",
-       @"http://rss.netflix.com/Top25RSS?gid=315",
-       @"http://rss.netflix.com/Top25RSS?gid=2108",
-       @"http://rss.netflix.com/Top25RSS?gid=2514",
-       @"http://rss.netflix.com/Top25RSS?gid=330",
-       @"http://rss.netflix.com/Top25RSS?gid=338",
-       @"http://rss.netflix.com/Top25RSS?gid=343",
-       @"http://rss.netflix.com/Top25RSS?gid=2310",
-       @"http://rss.netflix.com/Top25RSS?gid=371",
-       @"http://rss.netflix.com/Top25RSS?gid=373",
-       @"http://rss.netflix.com/Top25RSS?gid=2223",
-       @"http://rss.netflix.com/Top25RSS?gid=2190",
-       @"http://rss.netflix.com/Top25RSS?gid=2197",
-       @"http://rss.netflix.com/Top25RSS?gid=387",
-       nil]
-                                 forKeys:mostPopularTitles] retain];
-
-    NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
-
-    {
-      NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] init];
-      for (NSString* title in mostPopularTitlesToAddresses) {
-        [dictionary setObject:title forKey:[mostPopularTitlesToAddresses objectForKey:title]];
-      }
-      mostPopularAddressesToTitles = dictionary;
-    }
-
-    availabilityMap =
-    [[NSDictionary dictionaryWithObjects:
-      [NSArray arrayWithObjects:
-       LocalizedString(@"Awaiting Release", @"Movie can't be shipped because it hasn't been released yet"),
-       LocalizedString(@"Available Now", @"Movie is available to be shipped now"),
-       LocalizedString(@"Saved", @"Movie is the user's 'Saved to watch later' queue"),
-       LocalizedString(@"Short Wait", @"There will be a short wait before the movie is released"),
-       LocalizedString(@"Short Wait", nil),
-       LocalizedString(@"Long Wait", @"There will be a long wait before the movie is released"),
-       LocalizedString(@"Very Long Wait", @"There will be a very long wait before the movie is released"),
-       LocalizedString(@"Available Soon", @"Movie will be released soon"),
-       LocalizedString(@"Not Rentable", @"Movie is not currently rentable"),
-       LocalizedString(@"Unknown Release Date", @"The release date for a movie is unknown."),
-       LocalizedString(@"Unknown Release Date", nil),
-       LocalizedString(@"Unknown Release Date", nil),
-       nil]
-                                 forKeys:
-      [NSArray arrayWithObjects:
-       @"awaiting release",
-       @"available now",
-       @"saved",
-       @"possible short wait",
-       @"short wait",
-       @"long wait",
-       @"very long wait",
-       @"available soon",
-       @"not rentable",
-       @"release date is unknown; availability is not guaranteed.",
-       @"release date is unknown.",
-       @"availability date is unknown.",
-       nil]] retain];
-  }
-}
-
-
-+ (NSArray*) mostPopularTitles {
-  return mostPopularTitles;
-}
-
 @synthesize accountToFeeds;
 @synthesize accountToFeedKeyToQueues;
-@synthesize lastQuotaErrorDate;
 
 - (void) dealloc {
   self.accountToFeeds = nil;
   self.accountToFeedKeyToQueues = nil;
-  self.lastQuotaErrorDate = nil;
 
   [super dealloc];
 }
@@ -227,28 +71,8 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) accountDirectory:(NetflixAccount*) account {
-  return [netflixAccountsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:account.userId]];
-}
-
-
-+ (NSString*) userRatingsDirectory:(NetflixAccount*) account {
-  return [[self accountDirectory:account] stringByAppendingPathComponent:@"UserRatings"];
-}
-
-
-+ (NSString*) predictedRatingsDirectory:(NetflixAccount*) account {
-  return [[self accountDirectory:account] stringByAppendingPathComponent:@"PredictedRatings"];
-}
-
-
-+ (NSString*) feedsFile:(NetflixAccount*) account {
-  return [[self accountDirectory:account] stringByAppendingPathComponent:@"Feeds.plist"];
-}
-
-
 + (NSArray*) loadAccountToFeeds:(NetflixAccount*) account {
-  NSArray* array = [FileUtilities readObject:[self feedsFile:account]];
+  NSArray* array = [FileUtilities readObject:[NetflixFileSystem feedsFile:account]];
   return [Feed decodeArray:array];
 }
 
@@ -259,7 +83,7 @@ static NSString** directories[] = {
   }
 
   [FileUtilities writeObject:[Feed encodeArray:feeds]
-                      toFile:[self feedsFile:account]];
+                      toFile:[NetflixFileSystem feedsFile:account]];
 }
 
 
@@ -288,23 +112,9 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) queueFile:(Feed*) feed account:(NetflixAccount*) account {
-  return [[[self accountDirectory:account] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:feed.key]]
-          stringByAppendingPathExtension:@"plist"];
-}
-
-
-+ (NSString*) queueEtagFile:(Feed*) feed account:(NetflixAccount*) account {
-  NSString* name = [NSString stringWithFormat:@"%@-etag", feed.key];
-  return [[[self accountDirectory:account] stringByAppendingPathComponent:
-           [FileUtilities sanitizeFileName:name]]
-          stringByAppendingPathExtension:@"plist"];
-}
-
-
 + (Queue*) loadQueue:(Feed*) feed account:(NetflixAccount*) account {
   NSLog(@"Loading queue: %@", feed.name);
-  NSDictionary* dictionary = [FileUtilities readObject:[self queueFile:feed account:account]];
+  NSDictionary* dictionary = [FileUtilities readObject:[NetflixFileSystem queueFile:feed account:account]];
   if (dictionary.count == 0) {
     return nil;
   }
@@ -363,9 +173,9 @@ static NSString** directories[] = {
   NetflixAccount* account = [NetflixSharedApplication currentNetflixAccount];
   if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
-    [FileUtilities createDirectory:[NetflixCache accountDirectory:account]];
-    [FileUtilities createDirectory:[NetflixCache userRatingsDirectory:account]];
-    [FileUtilities createDirectory:[NetflixCache predictedRatingsDirectory:account]];
+    [FileUtilities createDirectory:[NetflixFileSystem accountDirectory:account]];
+    [FileUtilities createDirectory:[NetflixFileSystem userRatingsDirectory:account]];
+    [FileUtilities createDirectory:[NetflixFileSystem predictedRatingsDirectory:account]];
 
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:force:)
                                             onTarget:self
@@ -378,9 +188,7 @@ static NSString** directories[] = {
 
 
 - (BOOL) canContinue:(NetflixAccount*) account {
-  return [NetflixSharedApplication netflixEnabled] &&
-  account.userId.length > 0 &&
-  [account isEqual:[NetflixSharedApplication currentNetflixAccount]];
+  return [NetflixUtilities canContinue:account];
 }
 
 
@@ -394,11 +202,23 @@ static NSString** directories[] = {
     return;
   }
 
-  NSString* message = [[element element:@"message"] text];
-  if ([@"Over queries per day limit" isEqual:message]) {
-    self.lastQuotaErrorDate = [NSDate date];
-    [MetasyntacticSharedApplication minorRefresh];
-  }
+  [[NetflixSiteStatus status] checkApiResult:element];
+}
+
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request
+                    account:(NetflixAccount*) account
+                   response:(NSHTTPURLResponse**) response {
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request response:response];
+
+  [self checkApiResult:account element:element];
+
+  return element;
+}
+
+
+- (XmlElement*) downloadXml:(NSURLRequest*) request account:(NetflixAccount*) account {
+  return [self downloadXml:request account:account response:NULL];
 }
 
 
@@ -406,21 +226,18 @@ static NSString** directories[] = {
   if (![self canContinue:account]) { return nil; }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", account.userId];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
-  [request prepare];
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account];
 
   NSSet* allowableFeeds = [NSSet setWithObjects:
-                           [NetflixCache discQueueKey],
-                           [NetflixCache instantQueueKey],
-                           [NetflixCache atHomeKey],
-                           [NetflixCache recommendationKey],
-                           [NetflixCache rentalHistoryKey],
-                           [NetflixCache rentalHistoryWatchedKey],
-                           [NetflixCache rentalHistoryReturnedKey], nil];
+                           [NetflixConstants discQueueKey],
+                           [NetflixConstants instantQueueKey],
+                           [NetflixConstants atHomeKey],
+                           [NetflixConstants recommendationKey],
+                           [NetflixConstants rentalHistoryKey],
+                           [NetflixConstants rentalHistoryWatchedKey],
+                           [NetflixConstants rentalHistoryReturnedKey], nil];
 
   NSMutableArray* feeds = [NSMutableArray array];
   for (XmlElement* child in element.children) {
@@ -432,7 +249,7 @@ static NSString** directories[] = {
                                    key:key
                                   name:[child attributeValue:@"title"]];
 
-        if ([key isEqual:[NetflixCache atHomeKey]]) {
+        if ([key isEqual:[NetflixConstants atHomeKey]]) {
           [feeds insertObject:feed atIndex:0];
         } else {
           [feeds addObject:feed];
@@ -442,147 +259,6 @@ static NSString** directories[] = {
   }
 
   return feeds;
-}
-
-
-+ (NSArray*) extractFormats:(XmlElement*) element {
-  NSMutableArray* formats = [NSMutableArray array];
-  for (XmlElement* child in element.children) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      if ([@"availability" isEqual:child.name]) {
-        for (XmlElement* grandChild in child.children) {
-          if ([@"category" isEqual:grandChild.name] &&
-              [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
-            [formats addObject:[grandChild attributeValue:@"term"]];
-          }
-        }
-      }
-    }
-    [pool release];
-  }
-
-  return formats;
-}
-
-
-+ (Movie*) processMovieItem:(XmlElement*) element
-                      saved:(BOOL*) saved {
-  if (element == nil) {
-    return nil;
-  }
-
-  NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
-
-  NSString* identifier = nil;
-  NSString* title = nil;
-  NSString* poster = nil;
-  NSString* rating = nil;
-  NSString* year = nil;
-  NSMutableArray* genres = [NSMutableArray array];
-  BOOL save = NO;
-  BOOL availableNow = YES;
-  NSInteger length = 0;
-  NSString* availabilityDate = nil;
-
-  for (XmlElement* child in element.children) {
-    if ([@"id" isEqual:child.name]) {
-      identifier = child.text;
-    } else if ([@"availability_date" isEqual:child.name]) {
-      availabilityDate = child.text;
-    } else if ([@"link" isEqual:child.name]) {
-      NSString* rel = [child attributeValue:@"rel"];
-      if ([@"alternate" isEqual:rel]) {
-        [additionalFields setObject:[child attributeValue:@"href"] forKey:link_key];
-      } else if ([@"http://schemas.netflix.com/catalog/title" isEqual:rel]) {
-        NSString* title = [child attributeValue:@"href"];
-        if (identifier.length == 0) {
-          identifier = title;
-        }
-
-        [additionalFields setObject:[child attributeValue:@"href"] forKey:title_key];
-      } else if ([@"http://schemas.netflix.com/catalog/titles.series" isEqual:rel]) {
-        [additionalFields setObject:[child attributeValue:@"href"] forKey:series_key];
-      } else if ([@"http://schemas.netflix.com/catalog/titles/format_availability" isEqual:rel]) {
-        NSArray* formats = [self extractFormats:[child element:@"delivery_formats"]];
-        if (formats.count > 0) {
-          [additionalFields setObject:formats forKey:formats_key];
-        }
-      }
-    } else if ([@"title" isEqual:child.name]) {
-      title = [child attributeValue:@"short"];
-      if (title == nil) {
-        title = [child attributeValue:@"medium"];
-      }
-    } else if ([@"box_art" isEqual:child.name]) {
-      poster = [child attributeValue:@"large"];
-      if (poster == nil) {
-        poster = [child attributeValue:@"medium"];
-        if (poster == nil) {
-          poster = [child attributeValue:@"small"];
-        }
-      }
-    } else if ([@"category" isEqual:child.name]) {
-      NSString* scheme = [child attributeValue:@"scheme"];
-      if ([@"http://api.netflix.com/categories/mpaa_ratings" isEqual:scheme]) {
-        rating = [child attributeValue:@"label"];
-      } else if ([@"http://api.netflix.com/categories/genres" isEqual:scheme]) {
-        [genres addObject:[child attributeValue:@"label"]];
-      } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
-        NSString* label = [child attributeValue:@"label"];
-        save = [label isEqual:@"saved"];
-        availableNow = [label isEqual:@"available now"];
-
-        label = [StringUtilities nonNilString:[availabilityMap objectForKey:label]];
-
-        [additionalFields setObject:label forKey:availability_key];
-      }
-    } else if ([@"release_year" isEqual:child.name]) {
-      year = child.text;
-    } else if ([average_rating_key isEqual:child.name]) {
-      [additionalFields setObject:child.text forKey:average_rating_key];
-    } else if ([@"runtime" isEqual:child.name]) {
-      length = ([child.text integerValue] / 60);
-    }
-  }
-
-  if (identifier.length == 0) {
-    return nil;
-  }
-
-  NSDate* date = nil;
-  if (year.length > 0) {
-    date = [DateUtilities dateWithNaturalLanguageString:year];
-  }
-
-  if (!availableNow) {
-    if (availabilityDate.length > 0) {
-      NSDate* date = [NSDate dateWithTimeIntervalSince1970:[availabilityDate integerValue]];
-      NSString* string = [NSString stringWithFormat:LocalizedString(@"Available %@", nil), [DateUtilities formatShortDate:date]];
-
-      [additionalFields setObject:string forKey:availability_key];
-    }
-  }
-
-  Movie* movie = [Movie movieWithIdentifier:identifier
-                                      title:title
-                                     rating:rating
-                                     length:length
-                                releaseDate:date
-                                imdbAddress:nil
-                                     poster:poster
-                                   synopsis:nil
-                                     studio:nil
-                                  directors:nil
-                                       cast:nil
-                                     genres:genres
-                           additionalFields:additionalFields];
-
-  if (saved != NULL) {
-    *saved = save;
-  }
-
-  return movie;
 }
 
 
@@ -598,7 +274,7 @@ static NSString** directories[] = {
   }
 
   BOOL save;
-  Movie* movie = [self processMovieItem:element saved:&save];
+  Movie* movie = [NetflixUtilities processMovieItem:element saved:&save];
 
   if (movie == nil) {
     return;
@@ -614,8 +290,8 @@ static NSString** directories[] = {
 
 - (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account {
   NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.name, queue.etag);
-  [FileUtilities writeObject:queue.dictionary toFile:[NetflixCache queueFile:queue.feed account:account]];
-  [FileUtilities writeObject:queue.etag toFile:[NetflixCache queueEtagFile:queue.feed account:account]];
+  [FileUtilities writeObject:queue.dictionary toFile:[NetflixFileSystem queueFile:queue.feed account:account]];
+  [FileUtilities writeObject:queue.etag toFile:[NetflixFileSystem queueEtagFile:queue.feed account:account]];
   [self addQueue:queue account:account];
 }
 
@@ -637,7 +313,7 @@ static NSString** directories[] = {
 }
 
 
-- (NSString*) downloadEtag:(Feed*) feed {
+- (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account {
   NSRange range = [feed.url rangeOfString:@"&output=atom"];
   NSString* url = feed.url;
   if (range.length > 0) {
@@ -647,20 +323,21 @@ static NSString** directories[] = {
   NSString* address = [NSString stringWithFormat:@"%@&max_results=1", url];
 
   NSHTTPURLResponse* response;
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                          response:&response];
+  XmlElement* element = [self downloadXml:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]
+                                  account:account
+                                 response:&response];
 
   return [self extractEtagFromElement:element andResponse:response];
 }
 
 
 - (BOOL) etagChanged:(Feed*) feed account:(NetflixAccount*) account {
-  NSString* localEtag = [FileUtilities readObject:[NetflixCache queueEtagFile:feed account:account]];
+  NSString* localEtag = [FileUtilities readObject:[NetflixFileSystem queueEtagFile:feed account:account]];
   if (localEtag.length == 0) {
     return YES;
   }
 
-  NSString* serverEtag = [self downloadEtag:feed];
+  NSString* serverEtag = [self downloadEtag:feed account:account];
 
   return ![serverEtag isEqual:localEtag];
 }
@@ -724,21 +401,17 @@ static NSString** directories[] = {
     *error = nil;
   }
 
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:@"http://api.netflix.com/catalog/titles" account:account];
-
   NSArray* parameters = [NSArray arrayWithObjects:
                          [OARequestParameter parameterWithName:@"expand" value:@"formats"],
                          [OARequestParameter parameterWithName:@"term" value:query],
                          [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
                          nil];
 
-  [NSMutableURLRequestAdditions setParameters:parameters
-                                   forRequest:request];
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/titles"
+                                                            parameters:parameters
+                                                               account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:request account:account];
 
   if (element == nil) {
     if (error != NULL) {
@@ -773,15 +446,14 @@ static NSString** directories[] = {
   }
 
   address = [NSString stringWithFormat:@"%@&max_results=500", address];
-  if ([feed.key isEqual:[NetflixCache recommendationKey]]) {
+  if ([feed.key isEqual:[NetflixConstants recommendationKey]]) {
     address = [NSString stringWithFormat:@"%@&expand=formats", address];
   }
 
   NSHTTPURLResponse* response;
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                          response:&response];
-
-  [self checkApiResult:account element:element];
+  XmlElement* element = [self downloadXml:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]
+                                  account:account
+                                 response:&response];
 
   NSString* etag = [self extractEtagFromElement:element andResponse:response];
 
@@ -791,7 +463,7 @@ static NSString** directories[] = {
   [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
   // Hack.  We get duplicated titles in this feed.  So filter them out.
-  if ([feed.key isEqual:[NetflixCache rentalHistoryKey]]) {
+  if ([feed.key isEqual:[NetflixConstants rentalHistoryKey]]) {
     for (NSInteger i = movies.count - 1; i >= 0; i--) {
       if ([movies indexOfObject:[movies objectAtIndex:i]] != i) {
         [movies removeObjectAtIndex:i];
@@ -827,19 +499,19 @@ static NSString** directories[] = {
 
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account {
   NSString* title = nil;
-  if ([key isEqual:[NetflixCache discQueueKey]]) {
+  if ([key isEqual:[NetflixConstants discQueueKey]]) {
     title = LocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
-  } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
+  } else if ([key isEqual:[NetflixConstants instantQueueKey]]) {
     title = LocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
-  } else if ([key isEqual:[NetflixCache atHomeKey]]) {
+  } else if ([key isEqual:[NetflixConstants atHomeKey]]) {
     title = LocalizedString(@"At Home", @"The list of Netflix movies currently at the user's house");
-  } else if ([key isEqual:[NetflixCache rentalHistoryWatchedKey]]) {
+  } else if ([key isEqual:[NetflixConstants rentalHistoryWatchedKey]]) {
     title = LocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
-  } else if ([key isEqual:[NetflixCache rentalHistoryReturnedKey]]) {
+  } else if ([key isEqual:[NetflixConstants rentalHistoryReturnedKey]]) {
     title = LocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
-  } else if ([key isEqual:[NetflixCache rentalHistoryKey]]) {
+  } else if ([key isEqual:[NetflixConstants rentalHistoryKey]]) {
     title = LocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
-  } else if ([key isEqual:[NetflixCache recommendationKey]]) {
+  } else if ([key isEqual:[NetflixConstants recommendationKey]]) {
     title = LocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
   }
 
@@ -892,17 +564,12 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) userFile:(NetflixAccount*) account {
-  return [[self accountDirectory:account] stringByAppendingPathComponent:@"User.plist"];
-}
-
-
 - (NetflixUser*) userForAccount:(NetflixAccount*) account {
   if (account == nil) {
     return nil;
   }
 
-  NSDictionary* dictionary = [FileUtilities readObject:[NetflixCache userFile:account]];
+  NSDictionary* dictionary = [FileUtilities readObject:[NetflixFileSystem userFile:account]];
   if (dictionary.count == 0) {
     return nil;
   }
@@ -910,15 +577,14 @@ static NSString** directories[] = {
 }
 
 
-+ (NetflixUser*) downloadUserInformation:(NetflixAccount*) account {
-  NSLog(@"NetflixCache:downloadUserData");
+- (NetflixUser*) downloadUserInformation:(NetflixAccount*) account {
+  NSLog(@"NetflixCache:downloadUserInformation");
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", account.userId];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
-  [request prepare];
+  XmlElement* element = [self downloadXml:request account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
   NSString* firstName = [[element element:@"first_name"] text];
   NSString* lastName = [[element element:@"last_name"] text];
   BOOL canInstantWatch = [[[element element:@"can_instant_watch"] text] isEqual:@"true"];
@@ -939,36 +605,10 @@ static NSString** directories[] = {
     return nil;
   }
 
-  [FileUtilities createDirectory:[NetflixCache accountDirectory:account]];
+  [FileUtilities createDirectory:[NetflixFileSystem accountDirectory:account]];
   NetflixUser* user = [NetflixUser userWithFirstName:firstName lastName:lastName canInstantWatch:canInstantWatch preferredFormats:preferredFormats];
-  [FileUtilities writeObject:user.dictionary toFile:[self userFile:account]];
+  [FileUtilities writeObject:user.dictionary toFile:[NetflixFileSystem userFile:account]];
   return user;
-}
-
-
-+ (NSArray*) extractPeople:(XmlElement*) element {
-  NSMutableArray* cast = [NSMutableArray array];
-
-  for (XmlElement* child in element.children) {
-    if (cast.count >= 6) {
-      // cap the number of actors we care about
-      break;
-    }
-
-    NSString* name = [child attributeValue:@"title"];
-    if (name.length > 0) {
-      [cast addObject:name];
-    }
-  }
-
-  return cast;
-}
-
-
-- (NSString*) seriesFile:(NSString*) seriesKey {
-  return
-  [[netflixSeriesDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
-   stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -976,35 +616,23 @@ static NSString** directories[] = {
                               account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
 
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:seriesKey account:account];
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:seriesKey account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
+  XmlElement* element = [self downloadXml:request account:account];
 
-  [self checkApiResult:account element:element];
-
-  return [NetflixCache processMovieItem:element saved:NULL];
-}
-
-
-- (Movie*) downloadRSSMovieWithSeriesIdentifier:(NSString*) identifier account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return nil; }
-
-  //NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
-  NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats", identifier];
-  return [self downloadMovieWithSeriesKey:seriesKey account:account];
+  return [NetflixUtilities processMovieItem:element saved:NULL];
 }
 
 
 - (void) updateSeriesDetails:(Movie*) movie account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* seriesKey = [movie.additionalFields objectForKey:series_key];
+  NSString* seriesKey = [movie.additionalFields objectForKey:[NetflixConstants seriesKey]];
   if (seriesKey.length == 0) {
     return;
   }
 
-  NSString* file = [self seriesFile:seriesKey];
+  NSString* file = [NetflixFileSystem seriesFile:seriesKey];
   Movie* series;
   if ([FileUtilities fileExists:file]) {
     series = [Movie createWithDictionary:[FileUtilities readObject:file]];
@@ -1024,12 +652,14 @@ static NSString** directories[] = {
 
 
 - (BOOL) isMemberOfSeries:(Movie*) movie {
-  return [movie.additionalFields objectForKey:series_key] != nil;
+  return [movie.additionalFields objectForKey:[NetflixConstants seriesKey]] != nil;
 }
 
 
 - (Movie*) seriesForDisc:(Movie*) movie {
-  NSDictionary* dictionary = [FileUtilities readObject:[self seriesFile:[movie.additionalFields objectForKey:series_key]]];
+  NSDictionary* dictionary =
+    [FileUtilities readObject:
+     [NetflixFileSystem seriesFile:[movie.additionalFields objectForKey:[NetflixConstants seriesKey]]]];
   if (dictionary == nil) {
     return nil;
   }
@@ -1044,21 +674,6 @@ static NSString** directories[] = {
     return disc;
   }
   return series;
-}
-
-
-+ (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account {
-  return [[[self userRatingsDirectory:account] stringByAppendingPathComponent:
-           [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier]]
-          stringByAppendingPathExtension:@"plist"];
-
-}
-
-
-+ (NSString*) predictedRatingsFile:(Movie*) movie account:(NetflixAccount*) account {
-  return [[[self predictedRatingsDirectory:account] stringByAppendingPathComponent:
-           [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier]]
-          stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -1079,8 +694,8 @@ static NSString** directories[] = {
 - (void) updateRatings:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* userRatingsFile = [NetflixCache userRatingsFile:movie account:account];
-  NSString* predictedRatingsFile = [NetflixCache predictedRatingsFile:movie account:account];
+  NSString* userRatingsFile = [NetflixFileSystem userRatingsFile:movie account:account];
+  NSString* predictedRatingsFile = [NetflixFileSystem predictedRatingsFile:movie account:account];
 
   if (!force) {
     if ([self tooSoon:predictedRatingsFile] &&
@@ -1090,14 +705,14 @@ static NSString** directories[] = {
   }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
-  [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
-  [request prepare];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
-  [self checkApiResult:account element:element];
+  NSURLRequest* request =
+  [NetflixNetworking createGetURLRequest:address
+                           parameter:[OARequestParameter parameterWithName:@"title_refs" value:movie.identifier]
+                             account:account];
+
+  XmlElement* element = [self downloadXml:request account:account];
 
   XmlElement* ratingsItemElment = [element element:@"ratings_item"];
   if (ratingsItemElment == nil) {
@@ -1145,216 +760,12 @@ static NSString** directories[] = {
 }
 
 
-+ (NSDictionary*) extractMovieDetails:(XmlElement*) element {
-  NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-  for (XmlElement* child in element.children) {
-    if ([@"link" isEqual:child.name]) {
-      NSString* rel = [child attributeValue:@"rel"];
-      if ([@"http://schemas.netflix.com/catalog/titles/synopsis" isEqual:rel]) {
-        NSString* synopsis = [HtmlUtilities removeHtml:[[child element:@"synopsis"] text]];
-        if (synopsis.length > 0) {
-          [dictionary setObject:synopsis forKey:synopsis_key];
-        }
-      } else if ([@"http://schemas.netflix.com/catalog/titles/format_availability" isEqual:rel]) {
-        NSArray* formats = [self extractFormats:[child element:@"delivery_formats"]];
-        if (formats.count > 0) {
-          [dictionary setObject:formats forKey:formats_key];
-        }
-      } else if ([@"http://schemas.netflix.com/catalog/people.cast" isEqual:rel]) {
-        NSArray* cast = [self extractPeople:[child element:@"people"]];
-        if (cast.count > 0) {
-          [dictionary setObject:cast forKey:cast_key];
-        }
-      } else if ([@"http://schemas.netflix.com/catalog/people.directors" isEqual:rel]) {
-        NSArray* directors = [self extractPeople:[child element:@"people"]];
-        if (directors.count > 0) {
-          [dictionary setObject:directors forKey:directors_key];
-        }
-      }/* else if ([@"http://schemas.netflix.com/catalog/titles.similars" isEqual:rel]) {
-        NSArray* similars = [self extractSimilars:[child element:@"catalog_titles"]];
-        if (similars.count > 0) {
-        [dictionary setObject:similars forKey:similars_key];
-        }
-        }*/
-    }
-  }
-  return dictionary;
-}
-
-
-- (NSString*) rssFile:(NSString*) address {
-  return [[netflixRSSDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (void) addCategoryNotification:(NSString*) notification {
-  if ([NetflixSharedApplication netflixNotificationsEnabled]) {
-    [NotificationCenter addNotification:notification];
-  }
-}
-
-
-- (void) removeCategoryNotification:(NSString*) notification {
-  [NotificationCenter removeNotification:notification];
-}
-
-
-- (void) downloadRSSFeedWorker:(NSString*) address {
-  NSString* file = [self rssFile:address];
-  if ([FileUtilities fileExists:file]) {
-    NSDate* date = [FileUtilities modificationDate:file];
-    if (date != nil) {
-      if (ABS(date.timeIntervalSinceNow) < ONE_WEEK) {
-        return;
-      }
-    }
-  }
-
-  NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
-  [self addCategoryNotification:notification];
-  {
-    NSLog(@"Downlading RSS Feed: %@", address);
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
-    XmlElement* channelElement = [element element:@"channel"];
-
-    NSMutableArray* items = [NSMutableArray array];
-    for (XmlElement* itemElement in [channelElement elements:@"item"]) {
-      NSString* identifier = [[itemElement element:@"link"] text];
-      NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
-
-      if (lastSlashRange.length > 0) {
-        [items addObject:[identifier substringFromIndex:lastSlashRange.location + 1]];
-      }
-    }
-
-    if (items.count > 0) {
-      [FileUtilities writeObject:items toFile:file];
-    }
-  }
-  [self removeCategoryNotification:notification];
-}
-
-
-- (void) downloadRSSFeedMovies:(NSString*) address
-                       account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return; }
-
-  NSString* file = [self rssFile:address];
-  NSArray* identifiers = [FileUtilities readObject:file];
-
-  if (identifiers.count == 0) {
-    return;
-  }
-
-  NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
-
-  [[OperationQueue operationQueue] performSelector:@selector(addCategoryNotification:)
-                                          onTarget:self
-                                        withObject:notification
-                                              gate:nil
-                                          priority:Normal];
-
-
-  for (NSString* identifier in [identifiers shuffledArray]) {
-    [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:account:)
-                                            onTarget:self
-                                          withObject:identifier
-                                          withObject:address
-                                          withObject:account
-                                                gate:nil
-                                            priority:Normal];
-  }
-
-  [[OperationQueue operationQueue] performSelector:@selector(removeCategoryNotification:)
-                                          onTarget:self
-                                        withObject:notification
-                                              gate:nil
-                                          priority:Normal];
-}
-
-
-- (void) downloadRSSFeed:(NSString*) address account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return; }
-
-  [self downloadRSSFeedWorker:address];
-  [self downloadRSSFeedMovies:address account:account];
-}
-
-
-- (NSString*) rssFeedDirectory:(NSString*) address {
-  return [netflixRSSDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
-}
-
-
-- (NSString*) rssMovieFile:(NSString*) identifier address:(NSString*) address {
-  return [[[self rssFeedDirectory:address]
-           stringByAppendingPathComponent:[FileUtilities sanitizeFileName:identifier]]
-          stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) detailsFile:(Movie*) movie {
-  return [[netflixDetailsDirectory stringByAppendingPathComponent:
-           [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier]]
-          stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (Movie*) downloadRSSMovieWithIdentifier:(NSString*) identifier
-                                  account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return nil; }
-
-  //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
-
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  [request prepare];
-
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  return [NetflixCache processMovieItem:element saved:NULL];
-}
-
-
-- (NSArray*) moviesForRSSTitle:(NSString*) title {
-  NSMutableArray* array = [NSMutableArray array];
-
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-  {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-    NSString* directory = [self rssFeedDirectory:address];
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-
-    for (NSString* path in paths) {
-      NSDictionary* dictionary = [FileUtilities readObject:path];
-      if (dictionary != nil) {
-        Movie* movie = [Movie createWithDictionary:dictionary];
-        [array addObject:movie];
-      }
-    }
-  }
-  [pool release];
-
-  return array;
-}
-
-
-- (NSInteger) movieCountForRSSTitle:(NSString*) title {
-  NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-  NSString* directory = [self rssFeedDirectory:address];
-  NSArray* paths = [FileUtilities directoryContentsNames:directory];
-
-  return paths.count;
-}
-
-
 - (void) updateSpecificDiscDetails:(Movie*) movie
                             expand:(NSString*) expand
                            account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* address = [movie.additionalFields objectForKey:title_key];
+  NSString* address = [movie.additionalFields objectForKey:[NetflixConstants titleKey]];
   if (address.length == 0) {
     address = movie.identifier;
     if (address.length == 0) {
@@ -1362,18 +773,18 @@ static NSString** directories[] = {
     }
   }
 
-  NSString* path = [self detailsFile:movie];
+  NSString* path = [NetflixFileSystem detailsFile:movie];
   if ([FileUtilities fileExists:path]) {
     return;
   }
 
   address = [NSString stringWithFormat:@"%@?expand=%@", address, expand];
 
-  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
-  [request prepare];
+  NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  NSDictionary* dictionary = [NetflixCache extractMovieDetails:element];
+  XmlElement* element = [self downloadXml:request account:account];
+
+  NSDictionary* dictionary = [NetflixUtilities extractMovieDetails:element];
   if (dictionary.count > 0) {
     [FileUtilities writeObject:dictionary toFile:path];
     [MetasyntacticSharedApplication minorRefresh];
@@ -1387,14 +798,8 @@ static NSString** directories[] = {
   if (![self canContinue:account]) { return; }
 
   // we don't download this stuff on a per disc basis.  only for a series.
-  //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
   [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats" account:account];
   [self updateRatings:movie force:force account:account];
-}
-
-
-- (NSString*) netflixFile:(Movie*) movie {
-  return [[netflixSearchDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -1409,7 +814,7 @@ static NSString** directories[] = {
     return;
   }
 
-  NSString* file = [self netflixFile:movie];
+  NSString* file = [NetflixFileSystem netflixSearchFile:movie];
   Movie* netflixMovie = nil;
   if ([FileUtilities fileExists:file]) {
     netflixMovie = [self correspondingNetflixMovie:movie];
@@ -1464,51 +869,6 @@ static NSString** directories[] = {
 }
 
 
-- (void) downloadRSSMovie:(NSString*) identifier
-                  address:(NSString*) address
-                  account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return; }
-
-  NSString* file = [self rssMovieFile:identifier address:address];
-
-  Movie* movie;
-  if ([FileUtilities fileExists:file]) {
-    movie = [Movie createWithDictionary:[FileUtilities readObject:file]];
-  } else {
-    movie = [self downloadRSSMovieWithIdentifier:identifier account:account];
-    if (movie.canonicalTitle.length == 0) {
-      // might have been a series.
-      movie = [self downloadRSSMovieWithSeriesIdentifier:identifier account:account];
-    }
-
-    if (movie.canonicalTitle.length > 0) {
-      [FileUtilities writeObject:movie.dictionary toFile:file];
-    }
-  }
-
-  [NetflixSharedApplication reportNetflixMovie:movie];
-}
-
-
-- (void) downloadRSS:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return; }
-
-  NSLog(@"NetflixCache:downloadRSS");
-
-  for (NSString* key in [mostPopularTitles shuffledArray]) {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-    [FileUtilities createDirectory:[self rssFeedDirectory:address]];
-
-    [[OperationQueue operationQueue] performSelector:@selector(downloadRSSFeed:account:)
-                                            onTarget:self
-                                          withObject:address
-                                          withObject:account
-                                                gate:nil
-                                            priority:Priority];
-  }
-}
-
-
 + (BOOL) feeds:(NSArray*) feeds containsKey:(NSString*) key {
   for (Feed* feed in feeds) {
     if ([feed.key isEqual:key]) {
@@ -1539,7 +899,7 @@ static NSString** directories[] = {
                                     force:(BOOL) force {
   if (![self canContinue:account]) { return; }
 
-  [NetflixCache downloadUserInformation:account];
+  [self downloadUserInformation:account];
 
   NSArray* feeds = [self downloadFeeds:account];
 
@@ -1557,11 +917,7 @@ static NSString** directories[] = {
 
   [self downloadQueues:account force:force];
 
-  [[OperationQueue operationQueue] performSelector:@selector(downloadRSS:)
-                                          onTarget:self
-                                        withObject:account
-                                              gate:nil // no lock.
-                                          priority:Priority];
+  [[NetflixRssCache cache] update:account];
 }
 
 
@@ -1578,7 +934,7 @@ static NSString** directories[] = {
 }
 
 - (NSDictionary*) detailsForMovie:(Movie*) movie {
-  return [FileUtilities readObject:[self detailsFile:movie]];
+  return [FileUtilities readObject:[NetflixFileSystem detailsFile:movie]];
 }
 
 
@@ -1586,7 +942,7 @@ static NSString** directories[] = {
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
-  return [details objectForKey:cast_key];
+  return [details objectForKey:[NetflixConstants castKey]];
 }
 
 
@@ -1594,7 +950,7 @@ static NSString** directories[] = {
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
-  return [details objectForKey:directors_key];
+  return [details objectForKey:[NetflixConstants directorsKey]];
 }
 
 
@@ -1602,12 +958,12 @@ static NSString** directories[] = {
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
-  NSString* rating = [FileUtilities readObject:[NetflixCache predictedRatingsFile:movie account:account]];
+  NSString* rating = [FileUtilities readObject:[NetflixFileSystem predictedRatingsFile:movie account:account]];
   if (rating.length > 0) {
     return rating;
   }
 
-  return [movie.additionalFields objectForKey:average_rating_key];
+  return [movie.additionalFields objectForKey:[NetflixConstants averageRatingKey]];
 }
 
 
@@ -1615,18 +971,18 @@ static NSString** directories[] = {
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
-  return [FileUtilities readObject:[NetflixCache userRatingsFile:movie account:account]];
+  return [FileUtilities readObject:[NetflixFileSystem userRatingsFile:movie account:account]];
 }
 
 
 - (NSArray*) formatsForMovie:(Movie*) movie {
-  NSArray* result = [movie.additionalFields objectForKey:formats_key];
+  NSArray* result = [movie.additionalFields objectForKey:[NetflixConstants formatsKey]];
   if (result.count > 0) {
     return result;
   }
 
   NSDictionary* details = [self detailsForMovie:movie];
-  result = [details objectForKey:formats_key];
+  result = [details objectForKey:[NetflixConstants formatsKey]];
   if (result.count > 0) {
     return result;
   }
@@ -1642,7 +998,7 @@ static NSString** directories[] = {
 
 - (NSString*) netflixAddressForMovie:(Movie*) movie {
   movie = [self correspondingNetflixMovie:movie];
-  NSString* address = [movie.additionalFields objectForKey:link_key];
+  NSString* address = [movie.additionalFields objectForKey:[NetflixConstants linkKey]];
   if (address.length == 0) {
     return @"";
   }
@@ -1652,14 +1008,9 @@ static NSString** directories[] = {
 
 
 - (NSString*) availabilityForMovie:(Movie*) movie {
-  NSString* availability = [movie.additionalFields objectForKey:availability_key];
+  NSString* availability = [movie.additionalFields objectForKey:[NetflixConstants availabilityKey]];
 
   return [StringUtilities nonNilString:availability];
-//  if (result.length == 0) {
-//    return @"";
-//  }
-//
-//  return result;
 }
 
 
@@ -1672,13 +1023,13 @@ static NSString** directories[] = {
 
   movie = [self promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
-  return [Movie decodeArray:[details objectForKey:similars_key]];
+  return [Movie decodeArray:[details objectForKey:[NetflixConstants similarsKey]]];
 }
 
 
 - (NSString*) synopsisForMovieDetails:(Movie*) movie {
   NSDictionary* details = [self detailsForMovie:movie];
-  return [details objectForKey:synopsis_key];
+  return [details objectForKey:[NetflixConstants synopsisKey]];
 }
 
 
@@ -1756,9 +1107,9 @@ static NSString** directories[] = {
 
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:
-                           [self queueForKey:[NetflixCache discQueueKey] account:account],
-                           [self queueForKey:[NetflixCache instantQueueKey] account:account],
-                           [self queueForKey:[NetflixCache atHomeKey] account:account],
+                           [self queueForKey:[NetflixConstants discQueueKey] account:account],
+                           [self queueForKey:[NetflixConstants instantQueueKey] account:account],
+                           [self queueForKey:[NetflixConstants atHomeKey] account:account],
                            nil];
 
   for (Queue* queue in searchQueues) {
@@ -1790,7 +1141,7 @@ static NSString** directories[] = {
     return movie;
   }
 
-  NSString* file = [self netflixFile:movie];
+  NSString* file = [NetflixFileSystem netflixSearchFile:movie];
   NSDictionary* dictionary = [FileUtilities readObject:file];
   if (dictionary.count == 0) {
     return nil;
@@ -1800,47 +1151,25 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) instantFormat {
-  return @"instant";
-}
-
-
-+ (NSString*) dvdFormat {
-  return @"DVD";
-}
-
-
-+ (NSString*) blurayFormat {
-  return @"Blu-ray";
-}
-
-
 - (BOOL) isInstantWatch:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:[NetflixCache instantFormat]];
+  return [[self formatsForMovie:movie] containsObject:[NetflixConstants instantFormat]];
 }
 
 
 - (BOOL) isDvd:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:[NetflixCache dvdFormat]];
+  return [[self formatsForMovie:movie] containsObject:[NetflixConstants dvdFormat]];
 }
 
 
 - (BOOL) isBluray:(Movie*) movie {
-  return [[self formatsForMovie:movie] containsObject:[NetflixCache blurayFormat]];
+  return [[self formatsForMovie:movie] containsObject:[NetflixConstants blurayFormat]];
 }
 
 
 - (BOOL) user:(NetflixUser*) user canRentMovie:(Movie*) movie {
-  if ([self isDvd:movie]) {
-    return YES;
-  }
-  if ([self isInstantWatch:movie] && user.canInstantWatch) {
-    return YES;
-  }
-  if ([self isBluray:movie] && user.canBlurayWatch) {
-    return YES;
-  }
-  return NO;
+  return [self isDvd:movie]
+    || ([self isInstantWatch:movie] && user.canInstantWatch)
+    || ([self isBluray:movie] && user.canBlurayWatch);
 }
 
 @end

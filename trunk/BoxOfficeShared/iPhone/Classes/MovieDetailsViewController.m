@@ -166,6 +166,11 @@ typedef enum {
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (void) setupActionsView {
   NSMutableArray* selectors = [NSMutableArray array];
   NSMutableArray* titles = [NSMutableArray array];
@@ -189,9 +194,9 @@ typedef enum {
     [arguments addObject:[NSNull null]];
   }
 
-  NetflixUser* user = [self.model.netflixCache userForAccount:netflixAccount];
+  NetflixUser* user = [self.netflixCache userForAccount:netflixAccount];
   if (netflixMovie != nil && netflixStatusCells.count == 0) {
-    if ([self.model.netflixCache user:user canRentMovie:movie]) {
+    if ([self.netflixCache user:user canRentMovie:movie]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
       [titles addObject:LocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
       [arguments addObject:[NSNull null]];
@@ -296,7 +301,7 @@ typedef enum {
 
 
 - (void) initializeNetflixStatusCells {
-  NSArray* statuses = [self.model.netflixCache statusesForMovie:netflixMovie account:netflixAccount];
+  NSArray* statuses = [self.netflixCache statusesForMovie:netflixMovie account:netflixAccount];
 
   NSMutableArray* cells = [NSMutableArray array];
   for (NSInteger i = 0; i < statuses.count; i++) {
@@ -355,7 +360,7 @@ typedef enum {
 
 - (void) initializeData {
   self.netflixAccount = self.model.currentNetflixAccount;
-  self.netflixMovie = [self.model.netflixCache correspondingNetflixMovie:movie];
+  self.netflixMovie = [self.netflixCache correspondingNetflixMovie:movie];
   [self initializeNetflixStatusCells];
 
   [self setupTrailersArray];
@@ -581,7 +586,7 @@ typedef enum {
 - (BOOL) hasNetflixRating {
   return
   netflixMovie != nil &&
-  [self.model.netflixCache netflixRatingForMovie:netflixMovie account:netflixAccount].length > 0;
+  [self.netflixCache netflixRatingForMovie:netflixMovie account:netflixAccount].length > 0;
 }
 
 
@@ -1069,18 +1074,18 @@ typedef enum {
                       otherButtonTitles:nil] autorelease];
   actionSheet.tag = ADD_TO_NETFLIX_TAG;
 
-  NetflixUser* user = [self.model.netflixCache userForAccount:netflixAccount];
+  NetflixUser* user = [self.netflixCache userForAccount:netflixAccount];
 
   NSMutableDictionary* actionMap = [NSMutableDictionary dictionary];
-  if ([self.model.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
+  if ([self.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
     [self addAction:InstantQueue      withTitle:LocalizedString(@"Instant Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfInstantQueue withTitle:LocalizedString(@"Top of Instant Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([self.model.netflixCache isDvd:movie]) {
+  if ([self.netflixCache isDvd:movie]) {
     [self addAction:DVDQueue      withTitle:LocalizedString(@"DVD Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfDVDQueue withTitle:LocalizedString(@"Top of DVD Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([self.model.netflixCache isBluray:movie] && user.canBlurayWatch) {
+  if ([self.netflixCache isBluray:movie] && user.canBlurayWatch) {
     [self addAction:BlurayQueue      withTitle:LocalizedString(@"Blu-ray Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfBlurayQueue withTitle:LocalizedString(@"Top of Blu-ray Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
@@ -1097,9 +1102,9 @@ typedef enum {
                                        top:(BOOL) top {
   [self enterReadonlyMode];
   if (top) {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
+    [self.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
   } else {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format delegate:self account:netflixAccount];
+    [self.netflixCache updateQueue:queue byAddingMovie:netflixMovie withFormat:format delegate:self account:netflixAccount];
   }
 }
 
@@ -1113,18 +1118,18 @@ typedef enum {
   switch (action) {
     case InstantQueue:
     case TopOfInstantQueue:
-      format = [NetflixCache instantFormat];
-      queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
+      format = [NetflixConstants instantFormat];
+      queue = [self.netflixCache queueForKey:[NetflixConstants instantQueueKey] account:netflixAccount];
       break;
     case DVDQueue:
     case TopOfDVDQueue:
-      format = [NetflixCache dvdFormat];
-      queue = [self.model.netflixCache queueForKey:[NetflixCache discQueueKey] account:netflixAccount];
+      format = [NetflixConstants dvdFormat];
+      queue = [self.netflixCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
       break;
     case BlurayQueue:
     case TopOfBlurayQueue:
-      format = [NetflixCache blurayFormat];
-      queue = [self.model.netflixCache queueForKey:[NetflixCache discQueueKey] account:netflixAccount];
+      format = [NetflixConstants blurayFormat];
+      queue = [self.netflixCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
       break;
     default:
       return;
@@ -1315,7 +1320,7 @@ typedef enum {
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.model.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
+  [self.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
 }
 
 
@@ -1324,7 +1329,7 @@ typedef enum {
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.model.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
+  [self.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
 }
 
 

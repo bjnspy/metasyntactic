@@ -65,8 +65,13 @@
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (NSArray*) feeds {
-  NSArray* feeds = [self.model.netflixCache feedsForAccount:account];
+  NSArray* feeds = [self.netflixCache feedsForAccount:account];
 
   NSMutableArray* result = [NSMutableArray array];
   for (Feed* feed in feeds) {
@@ -108,7 +113,7 @@
 
   cell.textLabel.adjustsFontSizeToFitWidth = YES;
   cell.textLabel.minimumFontSize = 12;
-  cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key account:account];
+  cell.textLabel.text = [self.netflixCache titleForKey:feed.key account:account];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
   return cell;

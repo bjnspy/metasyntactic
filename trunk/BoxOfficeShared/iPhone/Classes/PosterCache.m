@@ -166,8 +166,13 @@
 }
 
 
+- (NetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (Movie*) appropriateMovie:(Movie*) movie {
-  Movie* possible = [self.model.netflixCache correspondingNetflixMovie:movie];
+  Movie* possible = [self.netflixCache correspondingNetflixMovie:movie];
   if (possible != nil) {
     return possible;
   }

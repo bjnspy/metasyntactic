@@ -48,6 +48,11 @@
 }
 
 
+- (MutableNetflixCache*) netflixCache {
+  return [MutableNetflixCache cache];
+}
+
+
 - (void) setupDefaultScopeButtonTitles {
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), LocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), LocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
 }
@@ -210,7 +215,7 @@
   NSMutableArray* instant = [NSMutableArray array];
 
   for (Movie* movie in result.movies) {
-    if ([self.model.netflixCache isInstantWatch:movie]) {
+    if ([self.netflixCache isInstantWatch:movie]) {
       [instant addObject:movie];
     } else {
       [discs addObject:movie];

@@ -12,26 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractNetflixCache.h"
+#import "AbstractMovieCache.h"
 
-@interface NetflixCache : AbstractNetflixCache {
+@interface NetflixCache : AbstractMovieCache {
 @private
   // accessed from multiple threads.  Always access through property.
   AutoreleasingMutableDictionary* accountToFeeds;
   AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
-  NSDate* lastQuotaErrorDate;
 }
 
-@property (readonly, retain) NSDate* lastQuotaErrorDate;
-
-+ (NSString*) blurayFormat;
-+ (NSString*) instantFormat;
-+ (NSString*) dvdFormat;
-
 + (NSString*) noInformationFound;
-+ (NSArray*) mostPopularTitles;
 
-+ (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
+- (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
 - (NetflixUser*) userForAccount:(NetflixAccount*) account;
 
 - (void) update:(BOOL) force;
@@ -42,9 +34,6 @@
 - (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account;
-
-- (NSArray*) moviesForRSSTitle:(NSString*) title;
-- (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
 - (Movie*) correspondingNetflixMovie:(Movie*) movie;
 

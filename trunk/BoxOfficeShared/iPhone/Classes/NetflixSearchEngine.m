@@ -37,7 +37,7 @@
 
 - (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
   NSString* error;
-  NSArray* movies = [self.model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue account:currentlyExecutingRequest.account error:&error];
+  NSArray* movies = [[MutableNetflixCache cache] movieSearch:currentlyExecutingRequest.lowercaseValue account:currentlyExecutingRequest.account error:&error];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
   NSArray* people = [NSArray array];//[self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
