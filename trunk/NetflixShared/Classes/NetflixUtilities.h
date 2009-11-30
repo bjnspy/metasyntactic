@@ -23,4 +23,6 @@
 
 + (NSDictionary*) extractMovieDetails:(XmlElement*) element;
 
++ (NSString*) extractErrorMessage:(XmlElement*) element;
+
 @end
