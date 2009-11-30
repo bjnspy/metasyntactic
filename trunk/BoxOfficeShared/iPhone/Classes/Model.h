@@ -24,9 +24,6 @@ enum ViewControllerType {
   UserLocationCache* userLocationCache;
   BlurayCache* blurayCache;
   DVDCache* dvdCache;
-  IMDbCache* imdbCache;
-  AmazonCache* amazonCache;
-  WikipediaCache* wikipediaCache;
   PersonPosterCache* personPosterCache;
   PosterCache* posterCache;
   LargePosterCache* largePosterCache;
@@ -54,9 +51,6 @@ enum ViewControllerType {
 @property (readonly, retain) UserLocationCache* userLocationCache;
 @property (readonly, retain) BlurayCache* blurayCache;
 @property (readonly, retain) DVDCache* dvdCache;
-@property (readonly, retain) IMDbCache* imdbCache;
-@property (readonly, retain) AmazonCache* amazonCache;
-@property (readonly, retain) WikipediaCache* wikipediaCache;
 @property (readonly, retain) PersonPosterCache* personPosterCache;
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;

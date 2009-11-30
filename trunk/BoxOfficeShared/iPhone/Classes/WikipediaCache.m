@@ -18,10 +18,18 @@
 
 @implementation WikipediaCache
 
-+ (WikipediaCache*) cache {
-  return [[[WikipediaCache alloc] init] autorelease];
+static WikipediaCache* cache;
+
++ (void) initialize {
+  if (self == [WikipediaCache class]) {
+    cache = [[WikipediaCache alloc] init];
+  }
 }
 
+
++ (WikipediaCache*) cache {
+  return cache;
+}
 
 - (NSString*) cacheDirectory {
   return [Application wikipediaDirectory];

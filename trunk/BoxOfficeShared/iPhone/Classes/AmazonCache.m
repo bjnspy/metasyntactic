@@ -18,8 +18,17 @@
 
 @implementation AmazonCache
 
+static AmazonCache* cache;
+
++ (void) initialize {
+  if (self == [AmazonCache class]) {
+    cache = [[AmazonCache alloc] init];
+  }
+}
+
+
 + (AmazonCache*) cache {
-  return [[[AmazonCache alloc] init] autorelease];
+  return cache;
 }
 
 

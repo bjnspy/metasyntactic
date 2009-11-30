@@ -46,9 +46,6 @@
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
-@property (retain) IMDbCache* imdbCache;
-@property (retain) AmazonCache* amazonCache;
-@property (retain) WikipediaCache* wikipediaCache;
 @property (retain) PersonPosterCache* personPosterCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
@@ -115,9 +112,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize userLocationCache;
 @synthesize blurayCache;
 @synthesize dvdCache;
-@synthesize imdbCache;
-@synthesize amazonCache;
-@synthesize wikipediaCache;
 @synthesize personPosterCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
@@ -139,9 +133,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.userLocationCache = nil;
   self.blurayCache = nil;
   self.dvdCache = nil;
-  self.imdbCache = nil;
-  self.amazonCache = nil;
-  self.wikipediaCache = nil;
   self.personPosterCache = nil;
   self.posterCache = nil;
   self.largePosterCache = nil;
@@ -286,9 +277,6 @@ static Model* model = nil;
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
-    self.imdbCache = [IMDbCache cache];
-    self.amazonCache = [AmazonCache cache];
-    self.wikipediaCache = [WikipediaCache cache];
     self.trailerCache = [TrailerCache cache];
     self.blurayCache = [BlurayCache cache];
     self.dvdCache = [DVDCache cache];
@@ -1106,7 +1094,7 @@ static Model* model = nil;
     return result;
   }
 
-  result = [imdbCache addressForMovie:movie];
+  result = [[IMDbCache cache] addressForMovie:movie];
   if (result.length > 0) {
     return result;
   }
@@ -1116,12 +1104,12 @@ static Model* model = nil;
 
 
 - (NSString*) amazonAddressForMovie:(Movie*) movie {
-  return [amazonCache addressForMovie:movie];
+  return [[AmazonCache cache] addressForMovie:movie];
 }
 
 
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie {
-  return [wikipediaCache addressForMovie:movie];
+  return [[WikipediaCache cache] addressForMovie:movie];
 }
 
 
