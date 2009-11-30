@@ -58,13 +58,18 @@
 }
 
 
+- (NetflixAccountCache*) netflixAccountCache {
+  return [NetflixAccountCache cache];
+}
+
+
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   self.account = self.model.currentNetflixAccount;
   MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
   NSMutableSet* set = [NSMutableSet set];
-  Queue* queue = [self.netflixCache queueForKey:[NetflixConstants recommendationKey] account:account];
+  Queue* queue = [self.netflixAccountCache queueForKey:[NetflixConstants recommendationKey] account:account];
   for (Movie* movie in queue.movies) {
     if (movie.genres.count > 0) {
       NSString* genre = movie.genres.firstObject;

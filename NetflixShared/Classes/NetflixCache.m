@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixUserCache.h"
 #import "NetflixConstants.h"
 #import "NetflixPaths.h"
@@ -30,36 +31,12 @@
 #import "Status.h"
 
 @interface NetflixCache()
-@property (retain) AutoreleasingMutableDictionary* accountToFeeds;
-@property (retain) AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
-
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
 - (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force;
 @end
 
 
 @implementation NetflixCache
-
-@synthesize accountToFeeds;
-@synthesize accountToFeedKeyToQueues;
-
-- (void) dealloc {
-  self.accountToFeeds = nil;
-  self.accountToFeedKeyToQueues = nil;
-
-  [super dealloc];
-}
-
-
-- (id) init {
-  if ((self = [super init])) {
-    self.accountToFeeds = [AutoreleasingMutableDictionary dictionary];
-    self.accountToFeedKeyToQueues = [AutoreleasingMutableDictionary dictionary];
-  }
-
-  return self;
-}
-
 
 + (NSString*) noInformationFound {
   if ([[OperationQueue operationQueue] hasPriorityOperations]) {
@@ -72,101 +49,8 @@
 }
 
 
-+ (NSArray*) loadAccountToFeeds:(NetflixAccount*) account {
-  NSArray* array = [FileUtilities readObject:[NetflixPaths feedsFile:account]];
-  return [Feed decodeArray:array];
-}
-
-
-+ (void) saveFeeds:(NSArray*) feeds account:(NetflixAccount*) account {
-  if (feeds.count == 0) {
-    return;
-  }
-
-  [FileUtilities writeObject:[Feed encodeArray:feeds]
-                      toFile:[NetflixPaths feedsFile:account]];
-}
-
-
-- (NSArray*) feedsForAccountNoLock:(NetflixAccount*) account {
-  NSArray* feeds = [self.accountToFeeds objectForKey:account.userId];
-  if (feeds != nil) {
-    return feeds;
-  }
-
-  NSArray* array = [NetflixCache loadAccountToFeeds:account];
-  if (array != nil) {
-    [self.accountToFeeds setObject:array forKey:account.userId];
-  }
-  return array;
-}
-
-
-- (NSArray*) feedsForAccount:(NetflixAccount*) account {
-  NSArray* result;
-  [dataGate lock];
-  {
-    result = [self feedsForAccountNoLock:account];
-  }
-  [dataGate unlock];
-  return result;
-}
-
-
-+ (Queue*) loadQueue:(Feed*) feed account:(NetflixAccount*) account {
-  NSLog(@"Loading queue: %@", feed.name);
-  NSDictionary* dictionary = [FileUtilities readObject:[NetflixPaths queueFile:feed account:account]];
-  if (dictionary.count == 0) {
-    return nil;
-  }
-
-  return [Queue queueWithDictionary:dictionary];
-}
-
-
-- (void) addQueue:(Queue*) queue account:(NetflixAccount*) account {
-  [dataGate lock];
-  {
-    NSMutableDictionary* feedKeyToQueues = [self.accountToFeedKeyToQueues objectForKey:account.userId];
-    if (feedKeyToQueues == nil) {
-      feedKeyToQueues = [NSMutableDictionary dictionary];
-      [self.accountToFeedKeyToQueues setObject:feedKeyToQueues forKey:account.userId];
-    }
-    [feedKeyToQueues setObject:queue forKey:queue.feed.key];
-  }
-  [dataGate unlock];
-}
-
-
-- (Queue*) queueForFeedNoLock:(Feed*) feed account:(NetflixAccount*) account {
-  if (feed == nil) {
-    return nil;
-  }
-
-  Queue* queue = [[self.accountToFeedKeyToQueues objectForKey:account.userId] objectForKey:feed.key];
-  if (queue == nil) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      queue = [NetflixCache loadQueue:feed account:account];
-      if (queue != nil) {
-        [self addQueue:queue account:account];
-      }
-    }
-    [pool release];
-  }
-
-  return queue;
-}
-
-
-- (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account {
-  Queue* queue = nil;
-  [dataGate lock];
-  {
-    queue = [self queueForFeedNoLock:feed account:account];
-  }
-  [dataGate unlock];
-  return queue;
+- (NetflixAccountCache*) accountCache {
+  return [NetflixAccountCache cache];
 }
 
 
@@ -265,16 +149,9 @@
 
 - (void) downloadFeeds:(NetflixAccount*) account {
   NSArray* feeds = [self downloadFeedsWorker:account];
-  
+
   if (feeds.count > 0) {
-    [NetflixCache saveFeeds:feeds account:account];
-    
-    [dataGate lock];
-    {
-      [self.accountToFeeds setObject:feeds forKey:account.userId];
-    }
-    [dataGate unlock];
-    
+    [self.accountCache saveFeeds:feeds account:account];
     [MetasyntacticSharedApplication majorRefresh];
   }
 }
@@ -303,14 +180,6 @@
   } else {
     [movies addObject:movie];
   }
-}
-
-
-- (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account {
-  NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.name, queue.etag);
-  [FileUtilities writeObject:queue.dictionary toFile:[NetflixPaths queueFile:queue.feed account:account]];
-  [FileUtilities writeObject:queue.etag toFile:[NetflixPaths queueEtagFile:queue.feed account:account]];
-  [self addQueue:queue account:account];
 }
 
 
@@ -492,24 +361,8 @@
                                    etag:etag
                                  movies:movies
                                   saved:saved];
-    [self saveQueue:queue account:account];
+    [self.accountCache saveQueue:queue account:account];
   }
-}
-
-
-- (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account {
-  for (Feed* feed in [self feedsForAccount:account]) {
-    if ([key isEqual:feed.key]) {
-      return feed;
-    }
-  }
-
-  return nil;
-}
-
-
-- (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account {
-  return [self queueForFeed:[self feedForKey:key account:account] account:account];
 }
 
 
@@ -532,7 +385,7 @@
   }
 
   Queue* queue;
-  if (!includeCount || ((queue = [self queueForKey:key account:account]) == nil)) {
+  if (!includeCount || ((queue = [self.accountCache queueForKey:key account:account]) == nil)) {
     return title;
   }
 
@@ -573,7 +426,7 @@
     NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
   }
 
-  Queue* queue = [self queueForFeed:feed account:account];
+  Queue* queue = [self.accountCache queueForFeed:feed account:account];
 
   [NetflixSharedApplication reportNetflixMovies:queue.movies];
   [NetflixSharedApplication reportNetflixMovies:queue.saved];
@@ -849,7 +702,7 @@
 
 
 - (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force {
-  NSArray* feeds = [self feedsForAccount:account];
+  NSArray* feeds = [self.accountCache feedsForAccount:account];
 
   for (Feed* feed in feeds) {
     [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
@@ -1062,9 +915,9 @@
 
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:
-                           [self queueForKey:[NetflixConstants discQueueKey] account:account],
-                           [self queueForKey:[NetflixConstants instantQueueKey] account:account],
-                           [self queueForKey:[NetflixConstants atHomeKey] account:account],
+                           [self.accountCache queueForKey:[NetflixConstants discQueueKey] account:account],
+                           [self.accountCache queueForKey:[NetflixConstants instantQueueKey] account:account],
+                           [self.accountCache queueForKey:[NetflixConstants atHomeKey] account:account],
                            nil];
 
   for (Queue* queue in searchQueues) {

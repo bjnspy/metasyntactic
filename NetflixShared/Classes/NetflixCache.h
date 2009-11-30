@@ -15,20 +15,12 @@
 #import "AbstractMovieCache.h"
 
 @interface NetflixCache : AbstractMovieCache {
-@private
-  // accessed from multiple threads.  Always access through property.
-  AutoreleasingMutableDictionary* accountToFeeds;
-  AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
 }
 
 + (NSString*) noInformationFound;
 
 - (void) update:(BOOL) force;
 
-- (NSArray*) feedsForAccount:(NetflixAccount*) account;
-- (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;
-- (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account;
-- (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account;
 
