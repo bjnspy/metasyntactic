@@ -30,6 +30,19 @@
 
 @implementation UpcomingCache
 
+static UpcomingCache* cache;
+
++ (void) initialize {
+  if (self == [UpcomingCache class]) {
+    cache = [[UpcomingCache alloc] init];
+  }
+}
+
+
++ (UpcomingCache*) cache {
+  return cache;
+}
+
 @synthesize hashData;
 @synthesize movieMapData;
 @synthesize studioKeysData;
@@ -74,11 +87,6 @@
   }
 
   return self;
-}
-
-
-+ (UpcomingCache*) cache {
-  return [[[UpcomingCache alloc] init] autorelease];
 }
 
 

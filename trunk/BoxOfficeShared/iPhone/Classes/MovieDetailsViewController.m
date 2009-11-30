@@ -151,7 +151,7 @@ typedef enum {
 
 
 - (BOOL) isUpcomingMovie {
-  for (Movie* upcomingMovie in self.model.upcomingCache.movies) {
+  for (Movie* upcomingMovie in [[UpcomingCache cache] movies]) {
     if (upcomingMovie == movie) {
       return YES;
     }

@@ -51,7 +51,6 @@
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
-@property (retain) UpcomingCache* upcomingCache;
 @property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) HelpCache* helpCache;
 @property (retain) ThreadsafeValue* bookmarkedTitlesData;
@@ -117,7 +116,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize largePosterCache;
 @synthesize scoreCache;
 @synthesize trailerCache;
-@synthesize upcomingCache;
 @synthesize internationalDataCache;
 @synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
@@ -138,7 +136,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.largePosterCache = nil;
   self.scoreCache = nil;
   self.trailerCache = nil;
-  self.upcomingCache = nil;
   self.internationalDataCache = nil;
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
@@ -282,7 +279,6 @@ static Model* model = nil;
     self.dvdCache = [DVDCache cache];
     self.posterCache = [PosterCache cache];
     self.scoreCache = [ScoreCache cache];
-    self.upcomingCache = [UpcomingCache cache];
     self.internationalDataCache = [InternationalDataCache cache];
     self.helpCache = [HelpCache cache];
 
@@ -831,13 +827,18 @@ static Model* model = nil;
 }
 
 
+- (UpcomingCache*) upcomingCache {
+  return [UpcomingCache cache];
+}
+
+
 - (void) addBookmark:(Movie*) movie {
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set addObject:movie.canonicalTitle];
   bookmarkedTitlesData.value = set;
 
   [dataProvider addBookmark:movie.canonicalTitle];
-  [upcomingCache addBookmark:movie.canonicalTitle];
+  [self.upcomingCache addBookmark:movie.canonicalTitle];
   [dvdCache addBookmark:movie.canonicalTitle];
   [blurayCache addBookmark:movie.canonicalTitle];
 }
@@ -849,7 +850,7 @@ static Model* model = nil;
   bookmarkedTitlesData.value = set;
 
   [dataProvider removeBookmark:movie.canonicalTitle];
-  [upcomingCache removeBookmark:movie.canonicalTitle];
+  [self.upcomingCache removeBookmark:movie.canonicalTitle];
   [dvdCache removeBookmark:movie.canonicalTitle];
   [blurayCache removeBookmark:movie.canonicalTitle];
 }
@@ -980,7 +981,7 @@ static Model* model = nil;
     return date;
   }
 
-  date = [upcomingCache releaseDateForMovie:movie];
+  date = [self.upcomingCache releaseDateForMovie:movie];
   if (date != nil) {
     return date;
   }
@@ -1040,7 +1041,7 @@ static Model* model = nil;
     return directors;
   }
 
-  directors = [upcomingCache directorsForMovie:movie];
+  directors = [self.upcomingCache directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
@@ -1065,7 +1066,7 @@ static Model* model = nil;
     return cast;
   }
 
-  cast = [upcomingCache castForMovie:movie];
+  cast = [self.upcomingCache castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
@@ -1079,7 +1080,7 @@ static Model* model = nil;
     return movie.genres;
   }
 
-  return [upcomingCache genresForMovie:movie];
+  return [self.upcomingCache genresForMovie:movie];
 }
 
 
@@ -1460,7 +1461,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
       [options addObject:synopsis];
     }
 
-    synopsis = [upcomingCache synopsisForMovie:movie];
+    synopsis = [self.upcomingCache synopsisForMovie:movie];
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }
@@ -1498,7 +1499,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     return result;
   }
 
-  return [upcomingCache trailersForMovie:movie];
+  return [self.upcomingCache trailersForMovie:movie];
 }
 
 

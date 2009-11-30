@@ -56,7 +56,7 @@
     Model* model = [Model model];
     self.movies = model.movies;
     self.theaters = model.theaters;
-    self.upcomingMovies = model.upcomingCache.movies;
+    self.upcomingMovies = [[UpcomingCache cache] movies];
     self.dvds = model.dvdCache.movies;
     self.bluray = model.blurayCache.movies;
     self.account = model.currentNetflixAccount;
