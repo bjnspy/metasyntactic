@@ -124,9 +124,9 @@ static CacheUpdater* cacheUpdater = nil;
   [model.blurayCache       processMovie:movie force:force];
   [model.scoreCache        processMovie:movie force:force];
   [model.trailerCache      processMovie:movie force:force];
-  [model.imdbCache         processMovie:movie force:force];
-  [model.amazonCache       processMovie:movie force:force];
-  [model.wikipediaCache    processMovie:movie force:force];
+  [[IMDbCache cache]       processMovie:movie force:force];
+  [[AmazonCache cache]     processMovie:movie force:force];
+  [[WikipediaCache cache]  processMovie:movie force:force];
   [MetasyntacticSharedApplication minorRefresh];
 
   if (force) {

@@ -18,8 +18,17 @@
 
 @implementation IMDbCache
 
+static IMDbCache* cache;
+
++ (void) initialize {
+  if (self == [IMDbCache class]) {
+    cache = [[IMDbCache alloc] init];
+  }
+}
+
+
 + (IMDbCache*) cache {
-  return [[[IMDbCache alloc] init] autorelease];
+  return cache;
 }
 
 
