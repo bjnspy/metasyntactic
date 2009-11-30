@@ -203,6 +203,8 @@
 		1000000000000018000000E6 /* BackgroundInvocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001800000096 /* BackgroundInvocation3.h */; };
 		100000000000001800000205 /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000EA /* Operation1.m */; };
 		100000000000001800000207 /* Operation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001800000206 /* Operation2.h */; };
+		100000000000001800000216 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024C /* Base64.h */; };
+		100000000000001800000218 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000217 /* Base64.m */; };
 		100000000000001800000263 /* SwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000B /* SwitchCell.h */; };
 		10000000000000180000026F /* DifferenceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000EF /* DifferenceEngine.h */; };
 		100000000000001900000110 /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026C /* Operation2.m */; };
@@ -211,6 +213,8 @@
 		100000000000001900000134 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000132 /* TappableScrollView.m */; };
 		100000000000001900000137 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000136 /* TappableScrollViewDelegate.h */; };
 		100000000000001900000139 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000138 /* TappableViewDelegate.h */; };
+		10000000000000190000013C /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013B /* Test.h */; };
+		10000000000000190000013E /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013D /* Test.m */; };
 		10000000000000190000014B /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014A /* TextFieldEditorViewController.h */; };
 		10000000000000190000014D /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014C /* TextFieldEditorViewController.m */; };
 		100000000000001900000221 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000120 /* Operation3.h */; };
@@ -231,8 +235,6 @@
 		100000000000001900000273 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000148 /* EditorViewController.h */; };
 		100000000000001900000275 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000274 /* EditorViewController.m */; };
 		10000000000000190000027A /* PersistentSetThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000279 /* PersistentSetThreadsafeValue.m */; };
-		100000000000001800000216 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024C /* Base64.h */; };
-		100000000000001800000218 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000217 /* Base64.m */; };
 		100000000000001A00000000 /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001800000219 /* Beacon+FBConnect.h */; };
 		100000000000001A00000004 /* PersistentStringThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000027B /* PersistentStringThreadsafeValue.h */; };
 		100000000000001A00000007 /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000278 /* FileUtilities.h */; };
@@ -300,8 +302,6 @@
 		10000000000000330000000D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000330000000B /* xmltok.c */; };
 		100000000000003300000013 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000011 /* xmltok_impl.c */; };
 		100000000000003300000019 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000017 /* xmltok_ns.c */; };
-		10000000000000190000013C /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013B /* Test.h */; };
-		10000000000000190000013E /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013D /* Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -502,6 +502,8 @@
 		1000000000000018000000EA /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
 		1000000000000018000000EF /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		100000000000001800000206 /* Operation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation2.h; sourceTree = "<group>"; };
+		100000000000001800000217 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		100000000000001800000219 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		100000000000001800000264 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		10000000000000180000026C /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation2.m; sourceTree = "<group>"; };
 		100000000000001800000277 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
@@ -509,6 +511,8 @@
 		100000000000001900000132 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		100000000000001900000136 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		100000000000001900000138 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
+		10000000000000190000013B /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		10000000000000190000013D /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		100000000000001900000148 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		10000000000000190000014A /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		10000000000000190000014C /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
@@ -531,8 +535,6 @@
 		100000000000001900000278 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		100000000000001900000279 /* PersistentSetThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentSetThreadsafeValue.m; sourceTree = "<group>"; };
 		10000000000000190000027B /* PersistentStringThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStringThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000001800000217 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		100000000000001800000219 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		100000000000001A00000008 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		100000000000001A0000000A /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001A0000001B /* PersistentStringThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStringThreadsafeValue.m; sourceTree = "<group>"; };
@@ -615,8 +617,6 @@
 		100000000000003300000011 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000003300000015 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000003300000017 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		10000000000000190000013B /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		10000000000000190000013D /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
