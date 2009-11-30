@@ -14,9 +14,9 @@
 
 #import "TheaterNameCell.h"
 
+#import "FavoriteTheaterCache.h"
 #import "Model.h"
 #import "Theater.h"
-
 
 @interface TheaterNameCell()
 @end
@@ -48,7 +48,7 @@
 
 
 - (void) setTheater:(Theater*) theater {
-    if ([self.model isFavoriteTheater:theater]) {
+    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], theater.name];
     } else {
         self.textLabel.text = theater.name;

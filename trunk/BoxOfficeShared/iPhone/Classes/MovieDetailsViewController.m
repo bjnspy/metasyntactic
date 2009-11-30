@@ -21,6 +21,7 @@
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
+#import "FavoriteTheaterCache.h"
 #import "LargePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -135,7 +136,7 @@ typedef enum {
   NSMutableArray* nonFavorites = [NSMutableArray array];
 
   for (Theater* theater in theatersArray) {
-    if ([self.model isFavoriteTheater:theater]) {
+    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
       [favorites addObject:theater];
     } else {
       [nonFavorites addObject:theater];
