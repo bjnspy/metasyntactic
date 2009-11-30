@@ -114,9 +114,9 @@
 		100000000000000000000E90 /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E8F /* MapPoint.h */; };
 		100000000000000000000E92 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E91 /* AbstractNavigationController.h */; };
 		100000000000000000000ED0 /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DF5 /* AbstractSearchResult.m */; };
-		100000000000000000000F04 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ED1 /* MapViewController.h */; };
 		100000000000000000000F02 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F00 /* MapViewController.m */; };
 		100000000000000000000F03 /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F01 /* MapViewControllerDelegate.h */; };
+		100000000000000000000F04 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000ED1 /* MapViewController.h */; };
 		100000000000000000000F79 /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F7A /* MemoryUtilities.m */; };
 		100000000000000000000FE1 /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FE0 /* AbstractStackableTableViewController.h */; };
 		100000000000000000000FE3 /* AbstractStackableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FE2 /* AbstractStackableTableViewController.m */; };
@@ -155,9 +155,9 @@
 		100000000000000000001079 /* NSSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001072 /* NSSet+Utilities.h */; };
 		100000000000000000001081 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001074 /* AutoResizingCell.m */; };
 		100000000000000000001086 /* NSSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001085 /* NSSet+Utilities.m */; };
+		100000000000000000001099 /* BackgroundInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000109A /* BackgroundInvocation.h */; };
 		1000000000000000000010A3 /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001087 /* NSString+URLEncoding.h */; };
 		1000000000000000000010A5 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A4 /* NSString+URLEncoding.m */; };
-		100000000000000000001099 /* BackgroundInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000109A /* BackgroundInvocation.h */; };
 		1000000000000000000010AB /* ColorCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010AA /* ColorCache.h */; };
 		1000000000000000000010B4 /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DCA /* NSString+UUID.h */; };
 		1000000000000000000010B5 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A6 /* BackgroundInvocation.m */; };
@@ -881,6 +881,19 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
+		1000000000000000000016B8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000010AA /* ColorCache.h */,
+				100000000000000000001704 /* FontCache.h */,
+				10000000000000000000101A /* MetasyntacticStockImages.h */,
+				1000000000000000000010B6 /* ColorCache.m */,
+				100000000000000000001706 /* FontCache.m */,
+				10000000000000000000101C /* MetasyntacticStockImages.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		1000000000000000000016B9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,19 +906,6 @@
 				100000000000000000001759 /* ViewControllerUtilities.h */,
 				10000000000000000000117A /* NotificationCenter.m */,
 				10000000000000000000175C /* ViewControllerUtilities.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		1000000000000000000016B8 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000010AA /* ColorCache.h */,
-				100000000000000000001704 /* FontCache.h */,
-				10000000000000000000101A /* MetasyntacticStockImages.h */,
-				1000000000000000000010B6 /* ColorCache.m */,
-				100000000000000000001706 /* FontCache.m */,
-				10000000000000000000101C /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
