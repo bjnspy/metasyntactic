@@ -14,10 +14,10 @@
 
 @interface NetflixSiteStatus : NSObject {
 @private
-  NSDate* lastQuotaErrorDate;
+  BOOL overQuota;
 }
 
-@property (readonly, retain) NSDate* lastQuotaErrorDate;
+@property (readonly) BOOL overQuota;
 
 + (NetflixSiteStatus*) status;
 
