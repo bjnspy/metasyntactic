@@ -157,32 +157,6 @@
 }
 
 
-+ (void) processMovieItem:(XmlElement*) element
-                   movies:(NSMutableArray*) movies
-                    saved:(NSMutableArray*) saved {
-  if (![@"queue_item" isEqual:element.name] &&
-      ![@"rental_history_item" isEqual:element.name] &&
-      ![@"at_home_item" isEqual:element.name] &&
-      ![@"recommendation" isEqual:element.name] &&
-      ![@"catalog_title" isEqual:element.name]) {
-    return;
-  }
-
-  BOOL save;
-  Movie* movie = [NetflixUtilities processMovieItem:element saved:&save];
-
-  if (movie == nil) {
-    return;
-  }
-
-  if (save) {
-    [saved addObject:movie];
-  } else {
-    [movies addObject:movie];
-  }
-}
-
-
 - (NSString*) extractEtagFromElement:(XmlElement*) element andResponse:(NSHTTPURLResponse*) response {
   NSString* etag = [[element element:@"etag"] text];
   if (etag.length > 0) {
@@ -230,36 +204,6 @@
 }
 
 
-+ (void) processMovieItemList:(XmlElement*) element
-                       movies:(NSMutableArray*) movies
-                        saved:(NSMutableArray*) saved
-                     maxCount:(NSInteger) maxCount {
-  for (XmlElement* child in element.children) {
-    if (maxCount >= 0) {
-      if ((movies.count + saved.count) > maxCount) {
-        return;
-      }
-    }
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      [self processMovieItem:child
-                      movies:movies
-                       saved:saved];
-    }
-    [pool release];
-  }
-}
-
-
-+ (void) processMovieItemList:(XmlElement*) element
-                       movies:(NSMutableArray*) movies
-                        saved:(NSMutableArray*) saved {
-  [self processMovieItemList:element movies:movies
-                       saved:saved
-                    maxCount:-1];
-}
-
-
 - (NSArray*) movieSearch:(NSString*) query
               maxResults:(NSInteger) maxResults
                  account:(NetflixAccount*) account
@@ -288,7 +232,7 @@
 
   NSMutableArray* movies = [NSMutableArray array];
   NSMutableArray* saved = [NSMutableArray array];
-  [NetflixCache processMovieItemList:element movies:movies saved:saved];
+  [NetflixUtilities processMovieItemList:element movies:movies saved:saved];
 
   [movies addObjectsFromArray:saved];
 
@@ -325,7 +269,7 @@
 
   NSMutableArray* movies = [NSMutableArray array];
   NSMutableArray* saved = [NSMutableArray array];
-  [NetflixCache processMovieItemList:element movies:movies saved:saved];
+  [NetflixUtilities processMovieItemList:element movies:movies saved:saved];
 
   // Hack.  We get duplicated titles in this feed.  So filter them out.
   if ([feed.key isEqual:[NetflixConstants rentalHistoryKey]]) {

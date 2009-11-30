@@ -36,10 +36,6 @@
 
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 
-+ (void) processMovieItemList:(XmlElement*) element
-                       movies:(NSMutableArray*) movies
-                        saved:(NSMutableArray*) saved;
-
 - (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account
                    response:(NSHTTPURLResponse**) response;
@@ -482,9 +478,9 @@ andReorderingMovies:[NSSet identitySet]
 
   NSMutableArray* addedMovies = [NSMutableArray array];
   NSMutableArray* addedSaved = [NSMutableArray array];
-  [NetflixCache processMovieItemList:[element element:@"resources_created"]
-                              movies:addedMovies
-                               saved:addedSaved];
+  [NetflixUtilities processMovieItemList:[element element:@"resources_created"]
+                                  movies:addedMovies
+                                   saved:addedSaved];
 
   NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
   NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
