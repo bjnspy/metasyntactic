@@ -202,15 +202,14 @@ static MutableNetflixCache* cache;
     [ThreadingUtilities foregroundSelector:@selector(moveFailedWithError:)
                                   onTarget:moveArguments.delegate
                                 withObject:error];
-    return;
+  } else {
+    NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", moveArguments.movie.canonicalTitle, finalQueue.etag);
+    [self.accountCache saveQueue:finalQueue account:moveArguments.account];
+    
+    [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
+                                  onTarget:moveArguments.delegate
+                                withObject:moveArguments.movie];
   }
-
-  NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", moveArguments.movie.canonicalTitle, finalQueue.etag);
-  [self.accountCache saveQueue:finalQueue account:moveArguments.account];
-
-  [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
-                                onTarget:moveArguments.delegate
-                              withObject:moveArguments.movie];
 }
 
 
@@ -414,16 +413,15 @@ andReorderingMovies:[NSSet identitySet]
                                 withObject:changeArguments.movie
                                 withObject:changeArguments.delegate
                                 withObject:message];
-    return;
+  } else {
+    NSLog(@"Changing rating succeeded.", nil);
+    [FileUtilities writeObject:changeArguments.rating toFile:userRatingsFile];
+    
+    [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingSuccess:toDelegate:)
+                                  onTarget:self
+                                withObject:changeArguments.movie
+                                withObject:changeArguments.delegate];
   }
-
-  NSLog(@"Changing rating succeeded.", nil);
-  [FileUtilities writeObject:changeArguments.rating toFile:userRatingsFile];
-
-  [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingSuccess:toDelegate:)
-                                onTarget:self
-                              withObject:changeArguments.movie
-                              withObject:changeArguments.delegate];
 }
 
 
