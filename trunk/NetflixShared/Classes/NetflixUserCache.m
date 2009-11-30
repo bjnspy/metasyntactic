@@ -6,7 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "NetflixAccountCache.h"
+#import "NetflixUserCache.h"
 
 #import "NetflixAccount.h"
 #import "NetflixNetworking.h"
@@ -14,18 +14,18 @@
 #import "NetflixSiteStatus.h"
 #import "NetflixUser.h"
 
-@implementation NetflixAccountCache
+@implementation NetflixUserCache
 
-static NetflixAccountCache* cache;
+static NetflixUserCache* cache;
 
 + (void) initialize {
-  if (self == [NetflixAccountCache class]) {
-    cache = [[NetflixAccountCache alloc] init];
+  if (self == [NetflixUserCache class]) {
+    cache = [[NetflixUserCache alloc] init];
   }
 }
 
 
-+ (NetflixAccountCache*) cache {
++ (NetflixUserCache*) cache {
   return cache;
 }
 

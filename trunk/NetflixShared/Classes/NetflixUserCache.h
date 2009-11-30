@@ -6,11 +6,11 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-@interface NetflixAccountCache : NSObject {
+@interface NetflixUserCache : NSObject {
 
 }
 
-+ (NetflixAccountCache*) cache;
++ (NetflixUserCache*) cache;
 
 - (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
 - (NetflixUser*) userForAccount:(NetflixAccount*) account;
