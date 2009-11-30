@@ -15,9 +15,11 @@
 #import "Controller.h"
 
 #import "Application.h"
+#import "BlurayCache.h"
 #import "BoxOfficeSharedApplication.h"
 #import "CacheUpdater.h"
 #import "DataProvider.h"
+#import "DVDCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "UpcomingCache.h"
@@ -129,8 +131,8 @@ static Controller* controller = nil;
 
 
 - (void) updateDVDCache {
-  [self.model.dvdCache update];
-  [self.model.blurayCache update];
+  [[DVDCache cache] update];
+  [[BlurayCache cache] update];
 }
 
 

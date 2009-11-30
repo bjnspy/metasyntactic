@@ -29,60 +29,60 @@
 @synthesize dvdViewController;
 
 - (void) dealloc {
-    self.dvdViewController = nil;
-
-    [super dealloc];
+  self.dvdViewController = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) setupTitle {
-    if (self.model.dvdMoviesShowOnlyBluray) {
-        self.title = LocalizedString(@"Blu-ray", nil);
-    } else {
-        self.title = LocalizedString(@"DVD", nil);
-    }
+  if (self.model.dvdMoviesShowOnlyBluray) {
+    self.title = LocalizedString(@"Blu-ray", nil);
+  } else {
+    self.title = LocalizedString(@"DVD", nil);
+  }
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.tabBarItem.image = BoxOfficeStockImage(@"DVD.png");
-        [self setupTitle];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.tabBarItem.image = BoxOfficeStockImage(@"DVD.png");
+    [self setupTitle];
+  }
+  
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    if (dvdViewController == nil) {
-        self.dvdViewController = [[[DVDViewController alloc] init] autorelease];
-        [self pushViewController:dvdViewController animated:NO];
-    }
+  [super loadView];
+  
+  if (dvdViewController == nil) {
+    self.dvdViewController = [[[DVDViewController alloc] init] autorelease];
+    [self pushViewController:dvdViewController animated:NO];
+  }
 }
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.dvdCache.movies) {
-        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            return movie;
-        }
+  for (Movie* movie in [[DVDCache cache] movies]) {
+    if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+      return movie;
     }
-
-    return [super movieForTitle:canonicalTitle];
+  }
+  
+  return [super movieForTitle:canonicalTitle];
 }
 
 
 - (void) majorRefresh {
-    [self setupTitle];
-    [super majorRefresh];
+  [self setupTitle];
+  [super majorRefresh];
 }
 
 @end

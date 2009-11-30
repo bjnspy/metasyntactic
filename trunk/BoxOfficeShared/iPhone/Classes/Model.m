@@ -44,8 +44,6 @@
 
 @interface Model()
 @property (retain) UserLocationCache* userLocationCache;
-@property (retain) BlurayCache* blurayCache;
-@property (retain) DVDCache* dvdCache;
 @property (retain) PersonPosterCache* personPosterCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
@@ -109,8 +107,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize isSearchDateTodayData;
 
 @synthesize userLocationCache;
-@synthesize blurayCache;
-@synthesize dvdCache;
 @synthesize personPosterCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
@@ -129,8 +125,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.isSearchDateTodayData = nil;
 
   self.userLocationCache = nil;
-  self.blurayCache = nil;
-  self.dvdCache = nil;
   self.personPosterCache = nil;
   self.posterCache = nil;
   self.largePosterCache = nil;
@@ -275,8 +269,6 @@ static Model* model = nil;
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
     self.trailerCache = [TrailerCache cache];
-    self.blurayCache = [BlurayCache cache];
-    self.dvdCache = [DVDCache cache];
     self.posterCache = [PosterCache cache];
     self.scoreCache = [ScoreCache cache];
     self.internationalDataCache = [InternationalDataCache cache];
@@ -832,6 +824,16 @@ static Model* model = nil;
 }
 
 
+- (DVDCache*) dvdCache {
+  return [DVDCache cache];
+}
+
+
+- (BlurayCache*) blurayCache {
+  return [BlurayCache cache];
+}
+
+
 - (void) addBookmark:(Movie*) movie {
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set addObject:movie.canonicalTitle];
@@ -839,8 +841,8 @@ static Model* model = nil;
 
   [dataProvider addBookmark:movie.canonicalTitle];
   [self.upcomingCache addBookmark:movie.canonicalTitle];
-  [dvdCache addBookmark:movie.canonicalTitle];
-  [blurayCache addBookmark:movie.canonicalTitle];
+  [self.dvdCache addBookmark:movie.canonicalTitle];
+  [self.blurayCache addBookmark:movie.canonicalTitle];
 }
 
 
@@ -851,8 +853,8 @@ static Model* model = nil;
 
   [dataProvider removeBookmark:movie.canonicalTitle];
   [self.upcomingCache removeBookmark:movie.canonicalTitle];
-  [dvdCache removeBookmark:movie.canonicalTitle];
-  [blurayCache removeBookmark:movie.canonicalTitle];
+  [self.dvdCache removeBookmark:movie.canonicalTitle];
+  [self.blurayCache removeBookmark:movie.canonicalTitle];
 }
 
 
@@ -1115,12 +1117,12 @@ static Model* model = nil;
 
 
 - (DVD*) dvdDetailsForMovie:(Movie*) movie {
-  DVD* dvd = [dvdCache detailsForMovie:movie];
+  DVD* dvd = [self.dvdCache detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
 
-  dvd = [blurayCache detailsForMovie:movie];
+  dvd = [self.blurayCache detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }

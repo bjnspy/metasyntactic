@@ -40,11 +40,11 @@
   NSMutableArray* result = [NSMutableArray array];
 
   if (self.model.dvdMoviesShowDVDs) {
-    [result addObjectsFromArray:self.model.dvdCache.movies];
+    [result addObjectsFromArray:[[DVDCache cache] movies]];
   }
 
   if (self.model.dvdMoviesShowBluray) {
-    [result addObjectsFromArray:self.model.blurayCache.movies];
+    [result addObjectsFromArray:[[BlurayCache cache] movies]];
   }
 
   return result;

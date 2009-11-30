@@ -57,8 +57,8 @@
     self.movies = model.movies;
     self.theaters = model.theaters;
     self.upcomingMovies = [[UpcomingCache cache] movies];
-    self.dvds = model.dvdCache.movies;
-    self.bluray = model.blurayCache.movies;
+    self.dvds = [[DVDCache cache] movies];
+    self.bluray = [[BlurayCache cache] movies];
     self.account = model.currentNetflixAccount;
   }
 
