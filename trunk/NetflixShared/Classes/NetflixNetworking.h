@@ -22,4 +22,9 @@
 + (NSURLRequest*) createGetURLRequest:(NSString*) address account:(NetflixAccount*) account;
 + (NSURLRequest*) createDeleteURLRequest:(NSString*) address account:(NetflixAccount*) account;
 
++ (XmlElement*) downloadXml:(NSURLRequest*) request
+                    account:(NetflixAccount*) account
+                   response:(NSHTTPURLResponse**) response
+                  outOfDate:(BOOL*) outOfDate;
+
 @end

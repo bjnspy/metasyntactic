@@ -269,7 +269,7 @@ static NSDictionary* availabilityMap = nil;
 
 + (NSString*) extractErrorMessage:(XmlElement*) element {
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
-  if (statusCode == 412) {
+  if (statusCode == [NetflixConstants etagMismatchError]) {
     // override this error message since the netflix message is very confusing.
     return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
   }

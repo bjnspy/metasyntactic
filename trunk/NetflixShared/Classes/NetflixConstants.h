@@ -16,6 +16,8 @@
 
 }
 
++ (NSInteger) etagMismatchError;
+
 + (NSString*) titleKey;
 + (NSString*) seriesKey;
 + (NSString*) averageRatingKey;

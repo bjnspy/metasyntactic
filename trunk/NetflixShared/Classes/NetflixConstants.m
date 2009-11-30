@@ -17,6 +17,11 @@
 
 @implementation NetflixConstants
 
++ (NSInteger) etagMismatchError {
+  return 412;
+}
+
+
 + (NSString*) titleKey {
   return @"title";
 }

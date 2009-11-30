@@ -16,6 +16,8 @@
 
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
+#import "NetflixConstants.h"
+#import "NetflixSiteStatus.h"
 
 @implementation NetflixNetworking
 
@@ -82,6 +84,30 @@
   [request prepare];
 
   return request;
+}
+
+
++ (void) checkForEtagMismatch:(NetflixAccount*) account
+                      element:(XmlElement*) element
+                    outOfDate:(BOOL*) outOfDate {
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
+  
+  if (outOfDate != NULL) {
+    *outOfDate = (statusCode == [NetflixConstants etagMismatchError]);
+  }
+}
+
+
++ (XmlElement*) downloadXml:(NSURLRequest*) request
+                    account:(NetflixAccount*) account
+                   response:(NSHTTPURLResponse**) response
+                  outOfDate:(BOOL*) outOfDate {
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request response:response];
+  
+  [self checkForEtagMismatch:account element:element outOfDate:outOfDate];
+  [[NetflixSiteStatus status] checkApiResult:element];
+  
+  return element;
 }
 
 @end
