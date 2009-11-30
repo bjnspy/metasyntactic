@@ -171,6 +171,11 @@ typedef enum {
 }
 
 
+- (NetflixAccountCache*) netflixAccountCache {
+  return [NetflixAccountCache cache];
+}
+
+
 - (void) setupActionsView {
   NSMutableArray* selectors = [NSMutableArray array];
   NSMutableArray* titles = [NSMutableArray array];
@@ -1119,17 +1124,17 @@ typedef enum {
     case InstantQueue:
     case TopOfInstantQueue:
       format = [NetflixConstants instantFormat];
-      queue = [self.netflixCache queueForKey:[NetflixConstants instantQueueKey] account:netflixAccount];
+      queue = [self.netflixAccountCache queueForKey:[NetflixConstants instantQueueKey] account:netflixAccount];
       break;
     case DVDQueue:
     case TopOfDVDQueue:
       format = [NetflixConstants dvdFormat];
-      queue = [self.netflixCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
+      queue = [self.netflixAccountCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
       break;
     case BlurayQueue:
     case TopOfBlurayQueue:
       format = [NetflixConstants blurayFormat];
-      queue = [self.netflixCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
+      queue = [self.netflixAccountCache queueForKey:[NetflixConstants discQueueKey] account:netflixAccount];
       break;
     default:
       return;

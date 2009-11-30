@@ -20,6 +20,7 @@
 #import "MoveMovieArguments.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixChangeRatingDelegate.h"
 #import "NetflixConstants.h"
@@ -32,7 +33,6 @@
 @interface NetflixCache()
 + (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
 
-- (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
 - (NSString*) extractErrorMessage:(XmlElement*) result;
@@ -87,6 +87,11 @@ static MutableNetflixCache* cache;
 }
 
 
+- (NetflixAccountCache*) accountCache {
+  return [NetflixAccountCache cache];
+}
+
+
 - (void) removePresubmitRatingsForMovie:(Movie*) movie {
   movie = [self promoteDiscToSeries:movie];
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
@@ -121,7 +126,7 @@ static MutableNetflixCache* cache;
     toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
                   account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
-  [self saveQueue:queue account:account];
+  [self.accountCache saveQueue:queue account:account];
 
   [ThreadingUtilities foregroundSelector:@selector(modifyFailedWithError:)
                                 onTarget:delegate
@@ -133,7 +138,7 @@ static MutableNetflixCache* cache;
       andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
                                     account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
-  [self saveQueue:queue account:account];
+  [self.accountCache saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(modifySucceeded)
                                 onTarget:delegate];
 }
@@ -143,7 +148,7 @@ static MutableNetflixCache* cache;
     andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate
                                account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
-  [self saveQueue:queue account:account];
+  [self.accountCache saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(addSucceeded)
                                 onTarget:delegate];
 }
@@ -209,7 +214,7 @@ static MutableNetflixCache* cache;
   }
 
   NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", moveArguments.movie.canonicalTitle, finalQueue.etag);
-  [self saveQueue:finalQueue account:moveArguments.account];
+  [self.accountCache saveQueue:finalQueue account:moveArguments.account];
 
   [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
                                 onTarget:moveArguments.delegate
