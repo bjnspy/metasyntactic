@@ -18,6 +18,7 @@
 #import "BookmarkCache.h"
 #import "DataProviderUpdateDelegate.h"
 #import "FavoriteTheater.h"
+#import "FavoriteTheaterCache.h"
 #import "LookupRequest.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -327,7 +328,7 @@
 
 - (void) updateMissingFavorites:(LookupResult*) lookupResult
                      searchDate:(NSDate*) searchDate {
-  NSArray* favoriteTheaters = self.model.favoriteTheatersArray;
+  NSArray* favoriteTheaters = [[FavoriteTheaterCache cache] favoriteTheatersArray];
   if (favoriteTheaters.count == 0) {
     return;
   }

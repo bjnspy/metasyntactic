@@ -14,6 +14,7 @@
 
 #import "Model.h"
 
+#import "FavoriteTheaterCache.h"
 #import "BookmarkCache.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
@@ -47,7 +48,6 @@
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) PersonPosterCache* personPosterCache;
 @property (retain) LargePosterCache* largePosterCache;
-@property (retain) ThreadsafeValue* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
 @property NSInteger cachedScoreProviderIndex;
@@ -64,7 +64,6 @@ static NSString* DVD_BLURAY_DISABLED                        = @"dvdBlurayDisable
 static NSString* DVD_MOVIES_HIDE_BLURAY                     = @"dvdMoviesHideBluray";
 static NSString* DVD_MOVIES_HIDE_DVDS                       = @"dvdMoviesHideDVDs";
 static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX          = @"dvdMoviesSelectedSegmentIndex";
-static NSString* FAVORITE_THEATERS                          = @"favoriteTheaters";
 static NSString* LOADING_INDIACTORS_DISABLED                = @"loadingIndicatorsDisabled";
 static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelectedScopeButtonIndex";
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
@@ -92,7 +91,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
 @synthesize dataProvider;
 
-@synthesize favoriteTheatersData;
 @synthesize isSearchDateTodayData;
 
 @synthesize userLocationCache;
@@ -104,7 +102,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
 - (void) dealloc {
   self.dataProvider = nil;
-  self.favoriteTheatersData = nil;
   self.isSearchDateTodayData = nil;
 
   self.userLocationCache = nil;
@@ -228,8 +225,6 @@ static Model* model = nil;
 
 - (id) init {
   if ((self = [super init])) {
-    self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
-
     [self migrateNetflixAccount];
 
     self.dataProvider = [GoogleDataProvider provider];
@@ -791,66 +786,6 @@ static Model* model = nil;
 }
 
 
-- (NSDictionary*) loadFavoriteTheaters {
-  NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
-  if (array.count == 0) {
-    return [NSDictionary dictionary];
-  }
-
-  NSMutableDictionary* result = [NSMutableDictionary dictionary];
-  for (NSDictionary* dictionary in array) {
-    FavoriteTheater* theater = [FavoriteTheater createWithDictionary:dictionary];
-    [result setObject:theater forKey:theater.name];
-  }
-
-  return result;
-}
-
-
-- (void) saveFavoriteTheaters:(NSDictionary*) favoriteTheaters {
-  NSMutableArray* result = [NSMutableArray array];
-  for (FavoriteTheater* theater in favoriteTheaters.allValues) {
-    [result addObject:theater.dictionary];
-  }
-
-  [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
-}
-
-
-- (NSDictionary*) favoriteTheaters {
-  return favoriteTheatersData.value;
-}
-
-
-- (NSArray*) favoriteTheatersArray {
-  return self.favoriteTheaters.allValues;
-}
-
-
-- (void) addFavoriteTheater:(Theater*) theater {
-  NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
-
-  FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
-                                                  originatingLocation:theater.originatingLocation];
-
-  [dictionary setObject:favoriteTheater forKey:theater.name];
-  favoriteTheatersData.value = dictionary;
-}
-
-
-- (BOOL) isFavoriteTheater:(Theater*) theater {
-  return [self.favoriteTheaters objectForKey:theater.name] != nil;
-}
-
-
-- (void) removeFavoriteTheater:(Theater*) theater {
-  NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
-  [dictionary removeObjectForKey:theater.name];
-
-  favoriteTheatersData.value = dictionary;
-}
-
-
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
   NSDate* date = movie.releaseDate;
   if (date != nil) {
@@ -1168,7 +1103,7 @@ static Model* model = nil;
   for (Theater* theater in theaters) {
     double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
 
-    if ([self isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
+    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
       [result addObject:theater];
     }
   }

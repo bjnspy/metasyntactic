@@ -15,6 +15,7 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
+#import "FavoriteTheaterCache.h"
 #import "BoxOfficeStockImages.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -57,15 +58,15 @@
 
 
 - (void) setFavoriteImage {
-  favoriteButton.selected = [self.model isFavoriteTheater:theater];
+  favoriteButton.selected = [[FavoriteTheaterCache cache] isFavoriteTheater:theater];
 }
 
 
 - (void) switchFavorite:(id) sender {
-  if ([self.model isFavoriteTheater:theater]) {
-    [self.model removeFavoriteTheater:theater];
+  if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
+    [[FavoriteTheaterCache cache] removeFavoriteTheater:theater];
   } else {
-    [self.model addFavoriteTheater:theater];
+    [[FavoriteTheaterCache cache] addFavoriteTheater:theater];
   }
 
   [self setFavoriteImage];

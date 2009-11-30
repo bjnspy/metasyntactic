@@ -143,6 +143,8 @@
 		100000000000000000001965 /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000195C /* LookupResult.m */; };
 		7413151610C45CA00022D074 /* BookmarkCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7413151410C45CA00022D074 /* BookmarkCache.h */; };
 		7413151710C45CA00022D074 /* BookmarkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413151510C45CA00022D074 /* BookmarkCache.m */; };
+		7413155C10C472E70022D074 /* FavoriteTheaterCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7413155A10C472E70022D074 /* FavoriteTheaterCache.h */; };
+		7413155D10C472E70022D074 /* FavoriteTheaterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413155B10C472E70022D074 /* FavoriteTheaterCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -488,6 +490,8 @@
 		100000000000000000001B3F /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7413151410C45CA00022D074 /* BookmarkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkCache.h; sourceTree = "<group>"; };
 		7413151510C45CA00022D074 /* BookmarkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkCache.m; sourceTree = "<group>"; };
+		7413155A10C472E70022D074 /* FavoriteTheaterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheaterCache.h; sourceTree = "<group>"; };
+		7413155B10C472E70022D074 /* FavoriteTheaterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheaterCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -596,20 +600,22 @@
 				10000000000000000000106F /* Posters */,
 				1000000000000000000011F2 /* Scores */,
 				100000000000000000001774 /* Websites */,
+				7413151410C45CA00022D074 /* BookmarkCache.h */,
 				100000000000000000000EDD /* CacheUpdater.h */,
+				7413155A10C472E70022D074 /* FavoriteTheaterCache.h */,
 				10000000000000000000121B /* HelpCache.h */,
 				100000000000000000001571 /* InternationalDataCache.h */,
 				100000000000000000001764 /* LocalizableStringsCache.h */,
 				1000000000000000000016A2 /* TrailerCache.h */,
 				100000000000000000001730 /* UpcomingCache.h */,
+				7413151510C45CA00022D074 /* BookmarkCache.m */,
 				100000000000000000000DF6 /* CacheUpdater.m */,
+				7413155B10C472E70022D074 /* FavoriteTheaterCache.m */,
 				10000000000000000000121D /* HelpCache.m */,
 				10000000000000000000169C /* InternationalDataCache.m */,
 				100000000000000000001785 /* LocalizableStringsCache.m */,
 				1000000000000000000016A3 /* TrailerCache.m */,
 				100000000000000000001731 /* UpcomingCache.m */,
-				7413151410C45CA00022D074 /* BookmarkCache.h */,
-				7413151510C45CA00022D074 /* BookmarkCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1083,6 +1089,7 @@
 				1000000000000000000006A4 /* AbstractNetflixFilterableViewController.h in Headers */,
 				1000000000000000000010BF /* ProtocolBuffers.h in Headers */,
 				7413151610C45CA00022D074 /* BookmarkCache.h in Headers */,
+				7413155C10C472E70022D074 /* FavoriteTheaterCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1332,6 +1339,7 @@
 				100000000000000000001041 /* PocketFlicksSettingsViewController.m in Sources */,
 				1000000000000000000006A6 /* AbstractNetflixFilterableViewController.m in Sources */,
 				7413151710C45CA00022D074 /* BookmarkCache.m in Sources */,
+				7413155D10C472E70022D074 /* FavoriteTheaterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 
 #import "AllTheatersViewController.h"
 
+#import "FavoriteTheaterCache.h"
 #import "Application.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
@@ -93,7 +94,7 @@
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
   for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
-    if ([self.model isFavoriteTheater:theater]) {
+    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
       [map addObject:theater forKey:[StringUtilities starString]];
       continue;
     }
@@ -170,7 +171,7 @@
 
   NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
   for (Theater* theater in theatersInRange) {
-    if ([self.model isFavoriteTheater:theater]) {
+    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
       [map addObject:theater forKey:favorites];
       continue;
     }
