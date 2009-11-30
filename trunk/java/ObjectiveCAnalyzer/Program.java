@@ -625,7 +625,7 @@ public class Program {
       }
     }
 
-    final Map<String, String> hashingMap = new LinkedHashMap<String, String>();
+    final Map<String, String> hashingMap = new TreeMap<String, String>();
     BigInteger current = new BigInteger(new byte[]{
         0x10, 0, 0, 0,
         0, 0, 0, 0,
@@ -650,6 +650,7 @@ public class Program {
 
       final String hash = current.toString(16).toUpperCase();
       hashingMap.put(hah.hash, hash);
+
       current = current.add(BigInteger.ONE);
 
       lastHah = hah;
