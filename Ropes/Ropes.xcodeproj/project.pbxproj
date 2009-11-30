@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100000000000000000000DCF /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DCE /* NSString+Utilities.h */; };
-		100000000000000000000DD1 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DD0 /* NSString+Utilities.m */; };
+		100000000000000000000DCB /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DCA /* NSString+Utilities.h */; };
+		100000000000000000000DCD /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DCC /* NSString+Utilities.m */; };
 		100000000000000000001569 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001568 /* TestRunner.m */; };
 		100000000000000000001940 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000193F /* libRopes.a */; };
 		1000000000000000000007B0 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000007AF /* Concatenation.h */; };
@@ -54,8 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		100000000000000000000DCE /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
-		100000000000000000000DD0 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
+		100000000000000000000DCA /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000000DCC /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		1000000000000000000007A7 /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		100000000000000000001568 /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
 		1000000000000000000011AD /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,7 +152,7 @@
 				100000000000000000000B1A /* Inserter.h */,
 				100000000000000000000B43 /* Iterator.h */,
 				100000000000000000000BDC /* Leaf.h */,
-				100000000000000000000DCE /* NSString+Utilities.h */,
+				100000000000000000000DCA /* NSString+Utilities.h */,
 				100000000000000000001111 /* Rebalancer.h */,
 				10000000000000000000119D /* Rope.h */,
 				1000000000000000000011A1 /* RopeEqualityChecker.h */,
@@ -161,7 +161,7 @@
 				100000000000000000000B1C /* Inserter.m */,
 				100000000000000000000B47 /* Iterator.m */,
 				100000000000000000000BDE /* Leaf.m */,
-				100000000000000000000DD0 /* NSString+Utilities.m */,
+				100000000000000000000DCC /* NSString+Utilities.m */,
 				100000000000000000001113 /* Rebalancer.m */,
 				10000000000000000000119F /* Rope.m */,
 				1000000000000000000011A3 /* RopeEqualityChecker.m */,
@@ -208,7 +208,7 @@
 				100000000000000000000B45 /* Iterator.h in Headers */,
 				100000000000000000000C81 /* Macros.h in Headers */,
 				1000000000000000000011A6 /* RopeTests.h in Headers */,
-				100000000000000000000DCF /* NSString+Utilities.h in Headers */,
+				100000000000000000000DCB /* NSString+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +343,7 @@
 				100000000000000000000B1D /* Inserter.m in Sources */,
 				1000000000000000000011A4 /* RopeEqualityChecker.m in Sources */,
 				100000000000000000000B49 /* Iterator.m in Sources */,
-				100000000000000000000DD1 /* NSString+Utilities.m in Sources */,
+				100000000000000000000DCD /* NSString+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
