@@ -23,9 +23,7 @@ enum ViewControllerType {
 @private
   UserLocationCache* userLocationCache;
   PersonPosterCache* personPosterCache;
-  PosterCache* posterCache;
   LargePosterCache* largePosterCache;
-  ScoreCache* scoreCache;
 
   id<DataProvider> dataProvider;
 
@@ -33,7 +31,6 @@ enum ViewControllerType {
   NSNumber* isSearchDateTodayData;
 
   // Accessed from multiple threads.  Needs lock.
-  ThreadsafeValue*/*NSSet*/ bookmarkedTitlesData;
   ThreadsafeValue*/*NSDictionary*/ favoriteTheatersData;
 
   NSInteger cachedScoreProviderIndex;
@@ -44,9 +41,7 @@ enum ViewControllerType {
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
 @property (readonly, retain) PersonPosterCache* personPosterCache;
-@property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;
-@property (readonly, retain) ScoreCache* scoreCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
@@ -210,20 +205,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context);
 - (BOOL) isFavoriteTheater:(Theater*) theater;
 - (void) addFavoriteTheater:(Theater*) theater;
 - (void) removeFavoriteTheater:(Theater*) theater;
-
-- (NSSet*) bookmarkedTitles;
-- (BOOL) isBookmarked:(Movie*) movie;
-- (void) addBookmark:(Movie*) movie;
-- (void) removeBookmark:(Movie*) movie;
-
-- (NSArray*) bookmarkedMovies;
-- (NSArray*) bookmarkedUpcoming;
-- (NSArray*) bookmarkedDVD;
-- (NSArray*) bookmarkedBluray;
-- (void) setBookmarkedMovies:(NSArray*) array;
-- (void) setBookmarkedUpcoming:(NSArray*) array;
-- (void) setBookmarkedDVD:(NSArray*) array;
-- (void) setBookmarkedBluray:(NSArray*) array;
 
 - (NSString*) noInformationFound;
 

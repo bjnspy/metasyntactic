@@ -15,6 +15,7 @@
 #import "UpcomingCache.h"
 
 #import "Application.h"
+#import "BookmarkCache.h"
 #import "CacheUpdater.h"
 #import "Model.h"
 
@@ -92,6 +93,11 @@ static UpcomingCache* cache;
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -231,7 +237,7 @@ static UpcomingCache* cache;
 
 
 - (NSMutableDictionary*) loadBookmarks {
-  NSArray* movies = [self.model bookmarkedUpcoming];
+  NSArray* movies = [self.bookmarkCache bookmarkedUpcoming];
   if (movies.count == 0) {
     return [NSMutableDictionary dictionary];
   }
@@ -246,7 +252,7 @@ static UpcomingCache* cache;
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.model setBookmarkedUpcoming:bookmarks.allValues];
+  [self.bookmarkCache setBookmarkedUpcoming:bookmarks.allValues];
 }
 
 
@@ -302,7 +308,7 @@ static UpcomingCache* cache;
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in movies) {
-    if ([self.model isBookmarked:movie]) {
+    if ([self.bookmarkCache isBookmarked:movie]) {
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }

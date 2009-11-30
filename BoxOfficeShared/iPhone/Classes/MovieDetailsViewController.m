@@ -15,6 +15,7 @@
 #import "MovieDetailsViewController.h"
 
 #import "Application.h"
+#import "BookmarkCache.h"
 #import "BoxOfficeStockImages.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
@@ -113,6 +114,11 @@ typedef enum {
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -395,17 +401,17 @@ typedef enum {
 
 
 - (BOOL) isBookmarked {
-  return [self.model isBookmarked:movie];
+  return [self.bookmarkCache isBookmarked:movie];
 }
 
 
 - (void) addBookmark {
-  [self.model addBookmark:movie];
+  [self.bookmarkCache addBookmark:movie];
 }
 
 
 - (void) removeBookmark {
-  [self.model removeBookmark:movie];
+  [self.bookmarkCache removeBookmark:movie];
 }
 
 

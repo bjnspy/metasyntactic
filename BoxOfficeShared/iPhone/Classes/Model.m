@@ -14,6 +14,7 @@
 
 #import "Model.h"
 
+#import "BookmarkCache.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "AmazonCache.h"
@@ -45,10 +46,7 @@
 @interface Model()
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) PersonPosterCache* personPosterCache;
-@property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
-@property (retain) ScoreCache* scoreCache;
-@property (retain) ThreadsafeValue* bookmarkedTitlesData;
 @property (retain) ThreadsafeValue* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
@@ -62,11 +60,6 @@
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX        = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                       = @"autoUpdateLocation";
-static NSString* BOOKMARKED_BLURAY                          = @"bookmarkedBluray";
-static NSString* BOOKMARKED_DVD                             = @"bookmarkedDVD";
-static NSString* BOOKMARKED_MOVIES                          = @"bookmarkedMovies";
-static NSString* BOOKMARKED_TITLES                          = @"bookmarkedTitles";
-static NSString* BOOKMARKED_UPCOMING                        = @"bookmarkedUpcoming";
 static NSString* DVD_BLURAY_DISABLED                        = @"dvdBlurayDisabled";
 static NSString* DVD_MOVIES_HIDE_BLURAY                     = @"dvdMoviesHideBluray";
 static NSString* DVD_MOVIES_HIDE_DVDS                       = @"dvdMoviesHideDVDs";
@@ -99,30 +92,24 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
 @synthesize dataProvider;
 
-@synthesize bookmarkedTitlesData;
 @synthesize favoriteTheatersData;
 @synthesize isSearchDateTodayData;
 
 @synthesize userLocationCache;
 @synthesize personPosterCache;
-@synthesize posterCache;
 @synthesize largePosterCache;
-@synthesize scoreCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 @synthesize netflixAccountsData;
 
 - (void) dealloc {
   self.dataProvider = nil;
-  self.bookmarkedTitlesData = nil;
   self.favoriteTheatersData = nil;
   self.isSearchDateTodayData = nil;
 
   self.userLocationCache = nil;
   self.personPosterCache = nil;
-  self.posterCache = nil;
   self.largePosterCache = nil;
-  self.scoreCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
 
@@ -142,16 +129,6 @@ static Model* model = nil;
 
 + (Model*) model {
   return model;
-}
-
-
-+ (void) saveMovies:(NSArray*) movies key:(NSString*) key {
-  NSMutableArray* encoded = [NSMutableArray array];
-  for (Movie* movie in movies) {
-    [encoded addObject:movie.dictionary];
-  }
-
-  [[NSUserDefaults standardUserDefaults] setObject:encoded forKey:key];
 }
 
 
@@ -251,7 +228,6 @@ static Model* model = nil;
 
 - (id) init {
   if ((self = [super init])) {
-    self.bookmarkedTitlesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarkedTitles) saveSelector:@selector(saveBookmarkedTitles:)];
     self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
 
     [self migrateNetflixAccount];
@@ -259,8 +235,6 @@ static Model* model = nil;
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
-    self.posterCache = [PosterCache cache];
-    self.scoreCache = [ScoreCache cache];
 
     [self clearCaches];
 
@@ -295,6 +269,16 @@ static Model* model = nil;
 
 - (InternationalDataCache*) internationalDataCache {
   return [InternationalDataCache cache];
+}
+
+
+- (ScoreCache*) scoreCache {
+  return [ScoreCache cache];
+}
+
+
+- (PosterCache*) posterCache {
+  return [PosterCache cache];
 }
 
 
@@ -807,109 +791,6 @@ static Model* model = nil;
 }
 
 
-- (NSSet*) loadBookmarkedTitles {
-  NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
-  if (array.count == 0) {
-    return [NSMutableSet set];
-  }
-
-  return [NSSet setWithArray:array];
-}
-
-
-- (void) saveBookmarkedTitles:(NSSet*) bookmarkedTitles {
-  [[NSUserDefaults standardUserDefaults] setObject:bookmarkedTitles.allObjects forKey:BOOKMARKED_TITLES];
-}
-
-
-- (NSSet*) bookmarkedTitles {
-  return bookmarkedTitlesData.value;
-}
-
-
-- (BOOL) isBookmarked:(Movie*) movie {
-  return [self.bookmarkedTitles containsObject:movie.canonicalTitle];
-}
-
-
-- (void) addBookmark:(Movie*) movie {
-  NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
-  [set addObject:movie.canonicalTitle];
-  bookmarkedTitlesData.value = set;
-
-  [dataProvider addBookmark:movie.canonicalTitle];
-  [self.upcomingCache addBookmark:movie.canonicalTitle];
-  [self.dvdCache addBookmark:movie.canonicalTitle];
-  [self.blurayCache addBookmark:movie.canonicalTitle];
-}
-
-
-- (void) removeBookmark:(Movie*) movie {
-  NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
-  [set removeObject:movie.canonicalTitle];
-  bookmarkedTitlesData.value = set;
-
-  [dataProvider removeBookmark:movie.canonicalTitle];
-  [self.upcomingCache removeBookmark:movie.canonicalTitle];
-  [self.dvdCache removeBookmark:movie.canonicalTitle];
-  [self.blurayCache removeBookmark:movie.canonicalTitle];
-}
-
-
-- (NSArray*) bookmarkedItems:(NSString*) key {
-  NSArray* array = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-  if (array.count == 0) {
-    return [NSArray array];
-  }
-
-  NSMutableArray* result = [NSMutableArray array];
-  for (NSDictionary* dictionary in array) {
-    [result addObject:[Movie createWithDictionary:dictionary]];
-  }
-  return result;
-}
-
-
-- (NSArray*) bookmarkedMovies {
-  return [self bookmarkedItems:BOOKMARKED_MOVIES];
-}
-
-
-- (NSArray*) bookmarkedUpcoming {
-  return [self bookmarkedItems:BOOKMARKED_UPCOMING];
-}
-
-
-- (NSArray*) bookmarkedDVD {
-  return [self bookmarkedItems:BOOKMARKED_DVD];
-}
-
-
-- (NSArray*) bookmarkedBluray {
-  return [self bookmarkedItems:BOOKMARKED_BLURAY];
-}
-
-
-- (void) setBookmarkedMovies:(NSArray*) array {
-  [Model saveMovies:array key:BOOKMARKED_MOVIES];
-}
-
-
-- (void) setBookmarkedUpcoming:(NSArray*) array {
-  [Model saveMovies:array key:BOOKMARKED_UPCOMING];
-}
-
-
-- (void) setBookmarkedDVD:(NSArray*) array {
-  [Model saveMovies:array key:BOOKMARKED_DVD];
-}
-
-
-- (void) setBookmarkedBluray:(NSArray*) array {
-  [Model saveMovies:array key:BOOKMARKED_BLURAY];
-}
-
-
 - (NSDictionary*) loadFavoriteTheaters {
   NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
   if (array.count == 0) {
@@ -1149,7 +1030,7 @@ static Model* model = nil;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [posterCache posterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [self.posterCache posterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }
@@ -1159,7 +1040,7 @@ static Model* model = nil;
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [posterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [self.posterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }
@@ -1354,13 +1235,11 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     return NSOrderedSame;
   }
 
-  Model* model = context;
-
   Movie* movie1 = t1;
   Movie* movie2 = t2;
 
-  BOOL movie1Bookmarked = [model isBookmarked:movie1];
-  BOOL movie2Bookmarked = [model isBookmarked:movie2];
+  BOOL movie1Bookmarked = [[BookmarkCache cache] isBookmarked:movie1];
+  BOOL movie2Bookmarked = [[BookmarkCache cache] isBookmarked:movie2];
 
   if (movie1Bookmarked && !movie2Bookmarked) {
     return NSOrderedAscending;
@@ -1414,17 +1293,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (Score*) scoreForMovie:(Movie*) movie {
-  return [scoreCache scoreForMovie:movie];
+  return [self.scoreCache scoreForMovie:movie];
 }
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-  return [scoreCache rottenTomatoesScoreForMovie:movie];
+  return [self.scoreCache rottenTomatoesScoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-  return [scoreCache metacriticScoreForMovie:movie];
+  return [self.scoreCache metacriticScoreForMovie:movie];
 }
 
 
@@ -1504,7 +1383,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-  return [scoreCache reviewsForMovie:movie];
+  return [self.scoreCache reviewsForMovie:movie];
 }
 
 

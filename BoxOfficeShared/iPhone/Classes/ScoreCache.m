@@ -30,6 +30,19 @@
 
 @implementation ScoreCache
 
+static ScoreCache* cache;
+
++ (void) initialize {
+  if (self == [ScoreCache class]) {
+    cache = [[ScoreCache alloc] init];
+  }
+}
+
+
++ (ScoreCache*) cache {
+  return cache;
+}
+
 @synthesize rottenTomatoesScoreProvider;
 @synthesize metacriticScoreProvider;
 @synthesize googleScoreProvider;
@@ -61,11 +74,6 @@
 
 - (Model*) model {
   return [Model model];
-}
-
-
-+ (ScoreCache*) cache {
-  return [[[ScoreCache alloc] init] autorelease];
 }
 
 

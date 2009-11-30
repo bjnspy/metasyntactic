@@ -116,13 +116,12 @@ static CacheUpdater* cacheUpdater = nil;
     [NotificationCenter addNotification:movie.canonicalTitle];
   }
 
-  Model* model = self.model;
-  [model.posterCache       processMovie:movie force:force];
+  [[PosterCache cache]     processMovie:movie force:force];
   [[NetflixCache cache]    processMovie:movie force:force];
   [[UpcomingCache cache]   processMovie:movie force:force];
   [[DVDCache cache]        processMovie:movie force:force];
   [[BlurayCache cache]     processMovie:movie force:force];
-  [model.scoreCache        processMovie:movie force:force];
+  [[ScoreCache cache]      processMovie:movie force:force];
   [[TrailerCache cache]    processMovie:movie force:force];
   [[IMDbCache cache]       processMovie:movie force:force];
   [[AmazonCache cache]     processMovie:movie force:force];
@@ -196,7 +195,7 @@ static CacheUpdater* cacheUpdater = nil;
   }
   [gate unlock];
 
-  [self.model.posterCache processMovie:movie force:NO];
+  [[PosterCache cache] processMovie:movie force:NO];
 }
 
 

@@ -24,6 +24,7 @@
 #import "InternationalDataCache.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "ScoreCache.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
 
@@ -123,7 +124,7 @@ static Controller* controller = nil;
 
 
 - (void) updateScoreCache {
-  [self.model.scoreCache update];
+  [[ScoreCache cache] update];
 }
 
 

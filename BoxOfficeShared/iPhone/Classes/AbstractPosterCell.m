@@ -14,6 +14,7 @@
 
 #import "AbstractPosterCell.h"
 
+#import "BookmarkCache.h"
 #import "CacheUpdater.h"
 #import "Model.h"
 
@@ -38,6 +39,11 @@
 
 - (Model*) model {
   return [Model model];
+}
+
+
+- (BookmarkCache*) bookmarkCache {
+  return [BookmarkCache cache];
 }
 
 
@@ -114,7 +120,7 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-  if ([self.model isBookmarked:movie_]) {
+  if ([self.bookmarkCache isBookmarked:movie_]) {
     titleLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie_.displayTitle];
   } else {
     titleLabel.text = movie_.displayTitle;
