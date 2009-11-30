@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		100000000000001300000036 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000035 /* NSString+Utilities.h */; };
 		100000000000001300000038 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000037 /* NSString+Utilities.m */; };
-		100000000000001900000141 /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000140 /* TestRunner.m */; };
+		10000000000000190000013D /* TestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013C /* TestRunner.m */; };
 		100000000000002900000048 /* libRopes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000002900000047 /* libRopes.a */; };
 		100000000000000900000129 /* Concatenation.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000900000128 /* Concatenation.h */; };
 		10000000000000090000012B /* Concatenation.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000012A /* Concatenation.m */; };
@@ -57,7 +57,7 @@
 		100000000000001300000035 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		100000000000001300000037 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000900000120 /* CommandLineRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineRunner; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000001900000140 /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
+		10000000000000190000013C /* TestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRunner.m; sourceTree = "<group>"; };
 		1000000000000017000000A9 /* RopesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1000000000000017000000A8 /* RopesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RopesTests-Info.plist"; sourceTree = "<group>"; };
 		100000000000000900000128 /* Concatenation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concatenation.h; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				100000000000000C000000A7 /* Frameworks */,
 				10000000000000140000003F /* Other Sources */,
 				1000000000000015000001D2 /* Products */,
-				100000000000001900000147 /* Tests */,
+				100000000000001900000143 /* Tests */,
 				1000000000000017000000A8 /* RopesTests-Info.plist */,
 			);
 			name = Ropes;
@@ -179,12 +179,12 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		100000000000001900000147 /* Tests */ = {
+		100000000000001900000143 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000017000000A1 /* RopeTests.h */,
 				1000000000000017000000A3 /* RopeTests.m */,
-				100000000000001900000140 /* TestRunner.m */,
+				10000000000000190000013C /* TestRunner.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -319,7 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000001900000141 /* TestRunner.m in Sources */,
+				10000000000000190000013D /* TestRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
