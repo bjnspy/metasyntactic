@@ -28,7 +28,7 @@ public class Program {
   private Program() {
   }
 
-  public static void main(final String... args)
+  public static void main1(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       stringsFiles = new ArrayList<File>();
@@ -39,7 +39,7 @@ public class Program {
     //generateAndroidFiles();
   }
 
-  public static void main1(final String... args)
+  public static void main(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       findProjectFiles(new File(arg));
