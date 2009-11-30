@@ -395,7 +395,7 @@
 }
 
 
-- (Movie*) seriesForDisc:(Movie*) movie {
++ (Movie*) seriesForDisc:(Movie*) movie {
   NSDictionary* dictionary =
     [FileUtilities readObject:
      [NetflixPaths seriesFile:[movie.additionalFields objectForKey:[NetflixConstants seriesKey]]]];
@@ -407,7 +407,7 @@
 }
 
 
-- (Movie*) promoteDiscToSeries:(Movie*) disc {
++ (Movie*) promoteDiscToSeries:(Movie*) disc {
   Movie* series = [self seriesForDisc:disc];
   if (series == nil) {
     return disc;
@@ -666,7 +666,7 @@
 
 - (NSArray*) castForMovie:(Movie*) movie {
   movie = [self correspondingNetflixMovie:movie];
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
   return [details objectForKey:[NetflixConstants castKey]];
 }
@@ -674,7 +674,7 @@
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
   movie = [self correspondingNetflixMovie:movie];
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
   return [details objectForKey:[NetflixConstants directorsKey]];
 }
@@ -682,7 +682,7 @@
 
 - (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
   movie = [self correspondingNetflixMovie:movie];
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
 
   NSString* rating = [FileUtilities readObject:[NetflixPaths predictedRatingsFile:movie account:account]];
   if (rating.length > 0) {
@@ -695,7 +695,7 @@
 
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
   movie = [self correspondingNetflixMovie:movie];
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
 
   return [FileUtilities readObject:[NetflixPaths userRatingsFile:movie account:account]];
 }
@@ -713,7 +713,7 @@
     return result;
   }
 
-  Movie* series = [self promoteDiscToSeries:movie];
+  Movie* series = [NetflixCache promoteDiscToSeries:movie];
   if (series != movie) {
     return [self formatsForMovie:series];
   }
@@ -747,7 +747,7 @@
     return [NSArray array];
   }
 
-  movie = [self promoteDiscToSeries:movie];
+  movie = [NetflixCache promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
   return [Movie decodeArray:[details objectForKey:[NetflixConstants similarsKey]]];
 }
@@ -761,7 +761,7 @@
 
 - (NSString*) synopsisForMovieWorker:(Movie*) movie {
   NSString* discSynopsis = [self synopsisForMovieDetails:movie];
-  NSString* seriesSynopsis = [self synopsisForMovieDetails:[self seriesForDisc:movie]];
+  NSString* seriesSynopsis = [self synopsisForMovieDetails:[NetflixCache seriesForDisc:movie]];
 
   if (discSynopsis.length == 0) {
     return seriesSynopsis;
