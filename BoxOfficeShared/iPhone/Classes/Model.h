@@ -26,8 +26,6 @@ enum ViewControllerType {
   PosterCache* posterCache;
   LargePosterCache* largePosterCache;
   ScoreCache* scoreCache;
-  InternationalDataCache* internationalDataCache;
-  HelpCache* helpCache;
 
   id<DataProvider> dataProvider;
 
@@ -49,8 +47,6 @@ enum ViewControllerType {
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;
 @property (readonly, retain) ScoreCache* scoreCache;
-@property (readonly, retain) InternationalDataCache* internationalDataCache;
-@property (readonly, retain) HelpCache* helpCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
