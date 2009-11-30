@@ -33,8 +33,6 @@
 #import "Queue.h"
 
 @interface NetflixCache()
-+ (Movie*) promoteDiscToSeries:(Movie*) disc;
-
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
 @end
 
