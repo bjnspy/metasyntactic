@@ -15,8 +15,8 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
-#import "FavoriteTheaterCache.h"
 #import "BoxOfficeStockImages.h"
+#import "FavoriteTheaterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "MovieShowtimesCell.h"
