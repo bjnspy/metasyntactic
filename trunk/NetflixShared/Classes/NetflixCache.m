@@ -17,8 +17,9 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixConstants.h"
-#import "NetflixFileSystem.h"
+#import "NetflixPaths.h"
 #import "NetflixNetworking.h"
 #import "NetflixRssCache.h"
 #import "NetflixSharedApplication.h"
@@ -72,7 +73,7 @@
 
 
 + (NSArray*) loadAccountToFeeds:(NetflixAccount*) account {
-  NSArray* array = [FileUtilities readObject:[NetflixFileSystem feedsFile:account]];
+  NSArray* array = [FileUtilities readObject:[NetflixPaths feedsFile:account]];
   return [Feed decodeArray:array];
 }
 
@@ -83,7 +84,7 @@
   }
 
   [FileUtilities writeObject:[Feed encodeArray:feeds]
-                      toFile:[NetflixFileSystem feedsFile:account]];
+                      toFile:[NetflixPaths feedsFile:account]];
 }
 
 
@@ -114,7 +115,7 @@
 
 + (Queue*) loadQueue:(Feed*) feed account:(NetflixAccount*) account {
   NSLog(@"Loading queue: %@", feed.name);
-  NSDictionary* dictionary = [FileUtilities readObject:[NetflixFileSystem queueFile:feed account:account]];
+  NSDictionary* dictionary = [FileUtilities readObject:[NetflixPaths queueFile:feed account:account]];
   if (dictionary.count == 0) {
     return nil;
   }
@@ -173,9 +174,9 @@
   NetflixAccount* account = [NetflixSharedApplication currentNetflixAccount];
   if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
-    [FileUtilities createDirectory:[NetflixFileSystem accountDirectory:account]];
-    [FileUtilities createDirectory:[NetflixFileSystem userRatingsDirectory:account]];
-    [FileUtilities createDirectory:[NetflixFileSystem predictedRatingsDirectory:account]];
+    [FileUtilities createDirectory:[NetflixPaths accountDirectory:account]];
+    [FileUtilities createDirectory:[NetflixPaths userRatingsDirectory:account]];
+    [FileUtilities createDirectory:[NetflixPaths predictedRatingsDirectory:account]];
 
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:force:)
                                             onTarget:self
@@ -222,7 +223,7 @@
 }
 
 
-- (NSArray*) downloadFeeds:(NetflixAccount*) account {
+- (NSArray*) downloadFeedsWorker:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", account.userId];
@@ -262,6 +263,23 @@
 }
 
 
+- (void) downloadFeeds:(NetflixAccount*) account {
+  NSArray* feeds = [self downloadFeedsWorker:account];
+  
+  if (feeds.count > 0) {
+    [NetflixCache saveFeeds:feeds account:account];
+    
+    [dataGate lock];
+    {
+      [self.accountToFeeds setObject:feeds forKey:account.userId];
+    }
+    [dataGate unlock];
+    
+    [MetasyntacticSharedApplication majorRefresh];
+  }
+}
+
+
 + (void) processMovieItem:(XmlElement*) element
                    movies:(NSMutableArray*) movies
                     saved:(NSMutableArray*) saved {
@@ -290,8 +308,8 @@
 
 - (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account {
   NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.name, queue.etag);
-  [FileUtilities writeObject:queue.dictionary toFile:[NetflixFileSystem queueFile:queue.feed account:account]];
-  [FileUtilities writeObject:queue.etag toFile:[NetflixFileSystem queueEtagFile:queue.feed account:account]];
+  [FileUtilities writeObject:queue.dictionary toFile:[NetflixPaths queueFile:queue.feed account:account]];
+  [FileUtilities writeObject:queue.etag toFile:[NetflixPaths queueEtagFile:queue.feed account:account]];
   [self addQueue:queue account:account];
 }
 
@@ -332,7 +350,7 @@
 
 
 - (BOOL) etagChanged:(Feed*) feed account:(NetflixAccount*) account {
-  NSString* localEtag = [FileUtilities readObject:[NetflixFileSystem queueEtagFile:feed account:account]];
+  NSString* localEtag = [FileUtilities readObject:[NetflixPaths queueEtagFile:feed account:account]];
   if (localEtag.length == 0) {
     return YES;
   }
@@ -350,7 +368,7 @@
   for (XmlElement* child in element.children) {
     if (maxCount >= 0) {
       if ((movies.count + saved.count) > maxCount) {
-        break;
+        return;
       }
     }
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -400,16 +418,15 @@
   if (error != NULL) {
     *error = nil;
   }
-
-  NSArray* parameters = [NSArray arrayWithObjects:
-                         [OARequestParameter parameterWithName:@"expand" value:@"formats"],
-                         [OARequestParameter parameterWithName:@"term" value:query],
-                         [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
-                         nil];
-
-  NSURLRequest* request = [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/titles"
-                                                            parameters:parameters
-                                                               account:account];
+  
+  NSURLRequest* request =
+  [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/titles"
+                              parameters:[NSArray arrayWithObjects:
+                                          [OARequestParameter parameterWithName:@"expand" value:@"formats"],
+                                          [OARequestParameter parameterWithName:@"term" value:query],
+                                          [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
+                                          nil]
+                                 account:account];
 
   XmlElement* element = [self downloadXml:request account:account];
 
@@ -459,7 +476,6 @@
 
   NSMutableArray* movies = [NSMutableArray array];
   NSMutableArray* saved = [NSMutableArray array];
-
   [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
   // Hack.  We get duplicated titles in this feed.  So filter them out.
@@ -564,54 +580,6 @@
 }
 
 
-- (NetflixUser*) userForAccount:(NetflixAccount*) account {
-  if (account == nil) {
-    return nil;
-  }
-
-  NSDictionary* dictionary = [FileUtilities readObject:[NetflixFileSystem userFile:account]];
-  if (dictionary.count == 0) {
-    return nil;
-  }
-  return [NetflixUser createWithDictionary:dictionary];
-}
-
-
-- (NetflixUser*) downloadUserInformation:(NetflixAccount*) account {
-  NSLog(@"NetflixCache:downloadUserInformation");
-
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", account.userId];
-  NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
-
-  XmlElement* element = [self downloadXml:request account:account];
-
-  NSString* firstName = [[element element:@"first_name"] text];
-  NSString* lastName = [[element element:@"last_name"] text];
-  BOOL canInstantWatch = [[[element element:@"can_instant_watch"] text] isEqual:@"true"];
-
-  NSMutableArray* preferredFormats = [NSMutableArray array];
-  for (XmlElement* child in [[element element:@"preferred_formats"] children]) {
-    if ([@"category" isEqual:child.name]) {
-      if ([@"http://api.netflix.com/categories/title_formats" isEqual:[child attributeValue:@"scheme"]]) {
-        NSString* label = [child attributeValue:@"label"];
-        if (label.length > 0) {
-          [preferredFormats addObject:label];
-        }
-      }
-    }
-  }
-
-  if (firstName.length == 0 && lastName.length == 0) {
-    return nil;
-  }
-
-  [FileUtilities createDirectory:[NetflixFileSystem accountDirectory:account]];
-  NetflixUser* user = [NetflixUser userWithFirstName:firstName lastName:lastName canInstantWatch:canInstantWatch preferredFormats:preferredFormats];
-  [FileUtilities writeObject:user.dictionary toFile:[NetflixFileSystem userFile:account]];
-  return user;
-}
-
-
 - (Movie*) downloadMovieWithSeriesKey:(NSString*) seriesKey
                               account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
@@ -632,7 +600,7 @@
     return;
   }
 
-  NSString* file = [NetflixFileSystem seriesFile:seriesKey];
+  NSString* file = [NetflixPaths seriesFile:seriesKey];
   Movie* series;
   if ([FileUtilities fileExists:file]) {
     series = [Movie createWithDictionary:[FileUtilities readObject:file]];
@@ -659,7 +627,7 @@
 - (Movie*) seriesForDisc:(Movie*) movie {
   NSDictionary* dictionary =
     [FileUtilities readObject:
-     [NetflixFileSystem seriesFile:[movie.additionalFields objectForKey:[NetflixConstants seriesKey]]]];
+     [NetflixPaths seriesFile:[movie.additionalFields objectForKey:[NetflixConstants seriesKey]]]];
   if (dictionary == nil) {
     return nil;
   }
@@ -694,8 +662,8 @@
 - (void) updateRatings:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* userRatingsFile = [NetflixFileSystem userRatingsFile:movie account:account];
-  NSString* predictedRatingsFile = [NetflixFileSystem predictedRatingsFile:movie account:account];
+  NSString* userRatingsFile = [NetflixPaths userRatingsFile:movie account:account];
+  NSString* predictedRatingsFile = [NetflixPaths predictedRatingsFile:movie account:account];
 
   if (!force) {
     if ([self tooSoon:predictedRatingsFile] &&
@@ -773,7 +741,7 @@
     }
   }
 
-  NSString* path = [NetflixFileSystem detailsFile:movie];
+  NSString* path = [NetflixPaths detailsFile:movie];
   if ([FileUtilities fileExists:path]) {
     return;
   }
@@ -814,7 +782,7 @@
     return;
   }
 
-  NSString* file = [NetflixFileSystem netflixSearchFile:movie];
+  NSString* file = [NetflixPaths netflixSearchFile:movie];
   Movie* netflixMovie = nil;
   if ([FileUtilities fileExists:file]) {
     netflixMovie = [self correspondingNetflixMovie:movie];
@@ -899,22 +867,8 @@
                                     force:(BOOL) force {
   if (![self canContinue:account]) { return; }
 
-  [self downloadUserInformation:account];
-
-  NSArray* feeds = [self downloadFeeds:account];
-
-  if (feeds.count > 0) {
-    [NetflixCache saveFeeds:feeds account:account];
-
-    [dataGate lock];
-    {
-      [self.accountToFeeds setObject:feeds forKey:account.userId];
-    }
-    [dataGate unlock];
-
-    [MetasyntacticSharedApplication majorRefresh];
-  }
-
+  [[NetflixAccountCache cache] downloadUserInformation:account];
+  [self downloadFeeds:account];
   [self downloadQueues:account force:force];
 
   [[NetflixRssCache cache] update:account];
@@ -934,7 +888,7 @@
 }
 
 - (NSDictionary*) detailsForMovie:(Movie*) movie {
-  return [FileUtilities readObject:[NetflixFileSystem detailsFile:movie]];
+  return [FileUtilities readObject:[NetflixPaths detailsFile:movie]];
 }
 
 
@@ -958,7 +912,7 @@
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
-  NSString* rating = [FileUtilities readObject:[NetflixFileSystem predictedRatingsFile:movie account:account]];
+  NSString* rating = [FileUtilities readObject:[NetflixPaths predictedRatingsFile:movie account:account]];
   if (rating.length > 0) {
     return rating;
   }
@@ -971,7 +925,7 @@
   movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
-  return [FileUtilities readObject:[NetflixFileSystem userRatingsFile:movie account:account]];
+  return [FileUtilities readObject:[NetflixPaths userRatingsFile:movie account:account]];
 }
 
 
@@ -1141,7 +1095,7 @@
     return movie;
   }
 
-  NSString* file = [NetflixFileSystem netflixSearchFile:movie];
+  NSString* file = [NetflixPaths netflixSearchFile:movie];
   NSDictionary* dictionary = [FileUtilities readObject:file];
   if (dictionary.count == 0) {
     return nil;

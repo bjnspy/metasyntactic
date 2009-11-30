@@ -23,9 +23,6 @@
 
 + (NSString*) noInformationFound;
 
-- (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
-- (NetflixUser*) userForAccount:(NetflixAccount*) account;
-
 - (void) update:(BOOL) force;
 
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;

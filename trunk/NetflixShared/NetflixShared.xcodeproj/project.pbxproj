@@ -67,8 +67,10 @@
 		7427FB1B10C34433005DEA7B /* NetflixSiteStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427FB1910C34433005DEA7B /* NetflixSiteStatus.m */; };
 		7427FB8310C34A52005DEA7B /* NetflixNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 7427FB8110C34A52005DEA7B /* NetflixNetworking.h */; };
 		7427FB8410C34A52005DEA7B /* NetflixNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427FB8210C34A52005DEA7B /* NetflixNetworking.m */; };
-		7427FC3E10C355CA005DEA7B /* NetflixFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7427FC3C10C355CA005DEA7B /* NetflixFileSystem.h */; };
-		7427FC3F10C355CA005DEA7B /* NetflixFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427FC3D10C355CA005DEA7B /* NetflixFileSystem.m */; };
+		7427FC3E10C355CA005DEA7B /* NetflixPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 7427FC3C10C355CA005DEA7B /* NetflixPaths.h */; };
+		7427FC3F10C355CA005DEA7B /* NetflixPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427FC3D10C355CA005DEA7B /* NetflixPaths.m */; };
+		7427FCC510C36826005DEA7B /* NetflixAccountCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7427FCC310C36826005DEA7B /* NetflixAccountCache.h */; };
+		7427FCC610C36826005DEA7B /* NetflixAccountCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427FCC410C36826005DEA7B /* NetflixAccountCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,8 +153,10 @@
 		7427FB1910C34433005DEA7B /* NetflixSiteStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSiteStatus.m; sourceTree = "<group>"; };
 		7427FB8110C34A52005DEA7B /* NetflixNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNetworking.h; sourceTree = "<group>"; };
 		7427FB8210C34A52005DEA7B /* NetflixNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNetworking.m; sourceTree = "<group>"; };
-		7427FC3C10C355CA005DEA7B /* NetflixFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixFileSystem.h; sourceTree = "<group>"; };
-		7427FC3D10C355CA005DEA7B /* NetflixFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFileSystem.m; sourceTree = "<group>"; };
+		7427FC3C10C355CA005DEA7B /* NetflixPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixPaths.h; sourceTree = "<group>"; };
+		7427FC3D10C355CA005DEA7B /* NetflixPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixPaths.m; sourceTree = "<group>"; };
+		7427FCC310C36826005DEA7B /* NetflixAccountCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountCache.h; sourceTree = "<group>"; };
+		7427FCC410C36826005DEA7B /* NetflixAccountCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,18 +260,20 @@
 				100000000000000000000536 /* Arguments */,
 				100000000000000000000901 /* Delegates */,
 				100000000000000000000E76 /* MutableNetflixCache.h */,
+				7427FCC310C36826005DEA7B /* NetflixAccountCache.h */,
 				100000000000000000000EC0 /* NetflixCache.h */,
 				7427FAE610C34119005DEA7B /* NetflixConstants.h */,
-				7427FC3C10C355CA005DEA7B /* NetflixFileSystem.h */,
 				7427FB8110C34A52005DEA7B /* NetflixNetworking.h */,
+				7427FC3C10C355CA005DEA7B /* NetflixPaths.h */,
 				7427FA6310C33316005DEA7B /* NetflixRssCache.h */,
 				7427FB1810C34433005DEA7B /* NetflixSiteStatus.h */,
 				7427FA6B10C3344A005DEA7B /* NetflixUtilities.h */,
 				100000000000000000000D96 /* MutableNetflixCache.m */,
+				7427FCC410C36826005DEA7B /* NetflixAccountCache.m */,
 				100000000000000000000EC1 /* NetflixCache.m */,
 				7427FAE710C34119005DEA7B /* NetflixConstants.m */,
-				7427FC3D10C355CA005DEA7B /* NetflixFileSystem.m */,
 				7427FB8210C34A52005DEA7B /* NetflixNetworking.m */,
+				7427FC3D10C355CA005DEA7B /* NetflixPaths.m */,
 				7427FA6410C33316005DEA7B /* NetflixRssCache.m */,
 				7427FB1910C34433005DEA7B /* NetflixSiteStatus.m */,
 				7427FA6C10C3344A005DEA7B /* NetflixUtilities.m */,
@@ -392,7 +398,8 @@
 				7427FAE810C34119005DEA7B /* NetflixConstants.h in Headers */,
 				7427FB1A10C34433005DEA7B /* NetflixSiteStatus.h in Headers */,
 				7427FB8310C34A52005DEA7B /* NetflixNetworking.h in Headers */,
-				7427FC3E10C355CA005DEA7B /* NetflixFileSystem.h in Headers */,
+				7427FC3E10C355CA005DEA7B /* NetflixPaths.h in Headers */,
+				7427FCC510C36826005DEA7B /* NetflixAccountCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +487,8 @@
 				7427FAE910C34119005DEA7B /* NetflixConstants.m in Sources */,
 				7427FB1B10C34433005DEA7B /* NetflixSiteStatus.m in Sources */,
 				7427FB8410C34A52005DEA7B /* NetflixNetworking.m in Sources */,
-				7427FC3F10C355CA005DEA7B /* NetflixFileSystem.m in Sources */,
+				7427FC3F10C355CA005DEA7B /* NetflixPaths.m in Sources */,
+				7427FCC610C36826005DEA7B /* NetflixAccountCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

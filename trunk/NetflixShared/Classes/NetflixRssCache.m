@@ -16,7 +16,7 @@
 
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "NetflixFileSystem.h"
+#import "NetflixPaths.h"
 #import "NetflixNetworking.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixSiteStatus.h"
@@ -137,7 +137,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
   for (NSString* key in [mostPopularTitles shuffledArray]) {
     NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-    [FileUtilities createDirectory:[NetflixFileSystem rssFeedDirectory:address]];
+    [FileUtilities createDirectory:[NetflixPaths rssFeedDirectory:address]];
 
     [[OperationQueue operationQueue] performSelector:@selector(downloadRSSFeed:account:)
                                             onTarget:self
@@ -162,7 +162,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
 
 - (void) downloadRSSFeedWorker:(NSString*) address {
-  NSString* file = [NetflixFileSystem rssFile:address];
+  NSString* file = [NetflixPaths rssFile:address];
   if ([FileUtilities fileExists:file]) {
     NSDate* date = [FileUtilities modificationDate:file];
     if (date != nil) {
@@ -201,7 +201,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
                        account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* file = [NetflixFileSystem rssFile:address];
+  NSString* file = [NetflixPaths rssFile:address];
   NSArray* identifiers = [FileUtilities readObject:file];
 
   if (identifiers.count == 0) {
@@ -280,7 +280,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
                   account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
-  NSString* file = [NetflixFileSystem rssMovieFile:identifier address:address];
+  NSString* file = [NetflixPaths rssMovieFile:identifier address:address];
 
   Movie* movie;
   if ([FileUtilities fileExists:file]) {
@@ -304,7 +304,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 - (NSInteger) movieCountForRSSTitle:(NSString*) title {
   NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
 
-  NSString* directory = [NetflixFileSystem rssFeedDirectory:address];
+  NSString* directory = [NetflixPaths rssFeedDirectory:address];
   NSArray* paths = [FileUtilities directoryContentsNames:directory];
 
   return paths.count;
@@ -318,7 +318,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
   {
     NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
 
-    NSString* directory = [NetflixFileSystem rssFeedDirectory:address];
+    NSString* directory = [NetflixPaths rssFeedDirectory:address];
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
 
     for (NSString* path in paths) {

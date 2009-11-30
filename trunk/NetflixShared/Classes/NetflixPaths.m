@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NetflixFileSystem.h"
+#import "NetflixPaths.h"
 
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
 
-@implementation NetflixFileSystem
+@implementation NetflixPaths
 
 static NSString* netflixDirectory = nil;
 static NSString* netflixAccountsDirectory = nil;
@@ -47,7 +47,7 @@ static NSString** directories[] = {
 
 
 + (void) initialize {
-  if (self == [NetflixFileSystem class]) {
+  if (self == [NetflixPaths class]) {
     netflixDirectory = [[[AbstractApplication cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
     netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
     netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
