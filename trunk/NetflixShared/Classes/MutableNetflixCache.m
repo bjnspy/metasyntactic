@@ -37,7 +37,6 @@
 - (NSString*) extractErrorMessage:(XmlElement*) result;
 
 - (NSString*) downloadEtag:(Feed*) feed account:(NetflixAccount*) account;
-- (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
 
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies
