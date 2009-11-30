@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  NetflixAccountCache.m
-//  NetflixShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 11/29/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "NetflixAccountCache.h"
 
@@ -39,7 +45,7 @@ static NetflixAccountCache* cache;
 - (void) dealloc {
   self.accountToFeeds = nil;
   self.accountToFeedKeyToQueues = nil;
-  
+
   [super dealloc];
 }
 
@@ -49,7 +55,7 @@ static NetflixAccountCache* cache;
     self.accountToFeeds = [AutoreleasingMutableDictionary dictionary];
     self.accountToFeedKeyToQueues = [AutoreleasingMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 
@@ -65,7 +71,7 @@ static NetflixAccountCache* cache;
   if (feeds != nil) {
     return feeds;
   }
-  
+
   NSArray* array = [self loadAccountToFeeds:account];
   if (array != nil) {
     [self.accountToFeeds setObject:array forKey:account.userId];
@@ -113,7 +119,7 @@ static NetflixAccountCache* cache;
   if (dictionary.count == 0) {
     return nil;
   }
-  
+
   return [Queue queueWithDictionary:dictionary];
 }
 
@@ -122,7 +128,7 @@ static NetflixAccountCache* cache;
   if (feed == nil) {
     return nil;
   }
-  
+
   Queue* queue = [[self.accountToFeedKeyToQueues objectForKey:account.userId] objectForKey:feed.key];
   if (queue == nil) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -134,7 +140,7 @@ static NetflixAccountCache* cache;
     }
     [pool release];
   }
-  
+
   return queue;
 }
 
@@ -156,7 +162,7 @@ static NetflixAccountCache* cache;
       return feed;
     }
   }
-  
+
   return nil;
 }
 
@@ -170,10 +176,10 @@ static NetflixAccountCache* cache;
   if (feeds.count == 0) {
     return;
   }
-  
+
   [FileUtilities writeObject:[Feed encodeArray:feeds]
                       toFile:[NetflixPaths feedsFile:account]];
-  
+
   [dataGate lock];
   {
     [self.accountToFeeds setObject:feeds forKey:account.userId];

@@ -273,7 +273,7 @@ static NSDictionary* availabilityMap = nil;
     // override this error message since the netflix message is very confusing.
     return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
   }
-  
+
   NSString* message = [[element element:@"message"] text];
   if (message.length > 0) {
     return message;
@@ -297,14 +297,14 @@ static NSDictionary* availabilityMap = nil;
       ![@"catalog_title" isEqual:element.name]) {
     return;
   }
-  
+
   BOOL save;
   Movie* movie = [NetflixUtilities processMovieItem:element saved:&save];
-  
+
   if (movie == nil) {
     return;
   }
-  
+
   if (save) {
     [saved addObject:movie];
   } else {

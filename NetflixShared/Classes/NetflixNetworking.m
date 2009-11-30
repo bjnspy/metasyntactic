@@ -91,7 +91,7 @@
                       element:(XmlElement*) element
                     outOfDate:(BOOL*) outOfDate {
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
-  
+
   if (outOfDate != NULL) {
     *outOfDate = (statusCode == [NetflixConstants etagMismatchError]);
   }
@@ -103,10 +103,10 @@
                    response:(NSHTTPURLResponse**) response
                   outOfDate:(BOOL*) outOfDate {
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request response:response];
-  
+
   [self checkForEtagMismatch:account element:element outOfDate:outOfDate];
   [[NetflixSiteStatus status] checkApiResult:element];
-  
+
   return element;
 }
 
