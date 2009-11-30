@@ -26,7 +26,7 @@
 		100000000000000000000CD6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CCF /* MediaPlayer.framework */; };
 		100000000000000000000D06 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CFB /* MessageUI.framework */; };
 		100000000000000000000D22 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D19 /* MetasyntacticResources.bundle */; };
-		100000000000000000000E2F /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E2C /* NetflixResources.bundle */; };
+		100000000000000000000E2B /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E28 /* NetflixResources.bundle */; };
 		100000000000000000001429 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001421 /* SystemConfiguration.framework */; };
 		1000000000000000000016D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016D0 /* UIKit.framework */; };
 		100000000000000000001907 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001905 /* libBoxOfficeShared.a */; };
@@ -46,7 +46,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000005D6 /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000DE6;
+			remoteGlobalIDString = 100000000000000000000DE2;
 			remoteInfo = BoxOfficeShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -74,8 +74,8 @@
 		100000000000000000000CFB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		100000000000000000000D19 /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		100000000000000000000D31 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		100000000000000000000E2C /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
-		100000000000000000000E41 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000000E28 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
+		100000000000000000000E3D /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
 		10000000000000000000107A /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
 		1000000000000000000010BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100000000000000000001421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -203,7 +203,7 @@
 			children = (
 				1000000000000000000005CB /* BoxOfficeResources.bundle */,
 				100000000000000000000D19 /* MetasyntacticResources.bundle */,
-				100000000000000000000E2C /* NetflixResources.bundle */,
+				100000000000000000000E28 /* NetflixResources.bundle */,
 				1000000000000000000010BC /* Info.plist */,
 				1000000000000000000008F2 /* Default.png */,
 				100000000000000000000AE7 /* Icon.png */,
@@ -220,7 +220,7 @@
 			children = (
 				1000000000000000000005D2 /* BoxOfficeShared.h */,
 				100000000000000000000D31 /* MetasyntacticShared.h */,
-				100000000000000000000E41 /* NetflixShared.h */,
+				100000000000000000000E3D /* NetflixShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				100000000000000000000C19 /* Localizable.strings in Resources */,
 				100000000000000000000D22 /* MetasyntacticResources.bundle in Resources */,
 				1000000000000000000005CF /* BoxOfficeResources.bundle in Resources */,
-				100000000000000000000E2F /* NetflixResources.bundle in Resources */,
+				100000000000000000000E2B /* NetflixResources.bundle in Resources */,
 				100000000000000000000BED /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
