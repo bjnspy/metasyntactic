@@ -20,7 +20,6 @@
 
 @class Feed;
 @class Movie;
-@class MutableNetflixCache;
 @class NetflixCache;
 @class Queue;
 @class NetflixAccount;

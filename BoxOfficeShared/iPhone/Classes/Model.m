@@ -1032,7 +1032,7 @@ static Model* model = nil;
 
 
 - (NetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+  return [NetflixCache cache];
 }
 
 

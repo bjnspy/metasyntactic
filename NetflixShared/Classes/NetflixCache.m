@@ -16,7 +16,6 @@
 
 #import "Feed.h"
 #import "Movie.h"
-#import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
 #import "NetflixAccountCache.h"
 #import "NetflixUserCache.h"
@@ -26,6 +25,7 @@
 #import "NetflixRssCache.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixSiteStatus.h"
+#import "NetflixUpdater.h"
 #import "NetflixUser.h"
 #import "NetflixUtilities.h"
 #import "Queue.h"
@@ -37,6 +37,20 @@
 
 
 @implementation NetflixCache
+
+static NetflixCache* cache;
+
++ (void) initialize {
+  if (self == [NetflixCache class]) {
+    cache = [[NetflixCache alloc] init];
+  }
+}
+
+
++ (NetflixCache*) cache {
+  return cache;
+}
+
 
 + (NSString*) noInformationFound {
   if ([[OperationQueue operationQueue] hasPriorityOperations]) {
@@ -90,7 +104,7 @@
   if (outOfDate) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
     NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
-    [[MutableNetflixCache cache] updateQueues:account force:YES];
+    [[NetflixCache cache] updateQueues:account force:YES];
   }
 
   return element;
@@ -695,9 +709,14 @@
 
 
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
+  NSString* currentRating = [[NetflixUpdater updater] userRatingForMovie:movie account:account];
+  if (currentRating != nil) {
+    return currentRating;
+  }
+  
   movie = [self correspondingNetflixMovie:movie];
   movie = [NetflixCache promoteDiscToSeries:movie];
-
+  
   return [FileUtilities readObject:[NetflixPaths userRatingsFile:movie account:account]];
 }
 

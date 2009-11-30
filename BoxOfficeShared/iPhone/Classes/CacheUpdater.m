@@ -118,7 +118,7 @@ static CacheUpdater* cacheUpdater = nil;
 
   Model* model = self.model;
   [model.posterCache       processMovie:movie force:force];
-  [[MutableNetflixCache cache] processMovie:movie force:force];
+  [[NetflixCache cache]    processMovie:movie force:force];
   [model.upcomingCache     processMovie:movie force:force];
   [model.dvdCache          processMovie:movie force:force];
   [model.blurayCache       processMovie:movie force:force];

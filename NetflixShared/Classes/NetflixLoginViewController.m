@@ -15,7 +15,6 @@
 #import "NetflixLoginViewController.h"
 
 #import "NetflixUserCache.h"
-#import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
 #import "NetflixSharedApplication.h"

@@ -167,7 +167,7 @@
 
 
 - (NetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+  return [NetflixCache cache];
 }
 
 

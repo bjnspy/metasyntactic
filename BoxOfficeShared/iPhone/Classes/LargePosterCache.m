@@ -89,7 +89,7 @@ const NSInteger START_YEAR = 1912;
 
 
 - (NetflixCache*) netflixCache {
-  return [MutableNetflixCache cache];
+  return [NetflixCache cache];
 }
 
 
