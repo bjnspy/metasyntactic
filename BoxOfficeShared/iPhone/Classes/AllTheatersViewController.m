@@ -14,8 +14,8 @@
 
 #import "AllTheatersViewController.h"
 
-#import "FavoriteTheaterCache.h"
 #import "Application.h"
+#import "FavoriteTheaterCache.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
 #import "Theater.h"

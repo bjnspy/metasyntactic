@@ -30,7 +30,7 @@
 
 - (void) dealloc {
   self.upcomingMoviesViewController = nil;
-  
+
   [super dealloc];
 }
 
@@ -40,7 +40,7 @@
     self.title = LocalizedString(@"Upcoming", nil);
     self.tabBarItem.image = BoxOfficeStockImage(@"Upcoming.png");
   }
-  
+
   return self;
 }
 
@@ -52,7 +52,7 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   if (upcomingMoviesViewController == nil) {
     self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] init] autorelease];
     [self pushViewController:upcomingMoviesViewController animated:NO];
@@ -66,7 +66,7 @@
       return movie;
     }
   }
-  
+
   return [super movieForTitle:canonicalTitle];
 }
 

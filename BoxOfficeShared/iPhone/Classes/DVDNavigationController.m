@@ -30,7 +30,7 @@
 
 - (void) dealloc {
   self.dvdViewController = nil;
-  
+
   [super dealloc];
 }
 
@@ -54,14 +54,14 @@
     self.tabBarItem.image = BoxOfficeStockImage(@"DVD.png");
     [self setupTitle];
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   if (dvdViewController == nil) {
     self.dvdViewController = [[[DVDViewController alloc] init] autorelease];
     [self pushViewController:dvdViewController animated:NO];
@@ -75,7 +75,7 @@
       return movie;
     }
   }
-  
+
   return [super movieForTitle:canonicalTitle];
 }
 

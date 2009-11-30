@@ -47,12 +47,12 @@
   self.castTitleLabel = nil;
   self.ratedTitleLabel = nil;
   self.genreTitleLabel = nil;
-  
+
   self.directorLabel = nil;
   self.castLabel = nil;
   self.ratedLabel = nil;
   self.genreLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -69,7 +69,7 @@
 
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  
+
   label.font = [UIFont systemFontOfSize:12];
   label.textColor = [UIColor darkGrayColor];
   label.text = title;
@@ -78,7 +78,7 @@
   CGRect frame = label.frame;
   frame.origin.y = yPosition;
   label.frame = frame;
-  
+
   return label;
 }
 
@@ -122,42 +122,42 @@
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumFontSize = 14;
-    
+
     self.directorTitleLabel = [self createTitleLabel:LocalizedString(@"Directors:", nil) yPosition:22];
     self.directorLabel = [self createValueLabel:22];
-    
+
     self.castTitleLabel = [self createTitleLabel:LocalizedString(@"Cast:", nil) yPosition:37];
     self.castLabel = [self createValueLabel:38];
     castLabel.numberOfLines = 0;
-    
+
     self.genreTitleLabel = [self createTitleLabel:LocalizedString(@"Genre:", nil) yPosition:67];
     self.genreLabel = [self createValueLabel:67];
-    
+
     self.ratedTitleLabel = [self createTitleLabel:LocalizedString(@"Rated:", nil) yPosition:82];
     self.ratedLabel = [self createValueLabel:82];
-    
+
     titleWidth = 0;
     for (UILabel* label in self.titleLabels) {
       titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
     }
-    
+
     for (UILabel* label in self.titleLabels) {
       CGRect frame = label.frame;
       frame.size.width = titleWidth;
       frame.origin.x = (NSInteger)(imageView.frame.size.width + 7);
       label.frame = frame;
     }
-    
+
     [self.contentView addSubview:titleLabel];
   }
-  
+
   return self;
 }
 
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   CGRect castFrame = castLabel.frame;
   CGSize size = [castLabel.text sizeWithFont:castLabel.font constrainedToSize:CGSizeMake(castFrame.size.width, 30) lineBreakMode:UILineBreakModeWordWrap];
   castFrame.size = size;
@@ -169,34 +169,34 @@
   directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
   castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
   genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
-  
+
   NSString* rating = [self.model ratingForMovie:movie];
   if (rating.length == 0) {		
     rating = LocalizedString(@"Not yet rated", nil);		
   }
-  
+
   if ([(id) owner sortingByTitle] || [self.bookmarkCache isBookmarked:movie]) {
     NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-    
+
     if (rating.length > 0) {
       releaseDate = [NSString stringWithFormat:LocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
     }
-    
+
     ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
   } else {
     ratedLabel.text = rating;
   }
-  
+
   if (movie.directors.count <= 1) {
     directorTitleLabel.text = LocalizedString(@"Director:", nil);
   } else {
     directorTitleLabel.text = LocalizedString(@"Directors:", nil);
   }
-  
+
   for (UILabel* label in self.allLabels) {
     [self.contentView addSubview:label];
   }
-  
+
   [self setNeedsLayout];
 }
 
