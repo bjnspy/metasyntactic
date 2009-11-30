@@ -21,6 +21,15 @@
 + (Movie*) processMovieItem:(XmlElement*) element
                       saved:(BOOL*) saved;
 
++ (void) processMovieItemList:(XmlElement*) element
+                       movies:(NSMutableArray*) movies
+                        saved:(NSMutableArray*) saved;
+
++ (void) processMovieItemList:(XmlElement*) element
+                       movies:(NSMutableArray*) movies
+                        saved:(NSMutableArray*) saved
+                     maxCount:(NSInteger) maxCount;
+
 + (NSDictionary*) extractMovieDetails:(XmlElement*) element;
 
 + (NSString*) extractErrorMessage:(XmlElement*) element;
