@@ -116,16 +116,16 @@
 		1000000000000018000000A1 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000006D /* IMDbCache.m */; };
 		100000000000001800000207 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000206 /* SquareMovieTitleCell.m */; };
 		100000000000001900000121 /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000277 /* ImdbPosterDownloader.m */; };
-		10000000000000190000021F /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000021E /* Theater.m */; };
-		100000000000001900000222 /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000221 /* TheaterDetailsViewController.m */; };
-		100000000000001900000225 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000224 /* TheaterNameCell.m */; };
-		100000000000001900000229 /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000228 /* TheatersNavigationController.m */; };
+		100000000000001900000223 /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000222 /* Theater.m */; };
+		100000000000001900000226 /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000225 /* TheaterDetailsViewController.m */; };
+		100000000000001900000229 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000228 /* TheaterNameCell.m */; };
+		10000000000000190000022D /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000022C /* TheatersNavigationController.m */; };
 		100000000000001900000247 /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000E6 /* DataProvider.m */; };
-		100000000000001900000250 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024F /* TicketsViewController.m */; };
-		100000000000001900000257 /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000256 /* TomatoMovieTitleCell.m */; };
-		100000000000001900000270 /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000026F /* InternationalDataCache.m */; };
-		100000000000001900000273 /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000272 /* LargePosterCache.m */; };
-		100000000000001900000277 /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000276 /* TrailerCache.m */; };
+		100000000000001900000254 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000253 /* TicketsViewController.m */; };
+		10000000000000190000025B /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000025A /* TomatoMovieTitleCell.m */; };
+		100000000000001900000274 /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000273 /* InternationalDataCache.m */; };
+		100000000000001900000277 /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000276 /* LargePosterCache.m */; };
+		10000000000000190000027B /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000027A /* TrailerCache.m */; };
 		100000000000001A0000001F /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000007 /* LocalSearchDisplayController.m */; };
 		100000000000001A00000052 /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000051 /* LocalSearchEngine.m */; };
 		100000000000001A00000073 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000072 /* UnknownMovieTitleCell.m */; };
@@ -403,27 +403,27 @@
 		10000000000000180000026C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		10000000000000180000026F /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		100000000000001800000277 /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
-		100000000000001900000144 /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
-		10000000000000190000021D /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
-		10000000000000190000021E /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
-		100000000000001900000220 /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
-		100000000000001900000221 /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
-		100000000000001900000223 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
-		100000000000001900000224 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
-		100000000000001900000227 /* TheatersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersNavigationController.h; sourceTree = "<group>"; };
-		100000000000001900000228 /* TheatersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatersNavigationController.m; sourceTree = "<group>"; };
+		100000000000001900000148 /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
+		100000000000001900000221 /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
+		100000000000001900000222 /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
+		100000000000001900000224 /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
+		100000000000001900000225 /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
+		100000000000001900000227 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
+		100000000000001900000228 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
+		10000000000000190000022B /* TheatersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersNavigationController.h; sourceTree = "<group>"; };
+		10000000000000190000022C /* TheatersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatersNavigationController.m; sourceTree = "<group>"; };
 		10000000000000190000024A /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
-		10000000000000190000024E /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
-		10000000000000190000024F /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
-		100000000000001900000255 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
-		100000000000001900000256 /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
-		10000000000000190000026F /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
-		100000000000001900000271 /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
-		100000000000001900000272 /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
-		100000000000001900000274 /* LocalSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchDisplayController.h; sourceTree = "<group>"; };
-		100000000000001900000275 /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
-		100000000000001900000276 /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
-		10000000000000190000027B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		100000000000001900000252 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
+		100000000000001900000253 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		100000000000001900000259 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
+		10000000000000190000025A /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
+		100000000000001900000273 /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
+		100000000000001900000275 /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
+		100000000000001900000276 /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
+		100000000000001900000278 /* LocalSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchDisplayController.h; sourceTree = "<group>"; };
+		100000000000001900000279 /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
+		10000000000000190000027A /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
+		100000000000001800000219 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		100000000000001A00000000 /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
 		100000000000001A00000007 /* LocalSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchDisplayController.m; sourceTree = "<group>"; };
 		100000000000001A0000001B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -517,7 +517,7 @@
 				100000000000001700000010 /* RedMovieTitleCell.h */,
 				1000000000000017000000A9 /* RottenMovieTitleCell.h */,
 				100000000000001800000205 /* SquareMovieTitleCell.h */,
-				100000000000001900000255 /* TomatoMovieTitleCell.h */,
+				100000000000001900000259 /* TomatoMovieTitleCell.h */,
 				100000000000001A00000071 /* UnknownMovieTitleCell.h */,
 				100000000000001E00000000 /* YellowMovieTitleCell.h */,
 				10000000000000170000006A /* GreenMovieTitleCell.m */,
@@ -527,7 +527,7 @@
 				100000000000001700000011 /* RedMovieTitleCell.m */,
 				1000000000000017000000AA /* RottenMovieTitleCell.m */,
 				100000000000001800000206 /* SquareMovieTitleCell.m */,
-				100000000000001900000256 /* TomatoMovieTitleCell.m */,
+				10000000000000190000025A /* TomatoMovieTitleCell.m */,
 				100000000000001A00000072 /* UnknownMovieTitleCell.m */,
 				100000000000001E00000001 /* YellowMovieTitleCell.m */,
 			);
@@ -541,13 +541,13 @@
 				1000000000000015000001C2 /* DVDNavigationController.h */,
 				10000000000000180000007B /* MoviesNavigationController.h */,
 				10000000000000130000007E /* NetflixNavigationController.h */,
-				100000000000001900000227 /* TheatersNavigationController.h */,
+				10000000000000190000022B /* TheatersNavigationController.h */,
 				100000000000001A00000083 /* UpcomingMoviesNavigationController.h */,
 				100000000000001500000110 /* CommonNavigationController.m */,
 				1000000000000015000001C1 /* DVDNavigationController.m */,
 				10000000000000180000007C /* MoviesNavigationController.m */,
 				10000000000000130000007F /* NetflixNavigationController.m */,
-				100000000000001900000228 /* TheatersNavigationController.m */,
+				10000000000000190000022C /* TheatersNavigationController.m */,
 				100000000000001A00000084 /* UpcomingMoviesNavigationController.m */,
 				100000000000001500000162 /* PocketFlicksNavigationController.h */,
 				100000000000001500000164 /* PocketFlicksNavigationController.m */,
@@ -604,17 +604,17 @@
 				100000000000001500000005 /* CacheUpdater.h */,
 				100000000000000C00000009 /* FavoriteTheaterCache.h */,
 				100000000000001800000067 /* HelpCache.h */,
-				100000000000001900000144 /* InternationalDataCache.h */,
+				100000000000001900000148 /* InternationalDataCache.h */,
 				100000000000001B00000012 /* LocalizableStringsCache.h */,
-				100000000000001900000275 /* TrailerCache.h */,
+				100000000000001900000279 /* TrailerCache.h */,
 				100000000000001A0000007D /* UpcomingCache.h */,
 				100000000000000800000074 /* BookmarkCache.m */,
 				100000000000001300000060 /* CacheUpdater.m */,
 				100000000000000C0000000B /* FavoriteTheaterCache.m */,
 				100000000000001800000069 /* HelpCache.m */,
-				10000000000000190000026F /* InternationalDataCache.m */,
+				100000000000001900000273 /* InternationalDataCache.m */,
 				100000000000001C0000001B /* LocalizableStringsCache.m */,
-				100000000000001900000276 /* TrailerCache.m */,
+				10000000000000190000027A /* TrailerCache.m */,
 				100000000000001A0000007E /* UpcomingCache.m */,
 			);
 			name = Caches;
@@ -665,7 +665,7 @@
 				10000000000000140000003D /* Other Sources */,
 				1000000000000015000001CB /* Products */,
 				100000000000001700000065 /* Resources */,
-				10000000000000190000027B /* Entitlements.plist */,
+				100000000000001800000219 /* Entitlements.plist */,
 				1000000000000013000000AC /* NetflixShared.xcodeproj */,
 				1000000000000015000001E8 /* ProtocolBuffers.xcodeproj */,
 			);
@@ -703,7 +703,7 @@
 				10000000000000120000011C /* ApplePosterDownloader.h */,
 				10000000000000290000004E /* FandangoPosterDownloader.h */,
 				10000000000000180000026F /* ImdbPosterDownloader.h */,
-				100000000000001900000271 /* LargePosterCache.h */,
+				100000000000001900000275 /* LargePosterCache.h */,
 				100000000000001500000145 /* PersonPosterCache.h */,
 				100000000000001500000194 /* PosterCache.h */,
 				1000000000000015000001AD /* PreviewNetworksPosterDownloader.h */,
@@ -711,7 +711,7 @@
 				10000000000000120000011D /* ApplePosterDownloader.m */,
 				100000000000002900000051 /* FandangoPosterDownloader.m */,
 				100000000000001800000277 /* ImdbPosterDownloader.m */,
-				100000000000001900000272 /* LargePosterCache.m */,
+				100000000000001900000276 /* LargePosterCache.m */,
 				100000000000001500000146 /* PersonPosterCache.m */,
 				100000000000001500000195 /* PosterCache.m */,
 				1000000000000015000001AE /* PreviewNetworksPosterDownloader.m */,
@@ -773,14 +773,14 @@
 				10000000000000150000013C /* Person.h */,
 				100000000000001700000074 /* Review.h */,
 				100000000000001800000030 /* Score.h */,
-				10000000000000190000021D /* Theater.h */,
+				100000000000001900000221 /* Theater.h */,
 				10000000000000150000011D /* DVD.m */,
 				10000000000000150000013F /* FavoriteTheater.m */,
 				10000000000000150000012A /* Performance.m */,
 				10000000000000150000013E /* Person.m */,
 				100000000000001700000075 /* Review.m */,
 				100000000000001800000031 /* Score.m */,
-				10000000000000190000021E /* Theater.m */,
+				100000000000001900000222 /* Theater.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -833,7 +833,7 @@
 			isa = PBXGroup;
 			children = (
 				100000000000000C0000003E /* AbstractSearchDisplayController.h */,
-				100000000000001900000274 /* LocalSearchDisplayController.h */,
+				100000000000001900000278 /* LocalSearchDisplayController.h */,
 				10000000000000130000009B /* NetflixSearchDisplayController.h */,
 				100000000000000C0000006F /* AbstractSearchDisplayController.m */,
 				100000000000001A00000007 /* LocalSearchDisplayController.m */,
@@ -955,7 +955,7 @@
 				1000000000000013000000B7 /* NetflixStatusCell.h */,
 				100000000000001700000077 /* ReviewBodyCell.h */,
 				10000000000000170000007A /* ReviewTitleCell.h */,
-				100000000000001900000223 /* TheaterNameCell.h */,
+				100000000000001900000227 /* TheaterNameCell.h */,
 				10000000000000150000010C /* CollapsedMovieDetailsCell.m */,
 				100000000000001B00000011 /* ExpandedMovieDetailsCell.m */,
 				100000000000001200000127 /* MovieShowtimesCell.m */,
@@ -963,18 +963,18 @@
 				1000000000000013000000B8 /* NetflixStatusCell.m */,
 				100000000000001700000078 /* ReviewBodyCell.m */,
 				10000000000000170000007B /* ReviewTitleCell.m */,
-				100000000000001900000224 /* TheaterNameCell.m */,
+				100000000000001900000228 /* TheaterNameCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		100000000000001900000226 /* Theaters */ = {
+		10000000000000190000022A /* Theaters */ = {
 			isa = PBXGroup;
 			children = (
 				1000000000000012000000F1 /* AllTheatersViewController.h */,
 				100000000000001200000117 /* AllTheatersViewController.m */,
-				100000000000001900000220 /* TheaterDetailsViewController.h */,
-				100000000000001900000221 /* TheaterDetailsViewController.m */,
+				100000000000001900000224 /* TheaterDetailsViewController.h */,
+				100000000000001900000225 /* TheaterDetailsViewController.m */,
 			);
 			name = Theaters;
 			sourceTree = "<group>";
@@ -1021,16 +1021,16 @@
 				100000000000001300000049 /* Netflix */,
 				100000000000001800000044 /* Search */,
 				100000000000001800000088 /* Settings */,
-				100000000000001900000226 /* Theaters */,
+				10000000000000190000022A /* Theaters */,
 				100000000000001A0000007C /* Upcoming */,
 				100000000000000800000021 /* AbstractDetailsViewController.h */,
 				10000000000000080000002B /* AbstractMovieListViewController.h */,
 				100000000000001500000198 /* PostersViewController.h */,
-				10000000000000190000024E /* TicketsViewController.h */,
+				100000000000001900000252 /* TicketsViewController.h */,
 				100000000000000800000022 /* AbstractDetailsViewController.m */,
 				100000000000000800000120 /* AbstractMovieListViewController.m */,
 				100000000000001500000199 /* PostersViewController.m */,
-				10000000000000190000024F /* TicketsViewController.m */,
+				100000000000001900000253 /* TicketsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1226,7 +1226,7 @@
 				10000000000000120000011E /* ApplePosterDownloader.m in Sources */,
 				100000000000000C00000005 /* FandangoPosterDownloader.m in Sources */,
 				100000000000001900000121 /* ImdbPosterDownloader.m in Sources */,
-				100000000000001900000273 /* LargePosterCache.m in Sources */,
+				100000000000001900000277 /* LargePosterCache.m in Sources */,
 				100000000000001500000147 /* PersonPosterCache.m in Sources */,
 				100000000000001500000196 /* PosterCache.m in Sources */,
 				1000000000000015000001AF /* PreviewNetworksPosterDownloader.m in Sources */,
@@ -1243,9 +1243,9 @@
 				100000000000001C00000012 /* WikipediaCache.m in Sources */,
 				100000000000001500000108 /* CacheUpdater.m in Sources */,
 				10000000000000180000006B /* HelpCache.m in Sources */,
-				100000000000001900000270 /* InternationalDataCache.m in Sources */,
+				100000000000001900000274 /* InternationalDataCache.m in Sources */,
 				100000000000001C0000001C /* LocalizableStringsCache.m in Sources */,
-				100000000000001900000277 /* TrailerCache.m in Sources */,
+				10000000000000190000027B /* TrailerCache.m in Sources */,
 				100000000000001A0000007F /* UpcomingCache.m in Sources */,
 				10000000000000150000011E /* DVD.m in Sources */,
 				100000000000001500000141 /* FavoriteTheater.m in Sources */,
@@ -1253,7 +1253,7 @@
 				100000000000001500000140 /* Person.m in Sources */,
 				100000000000001700000076 /* Review.m in Sources */,
 				100000000000001800000032 /* Score.m in Sources */,
-				10000000000000190000021F /* Theater.m in Sources */,
+				100000000000001900000223 /* Theater.m in Sources */,
 				100000000000000800000020 /* AbstractDataProvider.m in Sources */,
 				100000000000001900000247 /* DataProvider.m in Sources */,
 				100000000000001700000002 /* GoogleDataProvider.m in Sources */,
@@ -1268,7 +1268,7 @@
 				1000000000000015000001CE /* DVDNavigationController.m in Sources */,
 				10000000000000180000007D /* MoviesNavigationController.m in Sources */,
 				100000000000001300000080 /* NetflixNavigationController.m in Sources */,
-				100000000000001900000229 /* TheatersNavigationController.m in Sources */,
+				10000000000000190000022D /* TheatersNavigationController.m in Sources */,
 				100000000000001A00000085 /* UpcomingMoviesNavigationController.m in Sources */,
 				1000000000000013000000FD /* NowPlayingTabBarController.m in Sources */,
 				10000000000000080000002A /* AbstractImageCell.m in Sources */,
@@ -1284,7 +1284,7 @@
 				100000000000001700000012 /* RedMovieTitleCell.m in Sources */,
 				1000000000000017000000AB /* RottenMovieTitleCell.m in Sources */,
 				100000000000001800000207 /* SquareMovieTitleCell.m in Sources */,
-				100000000000001900000257 /* TomatoMovieTitleCell.m in Sources */,
+				10000000000000190000025B /* TomatoMovieTitleCell.m in Sources */,
 				100000000000001A00000073 /* UnknownMovieTitleCell.m in Sources */,
 				100000000000001E00000002 /* YellowMovieTitleCell.m in Sources */,
 				10000000000000160000000C /* QuestionCell.m in Sources */,
@@ -1295,7 +1295,7 @@
 				1000000000000013000000B9 /* NetflixStatusCell.m in Sources */,
 				100000000000001700000079 /* ReviewBodyCell.m in Sources */,
 				10000000000000170000007C /* ReviewTitleCell.m in Sources */,
-				100000000000001900000225 /* TheaterNameCell.m in Sources */,
+				100000000000001900000229 /* TheaterNameCell.m in Sources */,
 				100000000000001700000017 /* DVDViewController.m in Sources */,
 				1000000000000015000001A9 /* DVDFilterViewController.m in Sources */,
 				1000000000000012000000ED /* AllMoviesViewController.m in Sources */,
@@ -1319,12 +1319,12 @@
 				100000000000001800000050 /* SearchDistancePickerViewController.m in Sources */,
 				1000000000000013000000FA /* NowPlayingSettingsViewController.m in Sources */,
 				100000000000001200000118 /* AllTheatersViewController.m in Sources */,
-				100000000000001900000222 /* TheaterDetailsViewController.m in Sources */,
+				100000000000001900000226 /* TheaterDetailsViewController.m in Sources */,
 				100000000000001A00000088 /* UpcomingMoviesViewController.m in Sources */,
 				100000000000000800000026 /* AbstractDetailsViewController.m in Sources */,
 				100000000000000800000171 /* AbstractMovieListViewController.m in Sources */,
 				10000000000000150000019A /* PostersViewController.m in Sources */,
-				100000000000001900000250 /* TicketsViewController.m in Sources */,
+				100000000000001900000254 /* TicketsViewController.m in Sources */,
 				100000000000001C00000005 /* WarningView.m in Sources */,
 				1000000000000015000001A5 /* LocationManager.m in Sources */,
 				100000000000001A00000099 /* Utilities.m in Sources */,
@@ -1471,7 +1471,7 @@
 			};
 			name = Debug;
 		};
-		100000000000001900000278 /* Debug */ = {
+		100000000000001800000216 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
@@ -1499,7 +1499,7 @@
 			};
 			name = Debug;
 		};
-		100000000000001900000279 /* Distribution */ = {
+		100000000000001800000217 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
@@ -1528,7 +1528,7 @@
 			};
 			name = Distribution;
 		};
-		10000000000000190000027A /* Distribution */ = {
+		100000000000001800000218 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -1543,7 +1543,7 @@
 				10000000000000190000024C /* Debug */,
 				10000000000000170000001F /* Release */,
 				100000000000000E00000002 /* AdHoc */,
-				10000000000000190000027A /* Distribution */,
+				100000000000001800000218 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1551,10 +1551,10 @@
 		100000000000001500000004 /* Build configuration list for PBXProject "BoxOfficeShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				100000000000001900000278 /* Debug */,
+				100000000000001800000216 /* Debug */,
 				10000000000000170000001E /* Release */,
 				100000000000000C0000009F /* AdHoc */,
-				100000000000001900000279 /* Distribution */,
+				100000000000001800000217 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

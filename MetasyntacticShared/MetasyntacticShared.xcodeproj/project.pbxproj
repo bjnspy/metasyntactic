@@ -211,31 +211,31 @@
 		100000000000001900000134 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000132 /* TappableScrollView.m */; };
 		100000000000001900000137 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000136 /* TappableScrollViewDelegate.h */; };
 		100000000000001900000139 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000138 /* TappableViewDelegate.h */; };
-		100000000000001900000147 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000146 /* TextFieldEditorViewController.h */; };
-		100000000000001900000149 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000148 /* TextFieldEditorViewController.m */; };
-		10000000000000190000021D /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000120 /* Operation3.h */; };
-		10000000000000190000021F /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000021E /* Operation3.m */; };
-		100000000000001900000222 /* OperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000221 /* OperationQueue.h */; };
-		100000000000001900000224 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000223 /* OperationQueue.m */; };
-		100000000000001900000227 /* PersistentArrayThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000226 /* PersistentArrayThreadsafeValue.h */; };
-		100000000000001900000229 /* PersistentArrayThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000228 /* PersistentArrayThreadsafeValue.m */; };
-		10000000000000190000022E /* ThreadingUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000022D /* ThreadingUtilities.h */; };
-		100000000000001900000232 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000230 /* ThreadingUtilities.m */; };
-		100000000000001900000234 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000233 /* ThreadsafeValue.h */; };
-		100000000000001900000236 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000235 /* ThreadsafeValue.m */; };
+		10000000000000190000014B /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014A /* TextFieldEditorViewController.h */; };
+		10000000000000190000014D /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000014C /* TextFieldEditorViewController.m */; };
+		100000000000001900000221 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000120 /* Operation3.h */; };
+		100000000000001900000223 /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000222 /* Operation3.m */; };
+		100000000000001900000226 /* OperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000225 /* OperationQueue.h */; };
+		100000000000001900000228 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000227 /* OperationQueue.m */; };
+		10000000000000190000022B /* PersistentArrayThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000022A /* PersistentArrayThreadsafeValue.h */; };
+		10000000000000190000022D /* PersistentArrayThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000022C /* PersistentArrayThreadsafeValue.m */; };
+		100000000000001900000232 /* ThreadingUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000230 /* ThreadingUtilities.h */; };
+		100000000000001900000235 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000233 /* ThreadingUtilities.m */; };
+		100000000000001900000238 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000237 /* ThreadsafeValue.h */; };
+		10000000000000190000023A /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000239 /* ThreadsafeValue.m */; };
 		10000000000000190000024A /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000247 /* BackgroundInvocation3.m */; };
-		10000000000000190000024F /* PersistentDictionaryThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024E /* PersistentDictionaryThreadsafeValue.h */; };
-		100000000000001900000255 /* PersistentDictionaryThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000250 /* PersistentDictionaryThreadsafeValue.m */; };
-		100000000000001900000257 /* PersistentSetThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000256 /* PersistentSetThreadsafeValue.h */; };
-		10000000000000190000026E /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000026D /* TouchableViewDelegate.h */; };
-		10000000000000190000026F /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000144 /* EditorViewController.h */; };
-		100000000000001900000271 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000270 /* EditorViewController.m */; };
-		100000000000001900000276 /* PersistentSetThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000275 /* PersistentSetThreadsafeValue.m */; };
-		100000000000001900000278 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024C /* Base64.h */; };
-		10000000000000190000027A /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000279 /* Base64.m */; };
-		100000000000001A00000000 /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000027B /* Beacon+FBConnect.h */; };
-		100000000000001A00000004 /* PersistentStringThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000277 /* PersistentStringThreadsafeValue.h */; };
-		100000000000001A00000007 /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000274 /* FileUtilities.h */; };
+		100000000000001900000253 /* PersistentDictionaryThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000252 /* PersistentDictionaryThreadsafeValue.h */; };
+		100000000000001900000259 /* PersistentDictionaryThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000254 /* PersistentDictionaryThreadsafeValue.m */; };
+		10000000000000190000025B /* PersistentSetThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000025A /* PersistentSetThreadsafeValue.h */; };
+		100000000000001900000272 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000271 /* TouchableViewDelegate.h */; };
+		100000000000001900000273 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000148 /* EditorViewController.h */; };
+		100000000000001900000275 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000274 /* EditorViewController.m */; };
+		10000000000000190000027A /* PersistentSetThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001900000279 /* PersistentSetThreadsafeValue.m */; };
+		100000000000001800000216 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000024C /* Base64.h */; };
+		100000000000001800000218 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000217 /* Base64.m */; };
+		100000000000001A00000000 /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001800000219 /* Beacon+FBConnect.h */; };
+		100000000000001A00000004 /* PersistentStringThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000027B /* PersistentStringThreadsafeValue.h */; };
+		100000000000001A00000007 /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000278 /* FileUtilities.h */; };
 		100000000000001A00000009 /* UIColor+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000008 /* UIColor+Utilities.h */; };
 		100000000000001A0000000B /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000000A /* UIColor+Utilities.m */; };
 		100000000000001A00000025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001C /* UIKit.framework */; };
@@ -300,8 +300,8 @@
 		10000000000000330000000D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000330000000B /* xmltok.c */; };
 		100000000000003300000013 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000011 /* xmltok_impl.c */; };
 		100000000000003300000019 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000003300000017 /* xmltok_ns.c */; };
-		74763FA510C4888B00AC94D6 /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 74763FA310C4888B00AC94D6 /* Test.h */; };
-		74763FA610C4888B00AC94D6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 74763FA410C4888B00AC94D6 /* Test.m */; };
+		10000000000000190000013C /* Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013B /* Test.h */; };
+		10000000000000190000013E /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000190000013D /* Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -509,30 +509,30 @@
 		100000000000001900000132 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		100000000000001900000136 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		100000000000001900000138 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
-		100000000000001900000144 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
-		100000000000001900000146 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
-		100000000000001900000148 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
-		10000000000000190000021E /* Operation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation3.m; sourceTree = "<group>"; };
-		100000000000001900000221 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
-		100000000000001900000223 /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationQueue.m; sourceTree = "<group>"; };
-		100000000000001900000226 /* PersistentArrayThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentArrayThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000001900000228 /* PersistentArrayThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentArrayThreadsafeValue.m; sourceTree = "<group>"; };
-		10000000000000190000022D /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
-		100000000000001900000230 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
-		100000000000001900000233 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000001900000235 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
+		100000000000001900000148 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		10000000000000190000014A /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		10000000000000190000014C /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
+		100000000000001900000222 /* Operation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation3.m; sourceTree = "<group>"; };
+		100000000000001900000225 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
+		100000000000001900000227 /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationQueue.m; sourceTree = "<group>"; };
+		10000000000000190000022A /* PersistentArrayThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentArrayThreadsafeValue.h; sourceTree = "<group>"; };
+		10000000000000190000022C /* PersistentArrayThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentArrayThreadsafeValue.m; sourceTree = "<group>"; };
+		100000000000001900000230 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
+		100000000000001900000233 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
+		100000000000001900000237 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000001900000239 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
 		100000000000001900000247 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
 		10000000000000190000024C /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		10000000000000190000024E /* PersistentDictionaryThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentDictionaryThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000001900000250 /* PersistentDictionaryThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionaryThreadsafeValue.m; sourceTree = "<group>"; };
-		100000000000001900000256 /* PersistentSetThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentSetThreadsafeValue.h; sourceTree = "<group>"; };
-		10000000000000190000026D /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
-		100000000000001900000270 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
-		100000000000001900000274 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
-		100000000000001900000275 /* PersistentSetThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentSetThreadsafeValue.m; sourceTree = "<group>"; };
-		100000000000001900000277 /* PersistentStringThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStringThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000001900000279 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		10000000000000190000027B /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
+		100000000000001900000252 /* PersistentDictionaryThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentDictionaryThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000001900000254 /* PersistentDictionaryThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionaryThreadsafeValue.m; sourceTree = "<group>"; };
+		10000000000000190000025A /* PersistentSetThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentSetThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000001900000271 /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
+		100000000000001900000274 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		100000000000001900000278 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
+		100000000000001900000279 /* PersistentSetThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentSetThreadsafeValue.m; sourceTree = "<group>"; };
+		10000000000000190000027B /* PersistentStringThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStringThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000001800000217 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		100000000000001800000219 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		100000000000001A00000008 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		100000000000001A0000000A /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001A0000001B /* PersistentStringThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStringThreadsafeValue.m; sourceTree = "<group>"; };
@@ -615,8 +615,8 @@
 		100000000000003300000011 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000003300000015 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		100000000000003300000017 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		74763FA310C4888B00AC94D6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		74763FA410C4888B00AC94D6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		10000000000000190000013B /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		10000000000000190000013D /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -685,7 +685,7 @@
 			children = (
 				10000000000000290000004E /* Classes */,
 				100000000000001E00000007 /* Frameworks */,
-				100000000000001900000225 /* Other Sources */,
+				100000000000001900000229 /* Other Sources */,
 				100000000000001A00000086 /* Products */,
 				100000000000001A00000096 /* Resources */,
 				100000000000001200000083 /* MediaPlayer.framework */,
@@ -744,24 +744,24 @@
 			name = OAuth;
 			sourceTree = "<group>";
 		};
-		100000000000001900000220 /* OperationQueue */ = {
+		100000000000001900000224 /* OperationQueue */ = {
 			isa = PBXGroup;
 			children = (
 				10000000000000180000005A /* Operation.h */,
 				100000000000001800000088 /* Operation1.h */,
 				100000000000001800000206 /* Operation2.h */,
 				100000000000001900000120 /* Operation3.h */,
-				100000000000001900000221 /* OperationQueue.h */,
+				100000000000001900000225 /* OperationQueue.h */,
 				10000000000000180000005F /* Operation.m */,
 				1000000000000018000000EA /* Operation1.m */,
 				10000000000000180000026C /* Operation2.m */,
-				10000000000000190000021E /* Operation3.m */,
-				100000000000001900000223 /* OperationQueue.m */,
+				100000000000001900000222 /* Operation3.m */,
+				100000000000001900000227 /* OperationQueue.m */,
 			);
 			name = OperationQueue;
 			sourceTree = "<group>";
 		};
-		100000000000001900000225 /* Other Sources */ = {
+		100000000000001900000229 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000001C0000001B /* ForwardDeclarations.h */,
@@ -771,10 +771,10 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		10000000000000190000022B /* Threading */ = {
+		10000000000000190000022E /* Threading */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001900000220 /* OperationQueue */,
+				100000000000001900000224 /* OperationQueue */,
 				100000000000000C000000E3 /* AbstractPersistentThreadsafeValue.h */,
 				1000000000000015000001C2 /* BackgroundInvocation.h */,
 				10000000000000170000000B /* BackgroundInvocation2.h */,
@@ -783,13 +783,13 @@
 				100000000000001200000123 /* Invocation2.h */,
 				100000000000001200000127 /* Invocation3.h */,
 				1000000000000013000000F3 /* MainThreadGate.h */,
-				100000000000001900000226 /* PersistentArrayThreadsafeValue.h */,
-				10000000000000190000024E /* PersistentDictionaryThreadsafeValue.h */,
-				100000000000001900000256 /* PersistentSetThreadsafeValue.h */,
-				100000000000001900000277 /* PersistentStringThreadsafeValue.h */,
+				10000000000000190000022A /* PersistentArrayThreadsafeValue.h */,
+				100000000000001900000252 /* PersistentDictionaryThreadsafeValue.h */,
+				10000000000000190000025A /* PersistentSetThreadsafeValue.h */,
+				10000000000000190000027B /* PersistentStringThreadsafeValue.h */,
 				100000000000001A00000082 /* PriorityMutex.h */,
-				10000000000000190000022D /* ThreadingUtilities.h */,
-				100000000000001900000233 /* ThreadsafeValue.h */,
+				100000000000001900000230 /* ThreadingUtilities.h */,
+				100000000000001900000237 /* ThreadsafeValue.h */,
 				10000000000000130000004B /* AbstractPersistentThreadsafeValue.m */,
 				1000000000000015000001CE /* BackgroundInvocation.m */,
 				100000000000001700000018 /* BackgroundInvocation2.m */,
@@ -798,18 +798,18 @@
 				100000000000001200000125 /* Invocation2.m */,
 				100000000000001200000129 /* Invocation3.m */,
 				1000000000000013000000F5 /* MainThreadGate.m */,
-				100000000000001900000228 /* PersistentArrayThreadsafeValue.m */,
-				100000000000001900000250 /* PersistentDictionaryThreadsafeValue.m */,
-				100000000000001900000275 /* PersistentSetThreadsafeValue.m */,
+				10000000000000190000022C /* PersistentArrayThreadsafeValue.m */,
+				100000000000001900000254 /* PersistentDictionaryThreadsafeValue.m */,
+				100000000000001900000279 /* PersistentSetThreadsafeValue.m */,
 				100000000000001A0000001B /* PersistentStringThreadsafeValue.m */,
 				100000000000001A00000084 /* PriorityMutex.m */,
-				100000000000001900000230 /* ThreadingUtilities.m */,
-				100000000000001900000235 /* ThreadsafeValue.m */,
+				100000000000001900000233 /* ThreadingUtilities.m */,
+				100000000000001900000239 /* ThreadsafeValue.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
 		};
-		100000000000001900000272 /* Expat */ = {
+		100000000000001900000276 /* Expat */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000003300000001 /* xmlparse.c */,
@@ -836,18 +836,18 @@
 			name = Expat;
 			sourceTree = "<group>";
 		};
-		100000000000001900000273 /* External */ = {
+		100000000000001900000277 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000190000027C /* Twitter */,
-				100000000000001900000272 /* Expat */,
+				100000000000001900000280 /* Twitter */,
+				100000000000001900000276 /* Expat */,
 				100000000000001800000053 /* OAuth */,
 				100000000000001A00000071 /* PinchMedia */,
 			);
 			name = External;
 			sourceTree = "<group>";
 		};
-		10000000000000190000027C /* Twitter */ = {
+		100000000000001900000280 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
 				10000000000000130000007B /* MGTwitterEngine.h */,
@@ -876,7 +876,7 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
-		10000000000000190000027D /* Twitter */ = {
+		100000000000001900000281 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000001500000110 /* AbstractTwitterAccount.h */,
@@ -918,7 +918,7 @@
 			isa = PBXGroup;
 			children = (
 				100000000000002900000040 /* libPMAnalytics-r64.a */,
-				10000000000000190000027B /* Beacon+FBConnect.h */,
+				100000000000001800000219 /* Beacon+FBConnect.h */,
 				100000000000001B00000011 /* Beacon.h */,
 			);
 			name = PinchMedia;
@@ -941,7 +941,7 @@
 				100000000000002900000051 /* CollectionUtilities.h */,
 				100000000000001800000067 /* DateUtilities.h */,
 				1000000000000018000000EF /* DifferenceEngine.h */,
-				100000000000001900000274 /* FileUtilities.h */,
+				100000000000001900000278 /* FileUtilities.h */,
 				100000000000000E00000026 /* HtmlUtilities.h */,
 				100000000000000F0000006E /* ImageDownloader.h */,
 				100000000000002A00000010 /* ImageUtilities.h */,
@@ -956,7 +956,7 @@
 				100000000000001A0000002D /* UIScrollView+Utilities.h */,
 				100000000000001A00000041 /* UIViewController+Utilities.h */,
 				10000000000000150000011E /* AlertUtilities.m */,
-				100000000000001900000279 /* Base64.m */,
+				100000000000001800000217 /* Base64.m */,
 				10000000000000150000013D /* CollectionUtilities.m */,
 				10000000000000180000006B /* DateUtilities.m */,
 				100000000000001800000277 /* DifferenceEngine.m */,
@@ -1015,10 +1015,10 @@
 				100000000000001500000114 /* AbstractViewController.h */,
 				100000000000001700000004 /* DatePickerDelegate.h */,
 				100000000000001700000027 /* DatePickerViewController.h */,
-				100000000000001900000144 /* EditorViewController.h */,
+				100000000000001900000148 /* EditorViewController.h */,
 				10000000000000180000007C /* ListPickerDelegate.h */,
 				100000000000001300000044 /* ListPickerViewController.h */,
-				100000000000001900000146 /* TextFieldEditorViewController.h */,
+				10000000000000190000014A /* TextFieldEditorViewController.h */,
 				100000000000001B00000002 /* ViewControllerState.h */,
 				100000000000001C00000006 /* WebViewController.h */,
 				100000000000000800000171 /* AbstractCurlableTableViewController.m */,
@@ -1032,9 +1032,9 @@
 				10000000000000150000010E /* AbstractTableViewController.m */,
 				100000000000001500000116 /* AbstractViewController.m */,
 				100000000000001700000069 /* DatePickerViewController.m */,
-				100000000000001900000270 /* EditorViewController.m */,
+				100000000000001900000274 /* EditorViewController.m */,
 				100000000000001300000061 /* ListPickerViewController.m */,
-				100000000000001900000148 /* TextFieldEditorViewController.m */,
+				10000000000000190000014C /* TextFieldEditorViewController.m */,
 				100000000000001B00000004 /* ViewControllerState.m */,
 				100000000000001C00000008 /* WebViewController.m */,
 			);
@@ -1055,7 +1055,7 @@
 				100000000000003000000000 /* TappableScrollView.h */,
 				100000000000001900000136 /* TappableScrollViewDelegate.h */,
 				100000000000001900000138 /* TappableViewDelegate.h */,
-				10000000000000190000026D /* TouchableViewDelegate.h */,
+				100000000000001900000271 /* TouchableViewDelegate.h */,
 				10000000000000150000011A /* ActionsView.m */,
 				1000000000000012000000C2 /* InteractiveView.m */,
 				100000000000000F00000097 /* InterceptingView.m */,
@@ -1123,11 +1123,11 @@
 				100000000000002900000049 /* Caches */,
 				100000000000001500000141 /* Collections */,
 				100000000000001700000003 /* Data */,
-				100000000000001900000273 /* External */,
+				100000000000001900000277 /* External */,
 				10000000000000150000002D /* Mapping */,
 				100000000000001A00000099 /* Search */,
-				10000000000000190000022B /* Threading */,
-				10000000000000190000027D /* Twitter */,
+				10000000000000190000022E /* Threading */,
+				100000000000001900000281 /* Twitter */,
 				100000000000001A00000006 /* UI */,
 				100000000000001A00000091 /* Utilities */,
 				100000000000001D00000001 /* Xml */,
@@ -1138,13 +1138,13 @@
 				100000000000001500000129 /* MetasyntacticSharedApplication.h */,
 				10000000000000150000013E /* MetasyntacticSharedApplicationDelegate.h */,
 				100000000000002600000002 /* StyleSheet.h */,
-				74763FA310C4888B00AC94D6 /* Test.h */,
+				10000000000000190000013B /* Test.h */,
 				100000000000000700000092 /* AbstractApplication.m */,
 				100000000000000800000029 /* AbstractController.m */,
 				10000000000000120000011C /* AbstractModel.m */,
 				10000000000000150000012B /* MetasyntacticSharedApplication.m */,
 				100000000000002700000024 /* StyleSheet.m */,
-				74763FA410C4888B00AC94D6 /* Test.m */,
+				10000000000000190000013D /* Test.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1201,23 +1201,23 @@
 				10000000000000180000005D /* Operation.h in Headers */,
 				10000000000000180000009E /* Operation1.h in Headers */,
 				100000000000001800000207 /* Operation2.h in Headers */,
-				100000000000001900000222 /* OperationQueue.h in Headers */,
+				100000000000001900000226 /* OperationQueue.h in Headers */,
 				1000000000000015000001C1 /* BackgroundInvocation.h in Headers */,
 				100000000000001700000017 /* BackgroundInvocation2.h in Headers */,
 				10000000000000120000010A /* Invocation.h in Headers */,
 				100000000000001200000124 /* Invocation2.h in Headers */,
 				1000000000000013000000F4 /* MainThreadGate.h in Headers */,
 				100000000000001A00000083 /* PriorityMutex.h in Headers */,
-				10000000000000190000022E /* ThreadingUtilities.h in Headers */,
+				100000000000001900000232 /* ThreadingUtilities.h in Headers */,
 				100000000000001200000035 /* AbstractFullScreenTableViewController.h in Headers */,
 				100000000000001200000117 /* AbstractFullScreenViewController.h in Headers */,
 				10000000000000150000010D /* AbstractTableViewController.h in Headers */,
-				10000000000000190000026F /* EditorViewController.h in Headers */,
+				100000000000001900000273 /* EditorViewController.h in Headers */,
 				100000000000001C00000007 /* WebViewController.h in Headers */,
 				100000000000001700000074 /* NotificationCenter.h in Headers */,
 				100000000000001B00000008 /* ViewControllerUtilities.h in Headers */,
 				10000000000000150000011D /* AlertUtilities.h in Headers */,
-				100000000000001900000278 /* Base64.h in Headers */,
+				100000000000001800000216 /* Base64.h in Headers */,
 				100000000000000C00000005 /* CollectionUtilities.h in Headers */,
 				100000000000001800000069 /* DateUtilities.h in Headers */,
 				10000000000000180000026F /* DifferenceEngine.h in Headers */,
@@ -1241,7 +1241,7 @@
 				10000000000000150000012A /* MetasyntacticSharedApplication.h in Headers */,
 				100000000000001500000140 /* MetasyntacticSharedApplicationDelegate.h in Headers */,
 				100000000000001A00000081 /* Prefix.pch in Headers */,
-				100000000000001900000147 /* TextFieldEditorViewController.h in Headers */,
+				10000000000000190000014B /* TextFieldEditorViewController.h in Headers */,
 				1000000000000007000000A0 /* AbstractCache.h in Headers */,
 				100000000000001500000121 /* AttributeCell.h in Headers */,
 				1000000000000015000001D3 /* ColorCache.h in Headers */,
@@ -1257,18 +1257,18 @@
 				100000000000001900000130 /* TappableScrollView.h in Headers */,
 				100000000000001900000137 /* TappableScrollViewDelegate.h in Headers */,
 				100000000000001900000139 /* TappableViewDelegate.h in Headers */,
-				10000000000000190000026E /* TouchableViewDelegate.h in Headers */,
+				100000000000001900000272 /* TouchableViewDelegate.h in Headers */,
 				10000000000000130000004E /* AbstractSearchEngine.h in Headers */,
 				100000000000001B00000016 /* SearchEngineDelegate.h in Headers */,
 				100000000000001300000056 /* AbstractSearchRequest.h in Headers */,
 				10000000000000130000005A /* AbstractSearchResult.h in Headers */,
-				100000000000001900000234 /* ThreadsafeValue.h in Headers */,
+				100000000000001900000238 /* ThreadsafeValue.h in Headers */,
 				10000000000000090000001D /* AbstractData.h in Headers */,
-				100000000000001900000257 /* PersistentSetThreadsafeValue.h in Headers */,
+				10000000000000190000025B /* PersistentSetThreadsafeValue.h in Headers */,
 				10000000000000130000004A /* AbstractPersistentThreadsafeValue.h in Headers */,
-				10000000000000190000024F /* PersistentDictionaryThreadsafeValue.h in Headers */,
+				100000000000001900000253 /* PersistentDictionaryThreadsafeValue.h in Headers */,
 				100000000000001A00000004 /* PersistentStringThreadsafeValue.h in Headers */,
-				100000000000001900000227 /* PersistentArrayThreadsafeValue.h in Headers */,
+				10000000000000190000022B /* PersistentArrayThreadsafeValue.h in Headers */,
 				100000000000000C0000006F /* AbstractFlippableTableViewController.h in Headers */,
 				100000000000001500000143 /* MetasyntacticStockImages.h in Headers */,
 				100000000000000C000000A0 /* AbstractFullScreenImageListViewController.h in Headers */,
@@ -1286,7 +1286,7 @@
 				100000000000001500000125 /* AutoResizingCell.h in Headers */,
 				100000000000001A00000000 /* Beacon+FBConnect.h in Headers */,
 				100000000000002900000037 /* Beacon.h in Headers */,
-				10000000000000190000021D /* Operation3.h in Headers */,
+				100000000000001900000221 /* Operation3.h in Headers */,
 				100000000000001200000128 /* Invocation3.h in Headers */,
 				1000000000000018000000E6 /* BackgroundInvocation3.h in Headers */,
 				100000000000001500000115 /* AbstractViewController.h in Headers */,
@@ -1333,7 +1333,7 @@
 				1000000000000007000001B7 /* AutoreleasingMutableArray.h in Headers */,
 				1000000000000007000001BB /* AutoreleasingMutableDictionary.h in Headers */,
 				1000000000000007000001BF /* AutoreleasingMutableSet.h in Headers */,
-				74763FA510C4888B00AC94D6 /* Test.h in Headers */,
+				10000000000000190000013C /* Test.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,7 +1395,7 @@
 				10000000000000180000003C /* OARequestParameter.m in Sources */,
 				100000000000001800000043 /* OAServiceTicket.m in Sources */,
 				100000000000001800000050 /* OAToken.m in Sources */,
-				10000000000000190000027A /* Base64.m in Sources */,
+				100000000000001800000218 /* Base64.m in Sources */,
 				100000000000002600000000 /* StringUtilities.m in Sources */,
 				100000000000001900000121 /* DifferenceEngine.m in Sources */,
 				100000000000001200000113 /* Invocation.m in Sources */,
@@ -1423,11 +1423,11 @@
 				100000000000001800000086 /* Operation.m in Sources */,
 				100000000000001800000205 /* Operation1.m in Sources */,
 				100000000000001900000110 /* Operation2.m in Sources */,
-				100000000000001900000224 /* OperationQueue.m in Sources */,
+				100000000000001900000228 /* OperationQueue.m in Sources */,
 				1000000000000012000000ED /* AbstractFullScreenTableViewController.m in Sources */,
 				100000000000001200000119 /* AbstractFullScreenViewController.m in Sources */,
 				100000000000001700000076 /* NotificationCenter.m in Sources */,
-				100000000000001900000232 /* ThreadingUtilities.m in Sources */,
+				100000000000001900000235 /* ThreadingUtilities.m in Sources */,
 				10000000000000130000007A /* LocationUtilities.m in Sources */,
 				100000000000001300000076 /* Location.m in Sources */,
 				100000000000000700000093 /* AbstractApplication.m in Sources */,
@@ -1435,9 +1435,9 @@
 				100000000000001C00000009 /* WebViewController.m in Sources */,
 				1000000000000015000001DD /* BackgroundInvocation.m in Sources */,
 				100000000000001800000087 /* BackgroundInvocation2.m in Sources */,
-				100000000000001900000271 /* EditorViewController.m in Sources */,
+				100000000000001900000275 /* EditorViewController.m in Sources */,
 				10000000000000150000013C /* MetasyntacticSharedApplication.m in Sources */,
-				100000000000001900000149 /* TextFieldEditorViewController.m in Sources */,
+				10000000000000190000014D /* TextFieldEditorViewController.m in Sources */,
 				1000000000000007000000A2 /* AbstractCache.m in Sources */,
 				100000000000001500000123 /* AttributeCell.m in Sources */,
 				10000000000000160000000D /* ColorCache.m in Sources */,
@@ -1452,13 +1452,13 @@
 				100000000000001300000054 /* AbstractSearchEngine.m in Sources */,
 				100000000000001300000058 /* AbstractSearchRequest.m in Sources */,
 				10000000000000140000003C /* AbstractSearchResult.m in Sources */,
-				100000000000001900000236 /* ThreadsafeValue.m in Sources */,
+				10000000000000190000023A /* ThreadsafeValue.m in Sources */,
 				10000000000000090000001F /* AbstractData.m in Sources */,
-				100000000000001900000276 /* PersistentSetThreadsafeValue.m in Sources */,
+				10000000000000190000027A /* PersistentSetThreadsafeValue.m in Sources */,
 				10000000000000130000004C /* AbstractPersistentThreadsafeValue.m in Sources */,
-				100000000000001900000255 /* PersistentDictionaryThreadsafeValue.m in Sources */,
+				100000000000001900000259 /* PersistentDictionaryThreadsafeValue.m in Sources */,
 				100000000000001A0000004F /* PersistentStringThreadsafeValue.m in Sources */,
-				100000000000001900000229 /* PersistentArrayThreadsafeValue.m in Sources */,
+				10000000000000190000022D /* PersistentArrayThreadsafeValue.m in Sources */,
 				100000000000000C0000007F /* AbstractFlippableTableViewController.m in Sources */,
 				100000000000001500000145 /* MetasyntacticStockImages.m in Sources */,
 				100000000000000E00000002 /* AbstractFullScreenImageListViewController.m in Sources */,
@@ -1472,7 +1472,7 @@
 				100000000000001300000062 /* ListPickerViewController.m in Sources */,
 				10000000000000290000005B /* SynopsisCell.m in Sources */,
 				1000000000000015000001A9 /* AutoResizingCell.m in Sources */,
-				10000000000000190000021F /* Operation3.m in Sources */,
+				100000000000001900000223 /* Operation3.m in Sources */,
 				10000000000000120000012A /* Invocation3.m in Sources */,
 				10000000000000190000024A /* BackgroundInvocation3.m in Sources */,
 				100000000000001500000117 /* AbstractViewController.m in Sources */,
@@ -1512,7 +1512,7 @@
 				1000000000000007000001B9 /* AutoreleasingMutableArray.m in Sources */,
 				1000000000000007000001BD /* AutoreleasingMutableDictionary.m in Sources */,
 				1000000000000007000001C1 /* AutoreleasingMutableSet.m in Sources */,
-				74763FA610C4888B00AC94D6 /* Test.m in Sources */,
+				10000000000000190000013E /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
