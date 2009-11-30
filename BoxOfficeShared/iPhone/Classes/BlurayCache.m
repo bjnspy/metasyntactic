@@ -19,13 +19,17 @@
 
 @implementation BlurayCache
 
-- (void) dealloc {
-  [super dealloc];
+static BlurayCache* cache;
+
++ (void) initialize {
+  if (self == [BlurayCache class]) {
+    cache = [[BlurayCache alloc] init];
+  }
 }
 
 
 + (BlurayCache*) cache {
-  return [[[BlurayCache alloc] init] autorelease];
+  return cache;
 }
 
 

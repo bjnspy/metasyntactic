@@ -22,8 +22,6 @@ enum ViewControllerType {
 @interface Model : AbstractModel<UIAlertViewDelegate> {
 @private
   UserLocationCache* userLocationCache;
-  BlurayCache* blurayCache;
-  DVDCache* dvdCache;
   PersonPosterCache* personPosterCache;
   PosterCache* posterCache;
   LargePosterCache* largePosterCache;
@@ -48,8 +46,6 @@ enum ViewControllerType {
 }
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
-@property (readonly, retain) BlurayCache* blurayCache;
-@property (readonly, retain) DVDCache* dvdCache;
 @property (readonly, retain) PersonPosterCache* personPosterCache;
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;

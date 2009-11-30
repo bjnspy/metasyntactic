@@ -19,13 +19,17 @@
 
 @implementation DVDCache
 
-- (void) dealloc {
-  [super dealloc];
+static DVDCache* cache;
+
++ (void) initialize {
+  if (self == [DVDCache class]) {
+    cache = [[DVDCache alloc] init];
+  }
 }
 
 
 + (DVDCache*) cache {
-  return [[[DVDCache alloc] init] autorelease];
+  return cache;
 }
 
 
