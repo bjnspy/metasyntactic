@@ -28,12 +28,16 @@
 
 @implementation InternationalDataCache
 
+static InternationalDataCache* cache;
+
 static NSString* trailers_key = @"trailers";
 
 static NSDictionary* countryToCode = nil;
 
 + (void) initialize {
   if (self == [InternationalDataCache class]) {
+    cache = [[InternationalDataCache alloc] init];
+
     countryToCode = [[NSDictionary dictionaryWithObjectsAndKeys:
                       @"331100091-1" , @"FR",
                       @"4501100140-1", @"DK",
@@ -45,6 +49,11 @@ static NSDictionary* countryToCode = nil;
                       @"391100099-1" , @"CH",
                       @"3581100147-1", @"FI", nil] retain];
   }
+}
+
+
++ (InternationalDataCache*) cache {
+  return cache;
 }
 
 @synthesize engine;
@@ -77,11 +86,6 @@ static NSDictionary* countryToCode = nil;
   }
 
   return self;
-}
-
-
-+ (InternationalDataCache*) cache {
-  return [[[InternationalDataCache alloc] init] autorelease];
 }
 
 

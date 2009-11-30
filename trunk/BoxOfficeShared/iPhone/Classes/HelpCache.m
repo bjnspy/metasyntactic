@@ -24,6 +24,19 @@
 
 @implementation HelpCache
 
+static HelpCache* cache;
+
++ (void) initialize {
+  if (self == [HelpCache class]) {
+    cache = [[HelpCache alloc] init];
+  }
+}
+
+
++ (HelpCache*) cache {
+  return cache;
+}
+
 @synthesize questionsAndAnswersData;
 
 - (void) dealloc {
@@ -38,11 +51,6 @@
   }
 
   return self;
-}
-
-
-+ (HelpCache*) cache {
-  return [[[HelpCache alloc] init] autorelease];
 }
 
 

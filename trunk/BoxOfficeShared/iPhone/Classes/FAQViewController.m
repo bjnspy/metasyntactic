@@ -47,7 +47,7 @@
 
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-    NSArray* qAndA = [self.model.helpCache questionsAndAnswers];
+    NSArray* qAndA = [[HelpCache cache] questionsAndAnswers];
     self.questions = [qAndA objectAtIndex:0];
     self.answers = [qAndA objectAtIndex:1];
 

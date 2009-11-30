@@ -20,6 +20,8 @@
 #import "CacheUpdater.h"
 #import "DataProvider.h"
 #import "DVDCache.h"
+#import "HelpCache.h"
+#import "InternationalDataCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "UpcomingCache.h"
@@ -147,12 +149,12 @@ static Controller* controller = nil;
 
 
 - (void) updateInternationalDataCache {
-  [self.model.internationalDataCache update];
+  [[InternationalDataCache cache] update];
 }
 
 
 - (void) updateHelpCache {
-  [self.model.helpCache update];
+  [[HelpCache cache] update];
 }
 
 
