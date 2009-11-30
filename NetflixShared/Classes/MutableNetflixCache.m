@@ -27,12 +27,11 @@
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixNetworking.h"
+#import "NetflixPaths.h"
 #import "NetflixUtilities.h"
 #import "Queue.h"
 
 @interface NetflixCache()
-+ (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
-
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
 - (NSString*) extractErrorMessage:(XmlElement*) result;
@@ -405,7 +404,7 @@ andReorderingMovies:[NSSet identitySet]
 
 
 - (void) changeRatingBackgroundEntryPointWorker:(ChangeRatingArguments*) changeArguments {
-  NSString* userRatingsFile = [NetflixCache userRatingsFile:changeArguments.movie account:changeArguments.account];
+  NSString* userRatingsFile = [NetflixPaths userRatingsFile:changeArguments.movie account:changeArguments.account];
   NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
   NSLog(@"Changing rating for '%@' from '%@' to '%@'.", changeArguments.movie.canonicalTitle, existingUserRating, changeArguments.rating);
