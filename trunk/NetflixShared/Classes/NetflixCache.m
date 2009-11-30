@@ -887,6 +887,7 @@
   [NotificationCenter removeNotification:notification];
 }
 
+
 - (NSDictionary*) detailsForMovie:(Movie*) movie {
   return [FileUtilities readObject:[NetflixPaths detailsFile:movie]];
 }
