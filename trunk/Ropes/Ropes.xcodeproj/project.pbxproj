@@ -123,11 +123,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000002500000002 /* Ropes */ = {
+		1000000000000017000000A6 /* Ropes */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000900000025 /* Classes */,
-				100000000000000C000000A7 /* Frameworks */,
+				100000000000000B00000036 /* Frameworks */,
 				10000000000000140000003F /* Other Sources */,
 				1000000000000015000001D2 /* Products */,
 				100000000000001900000143 /* Tests */,
@@ -136,7 +136,7 @@
 			name = Ropes;
 			sourceTree = "<group>";
 		};
-		100000000000000C000000A7 /* Frameworks */ = {
+		100000000000000B00000036 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000C00000082 /* Foundation.framework */,
@@ -276,7 +276,7 @@
 			buildConfigurationList = 100000000000000800000177 /* Build configuration list for PBXProject "Ropes" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 100000000000002500000002 /* Ropes */;
+			mainGroup = 1000000000000017000000A6 /* Ropes */;
 			productRefGroup = 1000000000000015000001D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

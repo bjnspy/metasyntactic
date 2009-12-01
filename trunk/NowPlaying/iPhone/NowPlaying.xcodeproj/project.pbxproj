@@ -26,7 +26,7 @@
 		10000000000000120000008C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000085 /* MediaPlayer.framework */; };
 		1000000000000012000000BC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000B1 /* MessageUI.framework */; };
 		1000000000000012000000D8 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000CF /* MetasyntacticResources.bundle */; };
-		100000000000001300000096 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000093 /* NetflixResources.bundle */; };
+		10000000000000130000009A /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000097 /* NetflixResources.bundle */; };
 		100000000000001800000276 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		100000000000001A00000027 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
 		10000000000000290000000F /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
@@ -46,7 +46,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 10000000000000130000004D;
+			remoteGlobalIDString = 1000000000000007000000AB;
 			remoteInfo = BoxOfficeShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -74,12 +74,12 @@
 		1000000000000012000000B1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1000000000000012000000CF /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		1000000000000012000000E7 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		100000000000001300000093 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
-		1000000000000013000000A8 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
+		100000000000001300000097 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
+		1000000000000013000000AC /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
 		1000000000000015000001A3 /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
-		1000000000000015000001E5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000700000163 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10000000000000180000026E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		100000000000001900000055 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000700000164 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		100000000000001A0000001E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		100000000000002100000005 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002200000002 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		1000000000000015000001D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001900000055 /* NowPlaying.app */,
+				100000000000000700000164 /* NowPlaying.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,8 +203,8 @@
 			children = (
 				1000000000000008000000C9 /* BoxOfficeResources.bundle */,
 				1000000000000012000000CF /* MetasyntacticResources.bundle */,
-				100000000000001300000093 /* NetflixResources.bundle */,
-				1000000000000015000001E5 /* Info.plist */,
+				100000000000001300000097 /* NetflixResources.bundle */,
+				100000000000000700000163 /* Info.plist */,
 				100000000000000A00000093 /* Default.png */,
 				100000000000000F00000056 /* Icon.png */,
 				100000000000000F00000065 /* Icon2.png */,
@@ -220,7 +220,7 @@
 			children = (
 				1000000000000008000000D0 /* BoxOfficeShared.h */,
 				1000000000000012000000E7 /* MetasyntacticShared.h */,
-				1000000000000013000000A8 /* NetflixShared.h */,
+				1000000000000013000000AC /* NetflixShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -228,9 +228,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100000000000001900000054 /* NowPlaying */ = {
+		100000000000000700000162 /* NowPlaying */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10000000000000080000012B /* Build configuration list for PBXNativeTarget "NowPlaying" */;
+			buildConfigurationList = 10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying" */;
 			buildPhases = (
 				100000000000001700000067 /* Resources */,
 				1000000000000018000000E9 /* Sources */,
@@ -243,7 +243,7 @@
 			);
 			name = NowPlaying;
 			productName = BoxOffice;
-			productReference = 100000000000001900000055 /* NowPlaying.app */;
+			productReference = 100000000000000700000164 /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -251,7 +251,7 @@
 /* Begin PBXProject section */
 		1000000000000015000001E0 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 10000000000000080000017B /* Build configuration list for PBXProject "NowPlaying" */;
+			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "NowPlaying" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -296,7 +296,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				100000000000001900000054 /* NowPlaying */,
+				100000000000000700000162 /* NowPlaying */,
 			);
 		};
 /* End PBXProject section */
@@ -324,7 +324,7 @@
 				1000000000000011000000C8 /* Localizable.strings in Resources */,
 				1000000000000012000000D8 /* MetasyntacticResources.bundle in Resources */,
 				1000000000000008000000CD /* BoxOfficeResources.bundle in Resources */,
-				100000000000001300000096 /* NetflixResources.bundle in Resources */,
+				10000000000000130000009A /* NetflixResources.bundle in Resources */,
 				10000000000000110000009C /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,7 +523,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10000000000000080000012B /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
+		10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000A00000041 /* Debug */,
@@ -534,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		10000000000000080000017B /* Build configuration list for PBXProject "NowPlaying" */ = {
+		10000000000000080000015A /* Build configuration list for PBXProject "NowPlaying" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000A00000073 /* Debug */,

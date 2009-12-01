@@ -7,87 +7,87 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100000000000000700000092 /* AbstractMovieCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000091 /* AbstractMovieCache.h */; };
-		100000000000000700000094 /* AbstractMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000093 /* AbstractMovieCache.m */; };
-		1000000000000007000000A1 /* AbstractNetflixArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000A0 /* AbstractNetflixArguments.h */; };
-		1000000000000007000000A3 /* AbstractNetflixArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000A2 /* AbstractNetflixArguments.m */; };
-		100000000000000800000029 /* AddMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000027 /* AddMovieArguments.h */; };
-		10000000000000080000002B /* AddMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000002A /* AddMovieArguments.m */; };
-		10000000000000090000001E /* ChangeRatingArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000090000001D /* ChangeRatingArguments.h */; };
-		100000000000000900000020 /* ChangeRatingArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000001F /* ChangeRatingArguments.m */; };
-		100000000000000C0000003D /* Feed.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000003C /* Feed.h */; };
-		100000000000000C0000003F /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000003E /* Feed.m */; };
-		100000000000000C00000078 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000070 /* ForwardDeclarations.h */; };
-		100000000000000C0000008E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000080 /* Foundation.framework */; };
-		100000000000001200000036 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000120000002E /* Macros.h */; };
-		1000000000000012000000EE /* MetasyntacticShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000E6 /* MetasyntacticShared.h */; };
-		100000000000001200000119 /* ModifyQueueArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001200000118 /* ModifyQueueArguments.h */; };
-		10000000000000120000011B /* ModifyQueueArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000120000011A /* ModifyQueueArguments.m */; };
-		10000000000000120000011D /* MoveMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000120000011C /* MoveMovieArguments.h */; };
-		10000000000000120000011F /* MoveMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000120000011E /* MoveMovieArguments.m */; };
-		100000000000001200000121 /* Movie.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001200000120 /* Movie.h */; };
-		10000000000000130000004D /* NetflixAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000130000004C /* NetflixAccount.h */; };
-		10000000000000130000004F /* NetflixAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000004E /* NetflixAccount.m */; };
-		100000000000001300000051 /* NetflixFeedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000050 /* NetflixFeedCache.h */; };
-		100000000000001300000053 /* NetflixFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000052 /* NetflixFeedCache.m */; };
-		100000000000001300000055 /* NetflixAccountsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000054 /* NetflixAccountsViewController.h */; };
-		100000000000001300000057 /* NetflixAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000056 /* NetflixAccountsViewController.m */; };
-		100000000000001300000059 /* NetflixAddMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000058 /* NetflixAddMovieDelegate.h */; };
-		10000000000000130000005B /* NetflixAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000130000005A /* NetflixAuthentication.h */; };
-		10000000000000130000005F /* NetflixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000005 /* NetflixCache.h */; };
-		100000000000001300000061 /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000006 /* NetflixCache.m */; };
+		100000000000000700000002 /* AbstractMovieCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000001 /* AbstractMovieCache.h */; };
+		100000000000000700000004 /* AbstractMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000003 /* AbstractMovieCache.m */; };
+		100000000000000700000006 /* AbstractNetflixArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000005 /* AbstractNetflixArguments.h */; };
+		100000000000000700000008 /* AbstractNetflixArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000007 /* AbstractNetflixArguments.m */; };
+		100000000000000700000034 /* AddMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000033 /* AddMovieArguments.h */; };
+		100000000000000700000036 /* AddMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000035 /* AddMovieArguments.m */; };
+		100000000000000700000040 /* ChangeRatingArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000003F /* ChangeRatingArguments.h */; };
+		100000000000000700000044 /* ChangeRatingArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000042 /* ChangeRatingArguments.m */; };
+		100000000000000700000060 /* Feed.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000005F /* Feed.h */; };
+		100000000000000700000062 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000061 /* Feed.m */; };
+		100000000000000700000064 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000063 /* ForwardDeclarations.h */; };
+		100000000000000700000066 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000700000065 /* Foundation.framework */; };
+		10000000000000070000006B /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006A /* Macros.h */; };
+		10000000000000070000006D /* MetasyntacticShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006C /* MetasyntacticShared.h */; };
+		100000000000000700000070 /* ModifyQueueArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006F /* ModifyQueueArguments.h */; };
+		10000000000000070000008D /* ModifyQueueArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000071 /* ModifyQueueArguments.m */; };
+		10000000000000070000008F /* MoveMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000070000008E /* MoveMovieArguments.h */; };
+		100000000000000700000098 /* MoveMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000090 /* MoveMovieArguments.m */; };
+		10000000000000070000009A /* Movie.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000099 /* Movie.h */; };
+		1000000000000007000000AB /* NetflixAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000AA /* NetflixAccount.h */; };
+		1000000000000007000000C7 /* NetflixAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000C6 /* NetflixAccount.m */; };
+		10000000000000130000006C /* NetflixFeedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000130000006B /* NetflixFeedCache.h */; };
+		10000000000000130000006E /* NetflixFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000006D /* NetflixFeedCache.m */; };
+		1000000000000007000000C9 /* NetflixAccountsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000C8 /* NetflixAccountsViewController.h */; };
+		1000000000000007000000CB /* NetflixAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CA /* NetflixAccountsViewController.m */; };
+		1000000000000007000000CD /* NetflixAddMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CC /* NetflixAddMovieDelegate.h */; };
+		1000000000000007000000CF /* NetflixAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CE /* NetflixAuthentication.h */; };
+		1000000000000007000000DB /* NetflixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DA /* NetflixCache.h */; };
+		1000000000000007000000DD /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DC /* NetflixCache.m */; };
 		100000000000001300000068 /* NetflixConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000067 /* NetflixConstants.h */; };
 		10000000000000130000006A /* NetflixConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000069 /* NetflixConstants.m */; };
-		100000000000001300000083 /* NetflixNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000082 /* NetflixNetworking.h */; };
-		100000000000001300000085 /* NetflixNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000084 /* NetflixNetworking.m */; };
-		100000000000001300000087 /* NetflixPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000086 /* NetflixPaths.h */; };
-		100000000000001300000089 /* NetflixPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000088 /* NetflixPaths.m */; };
-		100000000000001300000099 /* NetflixRssCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000098 /* NetflixRssCache.h */; };
-		10000000000000130000009B /* NetflixRssCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000009A /* NetflixRssCache.m */; };
-		1000000000000013000000B5 /* NetflixSiteStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000B4 /* NetflixSiteStatus.h */; };
-		1000000000000013000000B7 /* NetflixSiteStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000B6 /* NetflixSiteStatus.m */; };
-		1000000000000013000000C0 /* NetflixUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000BF /* NetflixUpdater.h */; };
-		1000000000000013000000C2 /* NetflixUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000C1 /* NetflixUpdater.m */; };
-		1000000000000013000000C8 /* NetflixUserCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000C7 /* NetflixUserCache.h */; };
-		1000000000000013000000CA /* NetflixUserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000C9 /* NetflixUserCache.m */; };
-		1000000000000013000000CC /* NetflixUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CB /* NetflixUtilities.h */; };
-		1000000000000013000000CE /* NetflixUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CD /* NetflixUtilities.m */; };
-		1000000000000013000000FC /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001200000122 /* Movie.m */; };
-		10000000000000140000003D /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000005C /* NetflixAuthentication.m */; };
-		10000000000000150000010A /* NetflixChangeRatingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000109 /* NetflixChangeRatingDelegate.h */; };
-		10000000000000150000010C /* NetflixLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000150000010B /* NetflixLoginViewController.h */; };
-		10000000000000150000010E /* NetflixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000010D /* NetflixLoginViewController.m */; };
-		100000000000001500000110 /* NetflixModifyQueueDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000150000010F /* NetflixModifyQueueDelegate.h */; };
-		100000000000001500000112 /* NetflixMoveMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000111 /* NetflixMoveMovieDelegate.h */; };
-		100000000000001500000117 /* NetflixShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000116 /* NetflixShared.h */; };
-		100000000000001500000119 /* NetflixSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000118 /* NetflixSharedApplication.h */; };
-		10000000000000150000011B /* NetflixSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000011A /* NetflixSharedApplication.m */; };
-		10000000000000150000011D /* NetflixSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000150000011C /* NetflixSharedApplicationDelegate.h */; };
-		10000000000000150000011F /* NetflixStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000150000011E /* NetflixStockImages.h */; };
-		100000000000001500000121 /* NetflixStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000120 /* NetflixStockImages.m */; };
-		100000000000001500000123 /* NetflixUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001500000122 /* NetflixUser.h */; };
-		100000000000001500000125 /* NetflixUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000124 /* NetflixUser.m */; };
-		1000000000000015000001C3 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001AA /* Prefix.pch */; };
-		100000000000001700000018 /* Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000170000000C /* Queue.h */; };
-		100000000000001800000088 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001700000019 /* Queue.m */; };
-		100000000000001800000218 /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001800000217 /* Status.h */; };
-		10000000000000180000021A /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000219 /* Status.m */; };
-		10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000002900000038 /* libMetasyntacticShared.a */; };
-		746CD90710C49E3A0097992B /* NetflixAccountCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 746CD90510C49E3A0097992B /* NetflixAccountCache.h */; };
-		746CD90810C49E3A0097992B /* NetflixAccountCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CD90610C49E3A0097992B /* NetflixAccountCache.m */; };
+		100000000000001300000087 /* NetflixNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000086 /* NetflixNetworking.h */; };
+		100000000000001300000089 /* NetflixNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000088 /* NetflixNetworking.m */; };
+		10000000000000130000008B /* NetflixPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000130000008A /* NetflixPaths.h */; };
+		10000000000000130000008D /* NetflixPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000008C /* NetflixPaths.m */; };
+		10000000000000130000009D /* NetflixRssCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000130000009C /* NetflixRssCache.h */; };
+		10000000000000130000009F /* NetflixRssCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000130000009E /* NetflixRssCache.m */; };
+		1000000000000013000000B9 /* NetflixSiteStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000B8 /* NetflixSiteStatus.h */; };
+		1000000000000013000000BB /* NetflixSiteStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000BA /* NetflixSiteStatus.m */; };
+		1000000000000013000000C4 /* NetflixUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000C3 /* NetflixUpdater.h */; };
+		1000000000000013000000C6 /* NetflixUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000C5 /* NetflixUpdater.m */; };
+		1000000000000013000000CC /* NetflixUserCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CB /* NetflixUserCache.h */; };
+		1000000000000013000000CE /* NetflixUserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CD /* NetflixUserCache.m */; };
+		1000000000000013000000D0 /* NetflixUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CF /* NetflixUtilities.h */; };
+		1000000000000013000000D2 /* NetflixUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000D1 /* NetflixUtilities.m */; };
+		10000000000000070000009C /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000009B /* Movie.m */; };
+		1000000000000007000000D1 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000D0 /* NetflixAuthentication.m */; };
+		1000000000000007000000DF /* NetflixChangeRatingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DE /* NetflixChangeRatingDelegate.h */; };
+		1000000000000007000000E1 /* NetflixLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000E0 /* NetflixLoginViewController.h */; };
+		1000000000000007000000E7 /* NetflixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000E6 /* NetflixLoginViewController.m */; };
+		1000000000000007000000E9 /* NetflixModifyQueueDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000E8 /* NetflixModifyQueueDelegate.h */; };
+		1000000000000007000000EB /* NetflixMoveMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000EA /* NetflixMoveMovieDelegate.h */; };
+		1000000000000007000000F0 /* NetflixShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000EF /* NetflixShared.h */; };
+		100000000000000700000103 /* NetflixSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000F1 /* NetflixSharedApplication.h */; };
+		100000000000000700000106 /* NetflixSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000104 /* NetflixSharedApplication.m */; };
+		100000000000000700000122 /* NetflixSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000108 /* NetflixSharedApplicationDelegate.h */; };
+		100000000000000700000124 /* NetflixStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000123 /* NetflixStockImages.h */; };
+		1000000000000007000001A2 /* NetflixStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000125 /* NetflixStockImages.m */; };
+		1000000000000007000001A4 /* NetflixUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001A3 /* NetflixUser.h */; };
+		1000000000000007000001B3 /* NetflixUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001A5 /* NetflixUser.m */; };
+		10000000000000080000000A /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001B6 /* Prefix.pch */; };
+		100000000000000800000011 /* Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000010 /* Queue.h */; };
+		100000000000000800000013 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000012 /* Queue.m */; };
+		10000000000000080000001A /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000019 /* Status.h */; };
+		10000000000000080000001C /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001B /* Status.m */; };
+		10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001F /* libMetasyntacticShared.a */; };
+		100000000000001300000051 /* NetflixAccountCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001300000050 /* NetflixAccountCache.h */; };
+		100000000000001300000053 /* NetflixAccountCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000052 /* NetflixAccountCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		10000000000000150000002F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000012000000F2 /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 10000000000000070000006E /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000001500000127;
+			remoteGlobalIDString = 100000000000000A000000AD;
 			remoteInfo = MetasyntacticShared;
 		};
-		10000000000000150000019D /* PBXContainerItemProxy */ = {
+		1000000000000007000001B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000012000000F2 /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 10000000000000070000006E /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared;
@@ -95,276 +95,276 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		100000000000000700000091 /* AbstractMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieCache.h; sourceTree = "<group>"; };
-		100000000000000700000093 /* AbstractMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieCache.m; sourceTree = "<group>"; };
-		1000000000000007000000A0 /* AbstractNetflixArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixArguments.h; sourceTree = "<group>"; };
-		1000000000000007000000A2 /* AbstractNetflixArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixArguments.m; sourceTree = "<group>"; };
-		100000000000000800000027 /* AddMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieArguments.h; sourceTree = "<group>"; };
-		10000000000000080000002A /* AddMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieArguments.m; sourceTree = "<group>"; };
-		10000000000000090000001D /* ChangeRatingArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeRatingArguments.h; sourceTree = "<group>"; };
-		10000000000000090000001F /* ChangeRatingArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeRatingArguments.m; sourceTree = "<group>"; };
-		100000000000000C0000003C /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
-		100000000000000C0000003E /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
-		100000000000000C00000070 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		100000000000000C00000080 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		10000000000000120000002E /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		1000000000000012000000E6 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		1000000000000012000000F2 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
-		100000000000001200000118 /* ModifyQueueArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyQueueArguments.h; sourceTree = "<group>"; };
-		10000000000000120000011A /* ModifyQueueArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyQueueArguments.m; sourceTree = "<group>"; };
-		10000000000000120000011C /* MoveMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMovieArguments.h; sourceTree = "<group>"; };
-		10000000000000120000011E /* MoveMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMovieArguments.m; sourceTree = "<group>"; };
-		100000000000001200000120 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
-		100000000000001200000122 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		10000000000000130000004C /* NetflixAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccount.h; sourceTree = "<group>"; };
-		10000000000000130000004E /* NetflixAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccount.m; sourceTree = "<group>"; };
-		100000000000001300000050 /* NetflixFeedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixFeedCache.h; sourceTree = "<group>"; };
-		100000000000001300000052 /* NetflixFeedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFeedCache.m; sourceTree = "<group>"; };
-		100000000000001300000054 /* NetflixAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountsViewController.h; sourceTree = "<group>"; };
-		100000000000001300000056 /* NetflixAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountsViewController.m; sourceTree = "<group>"; };
-		100000000000001300000058 /* NetflixAddMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAddMovieDelegate.h; sourceTree = "<group>"; };
-		10000000000000130000005A /* NetflixAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAuthentication.h; sourceTree = "<group>"; };
-		10000000000000130000005C /* NetflixAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAuthentication.m; sourceTree = "<group>"; };
+		100000000000000700000001 /* AbstractMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieCache.h; sourceTree = "<group>"; };
+		100000000000000700000003 /* AbstractMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieCache.m; sourceTree = "<group>"; };
+		100000000000000700000005 /* AbstractNetflixArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixArguments.h; sourceTree = "<group>"; };
+		100000000000000700000007 /* AbstractNetflixArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixArguments.m; sourceTree = "<group>"; };
+		100000000000000700000033 /* AddMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieArguments.h; sourceTree = "<group>"; };
+		100000000000000700000035 /* AddMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieArguments.m; sourceTree = "<group>"; };
+		10000000000000070000003F /* ChangeRatingArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeRatingArguments.h; sourceTree = "<group>"; };
+		100000000000000700000042 /* ChangeRatingArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeRatingArguments.m; sourceTree = "<group>"; };
+		10000000000000070000005F /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		100000000000000700000061 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		100000000000000700000063 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		100000000000000700000065 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		10000000000000070000006A /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		10000000000000070000006C /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		10000000000000070000006E /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		10000000000000070000006F /* ModifyQueueArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyQueueArguments.h; sourceTree = "<group>"; };
+		100000000000000700000071 /* ModifyQueueArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyQueueArguments.m; sourceTree = "<group>"; };
+		10000000000000070000008E /* MoveMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMovieArguments.h; sourceTree = "<group>"; };
+		100000000000000700000090 /* MoveMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMovieArguments.m; sourceTree = "<group>"; };
+		100000000000000700000099 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		10000000000000070000009B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		1000000000000007000000AA /* NetflixAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccount.h; sourceTree = "<group>"; };
+		1000000000000007000000C6 /* NetflixAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccount.m; sourceTree = "<group>"; };
+		10000000000000130000006B /* NetflixFeedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixFeedCache.h; sourceTree = "<group>"; };
+		10000000000000130000006D /* NetflixFeedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFeedCache.m; sourceTree = "<group>"; };
+		1000000000000007000000C8 /* NetflixAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountsViewController.h; sourceTree = "<group>"; };
+		1000000000000007000000CA /* NetflixAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountsViewController.m; sourceTree = "<group>"; };
+		1000000000000007000000CC /* NetflixAddMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAddMovieDelegate.h; sourceTree = "<group>"; };
+		1000000000000007000000CE /* NetflixAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAuthentication.h; sourceTree = "<group>"; };
+		1000000000000007000000D0 /* NetflixAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAuthentication.m; sourceTree = "<group>"; };
 		100000000000001300000067 /* NetflixConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixConstants.h; sourceTree = "<group>"; };
 		100000000000001300000069 /* NetflixConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixConstants.m; sourceTree = "<group>"; };
-		100000000000001300000082 /* NetflixNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNetworking.h; sourceTree = "<group>"; };
-		100000000000001300000084 /* NetflixNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNetworking.m; sourceTree = "<group>"; };
-		100000000000001300000086 /* NetflixPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixPaths.h; sourceTree = "<group>"; };
-		100000000000001300000088 /* NetflixPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixPaths.m; sourceTree = "<group>"; };
-		100000000000001300000098 /* NetflixRssCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRssCache.h; sourceTree = "<group>"; };
-		10000000000000130000009A /* NetflixRssCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRssCache.m; sourceTree = "<group>"; };
-		1000000000000013000000B4 /* NetflixSiteStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSiteStatus.h; sourceTree = "<group>"; };
-		1000000000000013000000B6 /* NetflixSiteStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSiteStatus.m; sourceTree = "<group>"; };
-		1000000000000013000000BF /* NetflixUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUpdater.h; sourceTree = "<group>"; };
-		1000000000000013000000C1 /* NetflixUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUpdater.m; sourceTree = "<group>"; };
-		1000000000000013000000C7 /* NetflixUserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUserCache.h; sourceTree = "<group>"; };
-		1000000000000013000000C9 /* NetflixUserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUserCache.m; sourceTree = "<group>"; };
-		1000000000000013000000CB /* NetflixUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUtilities.h; sourceTree = "<group>"; };
-		1000000000000013000000CD /* NetflixUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUtilities.m; sourceTree = "<group>"; };
-		100000000000001500000005 /* NetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCache.h; sourceTree = "<group>"; };
-		100000000000001500000006 /* NetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCache.m; sourceTree = "<group>"; };
-		100000000000001500000109 /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
-		10000000000000150000010B /* NetflixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixLoginViewController.h; sourceTree = "<group>"; };
-		10000000000000150000010D /* NetflixLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixLoginViewController.m; sourceTree = "<group>"; };
-		10000000000000150000010F /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
-		100000000000001500000111 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
-		100000000000001500000113 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NetflixResources.bundle; sourceTree = "<group>"; };
-		100000000000001500000116 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixShared.h; sourceTree = "<group>"; };
-		100000000000001500000118 /* NetflixSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplication.h; sourceTree = "<group>"; };
-		10000000000000150000011A /* NetflixSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSharedApplication.m; sourceTree = "<group>"; };
-		10000000000000150000011C /* NetflixSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplicationDelegate.h; sourceTree = "<group>"; };
-		10000000000000150000011E /* NetflixStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStockImages.h; sourceTree = "<group>"; };
-		100000000000001500000120 /* NetflixStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStockImages.m; sourceTree = "<group>"; };
-		100000000000001500000122 /* NetflixUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUser.h; sourceTree = "<group>"; };
-		100000000000001500000124 /* NetflixUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUser.m; sourceTree = "<group>"; };
-		1000000000000015000001AA /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		10000000000000170000000C /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
-		100000000000001700000019 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
-		100000000000001800000217 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
-		100000000000001800000219 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
-		10000000000000290000003F /* libNetflixShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetflixShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		746CD90510C49E3A0097992B /* NetflixAccountCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountCache.h; sourceTree = "<group>"; };
-		746CD90610C49E3A0097992B /* NetflixAccountCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountCache.m; sourceTree = "<group>"; };
+		100000000000001300000086 /* NetflixNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNetworking.h; sourceTree = "<group>"; };
+		100000000000001300000088 /* NetflixNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNetworking.m; sourceTree = "<group>"; };
+		10000000000000130000008A /* NetflixPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixPaths.h; sourceTree = "<group>"; };
+		10000000000000130000008C /* NetflixPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixPaths.m; sourceTree = "<group>"; };
+		10000000000000130000009C /* NetflixRssCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRssCache.h; sourceTree = "<group>"; };
+		10000000000000130000009E /* NetflixRssCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRssCache.m; sourceTree = "<group>"; };
+		1000000000000013000000B8 /* NetflixSiteStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSiteStatus.h; sourceTree = "<group>"; };
+		1000000000000013000000BA /* NetflixSiteStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSiteStatus.m; sourceTree = "<group>"; };
+		1000000000000013000000C3 /* NetflixUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUpdater.h; sourceTree = "<group>"; };
+		1000000000000013000000C5 /* NetflixUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUpdater.m; sourceTree = "<group>"; };
+		1000000000000013000000CB /* NetflixUserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUserCache.h; sourceTree = "<group>"; };
+		1000000000000013000000CD /* NetflixUserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUserCache.m; sourceTree = "<group>"; };
+		1000000000000013000000CF /* NetflixUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUtilities.h; sourceTree = "<group>"; };
+		1000000000000013000000D1 /* NetflixUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUtilities.m; sourceTree = "<group>"; };
+		1000000000000007000000DA /* NetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCache.h; sourceTree = "<group>"; };
+		1000000000000007000000DC /* NetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCache.m; sourceTree = "<group>"; };
+		1000000000000007000000DE /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
+		1000000000000007000000E0 /* NetflixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixLoginViewController.h; sourceTree = "<group>"; };
+		1000000000000007000000E6 /* NetflixLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixLoginViewController.m; sourceTree = "<group>"; };
+		1000000000000007000000E8 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
+		1000000000000007000000EA /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
+		1000000000000007000000EC /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NetflixResources.bundle; sourceTree = "<group>"; };
+		1000000000000007000000EF /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixShared.h; sourceTree = "<group>"; };
+		1000000000000007000000F1 /* NetflixSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplication.h; sourceTree = "<group>"; };
+		100000000000000700000104 /* NetflixSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSharedApplication.m; sourceTree = "<group>"; };
+		100000000000000700000108 /* NetflixSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplicationDelegate.h; sourceTree = "<group>"; };
+		100000000000000700000123 /* NetflixStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStockImages.h; sourceTree = "<group>"; };
+		100000000000000700000125 /* NetflixStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStockImages.m; sourceTree = "<group>"; };
+		1000000000000007000001A3 /* NetflixUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUser.h; sourceTree = "<group>"; };
+		1000000000000007000001A5 /* NetflixUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUser.m; sourceTree = "<group>"; };
+		1000000000000007000001B6 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		100000000000000800000010 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		100000000000000800000012 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		100000000000000800000019 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		10000000000000080000001B /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		100000000000000800000114 /* libNetflixShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetflixShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000001300000050 /* NetflixAccountCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountCache.h; sourceTree = "<group>"; };
+		100000000000001300000052 /* NetflixAccountCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		100000000000000C000000A0 /* Frameworks */ = {
+		100000000000000700000068 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */,
-				100000000000000C0000008E /* Foundation.framework in Frameworks */,
+				100000000000000700000066 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10000000000000080000002C /* Arguments */ = {
+		10000000000000070000003A /* Arguments */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000007000000A0 /* AbstractNetflixArguments.h */,
-				100000000000000800000027 /* AddMovieArguments.h */,
-				10000000000000090000001D /* ChangeRatingArguments.h */,
-				100000000000001200000118 /* ModifyQueueArguments.h */,
-				10000000000000120000011C /* MoveMovieArguments.h */,
-				1000000000000007000000A2 /* AbstractNetflixArguments.m */,
-				10000000000000080000002A /* AddMovieArguments.m */,
-				10000000000000090000001F /* ChangeRatingArguments.m */,
-				10000000000000120000011A /* ModifyQueueArguments.m */,
-				10000000000000120000011E /* MoveMovieArguments.m */,
+				100000000000000700000005 /* AbstractNetflixArguments.h */,
+				100000000000000700000033 /* AddMovieArguments.h */,
+				10000000000000070000003F /* ChangeRatingArguments.h */,
+				10000000000000070000006F /* ModifyQueueArguments.h */,
+				10000000000000070000008E /* MoveMovieArguments.h */,
+				100000000000000700000007 /* AbstractNetflixArguments.m */,
+				100000000000000700000035 /* AddMovieArguments.m */,
+				100000000000000700000042 /* ChangeRatingArguments.m */,
+				100000000000000700000071 /* ModifyQueueArguments.m */,
+				100000000000000700000090 /* MoveMovieArguments.m */,
 			);
 			name = Arguments;
 			sourceTree = "<group>";
 		};
-		100000000000000900000014 /* Caches */ = {
+		10000000000000070000003D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000130000004B /* Netflix */,
-				100000000000000700000091 /* AbstractMovieCache.h */,
-				100000000000000700000093 /* AbstractMovieCache.m */,
+				1000000000000007000000A9 /* Netflix */,
+				100000000000000700000001 /* AbstractMovieCache.h */,
+				100000000000000700000003 /* AbstractMovieCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
 		};
-		100000000000000900000024 /* Classes */ = {
+		100000000000000700000057 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000900000014 /* Caches */,
-				100000000000000A00000019 /* Data */,
-				100000000000001900000247 /* Shared */,
-				100000000000001A00000001 /* UI */,
-				10000000000000130000005A /* NetflixAuthentication.h */,
-				100000000000001500000116 /* NetflixShared.h */,
-				100000000000001500000118 /* NetflixSharedApplication.h */,
-				10000000000000150000011C /* NetflixSharedApplicationDelegate.h */,
-				10000000000000130000005C /* NetflixAuthentication.m */,
-				10000000000000150000011A /* NetflixSharedApplication.m */,
+				10000000000000070000003D /* Caches */,
+				100000000000000700000058 /* Data */,
+				100000000000000800000017 /* Shared */,
+				10000000000000080000001D /* UI */,
+				1000000000000007000000CE /* NetflixAuthentication.h */,
+				1000000000000007000000EF /* NetflixShared.h */,
+				1000000000000007000000F1 /* NetflixSharedApplication.h */,
+				100000000000000700000108 /* NetflixSharedApplicationDelegate.h */,
+				1000000000000007000000D0 /* NetflixAuthentication.m */,
+				100000000000000700000104 /* NetflixSharedApplication.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		100000000000000A00000019 /* Data */ = {
+		100000000000000700000058 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000C0000003C /* Feed.h */,
-				100000000000001200000120 /* Movie.h */,
-				10000000000000130000004C /* NetflixAccount.h */,
-				100000000000001500000122 /* NetflixUser.h */,
-				10000000000000170000000C /* Queue.h */,
-				100000000000001800000217 /* Status.h */,
-				100000000000000C0000003E /* Feed.m */,
-				100000000000001200000122 /* Movie.m */,
-				10000000000000130000004E /* NetflixAccount.m */,
-				100000000000001500000124 /* NetflixUser.m */,
-				100000000000001700000019 /* Queue.m */,
-				100000000000001800000219 /* Status.m */,
+				10000000000000070000005F /* Feed.h */,
+				100000000000000700000099 /* Movie.h */,
+				1000000000000007000000AA /* NetflixAccount.h */,
+				1000000000000007000001A3 /* NetflixUser.h */,
+				100000000000000800000010 /* Queue.h */,
+				100000000000000800000019 /* Status.h */,
+				100000000000000700000061 /* Feed.m */,
+				10000000000000070000009B /* Movie.m */,
+				1000000000000007000000C6 /* NetflixAccount.m */,
+				1000000000000007000001A5 /* NetflixUser.m */,
+				100000000000000800000012 /* Queue.m */,
+				10000000000000080000001B /* Status.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
 		};
-		100000000000000A0000009E /* Delegates */ = {
+		10000000000000070000005E /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001300000058 /* NetflixAddMovieDelegate.h */,
-				100000000000001500000109 /* NetflixChangeRatingDelegate.h */,
-				10000000000000150000010F /* NetflixModifyQueueDelegate.h */,
-				100000000000001500000111 /* NetflixMoveMovieDelegate.h */,
+				1000000000000007000000CC /* NetflixAddMovieDelegate.h */,
+				1000000000000007000000DE /* NetflixChangeRatingDelegate.h */,
+				1000000000000007000000E8 /* NetflixModifyQueueDelegate.h */,
+				1000000000000007000000EA /* NetflixMoveMovieDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
 		};
-		100000000000000C000000A1 /* Frameworks */ = {
+		100000000000000700000067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000C00000080 /* Foundation.framework */,
+				100000000000000700000065 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		10000000000000130000004B /* Netflix */ = {
+		1000000000000007000000A9 /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000080000002C /* Arguments */,
-				100000000000000A0000009E /* Delegates */,
-				100000000000001500000005 /* NetflixCache.h */,
+				10000000000000070000003A /* Arguments */,
+				10000000000000070000005E /* Delegates */,
+				1000000000000007000000DA /* NetflixCache.h */,
 				100000000000001300000067 /* NetflixConstants.h */,
-				100000000000001300000050 /* NetflixFeedCache.h */,
-				100000000000001300000082 /* NetflixNetworking.h */,
-				100000000000001300000086 /* NetflixPaths.h */,
-				100000000000001300000098 /* NetflixRssCache.h */,
-				1000000000000013000000B4 /* NetflixSiteStatus.h */,
-				1000000000000013000000BF /* NetflixUpdater.h */,
-				1000000000000013000000C7 /* NetflixUserCache.h */,
-				1000000000000013000000CB /* NetflixUtilities.h */,
-				100000000000001500000006 /* NetflixCache.m */,
+				10000000000000130000006B /* NetflixFeedCache.h */,
+				100000000000001300000086 /* NetflixNetworking.h */,
+				10000000000000130000008A /* NetflixPaths.h */,
+				10000000000000130000009C /* NetflixRssCache.h */,
+				1000000000000013000000B8 /* NetflixSiteStatus.h */,
+				1000000000000013000000C3 /* NetflixUpdater.h */,
+				1000000000000013000000CB /* NetflixUserCache.h */,
+				1000000000000013000000CF /* NetflixUtilities.h */,
+				1000000000000007000000DC /* NetflixCache.m */,
 				100000000000001300000069 /* NetflixConstants.m */,
-				100000000000001300000052 /* NetflixFeedCache.m */,
-				100000000000001300000084 /* NetflixNetworking.m */,
-				100000000000001300000088 /* NetflixPaths.m */,
-				10000000000000130000009A /* NetflixRssCache.m */,
-				1000000000000013000000B6 /* NetflixSiteStatus.m */,
-				1000000000000013000000C1 /* NetflixUpdater.m */,
-				1000000000000013000000C9 /* NetflixUserCache.m */,
-				1000000000000013000000CD /* NetflixUtilities.m */,
-				746CD90510C49E3A0097992B /* NetflixAccountCache.h */,
-				746CD90610C49E3A0097992B /* NetflixAccountCache.m */,
+				10000000000000130000006D /* NetflixFeedCache.m */,
+				100000000000001300000088 /* NetflixNetworking.m */,
+				10000000000000130000008C /* NetflixPaths.m */,
+				10000000000000130000009E /* NetflixRssCache.m */,
+				1000000000000013000000BA /* NetflixSiteStatus.m */,
+				1000000000000013000000C5 /* NetflixUpdater.m */,
+				1000000000000013000000CD /* NetflixUserCache.m */,
+				1000000000000013000000D1 /* NetflixUtilities.m */,
+				100000000000001300000050 /* NetflixAccountCache.h */,
+				100000000000001300000052 /* NetflixAccountCache.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
 		};
-		100000000000001500000114 /* NetflixShared */ = {
+		1000000000000007000000ED /* NetflixShared */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000900000024 /* Classes */,
-				100000000000000C000000A1 /* Frameworks */,
-				100000000000001500000126 /* Other Sources */,
-				1000000000000015000001C2 /* Products */,
-				100000000000001900000244 /* Resources */,
-				1000000000000012000000F2 /* MetasyntacticShared.xcodeproj */,
+				100000000000000700000057 /* Classes */,
+				100000000000000700000067 /* Frameworks */,
+				1000000000000007000001B4 /* Other Sources */,
+				10000000000000080000000B /* Products */,
+				100000000000000800000016 /* Resources */,
+				10000000000000070000006E /* MetasyntacticShared.xcodeproj */,
 			);
 			name = NetflixShared;
 			sourceTree = "<group>";
 		};
-		100000000000001500000126 /* Other Sources */ = {
+		1000000000000007000001B4 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000015000001AA /* Prefix.pch */,
-				100000000000000C00000070 /* ForwardDeclarations.h */,
-				10000000000000120000002E /* Macros.h */,
+				1000000000000007000001B6 /* Prefix.pch */,
+				100000000000000700000063 /* ForwardDeclarations.h */,
+				10000000000000070000006A /* Macros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		1000000000000015000001C2 /* Products */ = {
+		10000000000000080000000B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000290000003F /* libNetflixShared.a */,
+				100000000000000800000114 /* libNetflixShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1000000000000015000001CF /* Products */ = {
+		10000000000000080000000D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000002900000038 /* libMetasyntacticShared.a */,
+				10000000000000080000001F /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000001900000244 /* Resources */ = {
+		100000000000000800000016 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001500000113 /* NetflixResources.bundle */,
+				1000000000000007000000EC /* NetflixResources.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		100000000000001900000247 /* Shared */ = {
+		100000000000000800000017 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000012000000E6 /* MetasyntacticShared.h */,
+				10000000000000070000006C /* MetasyntacticShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
 		};
-		100000000000001A00000001 /* UI */ = {
+		10000000000000080000001D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001B00000012 /* ViewControllers */,
-				10000000000000150000011E /* NetflixStockImages.h */,
-				100000000000001500000120 /* NetflixStockImages.m */,
+				10000000000000080000001E /* ViewControllers */,
+				100000000000000700000123 /* NetflixStockImages.h */,
+				100000000000000700000125 /* NetflixStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		100000000000001B00000012 /* ViewControllers */ = {
+		10000000000000080000001E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000001300000054 /* NetflixAccountsViewController.h */,
-				10000000000000150000010B /* NetflixLoginViewController.h */,
-				100000000000001300000056 /* NetflixAccountsViewController.m */,
-				10000000000000150000010D /* NetflixLoginViewController.m */,
+				1000000000000007000000C8 /* NetflixAccountsViewController.h */,
+				1000000000000007000000E0 /* NetflixLoginViewController.h */,
+				1000000000000007000000CA /* NetflixAccountsViewController.m */,
+				1000000000000007000000E6 /* NetflixLoginViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -372,61 +372,61 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		100000000000000E00000003 /* Headers */ = {
+		100000000000000700000069 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000015000001C3 /* Prefix.pch in Headers */,
-				100000000000001500000117 /* NetflixShared.h in Headers */,
-				100000000000000C00000078 /* ForwardDeclarations.h in Headers */,
-				100000000000001500000119 /* NetflixSharedApplication.h in Headers */,
-				10000000000000150000011D /* NetflixSharedApplicationDelegate.h in Headers */,
-				100000000000000800000029 /* AddMovieArguments.h in Headers */,
-				10000000000000090000001E /* ChangeRatingArguments.h in Headers */,
-				100000000000001200000119 /* ModifyQueueArguments.h in Headers */,
-				10000000000000120000011D /* MoveMovieArguments.h in Headers */,
-				100000000000001300000059 /* NetflixAddMovieDelegate.h in Headers */,
-				10000000000000130000005F /* NetflixCache.h in Headers */,
-				10000000000000150000010A /* NetflixChangeRatingDelegate.h in Headers */,
-				100000000000001500000110 /* NetflixModifyQueueDelegate.h in Headers */,
-				100000000000001500000112 /* NetflixMoveMovieDelegate.h in Headers */,
-				100000000000000C0000003D /* Feed.h in Headers */,
-				100000000000001200000121 /* Movie.h in Headers */,
-				10000000000000130000004D /* NetflixAccount.h in Headers */,
-				100000000000001500000123 /* NetflixUser.h in Headers */,
-				100000000000001700000018 /* Queue.h in Headers */,
-				100000000000001800000218 /* Status.h in Headers */,
-				1000000000000012000000EE /* MetasyntacticShared.h in Headers */,
-				100000000000000700000092 /* AbstractMovieCache.h in Headers */,
-				10000000000000130000005B /* NetflixAuthentication.h in Headers */,
-				100000000000001200000036 /* Macros.h in Headers */,
-				10000000000000150000010C /* NetflixLoginViewController.h in Headers */,
-				10000000000000150000011F /* NetflixStockImages.h in Headers */,
-				100000000000001300000055 /* NetflixAccountsViewController.h in Headers */,
-				1000000000000007000000A1 /* AbstractNetflixArguments.h in Headers */,
-				100000000000001300000099 /* NetflixRssCache.h in Headers */,
-				1000000000000013000000CC /* NetflixUtilities.h in Headers */,
+				10000000000000080000000A /* Prefix.pch in Headers */,
+				1000000000000007000000F0 /* NetflixShared.h in Headers */,
+				100000000000000700000064 /* ForwardDeclarations.h in Headers */,
+				100000000000000700000103 /* NetflixSharedApplication.h in Headers */,
+				100000000000000700000122 /* NetflixSharedApplicationDelegate.h in Headers */,
+				100000000000000700000034 /* AddMovieArguments.h in Headers */,
+				100000000000000700000040 /* ChangeRatingArguments.h in Headers */,
+				100000000000000700000070 /* ModifyQueueArguments.h in Headers */,
+				10000000000000070000008F /* MoveMovieArguments.h in Headers */,
+				1000000000000007000000CD /* NetflixAddMovieDelegate.h in Headers */,
+				1000000000000007000000DB /* NetflixCache.h in Headers */,
+				1000000000000007000000DF /* NetflixChangeRatingDelegate.h in Headers */,
+				1000000000000007000000E9 /* NetflixModifyQueueDelegate.h in Headers */,
+				1000000000000007000000EB /* NetflixMoveMovieDelegate.h in Headers */,
+				100000000000000700000060 /* Feed.h in Headers */,
+				10000000000000070000009A /* Movie.h in Headers */,
+				1000000000000007000000AB /* NetflixAccount.h in Headers */,
+				1000000000000007000001A4 /* NetflixUser.h in Headers */,
+				100000000000000800000011 /* Queue.h in Headers */,
+				10000000000000080000001A /* Status.h in Headers */,
+				10000000000000070000006D /* MetasyntacticShared.h in Headers */,
+				100000000000000700000002 /* AbstractMovieCache.h in Headers */,
+				1000000000000007000000CF /* NetflixAuthentication.h in Headers */,
+				10000000000000070000006B /* Macros.h in Headers */,
+				1000000000000007000000E1 /* NetflixLoginViewController.h in Headers */,
+				100000000000000700000124 /* NetflixStockImages.h in Headers */,
+				1000000000000007000000C9 /* NetflixAccountsViewController.h in Headers */,
+				100000000000000700000006 /* AbstractNetflixArguments.h in Headers */,
+				10000000000000130000009D /* NetflixRssCache.h in Headers */,
+				1000000000000013000000D0 /* NetflixUtilities.h in Headers */,
 				100000000000001300000068 /* NetflixConstants.h in Headers */,
-				1000000000000013000000B5 /* NetflixSiteStatus.h in Headers */,
-				100000000000001300000083 /* NetflixNetworking.h in Headers */,
-				100000000000001300000087 /* NetflixPaths.h in Headers */,
-				1000000000000013000000C8 /* NetflixUserCache.h in Headers */,
-				100000000000001300000051 /* NetflixFeedCache.h in Headers */,
-				1000000000000013000000C0 /* NetflixUpdater.h in Headers */,
-				746CD90710C49E3A0097992B /* NetflixAccountCache.h in Headers */,
+				1000000000000013000000B9 /* NetflixSiteStatus.h in Headers */,
+				100000000000001300000087 /* NetflixNetworking.h in Headers */,
+				10000000000000130000008B /* NetflixPaths.h in Headers */,
+				1000000000000013000000CC /* NetflixUserCache.h in Headers */,
+				10000000000000130000006C /* NetflixFeedCache.h in Headers */,
+				1000000000000013000000C4 /* NetflixUpdater.h in Headers */,
+				100000000000001300000051 /* NetflixAccountCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		100000000000001500000115 /* NetflixShared */ = {
+		1000000000000007000000EE /* NetflixShared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000800000121 /* Build configuration list for PBXNativeTarget "NetflixShared" */;
+			buildConfigurationList = 10000000000000070000003B /* Build configuration list for PBXNativeTarget "NetflixShared" */;
 			buildPhases = (
-				100000000000000E00000003 /* Headers */,
-				100000000000001900000249 /* Sources */,
-				100000000000000C000000A0 /* Frameworks */,
+				100000000000000700000069 /* Headers */,
+				100000000000000800000018 /* Sources */,
+				100000000000000700000068 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -435,76 +435,76 @@
 			);
 			name = NetflixShared;
 			productName = NetflixShared;
-			productReference = 10000000000000290000003F /* libNetflixShared.a */;
+			productReference = 100000000000000800000114 /* libNetflixShared.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1000000000000015000001DE /* Project object */ = {
+		10000000000000080000000F /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 100000000000000800000172 /* Build configuration list for PBXProject "NetflixShared" */;
+			buildConfigurationList = 10000000000000070000003C /* Build configuration list for PBXProject "NetflixShared" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 100000000000001500000114 /* NetflixShared */;
-			productRefGroup = 1000000000000015000001C2 /* Products */;
+			mainGroup = 1000000000000007000000ED /* NetflixShared */;
+			productRefGroup = 10000000000000080000000B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1000000000000015000001CF /* Products */;
-					ProjectRef = 1000000000000012000000F2 /* MetasyntacticShared.xcodeproj */;
+					ProductGroup = 10000000000000080000000D /* Products */;
+					ProjectRef = 10000000000000070000006E /* MetasyntacticShared.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				100000000000001500000115 /* NetflixShared */,
+				1000000000000007000000EE /* NetflixShared */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		100000000000002900000038 /* libMetasyntacticShared.a */ = {
+		10000000000000080000001F /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMetasyntacticShared.a;
-			remoteRef = 10000000000000150000019D /* PBXContainerItemProxy */;
+			remoteRef = 1000000000000007000001B5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		100000000000001900000249 /* Sources */ = {
+		100000000000000800000018 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10000000000000150000011B /* NetflixSharedApplication.m in Sources */,
-				10000000000000080000002B /* AddMovieArguments.m in Sources */,
-				100000000000000900000020 /* ChangeRatingArguments.m in Sources */,
-				10000000000000120000011B /* ModifyQueueArguments.m in Sources */,
-				10000000000000120000011F /* MoveMovieArguments.m in Sources */,
-				100000000000001300000061 /* NetflixCache.m in Sources */,
-				100000000000000C0000003F /* Feed.m in Sources */,
-				1000000000000013000000FC /* Movie.m in Sources */,
-				10000000000000130000004F /* NetflixAccount.m in Sources */,
-				100000000000001500000125 /* NetflixUser.m in Sources */,
-				100000000000001800000088 /* Queue.m in Sources */,
-				10000000000000180000021A /* Status.m in Sources */,
-				100000000000000700000094 /* AbstractMovieCache.m in Sources */,
-				10000000000000140000003D /* NetflixAuthentication.m in Sources */,
-				10000000000000150000010E /* NetflixLoginViewController.m in Sources */,
-				100000000000001500000121 /* NetflixStockImages.m in Sources */,
-				100000000000001300000057 /* NetflixAccountsViewController.m in Sources */,
-				1000000000000007000000A3 /* AbstractNetflixArguments.m in Sources */,
-				10000000000000130000009B /* NetflixRssCache.m in Sources */,
-				1000000000000013000000CE /* NetflixUtilities.m in Sources */,
+				100000000000000700000106 /* NetflixSharedApplication.m in Sources */,
+				100000000000000700000036 /* AddMovieArguments.m in Sources */,
+				100000000000000700000044 /* ChangeRatingArguments.m in Sources */,
+				10000000000000070000008D /* ModifyQueueArguments.m in Sources */,
+				100000000000000700000098 /* MoveMovieArguments.m in Sources */,
+				1000000000000007000000DD /* NetflixCache.m in Sources */,
+				100000000000000700000062 /* Feed.m in Sources */,
+				10000000000000070000009C /* Movie.m in Sources */,
+				1000000000000007000000C7 /* NetflixAccount.m in Sources */,
+				1000000000000007000001B3 /* NetflixUser.m in Sources */,
+				100000000000000800000013 /* Queue.m in Sources */,
+				10000000000000080000001C /* Status.m in Sources */,
+				100000000000000700000004 /* AbstractMovieCache.m in Sources */,
+				1000000000000007000000D1 /* NetflixAuthentication.m in Sources */,
+				1000000000000007000000E7 /* NetflixLoginViewController.m in Sources */,
+				1000000000000007000001A2 /* NetflixStockImages.m in Sources */,
+				1000000000000007000000CB /* NetflixAccountsViewController.m in Sources */,
+				100000000000000700000008 /* AbstractNetflixArguments.m in Sources */,
+				10000000000000130000009F /* NetflixRssCache.m in Sources */,
+				1000000000000013000000D2 /* NetflixUtilities.m in Sources */,
 				10000000000000130000006A /* NetflixConstants.m in Sources */,
-				1000000000000013000000B7 /* NetflixSiteStatus.m in Sources */,
-				100000000000001300000085 /* NetflixNetworking.m in Sources */,
-				100000000000001300000089 /* NetflixPaths.m in Sources */,
-				1000000000000013000000CA /* NetflixUserCache.m in Sources */,
-				100000000000001300000053 /* NetflixFeedCache.m in Sources */,
-				1000000000000013000000C2 /* NetflixUpdater.m in Sources */,
-				746CD90810C49E3A0097992B /* NetflixAccountCache.m in Sources */,
+				1000000000000013000000BB /* NetflixSiteStatus.m in Sources */,
+				100000000000001300000089 /* NetflixNetworking.m in Sources */,
+				10000000000000130000008D /* NetflixPaths.m in Sources */,
+				1000000000000013000000CE /* NetflixUserCache.m in Sources */,
+				10000000000000130000006E /* NetflixFeedCache.m in Sources */,
+				1000000000000013000000C6 /* NetflixUpdater.m in Sources */,
+				100000000000001300000053 /* NetflixAccountCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,13 +519,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		100000000000000A0000003F /* Debug */ = {
+		100000000000000700000059 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		100000000000000A00000040 /* Debug */ = {
+		10000000000000070000005A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -550,13 +550,13 @@
 			};
 			name = Debug;
 		};
-		100000000000001800000097 /* Release */ = {
+		100000000000000800000014 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		1000000000000018000000E7 /* Release */ = {
+		100000000000000800000015 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -582,25 +582,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000800000121 /* Build configuration list for PBXNativeTarget "NetflixShared" */ = {
+		10000000000000070000003B /* Build configuration list for PBXNativeTarget "NetflixShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				100000000000000A0000003F /* Debug */,
-				100000000000001800000097 /* Release */,
+				100000000000000700000059 /* Debug */,
+				100000000000000800000014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		100000000000000800000172 /* Build configuration list for PBXProject "NetflixShared" */ = {
+		10000000000000070000003C /* Build configuration list for PBXProject "NetflixShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				100000000000000A00000040 /* Debug */,
-				1000000000000018000000E7 /* Release */,
+				10000000000000070000005A /* Debug */,
+				100000000000000800000015 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1000000000000015000001DE /* Project object */;
+	rootObject = 10000000000000080000000F /* Project object */;
 }
