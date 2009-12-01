@@ -1421,7 +1421,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = AdHoc;
 		};
@@ -1455,7 +1455,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = Release;
 		};
@@ -1489,7 +1489,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = Debug;
 		};
@@ -1518,7 +1518,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphonesimulator3.1;
 			};
 			name = Distribution;
 		};

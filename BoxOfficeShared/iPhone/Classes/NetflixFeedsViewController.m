@@ -58,8 +58,8 @@
 }
 
 
-- (NetflixAccountCache*) netflixAccountCache {
-  return [NetflixAccountCache cache];
+- (NetflixFeedCache*) netflixFeedCache {
+  return [NetflixFeedCache cache];
 }
 
 
@@ -76,7 +76,7 @@
 
 
 - (NSArray*) feeds {
-  NSArray* feeds = [self.netflixAccountCache feedsForAccount:account];
+  NSArray* feeds = [self.netflixFeedCache feedsForAccount:account];
 
   NSMutableArray* result = [NSMutableArray array];
   for (Feed* feed in feeds) {
