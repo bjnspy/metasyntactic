@@ -650,7 +650,11 @@ public class Program {
       }
 
       final String hash = current.toString(16).toUpperCase();
-      hashingMap.put(hah.hash, hash);
+
+
+      if (!hashingMap.containsKey(hah.hash)) {
+        hashingMap.put(hah.hash, hash);
+      }
 
       current = current.add(BigInteger.ONE);
 

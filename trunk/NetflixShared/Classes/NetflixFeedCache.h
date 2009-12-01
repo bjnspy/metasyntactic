@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixAccountCache : AbstractCache {
+@interface NetflixFeedCache : AbstractCache {
 @private
   // accessed from multiple threads.
   AutoreleasingMutableDictionary* accountToFeeds;
   AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
 }
 
-+ (NetflixAccountCache*) cache;
++ (NetflixFeedCache*) cache;
 
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;
 
