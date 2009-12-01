@@ -16,6 +16,7 @@
 
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixAuthentication.h"
 #import "NetflixConstants.h"
 #import "NetflixSharedApplication.h"
@@ -66,7 +67,7 @@ static NSDictionary* availabilityMap = nil;
 + (BOOL) canContinue:(NetflixAccount*) account {
   return [NetflixSharedApplication netflixEnabled] &&
   account.userId.length > 0 &&
-  [account isEqual:[NetflixSharedApplication currentNetflixAccount]];
+  [account isEqual:[[NetflixAccountCache cache] currentAccount]];
 }
 
 

@@ -299,7 +299,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
                     [LocaleUtilities englishCountry],
                     [LocaleUtilities englishLanguage]];
 
-  NetflixAccount* account = self.model.currentNetflixAccount;
+  NetflixAccount* account = [[NetflixAccountCache cache] currentAccount];
   if (account.userId.length > 0) {
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
             [StringUtilities nonNilString:account.userId],

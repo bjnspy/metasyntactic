@@ -138,7 +138,7 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.account = self.model.currentNetflixAccount;
+  self.account = [[NetflixAccountCache cache] currentAccount];
   self.tableView.rowHeight = 100;
   self.feed = [self.netflixFeedCache feedForKey:feedKey account:account];
   self.queue = [self.netflixFeedCache queueForFeed:feed account:account];

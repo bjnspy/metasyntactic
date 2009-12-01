@@ -35,18 +35,8 @@ static id<NetflixSharedApplicationDelegate> delegate = nil;
 }
 
 
-+ (NSArray*) netflixAccounts {
-  return [delegate netflixAccounts];
-}
-
-
-+ (NetflixAccount*) currentNetflixAccount {
-  return [delegate currentNetflixAccount];
-}
-
-
-+ (void) setCurrentNetflixAccount:(NetflixAccount*) account {
-  [delegate setCurrentNetflixAccount:account];
++ (void) onCurrentNetflixAccountSet {
+  [delegate onCurrentNetflixAccountSet];
 }
 
 
@@ -57,21 +47,6 @@ static id<NetflixSharedApplicationDelegate> delegate = nil;
 
 + (void) reportNetflixMovie:(Movie*) movie {
   [delegate reportNetflixMovie:movie];
-}
-
-
-+ (void) addNetflixAccount:(NetflixAccount*) account {
-  [delegate addNetflixAccount:account];
-}
-
-
-+ (void) removeNetflixAccount:(NetflixAccount*) account {
-  [delegate removeNetflixAccount:account];
-}
-
-
-+ (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account {
-  return [delegate netflixUserForAccount:account];
 }
 
 @end

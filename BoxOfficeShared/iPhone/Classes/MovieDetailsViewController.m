@@ -376,7 +376,7 @@ typedef enum {
 
 
 - (void) initializeData {
-  self.netflixAccount = self.model.currentNetflixAccount;
+  self.netflixAccount = [[NetflixAccountCache cache] currentAccount];
   self.netflixMovie = [self.netflixCache correspondingNetflixMovie:movie];
   [self initializeNetflixStatusCells];
 

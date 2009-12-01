@@ -18,6 +18,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixFeedCache.h"
 #import "NetflixAccountsViewController.h"
 #import "NetflixAddMovieDelegate.h"

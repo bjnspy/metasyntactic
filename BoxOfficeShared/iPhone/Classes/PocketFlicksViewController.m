@@ -170,7 +170,7 @@ typedef enum {
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.account = self.model.currentNetflixAccount;
+  self.account = [[NetflixAccountCache cache] currentAccount];
   if (self.hasAccount) {
     self.tableView.tableHeaderView = searchBar;
   } else {
@@ -373,7 +373,7 @@ typedef enum {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:account];
 
   if (searchDisplayController.isActive ||
-      self.model.netflixAccounts.count <= 1 ||
+      [[[NetflixAccountCache cache] accounts] count] <= 1 ||
       user == nil) {
     return nil;
   }

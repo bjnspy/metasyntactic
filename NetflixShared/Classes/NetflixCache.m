@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixFeedCache.h"
 #import "NetflixConstants.h"
 #import "NetflixNetworking.h"
@@ -619,7 +620,7 @@ static NetflixCache* cache;
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
   [self updateMovieDetails:movie
                      force:force
-                   account:[NetflixSharedApplication currentNetflixAccount]];
+                   account:[[NetflixAccountCache cache] currentAccount]];
 }
 
 
