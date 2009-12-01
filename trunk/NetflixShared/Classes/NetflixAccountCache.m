@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  NetflixAccountCache.m
-//  NetflixShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 11/30/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "NetflixAccountCache.h"
 
@@ -51,7 +57,7 @@ static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX  = @"netflixCurrentAccountIndex";
   if (result.count == 0) {
     return [NSArray array];
   }
-  
+
   return [NetflixAccount decodeArray:result];
 }
 
@@ -60,7 +66,7 @@ static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX  = @"netflixCurrentAccountIndex";
   if (accountsData == nil) {
     self.accountsData = [self loadAccounts];
   }
-  
+
   // return through pointer so that it is retain/autoreleased
   return self.accountsData;
 }
@@ -88,7 +94,7 @@ static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX  = @"netflixCurrentAccountIndex";
   if (account == nil) {
     return;
   }
-  
+
   NSArray* accounts = self.accounts;
   NSInteger index = [accounts indexOfObject:account];
   if (index >= 0 && index < accounts.count) {
@@ -104,7 +110,7 @@ static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX  = @"netflixCurrentAccountIndex";
   if (account == nil) {
     return;
   }
-  
+
   NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.accounts];
   if (![accounts containsObject:account]) {
     [accounts addObject:account];
@@ -121,16 +127,16 @@ static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX  = @"netflixCurrentAccountIndex";
   if (account == nil) {
     return;
   }
-  
-  // Hold onto the account, even when it's deleted 
+
+  // Hold onto the account, even when it's deleted
   [[account retain] autorelease];
-  
+
   NetflixAccount* currentAccount = self.currentAccount;
-  
+
   NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.accounts];
   [accounts removeObject:account];
   [self setAccounts:accounts];
-  
+
   if ([account isEqual:currentAccount]) {
     if (accounts.count > 0) {
       // they removed the active account.  switch the active account to the first account.
