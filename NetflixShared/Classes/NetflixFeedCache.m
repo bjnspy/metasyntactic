@@ -12,30 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NetflixAccountCache.h"
+#import "NetflixFeedCache.h"
 
 #import "Feed.h"
 #import "NetflixAccount.h"
 #import "NetflixPaths.h"
 #import "Queue.h"
 
-@interface NetflixAccountCache()
+@interface NetflixFeedCache()
 @property (retain) AutoreleasingMutableDictionary* accountToFeeds;
 @property (retain) AutoreleasingMutableDictionary* accountToFeedKeyToQueues;
 @end
 
-@implementation NetflixAccountCache
+@implementation NetflixFeedCache
 
-static NetflixAccountCache* cache;
+static NetflixFeedCache* cache;
 
 + (void) initialize {
-  if (self == [NetflixAccountCache class]) {
-    cache = [[NetflixAccountCache alloc] init];
+  if (self == [NetflixFeedCache class]) {
+    cache = [[NetflixFeedCache alloc] init];
   }
 }
 
 
-+ (NetflixAccountCache*) cache {
++ (NetflixFeedCache*) cache {
   return cache;
 }
 

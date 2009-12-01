@@ -20,7 +20,7 @@
 #import "MoveMovieArguments.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
-#import "NetflixAccountCache.h"
+#import "NetflixFeedCache.h"
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixCache.h"
 #import "NetflixChangeRatingDelegate.h"
@@ -69,8 +69,8 @@ static NetflixUpdater* updater;
 }
 
 
-- (NetflixAccountCache*) accountCache {
-  return [NetflixAccountCache cache];
+- (NetflixFeedCache*) feedCache {
+  return [NetflixFeedCache cache];
 }
 
 
@@ -132,7 +132,7 @@ static NetflixUpdater* updater;
     toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
                   account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
-  [self.accountCache saveQueue:queue account:account];
+  [self.feedCache saveQueue:queue account:account];
 
   [ThreadingUtilities foregroundSelector:@selector(modifyFailedWithError:)
                                 onTarget:delegate
@@ -144,7 +144,7 @@ static NetflixUpdater* updater;
       andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
                                     account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
-  [self.accountCache saveQueue:queue account:account];
+  [self.feedCache saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(modifySucceeded)
                                 onTarget:delegate];
 }
@@ -154,7 +154,7 @@ static NetflixUpdater* updater;
     andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate
                                account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
-  [self.accountCache saveQueue:queue account:account];
+  [self.feedCache saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(addSucceeded)
                                 onTarget:delegate];
 }
@@ -218,7 +218,7 @@ static NetflixUpdater* updater;
                                 withObject:error];
   } else {
     NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", moveArguments.movie.canonicalTitle, finalQueue.etag);
-    [self.accountCache saveQueue:finalQueue account:moveArguments.account];
+    [self.feedCache saveQueue:finalQueue account:moveArguments.account];
 
     [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
                                   onTarget:moveArguments.delegate
