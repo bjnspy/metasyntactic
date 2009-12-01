@@ -219,10 +219,10 @@
       titleForFooterInSection:(NSInteger) section {
   if (!self.editing) {
     if (section == 1) {
-      return LocalizedString(@"Usernames and passwords for your additional profiles can be found on Netflix.com under:\n\nYour Account & Help\nAccount profiles\nEdit\nSign In Name", nil); 
+      return LocalizedString(@"Usernames and passwords for your additional profiles can be found on Netflix.com under:\n\nYour Account & Help\nAccount profiles\nEdit\nSign In Name", nil);
     }
   }
-  
+
   return nil;
 }
 

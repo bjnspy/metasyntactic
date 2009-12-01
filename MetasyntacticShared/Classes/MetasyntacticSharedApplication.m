@@ -60,7 +60,7 @@ static Pulser* majorRefreshPulser = nil;
   if ([delegate respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)]) {
     return [delegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
   }
-  
+
   return NO;
 }
 
