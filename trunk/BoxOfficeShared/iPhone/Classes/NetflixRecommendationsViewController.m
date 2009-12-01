@@ -58,8 +58,8 @@
 }
 
 
-- (NetflixAccountCache*) netflixAccountCache {
-  return [NetflixAccountCache cache];
+- (NetflixFeedCache*) netflixFeedCache {
+  return [NetflixFeedCache cache];
 }
 
 
@@ -69,7 +69,7 @@
   MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
   NSMutableSet* set = [NSMutableSet set];
-  Queue* queue = [self.netflixAccountCache queueForKey:[NetflixConstants recommendationKey] account:account];
+  Queue* queue = [self.netflixFeedCache queueForKey:[NetflixConstants recommendationKey] account:account];
   for (Movie* movie in queue.movies) {
     if (movie.genres.count > 0) {
       NSString* genre = movie.genres.firstObject;

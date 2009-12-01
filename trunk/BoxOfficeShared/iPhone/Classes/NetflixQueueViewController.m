@@ -131,8 +131,8 @@
 }
 
 
-- (NetflixAccountCache*) netflixAccountCache {
-  return [NetflixAccountCache cache];
+- (NetflixFeedCache*) netflixFeedCache {
+  return [NetflixFeedCache cache];
 }
 
 
@@ -140,8 +140,8 @@
   [super onBeforeReloadTableViewData];
   self.account = self.model.currentNetflixAccount;
   self.tableView.rowHeight = 100;
-  self.feed = [self.netflixAccountCache feedForKey:feedKey account:account];
-  self.queue = [self.netflixAccountCache queueForFeed:feed account:account];
+  self.feed = [self.netflixFeedCache feedForKey:feedKey account:account];
+  self.queue = [self.netflixFeedCache queueForFeed:feed account:account];
   self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
   self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
   [self setupTitle];
@@ -293,7 +293,7 @@
 
 
 - (void) moveSucceededForMovie:(Movie*) movie {
-  self.queue = [self.netflixAccountCache queueForFeed:feed account:account];
+  self.queue = [self.netflixFeedCache queueForFeed:feed account:account];
   NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
 
   [self.tableView beginUpdates];
