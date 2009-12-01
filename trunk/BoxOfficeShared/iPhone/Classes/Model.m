@@ -52,7 +52,6 @@
 @property (retain) NSNumber* isSearchDateTodayData;
 @property NSInteger cachedScoreProviderIndex;
 @property NSInteger searchRadiusData;
-@property (retain) NSArray* netflixAccountsData;
 @end
 
 @implementation Model
@@ -68,15 +67,10 @@ static NSString* LOADING_INDIACTORS_DISABLED                = @"loadingIndicator
 static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelectedScopeButtonIndex";
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                    = @"navigationStackValues";
-static NSString* NETFLIX_ACCOUNTS                           = @"netflixAccounts";
-static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX              = @"netflixCurrentAccountIndex";
 static NSString* NETFLIX_DISABLED                           = @"netflixDisabled";
 static NSString* NETFLIX_FILTER_SELECTED_SEGMENT_INDEX      = @"netflixFilterSelectedSegmentIndex";
-static NSString* NETFLIX_KEY                                = @"netflixKey";
 static NSString* NETFLIX_NOTIFICATIONS_DISABLED             = @"netflixNotificationsDisabled";
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
-static NSString* NETFLIX_SECRET                             = @"netflixSecret";
-static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
 static NSString* SEARCH_DATE                                = @"searchDate";
@@ -98,7 +92,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize largePosterCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
-@synthesize netflixAccountsData;
 
 - (void) dealloc {
   self.dataProvider = nil;
@@ -109,8 +102,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.largePosterCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
-
-  self.netflixAccountsData = nil;
 
   [super dealloc];
 }
@@ -205,28 +196,8 @@ static Model* model = nil;
 }
 
 
-- (void) migrateNetflixAccount {
-  if (self.netflixAccounts.count == 0) {
-    NSString* key = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
-    NSString* secret = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
-    NSString* userId = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
-    if (key.length > 0 && secret.length > 0 && userId.length > 0) {
-      NetflixAccount* account = [NetflixAccount accountWithKey:key secret:secret userId:userId];
-      [self addNetflixAccount:account];
-    }
-
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_KEY];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_SECRET];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_USER_ID];
-    [self synchronize];
-  }
-}
-
-
 - (id) init {
   if ((self = [super init])) {
-    [self migrateNetflixAccount];
-
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
@@ -371,96 +342,6 @@ static Model* model = nil;
 
 - (void) setNetflixCacheEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
-}
-
-
-- (NSArray*) loadNetflixAccounts {
-  NSArray* result = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_ACCOUNTS];
-  if (result.count == 0) {
-    return [NSArray array];
-  }
-
-  return [NetflixAccount decodeArray:result];
-}
-
-
-- (NSArray*) netflixAccounts {
-  if (netflixAccountsData == nil) {
-    self.netflixAccountsData = [self loadNetflixAccounts];
-  }
-
-  // return through pointer so that it is retain/autoreleased
-  return self.netflixAccountsData;
-}
-
-
-- (void) setNetflixAccounts:(NSArray*) accounts {
-  self.netflixAccountsData = accounts;
-  [[NSUserDefaults standardUserDefaults] setObject:[NetflixAccount encodeArray:accounts]
-                                            forKey:NETFLIX_ACCOUNTS];
-  [self synchronize];
-}
-
-
-- (NetflixAccount*) currentNetflixAccount {
-  NSArray* accounts = self.netflixAccounts;
-  NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
-  if (index < 0 || index >= accounts.count) {
-    return nil;
-  }
-  return [[[accounts objectAtIndex:index] retain] autorelease];
-}
-
-
-- (void) setCurrentNetflixAccount:(NetflixAccount*) account {
-  if (account == nil) {
-    return;
-  }
-
-  NSArray* accounts = self.netflixAccounts;
-  NSInteger index = [accounts indexOfObject:account];
-  if (index >= 0 && index < accounts.count) {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
-    [self synchronize];
-  }
-}
-
-
-- (void) addNetflixAccount:(NetflixAccount*) account {
-  if (account == nil) {
-    return;
-  }
-
-  NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
-  if (![accounts containsObject:account]) {
-    [accounts addObject:account];
-  }
-  [self setNetflixAccounts:accounts];
-}
-
-
-- (void) removeNetflixAccount:(NetflixAccount*) account {
-  if (account == nil) {
-    return;
-  }
-
-  [[account retain] autorelease];
-
-  NetflixAccount* currentAccount = self.currentNetflixAccount;
-
-  NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
-  [accounts removeObject:account];
-  [self setNetflixAccounts:accounts];
-
-  if ([account isEqual:currentAccount]) {
-    if (accounts.count > 0) {
-      // they removed the active account.  switch the active account to the first account.
-      [self setCurrentNetflixAccount:accounts.firstObject];
-    }
-  } else {
-    // reset the current account unless the index changed
-    [self setCurrentNetflixAccount:currentAccount];
-  }
 }
 
 

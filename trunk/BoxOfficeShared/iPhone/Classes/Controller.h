@@ -36,8 +36,6 @@
 - (void) setDvdMoviesShowDVDs:(BOOL) value;
 - (void) setDvdMoviesShowBluray:(BOOL) value;
 
-- (void) addNetflixAccount:(NetflixAccount*) account;
-- (void) removeNetflixAccount:(NetflixAccount*) account;
-- (void) setCurrentNetflixAccount:(NetflixAccount*) account;
+- (void) onCurrentNetflixAccountSet;
 
 @end

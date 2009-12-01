@@ -65,7 +65,7 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.account = self.model.currentNetflixAccount;
+  self.account = [[NetflixAccountCache cache] currentAccount];
   MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
   NSMutableSet* set = [NSMutableSet set];

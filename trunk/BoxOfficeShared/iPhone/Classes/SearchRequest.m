@@ -59,7 +59,7 @@
     self.upcomingMovies = [[UpcomingCache cache] movies];
     self.dvds = [[DVDCache cache] movies];
     self.bluray = [[BlurayCache cache] movies];
-    self.account = model.currentNetflixAccount;
+    self.account = [[NetflixAccountCache cache] currentAccount];
   }
 
   return self;

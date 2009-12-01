@@ -15,6 +15,7 @@
 #import "NetflixLoginViewController.h"
 
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixAuthentication.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
@@ -323,7 +324,7 @@
   [NSString stringWithFormat:
    LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [AbstractApplication name]];
 
-  [NetflixSharedApplication addNetflixAccount:account];
+  [[NetflixAccountCache cache] addAccount:account];
 }
 
 @end

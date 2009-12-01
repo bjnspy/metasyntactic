@@ -140,7 +140,8 @@ static Controller* controller = nil;
 
 
 - (void) updateNetflixCache:(BOOL) force {
-  [self.netflixCache update:self.model.currentNetflixAccount force:force];
+  [self.netflixCache update:[[NetflixAccountCache cache] currentAccount]
+                      force:force];
 }
 
 
@@ -314,38 +315,8 @@ static Controller* controller = nil;
 }
 
 
-- (void) addNetflixAccount:(NetflixAccount*) account {
-  NetflixAccount* currentAccount = self.model.currentNetflixAccount;
-  [self.model addNetflixAccount:account];
-
-  // Update this account if it's the first account we're adding.
-  if (currentAccount == nil) {
-    [self updateNetflixCache:NO];
-  }
-}
-
-
-- (void) removeNetflixAccount:(NetflixAccount*) account {
-  NetflixAccount* currentAccount = self.model.currentNetflixAccount;
-  [self.model removeNetflixAccount:account];
-
-  // We're removing the current netflix account.
-  // We need to update our information about the new account we're switching to.
-  if ([account isEqual:currentAccount]) {
-    [self updateNetflixCache:NO];
-  }
-}
-
-
-- (void) setCurrentNetflixAccount:(NetflixAccount*) account {
-  NetflixAccount* currentAccount = self.model.currentNetflixAccount;
-  [self.model setCurrentNetflixAccount:account];
-
-  // We're setting the account to something different.
-  // We need to update our information about that account.
-  if (![account isEqual:currentAccount]) {
-    [self updateNetflixCache:NO];
-  }
+- (void) onCurrentNetflixAccountSet {
+  [self updateNetflixCache:NO];
 }
 
 

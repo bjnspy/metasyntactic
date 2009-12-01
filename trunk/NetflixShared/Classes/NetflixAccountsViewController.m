@@ -15,9 +15,11 @@
 #import "NetflixAccountsViewController.h"
 
 #import "NetflixAccount.h"
+#import "NetflixAccountCache.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixUser.h"
+#import "NetflixUserCache.h"
 
 @interface NetflixAccountsViewController()
 @property (retain) NSMutableArray* accounts;
@@ -56,7 +58,7 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.accounts = [NSMutableArray arrayWithArray:[NetflixSharedApplication netflixAccounts]];
+  self.accounts = [NSMutableArray arrayWithArray:[[NetflixAccountCache cache] accounts]];
 }
 
 
@@ -95,14 +97,14 @@
 
   if (indexPath.section == 0) {
     NetflixAccount* account = [accounts objectAtIndex:indexPath.row];
-    NetflixUser* user = [NetflixSharedApplication netflixUserForAccount:account];
+    NetflixUser* user = [[NetflixUserCache cache] userForAccount:account];
 
     if (user == nil) {
       cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"Account #%d", nil), indexPath.row + 1];
     } else {
       cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     }
-    if ([account isEqual:[NetflixSharedApplication currentNetflixAccount]]) {
+    if ([account isEqual:[[NetflixAccountCache cache] currentAccount]]) {
       cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
   } else {
@@ -122,7 +124,7 @@
 - (void) didSelectAccountRow:(NSInteger) row {
   NetflixAccount* account = [accounts objectAtIndex:row];
 
-  [NetflixSharedApplication setCurrentNetflixAccount:account];
+  [[NetflixAccountCache cache] setCurrentAccount:account];
 
   for (NSInteger i = 0; i < accounts.count; i++) {
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -200,7 +202,7 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     NSInteger row = indexPath.row;
     NetflixAccount* account = [accounts objectAtIndex:row];
-    [NetflixSharedApplication removeNetflixAccount:account];
+    [[NetflixAccountCache cache] removeAccount:account];
     [accounts removeObjectAtIndex:row];
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

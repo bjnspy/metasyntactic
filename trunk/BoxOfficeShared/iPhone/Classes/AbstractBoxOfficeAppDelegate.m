@@ -129,38 +129,8 @@
 }
 
 
-- (NetflixAccount*) currentNetflixAccount {
-  return self.model.currentNetflixAccount;
-}
-
-
-- (NSArray*) netflixAccounts {
-  return self.model.netflixAccounts;
-}
-
-
-- (void) setCurrentNetflixAccount:(NetflixAccount*) account {
-  [self.controller setCurrentNetflixAccount:account];
-}
-
-
-- (void) addNetflixAccount:(NetflixAccount*) account {
-  [self.controller addNetflixAccount:account];
-}
-
-
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
-- (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account {
-  return [[NetflixUserCache cache] userForAccount:account];
-}
-
-
-- (void) removeNetflixAccount:(NetflixAccount*) account {
-  [self.controller removeNetflixAccount:account];
+- (void) onCurrentNetflixAccountSet {
+  [self.controller onCurrentNetflixAccountSet];
 }
 
 

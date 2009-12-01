@@ -177,7 +177,7 @@
           [LocaleUtilities englishCountry],
           [LocaleUtilities englishLanguage]];
 
-  NetflixAccount* account = self.model.currentNetflixAccount;
+  NetflixAccount* account = [[NetflixAccountCache cache] currentAccount];
   if (self.model.netflixCacheEnabled && account.userId.length > 0) {
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
             [StringUtilities nonNilString:account.userId],
