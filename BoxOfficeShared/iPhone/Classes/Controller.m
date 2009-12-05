@@ -129,7 +129,7 @@ static Controller* controller = nil;
 
 
 - (void) updateUpcomingCache {
-  [[UpcomingCache class] update];
+  [[UpcomingCache cache] update];
 }
 
 
