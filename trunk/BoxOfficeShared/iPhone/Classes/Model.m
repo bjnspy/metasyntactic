@@ -143,6 +143,7 @@ static Model* model = nil;
                                @"BR", // Brazil
                                @"CA", // Canada
                                @"CH", // Switzerland
+                               @"CN", // China
                                @"CZ", // Czech Republic
                                @"DE", // Germany
                                @"DK", // Denmark
@@ -163,7 +164,9 @@ static Model* model = nil;
                                @"SG", // Singapore
                                @"SK", // Slovakia
                                @"SE", // Sweden
+                               @"TH", // Thailand
                                @"TR", // Turkey
+                               @"TW", // Taiwan
                                @"US", // United States
                                nil];
 

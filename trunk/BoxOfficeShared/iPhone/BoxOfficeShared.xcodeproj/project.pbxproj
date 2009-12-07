@@ -492,6 +492,7 @@
 		100000000000001800000252 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002600000005 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74CAC2CF10CDA4D2003E51A3 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Resources/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1161,6 +1162,7 @@
 				hr,
 				zh_tw,
 				zh_TW,
+				zh,
 			);
 			mainGroup = 100000000000000700000104 /* CustomTemplate */;
 			projectDirPath = "";
@@ -1387,6 +1389,7 @@
 				100000000000001500000200 /* sv */,
 				100000000000001500000201 /* tr */,
 				100000000000001500000202 /* uk */,
+				74CAC2CF10CDA4D2003E51A3 /* zh */,
 				100000000000003400000001 /* zh_TW */,
 			);
 			name = Localizable.strings;
