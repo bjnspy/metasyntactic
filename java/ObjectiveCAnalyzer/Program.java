@@ -517,7 +517,8 @@ public class Program {
       }
     }
 
-    if (child.getParentFile().getName().equals("ja.lproj")) {
+    if (child.getParentFile().getName().equals("ja.lproj") ||
+        child.getParentFile().getName().startsWith("zh")) {
       if (lastChar(english) == '.' &&
           lastChar(translated) == '。') {
         return;
