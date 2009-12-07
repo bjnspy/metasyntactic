@@ -173,7 +173,7 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-+ (NSDictionary*) processPosterListings:(XmlElement *) posterListingsElement  {
++ (NSDictionary*) processPosterListings:(XmlElement*) posterListingsElement  {
   if (posterListingsElement == nil) {
     return nil;
   }
@@ -182,6 +182,9 @@ const NSInteger START_YEAR = 1912;
 
   for (XmlElement* itemElement in posterListingsElement.children) {
     NSString* title = [itemElement attributeValue:@"title"];
+    title = [StringUtilities makeCanonical:title];
+    title = [title lowercaseString];
+
     if (title.length == 0) {
       continue;
     }
@@ -227,8 +230,7 @@ const NSInteger START_YEAR = 1912;
                        [Application apiHost], [Application apiVersion], year];
   XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
-  NSDictionary *titleToPosters = [LargePosterCache processPosterListings: result];
-
+  NSDictionary* titleToPosters = [LargePosterCache processPosterListings:result];
 
   if (titleToPosters.count > 0) {
     [FileUtilities writeObject:titleToPosters.allKeys toFile:indexFile];
@@ -303,7 +305,7 @@ const NSInteger START_YEAR = 1912;
   }
   [dataGate unlock];
 
-  NSString* lowercaseTitle = movie.displayTitle.lowercaseString;
+  NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
   if ([movieNames containsObject:lowercaseTitle]) {
     NSDictionary* dictionary = [FileUtilities readObject:[self mapFile:year]];
     return [dictionary objectForKey:lowercaseTitle];
