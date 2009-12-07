@@ -493,6 +493,7 @@
 		100000000000002600000005 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74CAC2CF10CDA4D2003E51A3 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Resources/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74CAC2E410CDA83D003E51A3 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1387,6 +1388,7 @@
 				1000000000000015000001FE /* ru */,
 				1000000000000015000001FF /* sk */,
 				100000000000001500000200 /* sv */,
+				74CAC2E410CDA83D003E51A3 /* th */,
 				100000000000001500000201 /* tr */,
 				100000000000001500000202 /* uk */,
 				74CAC2CF10CDA4D2003E51A3 /* zh */,
