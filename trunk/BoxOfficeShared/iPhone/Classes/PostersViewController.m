@@ -48,18 +48,23 @@
 }
 
 
+- (LargePosterCache*) largePosterCache {
+  return [LargePosterCache cache];
+}
+
+
 - (BOOL) allImagesDownloaded {
-  return [self.model.largePosterCache allPostersDownloadedForMovie:movie];
+  return [self.largePosterCache allPostersDownloadedForMovie:movie];
 }
 
 
 - (BOOL) imageExistsForPage:(NSInteger) page {
-  return [self.model.largePosterCache posterExistsForMovie:movie index:page];
+  return [self.largePosterCache posterExistsForMovie:movie index:page];
 }
 
 
 - (UIImage*) imageForPage:(NSInteger) page {
-  return [self.model.largePosterCache posterForMovie:movie index:page loadFromDisk:YES];
+  return [self.largePosterCache posterForMovie:movie index:page loadFromDisk:YES];
 }
 
 

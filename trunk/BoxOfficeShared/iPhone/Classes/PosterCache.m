@@ -130,7 +130,7 @@ static PosterCache* cache;
     return data;
   }
 
-  [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+  [[LargePosterCache cache] downloadFirstPosterForMovie:movie];
 
   // if we had a network connection, then it means we don't know of any
   // posters for this movie.  record that fact and try again another time
