@@ -25,6 +25,14 @@
 
 @implementation LargePosterCache
 
+static LargePosterCache* cache;
+
++ (void) initialize {
+  if (self == [LargePosterCache class]) {
+    cache = [[LargePosterCache alloc] init];
+  }
+}
+
 @synthesize yearToMovieNames;
 @synthesize yearToTitleToPosterUrls;
 @synthesize updated;
@@ -52,7 +60,7 @@ const NSInteger START_YEAR = 1912;
 
 
 + (LargePosterCache*) cache {
-  return [[[LargePosterCache alloc] init] autorelease];
+  return cache;
 }
 
 

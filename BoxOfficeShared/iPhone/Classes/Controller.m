@@ -22,6 +22,7 @@
 #import "DVDCache.h"
 #import "HelpCache.h"
 #import "InternationalDataCache.h"
+#import "LargePosterCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "ScoreCache.h"
@@ -146,7 +147,7 @@ static Controller* controller = nil;
 
 
 - (void) updateLargePosterCache {
-  [self.model.largePosterCache update];
+  [[LargePosterCache cache] update];
 }
 
 

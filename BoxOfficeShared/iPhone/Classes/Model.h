@@ -23,7 +23,6 @@ enum ViewControllerType {
 @private
   UserLocationCache* userLocationCache;
   PersonPosterCache* personPosterCache;
-  LargePosterCache* largePosterCache;
 
   id<DataProvider> dataProvider;
 
@@ -36,7 +35,6 @@ enum ViewControllerType {
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
 @property (readonly, retain) PersonPosterCache* personPosterCache;
-@property (readonly, retain) LargePosterCache* largePosterCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;

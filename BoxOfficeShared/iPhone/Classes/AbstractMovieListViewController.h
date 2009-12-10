@@ -16,12 +16,12 @@
 @protected
   UISearchBar* searchBar;
   UISegmentedControl* segmentedControl;
-
+  
   NSArray* sectionTitles;
   MultiDictionary* sectionTitleToContentsMap;
-
+  
   NSArray* indexTitles;
-
+  
   BOOL scrollToCurrentDateOnRefresh;
 }
 

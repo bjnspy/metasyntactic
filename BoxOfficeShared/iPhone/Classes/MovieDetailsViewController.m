@@ -510,14 +510,19 @@ typedef enum {
 }
 
 
+- (LargePosterCache*) largePosterCache {
+  return [LargePosterCache cache];
+}
+
+
 - (void) downloadPosterBackgroundEntryPoint {
-  NSInteger count = [self.model.largePosterCache posterCountForMovie:movie];
+  NSInteger count = [self.largePosterCache posterCountForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
 
-  [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+  [self.largePosterCache downloadFirstPosterForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPoster)
                          withObject:nil
@@ -1323,7 +1328,7 @@ typedef enum {
   }
 
   [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
-                                          onTarget:self.model.largePosterCache
+                                          onTarget:self.largePosterCache
                                         withObject:movie
                                               gate:nil
                                           priority:Now];
