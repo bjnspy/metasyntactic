@@ -51,7 +51,7 @@
 - (void) moveForward:(UITableView*) nextTableView AbstractMethod;
 
 
-- (NSInteger) cacheTableViews AbstractMethod;
+- (BOOL) cacheTableViews AbstractMethod;
 
 
 - (UIBarButtonItem*) createFlexibleSpace {
