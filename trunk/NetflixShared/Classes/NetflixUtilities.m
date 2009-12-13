@@ -281,18 +281,19 @@ static NSDictionary* availabilityMap = nil;
 
 + (BOOL) etagOutOfDate:(XmlElement *)element {
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
-  NSInteger subCode = [[[element element:@"sub_code"] text] integerValue];
   
-  return
-    subCode == 0 &&
-    statusCode == [NetflixConstants etagMismatchError];
+  return statusCode == [NetflixConstants etagMismatchError];
 }
 
 
 + (NSString*) extractErrorMessage:(XmlElement*) element {
   if ([self etagOutOfDate:element]) {
+    NSInteger subCode = [[[element element:@"sub_code"] text] integerValue];
+    
+    if (subCode == 0) {
       // override this error message since the netflix message is very confusing.
-    return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
+      return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
+    }
   }
 
   NSString* message = [[element element:@"message"] text];
