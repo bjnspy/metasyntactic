@@ -34,4 +34,6 @@
 
 + (NSString*) extractErrorMessage:(XmlElement*) element;
 
++ (BOOL) etagOutOfDate:(XmlElement*) element;
+
 @end

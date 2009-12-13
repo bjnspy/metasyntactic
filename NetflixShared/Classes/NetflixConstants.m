@@ -21,6 +21,10 @@
   return 412;
 }
 
++ (NSInteger) titleAlreadyInQueueError {
+  return 710;
+}
+
 
 + (NSString*) titleKey {
   return @"title";
