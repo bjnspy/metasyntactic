@@ -242,15 +242,15 @@ typedef enum {
   }
 
   if (selectors.count == 0) {
-    return;
+    self.actionsView = nil;
+  } else {
+    self.actionsView = [ActionsView viewWithTarget:self
+                                         selectors:selectors
+                                            titles:titles
+                                         arguments:arguments];
+    
+    [actionsView sizeToFit];
   }
-
-  self.actionsView = [ActionsView viewWithTarget:self
-                                       selectors:selectors
-                                          titles:titles
-                                       arguments:arguments];
-
-  [actionsView sizeToFit];
 }
 
 
