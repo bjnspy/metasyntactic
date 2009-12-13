@@ -47,7 +47,6 @@
 @interface Model()
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) PersonPosterCache* personPosterCache;
-@property (retain) LargePosterCache* largePosterCache;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
 @property NSInteger cachedScoreProviderIndex;
@@ -89,7 +88,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
 @synthesize userLocationCache;
 @synthesize personPosterCache;
-@synthesize largePosterCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 
@@ -99,7 +97,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
   self.userLocationCache = nil;
   self.personPosterCache = nil;
-  self.largePosterCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
 
@@ -203,7 +200,6 @@ static Model* model = nil;
   if ((self = [super init])) {
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
-    self.largePosterCache = [LargePosterCache cache];
 
     [self clearCaches];
 
