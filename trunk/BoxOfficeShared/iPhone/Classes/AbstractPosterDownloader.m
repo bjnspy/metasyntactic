@@ -101,6 +101,11 @@
   }
 
   NSArray* posterUrls = [movieNameToPosterMap objectForKey:key];
+  if (![posterUrls isKindOfClass:[NSArray class]]) {
+    [Application moveItemToTrash:[self indexFile]]; 
+    self.movieNameToPosterMap = nil;
+    return nil;
+  }
   if (posterUrls.count == 0) {
     return nil;
   }
