@@ -14,9 +14,9 @@
 
 @interface XmlDocument : NSObject {
 @private
-    XmlElement* root;
-    NSString* version;
-    NSString* encoding;
+  XmlElement* root;
+  NSString* version;
+  NSString* encoding;
 }
 
 @property (readonly, retain) XmlElement* root;

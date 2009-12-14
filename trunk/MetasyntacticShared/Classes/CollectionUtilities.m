@@ -17,20 +17,20 @@
 @implementation CollectionUtilities
 
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary {
-    if (dictionary == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    return dictionary;
+  if (dictionary == nil) {
+    return [NSDictionary dictionary];
+  }
+  
+  return dictionary;
 }
 
 
 + (NSArray*) nonNilArray:(NSArray*) array {
-    if (array == nil) {
-        return [NSArray array];
-    }
-
-    return array;
+  if (array == nil) {
+    return [NSArray array];
+  }
+  
+  return array;
 }
 
 @end

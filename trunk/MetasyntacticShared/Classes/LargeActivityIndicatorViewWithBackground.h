@@ -14,8 +14,8 @@
 
 @interface LargeActivityIndicatorViewWithBackground : UIView {
 @private
-    UIImageView* backgroundView;
-    UIActivityIndicatorView* activityIndicator;
+  UIImageView* backgroundView;
+  UIActivityIndicatorView* activityIndicator;
 }
 
 - (void) stopAnimating;

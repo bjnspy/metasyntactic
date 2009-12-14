@@ -26,48 +26,48 @@
 @synthesize selector;
 
 - (void) dealloc {
-    self.object = nil;
-    self.selector = nil;
-
-    [super dealloc];
+  self.object = nil;
+  self.selector = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithObject:(id) object_
              selector:(SEL) selector_ {
-    if ((self = [super init])) {
-        self.object = object_;
-        self.selector = selector_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.object = object_;
+    self.selector = selector_;
+  }
+  
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    UIBarButtonItem* saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+  [super loadView];
+  
+  UIBarButtonItem* saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                                             target:self
+                                                                             action:@selector(save:)] autorelease];
+  self.navigationItem.rightBarButtonItem = saveItem;
+  
+  UIBarButtonItem* cancelItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                target:self
-                                                                               action:@selector(save:)] autorelease];
-    self.navigationItem.rightBarButtonItem = saveItem;
-
-    UIBarButtonItem* cancelItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                 target:self
-                                                                                 action:@selector(cancel:)] autorelease];
-    self.navigationItem.leftBarButtonItem = cancelItem;
-
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                                                                               action:@selector(cancel:)] autorelease];
+  self.navigationItem.leftBarButtonItem = cancelItem;
+  
+  self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 
 - (void) cancel:(id) sender {
-    [self.abstractNavigationController popViewControllerAnimated:YES];
+  [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 
 - (void) save:(id) sender {
-    [self.abstractNavigationController popViewControllerAnimated:YES];
+  [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 @end
