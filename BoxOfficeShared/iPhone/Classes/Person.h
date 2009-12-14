@@ -14,10 +14,10 @@
 
 @interface Person : NSObject<NSCopying, NSCoding> {
 @private
-    NSString* identifier;
-    NSString* name;
-    NSString* biography;
-    NSDictionary* additionalFields;
+  NSString* identifier;
+  NSString* name;
+  NSString* biography;
+  NSDictionary* additionalFields;
 }
 
 @property (readonly, copy) NSString* identifier;

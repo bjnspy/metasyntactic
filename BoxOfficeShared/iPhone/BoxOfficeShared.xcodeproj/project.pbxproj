@@ -43,7 +43,6 @@
 		1000000000000007000001B6 /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001B5 /* DVDFilterViewController.m */; };
 		10000000000000080000000D /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000000B /* DVDNavigationController.m */; };
 		100000000000000800000011 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000010 /* DVDViewController.m */; };
-		100000000000000800000016 /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000015 /* DataProvider.m */; };
 		10000000000000080000001F /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001E /* ExpandedMovieDetailsCell.m */; };
 		100000000000000800000074 /* BookmarkCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000073 /* BookmarkCache.h */; };
 		100000000000000800000076 /* BookmarkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000075 /* BookmarkCache.m */; };
@@ -264,7 +263,6 @@
 		10000000000000080000000F /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
 		100000000000000800000010 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
 		100000000000000800000014 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
-		100000000000000800000015 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
 		100000000000000800000017 /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
 		10000000000000080000001C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		10000000000000080000001D /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
@@ -645,7 +643,6 @@
 				1000000000000009000000C2 /* LookupResult.h */,
 				1000000000000009000001CC /* NowPlaying.pb.h */,
 				100000000000000700000009 /* AbstractDataProvider.m */,
-				100000000000000800000015 /* DataProvider.m */,
 				10000000000000090000006A /* GoogleDataProvider.m */,
 				1000000000000009000000C0 /* LookupRequest.m */,
 				1000000000000009000000C8 /* LookupResult.m */,
@@ -737,16 +734,16 @@
 				10000000000000080000000A /* DVDNavigationController.h */,
 				100000000000001100000005 /* MoviesNavigationController.h */,
 				10000000000000090000010B /* NetflixNavigationController.h */,
+				100000000000000C00000020 /* PocketFlicksNavigationController.h */,
 				100000000000001200000058 /* TheatersNavigationController.h */,
 				1000000000000015000001BA /* UpcomingMoviesNavigationController.h */,
 				1000000000000007000000EA /* CommonNavigationController.m */,
 				10000000000000080000000B /* DVDNavigationController.m */,
 				1000000000000011000000AD /* MoviesNavigationController.m */,
 				10000000000000090000010D /* NetflixNavigationController.m */,
+				100000000000000C00000023 /* PocketFlicksNavigationController.m */,
 				100000000000001200000064 /* TheatersNavigationController.m */,
 				10000000000000150000008F /* UpcomingMoviesNavigationController.m */,
-				100000000000000C00000020 /* PocketFlicksNavigationController.h */,
-				100000000000000C00000023 /* PocketFlicksNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -1258,7 +1255,6 @@
 				10000000000000110000000D /* Score.m in Sources */,
 				100000000000001400000035 /* Theater.m in Sources */,
 				10000000000000070000002C /* AbstractDataProvider.m in Sources */,
-				100000000000000800000016 /* DataProvider.m in Sources */,
 				10000000000000090000006B /* GoogleDataProvider.m in Sources */,
 				1000000000000009000000C1 /* LookupRequest.m in Sources */,
 				1000000000000009000000C9 /* LookupResult.m in Sources */,

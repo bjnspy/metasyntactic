@@ -16,7 +16,7 @@
 
 @interface MoviesNavigationController : CommonNavigationController {
 @private
-    AllMoviesViewController* allMoviesViewController;
+  AllMoviesViewController* allMoviesViewController;
 }
 
 @property (readonly, retain) AllMoviesViewController* allMoviesViewController;
