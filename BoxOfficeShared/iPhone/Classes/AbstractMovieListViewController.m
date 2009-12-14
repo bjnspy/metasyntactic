@@ -155,7 +155,7 @@
 
 
 - (void) sortMoviesByScore {
-  NSArray* sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
+  NSArray* sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:[Model model]];
 
   NSString* moviesString = LocalizedString(@"Movies", nil);
 
@@ -171,7 +171,7 @@
 
 
 - (void) sortMoviesByReleaseDate {
-  NSArray* sortedMovies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
+  NSArray* sortedMovies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:[Model model]];
 
   NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
   [formatter setDateStyle:kCFDateFormatterMediumStyle];
@@ -186,7 +186,7 @@
 
   for (Movie* movie in sortedMovies) {
     NSString* title = LocalizedString(@"Unknown Release Date", nil);
-    NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+    NSDate* releaseDate = [[Model model] releaseDateForMovie:movie];
 
     if (releaseDate != nil) {
       if ([releaseDate compare:today] == NSOrderedDescending) {
@@ -207,7 +207,7 @@
   for (NSString* key in map.allKeys) {
     if (![starString isEqual:key]) {
       NSMutableArray* values = [map mutableObjectsForKey:key];
-      [values sortUsingFunction:compareMoviesByScore context:self.model];
+      [values sortUsingFunction:compareMoviesByScore context:[Model model]];
     }
   }
 
@@ -263,7 +263,7 @@
     if (self.sortingByFavorite) {
       self.sectionTitles = [NSArray arrayWithObject:LocalizedString(@"No bookmarked movies", nil)];
     } else {
-      self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
+      self.sectionTitles = [NSArray arrayWithObject:[Model model].noInformationFound];
     }
   }
 }
@@ -324,12 +324,12 @@
     if (scrollToCurrentDateOnRefresh) {
       scrollToCurrentDateOnRefresh = NO;
 
-      NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
+      NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:[Model model]];
       NSDate* today = [DateUtilities today];
 
       NSDate* date = nil;
       for (Movie* movie in movies) {
-        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+        NSDate* releaseDate = [[Model model] releaseDateForMovie:movie];
 
         if (releaseDate != nil) {
           if ([releaseDate compare:today] == NSOrderedDescending) {

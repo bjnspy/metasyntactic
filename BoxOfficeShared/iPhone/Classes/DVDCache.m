@@ -45,7 +45,7 @@ static DVDCache* cache;
 
 
 - (void) update {
-  if (!self.model.dvdMoviesShowDVDs) {
+  if (![Model model].dvdMoviesShowDVDs) {
     return;
   }
 

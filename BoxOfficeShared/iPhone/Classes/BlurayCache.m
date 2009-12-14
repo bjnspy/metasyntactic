@@ -45,7 +45,7 @@ static BlurayCache* cache;
 
 
 - (void) update {
-  if (!self.model.dvdMoviesShowBluray) {
+  if (![Model model].dvdMoviesShowBluray) {
     return;
   }
 

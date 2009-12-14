@@ -117,12 +117,12 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
-                                                                       context:self.model];
+  self.movies = [[[Model model] moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
+                                                                       context:[Model model]];
 
   NSMutableArray* array = [NSMutableArray array];
   for (Movie* movie in movies) {
-    NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
+    NSArray* showtimes = [[Model model] moviePerformances:movie forTheater:theater];
 
     [array addObject:showtimes];
   }
@@ -166,10 +166,10 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
   if (section == 2 && movies.count > 0) {
-    if ([DateUtilities isToday:self.model.searchDate]) {
+    if ([DateUtilities isToday:[Model model].searchDate]) {
       return LocalizedString(@"Today", nil);
     } else {
-      return [DateUtilities formatFullDate:self.model.searchDate];
+      return [DateUtilities formatFullDate:[Model model].searchDate];
     }
   }
 
@@ -182,7 +182,7 @@
 
   if (row == 0) {
     cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
-    cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
+    cell.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
   } else {
     cell.textLabel.text = LocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
     cell.detailTextLabel.text = theater.phoneNumber;
@@ -269,14 +269,14 @@
 - (void) didSelectEmailListings {
   NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                        theater.name,
-                       [DateUtilities formatFullDate:self.model.searchDate]];
+                       [DateUtilities formatFullDate:[Model model].searchDate]];
   NSMutableString* body = [NSMutableString string];
 
   [body appendString:@"<p>"];
   [body appendString:@"<a href=\""];
   [body appendString:theater.mapUrl];
   [body appendString:@"\">"];
-  [body appendString:[self.model simpleAddressForTheater:theater]];
+  [body appendString:[[Model model] simpleAddressForTheater:theater]];
   [body appendString:@"</a>"];
 
   for (NSInteger i = 0; i < movies.count; i++) {
@@ -287,7 +287,7 @@
 
     [body appendString:movie.displayTitle];
     [body appendString:@"<br/>"];
-    [body appendString:[Utilities generateShowtimeLinks:self.model
+    [body appendString:[Utilities generateShowtimeLinks:[Model model]
                                                   movie:movie
                                                 theater:theater
                                            performances:performances]];
@@ -377,8 +377,8 @@
               [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
     }
 
-    if (![self.model isStale:theater]) {
-      return [self.model showtimesRetrievedOnString:theater];
+    if (![[Model model] isStale:theater]) {
+      return [[Model model] showtimesRetrievedOnString:theater];
     }
   }
 
@@ -390,8 +390,8 @@
       viewForFooterInSection:(NSInteger) section {
   if (section == 1) {
     if (movies.count > 0 ) {
-      if ([self.model isStale:theater]) {
-        return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
+      if ([[Model model] isStale:theater]) {
+        return [WarningView viewWithText:[[Model model] showtimesRetrievedOnString:theater]];
       }
     }
   }

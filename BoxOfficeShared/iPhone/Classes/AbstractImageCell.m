@@ -57,7 +57,7 @@
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumFontSize = 14;
 
-    if (self.model.loadingIndicatorsEnabled) {
+    if ([Model model].loadingIndicatorsEnabled) {
       self.imageLoadingView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages imageLoading]] autorelease];
     } else {
       self.imageLoadingView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages imageLoadingNeutral]] autorelease];
@@ -100,14 +100,14 @@
 
 - (void) prepareForReuse {
   [super prepareForReuse];
-  if (!self.model.loadingIndicatorsEnabled) {
+  if (![Model model].loadingIndicatorsEnabled) {
     [activityView stopAnimating];
   }
 }
 
 
 - (void) startAnimating {
-  if (self.model.loadingIndicatorsEnabled) {
+  if ([Model model].loadingIndicatorsEnabled) {
     [activityView startAnimating];
   }
 }

@@ -244,7 +244,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
     }
   } else if (section == MyOtherApplicationsSection) {
-    if (self.model.isInReviewPeriod) {
+    if ([Model model].isInReviewPeriod) {
       if (row == 0) {
         cell.textLabel.text = @"Comics";
       } else if (row == 1) {

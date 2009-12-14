@@ -39,7 +39,7 @@
   NSString* error;
   NSArray* movies = [[NetflixCache cache] movieSearch:currentlyExecutingRequest.lowercaseValue account:currentlyExecutingRequest.account error:&error];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  NSArray* people = [NSArray array];//[self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
+  NSArray* people = [NSArray array];//[[Model model].netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
   SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId

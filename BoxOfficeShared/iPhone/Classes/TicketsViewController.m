@@ -51,14 +51,14 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  NSArray* allPerformances =  [self.model moviePerformances:movie
+  NSArray* allPerformances =  [[Model model] moviePerformances:movie
                                forTheater:theater];
   NSMutableArray* result = [NSMutableArray array];
 
   NSDate* now = [DateUtilities currentTime];
 
   for (Performance* performance in allPerformances) {
-    if ([DateUtilities isToday:self.model.searchDate]) {
+    if ([DateUtilities isToday:[Model model].searchDate]) {
       NSDate* time = performance.time;
 
       // skip times that have already passed.
@@ -129,10 +129,10 @@
   } else if (section == 1) {
     return nil;
   } else if (section == 2 && performances.count) {
-    if ([DateUtilities isToday:self.model.searchDate]) {
+    if ([DateUtilities isToday:[Model model].searchDate]) {
       return LocalizedString(@"Today", nil);
     } else {
-      return [DateUtilities formatFullDate:self.model.searchDate];
+      return [DateUtilities formatFullDate:[Model model].searchDate];
     }
   }
 
@@ -144,8 +144,8 @@
       viewForFooterInSection:(NSInteger) section {
   if (section == 1) {
     if (performances.count > 0 ) {
-      if ([self.model isStale:theater]) {
-        return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
+      if ([[Model model] isStale:theater]) {
+        return [WarningView viewWithText:[[Model model] showtimesRetrievedOnString:theater]];
       }
     }
   }
@@ -199,7 +199,7 @@
 
   if (row == 0) {
     cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
-    cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
+    cell.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
   } else {
     cell.textLabel.text = LocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
     cell.detailTextLabel.text = theater.phoneNumber;
@@ -263,7 +263,7 @@
 - (void) didSelectEmailListings {
   NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                        movie.canonicalTitle,
-                       [DateUtilities formatFullDate:self.model.searchDate]];
+                       [DateUtilities formatFullDate:[Model model].searchDate]];
   NSMutableString* body = [NSMutableString string];
 
   [body appendString:@"<p>"];
@@ -272,14 +272,14 @@
   [body appendString:@"<a href=\""];
   [body appendString:theater.mapUrl];
   [body appendString:@"\">"];
-  [body appendString:[self.model simpleAddressForTheater:theater]];
+  [body appendString:[[Model model] simpleAddressForTheater:theater]];
   [body appendString:@"</a>"];
 
   [body appendString:@"<p>"];
   [body appendString:movie.canonicalTitle];
   [body appendString:@"<br/>"];
 
-  [body appendString:[Utilities generateShowtimeLinks:self.model
+  [body appendString:[Utilities generateShowtimeLinks:[Model model]
                                                 movie:movie
                                               theater:theater
                                          performances:performances]];

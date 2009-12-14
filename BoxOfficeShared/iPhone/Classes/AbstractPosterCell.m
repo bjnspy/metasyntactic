@@ -48,12 +48,12 @@
 
 
 - (UIImage*) loadImageWorker {
-  return [self.model smallPosterForMovie:movie loadFromDisk:YES];
+  return [[Model model] smallPosterForMovie:movie loadFromDisk:YES];
 }
 
 
 - (UIImage*) retrieveImageFromCache {
-  return [self.model smallPosterForMovie:movie loadFromDisk:NO];
+  return [[Model model] smallPosterForMovie:movie loadFromDisk:NO];
 }
 
 

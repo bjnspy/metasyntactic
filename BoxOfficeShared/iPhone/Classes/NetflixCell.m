@@ -210,9 +210,9 @@
 
 
 - (void) loadMovieWorker:(UITableViewController*) owner {
-  directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
-  castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
-  genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
+  directorLabel.text  = [[[Model model] directorsForMovie:movie]  componentsJoinedByString:@", "];
+  castLabel.text      = [[[Model model] castForMovie:movie]       componentsJoinedByString:@", "];
+  genreLabel.text     = [[[Model model] genresForMovie:movie]     componentsJoinedByString:@", "];
 
   NSMutableArray* formats = [NSMutableArray array];
   if ([self.netflixCache isInstantWatch:movie]) {
@@ -228,7 +228,7 @@
   formatsLabel.text   = [formats componentsJoinedByString:@"/"];
   availabilityLabel.text = [self.netflixCache availabilityForMovie:movie];
 
-  NSString* rating = [self.model ratingForMovie:movie];
+  NSString* rating = [[Model model] ratingForMovie:movie];
   if (rating.length == 0) {		
     rating = LocalizedString(@"Unrated", nil);		
   }

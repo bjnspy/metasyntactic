@@ -58,7 +58,7 @@
 
   self.title = LocalizedString(@"Reviews", nil);
 
-  self.reviews = [self.model reviewsForMovie:movie];
+  self.reviews = [[Model model] reviewsForMovie:movie];
 }
 
 
@@ -105,11 +105,11 @@
   } else {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (self.model.rottenTomatoesScores) {
+    if ([Model model].rottenTomatoesScores) {
       cell.textLabel.text = @"RottenTomatoes.com";
-    } else if (self.model.metacriticScores) {
+    } else if ([Model model].metacriticScores) {
       cell.textLabel.text = @"Metacritic.com";
-    } else if (self.model.googleScores) {
+    } else if ([Model model].googleScores) {
       cell.textLabel.text = @"Google.com";
     }
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -141,15 +141,15 @@
       [self.commonNavigationController pushBrowser:review.link animated:YES];
     }
   } else {
-    if (self.model.rottenTomatoesScores) {
-      Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+    if ([Model model].rottenTomatoesScores) {
+      Score* score = [[Model model] rottenTomatoesScoreForMovie:movie];
       NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.rottentomatoes.com";
       [self.commonNavigationController pushBrowser:address animated:YES];
-    } else if (self.model.metacriticScores) {
-      Score* score = [self.model metacriticScoreForMovie:movie];
+    } else if ([Model model].metacriticScores) {
+      Score* score = [[Model model] metacriticScoreForMovie:movie];
       NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
       [self.commonNavigationController pushBrowser:address animated:YES];
-    } else if (self.model.googleScores) {
+    } else if ([Model model].googleScores) {
       [self.commonNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
     }
   }

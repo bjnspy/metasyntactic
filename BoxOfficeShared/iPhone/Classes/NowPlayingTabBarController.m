@@ -120,15 +120,15 @@
 
   [self resetTabs];
 
-  if (self.model.userAddress.length == 0) {
+  if ([Model model].userAddress.length == 0) {
     self.selectedViewController = [self moviesNavigationController];
     [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
   } else {
     CommonNavigationController* controller;
-    if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
+    if ([Model model].selectedTabBarViewControllerIndex >= self.viewControllers.count) {
       controller = self.viewControllers.firstObject;
     } else {
-      controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
+      controller = [self.viewControllers objectAtIndex:[Model model].selectedTabBarViewControllerIndex];
     }
 
     self.selectedViewController = controller;
@@ -144,10 +144,10 @@
 
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
-  self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
+  [Model model].selectedTabBarViewControllerIndex = self.selectedIndex;
 
   if ([viewController isKindOfClass:[UINavigationController class]]) {
-    [self.model saveNavigationStack:(UINavigationController*) viewController];
+    [[Model model] saveNavigationStack:(UINavigationController*) viewController];
   }
 
   for (id viewController in self.viewControllers) {
@@ -184,13 +184,13 @@
 
   [controllers addObject:[self moviesNavigationController]];
   [controllers addObject:[self theatersNavigationController]];
-  if (self.model.upcomingCacheEnabled) {
+  if ([Model model].upcomingCacheEnabled) {
     [controllers addObject:[self upcomingMoviesNavigationController]];
   }
-  if (self.model.dvdBlurayCacheEnabled) {
+  if ([Model model].dvdBlurayCacheEnabled) {
     [controllers addObject:[self dvdNavigationController]];
   }
-  if (self.model.netflixCacheEnabled) {
+  if ([Model model].netflixCacheEnabled) {
     [controllers addObject:[self netflixNavigationController]];
   }
 

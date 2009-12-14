@@ -60,7 +60,7 @@ static HelpCache* cache;
 
 
 - (void) update {
-  if (!self.model.helpCacheEnabled) {
+  if (![Model model].helpCacheEnabled) {
     return;
   }
 

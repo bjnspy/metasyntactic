@@ -62,7 +62,7 @@
      contentsController:(UIViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_
                     contentsController:viewController_])) {
-    self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
+    self.searchBar.selectedScopeButtonIndex = [Model model].netflixSearchSelectedScopeButtonIndex;
     self.searchBar.placeholder = LocalizedString(@"Search Netflix", nil);
   }
 
@@ -76,7 +76,7 @@
 
 
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger) selectedScope {
-  self.model.netflixSearchSelectedScopeButtonIndex = selectedScope;
+  [Model model].netflixSearchSelectedScopeButtonIndex = selectedScope;
   [self reloadTableViewData];
 }
 

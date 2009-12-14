@@ -177,7 +177,7 @@
 
 
 - (void) onSearchDateChanged:(NSDate*) searchDate {
-  if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
+  if ([DateUtilities isSameDay:searchDate date:[Model model].searchDate]) {
     return;
   }
 
@@ -188,7 +188,7 @@
                     [NSNumber numberWithInteger:updateId],
                     searchDate,
                     nil];
-  [self.model.dataProvider update:searchDate delegate:self context:array force:YES];
+  [[Model model].dataProvider update:searchDate delegate:self context:array force:YES];
 }
 
 
@@ -217,8 +217,8 @@
   NSDate* searchDate = array.lastObject;
 
   // Save the results.
-  [self.model setSearchDate:searchDate];
-  [self.model.dataProvider saveResult:lookupResult];
+  [[Model model] setSearchDate:searchDate];
+  [[Model model].dataProvider saveResult:lookupResult];
 
   [self dismissUpdateListingsViewController];
 

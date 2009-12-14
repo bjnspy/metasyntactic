@@ -113,11 +113,11 @@
 - (void) setReviewImage:(Review*) review {
   NSInteger score = review.score;
 
-  if (self.model.rottenTomatoesScores) {
+  if ([Model model].rottenTomatoesScores) {
     [self setBasicSquareImage:score];
-  } else if (self.model.metacriticScores) {
+  } else if ([Model model].metacriticScores) {
     [self setBasicSquareImage:score];
-  } else if (self.model.googleScores) {
+  } else if ([Model model].googleScores) {
     [self setGoogleImage:score];
   }
 }

@@ -68,7 +68,7 @@
   NSMutableArray* array = [NSMutableArray array];
   [array addObject:movie.canonicalTitle];
   [array addObjectsFromArray:movie.directors];
-  [array addObjectsFromArray:[self.model castForMovie:movie]];
+  [array addObjectsFromArray:[[Model model] castForMovie:movie]];
   [array addObjectsFromArray:movie.genres];
   return [self arrayMatches:array request:currentlyExecutingRequest];
 }

@@ -88,13 +88,13 @@ static ScoreCache* cache;
 
 
 - (id<ScoreProvider>) currentScoreProvider {
-  if (self.model.rottenTomatoesScores) {
+  if ([Model model].rottenTomatoesScores) {
     return rottenTomatoesScoreProvider;
-  } else if (self.model.metacriticScores) {
+  } else if ([Model model].metacriticScores) {
     return metacriticScoreProvider;
-  } else if (self.model.googleScores) {
+  } else if ([Model model].googleScores) {
     return googleScoreProvider;
-  } else if (self.model.noScores) {
+  } else if ([Model model].noScores) {
     return noneScoreProvider;
   } else {
     return nil;
@@ -138,7 +138,7 @@ static ScoreCache* cache;
 
 
 - (void) update {
-  if (!self.model.scoreCacheEnabled) {
+  if (![Model model].scoreCacheEnabled) {
     return;
   }
 

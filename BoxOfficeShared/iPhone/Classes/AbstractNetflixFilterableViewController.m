@@ -51,7 +51,7 @@
   UISegmentedControl* segmentedControl = [[[UISegmentedControl alloc] initWithItems:items] autorelease];
   segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
   segmentedControl.tintColor = [StyleSheet segmentedControlTintColor];
-  segmentedControl.selectedSegmentIndex = self.model.netflixFilterSelectedSegmentIndex;
+  segmentedControl.selectedSegmentIndex = [Model model].netflixFilterSelectedSegmentIndex;
 
   [segmentedControl addTarget:self
                        action:@selector(onFilterChanged:)
@@ -75,7 +75,7 @@
 
 
 - (void) onFilterChanged:(UISegmentedControl*) control {
-  [self.model setNetflixFilterSelectedSegmentIndex:control.selectedSegmentIndex];
+  [[Model model] setNetflixFilterSelectedSegmentIndex:control.selectedSegmentIndex];
   [self majorRefresh];
 }
 
@@ -119,7 +119,7 @@
   NSArray* array = [self determineMovies];
   NSMutableArray* filteredArray = [NSMutableArray array];
 
-  NSInteger filter = self.model.netflixFilterSelectedSegmentIndex;
+  NSInteger filter = [Model model].netflixFilterSelectedSegmentIndex;
   for (Movie* movie in array) {
     if ([self filter:filter movie:movie]) {
       [filteredArray addObject:movie];

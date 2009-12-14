@@ -276,7 +276,7 @@ const NSInteger START_YEAR = 1912;
 
 
 - (void) update {
-  if (!self.model.largePosterCacheEnabled) {
+  if (![Model model].largePosterCacheEnabled) {
     return;
   }
 

@@ -131,11 +131,11 @@ typedef enum {
     SEL selector = nil;
     if (row == 0) {
       text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
-      on = self.model.notificationsEnabled;
+      on = [Model model].notificationsEnabled;
       selector = @selector(onShowNotificationsChanged:);
     } else if (row == 1) {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
-      on = self.model.loadingIndicatorsEnabled;
+      on = [Model model].loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
     }
 
@@ -171,12 +171,12 @@ typedef enum {
 
 
 - (void) onShowNotificationsChanged:(UISwitch*) sender {
-  [self.model setNotificationsEnabled:sender.on];
+  [[Model model] setNotificationsEnabled:sender.on];
 }
 
 
 - (void) onLoadingIndicatorsChanged:(UISwitch*) sender {
-  [self.model setLoadingIndicatorsEnabled:sender.on];
+  [[Model model] setLoadingIndicatorsEnabled:sender.on];
 }
 
 

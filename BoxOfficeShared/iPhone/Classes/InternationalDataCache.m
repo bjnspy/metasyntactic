@@ -130,7 +130,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (void) update {
-  if (!self.model.internationalDataCacheEnabled) {
+  if (![Model model].internationalDataCacheEnabled) {
     return;
   }
 
@@ -514,7 +514,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) ratingAndRuntimeForMovieWorker:(Movie*) movie {
-  NSString* rating = [self.model ratingForMovie:movie];
+  NSString* rating = [[Model model] ratingForMovie:movie];
   NSString* ratingString;
   if (rating.length == 0) {
     ratingString = LocalizedString(@"Unrated", nil);
@@ -523,7 +523,7 @@ static NSDictionary* countryToCode = nil;
   }
 
   NSString* runtimeString = @"";
-  NSInteger length = [self.model lengthForMovie:movie];
+  NSInteger length = [[Model model] lengthForMovie:movie];
   if (length > 0) {
     runtimeString = [Movie runtimeString:length];
   }

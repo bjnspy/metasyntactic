@@ -54,7 +54,7 @@
 
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section {
-  return self.model.scoreProviders.count;
+  return [Model model].scoreProviders.count;
 }
 
 
@@ -66,12 +66,12 @@
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
   }
   // Configure the cell
-  if (indexPath.row == self.model.scoreProviderIndex) {
+  if (indexPath.row == [Model model].scoreProviderIndex) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
   } else {
     cell.accessoryType = UITableViewCellAccessoryNone;
   }
-  cell.textLabel.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
+  cell.textLabel.text = [[Model model].scoreProviders objectAtIndex:indexPath.row];
   return cell;
 }
 

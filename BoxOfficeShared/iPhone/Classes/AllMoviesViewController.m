@@ -35,27 +35,27 @@
 
 
 - (NSArray*) movies {
-  return self.model.movies;
+  return [Model model].movies;
 }
 
 
 - (BOOL) sortingByTitle {
-  return self.model.allMoviesSortingByTitle;
+  return [Model model].allMoviesSortingByTitle;
 }
 
 
 - (BOOL) sortingByReleaseDate {
-  return self.model.allMoviesSortingByReleaseDate;
+  return [Model model].allMoviesSortingByReleaseDate;
 }
 
 
 - (BOOL) sortingByScore {
-  return self.model.allMoviesSortingByScore;
+  return [Model model].allMoviesSortingByScore;
 }
 
 
 - (BOOL) sortingByFavorite {
-  return self.model.allMoviesSortingByFavorite;
+  return [Model model].allMoviesSortingByFavorite;
 }
 
 
@@ -74,7 +74,7 @@
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
-  control.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+  control.selectedSegmentIndex = [Model model].allMoviesSelectedSegmentIndex;
 
   [control addTarget:self
               action:@selector(onSortOrderChanged:)
@@ -89,7 +89,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-  self.model.allMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [Model model].allMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
   [self majorRefresh];
 }
 

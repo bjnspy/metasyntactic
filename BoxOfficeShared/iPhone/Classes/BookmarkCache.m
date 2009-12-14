@@ -111,7 +111,7 @@ static BookmarkCache* cache;
   [set addObject:movie.canonicalTitle];
   bookmarkedTitlesData.value = set;
 
-  [self.model.dataProvider addBookmark:movie.canonicalTitle];
+  [[Model model].dataProvider addBookmark:movie.canonicalTitle];
   [self.upcomingCache addBookmark:movie.canonicalTitle];
   [self.dvdCache addBookmark:movie.canonicalTitle];
   [self.blurayCache addBookmark:movie.canonicalTitle];
@@ -123,7 +123,7 @@ static BookmarkCache* cache;
   [set removeObject:movie.canonicalTitle];
   bookmarkedTitlesData.value = set;
 
-  [self.model.dataProvider removeBookmark:movie.canonicalTitle];
+  [[Model model].dataProvider removeBookmark:movie.canonicalTitle];
   [self.upcomingCache removeBookmark:movie.canonicalTitle];
   [self.dvdCache removeBookmark:movie.canonicalTitle];
   [self.blurayCache removeBookmark:movie.canonicalTitle];

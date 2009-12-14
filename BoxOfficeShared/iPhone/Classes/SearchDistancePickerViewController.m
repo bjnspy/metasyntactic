@@ -58,7 +58,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    NSString* value = [NSString stringWithFormat:@"%d", self.model.searchRadius];
+    NSString* value = [NSString stringWithFormat:@"%d", [Model model].searchRadius];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:[values indexOfObject:value]
                                                 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
@@ -79,7 +79,7 @@
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
     NSString* value = [values objectAtIndex:indexPath.row];
-    NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
+    NSString* defaultValue = [NSString stringWithFormat:@"%d", [Model model].searchRadius];
 
     if (indexPath.row == 0) {
         cell.textLabel.text = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
