@@ -124,11 +124,6 @@ static NSDictionary* countryToCode = nil;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) update {
   if (![Model model].internationalDataCacheEnabled) {
     return;

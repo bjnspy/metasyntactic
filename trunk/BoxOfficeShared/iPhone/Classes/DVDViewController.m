@@ -26,16 +26,6 @@
 
 @implementation DVDViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSArray*) movies {
   NSMutableArray* result = [NSMutableArray array];
 

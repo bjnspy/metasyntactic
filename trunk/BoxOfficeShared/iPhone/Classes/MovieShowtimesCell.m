@@ -41,11 +41,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 + (NSString*) showtimesString:(NSArray*) showtimes {
   if (showtimes.count == 0) {
     return @"";

@@ -28,11 +28,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (id) initWithMovie:(Movie*) movie {
   if ((self = [super init])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {

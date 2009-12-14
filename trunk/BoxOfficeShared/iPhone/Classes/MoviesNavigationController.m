@@ -28,45 +28,40 @@
 @synthesize allMoviesViewController;
 
 - (void) dealloc {
-    self.allMoviesViewController = nil;
-
-    [super dealloc];
+  self.allMoviesViewController = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.title = LocalizedString(@"Movies", nil);
-        self.tabBarItem.image = BoxOfficeStockImage(@"Movies.png");
-    }
-
-    return self;
-}
-
-
-- (Model*) model {
-    return [Model model];
+  if ((self = [super init])) {
+    self.title = LocalizedString(@"Movies", nil);
+    self.tabBarItem.image = BoxOfficeStockImage(@"Movies.png");
+  }
+  
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    if (allMoviesViewController == nil) {
-        self.allMoviesViewController = [[[AllMoviesViewController alloc] init] autorelease];
-        [self pushViewController:allMoviesViewController animated:NO];
-    }
+  [super loadView];
+  
+  if (allMoviesViewController == nil) {
+    self.allMoviesViewController = [[[AllMoviesViewController alloc] init] autorelease];
+    [self pushViewController:allMoviesViewController animated:NO];
+  }
 }
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in [Model model].movies) {
-        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            return movie;
-        }
+  for (Movie* movie in [Model model].movies) {
+    if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+      return movie;
     }
-
-    return nil;
+  }
+  
+  return nil;
 }
 
 @end

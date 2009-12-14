@@ -35,11 +35,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) setupTitle {
   if ([Model model].dvdMoviesShowOnlyBluray) {
     self.title = LocalizedString(@"Blu-ray", nil);

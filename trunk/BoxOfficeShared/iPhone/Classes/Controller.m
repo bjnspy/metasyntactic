@@ -67,11 +67,6 @@ static Controller* controller = nil;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NetflixCache*) netflixCache {
   return [NetflixCache cache];
 }

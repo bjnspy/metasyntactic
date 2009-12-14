@@ -23,22 +23,12 @@
 
 @implementation ScoreProviderViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"Reviews", nil);
   }
 
   return self;
-}
-
-
-- (Model*) model {
-  return [Model model];
 }
 
 

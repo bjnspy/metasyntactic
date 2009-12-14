@@ -24,16 +24,6 @@
 
 @implementation AllMoviesViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSArray*) movies {
   return [Model model].movies;
 }

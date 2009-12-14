@@ -37,11 +37,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (UIView*) createHeaderView {
   NSArray* items = [NSArray arrayWithObjects:
                     LocalizedString(@"All", nil),

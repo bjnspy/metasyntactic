@@ -47,11 +47,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NetflixFeedCache*) netflixFeedCache {
   return [NetflixFeedCache cache];
 }

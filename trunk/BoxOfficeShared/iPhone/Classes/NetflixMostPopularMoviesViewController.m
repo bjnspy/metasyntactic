@@ -44,11 +44,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NetflixRssCache*) netflixRssCache {
   return [NetflixRssCache cache];
 }

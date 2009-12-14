@@ -72,11 +72,6 @@ static PosterCache* cache;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSString*) sentinelPath:(Movie*) movie {
   return [[Application sentinelsPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.identifier]];
 }

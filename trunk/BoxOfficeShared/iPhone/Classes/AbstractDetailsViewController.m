@@ -42,11 +42,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (CommonNavigationController*) commonNavigationController {
   return (id) self.navigationController;
 }

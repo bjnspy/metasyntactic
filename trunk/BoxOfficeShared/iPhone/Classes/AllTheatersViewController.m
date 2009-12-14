@@ -53,11 +53,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (BOOL) sortingByName {
   return segmentedControl.selectedSegmentIndex == 1;
 }

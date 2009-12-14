@@ -64,14 +64,10 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 + (WarningView*) viewWithText:(NSString*) text {
   return [[[WarningView alloc] initWithText:text] autorelease];
 }
+
 
 - (void) layoutSubviews {
   {

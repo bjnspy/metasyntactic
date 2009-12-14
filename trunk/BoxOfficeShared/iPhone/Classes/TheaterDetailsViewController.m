@@ -52,11 +52,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) setFavoriteImage {
   favoriteButton.selected = [[FavoriteTheaterCache cache] isFavoriteTheater:theater];
 }

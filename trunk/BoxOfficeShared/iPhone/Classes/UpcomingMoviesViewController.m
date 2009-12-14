@@ -25,16 +25,6 @@
 
 @implementation UpcomingMoviesViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSArray*) movies {
   return [[UpcomingCache cache] movies];
 }

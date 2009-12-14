@@ -42,11 +42,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) update:(Person*) person {
 }
 

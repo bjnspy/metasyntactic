@@ -43,11 +43,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault
                    reuseIdentifier:reuseIdentifier])) {
