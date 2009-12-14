@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface LocalSearchEngine : AbstractSearchEngine {
-@private
 }
 
 + (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;

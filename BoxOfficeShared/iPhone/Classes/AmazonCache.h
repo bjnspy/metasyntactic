@@ -15,7 +15,6 @@
 #import "AbstractWebsiteCache.h"
 
 @interface AmazonCache : AbstractWebsiteCache {
-@private
 }
 
 + (AmazonCache*) cache;

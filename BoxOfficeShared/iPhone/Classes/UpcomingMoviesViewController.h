@@ -15,7 +15,6 @@
 #import "AbstractMovieListViewController.h"
 
 @interface UpcomingMoviesViewController : AbstractMovieListViewController {
-@private
 }
 
 - (BOOL) sortingByTitle;

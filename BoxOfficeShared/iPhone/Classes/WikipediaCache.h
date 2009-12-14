@@ -15,7 +15,6 @@
 #import "AbstractWebsiteCache.h"
 
 @interface WikipediaCache : AbstractWebsiteCache {
-@private
 }
 
 + (WikipediaCache*) cache;

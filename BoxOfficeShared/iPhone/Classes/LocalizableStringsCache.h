@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface LocalizableStringsCache : NSObject {
-@private
 }
 
 + (NSString*) localizedString:(NSString*) key;
