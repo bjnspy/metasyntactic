@@ -101,17 +101,12 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-- (ImageCache*) imageCache {
-  return [ImageCache cache];
-}
-
-
 - (UIImage*) posterForMovie:(Movie*) movie
                       index:(NSInteger) index
                loadFromDisk:(BOOL) loadFromDisk {
   movie = [self appropriateMovie:movie];
   NSString* path = [self posterFilePath:movie index:index];
-  return [self.imageCache imageForPath:path loadFromDisk:loadFromDisk];
+  return [[ImageCache cache] imageForPath:path loadFromDisk:loadFromDisk];
 }
 
 
@@ -121,7 +116,7 @@ const NSInteger START_YEAR = 1912;
   movie = [self appropriateMovie:movie];
 
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
-  UIImage* image = [self.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  UIImage* image = [[ImageCache cache] imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
@@ -135,7 +130,7 @@ const NSInteger START_YEAR = 1912;
                       toFile:smallPosterPath];
 
     UIImage* image = [UIImage imageWithData:smallPosterData];
-    [self.imageCache setImage:image forPath:smallPosterPath];
+    [[ImageCache cache] setImage:image forPath:smallPosterPath];
     return image;
   }
 
