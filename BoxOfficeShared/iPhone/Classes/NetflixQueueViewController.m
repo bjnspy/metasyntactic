@@ -104,11 +104,6 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixUpdater*) netflixUpdater {
   return [NetflixUpdater updater];
 }
@@ -119,7 +114,7 @@
   if (readonlyMode) {
     text = LocalizedString(@"Please Wait", nil);
   } else {
-    text = [self.netflixCache titleForKey:feedKey includeCount:NO account:account];
+    text = [[NetflixCache cache] titleForKey:feedKey includeCount:NO account:account];
   }
 
   self.title = text;

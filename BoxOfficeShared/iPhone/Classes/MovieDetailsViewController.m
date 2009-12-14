@@ -173,11 +173,6 @@ typedef enum {
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixFeedCache*) netflixFeedCache {
   return [NetflixFeedCache cache];
 }
@@ -208,7 +203,7 @@ typedef enum {
 
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:netflixAccount];
   if (netflixMovie != nil && netflixStatusCells.count == 0) {
-    if ([self.netflixCache user:user canRentMovie:movie]) {
+    if ([[NetflixCache cache] user:user canRentMovie:movie]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
       [titles addObject:LocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
       [arguments addObject:[NSNull null]];
@@ -313,7 +308,7 @@ typedef enum {
 
 
 - (void) initializeNetflixStatusCells {
-  NSArray* statuses = [self.netflixCache statusesForMovie:netflixMovie account:netflixAccount];
+  NSArray* statuses = [[NetflixCache cache] statusesForMovie:netflixMovie account:netflixAccount];
 
   NSMutableArray* cells = [NSMutableArray array];
   for (NSInteger i = 0; i < statuses.count; i++) {
@@ -372,7 +367,7 @@ typedef enum {
 
 - (void) initializeData {
   self.netflixAccount = [[NetflixAccountCache cache] currentAccount];
-  self.netflixMovie = [self.netflixCache correspondingNetflixMovie:movie];
+  self.netflixMovie = [[NetflixCache cache] correspondingNetflixMovie:movie];
   [self initializeNetflixStatusCells];
 
   [self setupTrailersArray];
@@ -603,7 +598,7 @@ typedef enum {
 - (BOOL) hasNetflixRating {
   return
   netflixMovie != nil &&
-  [self.netflixCache netflixRatingForMovie:netflixMovie account:netflixAccount].length > 0;
+  [[NetflixCache cache] netflixRatingForMovie:netflixMovie account:netflixAccount].length > 0;
 }
 
 
@@ -1094,15 +1089,15 @@ typedef enum {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:netflixAccount];
 
   NSMutableDictionary* actionMap = [NSMutableDictionary dictionary];
-  if ([self.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
+  if ([[NetflixCache cache] isInstantWatch:movie] && user.canInstantWatch) {
     [self addAction:InstantQueue      withTitle:LocalizedString(@"Instant Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfInstantQueue withTitle:LocalizedString(@"Top of Instant Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([self.netflixCache isDvd:movie]) {
+  if ([[NetflixCache cache] isDvd:movie]) {
     [self addAction:DVDQueue      withTitle:LocalizedString(@"DVD Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfDVDQueue withTitle:LocalizedString(@"Top of DVD Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([self.netflixCache isBluray:movie] && user.canBlurayWatch) {
+  if ([[NetflixCache cache] isBluray:movie] && user.canBlurayWatch) {
     [self addAction:BlurayQueue      withTitle:LocalizedString(@"Blu-ray Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfBlurayQueue withTitle:LocalizedString(@"Top of Blu-ray Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }

@@ -47,18 +47,13 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixUpdater*) netflixUpdater {
   return [NetflixUpdater updater];
 }
 
 
 - (void) setupNetflixRating {
-  CGFloat rating = [[self.netflixCache netflixRatingForMovie:movie account:account] floatValue];
+  CGFloat rating = [[[NetflixCache cache] netflixRatingForMovie:movie account:account] floatValue];
 
   NSMutableArray* array = [NSMutableArray array];
   for (NSInteger i = 0; i < 5; i++) {
@@ -151,7 +146,7 @@
 - (void) setupRating {
   [self clearRating];
 
-  NSString* userRating = [self.netflixCache userRatingForMovie:movie account:account];
+  NSString* userRating = [[NetflixCache cache] userRatingForMovie:movie account:account];
   if (userRating.length > 0) {
     [self setupUserRating:userRating];
   } else {
@@ -178,7 +173,7 @@
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
   NSInteger value = imageView.tag;
-  NSInteger currentUserRating = (NSInteger)[[self.netflixCache userRatingForMovie:movie account:account] floatValue];
+  NSInteger currentUserRating = (NSInteger)[[[NetflixCache cache] userRatingForMovie:movie account:account] floatValue];
 
   if (value == currentUserRating) {
     return;

@@ -110,11 +110,6 @@ typedef enum {
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (void) setupTitle {
   self.title = [Application name];
 
@@ -207,19 +202,19 @@ typedef enum {
         cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants discQueueKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants discQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants instantQueueKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants instantQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
         break;
       case RecommendationsSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants recommendationKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants recommendationKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixRecommendations.png");
         break;
       case AtHomeSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants atHomeKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants atHomeKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixHome.png");
         break;
       case RentalHistorySection:

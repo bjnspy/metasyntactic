@@ -158,19 +158,14 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (void) setNetflixLabel {
   NSMutableString* result = [NSMutableString string];
-  NSString* rating = [self.netflixCache userRatingForMovie:movie account:[[NetflixAccountCache cache] currentAccount]];
+  NSString* rating = [[NetflixCache cache] userRatingForMovie:movie account:[[NetflixAccountCache cache] currentAccount]];
   if (rating.length > 0) {
     userRating = YES;
   } else {
     userRating = NO;
-    rating = [self.netflixCache netflixRatingForMovie:movie account:[[NetflixAccountCache cache] currentAccount]];
+    rating = [[NetflixCache cache] netflixRatingForMovie:movie account:[[NetflixAccountCache cache] currentAccount]];
   }
 
   if (rating.length == 0) {
@@ -210,18 +205,18 @@
   genreLabel.text     = [[[Model model] genresForMovie:movie]     componentsJoinedByString:@", "];
 
   NSMutableArray* formats = [NSMutableArray array];
-  if ([self.netflixCache isInstantWatch:movie]) {
+  if ([[NetflixCache cache] isInstantWatch:movie]) {
     [formats addObject:LocalizedString(@"Instant", nil)];
   }
-  if ([self.netflixCache isDvd:movie]) {
+  if ([[NetflixCache cache] isDvd:movie]) {
     [formats addObject:LocalizedString(@"DVD", nil)];
   }
-  if ([self.netflixCache isBluray:movie]) {
+  if ([[NetflixCache cache] isBluray:movie]) {
     [formats addObject:LocalizedString(@"Blu-ray", nil)];
   }
 
   formatsLabel.text   = [formats componentsJoinedByString:@"/"];
-  availabilityLabel.text = [self.netflixCache availabilityForMovie:movie];
+  availabilityLabel.text = [[NetflixCache cache] availabilityForMovie:movie];
 
   NSString* rating = [[Model model] ratingForMovie:movie];
   if (rating.length == 0) {		

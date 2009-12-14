@@ -75,26 +75,21 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (BOOL) filter:(NSInteger) filter movie:(Movie*) movie {
   if (filter == 0) {
     return YES;
   }
 
   if (filter == 1) {
-    return [self.netflixCache isDvd:movie];
+    return [[NetflixCache cache] isDvd:movie];
   }
 
   if (filter == 2) {
-    return [self.netflixCache isBluray:movie];
+    return [[NetflixCache cache] isBluray:movie];
   }
 
   if (filter == 3) {
-    return [self.netflixCache isInstantWatch:movie];
+    return [[NetflixCache cache] isInstantWatch:movie];
   }
 
   return NO;

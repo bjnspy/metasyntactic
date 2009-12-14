@@ -91,13 +91,8 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (Movie*) appropriateMovie:(Movie*) movie {
-  Movie* possible = [self.netflixCache correspondingNetflixMovie:movie];
+  Movie* possible = [[NetflixCache cache] correspondingNetflixMovie:movie];
   if (possible != nil) {
     return possible;
   }

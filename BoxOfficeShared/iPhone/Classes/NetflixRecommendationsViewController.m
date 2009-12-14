@@ -48,11 +48,6 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixFeedCache*) netflixFeedCache {
   return [NetflixFeedCache cache];
 }
