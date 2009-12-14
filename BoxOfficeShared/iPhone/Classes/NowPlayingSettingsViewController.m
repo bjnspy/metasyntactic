@@ -75,7 +75,7 @@ typedef enum {
 
 - (void) onBeforeViewControllerPushed {
   [super onBeforeViewControllerPushed];
-  [self.controller.locationManager addLocationSpinner:self.navigationItem];
+  [[LocationManager manager] addLocationSpinner:self.navigationItem];
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
 }
 
