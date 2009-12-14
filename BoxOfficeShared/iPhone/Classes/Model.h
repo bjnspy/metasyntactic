@@ -21,7 +21,6 @@ enum ViewControllerType {
 
 @interface Model : AbstractModel<UIAlertViewDelegate> {
 @private
-  UserLocationCache* userLocationCache;
   PersonPosterCache* personPosterCache;
 
   id<DataProvider> dataProvider;
@@ -33,7 +32,6 @@ enum ViewControllerType {
   NSInteger cachedAllMoviesSelectedSegmentIndex;
 }
 
-@property (readonly, retain) UserLocationCache* userLocationCache;
 @property (readonly, retain) PersonPosterCache* personPosterCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 

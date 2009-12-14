@@ -43,7 +43,7 @@
 
 
 - (NSString*) serverUrl {
-  Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+  Location* location = [[UserLocationCache cache] locationForUserAddress:self.model.userAddress];
 
   if (location.postalCode == nil) {
     return nil;

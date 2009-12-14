@@ -231,7 +231,7 @@ static LocationManager* manager;
   NSString* displayString = userLocation.fullDisplayString;
   displayString = [displayString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-  [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString];
+  [[UserLocationCache cache] setLocation:userLocation forUserAddress:displayString];
   [self.controller setUserAddress:displayString];
 }
 

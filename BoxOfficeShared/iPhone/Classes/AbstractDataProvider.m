@@ -451,7 +451,7 @@
 
 
 - (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
-  Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  Location* location = [[UserLocationCache cache] downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
   if (location == nil) {
     [request.delegate onDataProviderUpdateFailure:LocalizedString(@"Could not find location.", nil) context:request.context];
     return;

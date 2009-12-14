@@ -93,6 +93,11 @@
 }
 
 
+- (UserLocationCache*) userLocationCache {
+  return [UserLocationCache cache];
+}
+
+
 - (NSString*) scoresFile {
   return [providerDirectory stringByAppendingPathComponent:@"Scores.plist"];
 }
@@ -459,7 +464,7 @@
     return;
   }
 
-  Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
   if (location == nil) {
     return;
   }
@@ -469,7 +474,7 @@
 
 
 - (void) updateReviewsBackgroundEntryPoint {
-  Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
   if (location == nil) {
     return;
   }
