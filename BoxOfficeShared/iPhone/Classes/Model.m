@@ -243,11 +243,6 @@ static Model* model = nil;
 }
 
 
-- (LargePosterCache*) largePosterCache {
-  return [LargePosterCache cache];
-}
-
-
 - (BOOL) loadingIndicatorsEnabled {
   return ![[NSUserDefaults standardUserDefaults] boolForKey:LOADING_INDIACTORS_DISABLED];
 }
@@ -846,7 +841,7 @@ static Model* model = nil;
     return image;
   }
 
-  return [self.largePosterCache posterForMovie:movie loadFromDisk:loadFromDisk];
+  return [[LargePosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
 }
 
 
@@ -856,7 +851,7 @@ static Model* model = nil;
     return image;
   }
 
-  return [self.largePosterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  return [[LargePosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
 }
 
 
