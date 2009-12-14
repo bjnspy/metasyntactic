@@ -61,11 +61,6 @@ static BookmarkCache* cache;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (UpcomingCache*) upcomingCache {
   return [UpcomingCache cache];
 }

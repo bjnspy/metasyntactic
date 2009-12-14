@@ -24,37 +24,27 @@
 
 @implementation TheaterNameCell
 
-- (void) dealloc {
-    [super dealloc];
-}
-
-
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
-                    reuseIdentifier:reuseIdentifier])) {
-        self.textLabel.adjustsFontSizeToFitWidth = YES;
-        self.textLabel.minimumFontSize = 12;
-
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-
-    return self;
-}
-
-
-- (Model*) model {
-    return [Model model];
+  if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
+                   reuseIdentifier:reuseIdentifier])) {
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    self.textLabel.minimumFontSize = 12;
+    
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  
+  return self;
 }
 
 
 - (void) setTheater:(Theater*) theater {
-    if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
-        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], theater.name];
-    } else {
-        self.textLabel.text = theater.name;
-    }
-
-    self.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
+  if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
+    self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], theater.name];
+  } else {
+    self.textLabel.text = theater.name;
+  }
+  
+  self.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
 }
 
 @end

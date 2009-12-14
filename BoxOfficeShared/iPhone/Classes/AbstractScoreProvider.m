@@ -88,11 +88,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (UserLocationCache*) userLocationCache {
   return [UserLocationCache cache];
 }

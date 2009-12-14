@@ -31,16 +31,6 @@
 
 @implementation CommonNavigationController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (Controller*) controller {
   return [Controller controller];
 }

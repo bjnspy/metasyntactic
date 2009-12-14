@@ -64,11 +64,6 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSString*) posterFilePath:(Movie*) movie
                        index:(NSInteger) index {
   NSString* sanitizedTitle;

@@ -44,11 +44,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   NSArray* allPerformances =  [[Model model] moviePerformances:movie

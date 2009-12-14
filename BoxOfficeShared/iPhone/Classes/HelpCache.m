@@ -54,11 +54,6 @@ static HelpCache* cache;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) update {
   if (![Model model].helpCacheEnabled) {
     return;

@@ -30,11 +30,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
   NSString* error;
   NSArray* movies = [[NetflixCache cache] movieSearch:currentlyExecutingRequest.lowercaseValue account:currentlyExecutingRequest.account error:&error];

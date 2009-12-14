@@ -102,11 +102,6 @@ static CacheUpdater* cacheUpdater = nil;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) processMovie:(Movie*) movie
                 force:(NSNumber*) forceNumber {
   NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);

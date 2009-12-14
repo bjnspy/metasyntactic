@@ -43,11 +43,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (LargePosterCache*) largePosterCache {
   return [LargePosterCache cache];
 }

@@ -40,11 +40,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     NSArray* qAndA = [[HelpCache cache] questionsAndAnswers];

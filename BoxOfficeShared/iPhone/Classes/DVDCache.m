@@ -34,11 +34,6 @@ static DVDCache* cache;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (BookmarkCache*) bookmarkCache {
   return [BookmarkCache cache];
 }

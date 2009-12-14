@@ -72,11 +72,6 @@ static ScoreCache* cache;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSArray*) scoreProviders {
   return [NSArray arrayWithObjects:
           rottenTomatoesScoreProvider,

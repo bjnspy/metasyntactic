@@ -84,11 +84,6 @@ static LocationManager* manager;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (Controller*) controller {
   return [Controller controller];
 }

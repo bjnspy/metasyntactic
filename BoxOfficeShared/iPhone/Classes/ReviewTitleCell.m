@@ -54,11 +54,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) setImageWorker:(UIImage*) image {
   if (self.imageView.image != image) {
     self.imageView.image = image;

@@ -113,11 +113,6 @@ typedef enum {
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (BookmarkCache*) bookmarkCache {
   return [BookmarkCache cache];
 }

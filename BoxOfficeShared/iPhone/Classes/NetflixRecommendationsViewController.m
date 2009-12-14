@@ -48,11 +48,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NetflixCache*) netflixCache {
   return [NetflixCache cache];
 }

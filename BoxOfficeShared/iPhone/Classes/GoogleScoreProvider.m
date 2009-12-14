@@ -32,11 +32,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSString*) providerName {
   return @"Google";
 }

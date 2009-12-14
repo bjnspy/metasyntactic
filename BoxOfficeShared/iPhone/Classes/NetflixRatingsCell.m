@@ -38,11 +38,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSInteger) halfWayPoint {
   if (UIInterfaceOrientationIsLandscape(self.tableViewController.interfaceOrientation)) {
     return 230;

@@ -31,11 +31,6 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (BOOL) arrayMatches:(NSArray*) array
               request:(SearchRequest*) currentlyExecutingRequest {
   for (NSString* text in array) {
