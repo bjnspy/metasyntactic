@@ -23,11 +23,6 @@
 
 @implementation CollapsedMovieDetailsCell
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 - (id) initWithMovie:(Movie*) movie {
   if ((self = [super init])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {

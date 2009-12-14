@@ -16,11 +16,6 @@
 
 @implementation NoneScoreProvider
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (NoneScoreProvider*) provider {
   return [[[NoneScoreProvider alloc] init] autorelease];
 }

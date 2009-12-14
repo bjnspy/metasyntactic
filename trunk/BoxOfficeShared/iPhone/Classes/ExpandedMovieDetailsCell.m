@@ -23,11 +23,6 @@
 
 @implementation ExpandedMovieDetailsCell
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (void) addRating:(Movie*) movie
              items:(MutableMultiDictionary*) items
         itemsArray:(NSMutableArray*) itemsArray {

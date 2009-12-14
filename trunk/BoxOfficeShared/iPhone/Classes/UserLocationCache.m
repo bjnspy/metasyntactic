@@ -30,10 +30,6 @@ static UserLocationCache* cache;
   }
 }
 
-- (void) dealloc {
-  [super dealloc];
-}
-
 
 - (id) init {
   if ((self = [super init])) {

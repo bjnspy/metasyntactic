@@ -22,11 +22,6 @@
 
 @implementation GoogleScoreProvider
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (GoogleScoreProvider*) provider {
   return [[[GoogleScoreProvider alloc] init] autorelease];
 }

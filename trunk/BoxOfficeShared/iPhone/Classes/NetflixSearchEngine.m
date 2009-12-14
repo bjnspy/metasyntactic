@@ -20,11 +20,6 @@
 
 @implementation NetflixSearchEngine
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (NetflixSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
   return [[[NetflixSearchEngine alloc] initWithDelegate:delegate] autorelease];
 }

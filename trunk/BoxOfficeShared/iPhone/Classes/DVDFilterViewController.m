@@ -23,11 +23,6 @@
 
 @implementation DVDFilterViewController
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"Settings", nil);

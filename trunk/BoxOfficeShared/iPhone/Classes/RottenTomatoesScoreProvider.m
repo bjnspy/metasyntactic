@@ -19,11 +19,6 @@
 
 @implementation RottenTomatoesScoreProvider
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (RottenTomatoesScoreProvider*) provider {
   return [[[RottenTomatoesScoreProvider alloc] init] autorelease];
 }
