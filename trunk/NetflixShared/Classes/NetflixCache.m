@@ -64,11 +64,6 @@ static NetflixCache* cache;
 }
 
 
-- (NetflixFeedCache*) feedCache {
-  return [NetflixFeedCache cache];
-}
-
-
 - (void) update:(NetflixAccount*) account force:(BOOL) force {
   if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
@@ -161,7 +156,7 @@ static NetflixCache* cache;
   NSArray* feeds = [self downloadFeedsWorker:account];
 
   if (feeds.count > 0) {
-    [self.feedCache saveFeeds:feeds account:account];
+    [[NetflixFeedCache cache] saveFeeds:feeds account:account];
     [MetasyntacticSharedApplication majorRefresh];
   }
 }
@@ -295,7 +290,7 @@ static NetflixCache* cache;
                                    etag:etag
                                  movies:movies
                                   saved:saved];
-    [self.feedCache saveQueue:queue account:account];
+    [[NetflixFeedCache cache] saveQueue:queue account:account];
   }
 }
 
@@ -319,7 +314,7 @@ static NetflixCache* cache;
   }
 
   Queue* queue;
-  if (!includeCount || ((queue = [self.feedCache queueForKey:key account:account]) == nil)) {
+  if (!includeCount || ((queue = [[NetflixFeedCache cache] queueForKey:key account:account]) == nil)) {
     return title;
   }
 
@@ -360,7 +355,7 @@ static NetflixCache* cache;
     NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
   }
 
-  Queue* queue = [self.feedCache queueForFeed:feed account:account];
+  Queue* queue = [[NetflixFeedCache cache] queueForFeed:feed account:account];
 
   [NetflixSharedApplication reportNetflixMovies:queue.movies];
   [NetflixSharedApplication reportNetflixMovies:queue.saved];
@@ -636,7 +631,7 @@ static NetflixCache* cache;
 
 
 - (void) updateQueues:(NetflixAccount*) account force:(BOOL) force {
-  NSArray* feeds = [self.feedCache feedsForAccount:account];
+  NSArray* feeds = [[NetflixFeedCache cache] feedsForAccount:account];
 
   for (Feed* feed in feeds) {
     [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
@@ -854,9 +849,9 @@ static NetflixCache* cache;
 
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:
-                           [self.feedCache queueForKey:[NetflixConstants discQueueKey] account:account],
-                           [self.feedCache queueForKey:[NetflixConstants instantQueueKey] account:account],
-                           [self.feedCache queueForKey:[NetflixConstants atHomeKey] account:account],
+                           [[NetflixFeedCache cache] queueForKey:[NetflixConstants discQueueKey] account:account],
+                           [[NetflixFeedCache cache] queueForKey:[NetflixConstants instantQueueKey] account:account],
+                           [[NetflixFeedCache cache] queueForKey:[NetflixConstants atHomeKey] account:account],
                            nil];
 
   for (Queue* queue in searchQueues) {
