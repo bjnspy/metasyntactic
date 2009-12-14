@@ -208,11 +208,6 @@ static Model* model = nil;
 }
 
 
-- (UpcomingCache*) upcomingCache {
-  return [UpcomingCache cache];
-}
-
-
 - (DVDCache*) dvdCache {
   return [DVDCache cache];
 }
@@ -673,7 +668,7 @@ static Model* model = nil;
     return date;
   }
 
-  date = [self.upcomingCache releaseDateForMovie:movie];
+  date = [[UpcomingCache cache] releaseDateForMovie:movie];
   if (date != nil) {
     return date;
   }
@@ -728,7 +723,7 @@ static Model* model = nil;
     return directors;
   }
 
-  directors = [self.upcomingCache directorsForMovie:movie];
+  directors = [[UpcomingCache cache] directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
@@ -753,7 +748,7 @@ static Model* model = nil;
     return cast;
   }
 
-  cast = [self.upcomingCache castForMovie:movie];
+  cast = [[UpcomingCache cache] castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
@@ -767,7 +762,7 @@ static Model* model = nil;
     return movie.genres;
   }
 
-  return [self.upcomingCache genresForMovie:movie];
+  return [[UpcomingCache cache] genresForMovie:movie];
 }
 
 
@@ -1146,7 +1141,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
       [options addObject:synopsis];
     }
 
-    synopsis = [self.upcomingCache synopsisForMovie:movie];
+    synopsis = [[UpcomingCache cache] synopsisForMovie:movie];
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }
@@ -1184,7 +1179,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     return result;
   }
 
-  return [self.upcomingCache trailersForMovie:movie];
+  return [[UpcomingCache cache] trailersForMovie:movie];
 }
 
 

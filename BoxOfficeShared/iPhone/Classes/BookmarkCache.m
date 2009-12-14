@@ -61,11 +61,6 @@ static BookmarkCache* cache;
 }
 
 
-- (UpcomingCache*) upcomingCache {
-  return [UpcomingCache cache];
-}
-
-
 - (DVDCache*) dvdCache {
   return [DVDCache cache];
 }
@@ -107,7 +102,7 @@ static BookmarkCache* cache;
   bookmarkedTitlesData.value = set;
 
   [[Model model].dataProvider addBookmark:movie.canonicalTitle];
-  [self.upcomingCache addBookmark:movie.canonicalTitle];
+  [[UpcomingCache cache] addBookmark:movie.canonicalTitle];
   [self.dvdCache addBookmark:movie.canonicalTitle];
   [self.blurayCache addBookmark:movie.canonicalTitle];
 }
@@ -119,7 +114,7 @@ static BookmarkCache* cache;
   bookmarkedTitlesData.value = set;
 
   [[Model model].dataProvider removeBookmark:movie.canonicalTitle];
-  [self.upcomingCache removeBookmark:movie.canonicalTitle];
+  [[UpcomingCache cache] removeBookmark:movie.canonicalTitle];
   [self.dvdCache removeBookmark:movie.canonicalTitle];
   [self.blurayCache removeBookmark:movie.canonicalTitle];
 }
