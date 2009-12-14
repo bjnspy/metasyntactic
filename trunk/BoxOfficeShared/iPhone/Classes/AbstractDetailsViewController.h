@@ -16,7 +16,7 @@
 
 @interface AbstractDetailsViewController : AbstractTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
 @protected
-    NSInteger updateId;
+  NSInteger updateId;
 }
 
 // @protected
