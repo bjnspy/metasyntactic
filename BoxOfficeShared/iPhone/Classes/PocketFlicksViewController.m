@@ -121,17 +121,12 @@ typedef enum {
 }
 
 
-- (NetflixRssCache*) netflixRssCache {
-  return [NetflixRssCache cache];
-}
-
-
 - (void) determinePopularMovieCount {
   NSInteger result = 0;
   for (NSString* title in [NetflixRssCache mostPopularTitles]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      NSInteger count = [self.netflixRssCache movieCountForRSSTitle:title];
+      NSInteger count = [[NetflixRssCache cache] movieCountForRSSTitle:title];
       result += count;
     }
     [pool release];

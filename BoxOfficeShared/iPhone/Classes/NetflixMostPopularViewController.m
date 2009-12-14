@@ -42,18 +42,13 @@
 }
 
 
-- (NetflixRssCache*) netflixRssCache {
-  return [NetflixRssCache cache];
-}
-
-
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
   for (NSString* title in [NetflixRssCache mostPopularTitles]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      NSInteger count = [self.netflixRssCache movieCountForRSSTitle:title];
+      NSInteger count = [[NetflixRssCache cache] movieCountForRSSTitle:title];
       if (count > 0) {
         [dictionary setObject:[NSNumber numberWithInteger:count] forKey:title];
       }

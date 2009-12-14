@@ -95,11 +95,6 @@ typedef enum {
 }
 
 
-- (NetflixRssCache*) netflixRssCache {
-  return [NetflixRssCache cache];
-}
-
-
 - (void) setupTitle {
   self.title = LocalizedString(@"Netflix", nil);
 
@@ -116,7 +111,7 @@ typedef enum {
   for (NSString* title in [NetflixRssCache mostPopularTitles]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-      NSInteger count = [self.netflixRssCache movieCountForRSSTitle:title];
+      NSInteger count = [[NetflixRssCache cache] movieCountForRSSTitle:title];
       result += count;
     }
     [pool release];

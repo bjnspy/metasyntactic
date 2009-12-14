@@ -48,11 +48,6 @@
 }
 
 
-- (NetflixFeedCache*) netflixFeedCache {
-  return [NetflixFeedCache cache];
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
   return 1;
 }
@@ -66,7 +61,7 @@
 
 
 - (NSArray*) feeds {
-  NSArray* feeds = [self.netflixFeedCache feedsForAccount:account];
+  NSArray* feeds = [[NetflixFeedCache cache] feedsForAccount:account];
 
   NSMutableArray* result = [NSMutableArray array];
   for (Feed* feed in feeds) {
