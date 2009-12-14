@@ -47,11 +47,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (NSArray*) movies AbstractMethod;
 
 
@@ -216,7 +211,7 @@
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
   for (Movie* movie in sortedMovies) {
-    if ([self.bookmarkCache isBookmarked:movie]) {
+    if ([[BookmarkCache cache] isBookmarked:movie]) {
       [map addObject:movie forKey:[StringUtilities starString]];
     }
   }

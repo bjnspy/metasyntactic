@@ -61,11 +61,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 + (NSString*) reuseIdentifier {
   return @"MovieTitleCell";
 }
@@ -126,7 +121,7 @@
 - (void) setMovie:(Movie*) movie {
   self.detailTextLabel.text = [[Model model] ratingAndRuntimeForMovie:movie];
 
-  if ([self.bookmarkCache isBookmarked:movie]) {
+  if ([[BookmarkCache cache] isBookmarked:movie]) {
     self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
   } else {
     self.textLabel.text = movie.displayTitle;

@@ -57,11 +57,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -170,7 +165,7 @@
     rating = LocalizedString(@"Not yet rated", nil);		
   }
 
-  if ([(id) owner sortingByTitle] || [self.bookmarkCache isBookmarked:movie]) {
+  if ([(id) owner sortingByTitle] || [[BookmarkCache cache] isBookmarked:movie]) {
     NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
     if (rating.length > 0) {

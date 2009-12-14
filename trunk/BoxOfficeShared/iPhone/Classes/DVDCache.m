@@ -34,11 +34,6 @@ static DVDCache* cache;
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (void) update {
   if (![Model model].dvdMoviesShowDVDs) {
     return;
@@ -49,7 +44,7 @@ static DVDCache* cache;
 
 
 - (NSArray*) loadBookmarksArray {
-  return [self.bookmarkCache bookmarkedDVD];
+  return [[BookmarkCache cache] bookmarkedDVD];
 }
 
 
