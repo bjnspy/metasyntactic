@@ -15,7 +15,6 @@
 #import "SquareMovieTitleCell.h"
 
 @interface PerfectGreenMovieTitleCell : SquareMovieTitleCell {
-
 }
 
 @end

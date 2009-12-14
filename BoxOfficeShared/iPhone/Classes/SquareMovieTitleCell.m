@@ -17,14 +17,14 @@
 @implementation SquareMovieTitleCell
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
-        CGRect frame = CGRectMake(6, 6, 30, 30);
-        scoreLabel.font = [FontCache boldSystem19];
-        scoreLabel.textColor = [ColorCache darkDarkGray];
-        scoreLabel.frame = frame;
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
+    CGRect frame = CGRectMake(6, 6, 30, 30);
+    scoreLabel.font = [FontCache boldSystem19];
+    scoreLabel.textColor = [ColorCache darkDarkGray];
+    scoreLabel.frame = frame;
+  }
+  
+  return self;
 }
 
 @end

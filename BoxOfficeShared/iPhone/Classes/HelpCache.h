@@ -14,8 +14,8 @@
 
 @interface HelpCache : AbstractCache {
 @private
-    BOOL updated;
-    ThreadsafeValue*/*NSArray*/ questionsAndAnswersData;
+  BOOL updated;
+  ThreadsafeValue*/*NSArray*/ questionsAndAnswersData;
 }
 
 + (HelpCache*) cache;

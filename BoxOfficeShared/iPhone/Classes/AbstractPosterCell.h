@@ -16,7 +16,7 @@
 
 @interface AbstractPosterCell : AbstractImageCell {
 @protected
-    Movie* movie;
+  Movie* movie;
 }
 
 @property (retain) Movie* movie;

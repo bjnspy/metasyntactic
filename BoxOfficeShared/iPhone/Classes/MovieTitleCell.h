@@ -14,7 +14,7 @@
 
 @interface MovieTitleCell : UITableViewCell {
 @protected
-    UILabel* scoreLabel;
+  UILabel* scoreLabel;
 }
 
 + (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView;

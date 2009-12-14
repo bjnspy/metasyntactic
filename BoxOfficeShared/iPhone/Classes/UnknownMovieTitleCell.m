@@ -19,17 +19,17 @@
 @implementation UnknownMovieTitleCell
 
 + (NSString*) reuseIdentifier {
-    return @"UnknownMovieTitleCell";
+  return @"UnknownMovieTitleCell";
 }
 
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [BoxOfficeStockImages unknownRatingImage];
-        [scoreLabel removeFromSuperview];
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    self.imageView.image = [BoxOfficeStockImages unknownRatingImage];
+    [scoreLabel removeFromSuperview];
+  }
+  
+  return self;
 }
 
 

@@ -19,15 +19,15 @@
 
 
 + (NSString*) reuseIdentifier {
-    return @"NoScoreMovieTitleCell";
+  return @"NoScoreMovieTitleCell";
 }
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        [scoreLabel removeFromSuperview];
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    [scoreLabel removeFromSuperview];
+  }
+  
+  return self;
 }
 
 

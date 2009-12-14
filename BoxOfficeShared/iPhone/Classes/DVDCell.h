@@ -16,17 +16,17 @@
 
 @interface DVDCell : AbstractPosterCell {
 @private
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* ratedTitleLabel;
-    UILabel* formatTitleLabel;
-
-    UILabel* directorLabel;
-    UILabel* castLabel;
-    UILabel* genreLabel;
-    UILabel* ratedLabel;
-    UILabel* formatLabel;
+  UILabel* directorTitleLabel;
+  UILabel* castTitleLabel;
+  UILabel* genreTitleLabel;
+  UILabel* ratedTitleLabel;
+  UILabel* formatTitleLabel;
+  
+  UILabel* directorLabel;
+  UILabel* castLabel;
+  UILabel* genreLabel;
+  UILabel* ratedLabel;
+  UILabel* formatLabel;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

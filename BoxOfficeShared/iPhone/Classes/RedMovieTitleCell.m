@@ -20,15 +20,15 @@
 
 
 + (NSString*) reuseIdentifier {
-    return @"RedMovieTitleCell";
+  return @"RedMovieTitleCell";
 }
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [BoxOfficeStockImages redRatingImage];
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    self.imageView.image = [BoxOfficeStockImages redRatingImage];
+  }
+  
+  return self;
 }
 
 @end

@@ -16,15 +16,15 @@
 
 @interface UpcomingMovieCell : AbstractPosterCell {
 @private
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* ratedTitleLabel;
-
-    UILabel* directorLabel;
-    UILabel* castLabel;
-    UILabel* genreLabel;
-    UILabel* ratedLabel;
+  UILabel* directorTitleLabel;
+  UILabel* castTitleLabel;
+  UILabel* genreTitleLabel;
+  UILabel* ratedTitleLabel;
+  
+  UILabel* directorLabel;
+  UILabel* castLabel;
+  UILabel* genreLabel;
+  UILabel* ratedLabel;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
