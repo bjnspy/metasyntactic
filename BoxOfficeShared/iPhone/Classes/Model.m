@@ -208,26 +208,6 @@ static Model* model = nil;
 }
 
 
-- (TrailerCache*) trailerCache {
-  return [TrailerCache cache];
-}
-
-
-- (InternationalDataCache*) internationalDataCache {
-  return [InternationalDataCache cache];
-}
-
-
-- (ScoreCache*) scoreCache {
-  return [ScoreCache cache];
-}
-
-
-- (PosterCache*) posterCache {
-  return [PosterCache cache];
-}
-
-
 - (BOOL) loadingIndicatorsEnabled {
   return ![[NSUserDefaults standardUserDefaults] boolForKey:LOADING_INDIACTORS_DISABLED];
 }
@@ -653,7 +633,7 @@ static Model* model = nil;
     return date;
   }
 
-  date = [self.internationalDataCache releaseDateForMovie:movie];
+  date = [[InternationalDataCache cache] releaseDateForMovie:movie];
   if (date != nil) {
     return date;
   }
@@ -673,7 +653,7 @@ static Model* model = nil;
     return length;
   }
 
-  return [self.internationalDataCache lengthForMovie:movie];
+  return [[InternationalDataCache cache] lengthForMovie:movie];
 }
 
 
@@ -683,7 +663,7 @@ static Model* model = nil;
     return rating;
   }
 
-  rating = [self.internationalDataCache ratingForMovie:movie];
+  rating = [[InternationalDataCache cache] ratingForMovie:movie];
   if (rating.length > 0) {
     return rating;
   }
@@ -693,7 +673,7 @@ static Model* model = nil;
 
 
 - (NSString*) ratingAndRuntimeForMovie:(Movie*) movie {
-  return [self.internationalDataCache ratingAndRuntimeForMovie:movie];
+  return [[InternationalDataCache cache] ratingAndRuntimeForMovie:movie];
 }
 
 
@@ -708,7 +688,7 @@ static Model* model = nil;
     return directors;
   }
 
-  directors = [self.internationalDataCache directorsForMovie:movie];
+  directors = [[InternationalDataCache cache] directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
@@ -733,7 +713,7 @@ static Model* model = nil;
     return cast;
   }
 
-  cast = [self.internationalDataCache castForMovie:movie];
+  cast = [[InternationalDataCache cache] castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
@@ -762,7 +742,7 @@ static Model* model = nil;
     return result;
   }
 
-  result = [self.internationalDataCache imdbAddressForMovie:movie];
+  result = [[InternationalDataCache cache] imdbAddressForMovie:movie];
   if (result.length > 0) {
     return result;
   }
@@ -821,7 +801,7 @@ static Model* model = nil;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [self.posterCache posterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [[PosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }
@@ -831,7 +811,7 @@ static Model* model = nil;
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [self.posterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [[PosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }
@@ -1084,17 +1064,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (Score*) scoreForMovie:(Movie*) movie {
-  return [self.scoreCache scoreForMovie:movie];
+  return [[ScoreCache cache] scoreForMovie:movie];
 }
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-  return [self.scoreCache rottenTomatoesScoreForMovie:movie];
+  return [[ScoreCache cache] rottenTomatoesScoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-  return [self.scoreCache metacriticScoreForMovie:movie];
+  return [[ScoreCache cache] metacriticScoreForMovie:movie];
 }
 
 
@@ -1120,7 +1100,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     return [[NetflixCache cache] synopsisForMovie:movie];
   }
 
-  synopsis = [self.internationalDataCache synopsisForMovie:movie];
+  synopsis = [[InternationalDataCache cache] synopsisForMovie:movie];
   if (synopsis.length > 0) {
     [options addObject:synopsis];
   }
@@ -1159,12 +1139,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-  NSArray* result = [self.internationalDataCache trailersForMovie:movie];
+  NSArray* result = [[InternationalDataCache cache] trailersForMovie:movie];
   if (result.count > 0) {
     return result;
   }
 
-  result = [self.trailerCache trailersForMovie:movie];
+  result = [[TrailerCache cache] trailersForMovie:movie];
   if (result.count > 0) {
     return result;
   }
@@ -1174,7 +1154,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-  return [self.scoreCache reviewsForMovie:movie];
+  return [[ScoreCache cache] reviewsForMovie:movie];
 }
 
 
