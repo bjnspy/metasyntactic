@@ -16,7 +16,7 @@
 
 @interface UpcomingMoviesNavigationController : CommonNavigationController {
 @private
-    UpcomingMoviesViewController* upcomingMoviesViewController;
+  UpcomingMoviesViewController* upcomingMoviesViewController;
 }
 
 @end

@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface BoxOfficeSharedApplication : NSObject {
-
 }
 
 + (void) setSharedApplicationDelegate:(id<BoxOfficeSharedApplicationDelegate>) delegate;

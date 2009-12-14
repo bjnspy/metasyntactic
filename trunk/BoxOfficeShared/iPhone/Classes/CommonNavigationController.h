@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface CommonNavigationController : AbstractNavigationController {
-@protected
 }
 
 - (void) pushTicketsView:(Movie*) movie

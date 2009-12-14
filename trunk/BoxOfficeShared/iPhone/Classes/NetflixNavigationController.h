@@ -16,7 +16,7 @@
 
 @interface NetflixNavigationController : CommonNavigationController {
 @private
-    NetflixViewController* netflixViewController;
+  NetflixViewController* netflixViewController;
 }
 
 @end
