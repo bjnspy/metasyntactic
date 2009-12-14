@@ -36,11 +36,6 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) setupDefaultScopeButtonTitles AbstractMethod;
 
 

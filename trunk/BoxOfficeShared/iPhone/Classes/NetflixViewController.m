@@ -74,11 +74,6 @@ typedef enum {
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) initializeSearchDisplay {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
   [searchBar sizeToFit];

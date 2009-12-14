@@ -58,11 +58,6 @@ typedef enum {
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (UserLocationCache*) userLocationCache {
   return [UserLocationCache cache];
 }
@@ -322,7 +317,7 @@ typedef enum {
 
 
 - (void) onNetflixEnabledChanged:(UISwitch*) sender {
-  [self.controller setNetflixEnabled:sender.on];
+  [[Controller controller] setNetflixEnabled:sender.on];
 
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:NetflixSection]];
   if (sender.on) {
@@ -334,12 +329,12 @@ typedef enum {
 
 
 - (void) onUpcomingEnabledChanged:(UISwitch*) sender {
-  [self.controller setUpcomingEnabled:sender.on];
+  [[Controller controller] setUpcomingEnabled:sender.on];
 }
 
 
 - (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
-  [self.controller setDvdBlurayEnabled:sender.on];
+  [[Controller controller] setDvdBlurayEnabled:sender.on];
 
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
   if (sender.on) {
@@ -351,7 +346,7 @@ typedef enum {
 
 
 - (void) onAutoUpdateChanged:(UISwitch*) sender {
-  [self.controller setAutoUpdateLocation:sender.on];
+  [[Controller controller] setAutoUpdateLocation:sender.on];
 }
 
 
@@ -385,7 +380,7 @@ typedef enum {
 
 
 - (void) onSearchDateChanged:(NSDate*) date {
-  [self.controller setSearchDate:date];
+  [[Controller controller] setSearchDate:date];
   [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
@@ -505,7 +500,7 @@ typedef enum {
 - (void) onUserAddressChanged:(NSString*) userAddress {
   userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-  [self.controller setUserAddress:userAddress];
+  [[Controller controller] setUserAddress:userAddress];
   [MetasyntacticSharedApplication majorRefresh:YES];
 }
 

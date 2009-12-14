@@ -54,16 +54,11 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) onSplashScreenFinished {
   [NotificationCenter attachToViewController:self.viewController];
 
   // Ok.  We've set up all our global state.  Now get the ball rolling.
-  [self.controller start];
+  [[Controller controller] start];
 }
 
 
@@ -125,7 +120,7 @@
 
 
 - (void) onCurrentNetflixAccountSet {
-  [self.controller onCurrentNetflixAccountSet];
+  [[Controller controller] onCurrentNetflixAccountSet];
 }
 
 

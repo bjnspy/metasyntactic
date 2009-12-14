@@ -47,11 +47,6 @@ typedef enum {
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) minorRefresh {
   [self majorRefresh];
 }

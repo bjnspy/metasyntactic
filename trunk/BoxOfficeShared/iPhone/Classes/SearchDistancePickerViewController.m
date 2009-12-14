@@ -46,11 +46,6 @@
 }
 
 
-- (Controller*) controller {
-    return [Controller controller];
-}
-
-
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     NSString* value = [NSString stringWithFormat:@"%d", [Model model].searchRadius];
@@ -104,7 +99,7 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
     NSString* radius = [values objectAtIndex:indexPath.row];
-    [self.controller setSearchRadius:radius.integerValue];
+    [[Controller controller] setSearchRadius:radius.integerValue];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

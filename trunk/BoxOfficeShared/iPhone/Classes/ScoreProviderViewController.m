@@ -32,11 +32,6 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
   return 1;
 }
@@ -77,7 +72,7 @@
   UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
   cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
-  [self.controller setScoreProviderIndex:indexPath.row];
+  [[Controller controller] setScoreProviderIndex:indexPath.row];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
