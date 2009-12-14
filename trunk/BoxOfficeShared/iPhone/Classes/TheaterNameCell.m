@@ -29,10 +29,10 @@
                    reuseIdentifier:reuseIdentifier])) {
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.minimumFontSize = 12;
-    
+
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   return self;
 }
 
@@ -43,7 +43,7 @@
   } else {
     self.textLabel.text = theater.name;
   }
-  
+
   self.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
 }
 

@@ -23,7 +23,7 @@
     scoreLabel.textColor = [ColorCache darkDarkGray];
     scoreLabel.frame = frame;
   }
-  
+
   return self;
 }
 

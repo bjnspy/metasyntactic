@@ -28,7 +28,7 @@
     self.imageView.image = [BoxOfficeStockImages unknownRatingImage];
     [scoreLabel removeFromSuperview];
   }
-  
+
   return self;
 }
 

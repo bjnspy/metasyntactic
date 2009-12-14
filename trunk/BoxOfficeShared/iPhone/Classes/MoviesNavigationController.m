@@ -29,7 +29,7 @@
 
 - (void) dealloc {
   self.allMoviesViewController = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,14 +39,14 @@
     self.title = LocalizedString(@"Movies", nil);
     self.tabBarItem.image = BoxOfficeStockImage(@"Movies.png");
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   if (allMoviesViewController == nil) {
     self.allMoviesViewController = [[[AllMoviesViewController alloc] init] autorelease];
     [self pushViewController:allMoviesViewController animated:NO];
@@ -60,7 +60,7 @@
       return movie;
     }
   }
-  
+
   return nil;
 }
 

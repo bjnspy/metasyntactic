@@ -21,7 +21,7 @@
   UILabel* genreTitleLabel;
   UILabel* ratedTitleLabel;
   UILabel* formatTitleLabel;
-  
+
   UILabel* directorLabel;
   UILabel* castLabel;
   UILabel* genreLabel;

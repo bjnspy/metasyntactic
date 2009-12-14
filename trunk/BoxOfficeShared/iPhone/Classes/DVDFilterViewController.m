@@ -27,7 +27,7 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"Settings", nil);
   }
-  
+
   return self;
 }
 
@@ -46,7 +46,7 @@
 - (void) setCheckmarkForCell:(UITableViewCell*) cell
                        atRow:(NSInteger) row {
   cell.accessoryType = UITableViewCellAccessoryNone;
-  
+
   if (row == 0) {
     if ([Model model].dvdMoviesShowDVDs) {
       cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -66,15 +66,15 @@
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   if (indexPath.row == 0) {
     cell.textLabel.text = LocalizedString(@"DVD", nil);
   } else if (indexPath.row == 1) {
     cell.textLabel.text = LocalizedString(@"Blu-ray", nil);
   }
-  
+
   [self setCheckmarkForCell:cell atRow:indexPath.row];
-  
+
   return cell;
 }
 
@@ -82,17 +82,17 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
   [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
-  
+
   if (selectPath.row == 0) {
     [[Controller controller] setDvdMoviesShowDVDs:![Model model].dvdMoviesShowDVDs];
   } else {
     [[Controller controller] setDvdMoviesShowBluray:![Model model].dvdMoviesShowBluray];
   }
-  
+
   for (NSInteger i = 0; i <= 1; i++) {
     NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-    
+
     [self setCheckmarkForCell:cell atRow:i];
   }
 }

@@ -26,14 +26,14 @@
 - (id) init {
   if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
     self.imageView.image = [BoxOfficeStockImages freshImage];
-    
+
     scoreLabel.font = [UIFont boldSystemFontOfSize:15];
     scoreLabel.textColor = [UIColor whiteColor];
-    
+
     CGRect frame = CGRectMake(5, 7, 32, 32);
     scoreLabel.frame = frame;
   }
-  
+
   return self;
 }
 

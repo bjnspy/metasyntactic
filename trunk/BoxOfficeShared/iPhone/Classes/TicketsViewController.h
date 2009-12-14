@@ -18,7 +18,7 @@
 @private
   Movie* movie;
   Theater* theater;
-  
+
   NSArray* performances;
 }
 
