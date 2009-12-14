@@ -113,11 +113,6 @@ typedef enum {
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (NetflixUpdater*) netflixUpdater {
   return [NetflixUpdater updater];
 }
@@ -392,17 +387,17 @@ typedef enum {
 
 
 - (BOOL) isBookmarked {
-  return [self.bookmarkCache isBookmarked:movie];
+  return [[BookmarkCache cache] isBookmarked:movie];
 }
 
 
 - (void) addBookmark {
-  [self.bookmarkCache addBookmark:movie];
+  [[BookmarkCache cache] addBookmark:movie];
 }
 
 
 - (void) removeBookmark {
-  [self.bookmarkCache removeBookmark:movie];
+  [[BookmarkCache cache] removeBookmark:movie];
 }
 
 

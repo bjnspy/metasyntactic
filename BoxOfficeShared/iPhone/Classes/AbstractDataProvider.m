@@ -77,11 +77,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (NSString*) performancesDirectory {
   return [[Application dataDirectory] stringByAppendingPathComponent:@"Performances"];
 }
@@ -139,7 +134,7 @@
 
 
 - (NSMutableDictionary*) loadBookmarks {
-  NSArray* movies = [self.bookmarkCache bookmarkedMovies];
+  NSArray* movies = [[BookmarkCache cache] bookmarkedMovies];
   if (movies.count == 0) {
     return [NSMutableDictionary dictionary];
   }
@@ -173,7 +168,7 @@
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.bookmarkCache setBookmarkedMovies:bookmarks.allValues];
+  [[BookmarkCache cache] setBookmarkedMovies:bookmarks.allValues];
 }
 
 
@@ -199,7 +194,7 @@
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in result.movies) {
-    if ([self.bookmarkCache isBookmarked:movie]) {
+    if ([[BookmarkCache cache] isBookmarked:movie]) {
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }

@@ -91,11 +91,6 @@ static UpcomingCache* cache;
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (NSString*) moviesFile {
   return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
@@ -232,7 +227,7 @@ static UpcomingCache* cache;
 
 
 - (NSMutableDictionary*) loadBookmarks {
-  NSArray* movies = [self.bookmarkCache bookmarkedUpcoming];
+  NSArray* movies = [[BookmarkCache cache] bookmarkedUpcoming];
   if (movies.count == 0) {
     return [NSMutableDictionary dictionary];
   }
@@ -247,7 +242,7 @@ static UpcomingCache* cache;
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.bookmarkCache setBookmarkedUpcoming:bookmarks.allValues];
+  [[BookmarkCache cache] setBookmarkedUpcoming:bookmarks.allValues];
 }
 
 
@@ -303,7 +298,7 @@ static UpcomingCache* cache;
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in movies) {
-    if ([self.bookmarkCache isBookmarked:movie]) {
+    if ([[BookmarkCache cache] isBookmarked:movie]) {
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }

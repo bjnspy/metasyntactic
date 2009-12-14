@@ -55,11 +55,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (NSString*) serverAddress AbstractMethod;
 
 
@@ -127,7 +122,7 @@
 
 
 - (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.bookmarkCache setBookmarkedDVD:bookmarks.allValues];
+  [[BookmarkCache cache] setBookmarkedDVD:bookmarks.allValues];
 }
 
 
@@ -314,7 +309,7 @@
   // also determine if any of the data we found match items the user bookmarked
   NSMutableDictionary* bookmarks = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   for (Movie* movie in movies) {
-    if ([self.bookmarkCache isBookmarked:movie]) {
+    if ([[BookmarkCache cache] isBookmarked:movie]) {
       [bookmarks setObject:movie forKey:movie.canonicalTitle];
     }
   }

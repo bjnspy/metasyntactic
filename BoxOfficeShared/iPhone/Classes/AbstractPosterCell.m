@@ -37,11 +37,6 @@
 }
 
 
-- (BookmarkCache*) bookmarkCache {
-  return [BookmarkCache cache];
-}
-
-
 - (UIImage*) loadImageWorker {
   return [[Model model] smallPosterForMovie:movie loadFromDisk:YES];
 }
@@ -115,7 +110,7 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-  if ([self.bookmarkCache isBookmarked:movie_]) {
+  if ([[BookmarkCache cache] isBookmarked:movie_]) {
     titleLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie_.displayTitle];
   } else {
     titleLabel.text = movie_.displayTitle;
