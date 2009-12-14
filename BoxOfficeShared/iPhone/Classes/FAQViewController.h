@@ -14,9 +14,9 @@
 
 @interface FAQViewController : AbstractFullScreenTableViewController<MFMailComposeViewControllerDelegate> {
 @private
-    NSArray* questions;
-    NSArray* answers;
-    ActionsView* actionsView;
+  NSArray* questions;
+  NSArray* answers;
+  ActionsView* actionsView;
 }
 
 @end

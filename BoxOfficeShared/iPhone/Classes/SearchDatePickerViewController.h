@@ -14,8 +14,8 @@
 
 @interface SearchDatePickerViewController : AbstractFullScreenTableViewController {
 @private
-    id object;
-    SEL selector;
+  id object;
+  SEL selector;
 }
 
 + (SearchDatePickerViewController*) pickerWithObject:(id) object selector:(SEL) selector;

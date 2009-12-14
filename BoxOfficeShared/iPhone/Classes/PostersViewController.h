@@ -14,7 +14,7 @@
 
 @interface PostersViewController : AbstractFullScreenImageListViewController {
 @private
-    Movie* movie;
+  Movie* movie;
 }
 
 - (id) initWithMovie:(Movie*) movie

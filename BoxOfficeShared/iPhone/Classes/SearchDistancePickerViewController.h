@@ -14,7 +14,7 @@
 
 @interface SearchDistancePickerViewController : AbstractFullScreenTableViewController {
 @private
-    NSArray* values;
+  NSArray* values;
 }
 
 @end

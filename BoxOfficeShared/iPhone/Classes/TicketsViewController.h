@@ -16,10 +16,10 @@
 
 @interface TicketsViewController : AbstractDetailsViewController {
 @private
-    Movie* movie;
-    Theater* theater;
-
-    NSArray* performances;
+  Movie* movie;
+  Theater* theater;
+  
+  NSArray* performances;
 }
 
 - (id) initWithTheater:(Theater*) theater

@@ -603,10 +603,10 @@
 		100000000000000700000108 /* DVD */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000080000000F /* DVDViewController.h */,
-				100000000000000800000010 /* DVDViewController.m */,
 				1000000000000007000001B4 /* DVDFilterViewController.h */,
+				10000000000000080000000F /* DVDViewController.h */,
 				1000000000000007000001B5 /* DVDFilterViewController.m */,
+				100000000000000800000010 /* DVDViewController.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
@@ -982,8 +982,8 @@
 			isa = PBXGroup;
 			children = (
 				10000000000000070000006E /* AllTheatersViewController.h */,
-				10000000000000070000006F /* AllTheatersViewController.m */,
 				100000000000001400000036 /* TheaterDetailsViewController.h */,
+				10000000000000070000006F /* AllTheatersViewController.m */,
 				1000000000000011000000F3 /* TheaterDetailsViewController.m */,
 			);
 			name = Theaters;
