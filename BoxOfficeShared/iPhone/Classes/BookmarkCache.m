@@ -61,16 +61,6 @@ static BookmarkCache* cache;
 }
 
 
-- (DVDCache*) dvdCache {
-  return [DVDCache cache];
-}
-
-
-- (BlurayCache*) blurayCache {
-  return [BlurayCache cache];
-}
-
-
 - (NSSet*) loadBookmarkedTitles {
   NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
   if (array.count == 0) {
@@ -103,8 +93,8 @@ static BookmarkCache* cache;
 
   [[Model model].dataProvider addBookmark:movie.canonicalTitle];
   [[UpcomingCache cache] addBookmark:movie.canonicalTitle];
-  [self.dvdCache addBookmark:movie.canonicalTitle];
-  [self.blurayCache addBookmark:movie.canonicalTitle];
+  [[DVDCache cache] addBookmark:movie.canonicalTitle];
+  [[BlurayCache cache] addBookmark:movie.canonicalTitle];
 }
 
 
@@ -115,8 +105,8 @@ static BookmarkCache* cache;
 
   [[Model model].dataProvider removeBookmark:movie.canonicalTitle];
   [[UpcomingCache cache] removeBookmark:movie.canonicalTitle];
-  [self.dvdCache removeBookmark:movie.canonicalTitle];
-  [self.blurayCache removeBookmark:movie.canonicalTitle];
+  [[DVDCache cache] removeBookmark:movie.canonicalTitle];
+  [[BlurayCache cache] removeBookmark:movie.canonicalTitle];
 }
 
 
