@@ -67,11 +67,6 @@ static Controller* controller = nil;
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (void) spawnDataProviderLookupThread:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
   [[Model model].dataProvider update:[Model model].searchDate delegate:self context:nil force:force];
@@ -132,7 +127,7 @@ static Controller* controller = nil;
 
 
 - (void) updateNetflixCache:(BOOL) force {
-  [self.netflixCache update:[[NetflixAccountCache cache] currentAccount]
+  [[NetflixCache cache] update:[[NetflixAccountCache cache] currentAccount]
                       force:force];
 }
 

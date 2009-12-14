@@ -48,11 +48,6 @@
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixFeedCache*) netflixFeedCache {
   return [NetflixFeedCache cache];
 }
@@ -113,7 +108,7 @@
 
   cell.textLabel.adjustsFontSizeToFitWidth = YES;
   cell.textLabel.minimumFontSize = 12;
-  cell.textLabel.text = [self.netflixCache titleForKey:feed.key account:account];
+  cell.textLabel.text = [[NetflixCache cache] titleForKey:feed.key account:account];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
   return cell;

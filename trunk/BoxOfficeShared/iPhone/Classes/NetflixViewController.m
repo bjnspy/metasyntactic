@@ -95,11 +95,6 @@ typedef enum {
 }
 
 
-- (NetflixCache*) netflixCache {
-  return [NetflixCache cache];
-}
-
-
 - (NetflixRssCache*) netflixRssCache {
   return [NetflixRssCache cache];
 }
@@ -191,16 +186,16 @@ typedef enum {
         }
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants discQueueKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants discQueueKey] account:account];
         break;
       case InstantSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants instantQueueKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants instantQueueKey] account:account];
         break;
       case RecommendationsSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants recommendationKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants recommendationKey] account:account];
         break;
       case AtHomeSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixConstants atHomeKey] account:account];
+        cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants atHomeKey] account:account];
         break;
       case RentalHistorySection:
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
