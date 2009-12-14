@@ -129,7 +129,7 @@
 
 
 - (void) setMovie:(Movie*) movie {
-  self.detailTextLabel.text = [self.model ratingAndRuntimeForMovie:movie];
+  self.detailTextLabel.text = [[Model model] ratingAndRuntimeForMovie:movie];
 
   if ([self.bookmarkCache isBookmarked:movie]) {
     self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];

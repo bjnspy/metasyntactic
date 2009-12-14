@@ -47,7 +47,7 @@
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-  for (Movie* movie in self.model.movies) {
+  for (Movie* movie in [Model model].movies) {
     if ([movie.canonicalTitle isEqual:canonicalTitle]) {
       return movie;
     }
@@ -58,7 +58,7 @@
 
 
 - (Theater*) theaterForName:(NSString*) name {
-  for (Theater* theater in self.model.theaters) {
+  for (Theater* theater in [Model model].theaters) {
     if ([theater.name isEqual:name]) {
       return theater;
     }
@@ -69,10 +69,10 @@
 
 
 - (void) navigateToLastViewedPage {
-  NSArray* types = self.model.navigationStackTypes;
-  NSArray* values = self.model.navigationStackValues;
+  NSArray* types = [Model model].navigationStackTypes;
+  NSArray* values = [Model model].navigationStackValues;
 
-  [self.model clearNavigationStack];
+  [[Model model] clearNavigationStack];
   if (![AbstractApplication shutdownCleanly]) {
     return;
   }

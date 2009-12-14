@@ -39,11 +39,11 @@
 - (NSArray*) movies {
   NSMutableArray* result = [NSMutableArray array];
 
-  if (self.model.dvdMoviesShowDVDs) {
+  if ([Model model].dvdMoviesShowDVDs) {
     [result addObjectsFromArray:[[DVDCache cache] movies]];
   }
 
-  if (self.model.dvdMoviesShowBluray) {
+  if ([Model model].dvdMoviesShowBluray) {
     [result addObjectsFromArray:[[BlurayCache cache] movies]];
   }
 
@@ -52,12 +52,12 @@
 
 
 - (BOOL) sortingByTitle {
-  return self.model.dvdMoviesSortingByTitle;
+  return [Model model].dvdMoviesSortingByTitle;
 }
 
 
 - (BOOL) sortingByReleaseDate {
-  return self.model.dvdMoviesSortingByReleaseDate;
+  return [Model model].dvdMoviesSortingByReleaseDate;
 }
 
 
@@ -67,7 +67,7 @@
 
 
 - (BOOL) sortingByFavorite {
-  return self.model.dvdMoviesSortingByFavorite;
+  return [Model model].dvdMoviesSortingByFavorite;
 }
 
 
@@ -78,13 +78,13 @@
 
 - (void) onSortOrderChanged:(id) sender {
   scrollToCurrentDateOnRefresh = YES;
-  self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [Model model].dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
   [self majorRefresh];
 }
 
 
 - (void) setupTitle {
-  if (self.model.dvdMoviesShowOnlyBluray) {
+  if ([Model model].dvdMoviesShowOnlyBluray) {
     self.title = LocalizedString(@"Blu-ray", nil);
   } else {
     self.title = LocalizedString(@"DVD", nil);
@@ -110,7 +110,7 @@
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
-  control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
+  control.selectedSegmentIndex = [Model model].dvdMoviesSelectedSegmentIndex;
 
   [control addTarget:self
               action:@selector(onSortOrderChanged:)

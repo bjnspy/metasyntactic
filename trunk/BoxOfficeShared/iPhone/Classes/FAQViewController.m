@@ -169,16 +169,16 @@
   body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
           [Application version],
           [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
-          self.model.userAddress,
-          self.model.searchRadius,
-          [DateUtilities formatShortDate:self.model.searchDate],
-          self.model.currentScoreProvider,
-          (self.model.autoUpdateLocation ? @"yes" : @"no"),
+          [Model model].userAddress,
+          [Model model].searchRadius,
+          [DateUtilities formatShortDate:[Model model].searchDate],
+          [Model model].currentScoreProvider,
+          ([Model model].autoUpdateLocation ? @"yes" : @"no"),
           [LocaleUtilities englishCountry],
           [LocaleUtilities englishLanguage]];
 
   NetflixAccount* account = [[NetflixAccountCache cache] currentAccount];
-  if (self.model.netflixCacheEnabled && account.userId.length > 0) {
+  if ([Model model].netflixCacheEnabled && account.userId.length > 0) {
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
             [StringUtilities nonNilString:account.userId],
             [StringUtilities nonNilString:account.key],

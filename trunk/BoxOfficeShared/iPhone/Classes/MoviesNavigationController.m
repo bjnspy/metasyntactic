@@ -60,7 +60,7 @@
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.movies) {
+    for (Movie* movie in [Model model].movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             return movie;
         }

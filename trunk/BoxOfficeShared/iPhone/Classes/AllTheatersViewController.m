@@ -69,7 +69,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-  self.model.allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [Model model].allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
   [self majorRefresh];
 }
 
@@ -89,11 +89,11 @@
 
 
 - (void) sortTheatersByName {
-  self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
+  self.sortedTheaters = [[Model model].theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
 
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
-  for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
+  for (Theater* theater in [[Model model] theatersInRange:sortedTheaters]) {
     if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
       [map addObject:theater forKey:[StringUtilities starString]];
       continue;
@@ -131,8 +131,8 @@
 
 
 - (void) sortTheatersByDistance {
-  NSDictionary* theaterDistanceMap = self.model.theaterDistanceMap;
-  self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
+  NSDictionary* theaterDistanceMap = [Model model].theaterDistanceMap;
+  self.sortedTheaters = [[Model model].theaters sortedArrayUsingFunction:compareTheatersByDistance
                          context:theaterDistanceMap];
 
   NSString* favorites = LocalizedString(@"Favorites", nil);
@@ -169,7 +169,7 @@
   self.sectionTitles = array;
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
-  NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
+  NSArray* theatersInRange = [[Model model] theatersInRange:sortedTheaters];
   for (Theater* theater in theatersInRange) {
     if ([[FavoriteTheaterCache cache] isFavoriteTheater:theater]) {
       [map addObject:theater forKey:favorites];
@@ -215,14 +215,14 @@
   [self removeUnusedSectionTitles];
 
   if (sectionTitles.count == 0) {
-    NSArray* theaters = self.model.theaters;
+    NSArray* theaters = [Model model].theaters;
     if (theaters.count == 1) {
       self.sectionTitles = [NSArray arrayWithObject:LocalizedString(@"1 theater outside search area", nil)];
     } else if (theaters.count > 1) {
       self.sectionTitles = [NSArray arrayWithObject:
                             [NSString stringWithFormat:LocalizedString(@"%d theaters outside search area", @"i.e.: 10 theaters outside search area"), theaters.count]];
     } else {
-      self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
+      self.sectionTitles = [NSArray arrayWithObject:[Model model].noInformationFound];
     }
   }
 }
@@ -236,7 +236,7 @@
                              nil]] autorelease];
 
   segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-  segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
+  segmentedControl.selectedSegmentIndex = [Model model].allTheatersSelectedSegmentIndex;
   [segmentedControl addTarget:self
                        action:@selector(onSortOrderChanged:)
              forControlEvents:UIControlEventValueChanged];

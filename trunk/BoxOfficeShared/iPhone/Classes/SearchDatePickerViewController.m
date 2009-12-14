@@ -89,7 +89,7 @@
     cell.textLabel.text = [DateUtilities formatFullDate:date];
   }
 
-  if ([DateUtilities isSameDay:date date:self.model.searchDate]) {
+  if ([DateUtilities isSameDay:date date:[Model model].searchDate]) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
   }
 

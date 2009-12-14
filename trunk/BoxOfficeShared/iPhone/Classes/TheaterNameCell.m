@@ -54,7 +54,7 @@
         self.textLabel.text = theater.name;
     }
 
-    self.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
+    self.detailTextLabel.text = [[Model model] simpleAddressForTheater:theater];
 }
 
 @end

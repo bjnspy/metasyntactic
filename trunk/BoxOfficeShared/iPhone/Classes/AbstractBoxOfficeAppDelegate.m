@@ -99,12 +99,12 @@
 
 
 - (void) saveNavigationStack:(UINavigationController*) controller {
-  [self.model saveNavigationStack:controller];
+  [[Model model] saveNavigationStack:controller];
 }
 
 
 - (BOOL) notificationsEnabled {
-  return self.model.notificationsEnabled;
+  return [Model model].notificationsEnabled;
 }
 
 
@@ -120,12 +120,12 @@
 
 
 - (BOOL) netflixEnabled {
-  return self.model.netflixCacheEnabled;
+  return [Model model].netflixCacheEnabled;
 }
 
 
 - (BOOL) netflixNotificationsEnabled {
-  return self.model.netflixNotificationsEnabled;
+  return [Model model].netflixNotificationsEnabled;
 }
 
 

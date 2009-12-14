@@ -130,7 +130,7 @@ typedef enum {
 
 - (NSMutableArray*) orderTheaters:(NSMutableArray*) theatersArray {
   [theatersArray sortUsingFunction:compareTheatersByDistance
-                           context:self.model.theaterDistanceMap];
+                           context:[Model model].theaterDistanceMap];
 
   NSMutableArray* favorites = [NSMutableArray array];
   NSMutableArray* nonFavorites = [NSMutableArray array];
@@ -268,33 +268,33 @@ typedef enum {
 - (void) initializeWebsites {
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
 
-  if (!self.model.isInReviewPeriod) {
-    NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
+  if (![Model model].isInReviewPeriod) {
+    NSString* imdbAddress = [[Model model] imdbAddressForMovie:movie];
     if (imdbAddress.length > 0) {
       [map setObject:imdbAddress forKey:@"IMDb"];
     }
 
-    NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
+    NSString* amazonAddress = [[Model model] amazonAddressForMovie:movie];
     if (amazonAddress.length > 0) {
       [map setObject:amazonAddress forKey:@"Amazon"];
     }
 
-    NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
+    NSString* wikipediaAddress = [[Model model] wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
       [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
 
-    NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
+    NSString* netflixAddress = [[Model model] netflixAddressForMovie:movie];
     if (netflixAddress.length > 0) {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
 
-    Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+    Score* score = [[Model model] rottenTomatoesScoreForMovie:movie];
     if (score.identifier.length > 0) {
       [map setObject:score.identifier forKey:@"RottenTomatoes"];
     }
 
-    score = [self.model metacriticScoreForMovie:movie];
+    score = [[Model model] metacriticScoreForMovie:movie];
     if (score.identifier.length > 0) {
       [map setObject:score.identifier forKey:@"Metacritic"];
     }
@@ -309,7 +309,7 @@ typedef enum {
 
 
 - (void) updateImage {
-  UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
+  UIImage* image = [MovieDetailsViewController posterForMovie:movie model:[Model model]];
   // we currently have a poster.  only replace it if we have something better
   if (image != nil && image != [BoxOfficeStockImages imageNotAvailable]) {
     self.posterImage = image;
@@ -342,10 +342,10 @@ typedef enum {
 
 
 - (void) initializeTheaterArrays {
-  self.allTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersShowingMovie:movie]];
+  self.allTheatersArray = [NSMutableArray arrayWithArray:[[Model model] theatersShowingMovie:movie]];
 
   if (filterTheatersByDistance) {
-    self.filteredTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:self.allTheatersArray]];
+    self.filteredTheatersArray = [NSMutableArray arrayWithArray:[[Model model] theatersInRange:self.allTheatersArray]];
   } else {
     self.filteredTheatersArray = self.allTheatersArray;
   }
@@ -355,13 +355,13 @@ typedef enum {
   self.showtimesArray = [NSMutableArray array];
 
   for (Theater* theater in filteredTheatersArray) {
-    [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
+    [self.showtimesArray addObject:[[Model model] moviePerformances:movie forTheater:theater]];
   }
 }
 
 
 - (void) setupTrailersArray {
-  NSArray* array = [self.model trailersForMovie:movie];
+  NSArray* array = [[Model model] trailersForMovie:movie];
   NSMutableArray* result = [NSMutableArray array];
 
   for (NSString* trailer in array) {
@@ -382,7 +382,7 @@ typedef enum {
 
   [self setupTrailersArray];
 
-  self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
+  self.reviewsArray = [NSArray arrayWithArray:[[Model model] reviewsForMovie:movie]];
 
   [self initializeTheaterArrays];
 
@@ -482,11 +482,11 @@ typedef enum {
 - (void) loadView {
   [super loadView];
 
-  self.dvd = [self.model dvdDetailsForMovie:movie];
+  self.dvd = [[Model model] dvdDetailsForMovie:movie];
 
   filterTheatersByDistance = YES;
 
-  self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
+  self.posterImage = [MovieDetailsViewController posterForMovie:movie model:[Model model]];
   [self setupButtons];
   [self setupTitle];
 
@@ -619,11 +619,11 @@ typedef enum {
       return LocalizedString(@"Netflix", nil);
     }
   } else if (section == 2 && filteredTheatersArray.count > 0) {
-    if (self.model.isSearchDateToday) {
-      //[DateUtilities isToday:self.model.searchDate]) {
+    if ([Model model].isSearchDateToday) {
+      //[DateUtilities isToday:[Model model].searchDate]) {
       return LocalizedString(@"Today", nil);
     } else {
-      return [DateUtilities formatFullDate:self.model.searchDate];
+      return [DateUtilities formatFullDate:[Model model].searchDate];
     }
   }
 
@@ -727,7 +727,7 @@ typedef enum {
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
     posterImageView.tag = POSTER_TAG;
     posterImageView.delegate = self;
-    return [SynopsisCell cellWithSynopsis:[self.model synopsisForMovie:movie]
+    return [SynopsisCell cellWithSynopsis:[[Model model] synopsisForMovie:movie]
                                 imageView:posterImageView
                               limitLength:YES];
   }
@@ -795,7 +795,7 @@ typedef enum {
       Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
 
       return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
-                                              stale:[self.model isStale:theater]
+                                              stale:[[Model model] isStale:theater]
                                 tableViewController:self] + 18;
     }
   }
@@ -828,7 +828,7 @@ typedef enum {
     }
 
     Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
-    BOOL stale = [self.model isStale:theater];
+    BOOL stale = [[Model model] isStale:theater];
     [cell setStale:stale];
     [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
 
@@ -865,11 +865,11 @@ typedef enum {
   }
 
   Theater* theater = [filteredTheatersArray objectAtIndex:[self getTheaterIndex:section]];
-  if (![self.model isStale:theater]) {
+  if (![[Model model] isStale:theater]) {
     return nil;
   }
 
-  return [self.model showtimesRetrievedOnString:theater];
+  return [[Model model] showtimesRetrievedOnString:theater];
 }
 
 
@@ -1218,7 +1218,7 @@ typedef enum {
 - (void) emailListings {
   NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                        movie.canonicalTitle,
-                       [DateUtilities formatFullDate:self.model.searchDate]];
+                       [DateUtilities formatFullDate:[Model model].searchDate]];
 
   NSMutableString* body = [NSMutableString string];
 
@@ -1233,11 +1233,11 @@ typedef enum {
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
-    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:[[Model model] simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
 
     [body appendString:@"<br/>"];
-    [body appendString:[Utilities generateShowtimeLinks:self.model
+    [body appendString:[Utilities generateShowtimeLinks:[Model model]
                                                   movie:movie
                                                 theater:theater
                                            performances:performances]];

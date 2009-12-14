@@ -63,11 +63,11 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     if (row == 0) {
-        if (self.model.dvdMoviesShowDVDs) {
+        if ([Model model].dvdMoviesShowDVDs) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     } else if (row == 1) {
-        if (self.model.dvdMoviesShowBluray) {
+        if ([Model model].dvdMoviesShowBluray) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
@@ -99,9 +99,9 @@
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
     if (selectPath.row == 0) {
-        [self.controller setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
+        [self.controller setDvdMoviesShowDVDs:![Model model].dvdMoviesShowDVDs];
     } else {
-        [self.controller setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
+        [self.controller setDvdMoviesShowBluray:![Model model].dvdMoviesShowBluray];
     }
 
     for (NSInteger i = 0; i <= 1; i++) {

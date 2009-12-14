@@ -39,7 +39,7 @@
       contentsController:(UIViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_
                     contentsController:viewController_])) {
-    self.searchBar.selectedScopeButtonIndex = self.model.localSearchSelectedScopeButtonIndex;
+    self.searchBar.selectedScopeButtonIndex = [Model model].localSearchSelectedScopeButtonIndex;
   }
 
   return self;
@@ -325,7 +325,7 @@
 
 
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger) selectedScope {
-  self.model.localSearchSelectedScopeButtonIndex = selectedScope;
+  [Model model].localSearchSelectedScopeButtonIndex = selectedScope;
   [self reloadTableViewData];
 }
 

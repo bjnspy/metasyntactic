@@ -36,9 +36,9 @@
 - (id) initWithMovie:(Movie*) movie {
   if ((self = [super init])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
-      self.textLabel.text = [self.model ratingForMovie:movie];
+      self.textLabel.text = [[Model model] ratingForMovie:movie];
     } else {
-      self.textLabel.text = [self.model ratingAndRuntimeForMovie:movie];
+      self.textLabel.text = [[Model model] ratingAndRuntimeForMovie:movie];
     }
   }
 

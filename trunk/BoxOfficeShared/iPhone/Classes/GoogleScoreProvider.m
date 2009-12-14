@@ -43,7 +43,7 @@
 
 
 - (NSString*) serverUrl {
-  Location* location = [[UserLocationCache cache] locationForUserAddress:self.model.userAddress];
+  Location* location = [[UserLocationCache cache] locationForUserAddress:[Model model].userAddress];
 
   if (location.postalCode == nil) {
     return nil;
@@ -55,7 +55,7 @@
 
   NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                  fromDate:[DateUtilities today]
-                                                                   toDate:self.model.searchDate
+                                                                   toDate:[Model model].searchDate
                                                                   options:0];
   NSInteger day = components.day;
   day = MIN(MAX(day, 0), 7);

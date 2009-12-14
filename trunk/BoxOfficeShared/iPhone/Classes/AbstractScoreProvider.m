@@ -162,7 +162,7 @@
 
 
 - (void) ensureMovieMap {
-  NSArray* moviesArray = self.model.movies;
+  NSArray* moviesArray = [Model model].movies;
   if (moviesArray != self.movies) {
     NSLog(@"AbstractScoreProvider:ensureMovieMap - regenerating map");
     moviesData.value = moviesArray;
@@ -262,7 +262,7 @@
   NSMutableDictionary* finalScores = [NSMutableDictionary dictionaryWithDictionary:currentScores];
   [finalScores addEntriesFromDictionary:newScores];
 
-  NSArray* movies = [self.model movies];
+  NSArray* movies = [[Model model] movies];
 
   NSDictionary* map = [self regenerateMapWorker:finalScores forMovies:movies];
 
@@ -464,7 +464,7 @@
     return;
   }
 
-  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:[Model model].userAddress];
   if (location == nil) {
     return;
   }
@@ -474,7 +474,7 @@
 
 
 - (void) updateReviewsBackgroundEntryPoint {
-  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  Location* location = [self.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:[Model model].userAddress];
   if (location == nil) {
     return;
   }

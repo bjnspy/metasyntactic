@@ -358,11 +358,11 @@ static UpcomingCache* cache;
 
 
 - (void) update {
-  if (self.model.userAddress.length == 0) {
+  if ([Model model].userAddress.length == 0) {
     return;
   }
 
-  if (!self.model.upcomingCacheEnabled) {
+  if (![Model model].upcomingCacheEnabled) {
     return;
   }
 

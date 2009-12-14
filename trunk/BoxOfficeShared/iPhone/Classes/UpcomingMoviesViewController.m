@@ -41,12 +41,12 @@
 
 
 - (BOOL) sortingByTitle {
-  return self.model.upcomingMoviesSortingByTitle;
+  return [Model model].upcomingMoviesSortingByTitle;
 }
 
 
 - (BOOL) sortingByReleaseDate {
-  return self.model.upcomingMoviesSortingByReleaseDate;
+  return [Model model].upcomingMoviesSortingByReleaseDate;
 }
 
 
@@ -56,7 +56,7 @@
 
 
 - (BOOL) sortingByFavorite {
-  return self.model.upcomingMoviesSortingByFavorite;
+  return [Model model].upcomingMoviesSortingByFavorite;
 }
 
 
@@ -74,7 +74,7 @@
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
-  control.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
+  control.selectedSegmentIndex = [Model model].upcomingMoviesSelectedSegmentIndex;
 
   [control addTarget:self
               action:@selector(onSortOrderChanged:)
@@ -90,7 +90,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
   scrollToCurrentDateOnRefresh = YES;
-  self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [Model model].upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
   [self majorRefresh];
 }
 

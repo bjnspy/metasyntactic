@@ -140,7 +140,7 @@ static LocationManager* manager;
 
 
 - (void) autoUpdateLocation {
-  if (self.model.autoUpdateLocation) {
+  if ([Model model].autoUpdateLocation) {
     [self startUpdatingLocation:NO];
   }
 }
@@ -175,7 +175,7 @@ static LocationManager* manager;
 
   [self enqueueUpdateRequest:ONE_MINUTE];
 
-  if (userDenied && self.model.autoUpdateLocation) {
+  if (userDenied && [Model model].autoUpdateLocation) {
     [self.controller setAutoUpdateLocation:NO];
   }
 }

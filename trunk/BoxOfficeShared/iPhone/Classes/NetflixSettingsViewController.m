@@ -61,7 +61,7 @@
 //    return 1;
 //  } else if (section == 1) {
 //    return 0;
-//    return self.model.netflixPreferredFormats.count;
+//    return [Model model].netflixPreferredFormats.count;
 //  }
 
   return 0;
@@ -76,10 +76,10 @@
 //    cell.textLabel.text = LocalizedString(@"Instant Watch", nil);
 //    UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
 //    switch_.enabled = NO;
-//    switch_.on = self.model.netflixCanInstantWatch;
+//    switch_.on = [Model model].netflixCanInstantWatch;
 //    cell.accessoryView = switch_;
 //  } else {
-//    cell.textLabel.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [[Model model].netflixPreferredFormats objectAtIndex:indexPath.row];
 //  }
 
   return cell;

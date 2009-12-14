@@ -163,7 +163,7 @@
 - (void) setShowtimes:(NSArray*) showtimes_ {
   self.showtimesData = showtimes_;
 
-  showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
+  showtimesLabel.font = [MovieShowtimesCell showtimesFont:[Model model].useSmallFonts];
   showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
 }
 
