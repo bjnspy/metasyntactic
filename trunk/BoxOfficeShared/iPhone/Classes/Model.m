@@ -45,7 +45,6 @@
 #import "WikipediaCache.h"
 
 @interface Model()
-@property (retain) UserLocationCache* userLocationCache;
 @property (retain) PersonPosterCache* personPosterCache;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
@@ -86,7 +85,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 
 @synthesize isSearchDateTodayData;
 
-@synthesize userLocationCache;
 @synthesize personPosterCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
@@ -95,7 +93,6 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.dataProvider = nil;
   self.isSearchDateTodayData = nil;
 
-  self.userLocationCache = nil;
   self.personPosterCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
@@ -199,7 +196,6 @@ static Model* model = nil;
 - (id) init {
   if ((self = [super init])) {
     self.dataProvider = [GoogleDataProvider provider];
-    self.userLocationCache = [UserLocationCache cache];
 
     [self clearCaches];
 
@@ -967,7 +963,7 @@ static Model* model = nil;
 
 
 - (NSDictionary*) theaterDistanceMap {
-  Location* location = [userLocationCache locationForUserAddress:self.userAddress];
+  Location* location = [[UserLocationCache cache] locationForUserAddress:self.userAddress];
   return [self theaterDistanceMap:location
                          theaters:self.theaters];
 }

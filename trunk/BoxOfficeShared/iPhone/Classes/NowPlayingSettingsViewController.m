@@ -68,6 +68,11 @@ typedef enum {
 }
 
 
+- (UserLocationCache*) userLocationCache {
+  return [UserLocationCache cache];
+}
+
+
 - (void) minorRefresh {
   [self majorRefresh];
 }
@@ -183,7 +188,7 @@ typedef enum {
     NSString* placeholder = @"";
     if (row == 0) {
       key = LocalizedString(@"Location", nil);
-      Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+      Location* location = [self.userLocationCache locationForUserAddress:self.model.userAddress];
       if (location.postalCode.length == 0) {
         value = self.model.userAddress;
       } else {
@@ -411,7 +416,7 @@ typedef enum {
     if (self.model.userAddress.length == 0) {
       message = @"";
     } else {
-      Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+      Location* location = [self.userLocationCache locationForUserAddress:self.model.userAddress];
       if (location.postalCode == nil) {
         message = LocalizedString(@"Could not find location.", nil);
       } else {

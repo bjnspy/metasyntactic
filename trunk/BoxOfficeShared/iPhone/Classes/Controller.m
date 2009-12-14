@@ -209,7 +209,7 @@ static Controller* controller = nil;
 - (void) determineLocationBackgroundEntryPoint:(NSNumber*) force {
   NSLog(@"Controller:determineLocationBackgroundEntryPoint");
   NSString* address = self.model.userAddress;
-  Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
+  Location* location = [[UserLocationCache cache] downloadUserAddressLocationBackgroundEntryPoint:address];
 
   [ThreadingUtilities foregroundSelector:@selector(reportUserLocation:force:)
                                 onTarget:self

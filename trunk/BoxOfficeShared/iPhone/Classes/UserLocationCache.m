@@ -22,6 +22,14 @@
 
 @implementation UserLocationCache
 
+static UserLocationCache* cache;
+
++ (void) initialize {
+  if (self == [UserLocationCache class]) {
+    cache = [[UserLocationCache alloc] init];
+  }
+}
+
 - (void) dealloc {
   [super dealloc];
 }
@@ -36,7 +44,7 @@
 
 
 + (UserLocationCache*) cache {
-  return [[[UserLocationCache alloc] init] autorelease];
+  return cache;
 }
 
 
