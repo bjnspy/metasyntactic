@@ -44,11 +44,6 @@ typedef enum {
 } SettingsSection;
 
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = [Application nameAndVersion];

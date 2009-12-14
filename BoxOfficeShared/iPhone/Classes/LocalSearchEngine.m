@@ -21,11 +21,6 @@
 
 @implementation LocalSearchEngine
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
   return [[[LocalSearchEngine alloc] initWithDelegate:delegate] autorelease];
 }

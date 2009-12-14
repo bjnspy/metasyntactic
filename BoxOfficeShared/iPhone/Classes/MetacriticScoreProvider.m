@@ -19,11 +19,6 @@
 
 @implementation MetacriticScoreProvider
 
-- (void) dealloc {
-  [super dealloc];
-}
-
-
 + (MetacriticScoreProvider*) provider {
   return [[[MetacriticScoreProvider alloc] init] autorelease];
 }

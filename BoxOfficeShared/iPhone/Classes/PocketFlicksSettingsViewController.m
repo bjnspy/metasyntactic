@@ -33,10 +33,6 @@ typedef enum {
   LastSection
 } SettingsSection;
 
-- (void) dealloc {
-  [super dealloc];
-}
-
 
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
