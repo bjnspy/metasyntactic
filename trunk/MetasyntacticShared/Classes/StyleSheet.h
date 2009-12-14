@@ -16,7 +16,6 @@
 
 
 @interface StyleSheet : NSObject {
-
 }
 
 + (UIStatusBarStyle) statusBarStyle;

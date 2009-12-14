@@ -21,19 +21,19 @@
 @implementation AttributeCell
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 + (UIFont*) keyFont {
-    return [UIFont boldSystemFontOfSize:12.0f];
+  return [UIFont boldSystemFontOfSize:12.0f];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithStyle:UITableViewCellStyleValue2
-                    reuseIdentifier:reuseIdentifier])) {
-    }
-    return self;
+  if ((self = [super initWithStyle:UITableViewCellStyleValue2
+                   reuseIdentifier:reuseIdentifier])) {
+  }
+  return self;
 }
 
 @end

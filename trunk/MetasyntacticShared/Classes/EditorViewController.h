@@ -16,8 +16,8 @@
 
 @interface EditorViewController : AbstractFullScreenViewController {
 @protected
-    id object;
-    SEL selector;
+  id object;
+  SEL selector;
 }
 
 /* @protected */

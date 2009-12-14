@@ -16,7 +16,6 @@ NSComparisonResult compareStringsNaturally(NSString* i1, NSString* i2);
 NSComparisonResult compareStringsFunction(id i1, id i2, void* context);
 
 @interface StringUtilities : NSObject {
-
 }
 
 + (NSString*) makeCanonical:(NSString*) title;

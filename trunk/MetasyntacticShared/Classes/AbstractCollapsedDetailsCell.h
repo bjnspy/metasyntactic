@@ -15,7 +15,6 @@
 #import "AbstractDetailsCell.h"
 
 @interface AbstractCollapsedDetailsCell : AbstractDetailsCell {
-
 }
 
 @end

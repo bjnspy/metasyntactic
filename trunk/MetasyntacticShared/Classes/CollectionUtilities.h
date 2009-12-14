@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface CollectionUtilities : NSObject {
-
 }
 
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary;

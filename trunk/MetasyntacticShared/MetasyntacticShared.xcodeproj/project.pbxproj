@@ -796,10 +796,10 @@
 		100000000000000A000000A3 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000A0000007B /* MapViewController.h */,
-				100000000000000A0000009F /* MapViewController.m */,
 				100000000000000A00000026 /* MapPoint.h */,
+				100000000000000A0000007B /* MapViewController.h */,
 				100000000000000A000000A1 /* MapViewControllerDelegate.h */,
+				100000000000000A0000009F /* MapViewController.m */,
 			);
 			name = Mapping;
 			sourceTree = "<group>";
@@ -973,8 +973,8 @@
 			isa = PBXGroup;
 			children = (
 				100000000000001500000183 /* SplashScreen.h */,
-				10000000000000150000018C /* SplashScreen.m */,
 				100000000000001500000190 /* SplashScreenDelegate.h */,
+				10000000000000150000018C /* SplashScreen.m */,
 			);
 			name = SplashScreen;
 			sourceTree = "<group>";

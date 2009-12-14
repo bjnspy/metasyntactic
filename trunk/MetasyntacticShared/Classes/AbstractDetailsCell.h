@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface AbstractDetailsCell : UITableViewCell {
-
 }
 
 - (CGFloat) height:(UITableViewController*) controller;

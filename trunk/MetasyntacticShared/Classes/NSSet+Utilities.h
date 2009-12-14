@@ -19,4 +19,5 @@
 + (NSSet*) identitySetWithArray:(NSArray*) values;
 
 - (NSSet*) filteredSetUsingFunction:(BOOL(*)(id)) predicate;
+
 @end

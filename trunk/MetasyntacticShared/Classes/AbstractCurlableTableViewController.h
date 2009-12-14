@@ -15,7 +15,6 @@
 #import "AbstractMultiPageTableViewController.h"
 
 @interface AbstractCurlableTableViewController : AbstractMultiPageTableViewController {
-
 }
 
 @end

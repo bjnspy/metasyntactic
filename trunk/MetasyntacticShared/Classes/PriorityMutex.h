@@ -14,9 +14,9 @@
 
 @interface PriorityMutex : NSObject {
 @private
-    NSCondition* gate;
-
-    NSInteger highTaskRunningCount;
+  NSCondition* gate;
+  
+  NSInteger highTaskRunningCount;
 }
 
 + (PriorityMutex*) mutex;

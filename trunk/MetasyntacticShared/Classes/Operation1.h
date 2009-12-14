@@ -16,7 +16,7 @@
 
 @interface Operation1 : Operation {
 @protected
-    id argument1;
+  id argument1;
 }
 
 + (Operation1*) operationWithTarget:(id) target selector:(SEL) selector argument:(id) argument1 operationQueue:(OperationQueue*) operationQueue isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate priority:(NSOperationQueuePriority) priority;

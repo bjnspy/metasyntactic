@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface AlertUtilities : NSObject {
-
 }
 
 + (void) showOkAlert:(NSString*) message;

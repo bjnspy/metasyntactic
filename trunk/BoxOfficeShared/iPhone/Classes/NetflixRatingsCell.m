@@ -194,7 +194,6 @@
 
 
 - (void) changeSucceeded {
-
 }
 
 
