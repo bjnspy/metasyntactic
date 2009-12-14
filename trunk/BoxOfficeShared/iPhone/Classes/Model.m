@@ -208,16 +208,6 @@ static Model* model = nil;
 }
 
 
-- (DVDCache*) dvdCache {
-  return [DVDCache cache];
-}
-
-
-- (BlurayCache*) blurayCache {
-  return [BlurayCache cache];
-}
-
-
 - (TrailerCache*) trailerCache {
   return [TrailerCache cache];
 }
@@ -797,12 +787,12 @@ static Model* model = nil;
 
 
 - (DVD*) dvdDetailsForMovie:(Movie*) movie {
-  DVD* dvd = [self.dvdCache detailsForMovie:movie];
+  DVD* dvd = [[DVDCache cache] detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
 
-  dvd = [self.blurayCache detailsForMovie:movie];
+  dvd = [[BlurayCache cache] detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
