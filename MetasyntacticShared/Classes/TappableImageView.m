@@ -21,27 +21,27 @@
 @synthesize delegate;
 
 - (void) dealloc {
-    self.delegate = nil;
-
-    [super dealloc];
+  self.delegate = nil;
+  
+  [super dealloc];
 }
 
 - (id) initWithImage:(UIImage*) image {
-    if ((self = [super initWithImage:image])) {
-        self.userInteractionEnabled = YES;
-    }
-
-    return self;
+  if ((self = [super initWithImage:image])) {
+    self.userInteractionEnabled = YES;
+  }
+  
+  return self;
 }
 
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
-    if (delegate != nil) {
-        UITouch* touch = touches.anyObject;
-        if (touch.tapCount > 0) {
-            [delegate imageView:self wasTouched:touch tapCount:touch.tapCount];
-        }
+  if (delegate != nil) {
+    UITouch* touch = touches.anyObject;
+    if (touch.tapCount > 0) {
+      [delegate imageView:self wasTouched:touch tapCount:touch.tapCount];
     }
+  }
 }
 
 

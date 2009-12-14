@@ -14,9 +14,9 @@
 
 @interface XmlParser : NSObject {
 @private
-    NSMutableArray/*<NSMutableArray>*/* elementsStack;
-    NSMutableArray/*<NSMutableString>*/* stringBufferStack;
-    NSMutableArray/*<NSDictionary>*/* attributesStack;
+  NSMutableArray/*<NSMutableArray>*/* elementsStack;
+  NSMutableArray/*<NSMutableString>*/* stringBufferStack;
+  NSMutableArray/*<NSDictionary>*/* attributesStack;
 }
 
 + (XmlElement*) parse:(NSData*) data;

@@ -14,7 +14,6 @@
 
 @interface AbstractApplication : NSObject {
 @protected
-
 }
 
 + (NSLock*) gate;

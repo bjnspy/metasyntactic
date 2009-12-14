@@ -14,11 +14,11 @@
 
 @interface XmlElement : NSObject {
 @private
-    NSString* name;
-    NSDictionary* attributes;
-    NSArray* children;
-    // the text between the start and end tags (not counting the child elements)
-    NSString* text;
+  NSString* name;
+  NSDictionary* attributes;
+  NSArray* children;
+  // the text between the start and end tags (not counting the child elements)
+  NSString* text;
 }
 
 @property (readonly, copy) NSString* name;
