@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface HtmlUtilities : NSObject {
-
 }
 
 + (NSString*) removeHtml:(NSString*) string;

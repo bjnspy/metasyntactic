@@ -16,15 +16,15 @@
 
 @interface BackgroundInvocation : Invocation {
 @protected
-    id<NSLocking> gate;
-    BOOL daemon;
+  id<NSLocking> gate;
+  BOOL daemon;
 }
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                     withObject:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       daemon:(BOOL) daemon;
+                                        daemon:(BOOL) daemon;
 
 + (BOOL) hasNonDaemonBackgroundTasks;
 

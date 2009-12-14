@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface Base64 : NSObject {
-
 }
 
 + (NSString*) encode:(NSData*) rawBytes;

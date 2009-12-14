@@ -28,38 +28,38 @@
 @synthesize argument;
 
 - (void) dealloc {
-    self.target = nil;
-    self.selector = nil;
-    self.argument = nil;
-
-    [super dealloc];
+  self.target = nil;
+  self.selector = nil;
+  self.argument = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
            withObject:(id) argument_ {
-    if ((self = [super init])) {
-        self.target = target_;
-        self.selector = selector_;
-        self.argument = argument_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.target = target_;
+    self.selector = selector_;
+    self.argument = argument_;
+  }
+  
+  return self;
 }
 
 
 + (Invocation*) invocationWithTarget:(id) target
                             selector:(SEL) selector
                           withObject:(id) argument {
-    return [[[Invocation alloc] initWithTarget:target
-                                      selector:selector
-                                    withObject:argument] autorelease];
+  return [[[Invocation alloc] initWithTarget:target
+                                    selector:selector
+                                  withObject:argument] autorelease];
 }
 
 
 - (void) run {
-    [target performSelector:selector withObject:argument];
+  [target performSelector:selector withObject:argument];
 }
 
 @end

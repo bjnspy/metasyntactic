@@ -18,7 +18,6 @@ UIImage* MetasyntacticStockImage(NSString* name);
 UIImage* MetasyntacticStockImage1(NSString* name, BOOL allowOverride);
 
 @interface MetasyntacticStockImages : NSObject {
-
 }
 
 + (UIImage*) leftArrow;

@@ -15,7 +15,6 @@
 #import "MetasyntacticSharedApplicationDelegate.h"
 
 @interface MetasyntacticSharedApplication : NSObject {
-
 }
 
 + (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate;

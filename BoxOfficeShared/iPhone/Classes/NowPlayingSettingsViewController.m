@@ -444,7 +444,6 @@ typedef enum {
 
 
 - (void) didSelectUpcomingRow:(NSInteger) row {
-
 }
 
 
@@ -457,7 +456,6 @@ typedef enum {
 
 
 - (void) didSelectNetflixRow:(NSInteger) row {
-
 }
 
 
