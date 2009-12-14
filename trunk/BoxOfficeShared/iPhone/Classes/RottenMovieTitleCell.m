@@ -19,23 +19,23 @@
 @implementation RottenMovieTitleCell
 
 + (NSString*) reuseIdentifier {
-    return @"RottenMovieTitleCell";
+  return @"RottenMovieTitleCell";
 }
 
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [BoxOfficeStockImages rottenFadedImage];
-
-        scoreLabel.font = [UIFont boldSystemFontOfSize:17];
-        scoreLabel.textColor = [UIColor blackColor];
-
-        CGRect frame = CGRectMake(5, 5, 30, 32);
-
-        scoreLabel.frame = frame;
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    self.imageView.image = [BoxOfficeStockImages rottenFadedImage];
+    
+    scoreLabel.font = [UIFont boldSystemFontOfSize:17];
+    scoreLabel.textColor = [UIColor blackColor];
+    
+    CGRect frame = CGRectMake(5, 5, 30, 32);
+    
+    scoreLabel.frame = frame;
+  }
+  
+  return self;
 }
 
 @end

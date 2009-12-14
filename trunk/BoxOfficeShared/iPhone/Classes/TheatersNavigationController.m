@@ -27,30 +27,30 @@
 @synthesize allTheatersViewController;
 
 - (void) dealloc {
-    self.allTheatersViewController = nil;
-
-    [super dealloc];
+  self.allTheatersViewController = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.title = LocalizedString(@"Theaters", nil);
-        self.tabBarItem.title = self.title;
-        self.tabBarItem.image = BoxOfficeStockImage(@"Theaters.png");
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.title = LocalizedString(@"Theaters", nil);
+    self.tabBarItem.title = self.title;
+    self.tabBarItem.image = BoxOfficeStockImage(@"Theaters.png");
+  }
+  
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    if (allTheatersViewController == nil) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] init] autorelease];
-        [self pushViewController:allTheatersViewController animated:NO];
-    }
+  [super loadView];
+  
+  if (allTheatersViewController == nil) {
+    self.allTheatersViewController = [[[AllTheatersViewController alloc] init] autorelease];
+    [self pushViewController:allTheatersViewController animated:NO];
+  }
 }
 
 @end

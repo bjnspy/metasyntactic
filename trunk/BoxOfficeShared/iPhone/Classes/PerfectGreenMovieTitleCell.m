@@ -19,19 +19,19 @@
 @implementation PerfectGreenMovieTitleCell
 
 + (NSString*) reuseIdentifier {
-    return @"PerfectGreenMovieTitleCell";
+  return @"PerfectGreenMovieTitleCell";
 }
 
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [BoxOfficeStockImages greenRatingImage];
-
-        scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-        scoreLabel.text = @"100";
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    self.imageView.image = [BoxOfficeStockImages greenRatingImage];
+    
+    scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+    scoreLabel.text = @"100";
+  }
+  
+  return self;
 }
 
 

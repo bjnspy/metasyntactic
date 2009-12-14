@@ -16,9 +16,9 @@
 
 @interface PersonCell : AbstractImageCell {
 @private
-    Person* person;
-    UILabel* bioTitleLabel;
-    UILabel* bioLabel;
+  Person* person;
+  UILabel* bioTitleLabel;
+  UILabel* bioLabel;
 }
 
 @property (retain) Person* person;

@@ -15,7 +15,6 @@
 #import "MovieTitleCell.h"
 
 @interface RottenMovieTitleCell : MovieTitleCell {
-
 }
 
 @end
