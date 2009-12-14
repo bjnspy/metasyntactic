@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface NetflixSearchEngine : AbstractSearchEngine {
-@private
 }
 
 + (NetflixSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;

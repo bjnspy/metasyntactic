@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface TheaterNameCell : UITableViewCell {
-@private
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

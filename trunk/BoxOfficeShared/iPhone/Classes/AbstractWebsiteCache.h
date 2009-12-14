@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface AbstractWebsiteCache : AbstractMovieCache {
-@private
 }
 
 - (NSString*) addressForMovie:(Movie*) movie;

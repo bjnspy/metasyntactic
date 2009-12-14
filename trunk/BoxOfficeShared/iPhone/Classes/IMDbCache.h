@@ -15,7 +15,6 @@
 #import "AbstractWebsiteCache.h"
 
 @interface IMDbCache : AbstractWebsiteCache {
-@private
 }
 
 + (IMDbCache*) cache;

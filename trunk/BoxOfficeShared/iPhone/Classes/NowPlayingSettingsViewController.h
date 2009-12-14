@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface NowPlayingSettingsViewController : AbstractFullScreenTableViewController {
-@private
 }
 
 @end

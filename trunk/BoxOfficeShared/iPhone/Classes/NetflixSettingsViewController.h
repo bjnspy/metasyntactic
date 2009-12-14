@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface NetflixSettingsViewController : AbstractTableViewController {
-@private
 }
 
 @end
