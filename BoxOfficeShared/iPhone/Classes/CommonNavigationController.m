@@ -25,16 +25,7 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 
-@interface CommonNavigationController()
-@end
-
-
 @implementation CommonNavigationController
-
-- (Controller*) controller {
-  return [Controller controller];
-}
-
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
   for (Movie* movie in [Model model].movies) {

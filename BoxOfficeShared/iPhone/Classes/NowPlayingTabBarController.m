@@ -96,11 +96,6 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (id) init {
   if ((self = [super initWithNibName:nil bundle:nil])) {
     self.delegate = self;

@@ -37,11 +37,6 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
   return 1;
 }
@@ -94,9 +89,9 @@
   [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
   
   if (selectPath.row == 0) {
-    [self.controller setDvdMoviesShowDVDs:![Model model].dvdMoviesShowDVDs];
+    [[Controller controller] setDvdMoviesShowDVDs:![Model model].dvdMoviesShowDVDs];
   } else {
-    [self.controller setDvdMoviesShowBluray:![Model model].dvdMoviesShowBluray];
+    [[Controller controller] setDvdMoviesShowBluray:![Model model].dvdMoviesShowBluray];
   }
   
   for (NSInteger i = 0; i <= 1; i++) {

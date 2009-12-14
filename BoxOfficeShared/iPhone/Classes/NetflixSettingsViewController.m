@@ -17,27 +17,13 @@
 #import "Controller.h"
 #import "Model.h"
 
-@interface NetflixSettingsViewController()
-@end
-
-
 @implementation NetflixSettingsViewController
-
-- (void) dealloc {
-  [super dealloc];
-}
-
 
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
   }
 
   return self;
-}
-
-
-- (Controller*) controller {
-  return [Controller controller];
 }
 
 

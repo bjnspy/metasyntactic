@@ -84,11 +84,6 @@ static LocationManager* manager;
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) updateSpinnerImage:(NSNumber*) number {
   [NSObject cancelPreviousPerformRequestsWithTarget:self];
   if (running == NO) {
@@ -171,7 +166,7 @@ static LocationManager* manager;
   [self enqueueUpdateRequest:ONE_MINUTE];
 
   if (userDenied && [Model model].autoUpdateLocation) {
-    [self.controller setAutoUpdateLocation:NO];
+    [[Controller controller] setAutoUpdateLocation:NO];
   }
 }
 
@@ -227,7 +222,7 @@ static LocationManager* manager;
   displayString = [displayString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   [[UserLocationCache cache] setLocation:userLocation forUserAddress:displayString];
-  [self.controller setUserAddress:displayString];
+  [[Controller controller] setUserAddress:displayString];
 }
 
 
