@@ -16,11 +16,8 @@
 
 @interface Controller : AbstractController<DataProviderUpdateDelegate> {
 @private
-  LocationManager* locationManager;
   NSLock* determineLocationGate;
 }
-
-@property (readonly, retain) LocationManager* locationManager;
 
 + (Controller*) controller;
 

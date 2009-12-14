@@ -31,7 +31,6 @@
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;
-@property (retain) LocationManager* locationManager;
 @end
 
 
@@ -46,28 +45,25 @@ static Controller* controller = nil;
 }
 
 @synthesize determineLocationGate;
-@synthesize locationManager;
 
 - (void) dealloc {
   self.determineLocationGate = nil;
-  self.locationManager = nil;
 
   [super dealloc];
 }
 
 
-+ (Controller*) controller {
-  return controller;
-}
-
-
 - (id) initWithModel:(Model*) model {
   if ((self = [super initWithModel:model])) {
-    self.locationManager = [LocationManager manager];
     self.determineLocationGate = [[[NSRecursiveLock alloc] init] autorelease];
   }
 
   return self;
+}
+
+
++ (Controller*) controller {
+  return controller;
 }
 
 
@@ -276,7 +272,7 @@ static Controller* controller = nil;
 
 - (void) setAutoUpdateLocation:(BOOL) value {
   [self.model setAutoUpdateLocation:value];
-  [locationManager autoUpdateLocation];
+  [[LocationManager manager] autoUpdateLocation];
 
   // Refresh the UI so we show the new state.
   [MetasyntacticSharedApplication majorRefresh:YES];

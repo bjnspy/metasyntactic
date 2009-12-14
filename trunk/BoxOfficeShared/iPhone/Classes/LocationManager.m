@@ -31,6 +31,14 @@
 
 @implementation LocationManager
 
+static LocationManager* manager;
+
++ (void) initialize {
+  if (self == [LocationManager class]) {
+    manager = [[LocationManager alloc] init];
+  }
+}
+
 @synthesize locationManager;
 @synthesize gate;
 @synthesize navigationItem;
@@ -72,7 +80,7 @@
 
 
 + (LocationManager*) manager {
-  return [[[LocationManager alloc] init] autorelease];
+  return manager;
 }
 
 
