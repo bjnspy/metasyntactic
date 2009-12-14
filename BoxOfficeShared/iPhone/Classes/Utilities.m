@@ -22,20 +22,20 @@
                           atUrl:(NSString*) urlString
                          atHost:(NSString*) host
                      withAction:(NSString*) soapAction {
-  
+
   XmlDocument* document = [XmlDocument documentWithRoot:element];
   NSString* post = [XmlSerializer serializeDocument:document];
   NSData* postData = [post dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
-  
+
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
   [request setHTTPMethod:@"POST"];
-  
+
   [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
   [request setValue:soapAction forHTTPHeaderField:@"Soapaction"];
   [request setValue:host forHTTPHeaderField:@"Host"];
-  
+
   [request setHTTPBody:postData];
-  
+
   NSURLResponse* response = nil;
   NSError* error = nil;
   NSData* result =
@@ -45,7 +45,7 @@
   if (error != nil) {
     return nil;
   }
-  
+
   return [XmlParser parse:result];
 }
 
@@ -55,14 +55,14 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances {
   NSMutableString* body = [NSMutableString string];
-  
+
   for (NSInteger i = 0; i < performances.count; i++) {
     if (i != 0) {
       [body appendString:@", "];
     }
-    
+
     Performance* performance = [performances objectAtIndex:i];
-    
+
     if (performance.url.length == 0) {
       [body appendString:performance.timeString];
     } else {
@@ -73,7 +73,7 @@
       [body appendString:@"</a>"];
     }
   }
-  
+
   return body;
 }
 

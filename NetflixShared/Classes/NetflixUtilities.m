@@ -68,16 +68,16 @@ static NSDictionary* availabilityMap = nil;
   if (![NetflixSharedApplication netflixEnabled]) {
     return NO;
   }
-  
+
   if (account.userId.length == 0) {
     return NO;
   }
-  
+
   if (![account isEqual:[[NetflixAccountCache cache] currentAccount]]) {
     NSLog(@"Netflix account changed. Stopping current thread.");
     return NO;
   }
-  
+
   return YES;
 }
 
@@ -281,7 +281,7 @@ static NSDictionary* availabilityMap = nil;
 
 + (BOOL) etagOutOfDate:(XmlElement *)element {
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
-  
+
   return statusCode == [NetflixConstants etagMismatchError];
 }
 
@@ -289,7 +289,7 @@ static NSDictionary* availabilityMap = nil;
 + (NSString*) extractErrorMessage:(XmlElement*) element {
   if ([self etagOutOfDate:element]) {
     NSInteger subCode = [[[element element:@"sub_code"] text] integerValue];
-    
+
     if (subCode == 0) {
       // override this error message since the netflix message is very confusing.
       return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];

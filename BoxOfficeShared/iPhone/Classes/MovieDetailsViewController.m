@@ -228,7 +228,7 @@ typedef enum {
                                          selectors:selectors
                                             titles:titles
                                          arguments:arguments];
-    
+
     [actionsView sizeToFit];
   }
 }

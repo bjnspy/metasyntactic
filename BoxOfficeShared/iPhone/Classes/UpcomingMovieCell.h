@@ -20,7 +20,7 @@
   UILabel* castTitleLabel;
   UILabel* genreTitleLabel;
   UILabel* ratedTitleLabel;
-  
+
   UILabel* directorLabel;
   UILabel* castLabel;
   UILabel* genreLabel;

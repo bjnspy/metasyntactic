@@ -17,9 +17,9 @@
 @interface TheaterDetailsViewController : AbstractDetailsViewController {
 @private
   Theater* theater;
-  
+
   UIButton* favoriteButton;
-  
+
   NSArray* movies;
   NSArray* movieShowtimes;
 }

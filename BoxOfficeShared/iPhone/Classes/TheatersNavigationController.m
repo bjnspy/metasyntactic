@@ -28,7 +28,7 @@
 
 - (void) dealloc {
   self.allTheatersViewController = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,14 +39,14 @@
     self.tabBarItem.title = self.title;
     self.tabBarItem.image = BoxOfficeStockImage(@"Theaters.png");
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   if (allTheatersViewController == nil) {
     self.allTheatersViewController = [[[AllTheatersViewController alloc] init] autorelease];
     [self pushViewController:allTheatersViewController animated:NO];
