@@ -34,7 +34,7 @@ property_definition(text);
   self.attributes = nil;
   self.children = nil;
   self.text = nil;
-  
+
   [super dealloc];
 }
 
@@ -107,7 +107,7 @@ property_definition(text);
     self.children = children_;
     self.text = text_;
   }
-  
+
   return self;
 }
 
@@ -119,26 +119,26 @@ property_definition(text);
 
 - (NSDictionary*) dictionary {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-  
+
   NSMutableArray* array = [NSMutableArray array];
   for (XmlElement* element in children) {
     [array addObject:element.dictionary];
   }
-  
+
   [dictionary setValue:name forKey:name_key];
-  
+
   if (![text isEqual:@""]) {
     [dictionary setValue:text forKey:text_key];
   }
-  
+
   if (attributes.count > 0) {
     [dictionary setValue:attributes forKey:attributes_key];
   }
-  
+
   if (array.count > 0) {
     [dictionary setValue:array forKey:children_key];
   }
-  
+
   return dictionary;
 }
 
@@ -148,27 +148,27 @@ property_definition(text);
   if (name == nil) {
     name = @"";
   }
-  
+
   NSString* text = [dictionary valueForKey:text_key];
   if (text == nil) {
     text = @"";
   }
-  
+
   NSDictionary* attributes = [dictionary valueForKey:attributes_key];
   if (attributes == nil) {
     attributes = [NSDictionary dictionary];
   }
-  
+
   NSArray* childDictionaries = [dictionary valueForKey:children_key];
   if (childDictionaries == nil) {
     childDictionaries = [NSArray array];
   }
-  
+
   NSMutableArray* children = [NSMutableArray array];
   for (NSDictionary* childDict in childDictionaries) {
     [children addObject:[XmlElement elementWithDictionary:childDict]];
   }
-  
+
   return [XmlElement elementWithName:name attributes:attributes children:children text:text];
 }
 
@@ -184,7 +184,7 @@ property_definition(text);
       return child;
     }
   }
-  
+
   if (recurse) {
     XmlElement* result;
     for (XmlElement* child in children) {
@@ -194,7 +194,7 @@ property_definition(text);
       }
     }
   }
-  
+
   return nil;
 }
 
@@ -212,7 +212,7 @@ property_definition(text);
       [result addObject:child];
     }
   }
-  
+
   if (recurse) {
     for (XmlElement* child in children) {
       [child elements:name_ recurse:recurse result:result];
@@ -224,9 +224,9 @@ property_definition(text);
 - (NSArray*) elements:(NSString*) name_
               recurse:(BOOL) recurse {
   NSMutableArray* result = [NSMutableArray array];
-  
+
   [self elements:name_ recurse:recurse result:result];
-  
+
   return result;
 }
 
@@ -235,7 +235,7 @@ property_definition(text);
   if (index >= 0 && index < children.count) {
     return [[self children] objectAtIndex:index];
   }
-  
+
   return nil;
 }
 

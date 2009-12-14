@@ -27,7 +27,7 @@
 - (void) dealloc {
   self.textField = nil;
   self.messageLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -42,7 +42,7 @@
   if ((self = [super initWithObject:object_ selector:selector_])) {
     self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
     textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+
     textField.text = text;
     textField.placeholder = placeHolder;
     textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -52,33 +52,33 @@
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.delegate = self;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
+
     self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text = message;
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor grayColor];
     [messageLabel sizeToFit];
-    
+
     self.title = title;
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   [self.view addSubview:textField];
   textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
-  
+
   [self.view addSubview:messageLabel];
   CGRect frame = messageLabel.frame;
   frame.origin.x = textField.frame.origin.x;
   frame.origin.y = textField.frame.origin.y + 40;
   messageLabel.frame = frame;
-  
+
   [textField becomeFirstResponder];
 }
 

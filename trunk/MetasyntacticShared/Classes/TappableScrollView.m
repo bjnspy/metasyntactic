@@ -22,7 +22,7 @@
 
 - (void) dealloc {
   self.tapDelegate = nil;
-  
+
   [super dealloc];
 }
 
@@ -31,17 +31,17 @@
   UITouch* touch = touches.anyObject;
   if (touch.tapCount > 0) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    
+
     CGPoint point = [touch locationInView:self];
     NSValue* pointegerValue = [NSValue valueWithCGPoint:point];
     NSNumber* tapCount = [NSNumber numberWithInteger:touch.tapCount];
-    
+
     [self performSelector:@selector(reportTap:)
                withObject:[NSArray arrayWithObjects:pointegerValue, tapCount, nil]
                afterDelay:0.4];
     return;
   }
-  
+
   [super touchesEnded:touches withEvent:event];
 }
 
@@ -49,7 +49,7 @@
 - (void) reportTap:(NSArray*) pointAndCount {
   CGPoint point = [[pointAndCount objectAtIndex:0] CGPointValue];
   NSInteger tapCount = [[pointAndCount objectAtIndex:1] integerValue];
-  
+
   [tapDelegate scrollView:self wasTapped:tapCount atPoint:point];
 }
 
