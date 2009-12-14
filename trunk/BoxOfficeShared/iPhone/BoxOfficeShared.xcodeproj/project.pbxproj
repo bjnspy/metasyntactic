@@ -62,7 +62,7 @@
 		1000000000000009000000A7 /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000A6 /* LocalSearchDisplayController.m */; };
 		1000000000000009000000B0 /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000AF /* LocalSearchEngine.m */; };
 		1000000000000009000000B4 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000B3 /* LocalizableStringsCache.m */; };
-		1000000000000009000000B9 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000B7 /* LocationCache.m */; };
+		1000000000000009000000B9 /* AbstractLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000B7 /* AbstractLocationCache.m */; };
 		1000000000000009000000BE /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000BC /* LocationManager.m */; };
 		1000000000000009000000C1 /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000C0 /* LookupRequest.m */; };
 		1000000000000009000000C4 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000C3 /* NetflixMostPopularMoviesViewController.m */; };
@@ -300,8 +300,8 @@
 		1000000000000009000000AF /* LocalSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchEngine.m; sourceTree = "<group>"; };
 		1000000000000009000000B2 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
 		1000000000000009000000B3 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
-		1000000000000009000000B6 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
-		1000000000000009000000B7 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
+		1000000000000009000000B6 /* AbstractLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractLocationCache.h; sourceTree = "<group>"; };
+		1000000000000009000000B7 /* AbstractLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractLocationCache.m; sourceTree = "<group>"; };
 		1000000000000009000000BA /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		1000000000000009000000BC /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		1000000000000009000000BF /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
@@ -695,9 +695,9 @@
 		1000000000000009000000B5 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000009000000B6 /* LocationCache.h */,
+				1000000000000009000000B6 /* AbstractLocationCache.h */,
 				100000000000001500000101 /* UserLocationCache.h */,
-				1000000000000009000000B7 /* LocationCache.m */,
+				1000000000000009000000B7 /* AbstractLocationCache.m */,
 				100000000000001500000102 /* UserLocationCache.m */,
 			);
 			name = Location;
@@ -1223,7 +1223,7 @@
 				100000000000000700000007 /* AbstractDVDBlurayCache.m in Sources */,
 				1000000000000007000000A9 /* BlurayCache.m in Sources */,
 				1000000000000007000001A3 /* DVDCache.m in Sources */,
-				1000000000000009000000B9 /* LocationCache.m in Sources */,
+				1000000000000009000000B9 /* AbstractLocationCache.m in Sources */,
 				100000000000001500000103 /* UserLocationCache.m in Sources */,
 				10000000000000070000005E /* AbstractPosterDownloader.m in Sources */,
 				100000000000000700000098 /* ApplePosterDownloader.m in Sources */,

@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "LocationCache.h"
+#import "AbstractLocationCache.h"
 
 #import "Application.h"
 
-@interface LocationCache()
+@interface AbstractLocationCache()
 @property (retain) AutoreleasingMutableDictionary* addressToLocation;
 @end
 
-@implementation LocationCache
+@implementation AbstractLocationCache
 
 @synthesize addressToLocation;
 

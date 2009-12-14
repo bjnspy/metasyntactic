@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "LocationCache.h"
+#import "AbstractLocationCache.h"
 
-@interface UserLocationCache : LocationCache {
+@interface UserLocationCache : AbstractLocationCache {
 }
 
 + (UserLocationCache*) cache;
