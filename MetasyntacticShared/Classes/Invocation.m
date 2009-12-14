@@ -31,7 +31,7 @@
   self.target = nil;
   self.selector = nil;
   self.argument = nil;
-  
+
   [super dealloc];
 }
 
@@ -44,7 +44,7 @@
     self.selector = selector_;
     self.argument = argument_;
   }
-  
+
   return self;
 }
 
