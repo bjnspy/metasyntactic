@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem6 : Problem
     {
-        public void run()
+        public bool run()
         {
             long sumOfSquares = 0;
             long sum = 0;
@@ -15,15 +15,12 @@ namespace Euler.Problems
             {
                 sum += i;
                 sumOfSquares += i * i;
-            }
+            } 
 
             long sumSquared = sum * sum;
             long result = (sumSquared - sumOfSquares);
 
-            if (result != 25164150)
-            {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return result == 25164150;
+        } 
+    } 
+} 

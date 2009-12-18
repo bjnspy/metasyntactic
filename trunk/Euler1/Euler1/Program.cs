@@ -12,7 +12,7 @@ namespace Euler
     {
         static void Main()
         {
-            new Problem67().run();
+            new Problem20().run();
             Console.ReadLine();
             int current = 1;
             while (true)
@@ -22,23 +22,24 @@ namespace Euler
                 if (type == null)
                 {
                     break;
-                }
+                } 
                 Problem problem = (Problem)Activator.CreateInstance(type);
                 Console.Write(name + ": ");
-                try
+
+                if (problem.run())
                 {
-                    problem.run();
                     Console.WriteLine("passed");
-                }
-                catch
+                } 
+                else
                 {
                     Console.WriteLine("failed");
                     break;
-                }
+                } 
+
                 current++;
-            }
+            } 
 
             Console.ReadLine();
-        }
-    }
-}
+        } 
+    } 
+} 

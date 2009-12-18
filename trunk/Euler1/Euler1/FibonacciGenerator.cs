@@ -19,12 +19,12 @@ namespace Euler
                 BigInteger temp = f2;
                 f2 = f1 + f2;
                 f1 = temp;
-            }
-        }
+            } 
+        } 
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }
-    }
-}
+        } 
+    } 
+} 

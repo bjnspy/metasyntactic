@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem14 : Problem
     {
-        public void run()
+        public bool run()
         {
             var maxLength = 0L;
             var number = -1L;
@@ -18,14 +18,11 @@ namespace Euler.Problems
                 {
                     maxLength = length;
                     number = i;
-                }
-            }
+                } 
+            } 
 
-            if (number != 837799)
-            {
-                throw new Exception();
-            }
-        }
+            return number == 837799;
+        } 
 
         private long computeLength(long value)
         {
@@ -36,13 +33,13 @@ namespace Euler.Problems
                 if (value % 2 == 0)
                 {
                     value /= 2;
-                }
+                } 
                 else
                 {
                     value = 3 * value + 1;
-                }
-            }
+                } 
+            } 
             return length;
-        }
-    }
-}
+        } 
+    } 
+} 

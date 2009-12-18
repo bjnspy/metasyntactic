@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem4 : Problem
     {
-        public void run()
+        public bool run()
         {
             var max = 0;
             for (var i = 100; i <= 999; i++)
@@ -18,24 +18,21 @@ namespace Euler.Problems
                     if (v <= max)
                     {
                         continue;
-                    }
+                    } 
 
                     if (isPalindrome(v))
                     {
                         max = v;
-                    }
-                }
-            }
-            if (max != 906609)
-            {
-                throw new Exception();
-            }
-        }
+                    } 
+                } 
+            } 
+            return max == 906609;
+        } 
 
         private bool isPalindrome(int v)
         {
             return isPalidrome(v.ToString());
-        }
+        } 
 
         private bool isPalidrome(string s)
         {
@@ -44,9 +41,9 @@ namespace Euler.Problems
                 if (s[i] != s[s.Length - 1 - i])
                 {
                     return false;
-                }
-            }
+                } 
+            } 
             return true;
-        }
-    }
-}
+        } 
+    } 
+} 

@@ -7,17 +7,14 @@ namespace Euler.Problems
 {
     class Problem2 : Problem
     {
-        public void run()
+        public bool run()
         {
             var result =
                 new FibonacciGenerator()
                     .TakeWhile(v => v < 4000000)
                     .Where(v => v % 2 == 0).Sum();
 
-            if (result != 4613732)
-            {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return result == 4613732;
+        } 
+    } 
+} 

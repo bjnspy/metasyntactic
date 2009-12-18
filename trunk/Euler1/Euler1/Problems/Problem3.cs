@@ -7,24 +7,21 @@ namespace Euler.Problems
 {
     class Problem3 : Problem
     {
-        public void run()
+        public bool run()
         {
             long value = 600851475143;
             foreach (var p in Prime.Generator) {
                 while (p < value && value % p == 0)
                 {
                     value /= p;
-                }
+                } 
                 if (p >= value)
                 {
                     break;
-                }
-            }
+                } 
+            } 
 
-            if (value != 6857)
-            {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return value == 6857;
+        } 
+    } 
+} 

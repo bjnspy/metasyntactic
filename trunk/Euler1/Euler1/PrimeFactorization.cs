@@ -14,22 +14,22 @@ namespace Euler
         {
             this.variables = variables;
             this.exponents = exponents;
-        }
+        } 
 
         public List<long> Variables
         {
             get
             {
                 return variables;
-            }
-        }
+            } 
+        } 
 
         public List<long> Exponents
         {
             get
             {
                 return exponents;
-            }
-        }
-    }
-}
+            } 
+        } 
+    } 
+} 
