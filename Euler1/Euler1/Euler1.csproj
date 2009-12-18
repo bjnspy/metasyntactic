@@ -69,6 +69,7 @@
     <Compile Include="Prime.cs" />
     <Compile Include="PrimeFactorGenerator.cs" />
     <Compile Include="Problems\Problem10.cs" />
+    <Compile Include="Problems\Problem11.cs" />
     <Compile Include="Problems\Problem3.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FibonacciGenerator.cs" />
