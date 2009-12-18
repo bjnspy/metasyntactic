@@ -76,6 +76,7 @@
     <Compile Include="Problems\Problem14.cs" />
     <Compile Include="Problems\Problem15.cs" />
     <Compile Include="Problems\Problem16.cs" />
+    <Compile Include="Problems\Problem17.cs" />
     <Compile Include="Problems\Problem3.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FibonacciGenerator.cs" />
