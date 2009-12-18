@@ -18,8 +18,7 @@ namespace Euler.Problems
                 }
             }
 
-            Console.WriteLine(sum);
-            return false;
+            return sum == 31626;
         }
 
         private bool isAmicable(int value)
