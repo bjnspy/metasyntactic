@@ -90,5 +90,33 @@ namespace Euler
                 }
             }
         }
+
+        public static PrimeFactorization factorize(long value)
+        {
+            var variables = new List<long>();
+            var exponents = new List<long>();
+
+            long currentValue = value;
+            foreach (var p in Prime.Generator)
+            {
+                if (currentValue < 2)
+                {
+                    break;
+                }
+                if (currentValue % p == 0)
+                {
+                    variables.Add(p);
+                    exponents.Add(0);
+
+                    while (currentValue % p == 0)
+                    {
+                        currentValue /= p;
+                        exponents[exponents.Count - 1]++;
+                    }
+                }
+            }
+
+            return new PrimeFactorization(variables, exponents);
+        }
     }
 }

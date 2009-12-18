@@ -12,8 +12,8 @@ namespace Euler
     {
         static void Main()
         {
-            new Problem11().run();
-            Console.ReadLine();
+            //new Problem12().run();
+            //Console.ReadLine();
             int current = 1;
             while (true)
             {
