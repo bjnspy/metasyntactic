@@ -51,7 +51,7 @@ namespace Euler.Problems
             }
         }
 
-        public void run()
+        public bool run()
         {
             long max = 0;
             for (var y = 0; y < lines.Count; y++)
@@ -92,10 +92,7 @@ namespace Euler.Problems
                     }
                 }
             }
-            if (max != 70600674)
-            {
-                throw new Exception();
-            }
+            return max == 70600674;
         }
     }
 }

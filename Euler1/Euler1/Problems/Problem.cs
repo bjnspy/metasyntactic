@@ -7,6 +7,6 @@ namespace Euler.Problems
 {
     interface Problem
     {
-        void run();
-    }
-}
+        bool run();
+    } 
+} 

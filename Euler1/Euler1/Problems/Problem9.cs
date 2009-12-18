@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem9 : Problem
     {
-        public void run()
+        public bool run()
         {
             int a = 0, b = 0, c = 0;
             for (a = 1; a < 1000; a++)
@@ -22,21 +22,18 @@ namespace Euler.Problems
                         if (a2 + b2 != c2)
                         {
                             continue;
-                        }
+                        } 
 
                         if (a + b + c == 1000)
                         {
                             goto done;
-                        }
-                    }
-                }
-            }
+                        } 
+                    } 
+                } 
+            } 
         done:
             long result = (a * b * c);
-            if (result != 31875000)
-            {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return result == 31875000;
+        } 
+    } 
+} 

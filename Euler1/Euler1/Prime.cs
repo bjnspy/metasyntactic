@@ -13,7 +13,7 @@ namespace Euler
             if (v < 2)
             {
                 return false;
-            }
+            } 
 
             long sqrt = (long)Math.Sqrt(v) + 1;
             for (long i = 2; i <= sqrt; i++)
@@ -21,10 +21,10 @@ namespace Euler
                 if (v % i == 0)
                 {
                     return false;
-                }
-            }
+                } 
+            } 
             return true;
-        }
+        } 
 
         static List<long> primes = new List<long>();
 
@@ -34,7 +34,7 @@ namespace Euler
             for (int i = 2; i < sieve.Length; i++)
             {
                 sieve[i] = true;
-            }
+            } 
 
             int currentPrime = 2;
             while (currentPrime * currentPrime < sieve.Length)
@@ -42,25 +42,25 @@ namespace Euler
                 for (int i = 2; i * currentPrime < sieve.Length; i++)
                 {
                     sieve[i * currentPrime] = false;
-                }
+                } 
                 for (var i = currentPrime + 1; ; i++)
                 {
                     if (sieve[i])
                     {
                         currentPrime = i;
                         break;
-                    }
-                }
-            }
+                    } 
+                } 
+            } 
 
             for (int i = 0; i < sieve.Length; i++)
             {
                 if (sieve[i])
                 {
                     primes.Add(i);
-                }
-            }
-        }
+                } 
+            } 
+        } 
 
         static bool done;
 
@@ -71,7 +71,7 @@ namespace Euler
                 foreach (var v in primes)
                 {
                     yield return v;
-                }
+                } 
 
                 if (!done)
                 {
@@ -84,12 +84,12 @@ namespace Euler
                         {
                             primes.Add(current);
                             yield return current;
-                        }
-                    } while (current < long.MaxValue);
+                        } 
+                    }  while (current < long.MaxValue);
                     done = true;
-                }
-            }
-        }
+                } 
+            } 
+        } 
 
         public static PrimeFactorization factorize(long value)
         {
@@ -102,7 +102,7 @@ namespace Euler
                 if (currentValue < 2)
                 {
                     break;
-                }
+                } 
                 if (currentValue % p == 0)
                 {
                     variables.Add(p);
@@ -112,11 +112,11 @@ namespace Euler
                     {
                         currentValue /= p;
                         exponents[exponents.Count - 1]++;
-                    }
-                }
-            }
+                    } 
+                } 
+            } 
 
             return new PrimeFactorization(variables, exponents);
-        }
-    }
-}
+        } 
+    } 
+} 

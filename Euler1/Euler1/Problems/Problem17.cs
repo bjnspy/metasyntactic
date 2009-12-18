@@ -7,50 +7,46 @@ namespace Euler.Problems
 {
     class Problem17 : Problem
     {
-        public void run()
+        public bool run()
         {
             int count = 0;
             for (int i = 1; i <= 1000; i++)
             {
                 count += IntToString(i).Length;
-            }
-            if (count != 21124)
-            {
-                throw new Exception();
-            }
-        }
+            } 
+            return count == 21124;
+        } 
 
         private string IntToString(int i)
         {
             string value = IntToStringWorker(i);
-            Console.WriteLine(value);
             return value.Replace(" ", "");
-        }
+        } 
 
         private String IntToStringWorker(int i)
         {
             if (i < 20)
             {
                 return sub20ToString(i);
-            }
+            } 
             else if (i < 100)
             {
                 return multipleOf10ToString(i) + " " + IntToStringWorker(i % 10);
-            }
+            } 
             else if (i < 1000)
             {
                 var result = IntToStringWorker(i / 100) + " hundred ";
                 if (i % 100 != 0)
                 {
                     result += "and " + IntToStringWorker(i % 100);
-                }
+                } 
                 return result;
-            }
+            } 
             else
             {
                 return "one thousand";
-            }
-        }
+            } 
+        } 
 
 
         private String multipleOf10ToString(int i)
@@ -65,10 +61,10 @@ namespace Euler.Problems
                 case 4: return "forty";
                 case 3: return "thirty";
                 case 2: return "twenty";
-            }
+            } 
 
             throw new Exception();
-        }
+        } 
 
         private String sub20ToString(int i)
         {
@@ -94,9 +90,9 @@ namespace Euler.Problems
                 case 2: return "two";
                 case 1: return "one";
                 case 0: return "";
-            }
+            } 
 
             throw new Exception();
-        }
-    }
-}
+        } 
+    } 
+} 

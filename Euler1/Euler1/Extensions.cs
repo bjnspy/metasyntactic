@@ -8,9 +8,11 @@ namespace Euler
 {
     public static class Extensions
     {
-        public static BigInteger Sum(this IEnumerable<BigInteger> e) {
+        public static BigInteger Sum(this IEnumerable<BigInteger> e)
+        {
             BigInteger result = 0;
-            foreach (var v in e) {
+            foreach (var v in e)
+            {
                 result += v;
             }
             return result;
@@ -34,7 +36,7 @@ namespace Euler
             {
                 if (lastRoot > rootN)
                 {
-                    if (count++ > 1000) 
+                    if (count++ > 1000)
                     {
                         return rootN;
                     }
@@ -44,6 +46,22 @@ namespace Euler
             }
             while ((rootN ^ lastRoot) != BigInteger.Zero);
             return rootN;
+        }
+
+        public static BigInteger factorial(this int i)
+        {
+            return factorial((BigInteger)i);
+        }
+
+        public static BigInteger factorial(this BigInteger v)
+        {
+            BigInteger result = 1;
+            while (v > 1)
+            {
+                result *= v;
+                v--;
+            }
+            return result;
         }
     }
 }

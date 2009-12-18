@@ -13,7 +13,7 @@ namespace Euler
         public PrimeFactorGenerator(BigInteger number)
         {
             this.number = number;
-        }
+        } 
 
         public IEnumerator<BigInteger> GetEnumerator()
         {
@@ -21,13 +21,13 @@ namespace Euler
             for (BigInteger i = 0; i < squareRoot; i++)
             {
 
-            }
+            } 
             return null;
-        }
+        } 
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
-        }
-    }
-}
+        } 
+    } 
+} 

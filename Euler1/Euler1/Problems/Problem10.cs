@@ -8,7 +8,7 @@ namespace Euler.Problems
 {
     class Problem10 : Problem
     {
-        public void run()
+        public bool run()
         {
             BigInteger result = 0;
             foreach (var v in Prime.Generator)
@@ -16,13 +16,11 @@ namespace Euler.Problems
                 if (v >= 2000000)
                 {
                     break;
-                }
+                } 
                 result += v;
-            }
+            } 
 
-            if (result != 142913828922) {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return result == 142913828922;
+        } 
+    } 
+} 

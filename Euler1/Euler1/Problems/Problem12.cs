@@ -8,7 +8,7 @@ namespace Euler.Problems
 {
     class Problem12 : Problem
     {
-        public void run()
+        public bool run()
         {
             long triangle = 0;
             long addValue = 1;
@@ -22,14 +22,11 @@ namespace Euler.Problems
                 if (count > 500)
                 {
                     break;
-                }
-            }
+                } 
+            } 
 
-            if (triangle != 76576500)
-            {
-                throw new Exception();
-            }
-        }
+            return triangle == 76576500;
+        } 
 
         private long divisorCount(long triangle)
         {
@@ -39,8 +36,8 @@ namespace Euler.Problems
             foreach (var e in p.Exponents)
             {
                 count *= (e + 1);
-            }
+            } 
             return count;
-        }
-    }
-}
+        } 
+    } 
+} 

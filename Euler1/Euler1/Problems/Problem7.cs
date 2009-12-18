@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem7 : Problem
     {
-        public void run()
+        public bool run()
         {
             int current = 1;
             long prime = 0;
@@ -17,15 +17,12 @@ namespace Euler.Problems
                 {
                     prime = p;
                     break;
-                }
+                } 
 
                 current++;
-            }
+            } 
 
-            if (prime != 104743)
-            {
-                throw new Exception();
-            }
-        }
-    }
-}
+            return prime == 104743;
+        } 
+    } 
+} 

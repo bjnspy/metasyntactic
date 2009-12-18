@@ -7,7 +7,7 @@ namespace Euler.Problems
 {
     class Problem5 : Problem
     {
-        public void run()
+        public bool run()
         {
             int result = 20;
             while (true)
@@ -15,14 +15,11 @@ namespace Euler.Problems
                 if (matches(result))
                 {
                     break;
-                }
+                } 
                 result++;
-            }
-            if (result != 232792560)
-            {
-                throw new Exception();
-            }
-        }
+            } 
+            return result == 232792560;
+        } 
 
         private bool matches(int result)
         {
@@ -31,9 +28,9 @@ namespace Euler.Problems
                 if (result % i != 0)
                 {
                     return false;
-                }
-            }
+                } 
+            } 
             return true;
-        }
-    }
-}
+        } 
+    } 
+} 
