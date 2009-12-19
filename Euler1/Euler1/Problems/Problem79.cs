@@ -23,7 +23,7 @@ namespace Euler.Problems
                 }
             }
 
-            return value == 73162890;
+            return value == "73162890";
         }
 
         private bool check(string value, string test)
