@@ -12,7 +12,7 @@ namespace Euler
     {
         static void Main()
         {
-            new Problem42().run();
+            new Problem27().run();
             Console.ReadLine();
             int current = 1;
             while (true)
