@@ -82,6 +82,8 @@
     <Compile Include="Problems\Problem20.cs" />
     <Compile Include="Problems\Problem21.cs" />
     <Compile Include="Problems\Problem22.cs" />
+    <Compile Include="Problems\Problem24.cs" />
+    <Compile Include="Problems\Problem25.cs" />
     <Compile Include="Problems\Problem3.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FibonacciGenerator.cs" />

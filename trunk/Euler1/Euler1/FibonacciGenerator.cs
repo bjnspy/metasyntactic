@@ -6,25 +6,25 @@ using System.Numerics;
 
 namespace Euler
 {
-    class FibonacciGenerator : IEnumerable<BigInteger>
+    class Fibonacci
     {
-        public IEnumerator<BigInteger> GetEnumerator()
+        public static IEnumerable<BigInteger> Generator
         {
-            BigInteger f1 = 0;
-            BigInteger f2 = 1;
-
-            while (true)
+            get
             {
-                yield return f2;
-                BigInteger temp = f2;
-                f2 = f1 + f2;
-                f1 = temp;
-            } 
-        } 
+                {
+                    BigInteger f1 = 0;
+                    BigInteger f2 = 1;
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        } 
-    } 
-} 
+                    while (true)
+                    {
+                        yield return f2;
+                        BigInteger temp = f2;
+                        f2 = f1 + f2;
+                        f1 = temp;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ namespace Euler.Problems
         public bool run()
         {
             var result =
-                new FibonacciGenerator()
+                Fibonacci.Generator
                     .TakeWhile(v => v < 4000000)
                     .Where(v => v % 2 == 0).Sum();
 
