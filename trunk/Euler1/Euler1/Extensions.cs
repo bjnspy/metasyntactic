@@ -127,5 +127,11 @@ namespace Euler
 
             return c + permute(sub, count % f);
         }
+
+        public static String lastNSubstring(this String value, int count)
+        {
+            int position = Math.Max(0, value.Length - count);
+            return value.Substring(position);
+        }
     }
 }
