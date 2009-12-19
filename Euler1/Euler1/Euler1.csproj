@@ -84,6 +84,7 @@
     <Compile Include="Problems\Problem22.cs" />
     <Compile Include="Problems\Problem24.cs" />
     <Compile Include="Problems\Problem25.cs" />
+    <Compile Include="Problems\Problem28.cs" />
     <Compile Include="Problems\Problem3.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FibonacciGenerator.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Problems\Problem1.cs" />
     <Compile Include="Problems\Problem2.cs" />
     <Compile Include="Problems\Problem4.cs" />
+    <Compile Include="Problems\Problem48.cs" />
     <Compile Include="Problems\Problem5.cs" />
     <Compile Include="Problems\Problem6.cs" />
     <Compile Include="Problems\Problem67.cs" />

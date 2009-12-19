@@ -63,5 +63,22 @@ namespace Euler
             }
             return result;
         }
+
+        public static BigInteger nthPower(this int i, int exponent)
+        {
+            return nthPower((BigInteger)i, exponent);
+        }
+
+        public static BigInteger nthPower(this BigInteger value, int exponent)
+        {
+            BigInteger result = BigInteger.One;
+
+            for (int i = 0; i < exponent; i++)
+            {
+                result *= value;
+            }
+
+            return result;
+        }
     }
 }
