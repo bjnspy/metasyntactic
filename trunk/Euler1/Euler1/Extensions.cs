@@ -112,5 +112,20 @@ namespace Euler
 
             throw new Exception();
         }
+
+        public static string permute(this string current, int count)
+        {
+            if (current.Length == 0)
+            {
+                return "";
+            }
+
+            int f = (int)(current.Length - 1).factorial();
+            char c = current[count / f];
+
+            var sub = new String(current.Where(x => x != c).ToArray());
+
+            return c + permute(sub, count % f);
+        }
     }
 }
