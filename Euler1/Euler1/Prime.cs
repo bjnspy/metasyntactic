@@ -10,10 +10,16 @@ namespace Euler
     {
         public static bool isPrime(long v)
         {
+            return primesSet.Contains(v);
+
             if (v < 2)
             {
                 return false;
-            } 
+            }
+            if (v == 2)
+            {
+                return true;
+            }
 
             long sqrt = (long)Math.Sqrt(v) + 1;
             for (long i = 2; i <= sqrt; i++)
@@ -27,6 +33,7 @@ namespace Euler
         } 
 
         static List<long> primes = new List<long>();
+        static HashSet<long> primesSet = new HashSet<long>();
 
         static Prime()
         {
@@ -59,7 +66,9 @@ namespace Euler
                 {
                     primes.Add(i);
                 } 
-            } 
+            }
+
+            primesSet.UnionWith(primes);
         } 
 
         static bool done;

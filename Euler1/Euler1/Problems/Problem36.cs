@@ -14,7 +14,7 @@ namespace Euler.Problems
                  where i.isPalindrome(10) && i.isPalindrome(2)
                  select i).Sum();
 
-            return 872187;
+            return result == 872187;
         }
     }
 }
