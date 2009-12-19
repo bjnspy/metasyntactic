@@ -12,34 +12,31 @@ namespace Euler
     {
         static void Main()
         {
-            new Problem97().run();
-            Console.ReadLine();
-            int current = 1;
-            while (true)
+            //new Problem53().run();
+            //Console.ReadLine();
+            for (int i = 1; i < 300; i++)
             {
-                String name = "Problem" + current;
+                String name = "Problem" + i;
                 Type type = Type.GetType("Euler.Problems." + name);
                 if (type == null)
                 {
-                    break;
-                } 
+                    continue;
+                }
                 Problem problem = (Problem)Activator.CreateInstance(type);
                 Console.Write(name + ": ");
 
                 if (problem.run())
                 {
                     Console.WriteLine("passed");
-                } 
+                }
                 else
                 {
                     Console.WriteLine("failed");
                     break;
-                } 
-
-                current++;
-            } 
+                }
+            }
 
             Console.ReadLine();
-        } 
-    } 
-} 
+        }
+    }
+}

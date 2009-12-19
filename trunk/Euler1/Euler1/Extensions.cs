@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Numerics;
+using System.Collections.Concurrent;
 
 namespace Euler
 {
@@ -53,15 +54,23 @@ namespace Euler
             return factorial((BigInteger)i);
         }
 
+        static ConcurrentDictionary<BigInteger, BigInteger> factorialMap =
+            new ConcurrentDictionary<BigInteger, BigInteger>();
+
         public static BigInteger factorial(this BigInteger v)
         {
-            BigInteger result = 1;
-            while (v > 1)
-            {
-                result *= v;
-                v--;
-            }
+            BigInteger result = factorialMap.GetOrAdd(v,
+                x => factorialWorker(v));
             return result;
+        }
+
+        public static BigInteger factorialWorker(this BigInteger v)
+        {
+            if (v <= 1)
+            {
+                return 1;
+            }
+            return v * factorial(v - 1);
         }
 
         public static BigInteger nthPower(this int i, int exponent)
@@ -132,6 +141,11 @@ namespace Euler
         {
             int position = Math.Max(0, value.Length - count);
             return value.Substring(position);
+        }
+
+        public static BigInteger choose(this int n, int r)
+        {
+            return n.factorial() / (r.factorial() * (n - r).factorial());
         }
     }
 }
