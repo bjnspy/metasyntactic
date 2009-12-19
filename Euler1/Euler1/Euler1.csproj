@@ -109,8 +109,10 @@
     <Compile Include="Problems\Problem7.cs" />
     <Compile Include="Problems\Problem79.cs" />
     <Compile Include="Problems\Problem8.cs" />
+    <Compile Include="Problems\Problem81.cs" />
     <Compile Include="Problems\Problem9.cs" />
     <Compile Include="Problems\Problem97.cs" />
+    <Compile Include="Problems\Problem99.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.Designer.cs">

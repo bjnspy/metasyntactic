@@ -9,7 +9,7 @@ namespace Euler.Problems
     {
         public bool run()
         {
-            var tests = data.Split('\n').Select(s => s.Replace("\r", "")).ToArray();
+            var tests = data.Split('\n').Select(s => s.Trim()).ToArray();
             var uniqueChars = tests.SelectMany(s => s.ToArray()).Distinct().OrderBy(c => c);
             var startString = new String(uniqueChars.ToArray());
 
