@@ -80,5 +80,27 @@ namespace Euler
 
             return result;
         }
+
+        public static bool isPalindrome(this int v)
+        {
+            return isPalindrome(v, 10);
+        }
+
+        public static bool isPalindrome(this int v, int base_)
+        {
+            return isPalindrome(Convert.ToString(v, base_));
+        }
+
+        public static bool isPalindrome(this string s)
+        {
+            for (int i = 0; i < s.Length / 2; i++)
+            {
+                if (s[i] != s[s.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        } 
     }
 }

@@ -18,32 +18,14 @@ namespace Euler.Problems
                     if (v <= max)
                     {
                         continue;
-                    } 
+                    }
 
-                    if (isPalindrome(v))
-                    {
+                    if (v.isPalindrome()) {
                         max = v;
-                    } 
-                } 
-            } 
+                    }
+                }
+            }
             return max == 906609;
-        } 
-
-        private bool isPalindrome(int v)
-        {
-            return isPalidrome(v.ToString());
-        } 
-
-        private bool isPalidrome(string s)
-        {
-            for (int i = 0; i < s.Length / 2; i++)
-            {
-                if (s[i] != s[s.Length - 1 - i])
-                {
-                    return false;
-                } 
-            } 
-            return true;
-        } 
-    } 
-} 
+        }
+    }
+}
