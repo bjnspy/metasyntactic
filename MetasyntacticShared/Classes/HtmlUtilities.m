@@ -50,7 +50,7 @@
     return @"";
   }
 
-  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", @"br ", @"strong", @"tbody", @"tr", @"td", @"span", @"table", nil];
+  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", @"br ", @"strong", @"tbody", @"tr", @"td", @"span", @"table", @"div", @"font", nil];
 
   for (NSString* code in htmlCodes) {
     string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
@@ -67,7 +67,7 @@
     return @"";
   }
 
-  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"p", @"table", @"span", nil];
+  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"p", @"table", @"span", @"div", @"font", nil];
 
   for (NSString* code in htmlCodes) {
     NSString* startTag = [NSString stringWithFormat:@"<%@ ", code];
