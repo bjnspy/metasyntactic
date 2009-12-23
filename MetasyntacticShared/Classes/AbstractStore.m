@@ -14,19 +14,14 @@
 
 #import "AbstractStore.h"
 
-#import "AbstractApplication.h"
-#import "StoreItemVault.h"
-#import "AbstractDeviceStore.h"
-#import "AbstractSimulatorStore.h"
 #import "AbstractUnlockRequest.h"
-#import "UnlockResult.h"
-#import "ThreadingUtilities.h"
-#import "MetasyntacticSharedApplication.h"
-#import "StringUtilities.h"
 #import "AlertUtilities.h"
-#import "StoreItemVault.h"
-#import "StoreItem.h"
+#import "MetasyntacticSharedApplication.h"
 #import "StoreDelegate.h"
+#import "StoreItem.h"
+#import "StoreItemVault.h"
+#import "ThreadingUtilities.h"
+#import "UnlockResult.h"
 
 @interface AbstractStore()
 @property (retain) id<StoreDelegate> delegate;
@@ -51,7 +46,7 @@
     self.delegate = delegate_;
     self.vault = vault_;
   }
-  
+
   return self;
 }
 
@@ -80,12 +75,12 @@
 
 - (void) sendUnlockRequestBackgroundEntryPoint:(AbstractUnlockRequest*) unlockRequest {
   NSString* error = [delegate sendUnlockRequest:unlockRequest];
-  
+
   UnlockResult* unlockResult = [UnlockResult resultWithItem:unlockRequest.item
                                                  transaction:unlockRequest.transaction
                                                    succeeded:error.length == 0
                                                      message:error];
-  
+
   [ThreadingUtilities foregroundSelector:@selector(reportUnlockResult:)
                                 onTarget:self
                               withObject:unlockResult];
@@ -95,7 +90,7 @@
 
 - (void) reportUnlockResult:(UnlockResult*) unlockResult {
   NSAssert([NSThread isMainThread], nil);
-  
+
   // 5) We've tried recording the purchase with comixology.  It either failed
   //    (in which case we need to tell the user), or it succeeded.  In the latter
   //    case, we can now start pullng down the item.
@@ -105,7 +100,7 @@
   } else if (unlockResult.message.length > 0) {
     [AlertUtilities showOkAlert:unlockResult.message];
   }
-  
+
   [delegate reportUnlockResult:unlockResult];
 }
 
@@ -113,7 +108,7 @@
 - (void)      bypassStore:(id<StoreItem>) item
                    reason:(NSString*) reason {
   AbstractUnlockRequest* request = [delegate createBypassStoreRequest:item reason:reason];
-  
+
   [self sendUnlockRequest:request];
 }
 
