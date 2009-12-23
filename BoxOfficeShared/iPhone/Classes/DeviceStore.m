@@ -14,11 +14,8 @@
 
 #import "DeviceStore.h"
 
-#import "Application.h"
 #import "BoxOfficeItemVault.h"
 #import "BoxOfficeStoreDelegate.h"
-#import "Model.h"
-#import "UnlockRequest.h"
 
 @interface DeviceStore()
 @end

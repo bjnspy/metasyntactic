@@ -14,10 +14,6 @@
 
 #import "NetflixGenreRecommendationsViewController.h"
 
-#import "CommonNavigationController.h"
-#import "Model.h"
-#import "NetflixCell.h"
-
 @interface NetflixGenreRecommendationsViewController()
 @property (retain) NetflixAccount* account;
 @property (copy) NSString* genre;

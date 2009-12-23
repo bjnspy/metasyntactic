@@ -15,7 +15,6 @@
 #import "NetflixQueueViewController.h"
 
 #import "CommonNavigationController.h"
-#import "Model.h"
 #import "NetflixCell.h"
 
 @interface NetflixQueueViewController()

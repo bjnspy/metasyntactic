@@ -14,7 +14,6 @@
 
 #import "NetflixMostPopularViewController.h"
 
-#import "Model.h"
 #import "NetflixMostPopularMoviesViewController.h"
 
 @interface NetflixMostPopularViewController()

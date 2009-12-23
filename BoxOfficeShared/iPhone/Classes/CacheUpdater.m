@@ -18,7 +18,6 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "IMDbCache.h"
-#import "Model.h"
 #import "PosterCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"

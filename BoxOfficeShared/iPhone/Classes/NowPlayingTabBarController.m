@@ -14,8 +14,6 @@
 
 #import "NowPlayingTabBarController.h"
 
-#import "Application.h"
-#import "Controller.h"
 #import "DVDNavigationController.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"

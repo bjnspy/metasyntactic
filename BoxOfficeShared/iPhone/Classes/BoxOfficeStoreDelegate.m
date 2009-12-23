@@ -14,7 +14,6 @@
 
 #import "BoxOfficeStoreDelegate.h"
 
-#import "Application.h"
 #import "Donation.h"
 #import "Model.h"
 #import "UnlockRequest.h"

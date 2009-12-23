@@ -14,9 +14,6 @@
 
 #import "NetflixSettingsViewController.h"
 
-#import "Controller.h"
-#import "Model.h"
-
 @implementation NetflixSettingsViewController
 
 - (id) init {

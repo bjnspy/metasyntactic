@@ -15,7 +15,6 @@
 #import "PersonPosterCache.h"
 
 #import "Application.h"
-#import "Model.h"
 #import "Person.h"
 
 @interface PersonPosterCache()

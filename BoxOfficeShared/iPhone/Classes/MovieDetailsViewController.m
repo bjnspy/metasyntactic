@@ -14,7 +14,6 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "Application.h"
 #import "BookmarkCache.h"
 #import "BoxOfficeStockImages.h"
 #import "CacheUpdater.h"

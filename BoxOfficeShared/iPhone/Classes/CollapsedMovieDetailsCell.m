@@ -14,7 +14,6 @@
 
 #import "CollapsedMovieDetailsCell.h"
 
-#import "BoxOfficeStockImages.h"
 #import "Model.h"
 
 @interface CollapsedMovieDetailsCell()
