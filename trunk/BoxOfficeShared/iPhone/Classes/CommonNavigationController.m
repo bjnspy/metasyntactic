@@ -15,7 +15,6 @@
 #import "CommonNavigationController.h"
 
 #import "Application.h"
-#import "Controller.h"
 #import "Model.h"
 #import "MovieDetailsViewController.h"
 #import "NowPlayingSettingsViewController.h"

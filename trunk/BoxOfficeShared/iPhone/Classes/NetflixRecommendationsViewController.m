@@ -14,7 +14,6 @@
 
 #import "NetflixRecommendationsViewController.h"
 
-#import "Model.h"
 #import "NetflixGenreRecommendationsViewController.h"
 
 @interface NetflixRecommendationsViewController()

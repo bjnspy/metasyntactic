@@ -15,7 +15,6 @@
 #import "PostersViewController.h"
 
 #import "LargePosterCache.h"
-#import "Model.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;

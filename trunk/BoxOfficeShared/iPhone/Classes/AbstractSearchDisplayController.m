@@ -14,8 +14,6 @@
 
 #import "AbstractSearchDisplayController.h"
 
-#import "Controller.h"
-#import "Model.h"
 #import "SearchResult.h"
 
 @interface AbstractSearchDisplayController()

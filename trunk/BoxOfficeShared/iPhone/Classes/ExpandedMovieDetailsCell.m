@@ -14,7 +14,6 @@
 
 #import "ExpandedMovieDetailsCell.h"
 
-#import "BoxOfficeStockImages.h"
 #import "Model.h"
 
 @interface ExpandedMovieDetailsCell()

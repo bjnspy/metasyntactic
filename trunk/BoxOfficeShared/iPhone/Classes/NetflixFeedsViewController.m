@@ -14,7 +14,6 @@
 
 #import "NetflixFeedsViewController.h"
 
-#import "Model.h"
 #import "NetflixQueueViewController.h"
 
 

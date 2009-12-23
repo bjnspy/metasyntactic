@@ -16,9 +16,6 @@
 
 #import "BoxOfficeItemVault.h"
 #import "BoxOfficeStoreDelegate.h"
-#import "Model.h"
-#import "Store.h"
-#import "UnlockRequest.h"
 
 @interface SimulatorStore()
 @end

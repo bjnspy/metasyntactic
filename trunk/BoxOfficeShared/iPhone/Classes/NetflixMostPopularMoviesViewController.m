@@ -14,10 +14,6 @@
 
 #import "NetflixMostPopularMoviesViewController.h"
 
-#import "CommonNavigationController.h"
-#import "Model.h"
-#import "NetflixCell.h"
-
 @interface NetflixMostPopularMoviesViewController()
 @property (copy) NSString* category;
 @end

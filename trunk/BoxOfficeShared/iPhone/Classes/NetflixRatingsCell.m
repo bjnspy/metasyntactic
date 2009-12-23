@@ -15,7 +15,6 @@
 #import "NetflixRatingsCell.h"
 
 #import "BoxOfficeStockImages.h"
-#import "Model.h"
 
 @interface NetflixRatingsCell()
 @property (retain) Movie* movie;

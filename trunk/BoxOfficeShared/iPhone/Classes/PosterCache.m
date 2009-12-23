@@ -19,7 +19,6 @@
 #import "FandangoPosterDownloader.h"
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
-#import "Model.h"
 #import "PreviewNetworksPosterDownloader.h"
 
 @interface PosterCache()
