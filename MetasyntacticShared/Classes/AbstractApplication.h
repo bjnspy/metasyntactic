@@ -27,6 +27,7 @@
 + (NSString*) tempDirectory;
 + (NSString*) trashDirectory;
 + (NSString*) imagesDirectory;
++ (NSString*) storeDirectory;
 
 + (NSString*) uniqueTemporaryDirectory;
 + (NSString*) uniqueTrashDirectory;

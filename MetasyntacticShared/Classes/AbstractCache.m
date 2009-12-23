@@ -38,7 +38,9 @@
     self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
     self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationDidReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onApplicationDidReceiveMemoryWarning:)
+                                                 name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
   }
 
   return self;

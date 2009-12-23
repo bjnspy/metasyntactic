@@ -18,6 +18,8 @@
 @protocol MapViewControllerDelegate;
 @protocol SplashScreenDelegate;
 @protocol SearchEngineDelegate;
+@protocol StoreDelegate;
+@protocol StoreItem;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
@@ -31,6 +33,7 @@
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;
 @class AbstractSearchResult;
+@class AbstractUnlockRequest;
 @class AutoreleasingMutableArray;
 @class AutoreleasingMutableDictionary;
 @class BackgroundInvocation;
@@ -52,7 +55,9 @@
 @class PriorityMutex;
 @class Pulser;
 @class SettingCell;
+@class StoreItemVault;
 @class SynopsisCell;
+@class UnlockResult;
 @class TappableImageView;
 @class TappableScrollView;
 @class TextFieldEditorViewController;
