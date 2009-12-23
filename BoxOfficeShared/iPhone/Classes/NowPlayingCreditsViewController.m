@@ -18,7 +18,8 @@
 #import "BoxOfficeStockImages.h"
 #import "FAQViewController.h"
 #import "Model.h"
-
+#import "Donation.h"
+#import "Store.h"
 
 @interface CreditsViewController()
 @property (retain) NSArray* languages;
@@ -111,7 +112,11 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   if (section == HelpSendFeedbackSection) {
     return 1;
   } else if (section == WrittenBySection) {
-    return 2;
+    //if ([[Model model] isInReviewPeriod]) {
+      return 2;
+    //} else {
+    //  return 3;
+    //}
   } else if (section == MyOtherApplicationsSection) {
     return 4;
   } else if (section == GraphicsBySection) {
@@ -235,8 +240,10 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == WrittenBySection) {
     if (row == 0) {
       cell.textLabel.text = LocalizedString(@"Project Website", @"Takes the user to the website for this application");
-    } else {
+    } else if (row == 1) {
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
+    } else {
+      cell.textLabel.text = LocalizedString(@"Donate", nil);
     }
   } else if (section == MyOtherApplicationsSection) {
     if ([Model model].isInReviewPeriod) {
@@ -347,6 +354,40 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 }
 
 
+- (void) didSelectDonateSection:(NSIndexPath*) indexPath {
+  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  AbstractStore* store = [Store store];
+  
+  NSArray* donationsArray = [Store donationsArray];
+  NSMutableArray* titles = [NSMutableArray array];
+  for (Donation* donation in donationsArray) {
+    NSString* title = [NSString stringWithFormat:LocalizedString(@"Donate (%@)", nil), [store priceForItem:donation]];
+    [titles addObject:title];
+  }
+  
+  UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:nil 
+                                                            delegate:self
+                                                   cancelButtonTitle:LocalizedString(@"No Thanks!", nil)
+                                              destructiveButtonTitle:nil
+                                                   otherButtonTitles:
+                                 [titles objectAtIndex:0],
+                                 [titles objectAtIndex:1],
+                                 [titles objectAtIndex:2],
+                                 [titles objectAtIndex:3],
+                                 [titles objectAtIndex:4], nil] autorelease];
+  [self showActionSheet:actionSheet];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  if (actionSheet.cancelButtonIndex != buttonIndex) {
+    Donation* donation = [[Store donationsArray] objectAtIndex:buttonIndex];
+    [[Store store] purchaseItem:donation];
+  }
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
@@ -360,8 +401,11 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     if (section == WrittenBySection) {
       if (row == 0) {
         url = @"http://metasyntactic.googlecode.com";
-      } else {
+      } else if (row == 1) {
         url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+      } else {
+        [self didSelectDonateSection:indexPath];
+        return;
       }
     } else if (section == MyOtherApplicationsSection) {
       if (row == 0) {

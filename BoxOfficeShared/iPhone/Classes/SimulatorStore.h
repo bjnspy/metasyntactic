@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CreditsViewController : AbstractFullScreenTableViewController<UIActionSheetDelegate> {
-@private
-  NSArray* languages;
-  NSDictionary* localizers;
+@interface SimulatorStore : AbstractSimulatorStore {
 }
+
++ (SimulatorStore*) simulatorStore;
 
 @end
