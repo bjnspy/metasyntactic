@@ -16,9 +16,9 @@
 
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
+#import "Donation.h"
 #import "FAQViewController.h"
 #import "Model.h"
-#import "Donation.h"
 #import "Store.h"
 
 @interface CreditsViewController()
@@ -356,17 +356,17 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 
 - (void) didSelectDonateSection:(NSIndexPath*) indexPath {
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
+
   AbstractStore* store = [Store store];
-  
+
   NSArray* donationsArray = [Store donationsArray];
   NSMutableArray* titles = [NSMutableArray array];
   for (Donation* donation in donationsArray) {
     NSString* title = [NSString stringWithFormat:LocalizedString(@"Donate (%@)", nil), [store priceForItem:donation]];
     [titles addObject:title];
   }
-  
-  UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:nil 
+
+  UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:nil
                                                             delegate:self
                                                    cancelButtonTitle:LocalizedString(@"No Thanks!", nil)
                                               destructiveButtonTitle:nil

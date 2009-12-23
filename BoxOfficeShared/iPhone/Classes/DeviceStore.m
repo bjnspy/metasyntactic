@@ -15,10 +15,10 @@
 #import "DeviceStore.h"
 
 #import "Application.h"
+#import "BoxOfficeItemVault.h"
+#import "BoxOfficeStoreDelegate.h"
 #import "Model.h"
 #import "UnlockRequest.h"
-#import "BoxOfficeStoreDelegate.h"
-#import "BoxOfficeItemVault.h"
 
 @interface DeviceStore()
 @end
@@ -29,7 +29,7 @@
   if ((self = [super initWithDelegate:[BoxOfficeStoreDelegate delegate]
                                 vault:[BoxOfficeItemVault vault]])) {
   }
-  
+
   return self;
 }
 

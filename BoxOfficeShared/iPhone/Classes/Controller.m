@@ -26,9 +26,9 @@
 #import "LocationManager.h"
 #import "Model.h"
 #import "ScoreCache.h"
+#import "Store.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
-#import "Store.h"
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;

@@ -14,11 +14,11 @@
 
 #import "SimulatorStore.h"
 
-#import "Model.h"
 #import "BoxOfficeItemVault.h"
+#import "BoxOfficeStoreDelegate.h"
+#import "Model.h"
 #import "Store.h"
 #import "UnlockRequest.h"
-#import "BoxOfficeStoreDelegate.h"
 
 @interface SimulatorStore()
 @end
@@ -29,7 +29,7 @@
   if ((self = [super initWithDelegate:[BoxOfficeStoreDelegate delegate]
                                 vault:[BoxOfficeItemVault vault]])) {
   }
-  
+
   return self;
 }
 
