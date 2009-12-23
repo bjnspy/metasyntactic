@@ -16,8 +16,8 @@
 
 #import "AlertUtilities.h"
 #import "MetasyntacticSharedApplication.h"
-#import "UnlockResult.h"
 #import "StoreItem.h"
+#import "UnlockResult.h"
 
 @interface AbstractSimulatorStore()
 @property (retain) NSMutableSet* purchasing;
@@ -35,18 +35,18 @@
 
 - (id) initWithDelegate:(id<StoreDelegate>) delegate_
                   value:(StoreItemVault*) vault_ {
-  if ((self = [super initWithDelegate:delegate_ 
+  if ((self = [super initWithDelegate:delegate_
                                 vault:vault_])) {
     self.purchasing = [NSMutableSet set];
   }
-  
+
   return self;
 }
 
 
 - (void) purchaseItem:(id<StoreItem>) item {
   [AlertUtilities showOkAlert:@"You are currently running in the iPhone simulator. We are bypassing the iTunes store for this purchase."];
-  
+
   [purchasing addObject:item];
   [self performSelector:@selector(bypass:) withObject:item afterDelay:5];
   [MetasyntacticSharedApplication minorRefresh];
@@ -62,7 +62,7 @@
   NSAssert([NSThread isMainThread], nil);
   [super reportUnlockResult:unlockResult];
   [purchasing removeObject:unlockResult.item];
-  
+
   [MetasyntacticSharedApplication majorRefresh];
 }
 
@@ -81,7 +81,7 @@
   if (item.isFree) {
     return item.price;
   }
-  
+
   return [NSString stringWithFormat:@"$%@", item.price];
 }
 

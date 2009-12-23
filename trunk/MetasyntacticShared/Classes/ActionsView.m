@@ -14,7 +14,6 @@
 
 #import "ActionsView.h"
 
-#import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
 
 @interface ActionsView()

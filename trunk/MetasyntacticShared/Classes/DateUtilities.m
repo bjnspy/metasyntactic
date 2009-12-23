@@ -16,7 +16,6 @@
 
 #import "AutoreleasingMutableDictionary.h"
 #import "MetasyntacticSharedApplication.h"
-#import "NSMutableDictionary+Utilities.h"
 
 @implementation DateUtilities
 

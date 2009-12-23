@@ -20,7 +20,6 @@
 #import "ImageCache.h"
 #import "MetasyntacticSharedApplication.h"
 #import "NetworkUtilities.h"
-#import "NSMutableArray+Utilities.h"
 #import "ThreadingUtilities.h"
 
 @interface ImageDownloader()

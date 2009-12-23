@@ -15,18 +15,15 @@
 #import "AbstractDeviceStore.h"
 
 #import "AbstractApplication.h"
-#import "AbstractModel.h"
+#import "AlertUtilities.h"
+#import "Base64.h"
+#import "MetasyntacticSharedApplication.h"
 #import "PersistentDictionaryThreadsafeValue.h"
-#import "AbstractUnlockRequest.h"
-#import "UnlockResult.h"
+#import "StoreDelegate.h"
 #import "StoreItem.h"
 #import "StringUtilities.h"
-#import "MetasyntacticSharedApplication.h"
 #import "ThreadingUtilities.h"
-#import "Base64.h"
-#import "AlertUtilities.h"
-#import "StoreItemVault.h"
-#import "StoreDelegate.h"
+#import "UnlockResult.h"
 
 @interface AbstractDeviceStore()
 @property (retain) NSMutableSet* bypassingStoreItems;
@@ -56,10 +53,10 @@
   if ((self = [super init])) {
     self.bypassingStoreItems = [NSMutableSet set];
     self.itemPricesData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.pricesFile];
-    
+
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
   }
-  
+
   return self;
 }
 
@@ -78,10 +75,10 @@
 
 - (void) paymentQueue:(SKPaymentQueue*) queue updatedTransactions:(NSArray*) transactions {
   NSAssert([NSThread isMainThread], nil);
-  
+
   for (SKPaymentTransaction* transaction in transactions) {
     id<StoreItem> item = [delegate itemForItunesIdentifier:transaction.payment.productIdentifier];
-    
+
     switch (transaction.transactionState) {
       case SKPaymentTransactionStatePurchasing:
         // 2a) Transaction is being added to the server queue.
@@ -89,7 +86,7 @@
         break;
       case SKPaymentTransactionStateFailed: {
         // 2b) Transaction was cancelled or failed before being added to the server queue.
-        
+
         UnlockResult* result;
         if ([SKErrorDomain isEqual:transaction.error.domain]  &&
             transaction.error.code == SKErrorPaymentCancelled) {
@@ -109,13 +106,13 @@
             [NSString stringWithFormat:
              LocalizedString(@"Failed to purchase item: %@\n\n%@\n\nYou have not been charged.", nil), item.canonicalTitle, error];
           }
-          
+
           result = [UnlockResult resultWithItem:item
                                      transaction:transaction
                                        succeeded:NO
                                          message:message];
         }
-        
+
         // Report the error to the user.
         [ThreadingUtilities foregroundSelector:@selector(reportUnlockResult:)
                                       onTarget:self
@@ -161,11 +158,11 @@
   NSAssert([NSThread isMainThread], nil);
   [super reportUnlockResult:unlockResult];
   [bypassingStoreItems removeObject:unlockResult.item];
-  
+
   if (unlockResult.transaction != nil) {
     [[SKPaymentQueue defaultQueue] finishTransaction:unlockResult.transaction];
   }
-  
+
   [MetasyntacticSharedApplication majorRefresh];
 }
 
@@ -174,7 +171,7 @@
   if ([bypassingStoreItems containsObject:item]) {
     return YES;
   }
-  
+
   for (SKPaymentTransaction* transaction in [[SKPaymentQueue defaultQueue] transactions]) {
     if ([item.itunesIdentifier isEqual:transaction.payment.productIdentifier] &&
         (transaction.transactionState == SKPaymentTransactionStatePurchasing ||
@@ -183,7 +180,7 @@
           return YES;
         }
   }
-  
+
   return NO;
 }
 
@@ -208,12 +205,12 @@
   if (item.isFree) {
     return item.price;
   }
-  
+
   NSString* result = [self.itemPrices objectForKey:item.itunesIdentifier];
   if (result.length == 0) {
     return [NSString stringWithFormat:@"$%@", item.price];
   }
-  
+
   return result;
 }
 
@@ -233,7 +230,7 @@
       NSNumberFormatter* priceFormatter = self.priceFormatter;
       [priceFormatter setLocale:product.priceLocale];
       NSString* formattedString = [priceFormatter stringFromNumber:product.price];
-      
+
       if (formattedString.length > 0) {
         [prices setObject:formattedString forKey:product.productIdentifier];
       }
@@ -245,7 +242,7 @@
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
   NSLog(@"%@", error);
-  
+
   [request autorelease];
 }
 

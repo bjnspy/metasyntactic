@@ -18,8 +18,6 @@
 #import "AutoreleasingMutableDictionary.h"
 #import "ImageUtilities.h"
 #import "MetasyntacticSharedApplication.h"
-#import "NSMutableArray+Utilities.h"
-#import "NSMutableDictionary+Utilities.h"
 #import "ThreadingUtilities.h"
 
 @interface ImageCache()

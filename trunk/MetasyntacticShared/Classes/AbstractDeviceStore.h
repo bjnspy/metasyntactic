@@ -17,7 +17,7 @@
 @interface AbstractDeviceStore : AbstractStore<SKPaymentTransactionObserver,SKProductsRequestDelegate> {
 @private
   NSMutableSet* bypassingStoreItems;
-  
+
   ThreadsafeValue*/*<NSDictionary>*/ itemPricesData;
 }
 
