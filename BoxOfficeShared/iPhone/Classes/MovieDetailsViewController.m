@@ -193,7 +193,7 @@ typedef enum {
 
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:netflixAccount];
   if (netflixMovie != nil && netflixStatusCells.count == 0) {
-    if ([[NetflixCache cache] user:user canRentMovie:movie]) {
+    if ([[NetflixCache cache] user:user canRentMovie:netflixMovie]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
       [titles addObject:LocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
       [arguments addObject:[NSNull null]];
@@ -1074,15 +1074,15 @@ typedef enum {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:netflixAccount];
 
   NSMutableDictionary* actionMap = [NSMutableDictionary dictionary];
-  if ([[NetflixCache cache] isInstantWatch:movie] && user.canInstantWatch) {
+  if ([[NetflixCache cache] isInstantWatch:netflixMovie] && user.canInstantWatch) {
     [self addAction:InstantQueue      withTitle:LocalizedString(@"Instant Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfInstantQueue withTitle:LocalizedString(@"Top of Instant Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([[NetflixCache cache] isDvd:movie]) {
+  if ([[NetflixCache cache] isDvd:netflixMovie]) {
     [self addAction:DVDQueue      withTitle:LocalizedString(@"DVD Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfDVDQueue withTitle:LocalizedString(@"Top of DVD Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
-  if ([[NetflixCache cache] isBluray:movie] && user.canBlurayWatch) {
+  if ([[NetflixCache cache] isBluray:netflixMovie] && user.canBlurayWatch) {
     [self addAction:BlurayQueue      withTitle:LocalizedString(@"Blu-ray Queue", nil)        toActionSheet:actionSheet actionMap:actionMap];
     [self addAction:TopOfBlurayQueue withTitle:LocalizedString(@"Top of Blu-ray Queue", nil) toActionSheet:actionSheet actionMap:actionMap];
   }
