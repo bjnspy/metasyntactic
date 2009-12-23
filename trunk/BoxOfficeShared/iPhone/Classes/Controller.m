@@ -28,6 +28,7 @@
 #import "ScoreCache.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
+#import "Store.h"
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;
@@ -191,6 +192,7 @@ static Controller* controller = nil;
   NSAssert([NSThread isMainThread], nil);
   [[Model model] checkCountry];
 
+  [[Store store] updatePrices:[NSSet setWithArray:[Store donationsArray]]];
   [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
 }

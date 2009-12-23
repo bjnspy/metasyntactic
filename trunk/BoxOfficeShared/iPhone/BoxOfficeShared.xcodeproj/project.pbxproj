@@ -144,6 +144,18 @@
 		1000000000000015000001F5 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F4 /* libNetflixShared.a */; };
 		1000000000000015000001F7 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F6 /* libProtocolBuffers.a */; };
 		10000000000000150000020C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000100 /* UpcomingMoviesViewController.m */; };
+		74FFCAC010E159C700DF4AC7 /* BoxOfficeStoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */; };
+		74FFCAC110E159C700DF4AC7 /* BoxOfficeStoreDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */; };
+		74FFCAC410E159CF00DF4AC7 /* DeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */; };
+		74FFCAC510E159CF00DF4AC7 /* DeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCAC310E159CF00DF4AC7 /* DeviceStore.m */; };
+		74FFCAC810E159D800DF4AC7 /* SimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCAC610E159D800DF4AC7 /* SimulatorStore.h */; };
+		74FFCAC910E159D800DF4AC7 /* SimulatorStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCAC710E159D800DF4AC7 /* SimulatorStore.m */; };
+		74FFCB3C10E15AB000DF4AC7 /* BoxOfficeItemVault.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCB3A10E15AB000DF4AC7 /* BoxOfficeItemVault.h */; };
+		74FFCB3D10E15AB000DF4AC7 /* BoxOfficeItemVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCB3B10E15AB000DF4AC7 /* BoxOfficeItemVault.m */; };
+		74FFCB9C10E15DC200DF4AC7 /* Donation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCB9A10E15DC200DF4AC7 /* Donation.h */; };
+		74FFCB9D10E15DC200DF4AC7 /* Donation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCB9B10E15DC200DF4AC7 /* Donation.m */; };
+		74FFCBE110E1C7F200DF4AC7 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCACB10E159E400DF4AC7 /* Store.m */; };
+		74FFCBE210E1C7F200DF4AC7 /* UnlockRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCB3610E159F700DF4AC7 /* UnlockRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -492,6 +504,20 @@
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74CAC2CF10CDA4D2003E51A3 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Resources/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74CAC2E410CDA83D003E51A3 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStoreDelegate.h; sourceTree = "<group>"; };
+		74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeStoreDelegate.m; sourceTree = "<group>"; };
+		74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceStore.h; sourceTree = "<group>"; };
+		74FFCAC310E159CF00DF4AC7 /* DeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceStore.m; sourceTree = "<group>"; };
+		74FFCAC610E159D800DF4AC7 /* SimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorStore.h; sourceTree = "<group>"; };
+		74FFCAC710E159D800DF4AC7 /* SimulatorStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatorStore.m; sourceTree = "<group>"; };
+		74FFCACA10E159E400DF4AC7 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		74FFCACB10E159E400DF4AC7 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		74FFCB3510E159F700DF4AC7 /* UnlockRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockRequest.h; sourceTree = "<group>"; };
+		74FFCB3610E159F700DF4AC7 /* UnlockRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockRequest.m; sourceTree = "<group>"; };
+		74FFCB3A10E15AB000DF4AC7 /* BoxOfficeItemVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeItemVault.h; sourceTree = "<group>"; };
+		74FFCB3B10E15AB000DF4AC7 /* BoxOfficeItemVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeItemVault.m; sourceTree = "<group>"; };
+		74FFCB9A10E15DC200DF4AC7 /* Donation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Donation.h; sourceTree = "<group>"; };
+		74FFCB9B10E15DC200DF4AC7 /* Donation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Donation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,17 +569,18 @@
 				100000000000000800000013 /* DataProvider */,
 				100000000000001100000095 /* Search */,
 				1000000000000011000000BF /* Shared */,
+				74FFCAA110E155AB00DF4AC7 /* Store */,
 				10000000000000120000009C /* UI */,
 				100000000000001500000104 /* Utilities */,
-				100000000000000700000099 /* Application.h */,
 				100000000000000700000001 /* AbstractBoxOfficeAppDelegate.h */,
+				100000000000000700000099 /* Application.h */,
 				1000000000000007000000C6 /* BoxOfficeShared.h */,
 				1000000000000007000000C8 /* BoxOfficeSharedApplication.h */,
 				1000000000000007000000CC /* BoxOfficeSharedApplicationDelegate.h */,
 				1000000000000007000000EC /* Controller.h */,
 				1000000000000009000000D8 /* Model.h */,
-				10000000000000070000009A /* Application.m */,
 				100000000000000700000003 /* AbstractBoxOfficeAppDelegate.m */,
+				10000000000000070000009A /* Application.m */,
 				1000000000000007000000CA /* BoxOfficeSharedApplication.m */,
 				1000000000000007000000ED /* Controller.m */,
 				1000000000000009000000DD /* Model.m */,
@@ -614,6 +641,7 @@
 		100000000000000800000012 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				74FFCB9A10E15DC200DF4AC7 /* Donation.h */,
 				100000000000000700000122 /* DVD.h */,
 				100000000000000900000040 /* FavoriteTheater.h */,
 				100000000000000A000000BB /* Performance.h */,
@@ -621,6 +649,7 @@
 				100000000000000E00000015 /* Review.h */,
 				10000000000000110000000A /* Score.h */,
 				100000000000001400000033 /* Theater.h */,
+				74FFCB9B10E15DC200DF4AC7 /* Donation.m */,
 				100000000000000700000123 /* DVD.m */,
 				100000000000000900000042 /* FavoriteTheater.m */,
 				100000000000000B0000000E /* Performance.m */,
@@ -1069,6 +1098,25 @@
 			name = Websites;
 			sourceTree = "<group>";
 		};
+		74FFCAA110E155AB00DF4AC7 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				74FFCB3A10E15AB000DF4AC7 /* BoxOfficeItemVault.h */,
+				74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */,
+				74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */,
+				74FFCAC610E159D800DF4AC7 /* SimulatorStore.h */,
+				74FFCACA10E159E400DF4AC7 /* Store.h */,
+				74FFCB3510E159F700DF4AC7 /* UnlockRequest.h */,
+				74FFCB3B10E15AB000DF4AC7 /* BoxOfficeItemVault.m */,
+				74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */,
+				74FFCAC310E159CF00DF4AC7 /* DeviceStore.m */,
+				74FFCAC710E159D800DF4AC7 /* SimulatorStore.m */,
+				74FFCACB10E159E400DF4AC7 /* Store.m */,
+				74FFCB3610E159F700DF4AC7 /* UnlockRequest.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1089,6 +1137,11 @@
 				100000000000000C000000EB /* ProtocolBuffers.h in Headers */,
 				100000000000000800000074 /* BookmarkCache.h in Headers */,
 				100000000000000C0000000B /* FavoriteTheaterCache.h in Headers */,
+				74FFCAC010E159C700DF4AC7 /* BoxOfficeStoreDelegate.h in Headers */,
+				74FFCAC410E159CF00DF4AC7 /* DeviceStore.h in Headers */,
+				74FFCAC810E159D800DF4AC7 /* SimulatorStore.h in Headers */,
+				74FFCB3C10E15AB000DF4AC7 /* BoxOfficeItemVault.h in Headers */,
+				74FFCB9C10E15DC200DF4AC7 /* Donation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74FFCB3D10E15AB000DF4AC7 /* BoxOfficeItemVault.m in Sources */,
+				74FFCAC110E159C700DF4AC7 /* BoxOfficeStoreDelegate.m in Sources */,
+				74FFCAC510E159CF00DF4AC7 /* DeviceStore.m in Sources */,
+				74FFCAC910E159D800DF4AC7 /* SimulatorStore.m in Sources */,
+				74FFCBE110E1C7F200DF4AC7 /* Store.m in Sources */,
+				74FFCBE210E1C7F200DF4AC7 /* UnlockRequest.m in Sources */,
 				100000000000000700000007 /* AbstractDVDBlurayCache.m in Sources */,
 				1000000000000007000000A9 /* BlurayCache.m in Sources */,
 				1000000000000007000001A3 /* DVDCache.m in Sources */,
@@ -1339,6 +1398,7 @@
 				100000000000000700000042 /* AbstractNetflixFilterableViewController.m in Sources */,
 				100000000000000800000076 /* BookmarkCache.m in Sources */,
 				100000000000000C0000000D /* FavoriteTheaterCache.m in Sources */,
+				74FFCB9D10E15DC200DF4AC7 /* Donation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

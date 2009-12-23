@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CreditsViewController : AbstractFullScreenTableViewController<UIActionSheetDelegate> {
+@interface UnlockRequest : AbstractUnlockRequest {
 @private
-  NSArray* languages;
-  NSDictionary* localizers;
 }
+
++ (UnlockRequest*) requestWithItem:(id<StoreItem>) item
+             transactionIdentifier:(NSString*) transactionIdentifier
+                           receipt:(NSString*) receipt
+                       transaction:(SKPaymentTransaction*) transaction;
 
 @end
