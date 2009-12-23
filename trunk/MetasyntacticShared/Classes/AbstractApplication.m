@@ -37,6 +37,7 @@ static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
 static NSString* imagesDirectory = nil;
+static NSString* storeDirectory = nil;
 
 + (NSString*) name {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
@@ -115,6 +116,7 @@ static NSString* imagesDirectory = nil;
 
   [self addDirectory:trashDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trash"]];
   [self addDirectory:imagesDirectory = [cacheDirectory stringByAppendingPathComponent:@"Images"]];
+  [self addDirectory:storeDirectory = [cacheDirectory stringByAppendingPathComponent:@"Store"]];
 
   dirtyFile = [[supportDirectory stringByAppendingPathComponent:@"Dirty.plist"] retain];
 
@@ -184,6 +186,11 @@ static NSString* imagesDirectory = nil;
 
 + (NSString*) tempDirectory {
   return tempDirectory;
+}
+
+
++ (NSString*) storeDirectory {
+  return storeDirectory;
 }
 
 

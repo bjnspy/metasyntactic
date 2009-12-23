@@ -16,6 +16,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#import <StoreKit/StoreKit.h>
 #import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../External/OAuth/OAuthConsumer.h"
 #import "../External/PinchMedia/Beacon.h"
@@ -38,6 +39,10 @@
 #import "AbstractSearchResult.h"
 #import "AbstractSlidableTableViewController.h"
 #import "AbstractStackableTableViewController.h"
+#import "AbstractStore.h"
+#import "AbstractUnlockRequest.h"
+#import "AbstractSimulatorStore.h"
+#import "AbstractDeviceStore.h"
 #import "AbstractTableViewCell.h"
 #import "AbstractTableViewController.h"
 #import "AbstractTwitterAccount.h"
@@ -100,6 +105,9 @@
 #import "SmallActivityIndicatorViewWithBackground.h"
 #import "SplashScreen.h"
 #import "SplashScreenDelegate.h"
+#import "StoreDelegate.h"
+#import "StoreItem.h"
+#import "StoreItemVault.h"
 #import "StringUtilities.h"
 #import "StyleSheet.h"
 #import "SwitchCell.h"
@@ -116,6 +124,7 @@
 #import "UIColor+Utilities.h"
 #import "UIScrollView+Utilities.h"
 #import "UIViewController+Utilities.h"
+#import "UnlockResult.h"
 #import "ViewControllerUtilities.h"
 #import "WebViewController.h"
 #import "XmlDocument.h"

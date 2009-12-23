@@ -300,6 +300,21 @@
 		100000000000001A00000045 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000044 /* UIViewController+Utilities.m */; };
 		100000000000001B00000004 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000003 /* ViewControllerState.h */; };
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
+		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
+		74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499710DD72EB0002369F /* AbstractDeviceStore.m */; };
+		74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */; };
+		74FA49A610DD72EB0002369F /* AbstractSimulatorStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499910DD72EB0002369F /* AbstractSimulatorStore.m */; };
+		74FA49A710DD72EB0002369F /* AbstractStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499A10DD72EB0002369F /* AbstractStore.h */; };
+		74FA49A810DD72EB0002369F /* AbstractStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499B10DD72EB0002369F /* AbstractStore.m */; };
+		74FA49A910DD72EB0002369F /* StoreItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499C10DD72EB0002369F /* StoreItem.h */; };
+		74FA49AA10DD72EB0002369F /* AbstractUnlockRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499D10DD72EB0002369F /* AbstractUnlockRequest.h */; };
+		74FA49AB10DD72EB0002369F /* AbstractUnlockRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499E10DD72EB0002369F /* AbstractUnlockRequest.m */; };
+		74FA49AC10DD72EB0002369F /* UnlockResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499F10DD72EB0002369F /* UnlockResult.h */; };
+		74FA49AD10DD72EB0002369F /* UnlockResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA49A010DD72EB0002369F /* UnlockResult.m */; };
+		74FA49D010DD73A50002369F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA49CF10DD73A50002369F /* StoreKit.framework */; };
+		74FA4A6E10DD75E40002369F /* StoreItemVault.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA4A6C10DD75E40002369F /* StoreItemVault.h */; };
+		74FA4A6F10DD75E40002369F /* StoreItemVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA4A6D10DD75E40002369F /* StoreItemVault.m */; };
+		74FFC96310E1524C00DF4AC7 /* StoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFC96110E1524C00DF4AC7 /* StoreDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -613,6 +628,21 @@
 		100000000000001A00000044 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001B00000003 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
+		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
+		74FA499710DD72EB0002369F /* AbstractDeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDeviceStore.m; sourceTree = "<group>"; };
+		74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSimulatorStore.h; sourceTree = "<group>"; };
+		74FA499910DD72EB0002369F /* AbstractSimulatorStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSimulatorStore.m; sourceTree = "<group>"; };
+		74FA499A10DD72EB0002369F /* AbstractStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractStore.h; sourceTree = "<group>"; };
+		74FA499B10DD72EB0002369F /* AbstractStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractStore.m; sourceTree = "<group>"; };
+		74FA499C10DD72EB0002369F /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
+		74FA499D10DD72EB0002369F /* AbstractUnlockRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractUnlockRequest.h; sourceTree = "<group>"; };
+		74FA499E10DD72EB0002369F /* AbstractUnlockRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractUnlockRequest.m; sourceTree = "<group>"; };
+		74FA499F10DD72EB0002369F /* UnlockResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockResult.h; sourceTree = "<group>"; };
+		74FA49A010DD72EB0002369F /* UnlockResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockResult.m; sourceTree = "<group>"; };
+		74FA49CF10DD73A50002369F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		74FA4A6C10DD75E40002369F /* StoreItemVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItemVault.h; sourceTree = "<group>"; };
+		74FA4A6D10DD75E40002369F /* StoreItemVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItemVault.m; sourceTree = "<group>"; };
+		74FFC96110E1524C00DF4AC7 /* StoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +658,7 @@
 				1000000000000018000001FB /* libsqlite3.dylib in Frameworks */,
 				100000000000000A00000025 /* MapKit.framework in Frameworks */,
 				10000000000000120000008B /* MediaPlayer.framework in Frameworks */,
+				74FA49D010DD73A50002369F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +724,7 @@
 				10000000000000090000009B /* External */,
 				100000000000000A000000A3 /* Mapping */,
 				100000000000001500000107 /* Search */,
+				74FA499510DD72D90002369F /* Store */,
 				10000000000000120000007F /* Threading */,
 				1000000000000008000000FE /* Twitter */,
 				10000000000000180000005A /* UI */,
@@ -753,7 +785,6 @@
 				100000000000001200000056 /* Other Sources */,
 				1000000000000015000001D7 /* Products */,
 				100000000000001500000106 /* Resources */,
-				100000000000001200000084 /* MediaPlayer.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -787,6 +818,8 @@
 				100000000000000900000068 /* CoreGraphics.framework */,
 				1000000000000009000000B5 /* Foundation.framework */,
 				100000000000000A00000024 /* MapKit.framework */,
+				100000000000001200000084 /* MediaPlayer.framework */,
+				74FA49CF10DD73A50002369F /* StoreKit.framework */,
 				1000000000000015000001F9 /* SystemConfiguration.framework */,
 				100000000000001800000067 /* UIKit.framework */,
 			);
@@ -1168,6 +1201,27 @@
 			name = Xml;
 			sourceTree = "<group>";
 		};
+		74FA499510DD72D90002369F /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				74FA499610DD72EB0002369F /* AbstractDeviceStore.h */,
+				74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */,
+				74FA499A10DD72EB0002369F /* AbstractStore.h */,
+				74FA499D10DD72EB0002369F /* AbstractUnlockRequest.h */,
+				74FFC96110E1524C00DF4AC7 /* StoreDelegate.h */,
+				74FA499C10DD72EB0002369F /* StoreItem.h */,
+				74FA4A6C10DD75E40002369F /* StoreItemVault.h */,
+				74FA499F10DD72EB0002369F /* UnlockResult.h */,
+				74FA499710DD72EB0002369F /* AbstractDeviceStore.m */,
+				74FA499910DD72EB0002369F /* AbstractSimulatorStore.m */,
+				74FA499B10DD72EB0002369F /* AbstractStore.m */,
+				74FA499E10DD72EB0002369F /* AbstractUnlockRequest.m */,
+				74FA4A6D10DD75E40002369F /* StoreItemVault.m */,
+				74FA49A010DD72EB0002369F /* UnlockResult.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1327,6 +1381,14 @@
 				1000000000000007000001B8 /* AutoreleasingMutableArray.h in Headers */,
 				1000000000000007000001BC /* AutoreleasingMutableDictionary.h in Headers */,
 				1000000000000007000001C0 /* AutoreleasingMutableSet.h in Headers */,
+				74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */,
+				74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */,
+				74FA49A710DD72EB0002369F /* AbstractStore.h in Headers */,
+				74FA49A910DD72EB0002369F /* StoreItem.h in Headers */,
+				74FA49AA10DD72EB0002369F /* AbstractUnlockRequest.h in Headers */,
+				74FA49AC10DD72EB0002369F /* UnlockResult.h in Headers */,
+				74FA4A6E10DD75E40002369F /* StoreItemVault.h in Headers */,
+				74FFC96310E1524C00DF4AC7 /* StoreDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1567,12 @@
 				1000000000000007000001BA /* AutoreleasingMutableArray.m in Sources */,
 				1000000000000007000001BE /* AutoreleasingMutableDictionary.m in Sources */,
 				1000000000000007000001C2 /* AutoreleasingMutableSet.m in Sources */,
+				74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */,
+				74FA49A610DD72EB0002369F /* AbstractSimulatorStore.m in Sources */,
+				74FA49A810DD72EB0002369F /* AbstractStore.m in Sources */,
+				74FA49AB10DD72EB0002369F /* AbstractUnlockRequest.m in Sources */,
+				74FA49AD10DD72EB0002369F /* UnlockResult.m in Sources */,
+				74FA4A6F10DD75E40002369F /* StoreItemVault.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
