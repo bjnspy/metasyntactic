@@ -23,9 +23,9 @@
 transactionIdentifier:(NSString*) transactionIdentifier_
             receipt:(NSString*) receipt_
         transaction:(SKPaymentTransaction*) transaction_ {
-  if ((self = [super initWithItem:item_ 
-            transactionIdentifier:transactionIdentifier_ 
-                          receipt:receipt_ 
+  if ((self = [super initWithItem:item_
+            transactionIdentifier:transactionIdentifier_
+                          receipt:receipt_
                       transaction:transaction_])) {
   }
   return self;
