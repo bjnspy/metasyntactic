@@ -45,12 +45,17 @@
 }
 
 
+- (void) setupStyle {
+  self.navigationBar.barStyle = [StyleSheet navigationBarStyle];
+  self.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
+}
+
+
 - (void) loadView {
   [super loadView];
 
   self.view.autoresizesSubviews = YES;
-  self.navigationBar.barStyle = [StyleSheet navigationBarStyle];
-  self.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
+  [self setupStyle];
 
   UIImage* image = self.backgroundImage;
   if (image != nil) {
@@ -83,6 +88,7 @@
 
 
 - (void) majorRefresh {
+  [self setupStyle];
   [self refreshWithSelector:@selector(majorRefresh)];
 }
 

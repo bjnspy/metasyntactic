@@ -31,6 +31,7 @@
 		100000000000002900000010 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000E /* libBoxOfficeShared.a */; };
 		100000000000002900000063 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005F /* libsqlite3.dylib */; };
 		100000000000002A00000010 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		74176EC410E4A6560068CEC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74176EC310E4A6560068CEC8 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		100000000000002E00000034 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74176EC310E4A6560068CEC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				100000000000001800000277 /* SystemConfiguration.framework in Frameworks */,
 				10000000000000120000006E /* MapKit.framework in Frameworks */,
 				1000000000000012000000BD /* MessageUI.framework in Frameworks */,
+				74176EC410E4A6560068CEC8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +151,7 @@
 				10000000000000170000006E /* Resources */,
 				100000000000000B0000000C /* Entitlements.plist */,
 				1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */,
+				74176EC310E4A6560068CEC8 /* StoreKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

@@ -67,6 +67,7 @@ static NSString* NETFLIX_DISABLED                           = @"netflixDisabled"
 static NSString* NETFLIX_FILTER_SELECTED_SEGMENT_INDEX      = @"netflixFilterSelectedSegmentIndex";
 static NSString* NETFLIX_NOTIFICATIONS_DISABLED             = @"netflixNotificationsDisabled";
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
+static NSString* NETFLIX_THEMING                            = @"netflixTheming";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
 static NSString* SEARCH_DATE                                = @"searchDate";
@@ -300,6 +301,21 @@ static Model* model = nil;
 
 - (void) setNetflixCacheEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
+}
+
+
+- (BOOL) netflixTheming {
+  NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_THEMING];
+  if (value == nil) {
+    return YES;
+  }
+  
+  return value.boolValue;
+}
+
+
+- (void) setNetflixTheming:(BOOL) netflixTheming {
+  [[NSUserDefaults standardUserDefaults] setBool:netflixTheming forKey:NETFLIX_THEMING];
 }
 
 
