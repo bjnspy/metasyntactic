@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
+#import "Model.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixMostPopularViewController.h"
 #import "NetflixQueueViewController.h"
@@ -58,10 +59,21 @@ typedef enum {
 }
 
 
+- (BOOL) theming {
+  return [[Model model] netflixTheming];
+}
+
+
 - (void) setupTableStyle {
   self.tableView.rowHeight = ROW_HEIGHT;
-  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tableView.backgroundColor = [ColorCache netflixRed];
+  
+  if (self.theming) {
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [ColorCache netflixRed];
+  } else {
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.backgroundColor = [UIColor clearColor];
+  }
 }
 
 
@@ -75,9 +87,14 @@ typedef enum {
 }
 
 
+- (void) setupSearchStyle {
+  searchBar.tintColor = [StyleSheet searchBarTintColor];
+}
+
+
 - (void) initializeSearchDisplay {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
-  searchBar.tintColor = [StyleSheet searchBarTintColor];
+  [self setupSearchStyle];
   [searchBar sizeToFit];
 
   self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
@@ -157,6 +174,7 @@ typedef enum {
 
   [self initializeInfoButton];
   [self setupTableStyle];
+  [self setupSearchStyle];
   [self setupTitle];
   [self determinePopularMovieCount];
 }
@@ -180,9 +198,10 @@ typedef enum {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
 
-  cell.textLabel.textColor = [UIColor whiteColor];
-  cell.accessoryView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(@"NetflixChevron.png")] autorelease];
-
+  BOOL theming = self.theming;
+  UIImage* image = nil;
+  
+  
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
@@ -192,63 +211,75 @@ typedef enum {
         } else {
           cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
         }
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
+        image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
         cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants discQueueKey] account:account];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
+        image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
         cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants instantQueueKey] account:account];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
+        image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
         break;
       case RecommendationsSection:
         cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants recommendationKey] account:account];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixRecommendations.png");
+        image = BoxOfficeStockImage(@"NetflixRecommendations.png");
         break;
       case AtHomeSection:
         cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants atHomeKey] account:account];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixHome.png");
+        image = BoxOfficeStockImage(@"NetflixHome.png");
         break;
       case RentalHistorySection:
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixHistory.png");
+        image = BoxOfficeStockImage(@"NetflixHistory.png");
         break;
       case AboutSendFeedbackSection:
         cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Send Feedback", nil), LocalizedString(@"Write Review", nil)];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
+        image = BoxOfficeStockImage(@"NetflixCredits.png");
         break;
       case AccountsSection:
         cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Accounts", nil), LocalizedString(@"Profiles", nil)];
-        cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
+        image = BoxOfficeStockImage(@"NetflixLogOff.png");
         break;
     }
   } else {
     if (indexPath.row == 2) {
       cell.textLabel.text = LocalizedString(@"Sign Up for New Account", nil);
-      cell.imageView.image = BoxOfficeStockImage(@"NetflixSettings.png");
+      image = BoxOfficeStockImage(@"NetflixSettings.png");
     } else if (indexPath.row == 0) {
       cell.textLabel.text = LocalizedString(@"Log In to Existing Account", nil);
-      cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
+      image = BoxOfficeStockImage(@"NetflixLogOff.png");
     } else if (indexPath.row == 1) {
       cell.textLabel.text = LocalizedString(@"Send Feedback", nil);
-      cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
+      image = BoxOfficeStockImage(@"NetflixCredits.png");
     }
   }
 
+  if (theming) {
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(@"NetflixChevron.png")] autorelease];
+
+    NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
+    NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
+    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(backgroundName)] autorelease];
+    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(selectedBackgroundName)] autorelease];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    cell.backgroundView = backgroundView;
+    cell.selectedBackgroundView = selectedBackgroundView;  
+    cell.imageView.image = image;
+  } else {
+    cell.imageView.image = [ImageUtilities makeGrayscale:image];
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  
   if (cell.textLabel.text.length == 0) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
   }
-
-  NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
-  NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
-  UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(backgroundName)] autorelease];
-  UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(selectedBackgroundName)] autorelease];
-  backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  cell.backgroundView = backgroundView;
-  cell.selectedBackgroundView = selectedBackgroundView;
 
   return cell;
 }

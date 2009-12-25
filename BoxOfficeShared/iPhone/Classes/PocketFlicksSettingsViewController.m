@@ -69,7 +69,7 @@ typedef enum {
   if (section == SendFeedbackSection) {
     return 1;
   } else if (section == StandardSettingsSection) {
-    return 2;
+    return 3;
   } else if (section == RefreshSection) {
     if (refreshed) {
       return 0;
@@ -123,6 +123,10 @@ typedef enum {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
       on = [Model model].loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
+    } else if (row == 2) {
+      text = LocalizedString(@"Theming", nil);
+      on = [Model model].netflixTheming;
+      selector = @selector(onNetflixThemingChanged:);
     }
 
     return [self createSwitchCellWithText:text on:on selector:selector];
@@ -163,6 +167,20 @@ typedef enum {
 
 - (void) onLoadingIndicatorsChanged:(UISwitch*) sender {
   [[Model model] setLoadingIndicatorsEnabled:sender.on];
+}
+
+
+- (void) onNetflixThemingChanged:(UISwitch*) sender {
+  BOOL theming = sender.on;
+  [[Model model] setNetflixTheming:theming];
+  
+  if (theming) {
+    [StyleSheet enableTheming];
+  } else {
+    [StyleSheet disableTheming];
+  }
+  
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 

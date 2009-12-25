@@ -14,7 +14,7 @@
 
 #import "BoxOfficeSharedApplicationDelegate.h"
 
-@interface AbstractBoxOfficeAppDelegate : NSObject<BoxOfficeSharedApplicationDelegate,SplashScreenDelegate> {
+@interface AbstractBoxOfficeAppDelegate : NSObject<UIApplicationDelegate,BoxOfficeSharedApplicationDelegate,SplashScreenDelegate> {
 @private
   UIViewController* viewController;
 }

@@ -23,6 +23,7 @@
 + (UIImage*) roundUpperLeftCornerOfImage:(UIImage*) image;
 + (UIImage*) roundLowerLeftCornerOfImage:(UIImage*) image;
 + (UIImage*) roundCornersOfImage:(UIImage*) image;
++ (UIImage*) makeGrayscale:(UIImage*) image;
 
 + (NSData*) scaleImageData:(NSData*) image toHeight:(CGFloat) height;
 

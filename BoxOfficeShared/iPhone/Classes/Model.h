@@ -191,4 +191,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context);
 - (BOOL) useSmallFonts;
 - (void) setUseSmallFonts:(BOOL) useSmallFonts;
 
+- (BOOL) netflixTheming;
+- (void) setNetflixTheming:(BOOL) netflixTheming;
+
 @end

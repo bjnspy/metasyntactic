@@ -16,7 +16,38 @@
 
 #import "UIColor+Utilities.h"
 
+@interface StyleSheet()
+@property BOOL disabled;
+@end
+
+
 @implementation StyleSheet
+
+static StyleSheet* styleSheet;
+
++ (void) initialize {
+  if (self == [StyleSheet class]) {
+    styleSheet = [[StyleSheet alloc] init];
+  }
+}
+
+@synthesize disabled;
+
+- (void) dealloc {
+  self.disabled = NO;
+  [super dealloc];
+}
+
+
++ (void) enableTheming {
+  styleSheet.disabled = NO;
+}
+
+
++ (void) disableTheming {
+  styleSheet.disabled = YES;
+}
+
 
 + (UIBarStyle) barStyleFromString:(NSString*) string {
   if ([@"UIBarStyleBlack" isEqual:string]) {
@@ -57,18 +88,45 @@
 }
 
 
-+ (UIColor*) navigationBarTintColor {
+- (UIColor*) navigationBarTintColor {
+  if (self.disabled) {
+    return nil;
+  }
+
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarTintColor"]];
 }
 
 
-+ (UIColor*) segmentedControlTintColor {
++ (UIColor*) navigationBarTintColor {
+  return [styleSheet navigationBarTintColor];
+}
+
+
+- (UIColor*) segmentedControlTintColor {
+  if (self.disabled) {
+    return nil;
+  }
+
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISegmentedControlTintColor"]];
 }
 
 
-+ (UIColor*) searchBarTintColor {
++ (UIColor*) segmentedControlTintColor {
+  return [styleSheet segmentedControlTintColor];
+}
+
+
+- (UIColor*) searchBarTintColor {
+  if (self.disabled) {
+    return nil;
+  }
+  
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarTintColor"]];
+}
+
+
++ (UIColor*) searchBarTintColor {
+  return [styleSheet searchBarTintColor];
 }
 
 

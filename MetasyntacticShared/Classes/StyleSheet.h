@@ -13,7 +13,12 @@
 // limitations under the License.
 
 @interface StyleSheet : NSObject {
+@private
+  BOOL disabled;
 }
+
++ (void) enableTheming;
++ (void) disableTheming;
 
 + (UIStatusBarStyle) statusBarStyle;
 
@@ -21,7 +26,7 @@
 + (UIBarStyle) searchBarStyle;
 + (UIBarStyle) toolBarStyle;
 
-+ (UIColor*) navigationBarTintColor;
++ (UIColor*) navigationBarTintColor;                                    
 + (UIColor*) segmentedControlTintColor;
 + (UIColor*) searchBarTintColor;
 
