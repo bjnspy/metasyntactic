@@ -309,7 +309,7 @@ static Model* model = nil;
   if (value == nil) {
     return YES;
   }
-  
+
   return value.boolValue;
 }
 

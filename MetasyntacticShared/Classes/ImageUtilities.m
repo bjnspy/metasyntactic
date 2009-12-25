@@ -36,11 +36,11 @@
   if (image == nil) {
     return nil;
   }
-  
+
   CGContextRef context = [self getBitmapContext:size];
   CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
   CGImageRef imageRef = CFAutoRelease(CGBitmapContextCreateImage(context));
-  
+
   return [UIImage imageWithCGImage:imageRef];
 }
 
@@ -49,9 +49,9 @@
   if (image == nil) {
     return nil;
   }
-  
+
   CGSize imageSize = image.size;
-  
+
   CGFloat width = imageSize.width * (height / imageSize.height);
   CGSize resultSize = CGSizeMake(width, height);
   return [self scaleImage:image toSize:resultSize];
@@ -62,21 +62,21 @@
   if (data.length == 0) {
     return nil;
   }
-  
+
   UIImage* source = [UIImage imageWithData:data];
   if (source == nil) {
     return nil;
   }
-  
+
   if (source.size.height <= height) {
     return data;
   }
-  
+
   UIImage* result = [self scaleImage:source toHeight:height];
   if (result == nil) {
     return nil;
   }
-  
+
   return UIImageJPEGRepresentation(result, 0.75f);
 }
 
@@ -85,9 +85,9 @@
   if (image == nil) {
     return nil;
   }
-  
+
   UIImage* cropped;
-  
+
   //create a context to do our clipping in
   UIGraphicsBeginImageContext(rect.size);
   CGContextRef currentContext = UIGraphicsGetCurrentContext();
@@ -97,7 +97,7 @@
     //newly created context
     CGRect clippedRect = CGRectMake(0, 0, rect.size.width, rect.size.height);
     CGContextClipToRect(currentContext, clippedRect);
-    
+
     //create a rect equivalent to the full size of the image
     //offset the rect by the X and Y we want to start the crop
     //from in order to cut off anything before them
@@ -105,22 +105,22 @@
                                  rect.origin.y * -1,
                                  image.size.width,
                                  image.size.height);
-    
+
     CGContextSetRGBFillColor(currentContext, 0.75f, 0.75f, 0.75f, 1.f);
     CGContextFillRect(currentContext, clippedRect);
-    
+
     CGContextTranslateCTM(currentContext, 0.0f, drawRect.size.height);
     CGContextScaleCTM(currentContext, 1.0f, -1.0f);
-    
+
     //draw the image to our clipped context using our offset rect
     CGContextDrawImage(currentContext, drawRect, image.CGImage);
-    
+
     //pull the image from our cropped context
     cropped = UIGraphicsGetImageFromCurrentImageContext();
   }
   //pop the context to get back to the default
   UIGraphicsEndImageContext();
-  
+
   return cropped;
 }
 
@@ -131,13 +131,13 @@ void upperLeftRoundingFunction(CGContextRef context, CGRect rect) {
   {
     CGFloat fw = rect.size.width;
     CGFloat fh = rect.size.height;
-    
+
     CGContextMoveToPoint(context, fw, fh/2);
     CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 0);
     CGContextAddArcToPoint(context, 0, fh, 0, fh/2, RADIUS);
     CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 0);
     CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 0);
-    
+
     CGContextClosePath(context);
   }
   CGContextRestoreGState(context);
@@ -149,13 +149,13 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
   {
     CGFloat fw = rect.size.width;
     CGFloat fh = rect.size.height;
-    
+
     CGContextMoveToPoint(context, fw, fh/2);
     CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 0);
     CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 0);
     CGContextAddArcToPoint(context, 0, 0, fw/2, 0, RADIUS);
     CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 0);
-    
+
     CGContextClosePath(context);
   }
   CGContextRestoreGState(context);
@@ -167,13 +167,13 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
   {
     CGFloat fw = rect.size.width;
     CGFloat fh = rect.size.height;
-    
+
     CGContextMoveToPoint(context, fw, fh/2);
     CGContextAddArcToPoint(context, fw, fh, fw/2, fh, RADIUS);
     CGContextAddArcToPoint(context, 0, fh, 0, fh/2, RADIUS);
     CGContextAddArcToPoint(context, 0, 0, fw/2, 0, RADIUS);
     CGContextAddArcToPoint(context, fw, 0, fw, fh/2, RADIUS);
-    
+
     CGContextClosePath(context);
   }
   CGContextRestoreGState(context);
@@ -185,20 +185,20 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
   if (image == nil) {
     return image;
   }
-  
+
   CGSize size = image.size;
   CGContextRef context = [self getBitmapContext:size];
-  
+
   CGContextBeginPath(context);
   CGRect rect = CGRectMake(0, 0, size.width, size.height);
   roundingFunction(context, rect);
   CGContextClosePath(context);
   CGContextClip(context);
-  
+
   CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
-  
+
   CGImageRef imageMasked = CFAutoRelease(CGBitmapContextCreateImage(context));
-  
+
   return [UIImage imageWithCGImage:imageMasked];
 }
 
@@ -225,20 +225,20 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
   if (image == nil) {
     return nil;
   }
-  
+
   CGSize size = image.size;
   CGFloat height = roundf(size.height);
   CGFloat width = roundf(size.width);
-  
+
   size_t length = 4 * height * width;
   void* rawData = malloc(length);
-  
+
   if (rawData == NULL) {
     return image;
   }
-  
+
   CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
-  
+
   CGContextRef context =
   CFAutoRelease(CGBitmapContextCreate(rawData,
                                       width,
@@ -247,13 +247,13 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
                                       4 * width,
                                       colorSpace,
                                       kCGImageAlphaPremultipliedFirst));
-  
+
   CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
-  
+
   CGDataProviderRef dataProvider =
   CFAutoRelease(CGDataProviderCreateWithCFData(
                                                CFAutoRelease(CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc))));
-  
+
   CGImageRef imageRef =
   CFAutoRelease(CGImageCreate(width,
                               height,
@@ -266,7 +266,7 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
                               NULL,
                               YES,
                               kCGRenderingIntentDefault));
-  
+
   return [UIImage imageWithCGImage:imageRef];
 }
 
@@ -278,50 +278,50 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
     GREEN = 2,
     RED = 3
   } PIXELS;
-  
+
   CGSize size = [source size];
   int width = size.width;
   int height = size.height;
-  
+
   // the pixels will be painted to this array
   uint32_t *pixels = (uint32_t *) malloc(width * height * sizeof(uint32_t));
-  
+
   // clear the pixels so any transparency is preserved
   memset(pixels, 0, width * height * sizeof(uint32_t));
-  
+
   CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
-  
+
   // create a context with RGBA pixels
   CGContextRef context = CFAutoRelease(CGBitmapContextCreate(pixels,
                                                width,
                                                height,
                                                8,
                                                width * sizeof(uint32_t),
-                                               colorSpace, 
+                                               colorSpace,
                                                kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedLast));
-  
+
   // paint the bitmap to our context which will fill in the pixels array
   CGContextDrawImage(context, CGRectMake(0, 0, width, height), [source CGImage]);
-  
+
   for(int y = 0; y < height; y++) {
     for(int x = 0; x < width; x++) {
       uint8_t* rgbaPixel = (uint8_t*) &pixels[y * width + x];
-      
+
       uint32_t gray = (uint32_t)(0.3 * rgbaPixel[RED] + 0.59 * rgbaPixel[GREEN] + 0.11 * rgbaPixel[BLUE]);
-      
+
       // set the pixels to gray
       rgbaPixel[RED] = gray;
       rgbaPixel[GREEN] = gray;
       rgbaPixel[BLUE] = gray;
     }
   }
-  
+
   // create a new CGImageRef from our context with the modified pixels
   CGImageRef image = CFAutoRelease(CGBitmapContextCreateImage(context));
-  
+
   // we're done with the pixels
   free(pixels);
-  
+
   return [UIImage imageWithCGImage:image];
 }
 

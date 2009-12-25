@@ -40,14 +40,14 @@
   }
 
   [BoxOfficeSharedApplication setSharedApplicationDelegate:self];
-  
+
   if ([Model model].netflixTheming) {
     [StyleSheet enableTheming];
   } else {
     [StyleSheet disableTheming];
   }
-  
-  
+
+
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
   self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
 

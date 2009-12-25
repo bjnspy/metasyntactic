@@ -66,7 +66,7 @@ typedef enum {
 
 - (void) setupTableStyle {
   self.tableView.rowHeight = ROW_HEIGHT;
-  
+
   if (self.theming) {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [ColorCache netflixRed];
@@ -200,8 +200,8 @@ typedef enum {
 
   BOOL theming = self.theming;
   UIImage* image = nil;
-  
-  
+
+
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
@@ -267,14 +267,14 @@ typedef enum {
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cell.backgroundView = backgroundView;
-    cell.selectedBackgroundView = selectedBackgroundView;  
+    cell.selectedBackgroundView = selectedBackgroundView;
     cell.imageView.image = image;
   } else {
     cell.imageView.image = [ImageUtilities makeGrayscale:image];
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   if (cell.textLabel.text.length == 0) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView = nil;

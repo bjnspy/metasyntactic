@@ -173,13 +173,13 @@ typedef enum {
 - (void) onNetflixThemingChanged:(UISwitch*) sender {
   BOOL theming = sender.on;
   [[Model model] setNetflixTheming:theming];
-  
+
   if (theming) {
     [StyleSheet enableTheming];
   } else {
     [StyleSheet disableTheming];
   }
-  
+
   [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
