@@ -120,7 +120,7 @@ static StyleSheet* styleSheet;
   if (self.disabled) {
     return nil;
   }
-  
+
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarTintColor"]];
 }
 

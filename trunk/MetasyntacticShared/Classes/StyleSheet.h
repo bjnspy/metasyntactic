@@ -26,7 +26,7 @@
 + (UIBarStyle) searchBarStyle;
 + (UIBarStyle) toolBarStyle;
 
-+ (UIColor*) navigationBarTintColor;                                    
++ (UIColor*) navigationBarTintColor;
 + (UIColor*) segmentedControlTintColor;
 + (UIColor*) searchBarTintColor;
 
