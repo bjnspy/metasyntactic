@@ -486,7 +486,6 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;

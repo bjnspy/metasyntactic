@@ -120,30 +120,36 @@ static NetflixCache* cache;
 
   XmlElement* element = [NetflixCache downloadXml:request account:account];
 
-  NSSet* allowableFeeds = [NSSet setWithObjects:
-                           [NetflixConstants discQueueKey],
-                           [NetflixConstants instantQueueKey],
-                           [NetflixConstants atHomeKey],
-                           [NetflixConstants recommendationKey],
-                           [NetflixConstants rentalHistoryKey],
-                           [NetflixConstants rentalHistoryWatchedKey],
-                           [NetflixConstants rentalHistoryReturnedKey], nil];
+  NSArray* allowableKeys = [NSArray arrayWithObjects:
+                            [NetflixConstants atHomeKey],
+                            [NetflixConstants discQueueKey],
+                            [NetflixConstants instantQueueKey],
+                            [NetflixConstants recommendationKey],
+                            [NetflixConstants rentalHistoryKey],
+                            [NetflixConstants rentalHistoryWatchedKey],
+                            [NetflixConstants rentalHistoryReturnedKey], nil];
 
-  NSMutableArray* feeds = [NSMutableArray array];
+  NSMutableArray* allFeeds = [NSMutableArray array];
+  
   for (XmlElement* child in element.children) {
     if ([child.name isEqual:@"link"]) {
       NSString* key = [child attributeValue:@"rel"];
 
-      if ([allowableFeeds containsObject:key]) {
+      if ([allowableKeys containsObject:key]) {
         Feed* feed = [Feed feedWithUrl:[child attributeValue:@"href"]
                                    key:key
                                   name:[child attributeValue:@"title"]];
 
-        if ([key isEqual:[NetflixConstants atHomeKey]]) {
-          [feeds insertObject:feed atIndex:0];
-        } else {
-          [feeds addObject:feed];
-        }
+        [allFeeds addObject:feed];
+      }
+    }
+  }
+  
+  NSMutableArray* feeds = [NSMutableArray array];
+  for (NSString* allowableKey in allowableKeys) {
+    for (Feed* feed in allFeeds) {
+      if ([allowableKey isEqual:feed.key]) {
+        [feeds addObject:feed];
       }
     }
   }
