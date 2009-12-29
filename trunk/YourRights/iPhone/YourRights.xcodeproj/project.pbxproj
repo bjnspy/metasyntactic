@@ -64,6 +64,7 @@
 		100000000000000B00000004 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000B00000003 /* ToughAnswerViewController.m */; };
 		10000000000000120000008E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000087 /* MediaPlayer.framework */; };
 		10000000000000290000003D /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000002900000039 /* libMetasyntacticShared.a */; };
+		74BAC6BB10EA5946007C0901 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BAC6BA10EA5946007C0901 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		100000000000000B00000003 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
 		100000000000000B00000023 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
 		100000000000001200000087 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		74BAC6BA10EA5946007C0901 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 				1000000000000007000000AB /* CoreLocation.framework in Frameworks */,
 				100000000000000800000017 /* MapKit.framework in Frameworks */,
 				10000000000000120000008E /* MediaPlayer.framework in Frameworks */,
+				74BAC6BB10EA5946007C0901 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +319,7 @@
 				100000000000000800000016 /* MapKit.framework */,
 				100000000000001200000087 /* MediaPlayer.framework */,
 				100000000000000800000018 /* MessageUI.framework */,
+				74BAC6BA10EA5946007C0901 /* StoreKit.framework */,
 				100000000000000900000090 /* SystemConfiguration.framework */,
 				1000000000000009000000A7 /* UIKit.framework */,
 			);
@@ -334,9 +338,10 @@
 		100000000000000900000017 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				100000000000000700000123 /* ForwardDeclarations.h */,
 				100000000000000800000013 /* Macros.h */,
-				1000000000000009000000BE /* Prefix.pch */,
 				1000000000000009000000C9 /* main.m */,
+				1000000000000009000000BE /* Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -361,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				10000000000000080000001A /* MetasyntacticResources.bundle */,
-				100000000000000700000123 /* ForwardDeclarations.h */,
 				1000000000000007000001B6 /* Info.plist */,
 				1000000000000007000000E1 /* Default.png */,
 				1000000000000007000001B4 /* Icon.png */,
