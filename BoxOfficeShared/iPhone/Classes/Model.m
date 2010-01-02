@@ -41,6 +41,8 @@
 #import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
 #import "WikipediaCache.h"
+#import "MetacriticCache.h"
+#import "RottenTomatoesCache.h"
 
 @interface Model()
 @property (retain) PersonPosterCache* personPosterCache;
@@ -777,6 +779,26 @@ static Model* model = nil;
 
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie {
   return [[WikipediaCache cache] addressForMovie:movie];
+}
+
+
+- (NSString*) metacriticAddressForMovie:(Movie*) movie {
+  Score* score = [self metacriticScoreForMovie:movie];
+  if (score.identifier.length > 0) {
+    return score.identifier;
+  }
+
+  return [[MetacriticCache cache] addressForMovie:movie];
+}
+
+
+- (NSString*) rottenTomatoesAddressForMovie:(Movie*) movie {
+  Score* score = [self rottenTomatoesScoreForMovie:movie];
+  if (score.identifier.length > 0) {
+    return score.identifier;
+  }
+
+  return [[RottenTomatoesCache cache] addressForMovie:movie];
 }
 
 
