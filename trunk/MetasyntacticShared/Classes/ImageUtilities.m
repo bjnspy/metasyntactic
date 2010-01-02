@@ -77,7 +77,7 @@
     return nil;
   }
 
-  return UIImageJPEGRepresentation(result, 0.75f);
+  return UIImageJPEGRepresentation(result, 0.5f);
 }
 
 
