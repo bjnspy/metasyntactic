@@ -19,6 +19,8 @@
 + (NSString*) imdbDirectory;
 + (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
++ (NSString*) metacriticDirectory;
++ (NSString*) rottenTomatoesDirectory;
 + (NSString*) userLocationsDirectory;
 + (NSString*) sentinelsPostersDirectory;
 + (NSString*) moviesPostersDirectory;
