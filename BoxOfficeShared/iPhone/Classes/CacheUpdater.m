@@ -18,13 +18,13 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "IMDbCache.h"
+#import "MetacriticCache.h"
 #import "PosterCache.h"
+#import "RottenTomatoesCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
-#import "MetacriticCache.h"
-#import "RottenTomatoesCache.h"
 
 @interface CacheUpdater()
 @property (retain) NSCondition* gate;

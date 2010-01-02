@@ -28,9 +28,11 @@
 #import "IMDbCache.h"
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
+#import "MetacriticCache.h"
 #import "MovieDetailsViewController.h"
 #import "PosterCache.h"
 #import "ReviewsViewController.h"
+#import "RottenTomatoesCache.h"
 #import "Score.h"
 #import "ScoreCache.h"
 #import "Theater.h"
@@ -41,8 +43,6 @@
 #import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
 #import "WikipediaCache.h"
-#import "MetacriticCache.h"
-#import "RottenTomatoesCache.h"
 
 @interface Model()
 @property (retain) PersonPosterCache* personPosterCache;
