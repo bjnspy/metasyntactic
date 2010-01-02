@@ -21,6 +21,8 @@ static NSString* dataDirectory = nil;
 static NSString* imdbDirectory = nil;
 static NSString* amazonDirectory = nil;
 static NSString* wikipediaDirectory = nil;
+static NSString* metacriticDirectory = nil;
+static NSString* rottenTomatoesDirectory = nil;
 static NSString* userLocationsDirectory = nil;
 static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
@@ -56,6 +58,8 @@ static NSString* helpDirectory = nil;
   [self addDirectory:imdbDirectory = [cacheDirectory stringByAppendingPathComponent:@"IMDb"]];
   [self addDirectory:amazonDirectory = [cacheDirectory stringByAppendingPathComponent:@"Amazon"]];
   [self addDirectory:wikipediaDirectory = [cacheDirectory stringByAppendingPathComponent:@"Wikipedia"]];
+  [self addDirectory:metacriticDirectory = [cacheDirectory stringByAppendingPathComponent:@"Metacritic"]];
+  [self addDirectory:rottenTomatoesDirectory = [cacheDirectory stringByAppendingPathComponent:@"RottenTomatoes"]];
   [self addDirectory:userLocationsDirectory = [cacheDirectory stringByAppendingPathComponent:@"UserLocations"]];
   [self addDirectory:scoresDirectory = [cacheDirectory stringByAppendingPathComponent:@"Scores"]];
   [self addDirectory:reviewsDirectory = [cacheDirectory stringByAppendingPathComponent:@"Reviews"]];
@@ -119,6 +123,16 @@ static NSString* helpDirectory = nil;
 
 + (NSString*) wikipediaDirectory {
   return wikipediaDirectory;
+}
+
+
++ (NSString*) metacriticDirectory {
+  return metacriticDirectory;
+}
+
+
++ (NSString*) rottenTomatoesDirectory {
+  return rottenTomatoesDirectory;
 }
 
 

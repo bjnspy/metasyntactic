@@ -144,6 +144,10 @@
 		1000000000000015000001F5 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F4 /* libNetflixShared.a */; };
 		1000000000000015000001F7 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F6 /* libProtocolBuffers.a */; };
 		10000000000000150000020C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000100 /* UpcomingMoviesViewController.m */; };
+		747D0E8510EECB8100C0360E /* RottenTomatoesCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 747D0E8310EECB8100C0360E /* RottenTomatoesCache.h */; };
+		747D0E8610EECB8100C0360E /* RottenTomatoesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D0E8410EECB8100C0360E /* RottenTomatoesCache.m */; };
+		747D0E8B10EECBFF00C0360E /* MetacriticCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 747D0E8910EECBFF00C0360E /* MetacriticCache.h */; };
+		747D0E8C10EECBFF00C0360E /* MetacriticCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D0E8A10EECBFF00C0360E /* MetacriticCache.m */; };
 		74FFCAC010E159C700DF4AC7 /* BoxOfficeStoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */; };
 		74FFCAC110E159C700DF4AC7 /* BoxOfficeStoreDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */; };
 		74FFCAC410E159CF00DF4AC7 /* DeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */; };
@@ -502,6 +506,10 @@
 		100000000000001800000252 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002600000005 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747D0E8310EECB8100C0360E /* RottenTomatoesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesCache.h; sourceTree = "<group>"; };
+		747D0E8410EECB8100C0360E /* RottenTomatoesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesCache.m; sourceTree = "<group>"; };
+		747D0E8910EECBFF00C0360E /* MetacriticCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticCache.h; sourceTree = "<group>"; };
+		747D0E8A10EECBFF00C0360E /* MetacriticCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticCache.m; sourceTree = "<group>"; };
 		74CAC2CF10CDA4D2003E51A3 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Resources/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74CAC2E410CDA83D003E51A3 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStoreDelegate.h; sourceTree = "<group>"; };
@@ -1089,10 +1097,14 @@
 				100000000000000700000065 /* AbstractWebsiteCache.h */,
 				100000000000000700000071 /* AmazonCache.h */,
 				100000000000000900000076 /* IMDbCache.h */,
+				747D0E8910EECBFF00C0360E /* MetacriticCache.h */,
+				747D0E8310EECB8100C0360E /* RottenTomatoesCache.h */,
 				100000000000001500000178 /* WikipediaCache.h */,
 				100000000000000700000066 /* AbstractWebsiteCache.m */,
 				10000000000000070000008D /* AmazonCache.m */,
 				100000000000000900000077 /* IMDbCache.m */,
+				747D0E8A10EECBFF00C0360E /* MetacriticCache.m */,
+				747D0E8410EECB8100C0360E /* RottenTomatoesCache.m */,
 				10000000000000150000017A /* WikipediaCache.m */,
 			);
 			name = Websites;
@@ -1142,6 +1154,8 @@
 				74FFCAC810E159D800DF4AC7 /* SimulatorStore.h in Headers */,
 				74FFCB3C10E15AB000DF4AC7 /* BoxOfficeItemVault.h in Headers */,
 				74FFCB9C10E15DC200DF4AC7 /* Donation.h in Headers */,
+				747D0E8510EECB8100C0360E /* RottenTomatoesCache.h in Headers */,
+				747D0E8B10EECBFF00C0360E /* MetacriticCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,6 +1413,8 @@
 				100000000000000800000076 /* BookmarkCache.m in Sources */,
 				100000000000000C0000000D /* FavoriteTheaterCache.m in Sources */,
 				74FFCB9D10E15DC200DF4AC7 /* Donation.m in Sources */,
+				747D0E8610EECB8100C0360E /* RottenTomatoesCache.m in Sources */,
+				747D0E8C10EECBFF00C0360E /* MetacriticCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
