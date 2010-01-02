@@ -142,16 +142,19 @@ enum ViewControllerType {
 
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
-- (NSString*) imdbAddressForMovie:(Movie*) movie;
-- (NSString*) amazonAddressForMovie:(Movie*) movie;
-- (NSString*) netflixAddressForMovie:(Movie*) movie;
-- (NSString*) wikipediaAddressForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 - (NSString*) ratingForMovie:(Movie*) movie;
 - (NSString*) ratingAndRuntimeForMovie:(Movie*) movie;
 - (NSInteger) lengthForMovie:(Movie*) movie;
 - (DVD*) dvdDetailsForMovie:(Movie*) movie;
+
+- (NSString*) imdbAddressForMovie:(Movie*) movie;
+- (NSString*) amazonAddressForMovie:(Movie*) movie;
+- (NSString*) netflixAddressForMovie:(Movie*) movie;
+- (NSString*) wikipediaAddressForMovie:(Movie*) movie;
+- (NSString*) metacriticAddressForMovie:(Movie*) movie;
+- (NSString*) rottenTomatoesAddressForMovie:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

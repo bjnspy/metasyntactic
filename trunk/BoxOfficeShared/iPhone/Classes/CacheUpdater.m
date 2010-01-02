@@ -23,6 +23,8 @@
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
+#import "MetacriticCache.h"
+#import "RottenTomatoesCache.h"
 
 @interface CacheUpdater()
 @property (retain) NSCondition* gate;
@@ -110,16 +112,19 @@ static CacheUpdater* cacheUpdater = nil;
     [NotificationCenter addNotification:movie.canonicalTitle];
   }
 
-  [[PosterCache cache]     processMovie:movie force:force];
-  [[NetflixCache cache]    processMovie:movie force:force];
-  [[UpcomingCache cache]   processMovie:movie force:force];
-  [[DVDCache cache]        processMovie:movie force:force];
-  [[BlurayCache cache]     processMovie:movie force:force];
-  [[ScoreCache cache]      processMovie:movie force:force];
-  [[TrailerCache cache]    processMovie:movie force:force];
-  [[IMDbCache cache]       processMovie:movie force:force];
-  [[AmazonCache cache]     processMovie:movie force:force];
-  [[WikipediaCache cache]  processMovie:movie force:force];
+  [[PosterCache cache]          processMovie:movie force:force];
+  [[NetflixCache cache]         processMovie:movie force:force];
+  [[UpcomingCache cache]        processMovie:movie force:force];
+  [[DVDCache cache]             processMovie:movie force:force];
+  [[BlurayCache cache]          processMovie:movie force:force];
+  [[ScoreCache cache]           processMovie:movie force:force];
+  [[TrailerCache cache]         processMovie:movie force:force];
+  [[IMDbCache cache]            processMovie:movie force:force];
+  [[AmazonCache cache]          processMovie:movie force:force];
+  [[WikipediaCache cache]       processMovie:movie force:force];
+  [[RottenTomatoesCache cache]  processMovie:movie force:force];
+  [[MetacriticCache cache]      processMovie:movie force:force];
+
   [MetasyntacticSharedApplication minorRefresh];
 
   if (force) {

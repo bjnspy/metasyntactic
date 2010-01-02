@@ -268,14 +268,14 @@ typedef enum {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
 
-    Score* score = [[Model model] rottenTomatoesScoreForMovie:movie];
-    if (score.identifier.length > 0) {
-      [map setObject:score.identifier forKey:@"RottenTomatoes"];
+    NSString* rottenTomatoesAddress = [[Model model] rottenTomatoesAddressForMovie:movie];
+    if (rottenTomatoesAddress.length > 0) {
+      [map setObject:rottenTomatoesAddress forKey:@"RottenTomatoes"];
     }
 
-    score = [[Model model] metacriticScoreForMovie:movie];
-    if (score.identifier.length > 0) {
-      [map setObject:score.identifier forKey:@"Metacritic"];
+    NSString* metacriticAddress = [[Model model] metacriticAddressForMovie:movie];
+    if (metacriticAddress.length > 0) {
+      [map setObject:metacriticAddress forKey:@"Metacritic"];
     }
 
     if (dvd != nil) {
