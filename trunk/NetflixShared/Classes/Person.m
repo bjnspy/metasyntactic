@@ -46,7 +46,7 @@ property_definition(additionalFields);
   if ((self = [super init])) {
     self.identifier = [StringUtilities nonNilString:identifier_];
     self.name = [StringUtilities nonNilString:name_];
-    self.biography = [StringUtilities nonNilString:biography_];
+    self.biography = [HtmlUtilities removeHtml:[StringUtilities nonNilString:biography_]];
     self.additionalFields = additionalFields_;
   }
 

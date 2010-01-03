@@ -43,6 +43,10 @@
 
 
 - (CGSize) calculatePreferredImageSize:(UIImage*) synopsisImage {
+  if (synopsisImage == nil) {
+    return CGSizeZero;
+  }
+
   CGSize actualSize = synopsisImage.size;
 
   if (actualSize.width > 140) {
@@ -95,6 +99,12 @@
                          imageView:(UIImageView*) imageView
                        limitLength:(BOOL) limitLength {
   return [[[SynopsisCell alloc] initWithSynopsis:synopsis imageView:imageView limitLength:limitLength] autorelease];
+}
+
+
++ (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
+                       limitLength:(BOOL) limitLength {
+  return [self cellWithSynopsis:synopsis imageView:nil limitLength:limitLength];
 }
 
 
@@ -155,6 +165,10 @@
   if (synopsis.length == 0) {
     return 0;
   }
+  
+  if (imageSize.height == 0) {
+    return 0;
+  }
 
   CGFloat chunk1Height = imageSize.height;
   NSInteger chunk1X = 5 + imageSize.width + 5;
@@ -200,6 +214,10 @@
     // we didn't even need to split the synopsis. so there's no need to
     // trim.
     return synopsis.length;
+  }
+  
+  if (synopsisSplit == 0) {
+    return 0;
   }
 
   NSInteger guess = synopsisSplit * 3;
@@ -247,7 +265,7 @@
 
   synopsisChunk2Label.text = @"";
   if (synopsisSplit < synopsis.length) {
-    NSInteger start = synopsisSplit + 1;
+    NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
     NSInteger end = synopsisMax;
 
     NSString* synopsisChunk2 = [synopsis substringWithRange:NSMakeRange(start, end - start)];
@@ -286,7 +304,7 @@
     return h1 + 10;
   }
 
-  NSInteger start = synopsisSplit + 1;
+  NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
   NSInteger end = synopsisMax;
 
   NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];

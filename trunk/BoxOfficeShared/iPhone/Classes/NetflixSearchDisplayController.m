@@ -192,14 +192,14 @@
       [self.commonNavigationController pushMovieDetails:movie animated:YES];
     } else {
       Person* person = [people objectAtIndex:indexPath.row];
-      NSLog(@"", person);
+      [self.commonNavigationController pushPersonDetails:person animated:YES];
     }
   } else if ([self shouldShowMovies]) {
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [self.commonNavigationController pushMovieDetails:movie animated:YES];
   } else if ([self shouldShowPeople]) {
     Person* person = [people objectAtIndex:indexPath.row];
-    NSLog(@"", person);
+    [self.commonNavigationController pushPersonDetails:person animated:YES];
   }
 }
 

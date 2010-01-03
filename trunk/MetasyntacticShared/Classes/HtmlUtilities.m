@@ -120,12 +120,21 @@
 }
 
 
++ (NSString*) replaceParagraphs:(NSString*) string {
+  return [string stringByReplacingOccurrencesOfString:@"<p>" withString:@"\n\n"];
+}
+
+
 + (NSString*) removeHtml:(NSString*) string {
   if (string.length == 0) {
     return @"";
   }
 
-  string = [self convertHtmlEntities:[self stripHtmlCodes:[self stripHtmlLinks:[self convertHtmlEncodings:string]]]];
+  string = [self convertHtmlEntities:
+            [self stripHtmlCodes:
+             [self stripHtmlLinks:
+              [self convertHtmlEncodings:
+               [self replaceParagraphs:string]]]]];
   return [StringUtilities nonNilString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
