@@ -16,7 +16,6 @@
 
 #import "BookmarkCache.h"
 #import "BoxOfficeStockImages.h"
-#import "MovieCacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
@@ -24,6 +23,7 @@
 #import "LargePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
+#import "MovieCacheUpdater.h"
 #import "MovieShowtimesCell.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"

@@ -14,9 +14,9 @@
 
 #import "NetflixSearchDisplayController.h"
 
-#import "MovieCacheUpdater.h"
 #import "CommonNavigationController.h"
 #import "Model.h"
+#import "MovieCacheUpdater.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
@@ -209,11 +209,11 @@
   if (indexPath.section == 1) {
     return self.searchResultsTableView.rowHeight;
   }
-  
+
   if ([self shouldShowPeople]) {
     return self.searchResultsTableView.rowHeight;
   }
-  
+
   if (searchResult != nil) {
     return 100;
   }
@@ -231,7 +231,7 @@
       return nil;
     }
   }
-  
+
   if ([self shouldShowAll]) {
     if (movies.count > 0 && people.count > 0) {
       if (section == 0) {

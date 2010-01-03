@@ -51,7 +51,7 @@
   if (indent) {
     [buffer appendString:@" " repeat:level];
   }
-  
+
   [buffer appendString:@"<"];
   [buffer appendString:node.name];
   if (node.attributes.count > 0) {

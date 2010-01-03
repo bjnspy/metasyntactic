@@ -14,8 +14,6 @@
 
 #import "PersonCell.h"
 
-#import "Person.h"
-
 @interface PersonCell()
 @property (retain) UILabel* bioTitleLabel;
 @property (retain) UILabel* bioLabel;

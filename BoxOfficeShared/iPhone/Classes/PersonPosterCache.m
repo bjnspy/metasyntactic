@@ -15,7 +15,6 @@
 #import "PersonPosterCache.h"
 
 #import "Application.h"
-#import "Person.h"
 
 @interface PersonPosterCache()
 //@property (retain) LinkedSet* normalPeople;
