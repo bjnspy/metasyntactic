@@ -21,6 +21,7 @@
                 animated:(BOOL) animated;
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated;
+- (void) pushPersonDetails:(Person*) person animated:(BOOL) animated;
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
 - (void) pushReviews:(Movie*) movie animated:(BOOL) animated;
 

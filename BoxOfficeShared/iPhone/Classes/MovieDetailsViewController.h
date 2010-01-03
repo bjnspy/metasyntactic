@@ -46,6 +46,6 @@
 
 - (id) initWithMovie:(Movie*) movie;
 
-+ (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model;
++ (UIImage*) posterForMovie:(Movie*) movie;
 
 @end

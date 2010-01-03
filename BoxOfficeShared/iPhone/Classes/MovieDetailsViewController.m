@@ -57,10 +57,10 @@
 
 @implementation MovieDetailsViewController
 
-const NSInteger ADD_TO_NETFLIX_TAG = 1;
-const NSInteger VISIT_WEBSITES_TAG = 4;
+static const NSInteger ADD_TO_NETFLIX_TAG = 1;
+static const NSInteger VISIT_WEBSITES_TAG = 4;
 
-const NSInteger POSTER_TAG = -1;
+static const NSInteger POSTER_TAG = -1;
 
 typedef enum {
   InstantQueue,
@@ -233,8 +233,8 @@ typedef enum {
 }
 
 
-+ (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model {
-  UIImage* image = [model posterForMovie:movie];
++ (UIImage*) posterForMovie:(Movie*) movie {
+  UIImage* image = [[Model model] posterForMovie:movie];
 
   if (image != nil) {
     return image;
@@ -288,7 +288,7 @@ typedef enum {
 
 
 - (void) updateImage {
-  UIImage* image = [MovieDetailsViewController posterForMovie:movie model:[Model model]];
+  UIImage* image = [MovieDetailsViewController posterForMovie:movie];
   // we currently have a poster.  only replace it if we have something better
   if (image != nil && image != [BoxOfficeStockImages imageNotAvailable]) {
     self.posterImage = image;
@@ -465,7 +465,7 @@ typedef enum {
 
   filterTheatersByDistance = YES;
 
-  self.posterImage = [MovieDetailsViewController posterForMovie:movie model:[Model model]];
+  self.posterImage = [MovieDetailsViewController posterForMovie:movie];
   [self setupButtons];
   [self setupTitle];
 

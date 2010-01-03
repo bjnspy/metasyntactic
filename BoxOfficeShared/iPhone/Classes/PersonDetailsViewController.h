@@ -12,26 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractDetailsCell.h"
+#import "AbstractDetailsViewController.h"
 
-@interface SynopsisCell : AbstractDetailsCell {
+@interface PersonDetailsViewController : AbstractTableViewController<TappableImageViewDelegate, UIActionSheetDelegate> {
 @private
-  NSString* synopsis;
-  BOOL limitLength;
+  Person* person;
+  
+  NetflixAccount* netflixAccount;
+  NSDictionary* websites;
+  
+  ActionsView* actionsView;
 
-  UILabel* synopsisChunk1Label;
-  UILabel* synopsisChunk2Label;
-
-  CGSize imageSize;
+  UIImage* posterImage;
+  TappableImageView* posterImageView;
+  NSInteger posterCount;
+  
+  NSDictionary* buttonIndexToActionMap;
 }
 
+- (id) initWithPerson:(Person*) person;
 
-+ (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
-                         imageView:(UIImageView*) imageView
-                       limitLength:(BOOL) limitLength;
-
-
-+ (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
-                       limitLength:(BOOL) limitLength;
++ (UIImage*) posterForPerson:(Person*) person;
 
 @end

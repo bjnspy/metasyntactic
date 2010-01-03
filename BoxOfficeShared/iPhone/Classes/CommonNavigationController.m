@@ -23,6 +23,7 @@
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
+#import "PersonDetailsViewController.h"
 
 @implementation CommonNavigationController
 
@@ -95,6 +96,16 @@
   }
 
   UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithMovie:movie] autorelease];
+  [self pushViewController:viewController animated:animated];
+}
+
+
+- (void) pushPersonDetails:(Person*) person animated:(BOOL) animated {
+  if (person == nil) {
+    return;
+  }
+  
+  UIViewController* viewController = [[[PersonDetailsViewController alloc] initWithPerson:person] autorelease];
   [self pushViewController:viewController animated:animated];
 }
 
