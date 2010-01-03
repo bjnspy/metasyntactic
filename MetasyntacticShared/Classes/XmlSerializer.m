@@ -14,6 +14,7 @@
 
 #import "XmlSerializer.h"
 
+#import "NSMutableString+Utilities.h"
 #import "XmlDocument.h"
 #import "XmlElement.h"
 
@@ -40,11 +41,17 @@
 
 
 + (void) serializeElement:(XmlElement*) node
+                   indent:(BOOL) indent
+                    level:(NSInteger) level
                withBuffer:(NSMutableString*) buffer {
   if (node == nil) {
     return;
   }
 
+  if (indent) {
+    [buffer appendString:@" " repeat:level];
+  }
+  
   [buffer appendString:@"<"];
   [buffer appendString:node.name];
   if (node.attributes.count > 0) {
@@ -55,52 +62,87 @@
     }
   }
 
-  if (node.children.count == 0 && node.text == nil) {
+  if (node.children.count == 0 && node.text.length == 0) {
     [buffer appendString:@"/>"];
     return;
   }
 
   [buffer appendString:@">"];
-  if (node.text != nil)  {
+  if (node.text.length > 0)  {
+    if (indent) {
+      [buffer appendString:@"\n"];
+      [buffer appendString:@" " repeat:level + 1];
+    }
     [buffer appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
   }
 
   for (XmlElement* child in node.children) {
-    [XmlSerializer serializeElement:child withBuffer:buffer];
+    if (indent) {
+      [buffer appendString:@"\n"];
+    }
+    [XmlSerializer serializeElement:child
+                             indent:indent
+                              level:level + 1
+                         withBuffer:buffer];
   }
 
+  if (indent) {
+    [buffer appendString:@"\n"];
+    [buffer appendString:@" " repeat:level];
+  }
   [buffer appendString:@"</"];
   [buffer appendString:node.name];
   [buffer appendString:@">"];
 }
 
 
-+ (NSString*) serializeElement:(XmlElement*) node  {
++ (void) serializeElement:(XmlElement*) node
+                   indent:(BOOL) indent
+               withBuffer:(NSMutableString*) buffer {
+  [self serializeElement:node indent:indent level:0 withBuffer:buffer];
+}
+
+
++ (NSString*) serializeElement:(XmlElement*) node
+                        indent:(BOOL) indent {
   NSMutableString* buffer = [NSMutableString string];
-  [self serializeElement:node withBuffer:buffer];
+  [self serializeElement:node indent:indent withBuffer:buffer];
+  return buffer;
+}
+
+
++ (NSString*) serializeElement:(XmlElement*) node {
+  return [self serializeElement:node indent:YES];
+}
+
+
++ (NSString*) serializeDocument:(XmlDocument*) document indent:(BOOL) indent {
+  NSMutableString* buffer = [NSMutableString string];
+  [buffer appendString:@"<?xml"];
+
+  if (document.version.length > 0) {
+    [XmlSerializer serializeAttribute:@"version" value:document.version withBuffer:buffer];
+  }
+
+  if (document.encoding.length > 0) {
+    [XmlSerializer serializeAttribute:@"encoding" value:document.encoding withBuffer:buffer];
+  }
+
+  [buffer appendString:@"?>"];
+
+  if (document.root != nil) {
+    if (indent) {
+      [buffer appendString:@"\n"];
+    }
+    [XmlSerializer serializeElement:document.root indent:indent withBuffer:buffer];
+  }
+
   return buffer;
 }
 
 
 + (NSString*) serializeDocument:(XmlDocument*) document {
-  NSMutableString* serialized = [NSMutableString string];
-  [serialized appendString:@"<?xml"];
-
-  if (document.version != nil) {
-    [XmlSerializer serializeAttribute:@"version" value:document.version withBuffer:serialized];
-  }
-
-  if (document.encoding != nil) {
-    [XmlSerializer serializeAttribute:@"encoding" value:document.encoding withBuffer:serialized];
-  }
-
-  [serialized appendString:@"?>"];
-
-  if (document.root != nil) {
-    [XmlSerializer serializeElement:document.root withBuffer:serialized];
-  }
-
-  return serialized;
+  return [self serializeDocument:document indent:YES];
 }
 
 @end

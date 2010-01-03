@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 
 #import "AmazonCache.h"
 #import "BlurayCache.h"
@@ -26,20 +26,20 @@
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
 
-@interface CacheUpdater()
+@interface MovieCacheUpdater()
 @property (retain) NSCondition* gate;
 @property (retain) NSArray* searchOperations;
 @property (retain) AutoreleasingMutableArray* imageOperations;
 @end
 
 
-@implementation CacheUpdater
+@implementation MovieCacheUpdater
 
-static CacheUpdater* cacheUpdater = nil;
+static MovieCacheUpdater* updater = nil;
 
 + (void) initialize {
-  if (self == [CacheUpdater class]) {
-    cacheUpdater = [[CacheUpdater alloc] init];
+  if (self == [MovieCacheUpdater class]) {
+    updater = [[MovieCacheUpdater alloc] init];
   }
 }
 
@@ -70,8 +70,8 @@ static CacheUpdater* cacheUpdater = nil;
 }
 
 
-+ (CacheUpdater*) cacheUpdater {
-  return cacheUpdater;
++ (MovieCacheUpdater*) updater {
+  return updater;
 }
 
 

@@ -33,7 +33,7 @@
 		1000000000000007000000CB /* BoxOfficeSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CA /* BoxOfficeSharedApplication.m */; };
 		1000000000000007000000CD /* BoxOfficeSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CC /* BoxOfficeSharedApplicationDelegate.h */; };
 		1000000000000007000000D0 /* BoxOfficeStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CF /* BoxOfficeStockImages.m */; };
-		1000000000000007000000DE /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DD /* CacheUpdater.m */; };
+		1000000000000007000000DE /* MovieCacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DD /* MovieCacheUpdater.m */; };
 		1000000000000007000000E7 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000E6 /* CollapsedMovieDetailsCell.m */; };
 		1000000000000007000000EB /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000EA /* CommonNavigationController.m */; };
 		1000000000000007000000EE /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000ED /* Controller.m */; };
@@ -94,7 +94,6 @@
 		100000000000000A000000BA /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000A000000AE /* PerfectGreenMovieTitleCell.m */; };
 		100000000000000B00000003 /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000B00000002 /* InternationalDataCache.m */; };
 		100000000000000B00000015 /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000E /* Performance.m */; };
-		100000000000000B0000001A /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000B00000018 /* Person.m */; };
 		100000000000000B0000001D /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000001C /* PersonCell.m */; };
 		100000000000000C0000000B /* FavoriteTheaterCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000000A /* FavoriteTheaterCache.h */; };
 		100000000000000C0000000D /* FavoriteTheaterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000000C /* FavoriteTheaterCache.m */; };
@@ -255,8 +254,8 @@
 		1000000000000007000000CE /* BoxOfficeStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStockImages.h; sourceTree = "<group>"; };
 		1000000000000007000000CF /* BoxOfficeStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeStockImages.m; sourceTree = "<group>"; };
 		1000000000000007000000DB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		1000000000000007000000DC /* CacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUpdater.h; sourceTree = "<group>"; };
-		1000000000000007000000DD /* CacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheUpdater.m; sourceTree = "<group>"; };
+		1000000000000007000000DC /* MovieCacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCacheUpdater.h; sourceTree = "<group>"; };
+		1000000000000007000000DD /* MovieCacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCacheUpdater.m; sourceTree = "<group>"; };
 		1000000000000007000000E1 /* CollapsedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapsedMovieDetailsCell.h; sourceTree = "<group>"; };
 		1000000000000007000000E6 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
 		1000000000000007000000E9 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
@@ -384,8 +383,6 @@
 		100000000000000B00000002 /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
 		100000000000000B00000004 /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
 		100000000000000B0000000E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
-		100000000000000B00000016 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		100000000000000B00000018 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		100000000000000B0000001B /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
 		100000000000000B0000001C /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
 		100000000000000B0000001E /* PersonPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPosterCache.h; sourceTree = "<group>"; };
@@ -550,19 +547,19 @@
 				100000000000001100000087 /* Scores */,
 				100000000000001500000177 /* Websites */,
 				100000000000000800000073 /* BookmarkCache.h */,
-				1000000000000007000000DC /* CacheUpdater.h */,
 				100000000000000C0000000A /* FavoriteTheaterCache.h */,
 				100000000000000900000073 /* HelpCache.h */,
 				100000000000000B00000001 /* InternationalDataCache.h */,
 				1000000000000009000000B2 /* LocalizableStringsCache.h */,
+				1000000000000007000000DC /* MovieCacheUpdater.h */,
 				10000000000000090000009D /* TrailerCache.h */,
 				100000000000001300000047 /* UpcomingCache.h */,
 				100000000000000800000075 /* BookmarkCache.m */,
-				1000000000000007000000DD /* CacheUpdater.m */,
 				100000000000000C0000000C /* FavoriteTheaterCache.m */,
 				100000000000000900000074 /* HelpCache.m */,
 				100000000000000B00000002 /* InternationalDataCache.m */,
 				1000000000000009000000B3 /* LocalizableStringsCache.m */,
+				1000000000000007000000DD /* MovieCacheUpdater.m */,
 				10000000000000090000009E /* TrailerCache.m */,
 				1000000000000013000000E2 /* UpcomingCache.m */,
 			);
@@ -653,7 +650,6 @@
 				100000000000000700000122 /* DVD.h */,
 				100000000000000900000040 /* FavoriteTheater.h */,
 				100000000000000A000000BB /* Performance.h */,
-				100000000000000B00000016 /* Person.h */,
 				100000000000000E00000015 /* Review.h */,
 				10000000000000110000000A /* Score.h */,
 				100000000000001400000033 /* Theater.h */,
@@ -661,7 +657,6 @@
 				100000000000000700000123 /* DVD.m */,
 				100000000000000900000042 /* FavoriteTheater.m */,
 				100000000000000B0000000E /* Performance.m */,
-				100000000000000B00000018 /* Person.m */,
 				100000000000000E00000016 /* Review.m */,
 				10000000000000110000000B /* Score.m */,
 				100000000000001400000034 /* Theater.m */,
@@ -1314,7 +1309,7 @@
 				10000000000000070000008E /* AmazonCache.m in Sources */,
 				100000000000000900000078 /* IMDbCache.m in Sources */,
 				10000000000000150000017C /* WikipediaCache.m in Sources */,
-				1000000000000007000000DE /* CacheUpdater.m in Sources */,
+				1000000000000007000000DE /* MovieCacheUpdater.m in Sources */,
 				100000000000000900000075 /* HelpCache.m in Sources */,
 				100000000000000B00000003 /* InternationalDataCache.m in Sources */,
 				1000000000000009000000B4 /* LocalizableStringsCache.m in Sources */,
@@ -1323,7 +1318,6 @@
 				100000000000000700000124 /* DVD.m in Sources */,
 				100000000000000900000044 /* FavoriteTheater.m in Sources */,
 				100000000000000B00000015 /* Performance.m in Sources */,
-				100000000000000B0000001A /* Person.m in Sources */,
 				100000000000000E00000017 /* Review.m in Sources */,
 				10000000000000110000000D /* Score.m in Sources */,
 				100000000000001400000035 /* Theater.m in Sources */,

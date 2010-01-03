@@ -18,4 +18,7 @@
 + (NSString*) serializeElement:(XmlElement*) root;
 + (NSString*) serializeDocument:(XmlDocument*) document;
 
++ (NSString*) serializeElement:(XmlElement*) root indent:(BOOL) indent;
++ (NSString*) serializeDocument:(XmlDocument*) document indent:(BOOL) indent;
+
 @end

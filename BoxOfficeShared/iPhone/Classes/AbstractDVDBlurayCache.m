@@ -15,7 +15,7 @@
 #import "AbstractDVDBlurayCache.h"
 
 #import "BookmarkCache.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "DVD.h"
 #import "Model.h"
 
@@ -349,7 +349,7 @@
   }
 
   NSArray* movies = self.movies;
-  [[CacheUpdater cacheUpdater] addMovies:movies];
+  [[MovieCacheUpdater updater] addMovies:movies];
 }
 
 

@@ -76,4 +76,7 @@
 
 - (NSString*) attributeValue:(NSString*) key;
 
+- (NSString*) toXmlString;
+- (NSString*) toXmlString:(BOOL) indent;
+
 @end

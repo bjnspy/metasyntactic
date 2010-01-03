@@ -16,7 +16,7 @@
 
 #import "BookmarkCache.h"
 #import "BoxOfficeStockImages.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
@@ -470,7 +470,7 @@ typedef enum {
   [self setupTitle];
 
   // Load the movie details as the absolutely highest thing we can do.
-  [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:YES];
+  [[MovieCacheUpdater updater] prioritizeMovie:movie now:YES];
 }
 
 

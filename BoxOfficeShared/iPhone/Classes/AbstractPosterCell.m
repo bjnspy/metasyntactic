@@ -15,7 +15,7 @@
 #import "AbstractPosterCell.h"
 
 #import "BookmarkCache.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "Model.h"
 
 @implementation AbstractPosterCell
@@ -48,7 +48,7 @@
 
 
 - (void) prioritizeImage {
-  [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:NO];
+  [[MovieCacheUpdater updater] prioritizeMovie:movie now:NO];
 }
 
 

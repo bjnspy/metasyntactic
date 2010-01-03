@@ -29,6 +29,7 @@
 + (NSString*) synopsisKey;
 + (NSString*) similarsKey;
 + (NSString*) directorsKey;
++ (NSString*) filmographyKey;
 
 + (NSString*) discQueueKey;
 + (NSString*) instantQueueKey;

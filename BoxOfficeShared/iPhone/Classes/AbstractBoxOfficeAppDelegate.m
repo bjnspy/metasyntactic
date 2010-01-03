@@ -15,7 +15,7 @@
 #import "AbstractBoxOfficeAppDelegate.h"
 
 #import "BoxOfficeSharedApplication.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
 
@@ -132,12 +132,12 @@
 
 
 - (void) reportNetflixMovies:(NSArray*) movies {
-  [[CacheUpdater cacheUpdater] addMovies:movies];
+  [[MovieCacheUpdater updater] addMovies:movies];
 }
 
 
 - (void) reportNetflixMovie:(Movie*) movie {
-  [[CacheUpdater cacheUpdater] addMovie:movie];
+  [[MovieCacheUpdater updater] addMovie:movie];
 }
 
 @end

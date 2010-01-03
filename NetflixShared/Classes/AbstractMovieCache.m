@@ -72,7 +72,8 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
+- (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

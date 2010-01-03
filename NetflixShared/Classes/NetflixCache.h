@@ -51,5 +51,6 @@
 
 // Searching
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
+- (NSArray*) personSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
 
 @end

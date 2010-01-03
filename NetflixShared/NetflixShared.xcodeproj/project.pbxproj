@@ -75,6 +75,8 @@
 		1000000000000013000000D0 /* NetflixUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CF /* NetflixUtilities.h */; };
 		1000000000000013000000D2 /* NetflixUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000D1 /* NetflixUtilities.m */; };
 		10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001F /* libMetasyntacticShared.a */; };
+		7421F08B10F015F8008A5506 /* Person.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F08910F015F8008A5506 /* Person.h */; };
+		7421F08C10F015F8008A5506 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F08A10F015F8008A5506 /* Person.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,8 @@
 		1000000000000013000000CD /* NetflixUserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUserCache.m; sourceTree = "<group>"; };
 		1000000000000013000000CF /* NetflixUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUtilities.h; sourceTree = "<group>"; };
 		1000000000000013000000D1 /* NetflixUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUtilities.m; sourceTree = "<group>"; };
+		7421F08910F015F8008A5506 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		7421F08A10F015F8008A5506 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,12 +235,14 @@
 				100000000000000700000099 /* Movie.h */,
 				1000000000000007000000AA /* NetflixAccount.h */,
 				1000000000000007000001A3 /* NetflixUser.h */,
+				7421F08910F015F8008A5506 /* Person.h */,
 				100000000000000800000010 /* Queue.h */,
 				100000000000000800000019 /* Status.h */,
 				100000000000000700000061 /* Feed.m */,
 				10000000000000070000009B /* Movie.m */,
 				1000000000000007000000C6 /* NetflixAccount.m */,
 				1000000000000007000001A5 /* NetflixUser.m */,
+				7421F08A10F015F8008A5506 /* Person.m */,
 				100000000000000800000012 /* Queue.m */,
 				10000000000000080000001B /* Status.m */,
 			);
@@ -414,6 +420,7 @@
 				10000000000000130000006C /* NetflixFeedCache.h in Headers */,
 				1000000000000013000000C4 /* NetflixUpdater.h in Headers */,
 				100000000000001300000051 /* NetflixAccountCache.h in Headers */,
+				7421F08B10F015F8008A5506 /* Person.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +512,7 @@
 				10000000000000130000006E /* NetflixFeedCache.m in Sources */,
 				1000000000000013000000C6 /* NetflixUpdater.m in Sources */,
 				100000000000001300000053 /* NetflixAccountCache.m in Sources */,
+				7421F08C10F015F8008A5506 /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

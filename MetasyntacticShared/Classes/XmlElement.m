@@ -14,6 +14,8 @@
 
 #import "XmlElement.h"
 
+#import "XmlSerializer.h"
+
 @interface XmlElement()
 @property (copy) NSString* name;
 @property (retain) NSDictionary* attributes;
@@ -242,6 +244,16 @@ property_definition(text);
 
 - (NSString*) attributeValue:(NSString*) key {
   return [attributes valueForKey:key];
+}
+
+
+- (NSString*) toXmlString {
+  return [self toXmlString:YES];
+}
+
+
+- (NSString*) toXmlString:(BOOL) indent {
+  return [XmlSerializer serializeElement:self indent:indent];
 }
 
 @end
