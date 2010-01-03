@@ -76,6 +76,11 @@
 }
 
 
++ (NSString*) filmographyKey {
+  return @"filmography";
+}
+
+
 + (NSString*) recommendationKey {
   return @"http://schemas.netflix.com/feed.recommendations";
 }

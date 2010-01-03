@@ -14,7 +14,7 @@
 
 #import "NetflixSearchDisplayController.h"
 
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "CommonNavigationController.h"
 #import "Model.h"
 #import "NetflixCell.h"
@@ -23,28 +23,30 @@
 
 @interface NetflixSearchDisplayController()
 @property (retain) NSArray* movies;
-@property (retain) NSArray* discMovies;
-@property (retain) NSArray* instantMovies;
+@property (retain) NSArray* people;
 @end
 
 
 @implementation NetflixSearchDisplayController
 
 @synthesize movies;
-@synthesize discMovies;
-@synthesize instantMovies;
+@synthesize people;
 
 - (void) dealloc {
   self.movies = nil;
-  self.discMovies = nil;
-  self.instantMovies = nil;
+  self.people = nil;
 
   [super dealloc];
 }
 
 
 - (void) setupDefaultScopeButtonTitles {
-  self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), LocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), LocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
+  self.searchBar.scopeButtonTitles =
+    [NSArray arrayWithObjects:
+     LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"),
+     LocalizedString(@"Movies", nil),
+     LocalizedString(@"People", @"i.e. all the people in a film"),
+     nil];
 }
 
 
@@ -76,27 +78,33 @@
 }
 
 
-- (BOOL) shouldShowDisc {
+- (BOOL) shouldShowMovies {
   return self.searchBar.selectedScopeButtonIndex == 1;
 }
 
 
-- (BOOL) shouldShowInstant {
+- (BOOL) shouldShowPeople {
   return self.searchBar.selectedScopeButtonIndex == 2;
 }
 
 
 - (BOOL) noResults {
-  return
-  searchResult != nil &&
-  (movies.count == 0 || ![self shouldShowAll]) &&
-  (discMovies.count == 0 || ![self shouldShowDisc]) &&
-  (instantMovies.count == 0 || ![self shouldShowInstant]);
+  if ([self shouldShowAll]) {
+    return movies.count == 0 && people.count == 0;
+  } else if ([self shouldShowMovies]) {
+    return movies.count == 0;
+  } else {
+    return people.count == 0;
+  }
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return 1;
+  if ([self shouldShowAll]) {
+    return 2;
+  } else {
+    return 1;
+  }
 }
 
 
@@ -111,11 +119,15 @@
   }
 
   if ([self shouldShowAll]) {
+    if (section == 0) {
+      return movies.count;
+    } else {
+      return people.count;
+    }
+  } else if ([self shouldShowMovies]) {
     return movies.count;
-  } else if ([self shouldShowDisc]) {
-    return discMovies.count;
-  } else if ([self shouldShowInstant]) {
-    return instantMovies.count;
+  } else if ([self shouldShowPeople]) {
+    return people.count;
   } else {
     return 0;
   }
@@ -148,40 +160,60 @@
     return [self noResultsCell];
   }
 
-  Movie* movie = nil;
   if ([self shouldShowAll]) {
-    movie = [movies objectAtIndex:indexPath.row];
-  } else if ([self shouldShowDisc]) {
-    movie = [discMovies objectAtIndex:indexPath.row];
-  } else if ([self shouldShowInstant]) {
-    movie = [instantMovies objectAtIndex:indexPath.row];
+    if (indexPath.section == 0) {
+      Movie* movie = [movies objectAtIndex:indexPath.row];
+      return [self netflixCellForMovie:movie];
+    } else {
+      Person* person = [people objectAtIndex:indexPath.row];
+      UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+      cell.textLabel.text = person.name;
+      return cell;
+    }
+  } else if ([self shouldShowMovies]) {
+    Movie* movie = [movies objectAtIndex:indexPath.row];
+    return [self netflixCellForMovie:movie];
+  } else if ([self shouldShowPeople]) {
+    Person* person = [people objectAtIndex:indexPath.row];
+    UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+    cell.textLabel.text = person.name;
+    return cell;
   } else {
-    [[[UITableViewCell alloc] init] autorelease];
+    return [[[UITableViewCell alloc] init] autorelease];
   }
-
-  return [self netflixCellForMovie:movie];
 }
 
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-  Movie* movie = nil;
   if ([self shouldShowAll]) {
-    movie = [movies objectAtIndex:indexPath.row];
-  } else if ([self shouldShowDisc]) {
-    movie = [discMovies objectAtIndex:indexPath.row];
-  } else if ([self shouldShowInstant]) {
-    movie = [instantMovies objectAtIndex:indexPath.row];
-  } else {
-    return;
+    if (indexPath.section == 0) {
+      Movie* movie = [movies objectAtIndex:indexPath.row];
+      [self.commonNavigationController pushMovieDetails:movie animated:YES];
+    } else {
+      Person* person = [people objectAtIndex:indexPath.row];
+      NSLog(@"", person);
+    }
+  } else if ([self shouldShowMovies]) {
+    Movie* movie = [movies objectAtIndex:indexPath.row];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
+  } else if ([self shouldShowPeople]) {
+    Person* person = [people objectAtIndex:indexPath.row];
+    NSLog(@"", person);
   }
-
-  [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+  if (indexPath.section == 1) {
+    return self.searchResultsTableView.rowHeight;
+  }
+  
+  if ([self shouldShowPeople]) {
+    return self.searchResultsTableView.rowHeight;
+  }
+  
   if (searchResult != nil) {
     return 100;
   }
@@ -193,7 +225,21 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
   if ([self noResults]) {
-    return LocalizedString(@"No information found", nil);
+    if (section == 0) {
+      return LocalizedString(@"No information found", nil);
+    } else {
+      return nil;
+    }
+  }
+  
+  if ([self shouldShowAll]) {
+    if (movies.count > 0 && people.count > 0) {
+      if (section == 0) {
+        return LocalizedString(@"Movies", nil);
+      } else {
+        return LocalizedString(@"People", nil);
+      }
+    }
   }
 
   return nil;
@@ -201,25 +247,13 @@
 
 
 - (void) initializeData:(SearchResult*) result {
-  NSMutableArray* discs = [NSMutableArray array];
-  NSMutableArray* instant = [NSMutableArray array];
-
-  for (Movie* movie in result.movies) {
-    if ([[NetflixCache cache] isInstantWatch:movie]) {
-      [instant addObject:movie];
-    } else {
-      [discs addObject:movie];
-    }
-  }
-
   self.movies = result.movies;
-  self.discMovies = discs;
-  self.instantMovies = instant;
+  self.people = result.people;
 
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
-                                      [NSString stringWithFormat:LocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],
-                                      [NSString stringWithFormat:LocalizedString(@"Instant (%d)", @"Used to display the count of all instant watch search results.  i.e.: Instant (15)"), instant.count],
+                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count + people.count],
+                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies.count],
+                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), people.count],
                                       nil];
 }
 
@@ -229,8 +263,8 @@
   [super reportResult:result];
 
   if (result.movies.count > 0) {
-    // download the details for these movies in teh background.
-    [[CacheUpdater cacheUpdater] addSearchMovies:result.movies];
+    // download the details for these movies in the background.
+    [[MovieCacheUpdater updater] addSearchMovies:result.movies];
   }
 }
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CacheUpdater : NSObject {
+@interface MovieCacheUpdater : NSObject {
 @private
   NSCondition* gate;
 
@@ -22,7 +22,7 @@
   AutoreleasingMutableArray* imageOperations;
 }
 
-+ (CacheUpdater*) cacheUpdater;
++ (MovieCacheUpdater*) updater;
 
 - (void) prioritizeMovie:(Movie*) movie now:(BOOL) now;
 

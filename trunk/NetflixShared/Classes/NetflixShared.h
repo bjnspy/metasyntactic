@@ -36,5 +36,6 @@
 #import "NetflixUpdater.h"
 #import "NetflixUser.h"
 #import "NetflixUserCache.h"
+#import "Person.h"
 #import "Queue.h"
 #import "Status.h"

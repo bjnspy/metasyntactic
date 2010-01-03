@@ -150,7 +150,8 @@ static ImageDownloader* downloader;
 }
 
 
-- (void) addAddressToDownload:(NSString*) address priority:(BOOL) priority {
+- (void) addAddressToDownload:(NSString*) address
+                     priority:(BOOL) priority {
   if (address.length == 0) {
     return;
   }

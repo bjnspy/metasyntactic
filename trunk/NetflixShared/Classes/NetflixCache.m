@@ -31,6 +31,7 @@
 #import "NetflixUtilities.h"
 #import "Queue.h"
 #import "Status.h"
+#import "Person.h"
 
 @interface NetflixCache()
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
@@ -253,6 +254,70 @@ static NetflixCache* cache;
 
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error {
   return [self movieSearch:query maxResults:30 account:account error:error];
+}
+
+
+- (NSArray*) personSearch:(NSString*) query
+               maxResults:(NSInteger) maxResults
+                  account:(NetflixAccount*) account
+                    error:(NSString**) error {
+  if (error != NULL) {
+    *error = nil;
+  }
+  
+  if ([@"kate winslet" isEqual:query]) {
+    NSLog(@"");
+  }
+  
+  NSURLRequest* request =
+  [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/people"
+                              parameters:[NSArray arrayWithObjects:
+                                          [OARequestParameter parameterWithName:@"expand" value:@"filmography"],
+                                          [OARequestParameter parameterWithName:@"term" value:query],
+                                          [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
+                                          nil]
+                                 account:account];
+  
+  XmlElement* element = [NetflixCache downloadXml:request account:account];
+  
+  if (element == nil) {
+    if (error != NULL) {
+      *error = [NetflixUtilities extractErrorMessage:element];
+    }
+    return nil;
+  }
+
+  NSMutableArray* people = [NSMutableArray array];
+
+  for (XmlElement* personElement in [element elements:@"person"]) {
+    NSString* identifier = [[personElement element:@"id"] text];
+    NSString* name = [[personElement element:@"name"] text];
+    NSString* biography = [[personElement element:@"bio"] text];
+    
+    XmlElement* filmElement = [personElement element:@"filmography" recurse:YES];
+    NSMutableArray* filmography = [NSMutableArray array];
+    for (XmlElement* linkElement in [filmElement elements:@"link"]) {
+      NSString* href = [linkElement attributeValue:@"href"];
+      if (href.length > 0) {
+        [filmography addObject:href];
+      }
+    }
+    
+    NSDictionary* additionalFields = [NSDictionary dictionaryWithObject:filmography
+                                                                 forKey:[NetflixConstants filmographyKey]];
+    
+    [people addObject:[Person personWithIdentifier:identifier
+                                              name:name
+                                         biography:biography
+                                  additionalFields:additionalFields]];
+  }
+  
+  return people;
+}
+
+
+- (NSArray*) personSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error {
+  return [self personSearch:query maxResults:5 account:account error:error];
 }
 
 
@@ -591,7 +656,9 @@ static NetflixCache* cache;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
+- (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force
+                    account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
   if ([movie isNetflix]) {
@@ -609,7 +676,6 @@ static NetflixCache* cache;
         // Otherwise, update all the details.
         [self updateAllDiscDetails:movie force:force account:account];
       }
-
     }
     [pool release];
   } else {
@@ -618,7 +684,8 @@ static NetflixCache* cache;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
+- (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force {
   [self updateMovieDetails:movie
                      force:force
                    account:[[NetflixAccountCache cache] currentAccount]];

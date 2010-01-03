@@ -17,7 +17,7 @@
 #import "Application.h"
 #import "BlurayCache.h"
 #import "BoxOfficeSharedApplication.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "DataProvider.h"
 #import "DVDCache.h"
 #import "HelpCache.h"
@@ -164,7 +164,7 @@ static Controller* controller = nil;
   [self updateHelpCache];
 
   NSArray* movies = [Model model].movies;
-  [[CacheUpdater cacheUpdater] addMovies:movies];
+  [[MovieCacheUpdater updater] addMovies:movies];
 }
 
 

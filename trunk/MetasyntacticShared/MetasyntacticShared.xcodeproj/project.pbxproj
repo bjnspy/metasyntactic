@@ -300,6 +300,8 @@
 		100000000000001A00000045 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000044 /* UIViewController+Utilities.m */; };
 		100000000000001B00000004 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000003 /* ViewControllerState.h */; };
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
+		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
+		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
 		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
 		74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499710DD72EB0002369F /* AbstractDeviceStore.m */; };
 		74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */; };
@@ -628,6 +630,8 @@
 		100000000000001A00000044 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001B00000003 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
+		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
+		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
 		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
 		74FA499710DD72EB0002369F /* AbstractDeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDeviceStore.m; sourceTree = "<group>"; };
 		74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSimulatorStore.h; sourceTree = "<group>"; };
@@ -1091,6 +1095,7 @@
 				1000000000000009000000C3 /* LocationUtilities.h */,
 				100000000000000A000000A4 /* MemoryUtilities.h */,
 				100000000000000D00000012 /* NetworkUtilities.h */,
+				7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */,
 				10000000000000150000020C /* Pulser.h */,
 				1000000000000015000001B1 /* StringUtilities.h */,
 				10000000000000180000005D /* UIColor+Utilities.h */,
@@ -1110,6 +1115,7 @@
 				1000000000000009000000C5 /* LocationUtilities.m */,
 				100000000000000A000000A6 /* MemoryUtilities.m */,
 				100000000000000E0000000E /* NetworkUtilities.m */,
+				7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */,
 				100000000000001500000102 /* Pulser.m */,
 				100000000000001800000252 /* StringUtilities.m */,
 				100000000000001800000061 /* UIColor+Utilities.m */,
@@ -1389,6 +1395,7 @@
 				74FA49AC10DD72EB0002369F /* UnlockResult.h in Headers */,
 				74FA4A6E10DD75E40002369F /* StoreItemVault.h in Headers */,
 				74FFC96310E1524C00DF4AC7 /* StoreDelegate.h in Headers */,
+				7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1573,6 +1580,7 @@
 				74FA49AB10DD72EB0002369F /* AbstractUnlockRequest.m in Sources */,
 				74FA49AD10DD72EB0002369F /* UnlockResult.m in Sources */,
 				74FA4A6F10DD75E40002369F /* StoreItemVault.m in Sources */,
+				7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

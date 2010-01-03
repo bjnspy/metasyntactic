@@ -16,7 +16,7 @@
 
 #import "Application.h"
 #import "BookmarkCache.h"
-#import "CacheUpdater.h"
+#import "MovieCacheUpdater.h"
 #import "Model.h"
 
 @interface UpcomingCache()
@@ -343,7 +343,7 @@ static UpcomingCache* cache;
   }
 
   NSArray* movies = self.movieMap.allValues;
-  [[CacheUpdater cacheUpdater] addMovies:movies];
+  [[MovieCacheUpdater updater] addMovies:movies];
 }
 
 
