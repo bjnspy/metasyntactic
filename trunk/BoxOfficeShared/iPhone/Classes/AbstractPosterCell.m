@@ -15,8 +15,8 @@
 #import "AbstractPosterCell.h"
 
 #import "BookmarkCache.h"
-#import "MovieCacheUpdater.h"
 #import "Model.h"
+#import "MovieCacheUpdater.h"
 
 @implementation AbstractPosterCell
 

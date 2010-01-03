@@ -15,9 +15,9 @@
 #import "AbstractDVDBlurayCache.h"
 
 #import "BookmarkCache.h"
-#import "MovieCacheUpdater.h"
 #import "DVD.h"
 #import "Model.h"
+#import "MovieCacheUpdater.h"
 
 @interface AbstractDVDBlurayCache()
 @property (retain) ThreadsafeValue* moviesSetData;

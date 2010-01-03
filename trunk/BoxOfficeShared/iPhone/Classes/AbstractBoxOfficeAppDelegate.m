@@ -15,9 +15,9 @@
 #import "AbstractBoxOfficeAppDelegate.h"
 
 #import "BoxOfficeSharedApplication.h"
-#import "MovieCacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
+#import "MovieCacheUpdater.h"
 
 @interface AbstractBoxOfficeAppDelegate()
 @property (retain) UIViewController* viewController;

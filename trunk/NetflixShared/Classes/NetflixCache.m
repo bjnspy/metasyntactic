@@ -29,9 +29,9 @@
 #import "NetflixUser.h"
 #import "NetflixUserCache.h"
 #import "NetflixUtilities.h"
+#import "Person.h"
 #import "Queue.h"
 #import "Status.h"
-#import "Person.h"
 
 @interface NetflixCache()
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
@@ -131,7 +131,7 @@ static NetflixCache* cache;
                             [NetflixConstants rentalHistoryReturnedKey], nil];
 
   NSMutableArray* allFeeds = [NSMutableArray array];
-  
+
   for (XmlElement* child in element.children) {
     if ([child.name isEqual:@"link"]) {
       NSString* key = [child attributeValue:@"rel"];
@@ -145,7 +145,7 @@ static NetflixCache* cache;
       }
     }
   }
-  
+
   NSMutableArray* feeds = [NSMutableArray array];
   for (NSString* allowableKey in allowableKeys) {
     for (Feed* feed in allFeeds) {
@@ -264,11 +264,11 @@ static NetflixCache* cache;
   if (error != NULL) {
     *error = nil;
   }
-  
+
   if ([@"kate winslet" isEqual:query]) {
     NSLog(@"");
   }
-  
+
   NSURLRequest* request =
   [NetflixNetworking createGetURLRequest:@"http://api.netflix.com/catalog/people"
                               parameters:[NSArray arrayWithObjects:
@@ -277,9 +277,9 @@ static NetflixCache* cache;
                                           [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
                                           nil]
                                  account:account];
-  
+
   XmlElement* element = [NetflixCache downloadXml:request account:account];
-  
+
   if (element == nil) {
     if (error != NULL) {
       *error = [NetflixUtilities extractErrorMessage:element];
@@ -293,7 +293,7 @@ static NetflixCache* cache;
     NSString* identifier = [[personElement element:@"id"] text];
     NSString* name = [[personElement element:@"name"] text];
     NSString* biography = [[personElement element:@"bio"] text];
-    
+
     XmlElement* filmElement = [personElement element:@"filmography" recurse:YES];
     NSMutableArray* filmography = [NSMutableArray array];
     for (XmlElement* linkElement in [filmElement elements:@"link"]) {
@@ -302,16 +302,16 @@ static NetflixCache* cache;
         [filmography addObject:href];
       }
     }
-    
+
     NSDictionary* additionalFields = [NSDictionary dictionaryWithObject:filmography
                                                                  forKey:[NetflixConstants filmographyKey]];
-    
+
     [people addObject:[Person personWithIdentifier:identifier
                                               name:name
                                          biography:biography
                                   additionalFields:additionalFields]];
   }
-  
+
   return people;
 }
 
