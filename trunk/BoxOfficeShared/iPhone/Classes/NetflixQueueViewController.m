@@ -248,13 +248,18 @@
 }
 
 
+- (void) clearTemporaryQueues {
+  [reorderedMovies removeAllObjects];
+  [deletedMovies removeAllObjects];
+}
+
+
 - (void) exitReadonlyMode {
   readonlyMode = NO;
   [self setupButtons];
   [self setupTitle];
   [self resetVisibleAccessories];
-  [reorderedMovies removeAllObjects];
-  [deletedMovies removeAllObjects];
+  [self clearTemporaryQueues];
 }
 
 
@@ -368,16 +373,14 @@
 
 
 - (void) onEdit {
-  [reorderedMovies removeAllObjects];
-  [deletedMovies removeAllObjects];
+  [self clearTemporaryQueues];
   [self enterEditing];
   [self setupButtons];
 }
 
 
 - (void) onCancel {
-  [reorderedMovies removeAllObjects];
-  [deletedMovies removeAllObjects];
+  [self clearTemporaryQueues];
   [self exitEditing];
   [self majorRefresh];
 }
