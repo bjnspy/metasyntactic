@@ -17,7 +17,9 @@
 }
 
 + (NSInteger) etagMismatchError;
-+ (NSInteger) titleAlreadyInQueueError;
++ (NSInteger) titleAlreadyInQueueStatusCode;
++ (NSInteger) titleNotInQueueStatusCode;
++ (NSInteger) titleNotInQueueSubCode;
 
 + (NSString*) titleKey;
 + (NSString*) seriesKey;

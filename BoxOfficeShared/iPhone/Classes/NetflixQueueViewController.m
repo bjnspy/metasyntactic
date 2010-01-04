@@ -253,6 +253,8 @@
   [self setupButtons];
   [self setupTitle];
   [self resetVisibleAccessories];
+  [reorderedMovies removeAllObjects];
+  [deletedMovies removeAllObjects];
 }
 
 
