@@ -18,6 +18,7 @@
 #import "AbstractSearchResult.h"
 #import "MetasyntacticSharedApplication.h"
 #import "NotificationCenter.h"
+#import "ThreadingUtilities.h"
 
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate;
@@ -50,7 +51,10 @@
     self.delegate = delegate_;
     self.gate = [[[NSCondition alloc] init] autorelease];
 
-    [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
+    [ThreadingUtilities backgroundSelector:@selector(searchThreadEntryPoint)
+                                  onTarget:self
+                                      gate:nil 
+                                    daemon:YES];
   }
 
   return self;
@@ -104,7 +108,7 @@
 }
 
 
-- (void) searchLoop {
+- (void) searchThreadEntryPoint {
   while (true) {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
@@ -112,17 +116,6 @@
     }
     [autoreleasePool release];
   }
-}
-
-
-- (void) searchThreadEntryPoint {
-  NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-  {
-    [NSThread setThreadPriority:0.0];
-
-    [self searchLoop];
-  }
-  [autoreleasePool release];
 }
 
 

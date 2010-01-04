@@ -343,7 +343,7 @@
 
 - (BOOL)          tableView:(UITableView*) tableView
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
-  return YES;
+  return self.isEditable;
 }
 
 
