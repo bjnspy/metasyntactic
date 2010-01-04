@@ -21,8 +21,19 @@
   return 412;
 }
 
-+ (NSInteger) titleAlreadyInQueueError {
+
++ (NSInteger) titleAlreadyInQueueStatusCode {
   return 710;
+}
+
+
++ (NSInteger) titleNotInQueueStatusCode {
+  return 404;
+}
+
+
++ (NSInteger) titleNotInQueueSubCode {
+  return 610;
 }
 
 

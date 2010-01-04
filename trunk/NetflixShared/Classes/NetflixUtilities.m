@@ -281,8 +281,18 @@ static NSDictionary* availabilityMap = nil;
 
 + (BOOL) etagOutOfDate:(XmlElement *)element {
   NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
+  NSInteger subCode = [[[element element:@"sub_code"] text] integerValue];
 
-  return statusCode == [NetflixConstants etagMismatchError];
+  if (statusCode == [NetflixConstants etagMismatchError]) {
+    return YES;
+  }
+  
+  if (statusCode == [NetflixConstants titleNotInQueueStatusCode] &&
+      subCode == [NetflixConstants titleNotInQueueSubCode]) {
+    return YES;
+  }
+               
+  return NO;
 }
 
 
