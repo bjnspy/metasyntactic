@@ -22,6 +22,7 @@
 #import "UIScrollView+Utilities.h"
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
+#import "UIColor+Utilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -166,6 +167,25 @@
 }
 
 
+- (BOOL) isGroupedStyle {
+  return self.tableView.style == UITableViewStyleGrouped;
+}
+
+
+- (BOOL) isPlainStyle {
+  return self.tableView.style == UITableViewStylePlain;
+}
+
+
+- (void) setupSearchHeaderBackgroundColor {
+  if (self.isPlainStyle &&
+      [self.tableView.tableHeaderView isKindOfClass:[UISearchBar class]]) {
+    [self.tableView setValue:[StyleSheet tableViewSearchHeaderBackgroundColor]
+                      forKey:@"tableHeaderBackgroundColor"];
+  }
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
   NSAssert(state != nil, @"");
@@ -182,6 +202,7 @@
   [state viewController:self didAppear:animated];
 
   [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
+  [self setupSearchHeaderBackgroundColor];
 }
 
 
@@ -241,16 +262,6 @@
 
 - (void) setupTitleLabel {
   [ViewControllerUtilities setupTitleLabel:self];
-}
-
-
-- (BOOL) isGroupedStyle {
-  return self.tableView.style == UITableViewStyleGrouped;
-}
-
-
-- (BOOL) isPlainStyle {
-  return self.tableView.style == UITableViewStylePlain;
 }
 
 
