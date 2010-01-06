@@ -30,12 +30,6 @@
 }
 
 
-- (void) applicationDidFinishLaunching:(UIApplication*) app {
-  [super applicationDidFinishLaunching:app];
-  self.window.backgroundColor = [UIColor blackColor];
-}
-
-
 - (BOOL) largePosterCacheAlwaysEnabled {
   return YES;
 }
