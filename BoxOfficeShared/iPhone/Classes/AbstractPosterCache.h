@@ -12,13 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractWebsiteCache : AbstractMovieCache {
+@interface AbstractPosterCache : AbstractMovieCache {
 }
 
-- (NSString*) addressForMovie:(Movie*) movie;
-- (NSString*) addressForPerson:(Person*) person;
-
 /* @protected */
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
+- (UIImage*) posterForObject:(id) object loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForObject:(id) object loadFromDisk:(BOOL) loadFromDisk;
+
+- (void) updateObjectDetails:(id) object force:(BOOL) force;
+- (UIImage*) posterForObject:(id) object
+                loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForObject:(id) object
+                     loadFromDisk:(BOOL) loadFromDisk;
 
 @end

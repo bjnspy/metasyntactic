@@ -16,10 +16,13 @@
 @protected
   // Accessed from different threads.  needs gate.
   NSMutableSet* updatedMovies;
+  NSMutableSet* updatedPeople;
 }
 
 - (void) processMovie:(Movie*) movie force:(BOOL) force;
+- (void) processPerson:(Person*) person force:(BOOL) force;
 
 - (void) clearUpdatedMovies;
+- (void) clearUpdatedPeople;
 
 @end

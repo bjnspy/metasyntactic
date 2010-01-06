@@ -30,7 +30,7 @@
 #import "LargePosterCache.h"
 #import "MetacriticCache.h"
 #import "MovieDetailsViewController.h"
-#import "PosterCache.h"
+#import "MoviePosterCache.h"
 #import "ReviewsViewController.h"
 #import "RottenTomatoesCache.h"
 #import "Score.h"
@@ -802,23 +802,48 @@ static Model* model = nil;
 }
 
 
+- (NSString*) netflixAddressForMovie:(Movie*) movie {
+  return [[NetflixCache cache] netflixAddressForMovie:movie];
+}
+
+
+- (NSString*) imdbAddressForPerson:(Person*) person {
+  NSString* result = [[IMDbCache cache] addressForPerson:person];
+  if (result.length > 0) {
+    return result;
+  }
+  
+  return nil;
+}
+
+
+- (NSString*) wikipediaAddressForPerson:(Person*) person {
+  return [[WikipediaCache cache] addressForPerson:person];
+}
+
+
+- (NSString*) rottenTomatoesAddressForPerson:(Person*) person {
+  return [[RottenTomatoesCache cache] addressForPerson:person];
+}
+
+
+- (NSString*) netflixAddressForPerson:(Person*) person {
+  return [[NetflixCache cache] netflixAddressForPerson:person];
+}
+
+
 - (DVD*) dvdDetailsForMovie:(Movie*) movie {
   DVD* dvd = [[DVDCache cache] detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
-
+  
   dvd = [[BlurayCache cache] detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
-
+  
   return nil;
-}
-
-
-- (NSString*) netflixAddressForMovie:(Movie*) movie {
-  return [[NetflixCache cache] netflixAddressForMovie:movie];
 }
 
 
@@ -837,7 +862,7 @@ static Model* model = nil;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [[PosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [[MoviePosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }
@@ -847,7 +872,7 @@ static Model* model = nil;
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* image = [[PosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  UIImage* image = [[MoviePosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
   if (image != nil) {
     return image;
   }

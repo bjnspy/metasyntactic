@@ -12,18 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PersonPosterCache : AbstractCache {
-@private
-    //LinkedSet* prioritizedPeople;
-    //LinkedSet* normalPeople;
+#import "AbstractPosterCache.h"
+
+@interface PersonPosterCache : AbstractPosterCache {
 }
 
 + (PersonPosterCache*) cache;
 
-- (void) update:(Person*) person;
-- (void) prioritizePerson:(Person*) person;
-
-- (UIImage*) posterForPerson:(Person*) person;
-- (UIImage*) smallPosterForPerson:(Person*) person;
+- (UIImage*) posterForPerson:(Person*) person loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForPerson:(Person*) person loadFromDisk:(BOOL) loadFromDisk;
 
 @end

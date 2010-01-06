@@ -40,6 +40,8 @@
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 
+- (NSString*) netflixAddressForPerson:(Person*) person;
+
 - (BOOL) isInstantWatch:(Movie*) movie;
 - (BOOL) isDvd:(Movie*) movie;
 - (BOOL) isBluray:(Movie*) movie;

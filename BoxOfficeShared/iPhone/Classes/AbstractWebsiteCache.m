@@ -23,18 +23,44 @@
 - (NSString*) cacheDirectory AbstractMethod;
 
 
-- (NSString*) serverUrl:(Movie*) movie AbstractMethod;
+- (NSString*) serverUrl:(NSString*) name AbstractMethod;
 
 
-- (NSString*) addressFile:(Movie*) movie {
-  NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-  return [self.cacheDirectory stringByAppendingPathComponent:name];
+- (NSString*) moviesCacheDirectory {
+  return [self.cacheDirectory stringByAppendingPathComponent:@"Movies"];
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-  NSString* path = [self addressFile:movie];
+- (NSString*) peopleCacheDirectory {
+  return [self.cacheDirectory stringByAppendingPathComponent:@"People"];
+}
 
+
+- (id) init {
+  if ((self = [super init])) {
+    [FileUtilities createDirectory:self.moviesCacheDirectory];
+    [FileUtilities createDirectory:self.peopleCacheDirectory];
+  }
+  
+  return self;
+}
+
+
+- (NSString*) movieAddressFile:(Movie*) movie {
+  NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+  return [self.moviesCacheDirectory stringByAppendingPathComponent:name];
+}
+
+
+- (NSString*) personAddressFile:(Person*) person {
+  NSString* name = [[FileUtilities sanitizeFileName:person.name] stringByAppendingPathExtension:@"plist"];
+  return [self.peopleCacheDirectory stringByAppendingPathComponent:name];
+}
+
+
+- (void) updateObjectDetails:(NSString*) name
+                        path:(NSString*) path 
+                       force:(BOOL) force {
   NSDate* lastLookupDate = [FileUtilities modificationDate:path];
   if (lastLookupDate != nil) {
     NSString* value = [FileUtilities readObject:path];
@@ -42,7 +68,7 @@
       // we have a real imdb value for this movie
       return;
     }
-
+    
     if (!force) {
       // we have a sentinel.  only update if it's been long enough
       if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -50,20 +76,19 @@
       }
     }
   }
-
-
-  NSString* url = [self serverUrl:movie];
+  
+  NSString* url = [self serverUrl:name];
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
   if (data == nil) {
     return;
   }
-
+  
   XmlElement* element = [XmlParser parse:data];
   NSString* addressValue = [element text];
   if (addressValue == nil) {
     addressValue = @"";
   }
-
+  
   // write down the response (even if it is empty).  An empty value will
   // ensure that we don't update this entry too often.
   [FileUtilities writeObject:addressValue toFile:path];
@@ -73,8 +98,29 @@
 }
 
 
+- (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force {
+  [self updateObjectDetails:movie.canonicalTitle
+                       path:[self movieAddressFile:movie]
+                      force:force];
+}
+
+
+- (void) updatePersonDetails:(Person*) person
+                      force:(BOOL) force {
+  [self updateObjectDetails:person.name
+                       path:[self personAddressFile:person]
+                      force:force];
+}
+
+
 - (NSString*) addressForMovie:(Movie*) movie {
-  return [FileUtilities readObject:[self addressFile:movie]];
+  return [FileUtilities readObject:[self movieAddressFile:movie]];
+}
+
+
+- (NSString*) addressForPerson:(Person*) person {
+  return [FileUtilities readObject:[self personAddressFile:person]];
 }
 
 @end

@@ -12,13 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractWebsiteCache : AbstractMovieCache {
+@interface AbstractCacheUpdater : NSObject {
+@private
+  NSCondition* gate;
+  
+  NSArray* searchOperations;
+  
+  // Shared amongst multiple threads.
+  AutoreleasingMutableArray* imageOperations;
 }
 
-- (NSString*) addressForMovie:(Movie*) movie;
-- (NSString*) addressForPerson:(Person*) person;
+/* @protected  */
+- (void) prioritizeObject:(id) object now:(BOOL) now;
 
-/* @protected */
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
+- (Operation2*) addSearchObject:(id) object;
+- (void) addSearchObjects:(NSArray*) objects;
+
+- (void) addObject:(id) object;
+- (void) addObjects:(NSArray*) object;
 
 @end

@@ -18,6 +18,7 @@
 @property (copy) NSString* identifier;
 @property (copy) NSString* name;
 @property (copy) NSString* biography;
+@property (copy) NSString* website;
 @property (retain) NSDictionary* additionalFields;
 @end
 
@@ -27,12 +28,14 @@
 property_definition(identifier);
 property_definition(name);
 property_definition(biography);
+property_definition(website);
 property_definition(additionalFields);
 
 - (void) dealloc {
   self.identifier = nil;
   self.name = nil;
   self.biography = nil;
+  self.website = nil;
   self.additionalFields = nil;
 
   [super dealloc];
@@ -42,11 +45,13 @@ property_definition(additionalFields);
 - (id) initWithIdentifier:(NSString*) identifier_
                      name:(NSString*) name_
                 biography:(NSString*) biography_
+                website:(NSString*) website_
          additionalFields:(NSDictionary*) additionalFields_ {
   if ((self = [super init])) {
     self.identifier = [StringUtilities nonNilString:identifier_];
     self.name = [StringUtilities nonNilString:name_];
     self.biography = [HtmlUtilities removeHtml:[StringUtilities nonNilString:biography_]];
+    self.website = [StringUtilities nonNilString:website_];
     self.additionalFields = additionalFields_;
   }
 
@@ -58,6 +63,7 @@ property_definition(additionalFields);
   return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
                              name:[coder decodeObjectForKey:name_key]
                         biography:[coder decodeObjectForKey:biography_key]
+                          website:[coder decodeObjectForKey:website_key]
                  additionalFields:[coder decodeObjectForKey:additionalFields_key]];
 }
 
@@ -65,10 +71,12 @@ property_definition(additionalFields);
 + (Person*) personWithIdentifier:(NSString*) identifier
                             name:(NSString*) name
                        biography:(NSString*) biography
+                         website:(NSString*) website
                 additionalFields:(NSDictionary*) additionalFields {
   return [[[Person alloc] initWithIdentifier:identifier
                                         name:name
                                    biography:biography
+                                     website:website
                             additionalFields:additionalFields] autorelease];
 }
 
@@ -77,6 +85,7 @@ property_definition(additionalFields);
   return [Person personWithIdentifier:[dictionary objectForKey:identifier_key]
                                  name:[dictionary objectForKey:name_key]
                             biography:[dictionary objectForKey:biography_key]
+                              website:[dictionary objectForKey:website_key]
                      additionalFields:[dictionary objectForKey:additionalFields_key]];
 }
 
@@ -86,6 +95,7 @@ property_definition(additionalFields);
   [result setObject:identifier        forKey:identifier_key];
   [result setObject:name              forKey:name_key];
   [result setObject:biography         forKey:biography_key];
+  [result setObject:website           forKey:website_key];
   [result setObject:additionalFields  forKey:additionalFields_key];
   return result;
 }
@@ -95,6 +105,7 @@ property_definition(additionalFields);
   [coder encodeObject:identifier        forKey:identifier_key];
   [coder encodeObject:name              forKey:name_key];
   [coder encodeObject:biography         forKey:biography_key];
+  [coder encodeObject:website           forKey:website_key];
   [coder encodeObject:additionalFields  forKey:additionalFields_key];
 }
 

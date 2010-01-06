@@ -106,7 +106,7 @@
 		100000000000000C0000002C /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000002B /* PocketFlicksSettingsViewController.m */; };
 		100000000000000C0000002E /* PocketFlicksViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000002D /* PocketFlicksViewController.h */; };
 		100000000000000C0000004E /* PocketFlicksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C0000004D /* PocketFlicksViewController.m */; };
-		100000000000000C00000061 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000052 /* PosterCache.m */; };
+		100000000000000C00000061 /* MoviePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000052 /* MoviePosterCache.m */; };
 		100000000000000C00000075 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000066 /* PostersViewController.m */; };
 		100000000000000C000000D8 /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000096 /* PreviewNetworksPosterDownloader.m */; };
 		100000000000000C000000EB /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000C000000EA /* ProtocolBuffers.h */; };
@@ -145,6 +145,12 @@
 		10000000000000150000020C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000100 /* UpcomingMoviesViewController.m */; };
 		7421F20E10F05E60008A5506 /* PersonDetailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F20C10F05E60008A5506 /* PersonDetailsViewController.h */; };
 		7421F20F10F05E60008A5506 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F20D10F05E60008A5506 /* PersonDetailsViewController.m */; };
+		7461F9B510F2F19C00FBE955 /* PersonCacheUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 7461F9B310F2F19C00FBE955 /* PersonCacheUpdater.h */; };
+		7461F9B610F2F19C00FBE955 /* PersonCacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461F9B410F2F19C00FBE955 /* PersonCacheUpdater.m */; };
+		7461F9B910F2F1FD00FBE955 /* AbstractCacheUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 7461F9B710F2F1FD00FBE955 /* AbstractCacheUpdater.h */; };
+		7461F9BA10F2F1FD00FBE955 /* AbstractCacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461F9B810F2F1FD00FBE955 /* AbstractCacheUpdater.m */; };
+		7461FA5E10F301A600FBE955 /* AbstractPosterCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 7461FA5C10F301A600FBE955 /* AbstractPosterCache.h */; };
+		7461FA5F10F301A600FBE955 /* AbstractPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461FA5D10F301A600FBE955 /* AbstractPosterCache.m */; };
 		747D0E8510EECB8100C0360E /* RottenTomatoesCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 747D0E8310EECB8100C0360E /* RottenTomatoesCache.h */; };
 		747D0E8610EECB8100C0360E /* RottenTomatoesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D0E8410EECB8100C0360E /* RottenTomatoesCache.m */; };
 		747D0E8B10EECBFF00C0360E /* MetacriticCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 747D0E8910EECBFF00C0360E /* MetacriticCache.h */; };
@@ -400,8 +406,8 @@
 		100000000000000C0000002B /* PocketFlicksSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksSettingsViewController.m; sourceTree = "<group>"; };
 		100000000000000C0000002D /* PocketFlicksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksViewController.h; sourceTree = "<group>"; };
 		100000000000000C0000004D /* PocketFlicksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksViewController.m; sourceTree = "<group>"; };
-		100000000000000C00000050 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
-		100000000000000C00000052 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
+		100000000000000C00000050 /* MoviePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePosterCache.h; sourceTree = "<group>"; };
+		100000000000000C00000052 /* MoviePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviePosterCache.m; sourceTree = "<group>"; };
 		100000000000000C00000064 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
 		100000000000000C00000066 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
 		100000000000000C0000007B /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
@@ -507,6 +513,12 @@
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7421F20C10F05E60008A5506 /* PersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailsViewController.h; sourceTree = "<group>"; };
 		7421F20D10F05E60008A5506 /* PersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailsViewController.m; sourceTree = "<group>"; };
+		7461F9B310F2F19C00FBE955 /* PersonCacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCacheUpdater.h; sourceTree = "<group>"; };
+		7461F9B410F2F19C00FBE955 /* PersonCacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCacheUpdater.m; sourceTree = "<group>"; };
+		7461F9B710F2F1FD00FBE955 /* AbstractCacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCacheUpdater.h; sourceTree = "<group>"; };
+		7461F9B810F2F1FD00FBE955 /* AbstractCacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCacheUpdater.m; sourceTree = "<group>"; };
+		7461FA5C10F301A600FBE955 /* AbstractPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCache.h; sourceTree = "<group>"; };
+		7461FA5D10F301A600FBE955 /* AbstractPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCache.m; sourceTree = "<group>"; };
 		747D0E8310EECB8100C0360E /* RottenTomatoesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesCache.h; sourceTree = "<group>"; };
 		747D0E8410EECB8100C0360E /* RottenTomatoesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesCache.m; sourceTree = "<group>"; };
 		747D0E8910EECBFF00C0360E /* MetacriticCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticCache.h; sourceTree = "<group>"; };
@@ -545,6 +557,7 @@
 		1000000000000007000000DF /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				7461F9B210F2F18D00FBE955 /* Updaters */,
 				100000000000000700000106 /* DVD */,
 				1000000000000009000000B5 /* Location */,
 				100000000000000C00000062 /* Posters */,
@@ -555,7 +568,6 @@
 				100000000000000900000073 /* HelpCache.h */,
 				100000000000000B00000001 /* InternationalDataCache.h */,
 				1000000000000009000000B2 /* LocalizableStringsCache.h */,
-				1000000000000007000000DC /* MovieCacheUpdater.h */,
 				10000000000000090000009D /* TrailerCache.h */,
 				100000000000001300000047 /* UpcomingCache.h */,
 				100000000000000800000075 /* BookmarkCache.m */,
@@ -563,7 +575,6 @@
 				100000000000000900000074 /* HelpCache.m */,
 				100000000000000B00000002 /* InternationalDataCache.m */,
 				1000000000000009000000B3 /* LocalizableStringsCache.m */,
-				1000000000000007000000DD /* MovieCacheUpdater.m */,
 				10000000000000090000009E /* TrailerCache.m */,
 				1000000000000013000000E2 /* UpcomingCache.m */,
 			);
@@ -824,21 +835,23 @@
 		100000000000000C00000062 /* Posters */ = {
 			isa = PBXGroup;
 			children = (
+				7461FA5C10F301A600FBE955 /* AbstractPosterCache.h */,
 				100000000000000700000059 /* AbstractPosterDownloader.h */,
 				10000000000000070000008F /* ApplePosterDownloader.h */,
 				10000000000000090000001C /* FandangoPosterDownloader.h */,
 				100000000000000900000090 /* ImdbPosterDownloader.h */,
 				100000000000000B00000004 /* LargePosterCache.h */,
+				100000000000000C00000050 /* MoviePosterCache.h */,
 				100000000000000B0000001E /* PersonPosterCache.h */,
-				100000000000000C00000050 /* PosterCache.h */,
 				100000000000000C00000086 /* PreviewNetworksPosterDownloader.h */,
+				7461FA5D10F301A600FBE955 /* AbstractPosterCache.m */,
 				10000000000000070000005A /* AbstractPosterDownloader.m */,
 				100000000000000700000090 /* ApplePosterDownloader.m */,
 				10000000000000090000002B /* FandangoPosterDownloader.m */,
 				100000000000000900000098 /* ImdbPosterDownloader.m */,
 				100000000000000B00000023 /* LargePosterCache.m */,
+				100000000000000C00000052 /* MoviePosterCache.m */,
 				100000000000000C00000018 /* PersonPosterCache.m */,
-				100000000000000C00000052 /* PosterCache.m */,
 				100000000000000C00000096 /* PreviewNetworksPosterDownloader.m */,
 			);
 			name = Posters;
@@ -1119,6 +1132,19 @@
 			name = People;
 			sourceTree = "<group>";
 		};
+		7461F9B210F2F18D00FBE955 /* Updaters */ = {
+			isa = PBXGroup;
+			children = (
+				7461F9B710F2F1FD00FBE955 /* AbstractCacheUpdater.h */,
+				1000000000000007000000DC /* MovieCacheUpdater.h */,
+				7461F9B310F2F19C00FBE955 /* PersonCacheUpdater.h */,
+				7461F9B810F2F1FD00FBE955 /* AbstractCacheUpdater.m */,
+				1000000000000007000000DD /* MovieCacheUpdater.m */,
+				7461F9B410F2F19C00FBE955 /* PersonCacheUpdater.m */,
+			);
+			name = Updaters;
+			sourceTree = "<group>";
+		};
 		74FFCAA110E155AB00DF4AC7 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,6 +1192,9 @@
 				747D0E8510EECB8100C0360E /* RottenTomatoesCache.h in Headers */,
 				747D0E8B10EECBFF00C0360E /* MetacriticCache.h in Headers */,
 				7421F20E10F05E60008A5506 /* PersonDetailsViewController.h in Headers */,
+				7461F9B510F2F19C00FBE955 /* PersonCacheUpdater.h in Headers */,
+				7461F9B910F2F1FD00FBE955 /* AbstractCacheUpdater.h in Headers */,
+				7461FA5E10F301A600FBE955 /* AbstractPosterCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1311,7 +1340,7 @@
 				100000000000000900000099 /* ImdbPosterDownloader.m in Sources */,
 				10000000000000090000009B /* LargePosterCache.m in Sources */,
 				100000000000000C00000019 /* PersonPosterCache.m in Sources */,
-				100000000000000C00000061 /* PosterCache.m in Sources */,
+				100000000000000C00000061 /* MoviePosterCache.m in Sources */,
 				100000000000000C000000D8 /* PreviewNetworksPosterDownloader.m in Sources */,
 				100000000000000700000061 /* AbstractScoreProvider.m in Sources */,
 				10000000000000090000006E /* GoogleScoreProvider.m in Sources */,
@@ -1425,6 +1454,9 @@
 				747D0E8610EECB8100C0360E /* RottenTomatoesCache.m in Sources */,
 				747D0E8C10EECBFF00C0360E /* MetacriticCache.m in Sources */,
 				7421F20F10F05E60008A5506 /* PersonDetailsViewController.m in Sources */,
+				7461F9B610F2F19C00FBE955 /* PersonCacheUpdater.m in Sources */,
+				7461F9BA10F2F1FD00FBE955 /* AbstractCacheUpdater.m in Sources */,
+				7461FA5F10F301A600FBE955 /* AbstractPosterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

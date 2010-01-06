@@ -12,13 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractWebsiteCache : AbstractMovieCache {
+#import "AbstractPosterCache.h"
+
+@interface MoviePosterCache : AbstractPosterCache {
+@private
+  ImdbPosterDownloader* imdbPosterDownloader;
+  ApplePosterDownloader* applePosterDownloader;
+  FandangoPosterDownloader* fandangoPosterDownloader;
+  PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
 }
 
-- (NSString*) addressForMovie:(Movie*) movie;
-- (NSString*) addressForPerson:(Person*) person;
++ (MoviePosterCache*) cache;
 
-/* @protected */
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
 
 @end

@@ -293,6 +293,7 @@ static NetflixCache* cache;
     NSString* identifier = [[personElement element:@"id"] text];
     NSString* name = [[personElement element:@"name"] text];
     NSString* biography = [[personElement element:@"bio"] text];
+    NSString* website = nil;
 
     XmlElement* filmElement = [personElement element:@"filmography" recurse:YES];
     NSMutableArray* filmography = [NSMutableArray array];
@@ -302,6 +303,12 @@ static NetflixCache* cache;
         [filmography addObject:href];
       }
     }
+    
+    for (XmlElement* linkElement in [element elements:@"link"]) {
+      if ([@"webpage" isEqual:[linkElement attributeValue:@"title"]]) {
+        website = [linkElement attributeValue:@"href"];
+      }
+    }
 
     NSDictionary* additionalFields = [NSDictionary dictionaryWithObject:filmography
                                                                  forKey:[NetflixConstants filmographyKey]];
@@ -309,6 +316,7 @@ static NetflixCache* cache;
     [people addObject:[Person personWithIdentifier:identifier
                                               name:name
                                          biography:biography
+                                           website:website
                                   additionalFields:additionalFields]];
   }
 
@@ -819,6 +827,11 @@ static NetflixCache* cache;
   }
 
   return address;
+}
+
+
+- (NSString*) netflixAddressForPerson:(Person*) person {
+  return person.website;
 }
 
 

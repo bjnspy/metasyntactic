@@ -17,34 +17,38 @@
 #import "Application.h"
 
 @interface PersonPosterCache()
-//@property (retain) LinkedSet* normalPeople;
-//@property (retain) LinkedSet* prioritizedPeople;
 @end
 
 
 @implementation PersonPosterCache
 
-//@synthesize normalPeople;
-//@synthesize prioritizedPeople;
+static PersonPosterCache* cache;
+
++ (void) initialize {
+  if (self == [PersonPosterCache class]) {
+    cache = [[PersonPosterCache alloc] init];
+  }
+}
+
 
 - (void) dealloc {
-  //self.normalPeople = nil;
-  //self.prioritizedPeople = nil;
-
   [super dealloc];
 }
 
 
 + (PersonPosterCache*) cache {
-  return [[[PersonPosterCache alloc] init] autorelease];
+  return cache;
 }
 
 
-- (void) update:(Person*) person {
+- (void) updatePersonDetails:(Person*) person force:(BOOL) force {
+  [self updateObjectDetails:person force:force];
 }
 
 
-- (void) prioritizePerson:(Person*) person {
+- (NSString*) sentinelPath:(Person*) person {
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  return [[Application sentinelsPeoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle];
 }
 
 
@@ -78,7 +82,7 @@
 }
 
 
-- (NSData*) downloadPosterWorker:(Person*) person {
+- (NSData*) downloadPoster:(Person*) person {
   return nil;
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings%@?q=%@",
                    [Application apiHost], [Application apiVersion],
@@ -127,60 +131,15 @@
 }
 
 
-- (void) downloadPoster:(Person*) person {
-  NSString* path = [self posterFilePath:person];
-
-  if ([FileUtilities fileExists:path]) {
-    if ([FileUtilities size:path] > 0) {
-      // already have a real poster.
-      return;
-    }
-
-    if ([FileUtilities size:path] == 0) {
-      // sentinel value.  only update if it's been long enough.
-      NSDate* modificationDate = [FileUtilities modificationDate:path];
-      if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
-        return;
-      }
-    }
-  }
-
-  NSData* data = [self downloadPosterWorker:person];
-  if (data == nil && [NetworkUtilities isNetworkAvailable]) {
-    data = [NSData data];
-  }
-
-  if (data != nil) {
-    [FileUtilities writeData:data toFile:path];
-
-    if (data.length > 0) {
-      [MetasyntacticSharedApplication minorRefresh];
-    }
-  }
+- (UIImage*) posterForPerson:(Person*) person 
+                loadFromDisk:(BOOL) loadFromDisk {
+  return [self posterForObject:person loadFromDisk:loadFromDisk];
 }
 
 
-- (UIImage*) posterForPerson:(Person*) person {
-  NSString* path = [self posterFilePath:person];
-  return [[ImageCache cache] imageForPath:path];
-}
-
-
-- (UIImage*) smallPosterForPerson:(Person*) person {
-  NSString* smallPosterPath = [self smallPosterFilePath:person];
-  NSData* smallPosterData;
-
-  if ([FileUtilities size:smallPosterPath] == 0) {
-    NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:person]];
-    smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                            toHeight:SMALL_POSTER_HEIGHT];
-
-    [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-  } else {
-    smallPosterData = [FileUtilities readData:smallPosterPath];
-  }
-
-  return [UIImage imageWithData:smallPosterData];
+- (UIImage*) smallPosterForPerson:(Person*) person 
+                     loadFromDisk:(BOOL) loadFromDisk {
+  return [self smallPosterForObject:person loadFromDisk:loadFromDisk];
 }
 
 @end

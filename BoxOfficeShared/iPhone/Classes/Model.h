@@ -156,6 +156,11 @@ enum ViewControllerType {
 - (NSString*) metacriticAddressForMovie:(Movie*) movie;
 - (NSString*) rottenTomatoesAddressForMovie:(Movie*) movie;
 
+- (NSString*) imdbAddressForPerson:(Person*) person;
+- (NSString*) netflixAddressForPerson:(Person*) person;
+- (NSString*) wikipediaAddressForPerson:(Person*) person;
+- (NSString*) rottenTomatoesAddressForPerson:(Person*) person;
+
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
