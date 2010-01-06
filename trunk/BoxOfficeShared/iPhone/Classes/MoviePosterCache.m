@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "PosterCache.h"
+#import "MoviePosterCache.h"
 
 #import "ApplePosterDownloader.h"
 #import "Application.h"
@@ -21,7 +21,7 @@
 #import "LargePosterCache.h"
 #import "PreviewNetworksPosterDownloader.h"
 
-@interface PosterCache()
+@interface MoviePosterCache()
 @property (retain) ImdbPosterDownloader* imdbPosterDownloader;
 @property (retain) ApplePosterDownloader* applePosterDownloader;
 @property (retain) FandangoPosterDownloader* fandangoPosterDownloader;
@@ -29,18 +29,18 @@
 @end
 
 
-@implementation PosterCache
+@implementation MoviePosterCache
 
-static PosterCache* cache;
+static MoviePosterCache* cache;
 
 + (void) initialize {
-  if (self == [PosterCache class]) {
-    cache = [[PosterCache alloc] init];
+  if (self == [MoviePosterCache class]) {
+    cache = [[MoviePosterCache alloc] init];
   }
 }
 
 
-+ (PosterCache*) cache {
++ (MoviePosterCache*) cache {
   return cache;
 }
 
@@ -72,7 +72,7 @@ static PosterCache* cache;
 
 
 - (NSString*) sentinelPath:(Movie*) movie {
-  return [[Application sentinelsPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.identifier]];
+  return [[Application sentinelsMoviesPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.identifier]];
 }
 
 
@@ -98,7 +98,7 @@ static PosterCache* cache;
 }
 
 
-- (NSData*) downloadPosterWorker:(Movie*) movie {
+- (NSData*) downloadPoster:(Movie*) movie {
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster pause:NO];
   if (data != nil) {
     return data;
@@ -136,38 +136,6 @@ static PosterCache* cache;
 }
 
 
-- (void) updateMovieDetailsWorker:(Movie*) movie force:force {
-  NSString* path = [self posterFilePath:movie];
-  if ([FileUtilities size:path] > 0) {
-    // already have a real poster.
-    return;
-  }
-
-  NSString* sentinelPath = [self sentinelPath:movie];
-  if (!force) {
-    // check if we have a sentinel
-    NSDate* modificationDate = [FileUtilities modificationDate:sentinelPath];
-    if (modificationDate != nil) {
-      // sentinel value.  only update if it's been long enough.
-      if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
-        return;
-      }
-    }
-  }
-
-  NSData* data = [self downloadPosterWorker:movie];
-  if (data != nil) {
-    if (data.length == 0) {
-      // write to the sentinel so we don't do this for a while
-      [FileUtilities writeData:data toFile:sentinelPath];
-    } else {
-      [FileUtilities writeData:data toFile:path];
-      [MetasyntacticSharedApplication minorRefresh];
-    }
-  }
-}
-
-
 - (Movie*) appropriateMovie:(Movie*) movie {
   Movie* possible = [[NetflixCache cache] correspondingNetflixMovie:movie];
   if (possible != nil) {
@@ -178,52 +146,18 @@ static PosterCache* cache;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:force {
-  [self updateMovieDetailsWorker:movie force:force];
-  [self updateMovieDetailsWorker:[self appropriateMovie:movie] force:force];
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
+  [self updateObjectDetails:movie force:force];
+  [self updateObjectDetails:[self appropriateMovie:movie] force:force];
 }
 
 
-- (UIImage*) posterForMovieWorker:(Movie*) movie
-               loadFromDisk:(BOOL) loadFromDisk {
-  NSString* path = [self posterFilePath:movie];
-  return [[ImageCache cache] imageForPath:path loadFromDisk:loadFromDisk];
-}
-
-
-- (UIImage*) posterForMovie:(Movie*) movie
-               loadFromDisk:(BOOL) loadFromDisk {
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
   UIImage* image;
-  if ((image = [self posterForMovieWorker:movie loadFromDisk:loadFromDisk]) != nil ||
-      (image = [self posterForMovieWorker:[self appropriateMovie:movie] loadFromDisk:loadFromDisk]) != nil) {
+  if ((image = [self posterForObject:movie loadFromDisk:loadFromDisk]) != nil ||
+      (image = [self posterForObject:[self appropriateMovie:movie] loadFromDisk:loadFromDisk]) != nil) {
     return image;
   }
-  return nil;
-}
-
-
-- (UIImage*) smallPosterForMovieWorker:(Movie*) movie
-                    loadFromDisk:(BOOL) loadFromDisk {
-  NSString* smallPosterPath = [self smallPosterFilePath:movie];
-
-  UIImage* image = [[ImageCache cache] imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
-  if (image != nil || !loadFromDisk) {
-    return image;
-  }
-
-  NSData* smallPosterData;
-  if ([FileUtilities size:smallPosterPath] == 0) {
-    NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
-    smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                            toHeight:SMALL_POSTER_HEIGHT];
-
-    [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-
-    UIImage* image = [UIImage imageWithData:smallPosterData];
-    [[ImageCache cache] setImage:image forPath:smallPosterPath];
-    return image;
-  }
-
   return nil;
 }
 
@@ -231,8 +165,8 @@ static PosterCache* cache;
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
   UIImage* image;
-  if ((image = [self smallPosterForMovieWorker:movie loadFromDisk:loadFromDisk]) != nil ||
-      (image = [self smallPosterForMovieWorker:[self appropriateMovie:movie] loadFromDisk:loadFromDisk]) != nil) {
+  if ((image = [self smallPosterForObject:movie loadFromDisk:loadFromDisk]) != nil ||
+      (image = [self smallPosterForObject:[self appropriateMovie:movie] loadFromDisk:loadFromDisk]) != nil) {
     return image;
   }
   return nil;

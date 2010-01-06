@@ -36,10 +36,10 @@ static WikipediaCache* cache;
 }
 
 
-- (NSString*) serverUrl:(Movie*) movie {
+- (NSString*) serverUrl:(NSString*) name {
   return [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings%@?q=%@",
           [Application apiHost], [Application apiVersion],
-          [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+          [StringUtilities stringByAddingPercentEscapes:name]];
 }
 
 @end

@@ -37,10 +37,10 @@ static MetacriticCache* cache;
 }
 
 
-- (NSString*) serverUrl:(Movie*) movie {
+- (NSString*) serverUrl:(NSString*) name {
   return [NSString stringWithFormat:@"http://%@.appspot.com/LookupYahooSearch%@?q=%@&site=www.metacritic.com",
           [Application apiHost], [Application apiVersion],
-          [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+          [StringUtilities stringByAddingPercentEscapes:name]];
 }
 
 @end

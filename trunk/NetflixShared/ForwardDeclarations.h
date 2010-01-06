@@ -21,6 +21,7 @@
 @class Feed;
 @class Movie;
 @class NetflixCache;
+@class Person;
 @class Queue;
 @class NetflixAccount;
 @class NetflixUser;

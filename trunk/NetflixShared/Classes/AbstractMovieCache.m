@@ -15,18 +15,22 @@
 #import "AbstractMovieCache.h"
 
 #import "Movie.h"
+#import "Person.h"
 
 @interface AbstractMovieCache()
 @property (retain) NSMutableSet* updatedMovies;
+@property (retain) NSMutableSet* updatedPeople;
 @end
 
 
 @implementation AbstractMovieCache
 
 @synthesize updatedMovies;
+@synthesize updatedPeople;
 
 - (void) dealloc {
   self.updatedMovies = nil;
+  self.updatedPeople = nil;
 
   [super dealloc];
 }
@@ -35,6 +39,7 @@
 - (id) init {
   if ((self = [super init])) {
     self.updatedMovies = [NSMutableSet set];
+    self.updatedPeople = [NSMutableSet set];
   }
 
   return self;
@@ -44,6 +49,7 @@
 - (void) didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   [self clearUpdatedMovies];
+  [self clearUpdatedPeople];
 }
 
 
@@ -56,12 +62,21 @@
 }
 
 
-- (BOOL) checkMovie:(Movie*) movie {
+- (void) clearUpdatedPeople {
+  [dataGate lock];
+  {
+    [updatedPeople removeAllObjects];
+  }
+  [dataGate unlock];
+}
+
+
+- (BOOL) checkIdentifier:(NSString*) identifier set:(NSMutableSet*) set {
   BOOL result;
   [dataGate lock];
   {
-    if (![updatedMovies containsObject:movie.identifier]) {
-      [updatedMovies addObject:movie.identifier];
+    if (![set containsObject:identifier]) {
+      [set addObject:identifier];
       result = NO;
     } else {
       result = YES;
@@ -72,10 +87,22 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie
-                      force:(BOOL) force {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+- (BOOL) checkMovie:(Movie*) movie {
+  return [self checkIdentifier:movie.identifier set:updatedMovies];
 }
+
+
+- (BOOL) checkPerson:(Person*) person {
+  return [self checkIdentifier:person.identifier set:updatedPeople];
+}
+
+
+- (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force AbstractMethod;
+
+
+- (void) updatePersonDetails:(Person*) person
+                      force:(BOOL) force AbstractMethod;
 
 
 - (void) processMovie:(Movie*) movie force:(BOOL) force {
@@ -84,6 +111,15 @@
   }
 
   [self updateMovieDetails:movie force:force];
+}
+
+
+- (void) processPerson:(Person*) person force:(BOOL) force {
+  if ([self checkPerson:person]) {
+    return;
+  }
+  
+  [self updatePersonDetails:person force:force];
 }
 
 @end

@@ -31,9 +31,11 @@ static NSString* localizableStringsDirectory = nil;
 
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
-static NSString* sentinelsPostersDirectory = nil;
+static NSString* sentinelsMoviesPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
 static NSString* largeMoviesPostersIndexDirectory = nil;
+
+static NSString* sentinelsPeoplePostersDirectory = nil;
 static NSString* peoplePostersDirectory = nil;
 static NSString* largePeoplePostersDirectory = nil;
 
@@ -68,10 +70,12 @@ static NSString* helpDirectory = nil;
 
   [self addDirectory:postersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Posters"]];
   [self addDirectory:moviesPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Movies"]];
-  [self addDirectory:sentinelsPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Sentinels"]];
+  [self addDirectory:sentinelsMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Sentinels"]];
   [self addDirectory:largeMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Large"]];
   [self addDirectory:largeMoviesPostersIndexDirectory = [largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"]];
+  
   [self addDirectory:peoplePostersDirectory = [postersDirectory stringByAppendingPathComponent:@"People"]];
+  [self addDirectory:sentinelsPeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Sentinels"]];
   [self addDirectory:largePeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Large"]];
 
   [self addDirectory:dvdDirectory = [cacheDirectory stringByAppendingPathComponent:@"DVD"]];
@@ -141,13 +145,13 @@ static NSString* helpDirectory = nil;
 }
 
 
-+ (NSString*) sentinelsPostersDirectory {
-  return sentinelsPostersDirectory;
++ (NSString*) moviesPostersDirectory {
+  return moviesPostersDirectory;
 }
 
 
-+ (NSString*) moviesPostersDirectory {
-  return moviesPostersDirectory;
++ (NSString*) sentinelsMoviesPostersDirectory {
+  return sentinelsMoviesPostersDirectory;
 }
 
 
@@ -163,6 +167,11 @@ static NSString* helpDirectory = nil;
 
 + (NSString*) peoplePostersDirectory {
   return peoplePostersDirectory;
+}
+
+
++ (NSString*) sentinelsPeoplePostersDirectory {
+  return sentinelsPeoplePostersDirectory;
 }
 
 

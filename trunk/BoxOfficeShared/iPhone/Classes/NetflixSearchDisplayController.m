@@ -20,6 +20,7 @@
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
+#import "PersonCacheUpdater.h"
 
 @interface NetflixSearchDisplayController()
 @property (retain) NSArray* movies;
@@ -265,6 +266,10 @@
   if (result.movies.count > 0) {
     // download the details for these movies in the background.
     [[MovieCacheUpdater updater] addSearchMovies:result.movies];
+  }
+
+  if (result.people.count > 0) {
+    [[PersonCacheUpdater updater] addSearchPeople:result.people];
   }
 }
 

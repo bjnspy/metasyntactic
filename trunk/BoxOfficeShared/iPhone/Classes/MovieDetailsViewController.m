@@ -58,9 +58,11 @@
 @implementation MovieDetailsViewController
 
 static const NSInteger ADD_TO_NETFLIX_TAG = 1;
-static const NSInteger VISIT_WEBSITES_TAG = 4;
+static const NSInteger VISIT_WEBSITES_TAG = 2;
+static const NSInteger REMOVE_MOVIE_TAG = 4;
 
 static const NSInteger POSTER_TAG = -1;
+static const NSInteger REMOVE_MOVIE_INDEX_SHIFT = 16;
 
 typedef enum {
   InstantQueue,
@@ -1057,6 +1059,40 @@ typedef enum {
 }
 
 
+- (void) moveMovieWasTappedForRow:(NSInteger) row {
+  [self enterReadonlyMode];
+  
+  NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
+  Status* status = [cell status];
+  [self.netflixUpdater updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
+}
+
+
+- (void) showDeletePromptForRow:(NSInteger) row {
+  UIActionSheet* actionSheet = 
+  [[[UIActionSheet alloc] initWithTitle:LocalizedString(@"Remove Item from Queue?", nil)
+                               delegate:self
+                      cancelButtonTitle:LocalizedString(@"Cancel", nil)
+                 destructiveButtonTitle:LocalizedString(@"Remove", nil)
+                      otherButtonTitles:nil] autorelease];
+  actionSheet.tag = (row << REMOVE_MOVIE_INDEX_SHIFT) | REMOVE_MOVIE_TAG;
+  
+  [self showActionSheet:actionSheet];
+}
+
+
+- (void) deleteMovieWasTappedForRow:(NSInteger) row {
+  [self enterReadonlyMode];
+  
+  NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
+  Status* status = [cell status];
+  [self.netflixUpdater updateQueue:status.queue
+                   byDeletingMovie:status.movie 
+                          delegate:self
+                           account:netflixAccount];
+}
+
+
 - (void) addToQueue {
   if (readonlyMode) {
     return;
@@ -1151,16 +1187,28 @@ typedef enum {
 }
 
 
+- (void) didDismissRemoveMovieActionSheet:(UIActionSheet*) actionSheet
+                          withButtonIndex:(NSInteger) buttonIndex {
+  NSInteger row = actionSheet.tag >> REMOVE_MOVIE_INDEX_SHIFT;
+  [self deleteMovieWasTappedForRow:row];
+}
+
+
 - (void)            actionSheet:(UIActionSheet*) actionSheet
            clickedButtonAtIndex:(NSInteger) buttonIndex {
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
-  if (actionSheet.tag == ADD_TO_NETFLIX_TAG) {
-    [self didDismissAddToNetflixActionSheet:actionSheet withButtonIndex:buttonIndex];
-  } else if (actionSheet.tag == VISIT_WEBSITES_TAG) {
+  
+  if ((actionSheet.tag & ADD_TO_NETFLIX_TAG) != 0) {
+    [self didDismissAddToNetflixActionSheet:actionSheet
+                            withButtonIndex:buttonIndex];
+  } else if ((actionSheet.tag & VISIT_WEBSITES_TAG) != 0) {
     [self didDismissVisitWebsitesActionSheet:actionSheet
                              withButtonIndex:buttonIndex];
+  } else if ((actionSheet.tag & REMOVE_MOVIE_TAG) != 0) {
+    [self didDismissRemoveMovieActionSheet:actionSheet
+                           withButtonIndex:buttonIndex];
   }
 }
 
@@ -1311,24 +1359,6 @@ typedef enum {
 }
 
 
-- (void) moveMovieWasTappedForRow:(NSInteger) row {
-  [self enterReadonlyMode];
-
-  NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
-  Status* status = [cell status];
-  [self.netflixUpdater updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
-}
-
-
-- (void) deleteMovieWasTappedForRow:(NSInteger) row {
-  [self enterReadonlyMode];
-
-  NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
-  Status* status = [cell status];
-  [self.netflixUpdater updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
-}
-
-
 - (void) imageView:(TappableImageView*) imageView
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
@@ -1337,7 +1367,7 @@ typedef enum {
   } else if (imageView.tag % 2 == 0) {
     [self moveMovieWasTappedForRow:imageView.tag / 2];
   } else {
-    [self deleteMovieWasTappedForRow:imageView.tag / 2];
+    [self showDeletePromptForRow:imageView.tag / 2];
   }
 }
 

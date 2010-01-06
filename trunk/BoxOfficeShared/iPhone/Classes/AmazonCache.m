@@ -37,10 +37,10 @@ static AmazonCache* cache;
 }
 
 
-- (NSString*) serverUrl:(Movie*) movie {
+- (NSString*) serverUrl:(NSString*) name {
   return [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings%@?q=%@",
           [Application apiHost], [Application apiVersion],
-          [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+          [StringUtilities stringByAddingPercentEscapes:name]];
 }
 
 @end

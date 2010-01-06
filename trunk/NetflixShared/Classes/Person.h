@@ -17,18 +17,21 @@
   NSString* identifier;
   NSString* name;
   NSString* biography;
+  NSString* website;
   NSDictionary* additionalFields;
 }
 
 @property (readonly, copy) NSString* identifier;
 @property (readonly, copy) NSString* name;
 @property (readonly, copy) NSString* biography;
+@property (readonly, copy) NSString* website;
 @property (readonly, retain) NSDictionary* additionalFields;
 
 + (Person*) personWithDictionary:(NSDictionary*) dictionary;
 + (Person*) personWithIdentifier:(NSString*) identifier
                             name:(NSString*) name
                        biography:(NSString*) biography
+                         website:(NSString*) website
                 additionalFields:(NSDictionary*) additionalFields;
 
 - (NSDictionary*) dictionary;

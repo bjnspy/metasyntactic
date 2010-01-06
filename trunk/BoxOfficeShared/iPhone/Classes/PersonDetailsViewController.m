@@ -33,6 +33,7 @@
 #import "TheatersNavigationController.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
+#import "PersonCacheUpdater.h"
 
 @interface PersonDetailsViewController()
 @property (retain) Person* person;
@@ -120,37 +121,25 @@ static const NSInteger POSTER_TAG = -1;
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
   
   if (![Model model].isInReviewPeriod) {
-    /*
-    NSString* imdbAddress = [[Model model] imdbAddressForMovie:movie];
+    NSString* imdbAddress = [[Model model] imdbAddressForPerson:person];
     if (imdbAddress.length > 0) {
       [map setObject:imdbAddress forKey:@"IMDb"];
     }
-    
-    NSString* amazonAddress = [[Model model] amazonAddressForMovie:movie];
-    if (amazonAddress.length > 0) {
-      [map setObject:amazonAddress forKey:@"Amazon"];
-    }
-    
-    NSString* wikipediaAddress = [[Model model] wikipediaAddressForMovie:movie];
+      
+    NSString* wikipediaAddress = [[Model model] wikipediaAddressForPerson:person];
     if (wikipediaAddress.length > 0) {
       [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
     
-    NSString* netflixAddress = [[Model model] netflixAddressForMovie:movie];
+    NSString* netflixAddress = [[Model model] netflixAddressForPerson:person];
     if (netflixAddress.length > 0) {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
     
-    NSString* rottenTomatoesAddress = [[Model model] rottenTomatoesAddressForMovie:movie];
+    NSString* rottenTomatoesAddress = [[Model model] rottenTomatoesAddressForPerson:person];
     if (rottenTomatoesAddress.length > 0) {
       [map setObject:rottenTomatoesAddress forKey:@"RottenTomatoes"];
     }
-    
-    NSString* metacriticAddress = [[Model model] metacriticAddressForMovie:movie];
-    if (metacriticAddress.length > 0) {
-      [map setObject:metacriticAddress forKey:@"Metacritic"];
-    }
-     */
   }
   
   self.websites = map;
@@ -194,9 +183,9 @@ static const NSInteger POSTER_TAG = -1;
   
   self.posterImage = [PersonDetailsViewController posterForPerson:person];
   [self setupTitle];
-  
-  // Load the movie details as the absolutely highest thing we can do.
-  //[[MovieCacheUpdater updater] prioritizeMovie:movie now:YES];
+
+  // Load the person details as the absolutely highest thing we can do.
+  [[PersonCacheUpdater updater] prioritizePerson:person now:YES];
 }
 
 

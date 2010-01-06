@@ -12,14 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MovieCacheUpdater : NSObject {
-@private
-  NSCondition* gate;
+#import "AbstractCacheUpdater.h"
 
-  NSArray* searchOperations;
-
-  // Shared amongst multiple threads.
-  AutoreleasingMutableArray* imageOperations;
+@interface MovieCacheUpdater : AbstractCacheUpdater {
 }
 
 + (MovieCacheUpdater*) updater;

@@ -22,16 +22,20 @@
 + (NSString*) metacriticDirectory;
 + (NSString*) rottenTomatoesDirectory;
 + (NSString*) userLocationsDirectory;
-+ (NSString*) sentinelsPostersDirectory;
-+ (NSString*) moviesPostersDirectory;
-+ (NSString*) largeMoviesPostersDirectory;
-+ (NSString*) largeMoviesPostersIndexDirectory;
-+ (NSString*) peoplePostersDirectory;
-+ (NSString*) largePeoplePostersDirectory;
+
 + (NSString*) scoresDirectory;
 + (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;
 + (NSString*) localizableStringsDirectory;
+
++ (NSString*) sentinelsMoviesPostersDirectory;
++ (NSString*) moviesPostersDirectory;
++ (NSString*) largeMoviesPostersDirectory;
++ (NSString*) largeMoviesPostersIndexDirectory;
+
++ (NSString*) sentinelsPeoplePostersDirectory;
++ (NSString*) peoplePostersDirectory;
++ (NSString*) largePeoplePostersDirectory;
 
 + (NSString*) dvdDirectory;
 + (NSString*) dvdDetailsDirectory;

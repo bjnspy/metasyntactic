@@ -19,19 +19,12 @@
 #import "DVDCache.h"
 #import "IMDbCache.h"
 #import "MetacriticCache.h"
-#import "PosterCache.h"
+#import "MoviePosterCache.h"
 #import "RottenTomatoesCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
-
-@interface MovieCacheUpdater()
-@property (retain) NSCondition* gate;
-@property (retain) NSArray* searchOperations;
-@property (retain) AutoreleasingMutableArray* imageOperations;
-@end
-
 
 @implementation MovieCacheUpdater
 
@@ -43,27 +36,9 @@ static MovieCacheUpdater* updater = nil;
   }
 }
 
-@synthesize gate;
-@synthesize searchOperations;
-@synthesize imageOperations;
-
-- (void) dealloc {
-  self.gate = nil;
-  self.searchOperations = nil;
-  self.imageOperations = nil;
-
-  [super dealloc];
-}
-
 
 - (id) init {
   if ((self = [super init])) {
-    self.gate = [[[NSCondition alloc] init] autorelease];
-    self.imageOperations = [AutoreleasingMutableArray array];
-    [ThreadingUtilities backgroundSelector:@selector(updateImagesBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                    daemon:YES];
   }
 
   return self;
@@ -76,34 +51,25 @@ static MovieCacheUpdater* updater = nil;
 
 
 - (void) prioritizeMovie:(Movie*) movie now:(BOOL) now {
-  if (now) {
-    [ThreadingUtilities backgroundSelector:@selector(processMovie:force:)
-                                  onTarget:self
-                                withObject:movie
-                                withObject:[NSNumber numberWithBool:YES]
-                                      gate:nil
-                                    daemon:NO];
-  } else {
-    [gate lock];
-    {
-      [imageOperations addObject:movie];
-      if (imageOperations.count > 5) {
-        [imageOperations removeFirstObject];
-      }
-      [gate broadcast];
-    }
-    [gate unlock];
-    [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:force:)
-                                                   onTarget:self
-                                                 withObject:movie
-                                                 withObject:[NSNumber numberWithBool:NO]
-                                                       gate:nil
-                                                   priority:Priority];
-  }
+  [self prioritizeObject:movie now:now];
+}
+
+- (void) addSearchMovies:(NSArray*) movies {
+  [self addSearchObjects:movies];
 }
 
 
-- (void) processMovie:(Movie*) movie
+- (void) addMovie:(Movie*) movie {
+  [self addObject:movie];
+}
+
+
+- (void) addMovies:(NSArray*) movies {
+  [self addObjects:movies];
+}
+
+
+- (void) processObject:(Movie*) movie
                 force:(NSNumber*) forceNumber {
   NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);
 
@@ -112,7 +78,7 @@ static MovieCacheUpdater* updater = nil;
     [NotificationCenter addNotification:movie.canonicalTitle];
   }
 
-  [[PosterCache cache]          processMovie:movie force:force];
+  [[MoviePosterCache cache]     processMovie:movie force:force];
   [[NetflixCache cache]         processMovie:movie force:force];
   [[UpcomingCache cache]        processMovie:movie force:force];
   [[DVDCache cache]             processMovie:movie force:force];
@@ -134,78 +100,12 @@ static MovieCacheUpdater* updater = nil;
 
 
 - (Operation2*) addSearchMovie:(Movie*) movie {
-  return [[OperationQueue operationQueue] performSelector:@selector(processMovie:force:)
-                                                 onTarget:self
-                                               withObject:movie
-                                               withObject:[NSNumber numberWithBool:NO]
-                                                     gate:nil
-                                                 priority:Search];
+  return [self addSearchObject:movie];
 }
 
 
-- (void) addMovie:(Movie*) movie {
-  if (movie == nil) {
-    return;
-  }
-
-  [[OperationQueue operationQueue] performSelector:@selector(processMovie:force:)
-                                          onTarget:self
-                                        withObject:movie
-                                        withObject:[NSNumber numberWithBool:NO]
-                                              gate:nil
-                                          priority:Low];
-}
-
-
-- (void) addSearchMovies:(NSArray*) movies {
-  [gate lock];
-  {
-    for (Operation* operation in searchOperations) {
-      [operation cancel];
-    }
-
-    NSMutableArray* operations = [NSMutableArray array];
-    for (Movie* movie in movies) {
-      [operations addObject:[self addSearchMovie:movie]];
-    }
-
-    self.searchOperations = operations;
-  }
-  [gate unlock];
-}
-
-
-- (void) addMovies:(NSArray*) movies {
-  for (Movie* movie in [movies shuffledArray]) {
-    [self addMovie:movie];
-  }
-}
-
-
-- (void) updateImagesBackgroundEntryPointWorker {
-  Movie* movie = nil;
-  [gate lock];
-  {
-    while (imageOperations.count == 0) {
-      [gate wait];
-    }
-    movie = imageOperations.lastObject;
-    [imageOperations removeLastObject];
-  }
-  [gate unlock];
-
-  [[PosterCache cache] processMovie:movie force:NO];
-}
-
-
-- (void) updateImagesBackgroundEntryPoint {
-  while (YES) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      [self updateImagesBackgroundEntryPointWorker];
-    }
-    [pool release];
-  }
+- (void) updateImageWorker:(Movie*) movie {
+  [[MoviePosterCache cache] processMovie:movie force:NO];
 }
 
 @end
