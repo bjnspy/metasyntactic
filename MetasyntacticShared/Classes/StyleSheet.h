@@ -34,6 +34,7 @@
 
 + (UIColor*) tableViewGroupedHeaderColor;
 + (UIColor*) tableViewGroupedFooterColor;
++ (UIColor*) tableViewSearchHeaderBackgroundColor;
 
 + (UIColor*) actionButtonTextColor;
 

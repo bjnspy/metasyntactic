@@ -88,6 +88,23 @@ static StyleSheet* styleSheet;
 }
 
 
+- (UIColor*) tableViewSearchHeaderBackgroundColor {
+  if (!disabled) {
+    UIColor* result = [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UITableViewSearchHeaderBackgroundColor"]];
+    if (result != nil) {
+      return result;
+    }
+  }
+
+  return RGBUIColor(226, 231, 237);
+}
+
+
++ (UIColor*) tableViewSearchHeaderBackgroundColor {
+  return [styleSheet tableViewSearchHeaderBackgroundColor];
+}
+
+
 - (UIColor*) navigationBarTintColor {
   if (self.disabled) {
     return nil;
