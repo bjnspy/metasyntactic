@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Person : NSObject<NSCopying, NSCoding> {
+@interface Person : AbstractData<NSCopying, NSCoding> {
 @private
   NSString* identifier;
   NSString* name;
@@ -27,13 +27,10 @@
 @property (readonly, copy) NSString* website;
 @property (readonly, retain) NSDictionary* additionalFields;
 
-+ (Person*) personWithDictionary:(NSDictionary*) dictionary;
 + (Person*) personWithIdentifier:(NSString*) identifier
                             name:(NSString*) name
                        biography:(NSString*) biography
                          website:(NSString*) website
                 additionalFields:(NSDictionary*) additionalFields;
-
-- (NSDictionary*) dictionary;
 
 @end

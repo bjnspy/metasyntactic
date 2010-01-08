@@ -29,6 +29,4 @@
   UILabel* formatLabel;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
 @end

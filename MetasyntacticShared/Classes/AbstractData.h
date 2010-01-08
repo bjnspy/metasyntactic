@@ -15,6 +15,9 @@
 @interface AbstractData : NSObject {
 }
 
++ (id) createWithDictionary:(NSDictionary *)dictionary;
+- (NSDictionary*) dictionary;
+
 + (NSArray*) encodeArray:(NSArray*) values;
 + (NSArray*) decodeArray:(NSArray*) values;
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractImageCell : UITableViewCell {
+@interface AbstractImageCell : AbstractTableViewCell {
 @private
   UIImageView* imageLoadingView;
   UIActivityIndicatorView* activityView;
@@ -25,7 +25,8 @@
   CGFloat titleWidth;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController;
 
 // @protected
 - (void) loadImage;

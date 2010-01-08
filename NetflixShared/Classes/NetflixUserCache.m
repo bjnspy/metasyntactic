@@ -88,9 +88,6 @@ static NetflixUserCache* cache;
   }
 
   NSDictionary* dictionary = [FileUtilities readObject:[NetflixPaths userFile:account]];
-  if (dictionary.count == 0) {
-    return nil;
-  }
   return [NetflixUser createWithDictionary:dictionary];
 }
 

@@ -34,10 +34,12 @@
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "PersonCacheUpdater.h"
+#import "NetflixCell.h"
 
 @interface PersonDetailsViewController()
 @property (retain) Person* person;
 @property (retain) NetflixAccount* netflixAccount;
+@property (retain) NSArray* filmographyMovies;
 @property (retain) NSDictionary* websites;
 @property (retain) ActionsView* actionsView;
 @property (retain) UIImage* posterImage;
@@ -53,6 +55,7 @@ static const NSInteger POSTER_TAG = -1;
 
 @synthesize person;
 @synthesize netflixAccount;
+@synthesize filmographyMovies;
 @synthesize websites;
 @synthesize actionsView;
 @synthesize posterImage;
@@ -62,6 +65,7 @@ static const NSInteger POSTER_TAG = -1;
 - (void) dealloc {
   self.person = nil;
   self.netflixAccount = nil;
+  self.filmographyMovies = nil;
   self.websites = nil;
   self.actionsView = nil;
   self.posterImage = nil;
@@ -155,10 +159,24 @@ static const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) initializeFilmographyMovies {
+  NSMutableArray* movies = [NSMutableArray array];
+  for (NSString* address in [[NetflixCache cache] filmographyAddressesForPerson:person]) {
+    Movie* movie = [[NetflixCache cache] movieForFilmographyAddress:address];
+    if (movie != nil) {
+      [movies addObject:movie];
+    }
+  }
+  
+  self.filmographyMovies = movies;
+}
+
+
 - (void) initializeData {
   self.netflixAccount = [[NetflixAccountCache cache] currentAccount];
   
   [self initializeWebsites];
+  [self initializeFilmographyMovies];
   [self updateImage];
   [self setupActionsView];
 }
@@ -282,7 +300,9 @@ static const NSInteger POSTER_TAG = -1;
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
   if (section == 1) {
-    return LocalizedString(@"Filmography", nil);
+    if (filmographyMovies.count > 0) {
+      return LocalizedString(@"Filmography", nil);
+    }
   }
   
   return nil;
@@ -296,7 +316,7 @@ static const NSInteger POSTER_TAG = -1;
   }
   
   if (section == 1) {
-    return 0;
+    return filmographyMovies.count;
   }
 
   return 0;
@@ -308,7 +328,12 @@ static const NSInteger POSTER_TAG = -1;
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
     posterImageView.tag = POSTER_TAG;
     posterImageView.delegate = self;
-    return [SynopsisCell cellWithSynopsis:person.biography
+    NSString* bio = person.biography;
+    if (bio.length == 0) {
+      bio = LocalizedString(@"No biography available.", nil);
+    }
+
+    return [SynopsisCell cellWithSynopsis:bio
                                 imageView:posterImageView
                               limitLength:NO];
   }
@@ -329,7 +354,10 @@ static const NSInteger POSTER_TAG = -1;
     return [self heightForRowInHeaderSection:indexPath.row];
   }
   
-  // show hidden theaters / map theaters
+  if (indexPath.section == 1) {
+    return 100;
+  }
+  
   return tableView.rowHeight;
 }
 
@@ -355,10 +383,29 @@ static const NSInteger POSTER_TAG = -1;
 }
 
 
+- (UITableViewCell*) cellForFilmographyRow:(NSInteger) row {
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  
+  NetflixCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                     tableViewController:self] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+
+  Movie* movie = [filmographyMovies objectAtIndex:row];
+  [cell setMovie:movie owner:self];
+  
+  return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
     return [self cellForHeaderRow:indexPath.row];
+  } else if (indexPath.section == 1) {
+    return [self cellForFilmographyRow:indexPath.row];
   }
   
   return nil;
@@ -415,15 +462,22 @@ static const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void)       tableView:(UITableView*) tableView
-      didSelectHeaderRow:(NSInteger) row {
+- (void) didSelectHeaderRow:(NSInteger) row {
+}
+
+
+- (void) didSelectFilmographyRow:(NSInteger) row {
+  Movie* movie = [filmographyMovies objectAtIndex:row];
+  [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
-    return [self tableView:tableView didSelectHeaderRow:indexPath.row];
+    [self didSelectHeaderRow:indexPath.row];
+  } else if (indexPath.section == 1) {
+    [self didSelectFilmographyRow:indexPath.row];
   }
 }
 

@@ -223,6 +223,11 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
++ (Movie*) processMovieItem:(XmlElement*) element {
+  return [self processMovieItem:element saved:NULL];
+}
+
+
 + (NSArray*) extractPeople:(XmlElement*) element {
   NSMutableArray* cast = [NSMutableArray array];
 

@@ -23,20 +23,12 @@
 #import "PersonCacheUpdater.h"
 
 @interface NetflixSearchDisplayController()
-@property (retain) NSArray* movies;
-@property (retain) NSArray* people;
 @end
 
 
 @implementation NetflixSearchDisplayController
 
-@synthesize movies;
-@synthesize people;
-
 - (void) dealloc {
-  self.movies = nil;
-  self.people = nil;
-
   [super dealloc];
 }
 
@@ -52,7 +44,7 @@
 
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar_
-     contentsController:(UIViewController*) viewController_ {
+     contentsController:(UITableViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_
                     contentsController:viewController_])) {
     self.searchBar.selectedScopeButtonIndex = [Model model].netflixSearchSelectedScopeButtonIndex;
@@ -89,18 +81,23 @@
 }
 
 
-- (BOOL) noResults {
+- (SearchResult*) searchResult {
+  return (id)abstractSearchResult;
+}
+
+
+- (BOOL) foundMatches {
   if ([self shouldShowAll]) {
-    return movies.count == 0 && people.count == 0;
+    return self.searchResult.movies.count > 0 || self.searchResult.people.count > 0;
   } else if ([self shouldShowMovies]) {
-    return movies.count == 0;
+    return self.searchResult.movies.count > 0;
   } else {
-    return people.count == 0;
+    return self.searchResult.people.count > 0;
   }
 }
 
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
+- (NSInteger) numberOfSectionsInTableViewWorker {
   if ([self shouldShowAll]) {
     return 2;
   } else {
@@ -109,26 +106,17 @@
 }
 
 
-- (NSInteger)     tableView:(UITableView*) tableView
-      numberOfRowsInSection:(NSInteger) section {
-  if (searchResult == nil) {
-    return 0;
-  }
-
-  if ([self noResults]) {
-    return 0;
-  }
-
+- (NSInteger) numberOfRowsInSectionWorker:(NSInteger) section {
   if ([self shouldShowAll]) {
     if (section == 0) {
-      return movies.count;
+      return self.searchResult.movies.count;
     } else {
-      return people.count;
+      return self.searchResult.people.count;
     }
   } else if ([self shouldShowMovies]) {
-    return movies.count;
+    return self.searchResult.movies.count;
   } else if ([self shouldShowPeople]) {
-    return people.count;
+    return self.searchResult.people.count;
   } else {
     return 0;
   }
@@ -140,7 +128,8 @@
 
   NetflixCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                     tableViewController:(id)self.searchContentsController] autorelease];
   }
 
   [cell setMovie:movie owner:nil];
@@ -148,34 +137,22 @@
 }
 
 
-- (UITableViewCell*) noResultsCell {
-  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", nil), searchResult.value];
-  return cell;
-}
-
-
-- (UITableViewCell*) tableView:(UITableView*) tableView_
-         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if ([self noResults]) {
-    return [self noResultsCell];
-  }
-
+- (UITableViewCell*) cellForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
   if ([self shouldShowAll]) {
     if (indexPath.section == 0) {
-      Movie* movie = [movies objectAtIndex:indexPath.row];
+      Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
       return [self netflixCellForMovie:movie];
     } else {
-      Person* person = [people objectAtIndex:indexPath.row];
+      Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
       UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
       cell.textLabel.text = person.name;
       return cell;
     }
   } else if ([self shouldShowMovies]) {
-    Movie* movie = [movies objectAtIndex:indexPath.row];
+    Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
     return [self netflixCellForMovie:movie];
   } else if ([self shouldShowPeople]) {
-    Person* person = [people objectAtIndex:indexPath.row];
+    Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
     UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
     cell.textLabel.text = person.name;
     return cell;
@@ -185,28 +162,31 @@
 }
 
 
-- (void)            tableView:(UITableView*) tableView_
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.searchContentsController.navigationController;
+}
+
+
+- (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
   if ([self shouldShowAll]) {
     if (indexPath.section == 0) {
-      Movie* movie = [movies objectAtIndex:indexPath.row];
+      Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
       [self.commonNavigationController pushMovieDetails:movie animated:YES];
     } else {
-      Person* person = [people objectAtIndex:indexPath.row];
+      Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
       [self.commonNavigationController pushPersonDetails:person animated:YES];
     }
   } else if ([self shouldShowMovies]) {
-    Movie* movie = [movies objectAtIndex:indexPath.row];
+    Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
     [self.commonNavigationController pushMovieDetails:movie animated:YES];
   } else if ([self shouldShowPeople]) {
-    Person* person = [people objectAtIndex:indexPath.row];
+    Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
     [self.commonNavigationController pushPersonDetails:person animated:YES];
   }
 }
 
 
-- (CGFloat)         tableView:(UITableView*) tableView_
-      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (CGFloat) heightForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
   if (indexPath.section == 1) {
     return self.searchResultsTableView.rowHeight;
   }
@@ -215,26 +195,13 @@
     return self.searchResultsTableView.rowHeight;
   }
 
-  if (searchResult != nil) {
-    return 100;
-  }
-
-  return self.searchResultsTableView.rowHeight;
+  return 100;
 }
 
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-  if ([self noResults]) {
-    if (section == 0) {
-      return LocalizedString(@"No information found", nil);
-    } else {
-      return nil;
-    }
-  }
-
+- (NSString*) titleForHeaderInSectionWorker:(NSInteger) section {
   if ([self shouldShowAll]) {
-    if (movies.count > 0 && people.count > 0) {
+    if (self.searchResult.movies.count > 0 && self.searchResult.people.count > 0) {
       if (section == 0) {
         return LocalizedString(@"Movies", nil);
       } else {
@@ -247,21 +214,18 @@
 }
 
 
-- (void) initializeData:(SearchResult*) result {
-  self.movies = result.movies;
-  self.people = result.people;
-
+- (void) initializeData {
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count + people.count],
-                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies.count],
-                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), people.count],
+                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), self.searchResult.movies.count + self.searchResult.people.count],
+                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), self.searchResult.movies.count],
+                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), self.searchResult.people.count],
                                       nil];
 }
 
 
 - (void) reportResult:(SearchResult*) result {
-  [self initializeData:result];
   [super reportResult:result];
+  [self initializeData];
 
   if (result.movies.count > 0) {
     // download the details for these movies in the background.

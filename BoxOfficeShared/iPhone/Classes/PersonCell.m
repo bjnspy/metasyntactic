@@ -46,8 +46,10 @@
           bioLabel, nil];
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier
+                         tableViewController:tableViewController_])) {
     self.bioTitleLabel = [self createTitleLabel:LocalizedString(@"Bio:", nil) yPosition:22];
     self.bioLabel = [self createValueLabel:22 + 1 forTitle:bioTitleLabel];
     bioLabel.numberOfLines = 0;

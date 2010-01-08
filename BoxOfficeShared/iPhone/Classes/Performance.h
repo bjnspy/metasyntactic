@@ -22,11 +22,9 @@
 @property (readonly, copy) NSDate* time;
 @property (readonly, copy) NSString* url;
 
-+ (Performance*) createWithDictionary:(NSDictionary*) dictionary;
 + (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url;
 
-- (NSDictionary*) dictionary;
 - (NSString*) timeString;
 
 @end

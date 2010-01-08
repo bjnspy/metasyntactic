@@ -23,8 +23,6 @@
 
 @property (retain) Person* person;
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
 - (void) setPerson:(Person*) movie owner:(id) owner;
 
 // @protected

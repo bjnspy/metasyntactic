@@ -82,7 +82,7 @@ property_definition(identifier);
 }
 
 
-+ (Score*) createWithDictionary:(NSDictionary*) dictionary {
++ (Score*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [[[Score alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                        synopsis:[dictionary objectForKey:synopsis_key]
                                           score:[dictionary objectForKey:score_key]

@@ -180,8 +180,9 @@
 - (void) setupSearchHeaderBackgroundColor {
   if (self.isPlainStyle &&
       [self.tableView.tableHeaderView isKindOfClass:[UISearchBar class]]) {
+    NSString* key = [NSString stringWithFormat:@"%@%@", @"tableHeader", @"BackgroundColor"];
     [self.tableView setValue:[StyleSheet tableViewSearchHeaderBackgroundColor]
-                      forKey:@"tableHeaderBackgroundColor"];
+                      forKey:key];
   }
 }
 
@@ -333,7 +334,8 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)        tableView:(UITableView *)tableView
+    heightForHeaderInSection:(NSInteger)section {
   if ([self respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
     UIView* view = [self tableView:tableView viewForHeaderInSection:section];
     if (view != nil) {

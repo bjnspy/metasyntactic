@@ -19,6 +19,8 @@
   Person* person;
   
   NetflixAccount* netflixAccount;
+  
+  NSArray* filmographyMovies;
   NSDictionary* websites;
   
   ActionsView* actionsView;

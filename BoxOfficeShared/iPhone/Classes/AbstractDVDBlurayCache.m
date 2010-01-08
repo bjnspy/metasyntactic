@@ -359,10 +359,6 @@
 
 - (DVD*) detailsForMovie:(Movie*) movie {
   NSDictionary* dictionary = [FileUtilities readObject:[self detailsFile:movie]];
-  if (dictionary == nil) {
-    return nil;
-  }
-
   return [DVD createWithDictionary:dictionary];
 }
 

@@ -31,8 +31,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 static NSDictionary* mostPopularAddressesToTitles = nil;
 
 
-
-
 + (void) initialize {
   if (self == [NetflixRssCache class]) {
     cache = [[NetflixRssCache alloc] init];
@@ -130,12 +128,31 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 }
 
 
+- (BOOL) allFeedDirectoriesCreated {
+  for (NSString* address in [mostPopularTitlesToAddresses allValues]) {
+    if (![FileUtilities fileExists:[NetflixPaths rssFeedDirectory:address]]) {
+      return NO;
+    }
+  }
+  
+  return YES;
+}
+
+
 - (void) downloadRSS:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
   NSLog(@"NetflixCache:downloadRSS");
 
-  for (NSString* key in [mostPopularTitles shuffledArray]) {
+  NSArray* titles = mostPopularTitles;
+  
+  // Until we've downloaded all the feeds at least once, start with the most 
+  // important feeds.
+  if ([self allFeedDirectoriesCreated]) {
+    titles = [mostPopularTitles shuffledArray];
+  }
+  
+  for (NSString* key in titles) {
     NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
     [FileUtilities createDirectory:[NetflixPaths rssFeedDirectory:address]];
 
@@ -323,8 +340,9 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
     for (NSString* path in paths) {
       NSDictionary* dictionary = [FileUtilities readObject:path];
-      if (dictionary != nil) {
-        Movie* movie = [Movie createWithDictionary:dictionary];
+
+      Movie* movie = [Movie createWithDictionary:dictionary];
+      if (movie != nil) {
         [array addObject:movie];
       }
     }

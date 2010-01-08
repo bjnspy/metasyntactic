@@ -81,7 +81,7 @@ property_definition(source);
 }
 
 
-+ (Review*) createWithDictionary:(NSDictionary*) dictionary {
++ (Review*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [Review reviewWithText:[dictionary objectForKey:text_key]
                           score:[[dictionary objectForKey:score_key] integerValue]
                            link:[dictionary objectForKey:link_key]

@@ -59,7 +59,7 @@ property_definition(url);
 }
 
 
-+ (Performance*) createWithDictionary:(NSDictionary*) dictionary {
++ (Performance*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [Performance performanceWithTime:[dictionary valueForKey:time_key]
                                       url:[dictionary valueForKey:url_key]];
 }

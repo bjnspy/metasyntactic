@@ -48,7 +48,7 @@ property_definition(movieTitles);
 }
 
 
-+ (Theater*) createWithDictionary:(NSDictionary*) dictionary {
++ (Theater*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
                                    name:[dictionary objectForKey:name_key]
                             phoneNumber:[dictionary objectForKey:phoneNumber_key]

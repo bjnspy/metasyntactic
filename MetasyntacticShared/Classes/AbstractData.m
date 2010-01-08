@@ -36,8 +36,18 @@
 }
 
 
+- (NSDictionary*) dictionary AbstractMethod;
+
+
++ (id) createWithDictionaryWorker:(NSDictionary*) dictionary AbstractMethod;
+
+
 + (id) createWithDictionary:(NSDictionary*) dictionary {
-  return nil;
+  if (dictionary.count == 0) {
+    return nil;
+  }
+  
+  return [self createWithDictionaryWorker:dictionary];
 }
 
 

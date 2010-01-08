@@ -61,7 +61,7 @@ property_definition(name);
 }
 
 
-+ (Feed*) createWithDictionary:(NSDictionary*) dictionary {
++ (Feed*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [Feed feedWithUrl:[dictionary objectForKey:url_key]
                        key:[dictionary objectForKey:key_key]
                       name:[dictionary objectForKey:name_key]];

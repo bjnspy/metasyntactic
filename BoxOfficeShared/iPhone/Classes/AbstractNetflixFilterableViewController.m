@@ -145,7 +145,8 @@
   static NSString* reuseIdentifier = @"reuseIdentifier";
   NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                     tableViewController:self] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
 
