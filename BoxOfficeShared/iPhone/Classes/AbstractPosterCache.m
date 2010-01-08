@@ -31,7 +31,7 @@
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -54,7 +54,7 @@
     // already have a real poster.
     return;
   }
-  
+
   NSString* sentinelPath = [self sentinelPath:object];
   if (!force) {
     // check if we have a sentinel
@@ -66,7 +66,7 @@
       }
     }
   }
-  
+
   NSData* data = [self downloadPoster:object];
   if (data != nil) {
     if (data.length == 0) {
@@ -90,26 +90,26 @@
 - (UIImage*) smallPosterForObject:(id) object
                      loadFromDisk:(BOOL) loadFromDisk {
   NSString* smallPosterPath = [self smallPosterFilePath:object];
-  
+
   UIImage* image = [[ImageCache cache] imageForPath:smallPosterPath
                                        loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
-  
+
   NSData* smallPosterData;
   if ([FileUtilities size:smallPosterPath] == 0) {
     NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:object]];
     smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                             toHeight:SMALL_POSTER_HEIGHT];
-    
+
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-    
+
     UIImage* image = [UIImage imageWithData:smallPosterData];
     [[ImageCache cache] setImage:image forPath:smallPosterPath];
     return image;
   }
-  
+
   return nil;
 }
 

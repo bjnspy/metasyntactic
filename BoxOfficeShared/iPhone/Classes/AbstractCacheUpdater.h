@@ -15,9 +15,9 @@
 @interface AbstractCacheUpdater : NSObject {
 @private
   NSCondition* gate;
-  
+
   NSArray* searchOperations;
-  
+
   // Shared amongst multiple threads.
   AutoreleasingMutableArray* imageOperations;
 }

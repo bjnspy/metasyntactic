@@ -134,7 +134,7 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
       return NO;
     }
   }
-  
+
   return YES;
 }
 
@@ -145,13 +145,13 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
   NSLog(@"NetflixCache:downloadRSS");
 
   NSArray* titles = mostPopularTitles;
-  
-  // Until we've downloaded all the feeds at least once, start with the most 
+
+  // Until we've downloaded all the feeds at least once, start with the most
   // important feeds.
   if ([self allFeedDirectoriesCreated]) {
     titles = [mostPopularTitles shuffledArray];
   }
-  
+
   for (NSString* key in titles) {
     NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
     [FileUtilities createDirectory:[NetflixPaths rssFeedDirectory:address]];

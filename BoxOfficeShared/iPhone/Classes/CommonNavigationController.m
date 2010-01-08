@@ -18,12 +18,12 @@
 #import "Model.h"
 #import "MovieDetailsViewController.h"
 #import "NowPlayingSettingsViewController.h"
+#import "PersonDetailsViewController.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
-#import "PersonDetailsViewController.h"
 
 @implementation CommonNavigationController
 
@@ -104,7 +104,7 @@
   if (person == nil) {
     return;
   }
-  
+
   UIViewController* viewController = [[[PersonDetailsViewController alloc] initWithPerson:person] autorelease];
   [self pushViewController:viewController animated:animated];
 }

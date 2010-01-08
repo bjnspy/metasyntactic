@@ -41,7 +41,7 @@
     [FileUtilities createDirectory:self.moviesCacheDirectory];
     [FileUtilities createDirectory:self.peopleCacheDirectory];
   }
-  
+
   return self;
 }
 
@@ -59,7 +59,7 @@
 
 
 - (void) updateObjectDetails:(NSString*) name
-                        path:(NSString*) path 
+                        path:(NSString*) path
                        force:(BOOL) force {
   NSDate* lastLookupDate = [FileUtilities modificationDate:path];
   if (lastLookupDate != nil) {
@@ -68,7 +68,7 @@
       // we have a real imdb value for this movie
       return;
     }
-    
+
     if (!force) {
       // we have a sentinel.  only update if it's been long enough
       if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -76,19 +76,19 @@
       }
     }
   }
-  
+
   NSString* url = [self serverUrl:name];
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
   if (data == nil) {
     return;
   }
-  
+
   XmlElement* element = [XmlParser parse:data];
   NSString* addressValue = [element text];
   if (addressValue == nil) {
     addressValue = @"";
   }
-  
+
   // write down the response (even if it is empty).  An empty value will
   // ensure that we don't update this entry too often.
   [FileUtilities writeObject:addressValue toFile:path];

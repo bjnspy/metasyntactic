@@ -118,7 +118,7 @@
   if ([self checkPerson:person]) {
     return;
   }
-  
+
   [self updatePersonDetails:person force:force];
 }
 

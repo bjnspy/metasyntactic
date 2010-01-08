@@ -1061,7 +1061,7 @@ typedef enum {
 
 - (void) moveMovieWasTappedForRow:(NSInteger) row {
   [self enterReadonlyMode];
-  
+
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
   [self.netflixUpdater updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
@@ -1069,25 +1069,25 @@ typedef enum {
 
 
 - (void) showDeletePromptForRow:(NSInteger) row {
-  UIActionSheet* actionSheet = 
+  UIActionSheet* actionSheet =
   [[[UIActionSheet alloc] initWithTitle:LocalizedString(@"Remove Item from Queue?", nil)
                                delegate:self
                       cancelButtonTitle:LocalizedString(@"Cancel", nil)
                  destructiveButtonTitle:LocalizedString(@"Remove", nil)
                       otherButtonTitles:nil] autorelease];
   actionSheet.tag = (row << REMOVE_MOVIE_INDEX_SHIFT) | REMOVE_MOVIE_TAG;
-  
+
   [self showActionSheet:actionSheet];
 }
 
 
 - (void) deleteMovieWasTappedForRow:(NSInteger) row {
   [self enterReadonlyMode];
-  
+
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
   [self.netflixUpdater updateQueue:status.queue
-                   byDeletingMovie:status.movie 
+                   byDeletingMovie:status.movie
                           delegate:self
                            account:netflixAccount];
 }
@@ -1199,7 +1199,7 @@ typedef enum {
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
-  
+
   if ((actionSheet.tag & ADD_TO_NETFLIX_TAG) != 0) {
     [self didDismissAddToNetflixActionSheet:actionSheet
                             withButtonIndex:buttonIndex];

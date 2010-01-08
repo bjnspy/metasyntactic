@@ -70,17 +70,17 @@
   if ([self shouldShowTheaters]) {
     return self.searchResult.theaters.count > 0;
   }
-  
+
   if ([self shouldShowMovies]) {
-    return 
+    return
     self.searchResult.movies.count > 0 ||
     self.searchResult.upcomingMovies.count > 0 ||
     self.searchResult.dvds.count > 0 ||
     self.searchResult.bluray.count > 0;
   }
-  
+
   if ([self shouldShowAll]) {
-    return 
+    return
     self.searchResult.theaters.count > 0 ||
     self.searchResult.movies.count > 0 ||
     self.searchResult.upcomingMovies.count > 0 ||
@@ -260,7 +260,7 @@
       indexPath.section == 4) {
     return 100;
   }
-  
+
   return self.searchResultsTableView.rowHeight;
 }
 

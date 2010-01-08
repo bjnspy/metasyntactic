@@ -303,7 +303,7 @@ static NetflixCache* cache;
         [filmography addObject:href];
       }
     }
-    
+
     for (XmlElement* linkElement in [element elements:@"link"]) {
       if ([@"webpage" isEqual:[linkElement attributeValue:@"title"]]) {
         website = [linkElement attributeValue:@"href"];
@@ -705,7 +705,7 @@ static NetflixCache* cache;
 
 - (void) updatePerson:(Person*) person
    filmographyAddress:(NSString*) filmographyAddress
-                force:(BOOL) force 
+                force:(BOOL) force
               account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
@@ -718,16 +718,16 @@ static NetflixCache* cache;
     [NetflixNetworking createGetURLRequest:filmographyAddress
                                 parameter:[OARequestParameter parameterWithName:@"expand" value:@"formats"]
                                    account:account];
-    
+
     XmlElement* element = [NetflixCache downloadXml:request account:account];
 
-    netflixMovie = [NetflixUtilities processMovieItem:element];    
+    netflixMovie = [NetflixUtilities processMovieItem:element];
     if (netflixMovie != nil) {
       [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
       [MetasyntacticSharedApplication minorRefresh];
     }
   }
-  
+
   if (netflixMovie != nil) {
     [NetflixSharedApplication reportNetflixMovie:netflixMovie];
   }
@@ -735,10 +735,10 @@ static NetflixCache* cache;
 
 
 - (void) updatePersonDetails:(Person*) person
-                       force:(BOOL) force 
+                       force:(BOOL) force
                      account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
-  
+
   for (NSString* filmographyAddress in [self filmographyAddressesForPerson:person]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
@@ -760,7 +760,7 @@ static NetflixCache* cache;
 
   [self updatePersonDetails:person
                      force:force
-                   account:[[NetflixAccountCache cache] currentAccount]];  
+                   account:[[NetflixAccountCache cache] currentAccount]];
 }
 
 
@@ -897,7 +897,7 @@ static NetflixCache* cache;
 - (NSString*) netflixAddressForPerson:(Person*) person {
   return person.website;
 }
-       
+
 
 - (NSArray*) filmographyAddressesForPerson:(Person*) person {
   return [person.additionalFields objectForKey:[NetflixConstants filmographyKey]];

@@ -20,12 +20,12 @@
 #import "IMDbCache.h"
 #import "MetacriticCache.h"
 #import "MoviePosterCache.h"
+#import "PersonPosterCache.h"
 #import "RottenTomatoesCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
-#import "PersonPosterCache.h"
 
 @implementation PersonCacheUpdater
 
@@ -41,7 +41,7 @@ static PersonCacheUpdater* updater = nil;
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -59,20 +59,20 @@ static PersonCacheUpdater* updater = nil;
 - (void) processObject:(Person*) person
                 force:(NSNumber*) forceNumber {
   NSLog(@"PersonCacheUpdater:processPerson - %@", person.name);
-  
+
   BOOL force = forceNumber.boolValue;
   if (force) {
     [NotificationCenter addNotification:person.name];
   }
-  
+
   [[PersonPosterCache cache]    processPerson:person force:force];
   [[NetflixCache cache]         processPerson:person force:force];
   [[IMDbCache cache]            processPerson:person force:force];
   [[WikipediaCache cache]       processPerson:person force:force];
   [[RottenTomatoesCache cache]  processPerson:person force:force];
-  
+
   [MetasyntacticSharedApplication minorRefresh];
-  
+
   if (force) {
     [NotificationCenter removeNotification:person.name];
   }

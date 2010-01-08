@@ -812,7 +812,7 @@ static Model* model = nil;
   if (result.length > 0) {
     return result;
   }
-  
+
   return nil;
 }
 
@@ -837,12 +837,12 @@ static Model* model = nil;
   if (dvd != nil) {
     return dvd;
   }
-  
+
   dvd = [[BlurayCache cache] detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
-  
+
   return nil;
 }
 

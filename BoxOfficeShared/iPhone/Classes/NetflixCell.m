@@ -118,7 +118,7 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier 
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
            tableViewController:(UITableViewController*) tableViewController_ {
   if ((self = [super initWithReuseIdentifier:reuseIdentifier
                          tableViewController:tableViewController_])) {
@@ -278,7 +278,7 @@
   CGRect frame = self.frame;
   BOOL grouped = self.tableView.style == UITableViewStyleGrouped;
   NSInteger padding = grouped ? 20 : 0;
-  
+
   {
     CGRect formatFrame = formatsLabel.frame;
     formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5 - padding;

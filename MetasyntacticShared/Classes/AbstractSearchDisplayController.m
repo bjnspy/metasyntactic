@@ -31,7 +31,7 @@
 - (void) dealloc {
   self.searchEngineData = nil;
   self.abstractSearchResult = nil;
-  
+
   [super dealloc];
 }
 
@@ -69,13 +69,13 @@
     self.delegate = self;
     self.searchResultsDataSource = self;
     self.searchResultsDelegate = self;
-    
+
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.showsScopeBar = YES;
   }
-  
+
   return self;
 }
 
@@ -94,7 +94,7 @@
   if (searchEngineData == nil) {
     self.searchEngineData = [self createSearchEngine];
   }
-  
+
   return searchEngineData;
 }
 
@@ -102,7 +102,7 @@
 - (NSString*) searchText {
   NSString* searchText = self.searchBar.text;
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   return searchText;
 }
 
@@ -123,7 +123,7 @@
 - (BOOL)     searchDisplayController:(UISearchDisplayController*) controller
     shouldReloadTableForSearchString:(NSString*) searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   if (searchText.length == 0) {
     [self setupDefaultScopeButtonTitles];
     [self.searchEngine invalidateExistingRequests];
@@ -132,7 +132,7 @@
   } else {
     [self.searchEngine submitRequest:searchText];
   }
-  
+
   return YES;
 }
 
@@ -141,7 +141,7 @@
   if (![self foundMatches]) {
     return 1;
   }
-  
+
   return self.numberOfSectionsInTableViewWorker;
 }
 
@@ -156,7 +156,7 @@
       return 0;
     }
   }
-  
+
   return [self numberOfRowsInSectionWorker:section];
 }
 
@@ -178,7 +178,7 @@
   if (![self foundMatches]) {
     return [self searchingCell];
   }
-  
+
   return [self cellForRowAtIndexPathWorker:indexPath];
 }
 
@@ -188,7 +188,7 @@
   if (![self foundMatches]) {
     return;
   }
-  
+
   [self didSelectRowAtIndexPathWorker:indexPath];
 }
 
@@ -198,7 +198,7 @@
   if (![self foundMatches]) {
     return nil;
   }
-  
+
   return [self titleForHeaderInSectionWorker:section];
 }
 
@@ -208,7 +208,7 @@
   if (![self foundMatches]) {
     return tableView_.rowHeight;
   }
-  
+
   return [self heightForRowAtIndexPathWorker:indexPath];
 }
 

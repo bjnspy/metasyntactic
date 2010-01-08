@@ -53,7 +53,7 @@
 
     [ThreadingUtilities backgroundSelector:@selector(searchThreadEntryPoint)
                                   onTarget:self
-                                      gate:nil 
+                                      gate:nil
                                     daemon:YES];
   }
 

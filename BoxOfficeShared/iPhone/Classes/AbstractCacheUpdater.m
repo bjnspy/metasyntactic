@@ -43,7 +43,7 @@
   self.gate = nil;
   self.searchOperations = nil;
   self.imageOperations = nil;
-  
+
   [super dealloc];
 }
 
@@ -57,7 +57,7 @@
                                       gate:nil
                                     daemon:YES];
   }
-  
+
   return self;
 }
 
@@ -111,7 +111,7 @@
   if (object == nil) {
     return;
   }
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(processObject:force:)
                                           onTarget:self
                                         withObject:object
@@ -127,12 +127,12 @@
     for (Operation* operation in searchOperations) {
       [operation cancel];
     }
-    
+
     NSMutableArray* operations = [NSMutableArray array];
     for (id object in objects) {
       [operations addObject:[self addSearchObject:object]];
     }
-    
+
     self.searchOperations = operations;
   }
   [gate unlock];
@@ -157,7 +157,7 @@
     [imageOperations removeLastObject];
   }
   [gate unlock];
-  
+
   [self updateImageWorker:object];
   //[[PosterCache cache] processMovie:movie force:NO];
 }
