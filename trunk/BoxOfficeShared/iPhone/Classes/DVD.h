@@ -27,13 +27,10 @@
 @property (readonly, copy) NSString* discs;
 @property (readonly, copy) NSString* url;
 
-+ (DVD*) createWithDictionary:(NSDictionary*) dictionary;
 + (DVD*) dvdWithTitle:(NSString*) title
                 price:(NSString*) price
                format:(NSString*) format
                 discs:(NSString*) discs
                   url:(NSString*) url;
-
-- (NSDictionary*) dictionary;
 
 @end

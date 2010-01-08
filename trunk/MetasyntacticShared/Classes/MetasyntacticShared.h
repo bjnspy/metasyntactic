@@ -35,6 +35,7 @@
 #import "AbstractFullScreenViewController.h"
 #import "AbstractModel.h"
 #import "AbstractNavigationController.h"
+#import "AbstractSearchDisplayController.h"
 #import "AbstractSearchEngine.h"
 #import "AbstractSearchRequest.h"
 #import "AbstractSearchResult.h"

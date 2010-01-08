@@ -107,8 +107,10 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier 
+           tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier
+                         tableViewController:tableViewController_])) {
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumFontSize = 14;

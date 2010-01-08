@@ -38,6 +38,7 @@
 + (NSString*) rssFile:(NSString*) address;
 + (NSString*) rssMovieFile:(NSString*) identifier address:(NSString*) address;
 
-+ (NSString*) netflixSearchFile:(Movie*) movie;
++ (NSString*) searchFile:(Movie*) movie;
++ (NSString*) filmographyFile:(NSString*) filmographyAddress;
 
 @end

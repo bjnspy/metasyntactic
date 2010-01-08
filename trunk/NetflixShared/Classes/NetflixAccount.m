@@ -49,7 +49,7 @@ property_definition(userId);
 }
 
 
-+ (NetflixAccount*) createWithDictionary:(NSDictionary*) dictionary {
++ (NetflixAccount*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [self accountWithKey:[dictionary objectForKey:key_key]
                        secret:[dictionary objectForKey:secret_key]
                        userId:[dictionary objectForKey:userId_key]];

@@ -52,7 +52,6 @@
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 
-+ (Movie*) createWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating
@@ -78,8 +77,6 @@
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres
               additionalFields:(NSDictionary*) additionalFields;
-
-- (NSDictionary*) dictionary;
 
 + (NSString*) runtimeString:(NSInteger) length;
 

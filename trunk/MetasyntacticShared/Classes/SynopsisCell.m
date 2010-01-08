@@ -67,12 +67,15 @@
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.synopsis = synopsis_;
     self.limitLength = limitLength_;
-    UIImage* backgroundImage = [MetasyntacticStockImage(@"SynopsisBackground.png") stretchableImageWithLeftCapWidth:1 topCapHeight:1];
-    self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     imageSize = [self calculatePreferredImageSize:imageView.image];
 
+    if (imageSize.height > 0) {
+      UIImage* backgroundImage = [MetasyntacticStockImage(@"SynopsisBackground.png") stretchableImageWithLeftCapWidth:1 topCapHeight:1];
+      self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+    }
+    
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 

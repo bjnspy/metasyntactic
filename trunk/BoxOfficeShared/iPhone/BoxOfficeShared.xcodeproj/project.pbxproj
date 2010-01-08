@@ -19,7 +19,6 @@
 		100000000000000700000058 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000057 /* AbstractPosterCell.m */; };
 		10000000000000070000005E /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000005A /* AbstractPosterDownloader.m */; };
 		100000000000000700000061 /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000060 /* AbstractScoreProvider.m */; };
-		100000000000000700000064 /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000063 /* AbstractSearchDisplayController.m */; };
 		100000000000000700000067 /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000066 /* AbstractWebsiteCache.m */; };
 		10000000000000070000006D /* AllMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006C /* AllMoviesViewController.m */; };
 		100000000000000700000070 /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006F /* AllTheatersViewController.m */; };
@@ -235,8 +234,6 @@
 		10000000000000070000005A /* AbstractPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterDownloader.m; sourceTree = "<group>"; };
 		10000000000000070000005F /* AbstractScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractScoreProvider.h; sourceTree = "<group>"; };
 		100000000000000700000060 /* AbstractScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractScoreProvider.m; sourceTree = "<group>"; };
-		100000000000000700000062 /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
-		100000000000000700000063 /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		100000000000000700000065 /* AbstractWebsiteCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWebsiteCache.h; sourceTree = "<group>"; };
 		100000000000000700000066 /* AbstractWebsiteCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWebsiteCache.m; sourceTree = "<group>"; };
 		10000000000000070000006A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -928,10 +925,8 @@
 		100000000000001100000089 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000700000062 /* AbstractSearchDisplayController.h */,
 				10000000000000090000009C /* LocalSearchDisplayController.h */,
 				10000000000000090000011B /* NetflixSearchDisplayController.h */,
-				100000000000000700000063 /* AbstractSearchDisplayController.m */,
 				1000000000000009000000A6 /* LocalSearchDisplayController.m */,
 				10000000000000090000011D /* NetflixSearchDisplayController.m */,
 			);
@@ -1419,7 +1414,6 @@
 				10000000000000090000011A /* NetflixRecommendationsViewController.m in Sources */,
 				100000000000000900000177 /* NetflixSettingsViewController.m in Sources */,
 				1000000000000009000001BE /* NetflixViewController.m in Sources */,
-				100000000000000700000064 /* AbstractSearchDisplayController.m in Sources */,
 				1000000000000009000000A7 /* LocalSearchDisplayController.m in Sources */,
 				10000000000000090000011F /* NetflixSearchDisplayController.m in Sources */,
 				100000000000000A00000024 /* NowPlayingCreditsViewController.m in Sources */,

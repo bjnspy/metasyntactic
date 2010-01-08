@@ -127,7 +127,8 @@
   static NSString* reuseIdentifier = @"reuseIdentifier";
   DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                 tableViewController:self] autorelease];
   }
 
   [cell setMovie:movie owner:self];

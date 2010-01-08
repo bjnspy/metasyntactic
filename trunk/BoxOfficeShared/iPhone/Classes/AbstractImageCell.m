@@ -43,9 +43,11 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier 
+           tableViewController:(UITableViewController*) tableViewController_ {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault
-                   reuseIdentifier:reuseIdentifier])) {
+                   reuseIdentifier:reuseIdentifier
+               tableViewController:tableViewController_])) {
     self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
 
     titleLabel.font = [UIFont boldSystemFontOfSize:18];

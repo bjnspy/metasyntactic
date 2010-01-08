@@ -81,7 +81,7 @@ property_definition(additionalFields);
 }
 
 
-+ (Person*) personWithDictionary:(NSDictionary*) dictionary {
++ (Person*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [Person personWithIdentifier:[dictionary objectForKey:identifier_key]
                                  name:[dictionary objectForKey:name_key]
                             biography:[dictionary objectForKey:biography_key]

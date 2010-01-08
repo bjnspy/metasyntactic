@@ -57,7 +57,7 @@ property_definition(originatingLocation);
 }
 
 
-+ (FavoriteTheater*) createWithDictionary:(NSDictionary*) dictionary {
++ (FavoriteTheater*) createWithDictionaryWorker:(NSDictionary*) dictionary {
   return [FavoriteTheater theaterWithName:[dictionary objectForKey:name_key]
                       originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]];
 }

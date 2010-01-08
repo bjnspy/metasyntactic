@@ -27,13 +27,10 @@
 @property (readonly, copy) NSString* author;
 @property (readonly, copy) NSString* source;
 
-+ (Review*) createWithDictionary:(NSDictionary*) dictionary;
 + (Review*) reviewWithText:(NSString*) text
                      score:(NSInteger) score
                       link:(NSString*) link
                     author:(NSString*) author
                     source:(NSString*) source;
-
-- (NSDictionary*) dictionary;
 
 @end

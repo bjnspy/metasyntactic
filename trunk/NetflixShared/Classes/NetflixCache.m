@@ -489,10 +489,6 @@ static NetflixCache* cache;
   NSDictionary* dictionary =
     [FileUtilities readObject:
      [NetflixPaths seriesFile:[movie.additionalFields objectForKey:[NetflixConstants seriesKey]]]];
-  if (dictionary == nil) {
-    return nil;
-  }
-
   return [Movie createWithDictionary:dictionary];
 }
 
@@ -643,7 +639,7 @@ static NetflixCache* cache;
     return;
   }
 
-  NSString* file = [NetflixPaths netflixSearchFile:movie];
+  NSString* file = [NetflixPaths searchFile:movie];
   Movie* netflixMovie = nil;
   if ([FileUtilities fileExists:file]) {
     netflixMovie = [self correspondingNetflixMovie:movie];
@@ -697,6 +693,74 @@ static NetflixCache* cache;
   [self updateMovieDetails:movie
                      force:force
                    account:[[NetflixAccountCache cache] currentAccount]];
+}
+
+
+- (Movie*) movieForFilmographyAddress:(NSString*) filmographyAddress {
+  NSString* file = [NetflixPaths filmographyFile:filmographyAddress];
+  NSDictionary* dictionary = [FileUtilities readObject:file];
+  return [Movie createWithDictionary:dictionary];
+}
+
+
+- (void) updatePerson:(Person*) person
+   filmographyAddress:(NSString*) filmographyAddress
+                force:(BOOL) force 
+              account:(NetflixAccount*) account {
+  if (![self canContinue:account]) { return; }
+
+  NSString* file = [NetflixPaths filmographyFile:filmographyAddress];
+  Movie* netflixMovie = nil;
+  if ([FileUtilities fileExists:file]) {
+    netflixMovie = [self movieForFilmographyAddress:filmographyAddress];
+  } else {
+    NSURLRequest* request =
+    [NetflixNetworking createGetURLRequest:filmographyAddress
+                                parameter:[OARequestParameter parameterWithName:@"expand" value:@"formats"]
+                                   account:account];
+    
+    XmlElement* element = [NetflixCache downloadXml:request account:account];
+
+    netflixMovie = [NetflixUtilities processMovieItem:element];    
+    if (netflixMovie != nil) {
+      [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+      [MetasyntacticSharedApplication minorRefresh];
+    }
+  }
+  
+  if (netflixMovie != nil) {
+    [NetflixSharedApplication reportNetflixMovie:netflixMovie];
+  }
+}
+
+
+- (void) updatePersonDetails:(Person*) person
+                       force:(BOOL) force 
+                     account:(NetflixAccount*) account {
+  if (![self canContinue:account]) { return; }
+  
+  for (NSString* filmographyAddress in [self filmographyAddressesForPerson:person]) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      [self updatePerson:person
+      filmographyAddress:filmographyAddress
+                   force:force
+                 account:account];
+    }
+    [pool release];
+  }
+}
+
+
+- (void) updatePersonDetails:(Person*) person
+                       force:(BOOL) force {
+  if (!force) {
+    return;
+  }
+
+  [self updatePersonDetails:person
+                     force:force
+                   account:[[NetflixAccountCache cache] currentAccount]];  
 }
 
 
@@ -832,6 +896,11 @@ static NetflixCache* cache;
 
 - (NSString*) netflixAddressForPerson:(Person*) person {
   return person.website;
+}
+       
+
+- (NSArray*) filmographyAddressesForPerson:(Person*) person {
+  return [person.additionalFields objectForKey:[NetflixConstants filmographyKey]];
 }
 
 
@@ -969,12 +1038,8 @@ static NetflixCache* cache;
     return movie;
   }
 
-  NSString* file = [NetflixPaths netflixSearchFile:movie];
+  NSString* file = [NetflixPaths searchFile:movie];
   NSDictionary* dictionary = [FileUtilities readObject:file];
-  if (dictionary.count == 0) {
-    return nil;
-  }
-
   return [Movie createWithDictionary:dictionary];
 }
 

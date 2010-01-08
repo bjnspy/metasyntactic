@@ -26,6 +26,7 @@ static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 static NSString* netflixDetailsDirectory = nil;
 static NSString* netflixRSSDirectory = nil;
+static NSString* netflixFilmographyDirectory = nil;
 
 static NSString** directories[] = {
   &netflixDirectory,
@@ -34,6 +35,7 @@ static NSString** directories[] = {
   &netflixSearchDirectory,
   &netflixDetailsDirectory,
   &netflixRSSDirectory,
+  &netflixFilmographyDirectory,
 };
 
 
@@ -54,6 +56,7 @@ static NSString** directories[] = {
     netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
     netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
     netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
+    netflixFilmographyDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Filmography"] retain];
 
     [self createDirectories];
   }
@@ -145,8 +148,13 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) netflixSearchFile:(Movie*) movie {
++ (NSString*) searchFile:(Movie*) movie {
   return [[netflixSearchDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
++ (NSString*) filmographyFile:(NSString*) filmographyAddress {
+  return [[netflixFilmographyDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:filmographyAddress]] stringByAppendingPathExtension:@"plist"];
 }
 
 @end

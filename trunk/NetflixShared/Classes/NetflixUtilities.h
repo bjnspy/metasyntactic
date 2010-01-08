@@ -18,6 +18,8 @@
 
 + (BOOL) canContinue:(NetflixAccount*) account;
 
++ (Movie*) processMovieItem:(XmlElement*) element;
+
 + (Movie*) processMovieItem:(XmlElement*) element
                       saved:(BOOL*) saved;
 

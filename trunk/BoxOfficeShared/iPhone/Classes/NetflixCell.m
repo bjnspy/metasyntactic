@@ -118,8 +118,10 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier 
+           tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier
+                         tableViewController:tableViewController_])) {
     self.directorTitleLabel = [self createTitleLabel:LocalizedString(@"Directors:", nil) yPosition:22];
     self.directorLabel = [self createValueLabel:22 forTitle:directorTitleLabel];
 
@@ -274,16 +276,18 @@
   [formatsLabel sizeToFit];
 
   CGRect frame = self.frame;
-
+  BOOL grouped = self.tableView.style == UITableViewStyleGrouped;
+  NSInteger padding = grouped ? 20 : 0;
+  
   {
     CGRect formatFrame = formatsLabel.frame;
-    formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
+    formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5 - padding;
     formatsLabel.frame = formatFrame;
   }
 
   {
     CGRect availabilityFrame = availabilityLabel.frame;
-    availabilityFrame.origin.x = frame.size.width - availabilityFrame.size.width - 5;
+    availabilityFrame.origin.x = frame.size.width - availabilityFrame.size.width - 5 - padding;
     availabilityLabel.frame = availabilityFrame;
   }
 }

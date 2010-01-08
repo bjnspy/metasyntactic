@@ -38,8 +38,6 @@
 
 @property (readonly, retain) UIButton* tappableArrow;
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
 - (void) refresh;
 
 @end

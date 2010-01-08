@@ -31,7 +31,7 @@
 
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar_
-      contentsController:(UIViewController*) viewController_ {
+      contentsController:(UITableViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_
                     contentsController:viewController_])) {
     self.searchBar.selectedScopeButtonIndex = [Model model].localSearchSelectedScopeButtonIndex;
@@ -61,78 +61,68 @@
 }
 
 
-- (BOOL) hasResults {
-  if (searchResult == nil) {
-    return NO;
-  }
+- (SearchResult*) searchResult {
+  return (id)abstractSearchResult;
+}
 
-  if (searchResult.theaters.count > 0) {
-    if ([self shouldShowTheaters] || [self shouldShowAll]) {
-      return YES;
-    }
-  }
 
-  if (searchResult.movies.count > 0 ||
-      searchResult.upcomingMovies.count > 0 ||
-      searchResult.dvds.count > 0 ||
-      searchResult.bluray.count > 0) {
-    if ([self shouldShowMovies] || [self shouldShowAll]) {
-      return YES;
-    }
+- (BOOL) foundMatches {
+  if ([self shouldShowTheaters]) {
+    return self.searchResult.theaters.count > 0;
+  }
+  
+  if ([self shouldShowMovies]) {
+    return 
+    self.searchResult.movies.count > 0 ||
+    self.searchResult.upcomingMovies.count > 0 ||
+    self.searchResult.dvds.count > 0 ||
+    self.searchResult.bluray.count > 0;
+  }
+  
+  if ([self shouldShowAll]) {
+    return 
+    self.searchResult.theaters.count > 0 ||
+    self.searchResult.movies.count > 0 ||
+    self.searchResult.upcomingMovies.count > 0 ||
+    self.searchResult.dvds.count > 0 ||
+    self.searchResult.bluray.count > 0;
   }
 
   return NO;
 }
 
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  if (searchResult == nil) {
-    return 1;
-  }
-
-  if (![self hasResults]) {
-    return 1;
-  }
-
+- (NSInteger) numberOfSectionsInTableViewWorker {
   return 5;
 }
 
 
-- (NSInteger)     tableView:(UITableView*) tableView
-      numberOfRowsInSection:(NSInteger) section {
-  if (searchResult == nil) {
-    return 0;
-  }
-
-  if (![self hasResults]) {
-    return 0;
-  }
-
+- (NSInteger) numberOfRowsInSectionWorker:(NSInteger) section {
   if (section == 0 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    return searchResult.movies.count;
+    return self.searchResult.movies.count;
   } else if (section == 1 && ([self shouldShowTheaters] || [self shouldShowAll])) {
-    return searchResult.theaters.count;
+    return self.searchResult.theaters.count;
   } else if (section == 2 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    return searchResult.upcomingMovies.count;
+    return self.searchResult.upcomingMovies.count;
   } else if (section == 3 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    return searchResult.dvds.count;
+    return self.searchResult.dvds.count;
   } else if (section == 4 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    return searchResult.bluray.count;
-  } else {
-    return 0;
+    return self.searchResult.bluray.count;
   }
+
+  return 0;
 }
 
 
 - (UITableViewCell*) movieCellForRow:(NSInteger) row {
-  Movie* movie = [searchResult.movies objectAtIndex:row];
+  Movie* movie = [self.searchResult.movies objectAtIndex:row];
 
   return [MovieTitleCell movieTitleCellForMovie:movie inTableView:self.searchResultsTableView];
 }
 
 
 - (UITableViewCell*) theaterCellForRow:(NSInteger) row {
-  Theater* theater = [searchResult.theaters objectAtIndex:row];
+  Theater* theater = [self.searchResult.theaters objectAtIndex:row];
 
   static NSString* reuseIdentifier = @"TheaterNameCellReuseIdentifier";
 
@@ -147,13 +137,14 @@
 
 
 - (UITableViewCell*) upcomingMovieCellForRow:(NSInteger) row {
-  Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
+  Movie* movie = [self.searchResult.upcomingMovies objectAtIndex:row];
 
   static NSString* reuseIdentifier = @"UpcomingMovieCellReuseIdentifier";
 
   UpcomingMovieCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                           tableViewController:(id)self.searchContentsController] autorelease];
   }
 
   [cell setMovie:movie owner:self];
@@ -162,13 +153,14 @@
 
 
 - (UITableViewCell*) dvdCellForRow:(NSInteger) row {
-  Movie* movie = [searchResult.dvds objectAtIndex:row];
+  Movie* movie = [self.searchResult.dvds objectAtIndex:row];
 
   static NSString* reuseIdentifier = @"DvdCellReuseIdentifier";
 
   DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                 tableViewController:(id)self.searchContentsController] autorelease];
   }
 
   [cell setMovie:movie owner:self];
@@ -177,13 +169,14 @@
 
 
 - (UITableViewCell*) blurayCellForRow:(NSInteger) row {
-  Movie* movie = [searchResult.bluray objectAtIndex:row];
+  Movie* movie = [self.searchResult.bluray objectAtIndex:row];
 
   static NSString* reuseIdentifier = @"BlurayCellReuseIdentifier";
 
   DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                 tableViewController:(id)self.searchContentsController] autorelease];
   }
 
   [cell setMovie:movie owner:self];
@@ -191,19 +184,7 @@
 }
 
 
-- (UITableViewCell*) noResultsCell {
-  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
-  return cell;
-}
-
-
-- (UITableViewCell*) tableView:(UITableView*) tableView_
-         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (![self hasResults]) {
-    return [self noResultsCell];
-  }
-
+- (UITableViewCell*) cellForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
     return [self movieCellForRow:indexPath.row];
   } else if (indexPath.section == 1) {
@@ -218,99 +199,91 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.searchContentsController.navigationController;
+}
+
+
 - (void) didSelectMovieRow:(NSInteger) row {
-  Movie* movie = [searchResult.movies objectAtIndex:row];
+  Movie* movie = [self.searchResult.movies objectAtIndex:row];
 
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
-  Theater* theater = [searchResult.theaters objectAtIndex:row];
+  Theater* theater = [self.searchResult.theaters objectAtIndex:row];
 
   [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
-  Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
+  Movie* movie = [self.searchResult.upcomingMovies objectAtIndex:row];
 
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
-  Movie* movie = [searchResult.dvds objectAtIndex:row];
+  Movie* movie = [self.searchResult.dvds objectAtIndex:row];
 
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
-  Movie* movie = [searchResult.bluray objectAtIndex:row];
+  Movie* movie = [self.searchResult.bluray objectAtIndex:row];
 
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
-- (void)            tableView:(UITableView*) tableView_
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+- (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
-    return [self didSelectMovieRow:indexPath.row];
+    [self didSelectMovieRow:indexPath.row];
   } else if (indexPath.section == 1) {
-    return [self didSelectTheaterRow:indexPath.row];
+    [self didSelectTheaterRow:indexPath.row];
   } else if (indexPath.section == 2) {
-    return [self didSelectUpcomingMovieRow:indexPath.row];
+    [self didSelectUpcomingMovieRow:indexPath.row];
   } else if (indexPath.section == 3) {
-    return [self didSelectDvdRow:indexPath.row];
+    [self didSelectDvdRow:indexPath.row];
   } else if (indexPath.section == 4) {
-    return [self didSelectBlurayRow:indexPath.row];
+    [self didSelectBlurayRow:indexPath.row];
   }
 }
 
 
-- (CGFloat)         tableView:(UITableView*) tableView_
-      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (searchResult != nil) {
-    if (indexPath.section == 2 ||
-        indexPath.section == 3 ||
-        indexPath.section == 4) {
-      return 100;
-    }
+- (CGFloat) heightForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
+  if (indexPath.section == 2 ||
+      indexPath.section == 3 ||
+      indexPath.section == 4) {
+    return 100;
   }
-
+  
   return self.searchResultsTableView.rowHeight;
 }
 
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-  if (searchResult == nil) {
-    return nil;
-  }
-
-  if (![self hasResults]) {
-    return LocalizedString(@"No information found", nil);
-  }
-
+- (NSString*) titleForHeaderInSectionWorker:(NSInteger) section {
   if (section == 0 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    if (searchResult.movies.count != 0) {
+    if (self.searchResult.movies.count > 0) {
       return LocalizedString(@"Movies", nil);
     }
   } else if (section == 1 && ([self shouldShowTheaters] || [self shouldShowAll])) {
-    if (searchResult.theaters.count != 0) {
+    if (self.searchResult.theaters.count > 0) {
       return LocalizedString(@"Theaters", nil);
     }
   } else if (section == 2 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    if (searchResult.upcomingMovies.count != 0) {
+    if (self.searchResult.upcomingMovies.count > 0) {
       return LocalizedString(@"Upcoming", nil);
     }
   } else if (section == 3 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    if (searchResult.dvds.count != 0) {
+    if (self.searchResult.dvds.count > 0) {
       return LocalizedString(@"DVD", nil);
     }
   } else if (section == 4 && ([self shouldShowMovies] || [self shouldShowAll])) {
-    if (searchResult.bluray.count != 0) {
+    if (self.searchResult.bluray.count > 0) {
       return LocalizedString(@"Blu-ray", nil);
     }
   }
