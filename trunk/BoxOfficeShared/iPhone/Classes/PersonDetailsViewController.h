@@ -17,18 +17,18 @@
 @interface PersonDetailsViewController : AbstractTableViewController<TappableImageViewDelegate, UIActionSheetDelegate> {
 @private
   Person* person;
-  
+
   NetflixAccount* netflixAccount;
-  
+
   NSArray* filmographyMovies;
   NSDictionary* websites;
-  
+
   ActionsView* actionsView;
 
   UIImage* posterImage;
   TappableImageView* posterImageView;
   NSInteger posterCount;
-  
+
   NSDictionary* buttonIndexToActionMap;
 }
 

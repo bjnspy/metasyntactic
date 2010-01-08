@@ -19,10 +19,10 @@
 #import "NSArray+Utilities.h"
 #import "OperationQueue.h"
 #import "StyleSheet.h"
+#import "UIColor+Utilities.h"
 #import "UIScrollView+Utilities.h"
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
-#import "UIColor+Utilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;

@@ -73,7 +73,7 @@ static NSString* helpDirectory = nil;
   [self addDirectory:sentinelsMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Sentinels"]];
   [self addDirectory:largeMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Large"]];
   [self addDirectory:largeMoviesPostersIndexDirectory = [largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"]];
-  
+
   [self addDirectory:peoplePostersDirectory = [postersDirectory stringByAppendingPathComponent:@"People"]];
   [self addDirectory:sentinelsPeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Sentinels"]];
   [self addDirectory:largePeoplePostersDirectory = [peoplePostersDirectory stringByAppendingPathComponent:@"Large"]];

@@ -25,16 +25,16 @@
 #import "Model.h"
 #import "MovieCacheUpdater.h"
 #import "MovieShowtimesCell.h"
+#import "NetflixCell.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
+#import "PersonCacheUpdater.h"
 #import "Score.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
-#import "PersonCacheUpdater.h"
-#import "NetflixCell.h"
 
 @interface PersonDetailsViewController()
 @property (retain) Person* person;
@@ -71,7 +71,7 @@ static const NSInteger POSTER_TAG = -1;
   self.posterImage = nil;
   self.posterImageView = nil;
   self.buttonIndexToActionMap = nil;
-  
+
   [super dealloc];
 }
 
@@ -80,7 +80,7 @@ static const NSInteger POSTER_TAG = -1;
   NSMutableArray* selectors = [NSMutableArray array];
   NSMutableArray* titles = [NSMutableArray array];
   NSMutableArray* arguments = [NSMutableArray array];
-  
+
   if ((selectors.count + websites.count) > 6) {
     // condense to one button
     [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
@@ -95,7 +95,7 @@ static const NSInteger POSTER_TAG = -1;
       [arguments addObject:[websites objectForKey:name]];
     }
   }
-  
+
   if (selectors.count == 0) {
     self.actionsView = nil;
   } else {
@@ -103,7 +103,7 @@ static const NSInteger POSTER_TAG = -1;
                                          selectors:selectors
                                             titles:titles
                                          arguments:arguments];
-    
+
     [actionsView sizeToFit];
   }
 }
@@ -111,11 +111,11 @@ static const NSInteger POSTER_TAG = -1;
 
 + (UIImage*) posterForPerson:(Person*) person {
 //  UIImage* image = [model posterForMovie:movie];
-//  
+//
 //  if (image != nil) {
 //    return image;
 //  }
-//  
+//
 //  return [BoxOfficeStockImages imageNotAvailable];
   return nil;
 }
@@ -123,29 +123,29 @@ static const NSInteger POSTER_TAG = -1;
 
 - (void) initializeWebsites {
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
-  
+
   if (![Model model].isInReviewPeriod) {
     NSString* imdbAddress = [[Model model] imdbAddressForPerson:person];
     if (imdbAddress.length > 0) {
       [map setObject:imdbAddress forKey:@"IMDb"];
     }
-      
+
     NSString* wikipediaAddress = [[Model model] wikipediaAddressForPerson:person];
     if (wikipediaAddress.length > 0) {
       [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
-    
+
     NSString* netflixAddress = [[Model model] netflixAddressForPerson:person];
     if (netflixAddress.length > 0) {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
-    
+
     NSString* rottenTomatoesAddress = [[Model model] rottenTomatoesAddressForPerson:person];
     if (rottenTomatoesAddress.length > 0) {
       [map setObject:rottenTomatoesAddress forKey:@"RottenTomatoes"];
     }
   }
-  
+
   self.websites = map;
 }
 
@@ -167,14 +167,14 @@ static const NSInteger POSTER_TAG = -1;
       [movies addObject:movie];
     }
   }
-  
+
   self.filmographyMovies = movies;
 }
 
 
 - (void) initializeData {
   self.netflixAccount = [[NetflixAccountCache cache] currentAccount];
-  
+
   [self initializeWebsites];
   [self initializeFilmographyMovies];
   [self updateImage];
@@ -186,7 +186,7 @@ static const NSInteger POSTER_TAG = -1;
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.person = person_;
   }
-  
+
   return self;
 }
 
@@ -198,7 +198,7 @@ static const NSInteger POSTER_TAG = -1;
 
 - (void) loadView {
   [super loadView];
-  
+
   self.posterImage = [PersonDetailsViewController posterForPerson:person];
   [self setupTitle];
 
@@ -220,21 +220,21 @@ static const NSInteger POSTER_TAG = -1;
 - (void) downloadPosterBackgroundEntryPoint {
   /*
   NSInteger count = [[LargePosterCache cache] posterCountForMovie:movie];
-  
+
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
-  
+
   [[LargePosterCache cache] downloadFirstPosterForMovie:movie];
    */
-  
-  
+
+
   NSInteger count = 0;
-  
+
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
-  
+
   [self performSelectorOnMainThread:@selector(reportPoster)
                          withObject:nil
                       waitUntilDone:NO];
@@ -271,7 +271,7 @@ static const NSInteger POSTER_TAG = -1;
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  
+
   [self initializeData];
 }
 
@@ -284,10 +284,10 @@ static const NSInteger POSTER_TAG = -1;
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
   // Header
   NSInteger sections = 1;
-  
+
   // Filmography
   sections++;
-  
+
   return sections;
 }
 
@@ -304,7 +304,7 @@ static const NSInteger POSTER_TAG = -1;
       return LocalizedString(@"Filmography", nil);
     }
   }
-  
+
   return nil;
 }
 
@@ -314,7 +314,7 @@ static const NSInteger POSTER_TAG = -1;
   if (section == 0) {
     return [self numberOfRowsInHeaderSection];
   }
-  
+
   if (section == 1) {
     return filmographyMovies.count;
   }
@@ -337,12 +337,12 @@ static const NSInteger POSTER_TAG = -1;
                                 imageView:posterImageView
                               limitLength:NO];
   }
-  
+
   return nil;
 }
 
 
-- (CGFloat) heightForRowInHeaderSection:(NSInteger) row {  
+- (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
   id cell = [self cellForHeaderRow:row];
   return [cell height:self];
 }
@@ -353,11 +353,11 @@ static const NSInteger POSTER_TAG = -1;
   if (indexPath.section == 0) {
     return [self heightForRowInHeaderSection:indexPath.row];
   }
-  
+
   if (indexPath.section == 1) {
     return 100;
   }
-  
+
   return tableView.rowHeight;
 }
 
@@ -367,7 +367,7 @@ static const NSInteger POSTER_TAG = -1;
   if (section == 0) {
     return actionsView;
   }
-  
+
   return nil;
 }
 
@@ -378,14 +378,14 @@ static const NSInteger POSTER_TAG = -1;
     CGFloat height = [actionsView height];
     return height;
   }
-  
+
   return -1;
 }
 
 
 - (UITableViewCell*) cellForFilmographyRow:(NSInteger) row {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  
+
   NetflixCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
@@ -395,7 +395,7 @@ static const NSInteger POSTER_TAG = -1;
 
   Movie* movie = [filmographyMovies objectAtIndex:row];
   [cell setMovie:movie owner:self];
-  
+
   return cell;
 }
 
@@ -407,7 +407,7 @@ static const NSInteger POSTER_TAG = -1;
   } else if (indexPath.section == 1) {
     return [self cellForFilmographyRow:indexPath.row];
   }
-  
+
   return nil;
 }
 
@@ -430,15 +430,15 @@ static const NSInteger POSTER_TAG = -1;
                  destructiveButtonTitle:nil
                       otherButtonTitles:nil] autorelease];
   actionSheet.tag = VISIT_WEBSITES_TAG;
-  
+
   NSArray* keys = [websites.allKeys sortedArrayUsingSelector:@selector(compare:)];
   for (NSString* key in keys) {
     [actionSheet addButtonWithTitle:key];
   }
-  
+
   actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   //actionSheet.cancelButtonIndex = keys.count;
-  
+
   [self showActionSheet:actionSheet];
 }
 
@@ -486,17 +486,17 @@ static const NSInteger POSTER_TAG = -1;
   if (!UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
     return;
   }
-  
+
   if (posterCount <= 0) {
     return;
   }
-  
+
 //  [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
 //                                          onTarget:[LargePosterCache cache]
 //                                        withObject:movie
 //                                              gate:nil
 //                                          priority:Now];
-//  
+//
 //  [self.commonNavigationController showPostersView:movie posterCount:posterCount];
 }
 

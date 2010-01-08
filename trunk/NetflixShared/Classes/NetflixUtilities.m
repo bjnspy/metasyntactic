@@ -291,12 +291,12 @@ static NSDictionary* availabilityMap = nil;
   if (statusCode == [NetflixConstants etagMismatchError]) {
     return YES;
   }
-  
+
   if (statusCode == [NetflixConstants titleNotInQueueStatusCode] &&
       subCode == [NetflixConstants titleNotInQueueSubCode]) {
     return YES;
   }
-               
+
   return NO;
 }
 

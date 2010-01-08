@@ -46,7 +46,7 @@
   if (dictionary.count == 0) {
     return nil;
   }
-  
+
   return [self createWithDictionaryWorker:dictionary];
 }
 

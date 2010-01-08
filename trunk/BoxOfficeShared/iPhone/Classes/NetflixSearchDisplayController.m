@@ -19,8 +19,8 @@
 #import "MovieCacheUpdater.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
-#import "SearchResult.h"
 #import "PersonCacheUpdater.h"
+#import "SearchResult.h"
 
 @interface NetflixSearchDisplayController()
 @end

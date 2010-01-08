@@ -131,13 +131,13 @@ static PersonPosterCache* cache;
 }
 
 
-- (UIImage*) posterForPerson:(Person*) person 
+- (UIImage*) posterForPerson:(Person*) person
                 loadFromDisk:(BOOL) loadFromDisk {
   return [self posterForObject:person loadFromDisk:loadFromDisk];
 }
 
 
-- (UIImage*) smallPosterForPerson:(Person*) person 
+- (UIImage*) smallPosterForPerson:(Person*) person
                      loadFromDisk:(BOOL) loadFromDisk {
   return [self smallPosterForObject:person loadFromDisk:loadFromDisk];
 }

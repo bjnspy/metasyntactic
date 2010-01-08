@@ -43,7 +43,7 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier 
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
            tableViewController:(UITableViewController*) tableViewController_ {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault
                    reuseIdentifier:reuseIdentifier

@@ -75,7 +75,7 @@
       UIImage* backgroundImage = [MetasyntacticStockImage(@"SynopsisBackground.png") stretchableImageWithLeftCapWidth:1 topCapHeight:1];
       self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
     }
-    
+
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -168,7 +168,7 @@
   if (synopsis.length == 0) {
     return 0;
   }
-  
+
   if (imageSize.height == 0) {
     return 0;
   }
@@ -218,7 +218,7 @@
     // trim.
     return synopsis.length;
   }
-  
+
   if (synopsisSplit == 0) {
     return 0;
   }
