@@ -131,15 +131,22 @@ static PersonPosterCache* cache;
 - (NSData*) downloadPoster:(Person*) person 
                    address:(NSString*) address {
   NSArray* imageAddresses = [self getImageAddresses:address];
+  NSData* fallback = nil;
+  
+  // First, try to find a portrait:
   for (NSString* imageAddress in imageAddresses) {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:imageAddress];
     UIImage* image = [UIImage imageWithData:data];
     if (image.size.height >= 140) {
-      return data;
+      if (image.size.height > image.size.width) {
+        return data;
+      } else if (fallback != nil) {
+        fallback = data;
+      }
     }
   }
   
-  return nil;
+  return fallback;
 }
 
 
