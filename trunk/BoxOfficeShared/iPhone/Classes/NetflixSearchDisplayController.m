@@ -214,18 +214,18 @@
 }
 
 
-- (void) initializeData {
+- (void) initializeData:(SearchResult*) result {
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), self.searchResult.movies.count + self.searchResult.people.count],
-                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), self.searchResult.movies.count],
-                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), self.searchResult.people.count],
+                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), result.movies.count + result.people.count],
+                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), result.movies.count],
+                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), result.people.count],
                                       nil];
 }
 
 
 - (void) reportResult:(SearchResult*) result {
+  [self initializeData:result];
   [super reportResult:result];
-  [self initializeData];
 
   if (result.movies.count > 0) {
     // download the details for these movies in the background.
