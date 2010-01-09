@@ -47,23 +47,24 @@ static PersonPosterCache* cache;
 
 
 - (NSString*) sentinelPath:(Person*) person {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.identifier];
   return [[Application sentinelsPeoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle];
 }
 
 
 - (NSString*) posterFilePath:(Person*) person {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.identifier];
   return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (NSString*) smallPosterFilePath:(Person*) person {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.identifier];
   return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
 }
 
 
+#if 0
 - (BOOL) hasProperSuffix:(NSString*) name {
   NSString* lowercaseName = [name lowercaseString];
 
@@ -80,19 +81,85 @@ static PersonPosterCache* cache;
   [@"file:us-actor.png" isEqual:lowercaseName] ||
   [@"file:spainfilm.png" isEqual:lowercaseName];
 }
+#endif
+
+
+- (NSString*) getMobileAddress:(NSString*) address {
+  NSRange range = [address rangeOfString:@"en.wikipedia.org"];
+  if (range.length <= 0) {
+    return nil;
+  }
+  
+  return [address stringByReplacingCharactersInRange:range withString:@"en.m.wikipedia.org"];
+}
+
+
+- (NSArray*) getImageAddresses:(NSString*) address {
+  if (address.length == 0) {
+    return [NSArray array];
+  }
+  
+  NSMutableArray* result = [NSMutableArray array];
+  
+  NSString* contents = [NetworkUtilities stringWithContentsOfAddress:address];
+  for (NSInteger i = 0; i < contents.length; i++) {
+    NSRange imgRange = [contents rangeOfString:@"<img" options:0 range:NSMakeRange(i, contents.length - i)];
+    if (imgRange.length == 0) {
+      break;
+    }
+    NSString* srcText = @"src=\"";
+    NSRange srcRange = [contents rangeOfString:srcText options:0 range:NSMakeRange(imgRange.location, contents.length - imgRange.location)];
+    if (srcRange.length > 0) {
+      NSInteger searchIndex = srcRange.location + [@"src=\"" length];
+      NSRange endQuoteRange = [contents rangeOfString:@"\"" options:0 range:NSMakeRange(searchIndex, contents.length - searchIndex)];
+      if (endQuoteRange.length > 0) {
+        NSString* subString = [contents substringWithRange:NSMakeRange(searchIndex, endQuoteRange.location - searchIndex)];
+        
+        if (![result containsObject:subString]) {
+          [result addObject:subString];
+        }
+      }
+    }
+    
+    i = imgRange.location + 1;
+  }
+  
+  return result;
+}
+
+
+- (NSData*) downloadPoster:(Person*) person 
+                   address:(NSString*) address {
+  NSArray* imageAddresses = [self getImageAddresses:address];
+  for (NSString* imageAddress in imageAddresses) {
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:imageAddress];
+    UIImage* image = [UIImage imageWithData:data];
+    if (image.size.height >= 140) {
+      return data;
+    }
+  }
+  
+  return nil;
+}
 
 
 - (NSData*) downloadPoster:(Person*) person {
-  return nil;
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings%@?q=%@",
                    [Application apiHost], [Application apiVersion],
                    [StringUtilities stringByAddingPercentEscapes:person.name]];
-  NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
-
-  if (wikipediaAddress.length == 0) {
-    return nil;
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
+  NSString* wikipediaAddress = [element text];
+  
+  NSData* data = nil;
+  if ((data = [self downloadPoster:person address:[self getMobileAddress:wikipediaAddress]]) != nil ||
+      (data = [self downloadPoster:person address:wikipediaAddress]) != nil) {
+    return data;
   }
+  
+  return nil;
+}
 
+#if 0
   NSRange slashRange = [wikipediaAddress rangeOfString:@"/" options:NSBackwardsSearch];
   if (slashRange.length == 0) {
     return nil;
@@ -129,6 +196,7 @@ static PersonPosterCache* cache;
 
   return [NetworkUtilities dataWithContentsOfAddress:imageUrl];
 }
+#endif
 
 
 - (UIImage*) posterForPerson:(Person*) person

@@ -35,6 +35,7 @@
 #import "TheatersNavigationController.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
+#import "PersonPosterCache.h"
 
 @interface PersonDetailsViewController()
 @property (retain) Person* person;
@@ -110,6 +111,7 @@ static const NSInteger POSTER_TAG = -1;
 
 
 + (UIImage*) posterForPerson:(Person*) person {
+  return [[PersonPosterCache cache] posterForPerson:person loadFromDisk:YES];
 //  UIImage* image = [model posterForMovie:movie];
 //
 //  if (image != nil) {

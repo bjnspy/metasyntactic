@@ -141,7 +141,7 @@
 
 - (void) addObjects:(NSArray*) objects {
   for (id object in [objects shuffledArray]) {
-    [self addObject:objects];
+    [self addObject:object];
   }
 }
 
