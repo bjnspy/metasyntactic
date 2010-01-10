@@ -124,6 +124,12 @@
 }
 
 
+- (void) reset {
+  [self initializeData:nil];
+  [self setupDefaultScopeButtonTitles];
+}
+
+
 - (BOOL)     searchDisplayController:(UISearchDisplayController*) controller
     shouldReloadTableForSearchString:(NSString*) searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -131,8 +137,7 @@
   if (searchText.length == 0) {
     [self.searchEngine invalidateExistingRequests];
     self.abstractSearchResult = nil;
-    [self initializeData:nil];
-    [self setupDefaultScopeButtonTitles];
+    [self reset];
     //[self.searchResultsTableView reloadData];
   } else {
     [self.searchEngine submitRequest:searchText];
@@ -230,7 +235,7 @@
 
 
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController*) controller {
-  [self setupDefaultScopeButtonTitles];
+  [self reset];
 }
 
 @end
