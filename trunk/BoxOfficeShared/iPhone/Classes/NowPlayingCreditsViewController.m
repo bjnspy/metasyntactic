@@ -380,7 +380,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 }
 
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void) actionSheet:(UIActionSheet*) actionSheet didDismissWithButtonIndex:(NSInteger) buttonIndex {
   if (actionSheet.cancelButtonIndex != buttonIndex) {
     Donation* donation = [[Store donationsArray] objectAtIndex:buttonIndex];
     [[Store store] purchaseItem:donation];

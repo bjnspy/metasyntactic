@@ -18,10 +18,6 @@
 #import "Model.h"
 #import "Theater.h"
 
-@interface TheaterNameCell()
-@end
-
-
 @implementation TheaterNameCell
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {

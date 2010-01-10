@@ -17,9 +17,6 @@
 #import "BoxOfficeItemVault.h"
 #import "BoxOfficeStoreDelegate.h"
 
-@interface SimulatorStore()
-@end
-
 @implementation SimulatorStore
 
 - (id) init {

@@ -13,6 +13,11 @@
 // limitations under the License.
 
 @interface NetflixSearchDisplayController : AbstractSearchDisplayController {
+@private
+  NSArray* dvdMovies;
+  NSArray* blurayMovies;
+  NSArray* instantMovies;
+  NSArray* people;
 }
 
 @end

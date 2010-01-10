@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractPosterDownloader.h"
+#import "AbstractMoviePosterDownloader.h"
 
-@interface FandangoPosterDownloader : AbstractPosterDownloader {
+@interface PreviewNetworksMoviePosterDownloader : AbstractMoviePosterDownloader {
 }
 
 @end

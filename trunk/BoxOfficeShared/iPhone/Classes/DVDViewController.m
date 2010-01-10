@@ -20,10 +20,6 @@
 #import "DVDCell.h"
 #import "Model.h"
 
-@interface DVDViewController()
-@end
-
-
 @implementation DVDViewController
 
 - (NSArray*) movies {

@@ -27,7 +27,7 @@
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "InternationalDataCache.h"
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 #import "MetacriticCache.h"
 #import "MovieDetailsViewController.h"
 #import "MoviePosterCache.h"
@@ -867,7 +867,7 @@ static Model* model = nil;
     return image;
   }
 
-  return [[LargePosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
+  return [[LargeMoviePosterCache cache] posterForMovie:movie loadFromDisk:loadFromDisk];
 }
 
 
@@ -877,7 +877,7 @@ static Model* model = nil;
     return image;
   }
 
-  return [[LargePosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  return [[LargeMoviePosterCache cache] smallPosterForMovie:movie loadFromDisk:loadFromDisk];
 }
 
 

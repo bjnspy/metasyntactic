@@ -14,18 +14,18 @@
 
 #import "MoviePosterCache.h"
 
-#import "ApplePosterDownloader.h"
+#import "AppleMoviePosterDownloader.h"
 #import "Application.h"
-#import "FandangoPosterDownloader.h"
-#import "ImdbPosterDownloader.h"
-#import "LargePosterCache.h"
-#import "PreviewNetworksPosterDownloader.h"
+#import "FandangoMoviePosterDownloader.h"
+#import "ImdbMoviePosterDownloader.h"
+#import "LargeMoviePosterCache.h"
+#import "PreviewNetworksMoviePosterDownloader.h"
 
 @interface MoviePosterCache()
-@property (retain) ImdbPosterDownloader* imdbPosterDownloader;
-@property (retain) ApplePosterDownloader* applePosterDownloader;
-@property (retain) FandangoPosterDownloader* fandangoPosterDownloader;
-@property (retain) PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
+@property (retain) ImdbMoviePosterDownloader* imdbDownloader;
+@property (retain) AppleMoviePosterDownloader* appleDownloader;
+@property (retain) FandangoMoviePosterDownloader* fandangoDownloader;
+@property (retain) PreviewNetworksMoviePosterDownloader* previewNetworksDownloader;
 @end
 
 
@@ -44,16 +44,16 @@ static MoviePosterCache* cache;
   return cache;
 }
 
-@synthesize imdbPosterDownloader;
-@synthesize applePosterDownloader;
-@synthesize fandangoPosterDownloader;
-@synthesize previewNetworksPosterDownloader;
+@synthesize imdbDownloader;
+@synthesize appleDownloader;
+@synthesize fandangoDownloader;
+@synthesize previewNetworksDownloader;
 
 - (void) dealloc {
-  self.imdbPosterDownloader = nil;
-  self.applePosterDownloader = nil;
-  self.fandangoPosterDownloader = nil;
-  self.previewNetworksPosterDownloader = nil;
+  self.imdbDownloader = nil;
+  self.appleDownloader = nil;
+  self.fandangoDownloader = nil;
+  self.previewNetworksDownloader = nil;
 
   [super dealloc];
 }
@@ -61,10 +61,10 @@ static MoviePosterCache* cache;
 
 - (id) init {
   if ((self = [super init])) {
-    self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
-    self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
-    self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
-    self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
+    self.imdbDownloader = [[[ImdbMoviePosterDownloader alloc] init] autorelease];
+    self.appleDownloader = [[[AppleMoviePosterDownloader alloc] init] autorelease];
+    self.fandangoDownloader = [[[FandangoMoviePosterDownloader alloc] init] autorelease];
+    self.previewNetworksDownloader = [[[PreviewNetworksMoviePosterDownloader alloc] init] autorelease];
   }
 
   return self;
@@ -104,27 +104,27 @@ static MoviePosterCache* cache;
     return data;
   }
 
-  data = [previewNetworksPosterDownloader download:movie];
+  data = [previewNetworksDownloader download:movie];
   if (data != nil) {
     return data;
   }
 
-  data = [applePosterDownloader download:movie];
+  data = [appleDownloader download:movie];
   if (data != nil) {
     return data;
   }
 
-  data = [fandangoPosterDownloader download:movie];
+  data = [fandangoDownloader download:movie];
   if (data != nil) {
     return data;
   }
 
-  data = [imdbPosterDownloader download:movie];
+  data = [imdbDownloader download:movie];
   if (data != nil) {
     return data;
   }
 
-  [[LargePosterCache cache] downloadFirstPosterForMovie:movie];
+  [[LargeMoviePosterCache cache] downloadFirstPosterForMovie:movie];
 
   // if we had a network connection, then it means we don't know of any
   // posters for this movie.  record that fact and try again another time

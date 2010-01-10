@@ -14,27 +14,14 @@
 
 #import "AbstractPosterCache.h"
 
-#import "ApplePosterDownloader.h"
+#import "AppleMoviePosterDownloader.h"
 #import "Application.h"
-#import "FandangoPosterDownloader.h"
-#import "ImdbPosterDownloader.h"
-#import "LargePosterCache.h"
-#import "PreviewNetworksPosterDownloader.h"
+#import "FandangoMoviePosterDownloader.h"
+#import "ImdbMoviePosterDownloader.h"
+#import "LargeMoviePosterCache.h"
+#import "PreviewNetworksMoviePosterDownloader.h"
 
 @implementation AbstractPosterCache
-
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (id) init {
-  if ((self = [super init])) {
-  }
-
-  return self;
-}
-
 
 - (NSString*) sentinelPath:(id) object AbstractMethod;
 

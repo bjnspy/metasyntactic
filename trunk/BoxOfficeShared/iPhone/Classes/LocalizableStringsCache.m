@@ -16,9 +16,6 @@
 
 #import "Application.h"
 
-@interface LocalizableStringsCache()
-@end
-
 @implementation LocalizableStringsCache
 
 static NSDictionary* stringsIndex = nil;

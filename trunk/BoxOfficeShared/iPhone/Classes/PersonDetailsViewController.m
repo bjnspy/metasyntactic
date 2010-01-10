@@ -20,7 +20,7 @@
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "FavoriteTheaterCache.h"
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "MovieCacheUpdater.h"
@@ -29,13 +29,13 @@
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
 #import "PersonCacheUpdater.h"
+#import "PersonPosterCache.h"
 #import "Score.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
-#import "PersonPosterCache.h"
 
 @interface PersonDetailsViewController()
 @property (retain) Person* person;
@@ -221,13 +221,13 @@ static const NSInteger POSTER_TAG = -1;
 
 - (void) downloadPosterBackgroundEntryPoint {
   /*
-  NSInteger count = [[LargePosterCache cache] posterCountForMovie:movie];
+  NSInteger count = [[LargeMoviePosterCache cache] posterCountForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
 
-  [[LargePosterCache cache] downloadFirstPosterForMovie:movie];
+  [[LargeMoviePosterCache cache] downloadFirstPosterForMovie:movie];
    */
 
 
@@ -364,8 +364,8 @@ static const NSInteger POSTER_TAG = -1;
 }
 
 
-- (UIView*)        tableView:(UITableView*) tableView
-      viewForFooterInSection:(NSInteger) section {
+- (UIView*)      tableView:(UITableView*) tableView
+    viewForFooterInSection:(NSInteger) section {
   if (section == 0) {
     return actionsView;
   }
@@ -494,7 +494,7 @@ static const NSInteger POSTER_TAG = -1;
   }
 
 //  [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
-//                                          onTarget:[LargePosterCache cache]
+//                                          onTarget:[LargeMoviePosterCache cache]
 //                                        withObject:movie
 //                                              gate:nil
 //                                          priority:Now];

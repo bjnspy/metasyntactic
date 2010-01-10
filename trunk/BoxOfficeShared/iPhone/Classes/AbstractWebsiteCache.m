@@ -14,10 +14,6 @@
 
 #import "AbstractWebsiteCache.h"
 
-@interface AbstractWebsiteCache()
-@end
-
-
 @implementation AbstractWebsiteCache
 
 - (NSString*) cacheDirectory AbstractMethod;

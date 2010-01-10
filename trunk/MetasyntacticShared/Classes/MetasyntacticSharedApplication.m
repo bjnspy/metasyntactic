@@ -29,7 +29,7 @@ static Pulser* majorRefreshPulser = nil;
 
   [majorRefreshPulser release];
   [minorRefreshPulser release];
-  majorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(majorRefresh) pulseInterval:5] retain];
+  majorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(majorRefresh) pulseInterval:3] retain];
   minorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(minorRefresh) pulseInterval:3] retain];
 
   NSString* pinchCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"];

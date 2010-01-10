@@ -159,7 +159,6 @@
   [gate unlock];
 
   [self updateImageWorker:object];
-  //[[PosterCache cache] processMovie:movie force:NO];
 }
 
 

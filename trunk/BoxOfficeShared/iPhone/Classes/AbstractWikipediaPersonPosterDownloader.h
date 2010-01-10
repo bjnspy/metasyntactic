@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractPosterDownloader : NSObject {
-@private
-  NSDictionary* movieNameToPosterMap;
-  NSLock* gate;
-}
+#import "AbstractPersonPosterDownloader.h"
 
-- (NSData*) download:(Movie*) movie;
+@interface AbstractWikipediaPersonPosterDownloader : AbstractPersonPosterDownloader {
+}
 
 @end

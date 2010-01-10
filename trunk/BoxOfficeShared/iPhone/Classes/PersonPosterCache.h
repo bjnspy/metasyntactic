@@ -15,6 +15,9 @@
 #import "AbstractPosterCache.h"
 
 @interface PersonPosterCache : AbstractPosterCache {
+@private
+  WikipediaApiPersonPosterDownloader* apiDownloader;
+  WikipediaScrapePersonPosterDownloader* scrapeDownloader;
 }
 
 + (PersonPosterCache*) cache;

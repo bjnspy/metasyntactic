@@ -16,10 +16,6 @@
 
 #import "Model.h"
 
-@interface CollapsedMovieDetailsCell()
-@end
-
-
 @implementation CollapsedMovieDetailsCell
 
 - (id) initWithMovie:(Movie*) movie {

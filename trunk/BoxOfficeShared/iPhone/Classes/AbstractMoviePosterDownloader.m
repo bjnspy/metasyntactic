@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractPosterDownloader.h"
+#import "AbstractMoviePosterDownloader.h"
 
 #import "Application.h"
 
-@interface AbstractPosterDownloader()
+@interface AbstractMoviePosterDownloader()
 @property (retain) NSDictionary* movieNameToPosterMap;
 @property (retain) NSLock* gate;
 @end
 
-@implementation AbstractPosterDownloader
+@implementation AbstractMoviePosterDownloader
 
 @synthesize movieNameToPosterMap;
 @synthesize gate;

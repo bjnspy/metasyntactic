@@ -26,7 +26,11 @@
 @implementation LocalSearchDisplayController
 
 - (void) setupDefaultScopeButtonTitles {
-  self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", nil), LocalizedString(@"Movies", nil), LocalizedString(@"Theaters", nil), nil];
+  self.searchBar.scopeButtonTitles =
+    [NSArray arrayWithObjects:
+     LocalizedString(@"All", nil),
+     LocalizedString(@"Movies", nil),
+     LocalizedString(@"Theaters", nil), nil];
 }
 
 

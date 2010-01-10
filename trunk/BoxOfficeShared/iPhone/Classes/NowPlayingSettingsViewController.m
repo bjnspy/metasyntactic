@@ -25,10 +25,6 @@
 #import "SearchDistancePickerViewController.h"
 #import "UserLocationCache.h"
 
-@interface NowPlayingSettingsViewController()
-@end
-
-
 @implementation NowPlayingSettingsViewController
 
 static BOOL refreshed = NO;

@@ -12,32 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "DeviceStore.h"
+#import "AbstractWikipediaPersonPosterDownloader.h"
 
-#import "BoxOfficeItemVault.h"
-#import "BoxOfficeStoreDelegate.h"
-
-@implementation DeviceStore
-
-- (id) init {
-  if ((self = [super initWithDelegate:[BoxOfficeStoreDelegate delegate]
-                                vault:[BoxOfficeItemVault vault]])) {
-  }
-
-  return self;
-}
-
-static DeviceStore* deviceStore = nil;
-
-+ (void) initialize {
-  if (self == [DeviceStore class]) {
-    deviceStore = [[DeviceStore alloc] init];
-  }
-}
-
-
-+ (DeviceStore*) deviceStore {
-  return deviceStore;
+@interface WikipediaScrapePersonPosterDownloader : AbstractWikipediaPersonPosterDownloader {
 }
 
 @end

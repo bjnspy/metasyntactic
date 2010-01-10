@@ -21,7 +21,7 @@
 #import "DVDCache.h"
 #import "HelpCache.h"
 #import "InternationalDataCache.h"
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "MovieCacheUpdater.h"
@@ -134,7 +134,7 @@ static Controller* controller = nil;
 
 
 - (void) updateLargePosterCache {
-  [[LargePosterCache cache] update];
+  [[LargeMoviePosterCache cache] update];
 }
 
 
@@ -171,7 +171,6 @@ static Controller* controller = nil;
 - (void) onDataProviderUpdateComplete:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
   [self updateAllCaches:force];
-  //[[Model model].largePosterCache updateIndices];
 }
 
 

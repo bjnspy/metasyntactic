@@ -18,10 +18,6 @@
 #import "Model.h"
 #import "PocketFlicksCreditsViewController.h"
 
-@interface PocketFlicksSettingsViewController()
-@end
-
-
 @implementation PocketFlicksSettingsViewController
 
 static BOOL refreshed = NO;

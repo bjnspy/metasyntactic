@@ -12,9 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractPosterDownloader.h"
+#import "AppleMoviePosterDownloader.h"
 
-@interface ApplePosterDownloader : AbstractPosterDownloader {
+#import "Application.h"
+#import "LargeMoviePosterCache.h"
+
+@implementation AppleMoviePosterDownloader
+
+- (NSDictionary*) createMapWorker {
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=apple",
+                   [Application apiHost], [Application apiVersion]];
+  XmlElement* index = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  return [LargeMoviePosterCache processPosterListings:index];
 }
 
 @end

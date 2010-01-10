@@ -12,20 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractImageCell.h"
+#import "AbstractWikipediaPersonPosterDownloader.h"
 
-@interface PersonCell : AbstractImageCell {
+@interface WikipediaApiPersonPosterDownloader : AbstractWikipediaPersonPosterDownloader {
 @private
-  Person* person;
-  UILabel* bioTitleLabel;
-  UILabel* bioLabel;
+  NSSet* stockImageNames;
 }
-
-@property (retain) Person* person;
-
-- (void) setPerson:(Person*) movie owner:(id) owner;
-
-// @protected
-- (void) onSetSamePerson:(Person*) movie owner:(id) owner;
 
 @end

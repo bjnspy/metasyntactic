@@ -101,7 +101,8 @@
 
 - (NSString*) searchText {
   NSString* searchText = self.searchBar.text;
-  searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  searchText = [searchText stringByTrimmingCharactersInSet:
+                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   return searchText;
 }

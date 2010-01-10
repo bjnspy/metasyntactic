@@ -16,10 +16,6 @@
 
 #import "Application.h"
 
-@interface UserLocationCache()
-@end
-
-
 @implementation UserLocationCache
 
 static UserLocationCache* cache;
@@ -28,14 +24,6 @@ static UserLocationCache* cache;
   if (self == [UserLocationCache class]) {
     cache = [[UserLocationCache alloc] init];
   }
-}
-
-
-- (id) init {
-  if ((self = [super init])) {
-  }
-
-  return self;
 }
 
 
