@@ -378,19 +378,45 @@ typedef enum {
 }
 
 
-- (UIView*) tableView:(UITableView*) tableView viewForHeaderInSection:(NSInteger)section {
+- (NSString*) headerTitle {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:account];
-
+  
   if (searchDisplayController.isActive ||
       [[[NetflixAccountCache cache] accounts] count] <= 1 ||
       user == nil) {
+    return nil;
+  }
+  
+  return [NSString stringWithFormat:LocalizedString(@"Account: %@ %@", "Account: <first name> <last name>"), user.firstName, user.lastName];
+}
+
+
+
+- (NSString*)     tableView:(UITableView*) tableView
+    titleForHeaderInSection:(NSInteger)section {
+  if ([[Model model] netflixTheming]) {
+    return nil;
+  } else {
+    return self.headerTitle;
+  }
+}
+
+
+- (UIView*)      tableView:(UITableView*) tableView
+    viewForHeaderInSection:(NSInteger)section {
+  if (![[Model model] netflixTheming]) {
+    return nil;
+  }
+  
+  NSString* headerTitle = self.headerTitle;
+  if (headerTitle.length == 0) {
     return nil;
   }
 
   CGRect frame = CGRectMake(12, -1, 480, 23);
 
   UILabel* label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-  label.text = [NSString stringWithFormat:LocalizedString(@"Account: %@ %@", "Account: <first name> <last name>"), user.firstName, user.lastName];
+  label.text = headerTitle;
   label.font = [UIFont boldSystemFontOfSize:18];
   label.textColor = [UIColor whiteColor];
   label.shadowOffset = CGSizeMake(0, 1);

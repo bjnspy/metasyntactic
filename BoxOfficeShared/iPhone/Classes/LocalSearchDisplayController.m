@@ -307,10 +307,10 @@
   NSInteger movies = result.movies.count + result.upcomingMovies.count + result.dvds.count + result.bluray.count;
 
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", nil), movies + theaters],
-                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies],
-                                      [NSString stringWithFormat:LocalizedString(@"Theaters (%d)", @"Used to display the count of all theater search results.  i.e.: Theaters (15)"), theaters],
-                                      nil];
+                                        [NSString stringWithFormat:LocalizedString(@"All (%d)", nil), movies + theaters],
+                                        [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies],
+                                        [NSString stringWithFormat:LocalizedString(@"Theaters (%d)", @"Used to display the count of all theater search results.  i.e.: Theaters (15)"), theaters],
+                                         nil];
 }
 
 

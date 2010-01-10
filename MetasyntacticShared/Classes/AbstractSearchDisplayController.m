@@ -63,6 +63,9 @@
 - (CGFloat) heightForRowAtIndexPathWorker:(NSIndexPath*) indexPath AbstractMethod;
 
 
+- (void) initializeData:(AbstractSearchResult*) result AbstractMethod;
+
+
 - (id) initWithSearchBar:(UISearchBar*) searchBar_
       contentsController:(UITableViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_ contentsController:viewController_])) {
@@ -126,9 +129,10 @@
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   if (searchText.length == 0) {
-    [self setupDefaultScopeButtonTitles];
     [self.searchEngine invalidateExistingRequests];
     self.abstractSearchResult = nil;
+    [self initializeData:nil];
+    [self setupDefaultScopeButtonTitles];
     //[self.searchResultsTableView reloadData];
   } else {
     [self.searchEngine submitRequest:searchText];
