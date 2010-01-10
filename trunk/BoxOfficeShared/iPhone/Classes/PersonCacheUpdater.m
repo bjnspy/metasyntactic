@@ -65,14 +65,15 @@ static PersonCacheUpdater* updater = nil;
   if (force) {
     [NotificationCenter addNotification:person.name];
   }
+
+  [[IMDbCache cache]            processPerson:person force:force];
+  [[WikipediaCache cache]       processPerson:person force:force];
+  [[RottenTomatoesCache cache]  processPerson:person force:force];
   
   [[NetflixCache cache]         processPerson:person force:force];
   if (!force) {
     [[PersonPosterCache cache]    processPerson:person force:NO];
   }
-  [[IMDbCache cache]            processPerson:person force:force];
-  [[WikipediaCache cache]       processPerson:person force:force];
-  [[RottenTomatoesCache cache]  processPerson:person force:force];
 
   [MetasyntacticSharedApplication minorRefresh];
 
