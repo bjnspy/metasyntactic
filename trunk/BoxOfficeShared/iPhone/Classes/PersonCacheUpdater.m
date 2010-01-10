@@ -54,11 +54,22 @@ static PersonCacheUpdater* updater = nil;
 
   BOOL force = forceNumber.boolValue;
   if (force) {
+    [ThreadingUtilities backgroundSelector:@selector(updateImageWorker:force:)
+                                  onTarget:self
+                                withObject:person
+                                withObject:forceNumber
+                                      gate:nil
+                                    daemon:NO];
+  }
+  
+  if (force) {
     [NotificationCenter addNotification:person.name];
   }
-
-  [[PersonPosterCache cache]    processPerson:person force:force];
+  
   [[NetflixCache cache]         processPerson:person force:force];
+  if (!force) {
+    [[PersonPosterCache cache]    processPerson:person force:NO];
+  }
   [[IMDbCache cache]            processPerson:person force:force];
   [[WikipediaCache cache]       processPerson:person force:force];
   [[RottenTomatoesCache cache]  processPerson:person force:force];
@@ -91,8 +102,16 @@ static PersonCacheUpdater* updater = nil;
 }
 
 
+- (void) updateImageWorker:(Person*) person
+                     force:(NSNumber*) force {
+  [[PersonPosterCache cache] processPerson:person
+                                     force:force.boolValue];
+}
+
+
 - (void) updateImageWorker:(Person*) person {
-  [[PersonPosterCache cache] processPerson:person force:NO];
+  [self updateImageWorker:person
+                    force:[NSNumber numberWithBool:NO]];
 }
 
 @end

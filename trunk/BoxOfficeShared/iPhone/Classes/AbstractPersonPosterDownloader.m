@@ -23,13 +23,14 @@
 
 
 - (NSData*) pickBestImage:(NSArray*) imageAddresses {
+  const NSInteger MIN_HEIGHT = 140;
+  
   NSData* fallbackData = nil;
 
-  // First, try to find a portrait.
   for (NSString* imageAddress in imageAddresses) {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:imageAddress];
     UIImage* image = [UIImage imageWithData:data];
-    if (image.size.height >= 140) {
+    if (image.size.height >= MIN_HEIGHT) {
       if (image.size.height > image.size.width) {
         fallbackData = data;
         break;
@@ -40,7 +41,7 @@
   }
 
   // Don't want to save a huge image.  Resize to something more reasonable.
-  return [ImageUtilities scaleImageData:fallbackData toWidth:140];
+  return [ImageUtilities scaleImageData:fallbackData toWidth:MIN_HEIGHT];
 }
 
 
