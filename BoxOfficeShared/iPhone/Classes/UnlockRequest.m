@@ -14,9 +14,6 @@
 
 #import "UnlockRequest.h"
 
-@interface UnlockRequest()
-@end
-
 @implementation UnlockRequest
 
 - (id) initWithItem:(id<StoreItem>) item_

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LargePosterCache : AbstractMovieCache {
+@interface LargeMoviePosterCache : AbstractMovieCache {
 @private
   // Shared amongst multiple threads.
   AutoreleasingMutableDictionary* yearToMovieNames;
@@ -21,9 +21,9 @@
   BOOL updated;
 }
 
-+ (LargePosterCache*) cache;
++ (LargeMoviePosterCache*) cache;
 
-+ (NSDictionary*) processPosterListings:(XmlElement *) posterListingsElement;
++ (NSDictionary*) processPosterListings:(XmlElement*) posterListingsElement;
 
 - (void) update;
 

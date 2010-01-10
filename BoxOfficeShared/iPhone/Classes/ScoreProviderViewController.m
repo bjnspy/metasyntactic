@@ -17,10 +17,6 @@
 #import "Controller.h"
 #import "Model.h"
 
-@interface ScoreProviderViewController()
-@end
-
-
 @implementation ScoreProviderViewController
 
 - (id) init {

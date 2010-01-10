@@ -20,5 +20,6 @@
 
 /* @protected */
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
+- (void) updatePersonDetails:(Person*) person force:(BOOL) force;
 
 @end

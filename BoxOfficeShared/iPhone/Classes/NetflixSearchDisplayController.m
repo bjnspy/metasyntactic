@@ -23,23 +23,37 @@
 #import "SearchResult.h"
 
 @interface NetflixSearchDisplayController()
+@property (retain) NSArray* dvdMovies;
+@property (retain) NSArray* blurayMovies;
+@property (retain) NSArray* instantMovies;
+@property (retain) NSArray* people;
 @end
-
 
 @implementation NetflixSearchDisplayController
 
+@synthesize dvdMovies;
+@synthesize blurayMovies;
+@synthesize instantMovies;
+@synthesize people;
+
 - (void) dealloc {
+  self.dvdMovies = nil;
+  self.blurayMovies = nil;
+  self.instantMovies = nil;
+  self.people = nil;
+
   [super dealloc];
 }
 
 
 - (void) setupDefaultScopeButtonTitles {
   self.searchBar.scopeButtonTitles =
-    [NSArray arrayWithObjects:
-     LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"),
-     LocalizedString(@"Movies", nil),
-     LocalizedString(@"People", @"i.e. all the people in a film"),
-     nil];
+  [NSArray arrayWithObjects:
+   LocalizedString(@"DVD", nil),
+   LocalizedString(@"Bluray", nil),
+   LocalizedString(@"Instant", @"search category for instant watch films"),
+   LocalizedString(@"People", nil),
+   nil];
 }
 
 
@@ -66,18 +80,23 @@
 }
 
 
-- (BOOL) shouldShowAll {
+- (BOOL) shouldShowDvd {
   return self.searchBar.selectedScopeButtonIndex == 0;
 }
 
 
-- (BOOL) shouldShowMovies {
+- (BOOL) shouldShowBluray {
   return self.searchBar.selectedScopeButtonIndex == 1;
 }
 
 
-- (BOOL) shouldShowPeople {
+- (BOOL) shouldShowInstant {
   return self.searchBar.selectedScopeButtonIndex == 2;
+}
+
+
+- (BOOL) shouldShowPeople {
+  return self.searchBar.selectedScopeButtonIndex == 3;
 }
 
 
@@ -87,36 +106,32 @@
 
 
 - (BOOL) foundMatches {
-  if ([self shouldShowAll]) {
-    return self.searchResult.movies.count > 0 || self.searchResult.people.count > 0;
-  } else if ([self shouldShowMovies]) {
-    return self.searchResult.movies.count > 0;
+  if ([self shouldShowDvd]) {
+    return dvdMovies.count > 0;
+  } else if ([self shouldShowBluray]) {
+    return blurayMovies.count > 0;
+  } else if ([self shouldShowInstant]) {
+    return instantMovies.count > 0;
   } else {
-    return self.searchResult.people.count > 0;
+    return people.count > 0;
   }
 }
 
 
 - (NSInteger) numberOfSectionsInTableViewWorker {
-  if ([self shouldShowAll]) {
-    return 2;
-  } else {
-    return 1;
-  }
+  return 1;
 }
 
 
 - (NSInteger) numberOfRowsInSectionWorker:(NSInteger) section {
-  if ([self shouldShowAll]) {
-    if (section == 0) {
-      return self.searchResult.movies.count;
-    } else {
-      return self.searchResult.people.count;
-    }
-  } else if ([self shouldShowMovies]) {
-    return self.searchResult.movies.count;
+  if ([self shouldShowDvd]) {
+    return dvdMovies.count;
+  } else if ([self shouldShowBluray]) {
+    return blurayMovies.count;
+  } else if ([self shouldShowInstant]) {
+    return instantMovies.count;
   } else if ([self shouldShowPeople]) {
-    return self.searchResult.people.count;
+    return people.count;
   } else {
     return 0;
   }
@@ -138,21 +153,17 @@
 
 
 - (UITableViewCell*) cellForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
-  if ([self shouldShowAll]) {
-    if (indexPath.section == 0) {
-      Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
-      return [self netflixCellForMovie:movie];
-    } else {
-      Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
-      UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-      cell.textLabel.text = person.name;
-      return cell;
-    }
-  } else if ([self shouldShowMovies]) {
-    Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
+  if ([self shouldShowDvd]) {
+    Movie* movie = [dvdMovies objectAtIndex:indexPath.row];
+    return [self netflixCellForMovie:movie];
+  } else if ([self shouldShowBluray]) {
+    Movie* movie = [blurayMovies objectAtIndex:indexPath.row];
+    return [self netflixCellForMovie:movie];
+  } else if ([self shouldShowInstant]) {
+    Movie* movie = [instantMovies objectAtIndex:indexPath.row];
     return [self netflixCellForMovie:movie];
   } else if ([self shouldShowPeople]) {
-    Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
+    Person* person = [people objectAtIndex:indexPath.row];
     UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
     cell.textLabel.text = person.name;
     return cell;
@@ -168,58 +179,71 @@
 
 
 - (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
-  if ([self shouldShowAll]) {
-    if (indexPath.section == 0) {
-      Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
-      [self.commonNavigationController pushMovieDetails:movie animated:YES];
-    } else {
-      Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
-      [self.commonNavigationController pushPersonDetails:person animated:YES];
-    }
-  } else if ([self shouldShowMovies]) {
-    Movie* movie = [self.searchResult.movies objectAtIndex:indexPath.row];
+  if ([self shouldShowDvd]) {
+    Movie* movie = [dvdMovies objectAtIndex:indexPath.row];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
+  } else if ([self shouldShowBluray]) {
+    Movie* movie = [blurayMovies objectAtIndex:indexPath.row];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
+  } else if ([self shouldShowInstant]) {
+    Movie* movie = [instantMovies objectAtIndex:indexPath.row];
     [self.commonNavigationController pushMovieDetails:movie animated:YES];
   } else if ([self shouldShowPeople]) {
-    Person* person = [self.searchResult.people objectAtIndex:indexPath.row];
+    Person* person = [people objectAtIndex:indexPath.row];
     [self.commonNavigationController pushPersonDetails:person animated:YES];
   }
 }
 
 
 - (CGFloat) heightForRowAtIndexPathWorker:(NSIndexPath*) indexPath {
-  if (indexPath.section == 1) {
-    return self.searchResultsTableView.rowHeight;
+  if ([self shouldShowDvd] ||
+      [self shouldShowBluray] ||
+      [self shouldShowInstant]) {
+    return 100;
   }
-
-  if ([self shouldShowPeople]) {
-    return self.searchResultsTableView.rowHeight;
-  }
-
-  return 100;
+ 
+  return self.searchResultsTableView.rowHeight;
 }
 
 
 - (NSString*) titleForHeaderInSectionWorker:(NSInteger) section {
-  if ([self shouldShowAll]) {
-    if (self.searchResult.movies.count > 0 && self.searchResult.people.count > 0) {
-      if (section == 0) {
-        return LocalizedString(@"Movies", nil);
-      } else {
-        return LocalizedString(@"People", nil);
-      }
-    }
-  }
-
   return nil;
 }
 
 
 - (void) initializeData:(SearchResult*) result {
-  self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), result.movies.count + result.people.count],
-                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), result.movies.count],
-                                      [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of all people search results.  i.e.: People (5)"), result.people.count],
-                                      nil];
+  NSMutableArray* dvds = [NSMutableArray array];
+  NSMutableArray* bluray = [NSMutableArray array];
+  NSMutableArray* instant = [NSMutableArray array];
+  
+  for (Movie* movie in result.movies) {
+    if ([[NetflixCache cache] isDvd:movie]) {
+      [dvds addObject:movie];
+    }
+    if ([[NetflixCache cache] isBluray:movie]) {
+      [bluray addObject:movie];
+    }
+    if ([[NetflixCache cache] isInstantWatch:movie]) {
+      [instant addObject:movie];
+    }
+  }
+  
+  self.dvdMovies = dvds;
+  self.blurayMovies = bluray;
+  self.instantMovies = instant;
+  self.people = result.people;
+  
+  NSString* dvdString     = dvdMovies.count     == 0 ? LocalizedString(@"DVD", nil)     : [NSString stringWithFormat:LocalizedString(@"DVD (%d)", @"Used to display the count of dvd search results.  i.e.: DVD (15)"), dvdMovies.count];
+  NSString* blurayString  = blurayMovies.count  == 0 ? LocalizedString(@"Bluray", nil)  : [NSString stringWithFormat:LocalizedString(@"Bluray (%d)", @"Used to display the count of bluray search results.  i.e.: Bluray (15)"), blurayMovies.count];
+  NSString* instantString = instantMovies.count == 0 ? LocalizedString(@"Instant", nil) : [NSString stringWithFormat:LocalizedString(@"Instant (%d)", @"Used to display the count of instant search results.  i.e.: Instant (15)"), instantMovies.count];
+  NSString* peopleString  = people.count        == 0 ? LocalizedString(@"People", nil)  : [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of people search results.  i.e.: People (5)"), people.count];
+  
+  self.searchBar.scopeButtonTitles =
+    [NSArray arrayWithObjects:
+     dvdString,
+     blurayString,
+     instantString,
+     peopleString, nil];
 }
 
 

@@ -64,7 +64,7 @@
 }
 
 
-- (id<StoreItem>) itemForItunesIdentifier:(NSString *)itunesIdentifier {
+- (id<StoreItem>) itemForItunesIdentifier:(NSString*) itunesIdentifier {
   return [Donation donationWithItunesIdentifier:itunesIdentifier];
 }
 

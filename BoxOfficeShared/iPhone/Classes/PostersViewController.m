@@ -14,7 +14,7 @@
 
 #import "PostersViewController.h"
 
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;
@@ -43,17 +43,17 @@
 
 
 - (BOOL) allImagesDownloaded {
-  return [[LargePosterCache cache] allPostersDownloadedForMovie:movie];
+  return [[LargeMoviePosterCache cache] allPostersDownloadedForMovie:movie];
 }
 
 
 - (BOOL) imageExistsForPage:(NSInteger) page {
-  return [[LargePosterCache cache] posterExistsForMovie:movie index:page];
+  return [[LargeMoviePosterCache cache] posterExistsForMovie:movie index:page];
 }
 
 
 - (UIImage*) imageForPage:(NSInteger) page {
-  return [[LargePosterCache cache] posterForMovie:movie index:page loadFromDisk:YES];
+  return [[LargeMoviePosterCache cache] posterForMovie:movie index:page loadFromDisk:YES];
 }
 
 

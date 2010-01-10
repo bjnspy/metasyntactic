@@ -19,10 +19,6 @@
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"
 
-@interface UpcomingMoviesViewController()
-@end
-
-
 @implementation UpcomingMoviesViewController
 
 - (NSArray*) movies {

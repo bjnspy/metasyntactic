@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ImdbPosterDownloader.h"
+#import "ImdbMoviePosterDownloader.h"
 
 #import "Application.h"
 
-@implementation ImdbPosterDownloader
+@implementation ImdbMoviePosterDownloader
 
 - (NSString*) imdbId:(Movie*) movie {
   NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];

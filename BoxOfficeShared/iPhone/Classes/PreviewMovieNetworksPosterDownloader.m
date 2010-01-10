@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "PreviewNetworksPosterDownloader.h"
+#import "PreviewNetworksMoviePosterDownloader.h"
 
 #import "Application.h"
 #import "InternationalDataCache.h"
 
-@implementation PreviewNetworksPosterDownloader
+@implementation PreviewNetworksMoviePosterDownloader
 
 - (NSDictionary*) processElement:(XmlElement*) element {
   NSMutableDictionary* map = [NSMutableDictionary dictionary];

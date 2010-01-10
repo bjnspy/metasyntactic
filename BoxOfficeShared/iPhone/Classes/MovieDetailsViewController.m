@@ -20,7 +20,7 @@
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "FavoriteTheaterCache.h"
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "MovieCacheUpdater.h"
@@ -237,12 +237,12 @@ typedef enum {
 
 + (UIImage*) posterForMovie:(Movie*) movie {
   UIImage* image = [[Model model] posterForMovie:movie];
-
-  if (image != nil) {
-    return image;
-  }
-
-  return [BoxOfficeStockImages imageNotAvailable];
+  return image;
+//  if (image != nil) {
+//    return image;
+//  }
+//
+//  return [BoxOfficeStockImages imageNotAvailable];
 }
 
 
@@ -492,13 +492,13 @@ typedef enum {
 
 
 - (void) downloadPosterBackgroundEntryPoint {
-  NSInteger count = [[LargePosterCache cache] posterCountForMovie:movie];
+  NSInteger count = [[LargeMoviePosterCache cache] posterCountForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
 
-  [[LargePosterCache cache] downloadFirstPosterForMovie:movie];
+  [[LargeMoviePosterCache cache] downloadFirstPosterForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPoster)
                          withObject:nil
@@ -1350,7 +1350,7 @@ typedef enum {
   }
 
   [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
-                                          onTarget:[LargePosterCache cache]
+                                          onTarget:[LargeMoviePosterCache cache]
                                         withObject:movie
                                               gate:nil
                                           priority:Now];

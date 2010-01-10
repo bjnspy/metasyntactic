@@ -38,14 +38,6 @@ static PersonCacheUpdater* updater = nil;
 }
 
 
-- (id) init {
-  if ((self = [super init])) {
-  }
-
-  return self;
-}
-
-
 + (PersonCacheUpdater*) updater {
   return updater;
 }

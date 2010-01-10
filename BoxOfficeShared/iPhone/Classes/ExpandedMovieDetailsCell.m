@@ -16,10 +16,6 @@
 
 #import "Model.h"
 
-@interface ExpandedMovieDetailsCell()
-@end
-
-
 @implementation ExpandedMovieDetailsCell
 
 + (void) addRating:(Movie*) movie

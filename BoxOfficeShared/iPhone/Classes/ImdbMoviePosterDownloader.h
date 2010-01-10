@@ -12,19 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FandangoPosterDownloader.h"
+#import "AbstractMoviePosterDownloader.h"
 
-#import "Application.h"
-#import "LargePosterCache.h"
-
-@implementation FandangoPosterDownloader
-
-- (NSDictionary*) createMapWorker {
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=fandango",
-                   [Application apiHost], [Application apiVersion]];
-
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
-  return [LargePosterCache processPosterListings:element];
+@interface ImdbMoviePosterDownloader : AbstractMoviePosterDownloader {
 }
 
 @end

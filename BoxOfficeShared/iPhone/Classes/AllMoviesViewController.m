@@ -18,10 +18,6 @@
 #import "Model.h"
 #import "MovieTitleCell.h"
 
-@interface AllMoviesViewController()
-@end
-
-
 @implementation AllMoviesViewController
 
 - (NSArray*) movies {

@@ -307,7 +307,7 @@ typedef enum {
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString*) tableView:(UITableView*) tableView titleForHeaderInSection:(NSInteger)section {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:account];
 
   if (searchDisplayController.isActive ||

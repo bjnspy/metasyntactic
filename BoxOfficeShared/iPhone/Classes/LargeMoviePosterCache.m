@@ -12,24 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "LargePosterCache.h"
+#import "LargeMoviePosterCache.h"
 
 #import "Application.h"
 #import "Model.h"
 
-@interface LargePosterCache()
+@interface LargeMoviePosterCache()
 @property (retain) AutoreleasingMutableDictionary* yearToMovieNames;
 @property (retain) AutoreleasingMutableDictionary* yearToTitleToPosterUrls;
 @property BOOL updated;
 @end
 
-@implementation LargePosterCache
+@implementation LargeMoviePosterCache
 
-static LargePosterCache* cache;
+static LargeMoviePosterCache* cache;
 
 + (void) initialize {
-  if (self == [LargePosterCache class]) {
-    cache = [[LargePosterCache alloc] init];
+  if (self == [LargeMoviePosterCache class]) {
+    cache = [[LargeMoviePosterCache alloc] init];
   }
 }
 
@@ -59,7 +59,7 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-+ (LargePosterCache*) cache {
++ (LargeMoviePosterCache*) cache {
   return cache;
 }
 
@@ -223,7 +223,7 @@ const NSInteger START_YEAR = 1912;
                        [Application apiHost], [Application apiVersion], year];
   XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
-  NSDictionary* titleToPosters = [LargePosterCache processPosterListings:result];
+  NSDictionary* titleToPosters = [LargeMoviePosterCache processPosterListings:result];
 
   if (titleToPosters.count > 0) {
     [FileUtilities writeObject:titleToPosters.allKeys toFile:indexFile];

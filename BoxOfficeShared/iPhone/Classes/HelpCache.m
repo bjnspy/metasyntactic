@@ -127,7 +127,9 @@ static HelpCache* cache;
 }
 
 
-- (void) generateLocLine: (NSMutableString *) result dictionary: (NSDictionary *) dictionary values: (NSArray *) values  {
+- (void) generateLocLine:(NSMutableString*) result
+              dictionary:(NSDictionary*) dictionary
+                  values:(NSArray*) values  {
   for (NSString* value in values) {
     NSString* loc = [dictionary objectForKey:value];
     if (loc.length == 0) {
@@ -139,7 +141,8 @@ static HelpCache* cache;
 }
 
 
-- (void) appendLookupMethod: (NSMutableString *) result type:(NSString*) type {
+- (void) appendLookupMethod:(NSMutableString*) result
+                       type:(NSString*) type {
   [result appendString:@"  @Override\n"];
   [result appendFormat:@"  protected String[] lookup%@(String id, String language) {\n", type];
   [result appendString:@"    if (\"org.metasyntactic.BoxOffice\".equals(id)) {\n"];

@@ -17,10 +17,6 @@
 #import "Controller.h"
 #import "Model.h"
 
-@interface DVDFilterViewController()
-@end
-
-
 @implementation DVDFilterViewController
 
 - (id) init {

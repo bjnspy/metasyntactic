@@ -37,14 +37,6 @@ static MovieCacheUpdater* updater = nil;
 }
 
 
-- (id) init {
-  if ((self = [super init])) {
-  }
-
-  return self;
-}
-
-
 + (MovieCacheUpdater*) updater {
   return updater;
 }
