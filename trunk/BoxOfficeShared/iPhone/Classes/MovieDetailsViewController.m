@@ -237,12 +237,11 @@ typedef enum {
 
 + (UIImage*) posterForMovie:(Movie*) movie {
   UIImage* image = [[Model model] posterForMovie:movie];
-  return image;
-//  if (image != nil) {
-//    return image;
-//  }
-//
-//  return [BoxOfficeStockImages imageNotAvailable];
+  if (image != nil) {
+    return image;
+  }
+
+  return [BoxOfficeStockImages imageNotAvailable];
 }
 
 
