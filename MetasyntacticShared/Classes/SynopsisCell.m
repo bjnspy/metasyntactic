@@ -54,7 +54,7 @@
     actualSize.width = 140;
   }
 
-  NSInteger adjustedHeight = 18 * (MIN(145, (NSInteger) actualSize.height) / 18);
+  NSInteger adjustedHeight = 18 * (MIN(181, (NSInteger) actualSize.height) / 18);
   CGFloat ratio = (CGFloat)adjustedHeight / actualSize.height;
 
   return CGSizeMake((NSInteger)(actualSize.width * ratio), adjustedHeight);

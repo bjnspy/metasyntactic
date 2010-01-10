@@ -23,7 +23,7 @@
 
 
 - (NSData*) pickBestImage:(NSArray*) imageAddresses {
-  NSData* fallback = nil;
+  NSData* fallbackData = nil;
 
   // First, try to find a portrait.
   for (NSString* imageAddress in imageAddresses) {
@@ -31,15 +31,16 @@
     UIImage* image = [UIImage imageWithData:data];
     if (image.size.height >= 140) {
       if (image.size.height > image.size.width) {
-        return data;
-      } else if (fallback != nil) {
-        fallback = data;
+        fallbackData = data;
+        break;
+      } else if (fallbackData != nil) {
+        fallbackData = data;
       }
     }
   }
 
-  // Or fallback to anything that's large enough.
-  return fallback;
+  // Don't want to save a huge image.  Resize to something more reasonable.
+  return [ImageUtilities scaleImageData:fallbackData toWidth:140];
 }
 
 
