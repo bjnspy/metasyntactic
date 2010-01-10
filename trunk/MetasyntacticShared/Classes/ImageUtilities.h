@@ -19,6 +19,8 @@
 
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size;
 + (UIImage*) scaleImage:(UIImage*) image toHeight:(CGFloat) height;
++ (UIImage*) scaleImage:(UIImage*) image toWidth:(CGFloat) width;
+
 + (UIImage*) cropImage:(UIImage*) image toRect:(CGRect) rect;
 + (UIImage*) roundUpperLeftCornerOfImage:(UIImage*) image;
 + (UIImage*) roundLowerLeftCornerOfImage:(UIImage*) image;
@@ -26,5 +28,6 @@
 + (UIImage*) makeGrayscale:(UIImage*) image;
 
 + (NSData*) scaleImageData:(NSData*) image toHeight:(CGFloat) height;
++ (NSData*) scaleImageData:(NSData*) image toWidth:(CGFloat) width;
 
 @end

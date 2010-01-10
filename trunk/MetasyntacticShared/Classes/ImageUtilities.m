@@ -58,6 +58,20 @@
 }
 
 
++ (UIImage*) scaleImage:(UIImage*) image toWidth:(CGFloat) width {
+  if (image == nil) {
+    return nil;
+  }
+  
+  CGSize imageSize = image.size;
+  
+  CGFloat height = imageSize.height * (width / imageSize.width);
+  CGSize resultSize = CGSizeMake(width, height);
+  
+  return [self scaleImage:image toSize:resultSize];
+}
+
+
 + (NSData*) scaleImageData:(NSData*) data toHeight:(CGFloat) height {
   if (data.length == 0) {
     return nil;
@@ -77,6 +91,30 @@
     return nil;
   }
 
+  return UIImageJPEGRepresentation(result, 0.5f);
+}
+
+
++ (NSData*) scaleImageData:(NSData*) data
+                   toWidth:(CGFloat) width {
+  if (data.length == 0) {
+    return nil;
+  }
+  
+  UIImage* source = [UIImage imageWithData:data];
+  if (source == nil) {
+    return nil;
+  }
+  
+  if (source.size.width <= width) {
+    return data;
+  }
+  
+  UIImage* result = [self scaleImage:source toWidth:width];
+  if (result == nil) {
+    return nil;
+  }
+  
   return UIImageJPEGRepresentation(result, 0.5f);
 }
 
