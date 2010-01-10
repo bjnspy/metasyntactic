@@ -283,9 +283,11 @@
     synopsisChunk2Label.frame = chunk2Frame;
 
     // shift the first chunk down to align with the second
+#if 0
     chunk1Frame = synopsisChunk1Label.frame;
     chunk1Frame.origin.y = imageSize.height + 5 - chunk1Frame.size.height;
     synopsisChunk1Label.frame = chunk1Frame;
+#endif
   }
 }
 
