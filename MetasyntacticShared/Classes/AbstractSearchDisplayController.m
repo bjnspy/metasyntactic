@@ -138,12 +138,12 @@
     [self.searchEngine invalidateExistingRequests];
     self.abstractSearchResult = nil;
     [self reset];
+    return YES;
     //[self.searchResultsTableView reloadData];
   } else {
     [self.searchEngine submitRequest:searchText];
+    return YES;
   }
-
-  return YES;
 }
 
 
