@@ -328,27 +328,47 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 }
 
 
-- (NSArray*) moviesForRSSTitle:(NSString*) title {
-  NSMutableArray* array = [NSMutableArray array];
+- (void) moviesForRSSTitle:(NSString*) title
+                    result:(NSMutableArray*) result {
+  NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
+  NSSet* latestIdentifiers =
+  [NSSet setWithArray:
+   [CollectionUtilities nonNilArray:
+    [FileUtilities readObject:[NetflixPaths rssFile:address]]]];
 
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-  {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-    NSString* directory = [NetflixPaths rssFeedDirectory:address];
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-
-    for (NSString* path in paths) {
+  NSString* directory = [NetflixPaths rssFeedDirectory:address];
+  NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+  
+  for (NSString* path in paths) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
       NSDictionary* dictionary = [FileUtilities readObject:path];
-
+      
       Movie* movie = [Movie createWithDictionary:dictionary];
       if (movie != nil) {
-        [array addObject:movie];
+        NSString* lastPathComponent = [[path stringByDeletingPathExtension] lastPathComponent];
+        if ([latestIdentifiers containsObject:lastPathComponent]) {
+          [result insertObject:movie atIndex:0];
+        } else {
+          [result addObject:movie];
+        }
       }
     }
+    [pool release];
+  }
+}
+
+
+- (NSArray*) moviesForRSSTitle:(NSString*) title {
+  
+  NSMutableArray* array = [NSMutableArray array];
+  
+  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  {
+    [self moviesForRSSTitle:title result:array];
   }
   [pool release];
-
+  
   return array;
 }
 
