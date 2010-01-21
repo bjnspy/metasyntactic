@@ -57,13 +57,6 @@
 
 @implementation MovieDetailsViewController
 
-static const NSInteger ADD_TO_NETFLIX_TAG = 1;
-static const NSInteger VISIT_WEBSITES_TAG = 2;
-static const NSInteger REMOVE_MOVIE_TAG = 4;
-
-static const NSInteger POSTER_TAG = -1;
-static const NSInteger REMOVE_MOVIE_INDEX_SHIFT = 16;
-
 typedef enum {
   InstantQueue,
   TopOfInstantQueue,
@@ -303,12 +296,9 @@ typedef enum {
   NSMutableArray* cells = [NSMutableArray array];
   for (NSInteger i = 0; i < statuses.count; i++) {
     Status* status = [statuses objectAtIndex:i];
-    NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status] autorelease];
-    cell.moveImageView.delegate = self;
-    cell.deleteImageView.delegate = self;
-
-    cell.moveImageView.tag = 2 * i;
-    cell.deleteImageView.tag = 2 * i + 1;
+    NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status
+                                                                     row:i
+                                               tappableImageViewDelegate:self] autorelease];
 
     [cells addObject:cell];
   }
@@ -430,9 +420,13 @@ typedef enum {
 }
 
 
-- (void) setupTitle {
+- (void) setupTitle:(NSString*) title {
   if (readonlyMode) {
-    self.title = LocalizedString(@"Please Wait", nil);
+    if (title.length == 0) {
+      self.title = LocalizedString(@"Please Wait", nil);
+    } else {
+      self.title = title;
+    }
   } else {
     self.title = movie.canonicalTitle;
   }
@@ -468,7 +462,7 @@ typedef enum {
 
   self.posterImage = [MovieDetailsViewController posterForMovie:movie];
   [self setupButtons];
-  [self setupTitle];
+  [self setupTitle:@""];
 
   // Load the movie details as the absolutely highest thing we can do.
   [[MovieCacheUpdater updater] prioritizeMovie:movie now:YES];
@@ -527,6 +521,16 @@ typedef enum {
 }
 
 
+- (NetflixRatingsCell*) createNetflixRatingsCell {
+  if (netflixRatingsCell == nil) {
+    self.netflixRatingsCell =
+    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie tableViewController:self] autorelease];
+  }
+  
+  return netflixRatingsCell;
+}
+
+
 - (void) onBeforeViewControllerPushed {
   [super onBeforeViewControllerPushed];
   [self downloadPoster];
@@ -537,7 +541,7 @@ typedef enum {
   [super onBeforeReloadTableViewData];
 
   [self initializeData];
-  [netflixRatingsCell refresh:netflixAccount];
+  [[self createNetflixRatingsCell] refresh:netflixAccount];
 }
 
 
@@ -678,16 +682,6 @@ typedef enum {
 }
 
 
-- (UITableViewCell*) createNetflixRatingsCell {
-  if (netflixRatingsCell == nil) {
-    self.netflixRatingsCell =
-    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie tableViewController:self] autorelease];
-  }
-
-  return netflixRatingsCell;
-}
-
-
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
   if (row == 0) {
     return [self createNetflixRatingsCell];
@@ -700,7 +694,7 @@ typedef enum {
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
   if (row == 0) {
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
-    posterImageView.tag = POSTER_TAG;
+    posterImageView.tag = ZOOM_POSTER_IMAGE_VIEW_TAG;
     posterImageView.delegate = self;
     return [SynopsisCell cellWithSynopsis:[[Model model] synopsisForMovie:movie]
                                 imageView:posterImageView
@@ -965,7 +959,7 @@ typedef enum {
                       cancelButtonTitle:nil
                  destructiveButtonTitle:nil
                       otherButtonTitles:nil] autorelease];
-  actionSheet.tag = VISIT_WEBSITES_TAG;
+  actionSheet.tag = VISIT_WEBSITES_ACTION_SHEET_TAG;
 
   NSArray* keys = [websites.allKeys sortedArrayUsingSelector:@selector(compare:)];
   for (NSString* key in keys) {
@@ -986,12 +980,12 @@ typedef enum {
 }
 
 
-- (void) enterReadonlyMode {
+- (void) enterReadonlyMode:(NSString*) title {
   if (readonlyMode) {
     return;
   }
   readonlyMode = YES;
-  [self setupTitle];
+  [self setupTitle:title];
   [self setupButtons];
   [self setupStatusCells];
 }
@@ -999,7 +993,7 @@ typedef enum {
 
 - (void) exitReadonlyMode {
   readonlyMode = NO;
-  [self setupTitle];
+  [self setupTitle:@""];
   [self setupButtons];
 }
 
@@ -1047,6 +1041,17 @@ typedef enum {
 }
 
 
+- (void) changeSucceeded {
+  [self netflixOperationSucceeded];
+}
+
+
+- (void) changeFailedWithError:(NSString*) error {
+  NSString* message = [NSString stringWithFormat:LocalizedString(@"Could not change rating:\n\n%@", @"%@ is the underlying error.  i.e. 'Could not connect to server'"), error];
+  [self netflixOperationFailedWithError:message];
+}
+
+
 - (void) addAction:(AddToQueueAction) action
           withTitle:(NSString*) title
       toActionSheet:(UIActionSheet*) actionSheet
@@ -1058,30 +1063,33 @@ typedef enum {
 }
 
 
-- (void) moveMovieWasTappedForRow:(NSInteger) row {
-  [self enterReadonlyMode];
+- (void) moveNetflixMovieWasTappedForRow:(NSInteger) row {
+  [self enterReadonlyMode:LocalizedString(@"Moving Movie", nil)];
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.netflixUpdater updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
+  [self.netflixUpdater updateQueue:status.queue
+                byMovingMovieToTop:status.movie
+                          delegate:self
+                           account:netflixAccount];
 }
 
 
-- (void) showDeletePromptForRow:(NSInteger) row {
+- (void) showRemovePromptForRow:(NSInteger) row {
   UIActionSheet* actionSheet =
   [[[UIActionSheet alloc] initWithTitle:LocalizedString(@"Remove Item from Queue?", nil)
                                delegate:self
                       cancelButtonTitle:LocalizedString(@"Cancel", nil)
                  destructiveButtonTitle:LocalizedString(@"Remove", nil)
                       otherButtonTitles:nil] autorelease];
-  actionSheet.tag = (row << REMOVE_MOVIE_INDEX_SHIFT) | REMOVE_MOVIE_TAG;
+  actionSheet.tag = SET_BITS(REMOVE_NETFLIX_MOVIE_ACTION_SHEET_TAG, row);
 
   [self showActionSheet:actionSheet];
 }
 
 
-- (void) deleteMovieWasTappedForRow:(NSInteger) row {
-  [self enterReadonlyMode];
+- (void) removeNetflixMovieWasTappedForRow:(NSInteger) row {
+  [self enterReadonlyMode:LocalizedString(@"Removing Movie", nil)];
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
@@ -1103,7 +1111,7 @@ typedef enum {
                       cancelButtonTitle:nil
                  destructiveButtonTitle:nil
                       otherButtonTitles:nil] autorelease];
-  actionSheet.tag = ADD_TO_NETFLIX_TAG;
+  actionSheet.tag = ADD_NETFLIX_MOVIE_ACTION_SHEET_TAG;
 
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:netflixAccount];
 
@@ -1131,7 +1139,7 @@ typedef enum {
 - (void) didDismissAddToNetflixActionSheet:(Queue*) queue
                                     format:(NSString*) format
                                        top:(BOOL) top {
-  [self enterReadonlyMode];
+  [self enterReadonlyMode:LocalizedString(@"Adding Movie", nil)];
   if (top) {
     [self.netflixUpdater updateQueue:queue byAddingMovie:netflixMovie withFormat:format toPosition:0 delegate:self account:netflixAccount];
   } else {
@@ -1186,10 +1194,10 @@ typedef enum {
 }
 
 
-- (void) didDismissRemoveMovieActionSheet:(UIActionSheet*) actionSheet
+- (void) didDismissRemoveNetflixMovieActionSheet:(UIActionSheet*) actionSheet
                           withButtonIndex:(NSInteger) buttonIndex {
-  NSInteger row = actionSheet.tag >> REMOVE_MOVIE_INDEX_SHIFT;
-  [self deleteMovieWasTappedForRow:row];
+  NSInteger row = CLEAR_BITS(actionSheet.tag, REMOVE_NETFLIX_MOVIE_ACTION_SHEET_TAG);
+  [self removeNetflixMovieWasTappedForRow:row];
 }
 
 
@@ -1199,15 +1207,15 @@ typedef enum {
     return;
   }
 
-  if ((actionSheet.tag & ADD_TO_NETFLIX_TAG) != 0) {
+  if (BITS_ARE_SET(actionSheet.tag, ADD_NETFLIX_MOVIE_ACTION_SHEET_TAG)) {
     [self didDismissAddToNetflixActionSheet:actionSheet
                             withButtonIndex:buttonIndex];
-  } else if ((actionSheet.tag & VISIT_WEBSITES_TAG) != 0) {
+  } else if (BITS_ARE_SET(actionSheet.tag, VISIT_WEBSITES_ACTION_SHEET_TAG)) {
     [self didDismissVisitWebsitesActionSheet:actionSheet
                              withButtonIndex:buttonIndex];
-  } else if ((actionSheet.tag & REMOVE_MOVIE_TAG) != 0) {
-    [self didDismissRemoveMovieActionSheet:actionSheet
-                           withButtonIndex:buttonIndex];
+  } else if (BITS_ARE_SET(actionSheet.tag, REMOVE_NETFLIX_MOVIE_ACTION_SHEET_TAG)) {
+    [self didDismissRemoveNetflixMovieActionSheet:actionSheet
+                                  withButtonIndex:buttonIndex];
   }
 }
 
@@ -1354,19 +1362,48 @@ typedef enum {
                                               gate:nil
                                           priority:Now];
 
-  [self.commonNavigationController showPostersView:movie posterCount:posterCount];
+  [self.commonNavigationController showPostersView:movie
+                                       posterCount:posterCount];
+}
+
+
+- (void) rateNetflixMovieWasTapped:(NSInteger) value {
+  NSInteger currentUserRating =
+    (NSInteger)[[[NetflixCache cache] userRatingForMovie:netflixMovie
+                                                 account:netflixAccount] floatValue];
+  
+  // Don't need to do anything in this case.
+  if (value == currentUserRating) {
+    return;
+  }
+  
+  // now, update in the background.
+  [self enterReadonlyMode:LocalizedString(@"Changing Rating", nil)];
+  NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
+  [self.netflixUpdater changeRatingTo:rating
+                             forMovie:netflixMovie
+                             delegate:self
+                              account:netflixAccount];
+  
+  // now, update the UI to reflect the temporary value
+  [netflixRatingsCell refresh:netflixAccount];
 }
 
 
 - (void) imageView:(TappableImageView*) imageView
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
-  if (imageView.tag == POSTER_TAG) {
+  if (BITS_ARE_SET(imageView.tag, ZOOM_POSTER_IMAGE_VIEW_TAG)) {
     [self posterImageViewWasTapped];
-  } else if (imageView.tag % 2 == 0) {
-    [self moveMovieWasTappedForRow:imageView.tag / 2];
-  } else {
-    [self showDeletePromptForRow:imageView.tag / 2];
+  } else if (BITS_ARE_SET(imageView.tag, RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG)) {
+    NSInteger value = CLEAR_BITS(imageView.tag, RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG);
+    [self rateNetflixMovieWasTapped:value];
+  } else if (BITS_ARE_SET(imageView.tag, MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG)) {
+    NSInteger row = CLEAR_BITS(imageView.tag, MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG);
+    [self moveNetflixMovieWasTappedForRow:row];
+  } else if (BITS_ARE_SET(imageView.tag, REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG)) {
+    NSInteger row = CLEAR_BITS(imageView.tag, REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG);
+    [self showRemovePromptForRow:row];
   }
 }
 

@@ -36,3 +36,8 @@
 #define LocalizedString(key, comment) [MetasyntacticSharedApplication localizedString:key]
 
 #define AbstractMethod { @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil]; }
+
+#define BITS_ARE_SET(value, mask) (((value) & (mask)) == (mask))
+#define CLEAR_BITS(value, mask) ((value) & ~(mask))
+#define SET_BITS(value, mask) ((value) | (mask))
+

@@ -53,6 +53,7 @@
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
 @class NetflixSearchEngine;
+@class NetflixUIController;
 @class NetflixViewController;
 @class NoneScoreProvider;
 @class Controller;

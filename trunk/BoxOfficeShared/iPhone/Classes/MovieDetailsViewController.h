@@ -14,7 +14,23 @@
 
 #import "AbstractDetailsViewController.h"
 
-@interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate, MapViewControllerDelegate> {
+static const NSInteger ADD_NETFLIX_MOVIE_ACTION_SHEET_TAG = 1 << 31;
+static const NSInteger REMOVE_NETFLIX_MOVIE_ACTION_SHEET_TAG = 1 << 30;
+static const NSInteger VISIT_WEBSITES_ACTION_SHEET_TAG = 1 << 29;
+
+static const NSInteger ZOOM_POSTER_IMAGE_VIEW_TAG = 1 << 31;
+static const NSInteger RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG = 1 << 30;
+static const NSInteger MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG = 1 << 29;
+static const NSInteger REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG = 1 << 28;
+
+@interface MovieDetailsViewController : AbstractDetailsViewController<
+  UIActionSheetDelegate,
+  MapViewControllerDelegate,
+  TappableImageViewDelegate,
+  NetflixAddMovieDelegate,
+  NetflixModifyQueueDelegate,
+  NetflixMoveMovieDelegate,
+  NetflixChangeRatingDelegate> {
 @private
   Movie* movie;
   DVD* dvd;

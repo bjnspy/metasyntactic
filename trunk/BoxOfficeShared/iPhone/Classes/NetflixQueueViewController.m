@@ -108,15 +108,16 @@
 }
 
 
-- (void) setupTitle {
-  NSString* text;
+- (void) setupTitle:(NSString*) title {
   if (readonlyMode) {
-    text = LocalizedString(@"Please Wait", nil);
+    if (title.length == 0) {
+      self.title = LocalizedString(@"Please Wait", nil);
+    } else {
+      self.title = title;
+    }
   } else {
-    text = [[NetflixCache cache] titleForKey:feedKey includeCount:NO account:account];
+    self.title = [[NetflixCache cache] titleForKey:feedKey includeCount:NO account:account];
   }
-
-  self.title = text;
 }
 
 
@@ -128,7 +129,7 @@
   self.queue = [[NetflixFeedCache cache] queueForFeed:feed account:account];
   self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
   self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
-  [self setupTitle];
+  [self setupTitle:@""];
   [self setupButtons];
 }
 
@@ -242,10 +243,10 @@
 }
 
 
-- (void) enterReadonlyMode {
+- (void) enterReadonlyMode:(NSString*) title {
   readonlyMode = YES;
   [self setupButtons];
-  [self setupTitle];
+  [self setupTitle:title];
 }
 
 
@@ -258,14 +259,14 @@
 - (void) exitReadonlyMode {
   readonlyMode = NO;
   [self setupButtons];
-  [self setupTitle];
+  [self setupTitle:@""];
   [self resetVisibleAccessories];
   [self clearTemporaryQueues];
 }
 
 
 - (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
-  [self enterReadonlyMode];
+  [self enterReadonlyMode:LocalizedString(@"Moving Movie", nil)];
 
   UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
   UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
@@ -393,7 +394,20 @@
     [self onCancel];
   } else {
     [self exitEditing];
-    [self enterReadonlyMode];
+    NSString* title = @"";
+    if (deletedMovies.count == 1 && reorderedMovies.count == 0) {
+      title = LocalizedString(@"Removing Movie", nil);
+    } else if (deletedMovies.count > 1 && reorderedMovies.count == 0) {
+      title = LocalizedString(@"Removing Movies", nil);
+    } else if (deletedMovies.count == 0 && reorderedMovies.count == 1) {
+      title = LocalizedString(@"Moving Movie", nil);
+    } else if (deletedMovies.count == 0 && reorderedMovies.count > 1) {
+      title = LocalizedString(@"Moving Movies", nil);
+    } else {
+      title = LocalizedString(@"Updating Queue", nil);
+    }
+    
+    [self enterReadonlyMode:title];
 
     [self.netflixUpdater updateQueue:queue
                     byDeletingMovies:deletedMovies
