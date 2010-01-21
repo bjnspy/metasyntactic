@@ -360,7 +360,6 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
 
 - (NSArray*) moviesForRSSTitle:(NSString*) title {
-  
   NSMutableArray* array = [NSMutableArray array];
   
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];

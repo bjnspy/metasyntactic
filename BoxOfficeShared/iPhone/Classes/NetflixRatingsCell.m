@@ -15,8 +15,10 @@
 #import "NetflixRatingsCell.h"
 
 #import "BoxOfficeStockImages.h"
+#import "MovieDetailsViewController.h"
 
 @interface NetflixRatingsCell()
+@property (retain) UITableViewController<TappableImageViewDelegate>* tappableTableView;
 @property (retain) Movie* movie;
 @property (retain) NetflixAccount* account;
 @property (retain) NSArray* imageViews;
@@ -24,11 +26,13 @@
 
 @implementation NetflixRatingsCell
 
+@synthesize tappableTableView;
 @synthesize movie;
 @synthesize account;
 @synthesize imageViews;
 
 - (void) dealloc {
+  self.tappableTableView = nil;
   self.movie = nil;
   self.account = nil;
   self.imageViews = nil;
@@ -74,8 +78,8 @@
     }
 
     TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
-    imageView.delegate = self;
-    imageView.tag = i + 1;
+    imageView.delegate = self.tappableTableView;
+    imageView.tag = SET_BITS(RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, (i + 1));
     imageView.contentMode = UIViewContentModeCenter;
 
     CGRect rect = imageView.frame;
@@ -113,8 +117,8 @@
     }
 
     TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
-    imageView.delegate = self;
-    imageView.tag = i + 1;
+    imageView.delegate = self.tappableTableView;
+    imageView.tag = SET_BITS(RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, (i + 1));
     imageView.contentMode = UIViewContentModeCenter;
 
     CGRect rect = imageView.frame;
@@ -154,10 +158,12 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ tableViewController:(UITableViewController*) tableViewController_ {
+- (id)    initWithMovie:(Movie*) movie_
+    tableViewController:(UITableViewController<TappableImageViewDelegate>*) tableViewController_ {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault
                    reuseIdentifier:nil
                tableViewController:tableViewController_])) {
+    self.tappableTableView = tableViewController_;
     self.movie = movie_;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.imageViews = [NSMutableArray array];
@@ -165,42 +171,6 @@
   }
 
   return self;
-}
-
-
-- (void) imageView:(TappableImageView*) imageView
-        wasTouched:(UITouch*) touch
-          tapCount:(NSInteger) tapCount {
-  NSInteger value = imageView.tag;
-  NSInteger currentUserRating = (NSInteger)[[[NetflixCache cache] userRatingForMovie:movie account:account] floatValue];
-
-  if (value == currentUserRating) {
-    return;
-  }
-
-  // change the UI:
-  [self clearRating];
-  if (value == 0) {
-    [self setupNetflixRating];
-  } else {
-    [self setupUserRating:[NSString stringWithFormat:@"%d", value]];
-  }
-
-  // now, update in the background.
-  NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-  [self.netflixUpdater changeRatingTo:rating forMovie:movie delegate:self account:account];
-}
-
-
-- (void) changeSucceeded {
-}
-
-
-- (void) changeFailedWithError:(NSString*) error {
-  NSString* message = [NSString stringWithFormat:LocalizedString(@"Could not change rating:\n\n%@", @"%@ is the underlying error.  i.e. 'Could not connect to server'"), error];
-  [AlertUtilities showOkAlert:message];
-
-  [self setupRating];
 }
 
 

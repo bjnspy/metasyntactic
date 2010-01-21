@@ -15,10 +15,11 @@
 #import "NetflixStatusCell.h"
 
 #import "BoxOfficeStockImages.h"
+#import "MovieDetailsViewController.h"
 
 @interface NetflixStatusCell()
-@property (retain) TappableImageView* deleteImageView;
-@property (retain) TappableImageView* moveImageView;
+@property (retain) TappableImageView* removeMovieImageView;
+@property (retain) TappableImageView* moveMovieImageView;
 
 @property (retain) Status* status;
 @end
@@ -26,13 +27,13 @@
 
 @implementation NetflixStatusCell
 
-@synthesize deleteImageView;
-@synthesize moveImageView;
+@synthesize removeMovieImageView;
+@synthesize moveMovieImageView;
 @synthesize status;
 
 - (void) dealloc {
-  self.deleteImageView = nil;
-  self.moveImageView = nil;
+  self.removeMovieImageView = nil;
+  self.moveMovieImageView = nil;
   self.status = nil;
 
   [super dealloc];
@@ -42,23 +43,23 @@
 - (void) initialize {
   self.textLabel.text = status.description;
 
-  [deleteImageView removeFromSuperview];
-  [moveImageView removeFromSuperview];
+  [removeMovieImageView removeFromSuperview];
+  [moveMovieImageView removeFromSuperview];
 
   if (!status.queue.isAtHomeQueue && status.description.length > 0) {
-    CGRect deleteFrame = deleteImageView.frame;
-    CGRect moveFrame = moveImageView.frame;
+    CGRect deleteFrame = removeMovieImageView.frame;
+    CGRect moveFrame = moveMovieImageView.frame;
 
     deleteFrame.origin.x = moveFrame.size.width;
-    deleteImageView.frame = deleteFrame;
+    removeMovieImageView.frame = deleteFrame;
 
     CGRect frame = CGRectMake(0, 0, deleteFrame.origin.x + deleteFrame.size.width, MAX(deleteFrame.size.height, moveFrame.size.height));
     UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
 
-    [view addSubview:deleteImageView];
+    [view addSubview:removeMovieImageView];
 
     if (!status.saved && status.position != 0) {
-      [view addSubview:moveImageView];
+      [view addSubview:moveMovieImageView];
     }
 
     self.accessoryView = view;
@@ -66,7 +67,9 @@
 }
 
 
-- (id) initWithStatus:(Status*) status_ {
+- (id)         initWithStatus:(Status*) status_
+                          row:(NSInteger) row
+    tappableImageViewDelegate:(id<TappableImageViewDelegate>) delegate {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault
                    reuseIdentifier:nil])) {
     self.status = status_;
@@ -75,15 +78,22 @@
     self.textLabel.textAlignment = UITextAlignmentCenter;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    self.deleteImageView = [[[TappableImageView alloc] initWithImage:BoxOfficeStockImage(@"DeleteMovie.png")] autorelease];
-    self.moveImageView = [[[TappableImageView alloc] initWithImage:[BoxOfficeStockImages upArrow]] autorelease];
-    deleteImageView.contentMode = moveImageView.contentMode = UIViewContentModeCenter;
+    self.removeMovieImageView = [[[TappableImageView alloc] initWithImage:BoxOfficeStockImage(@"DeleteMovie.png")] autorelease];
+    self.moveMovieImageView = [[[TappableImageView alloc] initWithImage:[BoxOfficeStockImages upArrow]] autorelease];
+    removeMovieImageView.contentMode = moveMovieImageView.contentMode = UIViewContentModeCenter;
 
-    CGRect frame = deleteImageView.frame;
+    moveMovieImageView.delegate = delegate;
+    removeMovieImageView.delegate = delegate;
+    
+    moveMovieImageView.tag = SET_BITS(MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, row);
+    removeMovieImageView.tag = SET_BITS(REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, row);
+    
+    
+    CGRect frame = removeMovieImageView.frame;
     frame.size.height += 20;
     frame.size.width += 20;
-    deleteImageView.frame = frame;
-    moveImageView.frame = frame;
+    removeMovieImageView.frame = frame;
+    moveMovieImageView.frame = frame;
 
     [self initialize];
   }

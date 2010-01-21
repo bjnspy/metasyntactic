@@ -14,17 +14,17 @@
 
 @interface NetflixStatusCell : UITableViewCell {
 @private
-  TappableImageView* deleteImageView;
-  TappableImageView* moveImageView;
+  TappableImageView* removeMovieImageView;
+  TappableImageView* moveMovieImageView;
 
   Status* status;
 }
 
-@property (readonly, retain) TappableImageView* deleteImageView;
-@property (readonly, retain) TappableImageView* moveImageView;
 @property (readonly, retain) Status* status;
 
-- (id) initWithStatus:(Status*) status;
+- (id)       initWithStatus:(Status*) status
+                        row:(NSInteger) row
+  tappableImageViewDelegate:(id<TappableImageViewDelegate>) delegate;
 
 - (void) enterReadonlyMode;
 
