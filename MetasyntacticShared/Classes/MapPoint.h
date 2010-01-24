@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol MapPoint<MKAnnotation>
+@protocol MapPoint<MKAnnotation,NSObject>
 - (Location*) location;
 - (NSString*) mapUrl;
 @end
