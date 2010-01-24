@@ -259,17 +259,15 @@ static NSString* storeDirectory = nil;
 + (void) clearStaleItem:(NSString*) fullPath
            inEnumerator:(NSDirectoryEnumerator*) enumerator
             withManager:(NSFileManager*) manager {
-  if ((rand() % 1000) < 50) {
-    NSDictionary* attributes = [enumerator fileAttributes];
-
-    // don't delete folders
-    if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-      NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
-      if (lastModifiedDate != nil) {
-        if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-          NSLog(@"Application:clearStaleDataBackgroundEntryPoint - %@", fullPath.lastPathComponent);
-          [manager removeItemAtPath:fullPath error:NULL];
-        }
+  NSDictionary* attributes = [enumerator fileAttributes];
+  
+  // don't delete folders
+  if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+    NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
+    if (lastModifiedDate != nil) {
+      if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+        NSLog(@"Application:clearStaleDataBackgroundEntryPoint - %@", fullPath.lastPathComponent);
+        [manager removeItemAtPath:fullPath error:NULL];
       }
     }
   }
@@ -291,7 +289,7 @@ static NSString* storeDirectory = nil;
     NSString* fullPath = [cacheDirectory stringByAppendingPathComponent:fileName];
     if ([directoriesToKeep containsObject:fullPath]) {
       [enumerator skipDescendents];
-    } else {
+    } else if ((rand() % 1000) < 100) {
       [self clearStaleItem:fullPath inEnumerator:enumerator withManager:manager];
     }
 
