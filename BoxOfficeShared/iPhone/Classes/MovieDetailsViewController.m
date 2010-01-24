@@ -1393,6 +1393,10 @@ typedef enum {
 - (void) imageView:(TappableImageView*) imageView
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
+  if (readonlyMode) {
+    return;
+  }
+
   if (BITS_ARE_SET(imageView.tag, ZOOM_POSTER_IMAGE_VIEW_TAG)) {
     [self posterImageViewWasTapped];
   } else if (BITS_ARE_SET(imageView.tag, RATE_NETFLIX_MOVIE_IMAGE_VIEW_TAG)) {
