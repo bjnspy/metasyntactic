@@ -450,7 +450,12 @@ andReorderingMovies:[NSSet identitySet]
           toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account {
-  AddMovieArguments* arguments = [AddMovieArguments argumentsWithQueue:queue movie:movie format:format position:position delegate:delegate account:account];
+  AddMovieArguments* arguments = [AddMovieArguments argumentsWithQueue:queue
+                                                                 movie:movie
+                                                                format:format
+                                                              position:position
+                                                              delegate:delegate
+                                                               account:account];
 
   [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                           onTarget:self

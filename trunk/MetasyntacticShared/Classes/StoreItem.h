@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol StoreItem
+@protocol StoreItem<NSObject>
 
 @property (readonly, copy) NSString* identifier;
 @property (readonly, copy) NSString* itunesIdentifier;
