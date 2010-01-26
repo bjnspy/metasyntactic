@@ -34,7 +34,7 @@
 
 
 - (id) initWithDelegate:(id<StoreDelegate>) delegate_
-                  value:(StoreItemVault*) vault_ {
+                  vault:(StoreItemVault*) vault_ {
   if ((self = [super initWithDelegate:delegate_
                                 vault:vault_])) {
     self.purchasing = [NSMutableSet set];

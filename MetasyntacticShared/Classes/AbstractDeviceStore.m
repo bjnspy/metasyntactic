@@ -49,8 +49,10 @@
 }
 
 
-- (id) init {
-  if ((self = [super init])) {
+- (id) initWithDelegate:(id<StoreDelegate>) delegate_
+                  vault:(StoreItemVault*) vault_ {
+  if ((self = [super initWithDelegate:delegate_
+                                vault:vault_])) {
     self.bypassingStoreItems = [NSMutableSet set];
     self.itemPricesData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.pricesFile];
 
@@ -73,7 +75,8 @@
 }
 
 
-- (void) paymentQueue:(SKPaymentQueue*) queue updatedTransactions:(NSArray*) transactions {
+- (void)   paymentQueue:(SKPaymentQueue*) queue
+    updatedTransactions:(NSArray*) transactions {
   NSAssert([NSThread isMainThread], nil);
 
   for (SKPaymentTransaction* transaction in transactions) {
@@ -223,7 +226,8 @@
 }
 
 
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+- (void) productsRequest:(SKProductsRequest *)request
+      didReceiveResponse:(SKProductsResponse *)response {
   NSMutableDictionary* prices = [NSMutableDictionary dictionaryWithDictionary:self.itemPrices];
   for (SKProduct* product in response.products) {
     if (product.productIdentifier.length > 0 && product.price != nil) {
