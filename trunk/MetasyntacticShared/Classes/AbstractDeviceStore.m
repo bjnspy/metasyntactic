@@ -65,7 +65,7 @@
 
 - (void) purchaseItem:(id<StoreItem>) item {
   if (item.isFree) {
-    [bypassingStoreItems addObject:item];
+    [bypassingStoreItems addObject:item.itunesIdentifier];
     [self bypassStore:item reason:@"Free"];
   } else {
     // 1) notify the payment queue that we want to order this product.
@@ -160,7 +160,9 @@
 - (void) reportUnlockResult:(UnlockResult*) unlockResult {
   NSAssert([NSThread isMainThread], nil);
   [super reportUnlockResult:unlockResult];
-  [bypassingStoreItems removeObject:unlockResult.item];
+  if (unlockResult.item.itunesIdentifier.length > 0) {
+    [bypassingStoreItems removeObject:unlockResult.item.itunesIdentifier];
+  }
 
   if (unlockResult.transaction != nil) {
     [[SKPaymentQueue defaultQueue] finishTransaction:unlockResult.transaction];
@@ -171,7 +173,7 @@
 
 
 - (BOOL) isPurchasing:(id<StoreItem>) item {
-  if ([bypassingStoreItems containsObject:item]) {
+  if ([bypassingStoreItems containsObject:item.itunesIdentifier]) {
     return YES;
   }
 
