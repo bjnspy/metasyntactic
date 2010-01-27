@@ -103,11 +103,6 @@
 }
 
 
-- (NetflixUpdater*) netflixUpdater {
-  return [NetflixUpdater updater];
-}
-
-
 - (void) setupTitle:(NSString*) title {
   if (readonlyMode) {
     if (title.length == 0) {
@@ -281,7 +276,7 @@
   cell.accessoryView = activityIndicator;
 
   Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-  [self.netflixUpdater updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
+  [[NetflixUpdater updater] updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
 }
 
 
@@ -352,7 +347,7 @@
 
 - (BOOL)          tableView:(UITableView*) tableView
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
-  return self.isEditable;
+  return self.isEditable && !readonlyMode;
 }
 
 
@@ -409,12 +404,12 @@
     
     [self enterReadonlyMode:title];
 
-    [self.netflixUpdater updateQueue:queue
-                    byDeletingMovies:deletedMovies
-                 andReorderingMovies:reorderedMovies
-                                  to:mutableMovies
-                            delegate:self
-                             account:account];
+    [[NetflixUpdater updater] updateQueue:queue
+                         byDeletingMovies:deletedMovies
+                      andReorderingMovies:reorderedMovies
+                                       to:mutableMovies
+                                 delegate:self
+                                  account:account];
   }
 }
 
