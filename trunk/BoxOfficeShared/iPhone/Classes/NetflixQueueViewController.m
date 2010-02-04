@@ -401,7 +401,7 @@
     } else {
       title = LocalizedString(@"Updating Queue", nil);
     }
-    
+
     [self enterReadonlyMode:title];
 
     [[NetflixUpdater updater] updateQueue:queue

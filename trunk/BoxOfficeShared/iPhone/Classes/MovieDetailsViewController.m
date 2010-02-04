@@ -526,7 +526,7 @@ typedef enum {
     self.netflixRatingsCell =
     [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie tableViewController:self] autorelease];
   }
-  
+
   return netflixRatingsCell;
 }
 
@@ -1371,12 +1371,12 @@ typedef enum {
   NSInteger currentUserRating =
     (NSInteger)[[[NetflixCache cache] userRatingForMovie:netflixMovie
                                                  account:netflixAccount] floatValue];
-  
+
   // Don't need to do anything in this case.
   if (value == currentUserRating) {
     return;
   }
-  
+
   // now, update in the background.
   [self enterReadonlyMode:LocalizedString(@"Changing Rating", nil)];
   NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
@@ -1384,7 +1384,7 @@ typedef enum {
                              forMovie:netflixMovie
                              delegate:self
                               account:netflixAccount];
-  
+
   // now, update the UI to reflect the temporary value
   [netflixRatingsCell refresh:netflixAccount];
 }

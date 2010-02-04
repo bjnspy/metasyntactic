@@ -201,7 +201,7 @@
       [self shouldShowInstant]) {
     return 100;
   }
- 
+
   return self.searchResultsTableView.rowHeight;
 }
 
@@ -215,7 +215,7 @@
   NSMutableArray* dvds = [NSMutableArray array];
   NSMutableArray* bluray = [NSMutableArray array];
   NSMutableArray* instant = [NSMutableArray array];
-  
+
   for (Movie* movie in result.movies) {
     if ([[NetflixCache cache] isDvd:movie]) {
       [dvds addObject:movie];
@@ -227,17 +227,17 @@
       [instant addObject:movie];
     }
   }
-  
+
   self.dvdMovies = dvds;
   self.blurayMovies = bluray;
   self.instantMovies = instant;
   self.people = result.people;
-  
+
   NSString* dvdString     = dvdMovies.count     == 0 ? LocalizedString(@"DVD", nil)     : [NSString stringWithFormat:LocalizedString(@"DVD (%d)", @"Used to display the count of dvd search results.  i.e.: DVD (15)"), dvdMovies.count];
   NSString* blurayString  = blurayMovies.count  == 0 ? LocalizedString(@"Bluray", nil)  : [NSString stringWithFormat:LocalizedString(@"Bluray (%d)", @"Used to display the count of bluray search results.  i.e.: Bluray (15)"), blurayMovies.count];
   NSString* instantString = instantMovies.count == 0 ? LocalizedString(@"Instant", nil) : [NSString stringWithFormat:LocalizedString(@"Instant (%d)", @"Used to display the count of instant search results.  i.e.: Instant (15)"), instantMovies.count];
   NSString* peopleString  = people.count        == 0 ? LocalizedString(@"People", nil)  : [NSString stringWithFormat:LocalizedString(@"People (%d)", @"Used to display the count of people search results.  i.e.: People (5)"), people.count];
-  
+
   self.searchBar.scopeButtonTitles =
     [NSArray arrayWithObjects:
      dvdString,

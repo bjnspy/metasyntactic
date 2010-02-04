@@ -40,4 +40,3 @@
 #define BITS_ARE_SET(value, mask) (((value) & (mask)) == (mask))
 #define CLEAR_BITS(value, mask) ((value) & ~(mask))
 #define SET_BITS(value, mask) ((value) | (mask))
-
