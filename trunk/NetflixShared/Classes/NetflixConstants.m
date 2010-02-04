@@ -127,6 +127,11 @@
 }
 
 
++ (NSString*) rentalHistoryShippedKey {
+  return @"http://schemas.netflix.com/feed.rental_history.shipped";
+}
+
+
 + (NSString*) instantFormat {
   return @"instant";
 }

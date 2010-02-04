@@ -40,6 +40,7 @@
 + (NSString*) rentalHistoryKey;
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
++ (NSString*) rentalHistoryShippedKey;
 
 + (NSString*) blurayFormat;
 + (NSString*) instantFormat;
