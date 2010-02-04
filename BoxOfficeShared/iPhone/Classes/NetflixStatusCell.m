@@ -84,11 +84,11 @@
 
     moveMovieImageView.delegate = delegate;
     removeMovieImageView.delegate = delegate;
-    
+
     moveMovieImageView.tag = SET_BITS(MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, row);
     removeMovieImageView.tag = SET_BITS(REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG, row);
-    
-    
+
+
     CGRect frame = removeMovieImageView.frame;
     frame.size.height += 20;
     frame.size.width += 20;

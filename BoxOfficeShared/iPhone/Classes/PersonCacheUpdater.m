@@ -61,7 +61,7 @@ static PersonCacheUpdater* updater = nil;
                                       gate:nil
                                     daemon:NO];
   }
-  
+
   if (force) {
     [NotificationCenter addNotification:person.name];
   }
@@ -69,7 +69,7 @@ static PersonCacheUpdater* updater = nil;
   [[IMDbCache cache]            processPerson:person force:force];
   [[WikipediaCache cache]       processPerson:person force:force];
   [[RottenTomatoesCache cache]  processPerson:person force:force];
-  
+
   [[NetflixCache cache]         processPerson:person force:force];
   if (!force) {
     [[PersonPosterCache cache]    processPerson:person force:NO];

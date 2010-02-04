@@ -24,7 +24,7 @@
 
 - (NSData*) pickBestImage:(NSArray*) imageAddresses {
   const NSInteger MIN_HEIGHT = 140;
-  
+
   NSData* fallbackData = nil;
 
   for (NSString* imageAddress in imageAddresses) {
