@@ -115,6 +115,12 @@ in Objective-C you would say:
 
 {{{import "ProtocolBuffers\PBDescriptor.h"}}}
 
+= Example =
+
+Here's an example of how I integrate the library into my own 'Now Playing' application.  Note the reference to the project, the direct dependency in the target, and the shared lib in the link section.
+
+http://metasyntactic.googlecode.com/svn/trunk/protobuf-2.2.0/objectivec/Documentation/XCode.png
+
 = Help/Support =
 
 If you need any help/support with this feel free to email me at cyrus.najmabadi@gmail.com.
