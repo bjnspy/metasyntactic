@@ -128,7 +128,8 @@ static NetflixCache* cache;
                             [NetflixConstants recommendationKey],
                             [NetflixConstants rentalHistoryKey],
                             [NetflixConstants rentalHistoryWatchedKey],
-                            [NetflixConstants rentalHistoryReturnedKey], nil];
+                            [NetflixConstants rentalHistoryReturnedKey],
+                            [NetflixConstants rentalHistoryShippedKey], nil];
 
   NSMutableArray* allFeeds = [NSMutableArray array];
 
@@ -386,6 +387,8 @@ static NetflixCache* cache;
     title = LocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
   } else if ([key isEqual:[NetflixConstants rentalHistoryReturnedKey]]) {
     title = LocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
+  } else if ([key isEqual:[NetflixConstants rentalHistoryShippedKey]]) {
+    title = LocalizedString(@"Recently Shipped", @"The list of Netflix movies that has just been shipped to the user");
   } else if ([key isEqual:[NetflixConstants rentalHistoryKey]]) {
     title = LocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
   } else if ([key isEqual:[NetflixConstants recommendationKey]]) {
