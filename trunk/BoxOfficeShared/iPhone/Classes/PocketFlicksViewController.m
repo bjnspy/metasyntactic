@@ -205,14 +205,19 @@ typedef enum {
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
-      case MostPopularSection:
-        if (mostPopularTitleCount == 0) {
-          cell.textLabel.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
-        } else {
-          cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
-        }
+      case MostPopularSection: {
+        NSString* title = LocalizedString(@"New / Popular Releases", nil);
+        //NSString* title = [NSString stringWithFormat:@"%@ / %@",
+        //                   LocalizedString(@"New Releases", nil), 
+        //                   LocalizedString(@"Popular", @"The most popular movies currently")];
+        //if (mostPopularTitleCount == 0) {
+          cell.textLabel.text = title;
+        //} else {
+        //  cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, [NSNumber numberWithInteger:mostPopularTitleCount]];
+        //}
         image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
+      }
       case DVDSection:
         cell.textLabel.text = [[NetflixCache cache] titleForKey:[NetflixConstants discQueueKey] account:account];
         image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
@@ -303,6 +308,7 @@ typedef enum {
    [NetflixConstants rentalHistoryKey],
    [NetflixConstants rentalHistoryWatchedKey],
    [NetflixConstants rentalHistoryReturnedKey],
+   [NetflixConstants rentalHistoryShippedKey],
    nil];
 
   UIViewController* controller =
@@ -380,13 +386,13 @@ typedef enum {
 
 - (NSString*) headerTitle {
   NetflixUser* user = [[NetflixUserCache cache] userForAccount:account];
-  
+
   if (searchDisplayController.isActive ||
       [[[NetflixAccountCache cache] accounts] count] <= 1 ||
       user == nil) {
     return nil;
   }
-  
+
   return [NSString stringWithFormat:LocalizedString(@"Account: %@ %@", "Account: <first name> <last name>"), user.firstName, user.lastName];
 }
 
@@ -407,7 +413,7 @@ typedef enum {
   if (![[Model model] netflixTheming]) {
     return nil;
   }
-  
+
   NSString* headerTitle = self.headerTitle;
   if (headerTitle.length == 0) {
     return nil;

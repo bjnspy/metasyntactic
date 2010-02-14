@@ -230,6 +230,7 @@ typedef enum {
    [NetflixConstants rentalHistoryKey],
    [NetflixConstants rentalHistoryWatchedKey],
    [NetflixConstants rentalHistoryReturnedKey],
+   [NetflixConstants rentalHistoryShippedKey],
    nil];
 
   UIViewController* controller =
