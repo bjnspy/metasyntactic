@@ -16,4 +16,36 @@
 
 @implementation NSMutableDictionary(Utilities)
 
+static void IdentityDictionaryReleaseCallBack(CFAllocatorRef allocator, const void* value) {
+  id v = (id)value;
+  [v autorelease];
+}
+
+
+static Boolean IdentityDictionaryEqualCallBack(const void* value1, const void* value2) {
+  return value1 == value2;
+}
+
+
+static CFHashCode IdentityDictionaryHashCallBack(const void* value) {
+  return (CFHashCode)value;
+}
+
+
++ (NSMutableDictionary*) identityDictionary {
+  CFDictionaryKeyCallBacks keyCallBacks = kCFTypeDictionaryKeyCallBacks;
+  keyCallBacks.equal = IdentityDictionaryEqualCallBack;
+  keyCallBacks.hash = IdentityDictionaryHashCallBack;
+  keyCallBacks.release = IdentityDictionaryReleaseCallBack;
+  
+  CFDictionaryValueCallBacks valueCallBacks = kCFTypeDictionaryValueCallBacks;
+  
+  NSMutableDictionary* result =
+  (NSMutableDictionary*) CFDictionaryCreateMutable(NULL,
+                                                   0,
+                                                   &keyCallBacks,
+                                                   &valueCallBacks);
+  return [result autorelease];
+}
+
 @end
