@@ -151,7 +151,6 @@
 				10000000000000170000006E /* Resources */,
 				100000000000000B0000000C /* Entitlements.plist */,
 				1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */,
-				74176EC310E4A6560068CEC8 /* StoreKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 				100000000000001200000062 /* MapKit.framework */,
 				100000000000001200000086 /* MediaPlayer.framework */,
 				1000000000000012000000B2 /* MessageUI.framework */,
+				74176EC310E4A6560068CEC8 /* StoreKit.framework */,
 				10000000000000180000026F /* SystemConfiguration.framework */,
 				100000000000001A0000001F /* UIKit.framework */,
 			);
