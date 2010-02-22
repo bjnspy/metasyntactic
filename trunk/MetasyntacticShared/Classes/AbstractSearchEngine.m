@@ -104,7 +104,25 @@
   }
   [gate unlock];
 
+  if (lastSearchTime == 0) {
+    // if it's the first search, then wait a second to start searching. 
+    [NSThread sleepForTimeInterval:1];
+  } else {
+    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+    NSTimeInterval elapsedTime = ABS(lastSearchTime - currentTime);
+    if (elapsedTime < 1) {
+      // don't search that often.  If we're searching again and a second
+      // hasn't even passed, then wait until a second has passed since 
+      // the last search and then proceed.
+      [NSThread sleepForTimeInterval:1 - elapsedTime];
+    }
+  }
+
   [self search:currentlyExecutingRequest];
+  
+  // Keep track of when we stopped searching.  Don't start again until
+  // we get a bit more input.
+  lastSearchTime = [NSDate timeIntervalSinceReferenceDate];
 }
 
 
