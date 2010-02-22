@@ -15,9 +15,12 @@
 #import "SearchEngineDelegate.h"
 
 @interface AbstractSearchEngine : NSObject {
-@protected
+@private
   // only accessed from the main thread.  needs no lock.
   id<SearchEngineDelegate> delegate;
+  
+  // only accessed from background thread.  needs no lock.
+  NSTimeInterval lastSearchTime;
 
   // accessed from both threads.  needs lock
   NSCondition* gate;
