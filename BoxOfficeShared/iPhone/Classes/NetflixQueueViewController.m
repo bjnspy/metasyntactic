@@ -344,7 +344,6 @@
 }
 
 
-
 - (BOOL)          tableView:(UITableView*) tableView
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
   return self.isEditable && !readonlyMode;
@@ -414,7 +413,6 @@
 }
 
 
-// Override to support editing the table view.
 - (void)       tableView:(UITableView*) tableView
       commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
        forRowAtIndexPath:(NSIndexPath*) indexPath {
