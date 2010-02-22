@@ -13,4 +13,7 @@
 // limitations under the License.
 
 @interface NSMutableDictionary(Utilities)
+
++ (NSMutableDictionary*) identityDictionary;
+
 @end
