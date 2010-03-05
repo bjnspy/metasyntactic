@@ -14,16 +14,12 @@
 
 
 @interface LogViewController()
-@property (retain) NSArray* datesAndLogs;
 @end
 
 
 @implementation LogViewController
 
-@synthesize datesAndLogs;
-
 - (void) dealloc {
-  self.datesAndLogs = nil;
   [super dealloc];
 }
 
@@ -36,7 +32,6 @@
 - (id) init {
   if ((self = [super init])) {
     self.title = LocalizedString(@"Logs", nil);
-    self.datesAndLogs = [Logger datesAndLogs];
   }
   
   return self;
@@ -46,22 +41,17 @@
 - (void) loadView {
   [super loadView];
   
-  NSMutableString* logs = [NSMutableString string];
-  for (NSArray* dateAndLog in datesAndLogs) {
-    if (logs.length > 0) {
-      [logs appendString:@"\n\n"];
-    }
-    
-    NSDate* date = [dateAndLog firstObject];
-    NSString* log = [dateAndLog lastObject];
-    [logs appendFormat:@"%@: %@", date, log];
+  NSString* logs = [Logger logs];
+  if (logs.length == 0) {
+    logs = LocalizedString(@"No Logs", nil);
   }
-  
-  UITextView* textView = [[[UITextView alloc] initWithFrame:self.view.frame] autorelease];
+
+  UITextView* textView = [[[UITextView alloc] initWithFrame:self.view.bounds] autorelease];
   textView.editable = NO;
   textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   
   textView.text = logs;
+  textView.textColor = [UIColor darkGrayColor];
   textView.font = [UIFont boldSystemFontOfSize:12];
 
   [self.view addSubview:textView];  

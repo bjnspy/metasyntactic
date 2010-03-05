@@ -75,6 +75,8 @@
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "LocationUtilities.h"
+#import "Logger.h"
+#import "LogViewController.h"
 #import "MapPoint.h"
 #import "MapViewControllerDelegate.h"
 #import "MemoryUtilities.h"

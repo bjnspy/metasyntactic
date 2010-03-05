@@ -8,17 +8,19 @@
 
 #import "Logger.h"
 
+#import "NSArray+Utilities.h"
+
 @interface Logger()
-@property (retain) NSMutableArray* datesAndLogsData;
+@property (retain) NSMutableArray* datesAndLogs;
 @end
 
 
 @implementation Logger
 
-@synthesize datesAndLogsData;
+@synthesize datesAndLogs;
 
 - (void) dealloc {
-  self.datesAndLogsData = nil;
+  self.datesAndLogs = nil;
   [super dealloc];
 }
 
@@ -33,7 +35,7 @@ static Logger* logger;
 
 - (id) init {
   if ((self = [super init])) {
-    self.datesAndLogsData = [NSMutableArray array];
+    self.datesAndLogs = [NSMutableArray array];
   }
   return self;
 }
@@ -48,7 +50,7 @@ static Logger* logger;
   [dataGate lock];
   {
     NSArray* value = [NSArray arrayWithObjects:[NSDate date], log, nil];
-    [datesAndLogsData addObject:value];
+    [datesAndLogs addObject:value];
   }
   [dataGate unlock];
 }
@@ -59,19 +61,31 @@ static Logger* logger;
 }
 
 
-- (NSArray*) datesAndLogs {
-  NSArray* result;
+- (NSString*) logs {
+  NSString* result;
   [dataGate lock];
   {
-    result = [NSArray arrayWithArray:datesAndLogsData];
+    NSMutableString* logs = [NSMutableString string];
+    for (NSInteger i = datesAndLogs.count - 1; i >= 0; i--) {
+      NSArray* dateAndLog = [datesAndLogs objectAtIndex:i];
+
+      if (logs.length > 0) {
+        [logs appendString:@"\n\n"];
+      }
+      
+      NSDate* date = [dateAndLog firstObject];
+      NSString* log = [dateAndLog lastObject];
+      [logs appendFormat:@"%@: %@", date, log];
+    }
+    result = logs;
   }
   [dataGate unlock];
   return result;
 }
 
 
-+ (NSArray*) datesAndLogs {
-  return [logger datesAndLogs];
++ (NSString*) logs {
+  return [logger logs];
 }
 
 @end

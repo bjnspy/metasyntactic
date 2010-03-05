@@ -47,6 +47,8 @@
 @class MutableMultiDictionary;
 @class NetworkUtilities;
 @class Location;
+@class Logger;
+@class LogViewController;
 @class Operation;
 @class Operation1;
 @class Operation2;

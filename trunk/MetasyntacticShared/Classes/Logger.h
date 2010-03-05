@@ -10,13 +10,13 @@
 
 @interface Logger : AbstractCache {
 @private
-  NSMutableArray* datesAndLogsData;
+  NSMutableArray* datesAndLogs;
 }
 
 + (Logger*) logger;
 
 + (void) log:(NSString*) string;
 
-+ (NSArray*) datesAndLogs;
++ (NSString*) logs;
 
 @end

@@ -212,12 +212,24 @@ static Pulser* pulser = nil;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address
                              response:(NSHTTPURLResponse**) response
                                 pause:(BOOL) pause {
+  return [self dataWithContentsOfAddress:address
+                                response:response
+                                   error:NULL
+                                   pause:pause];
+}
+
+
++ (NSData*) dataWithContentsOfAddress:(NSString*) address
+                             response:(NSHTTPURLResponse**) response
+                                error:(NSError**) error
+                                pause:(BOOL) pause {
   if (address.length == 0) {
     return nil;
   }
 
   return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
                             response:response
+                               error:error
                                pause:pause];
 }
 
@@ -230,11 +242,16 @@ static Pulser* pulser = nil;
 
 + (NSData*) dataWithContentsOfUrlRequestWorker:(NSURLRequest*) request
                                       response:(NSHTTPURLResponse**) response
+                                         error:(NSError**) error
                                          pause:(BOOL) pause {
   NSAssert(![NSThread isMainThread], @"");
 
   if (response != NULL) {
     *response = nil;
+  }
+  
+  if (error != NULL) {
+    *error = nil;
   }
 
   if (request == nil) {
@@ -249,10 +266,10 @@ static Pulser* pulser = nil;
   [gate unlock];
 
   NSURLResponse* urlResponse = nil;
-  NSError* error = nil;
+  NSError* err = nil;
   NSData* data = [NSURLConnection sendSynchronousRequest:request
                                        returningResponse:&urlResponse
-                                                   error:&error];
+                                                   error:&err];
 
 
   [gate lock];
@@ -267,7 +284,10 @@ static Pulser* pulser = nil;
     [NSThread sleepForTimeInterval:0.25];
   }
 
-  if (error != nil) {
+  if (err != nil) {
+    if (error != NULL) {
+      *error = err;
+    }
     return nil;
   }
 
@@ -281,9 +301,21 @@ static Pulser* pulser = nil;
 
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url
                          response:(NSHTTPURLResponse**) response
+                            error:(NSError**) error
                             pause:(BOOL) pause {
   return [self dataWithContentsOfUrlRequest:[self createRequest:url]
                                    response:response
+                                      error:error
+                                      pause:pause];
+}
+
+
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url
+                         response:(NSHTTPURLResponse**) response
+                            pause:(BOOL) pause {
+  return [self dataWithContentsOfUrlRequest:[self createRequest:url]
+                                   response:response
+                                      error:NULL
                                       pause:pause];
 }
 
@@ -316,6 +348,17 @@ static Pulser* pulser = nil;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
                                 response:(NSHTTPURLResponse**) response
                                    pause:(BOOL) pause {
+  return [self dataWithContentsOfUrlRequest:request
+                                   response:response
+                                      error:NULL
+                                      pause:pause];
+}
+
+
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
+                                response:(NSHTTPURLResponse**) response
+                                   error:(NSError**) error
+                                   pause:(BOOL) pause {
   if (response != NULL) {
     *response = nil;
   }
@@ -326,6 +369,7 @@ static Pulser* pulser = nil;
 
   return [self dataWithContentsOfUrlRequestWorker:request
                                          response:response
+                                            error:error
                                             pause:pause];
 }
 
