@@ -302,6 +302,10 @@
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
+		74302FAB1140D563008F9AC4 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FA91140D563008F9AC4 /* Logger.h */; };
+		74302FAC1140D563008F9AC4 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FAA1140D563008F9AC4 /* Logger.m */; };
+		74302FC21140D777008F9AC4 /* LogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FC01140D777008F9AC4 /* LogViewController.h */; };
+		74302FC31140D777008F9AC4 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FC11140D777008F9AC4 /* LogViewController.m */; };
 		74A8C3C810F6D5A6005A59FB /* AbstractSearchDisplayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */; };
 		74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */; };
 		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
@@ -634,6 +638,10 @@
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
+		74302FA91140D563008F9AC4 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		74302FAA1140D563008F9AC4 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		74302FC01140D777008F9AC4 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		74302FC11140D777008F9AC4 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
 		74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
@@ -1099,6 +1107,7 @@
 				100000000000000F000000B1 /* Iterator.h */,
 				1000000000000009000000F1 /* LocaleUtilities.h */,
 				1000000000000009000000C3 /* LocationUtilities.h */,
+				74302FA91140D563008F9AC4 /* Logger.h */,
 				100000000000000A000000A4 /* MemoryUtilities.h */,
 				100000000000000D00000012 /* NetworkUtilities.h */,
 				7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */,
@@ -1119,6 +1128,7 @@
 				100000000000000F000000B5 /* Iterator.m */,
 				1000000000000009000000F3 /* LocaleUtilities.m */,
 				1000000000000009000000C5 /* LocationUtilities.m */,
+				74302FAA1140D563008F9AC4 /* Logger.m */,
 				100000000000000A000000A6 /* MemoryUtilities.m */,
 				100000000000000E0000000E /* NetworkUtilities.m */,
 				7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */,
@@ -1168,6 +1178,8 @@
 				10000000000000090000009A /* TextFieldEditorViewController.m */,
 				100000000000001B00000005 /* ViewControllerState.m */,
 				100000000000001800000082 /* WebViewController.m */,
+				74302FC01140D777008F9AC4 /* LogViewController.h */,
+				74302FC11140D777008F9AC4 /* LogViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1403,6 +1415,8 @@
 				74FFC96310E1524C00DF4AC7 /* StoreDelegate.h in Headers */,
 				7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */,
 				74A8C3C810F6D5A6005A59FB /* AbstractSearchDisplayController.h in Headers */,
+				74302FAB1140D563008F9AC4 /* Logger.h in Headers */,
+				74302FC21140D777008F9AC4 /* LogViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,6 +1603,8 @@
 				74FA4A6F10DD75E40002369F /* StoreItemVault.m in Sources */,
 				7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */,
 				74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */,
+				74302FAC1140D563008F9AC4 /* Logger.m in Sources */,
+				74302FC31140D777008F9AC4 /* LogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
