@@ -10,7 +10,6 @@
 
 @interface LogViewController : AbstractViewController {
 @private
-  NSArray* datesAndLogs;
 }
 
 + (UIViewController*) controller;
