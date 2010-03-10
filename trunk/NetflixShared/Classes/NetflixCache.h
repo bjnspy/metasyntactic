@@ -15,7 +15,11 @@
 #import "AbstractMovieCache.h"
 
 @interface NetflixCache : AbstractMovieCache {
+@private
+  NSError* lastError;
 }
+
+@property (retain) NSError* lastError;
 
 + (NetflixCache*) cache;
 
