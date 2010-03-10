@@ -40,6 +40,13 @@
 
 @implementation NetflixCache
 
+@synthesize lastError;
+
+- (void) dealloc {
+  self.lastError = nil;
+  [super dealloc];
+}
+
 static NetflixCache* cache;
 
 + (void) initialize {

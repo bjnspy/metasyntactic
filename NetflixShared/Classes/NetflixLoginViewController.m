@@ -17,6 +17,7 @@
 #import "NetflixAccount.h"
 #import "NetflixAccountCache.h"
 #import "NetflixAuthentication.h"
+#import "NetflixCache.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
 #import "NetflixUserCache.h"
@@ -201,7 +202,7 @@
 
 - (void) reportError:(NSError*) error {
   NSAssert([NSThread isMainThread], nil);
-  
+  [[NetflixCache cache] setLastError:error];
   NSString* message = 
   [NSString stringWithFormat:
    @"%@\n\n%@\n%@",
