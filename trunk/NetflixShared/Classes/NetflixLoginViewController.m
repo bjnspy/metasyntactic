@@ -201,7 +201,14 @@
 
 - (void) reportError:(NSError*) error {
   NSAssert([NSThread isMainThread], nil);
-  [AlertUtilities showOkAlert:LocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
+  
+  NSString* message = 
+  [NSString stringWithFormat:
+   @"%@\n\n%@\n%@",
+   LocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil),
+   error,
+   error.userInfo];
+  [AlertUtilities showOkAlert:message];
 
   [activityIndicator stopAnimating];
   [button removeFromSuperview];
