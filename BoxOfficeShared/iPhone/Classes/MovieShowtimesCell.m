@@ -80,7 +80,7 @@
     width = [UIScreen mainScreen].bounds.size.width;
   }
 
-  width -= 20; // outer margin
+  width -= 2 * [self groupedTableViewMargin]; // outer margin
 
   if (stale) {
     width -= 32; // image
@@ -136,7 +136,7 @@
   showtimesFrame.origin.y = 9;
 
   CGFloat width = self.frame.size.width;
-  width -= 20; // outer margin
+  width -= 2 * groupedTableViewMargin; // outer margin
   width -= showtimesFrame.origin.x; // image
   width -= 18; // accessory
 
