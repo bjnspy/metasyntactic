@@ -1237,6 +1237,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (BOOL) useSmallFonts {
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    return NO;
+  }
+  
   return ![[NSUserDefaults standardUserDefaults] boolForKey:USE_NORMAL_FONTS];
 }
 

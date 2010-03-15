@@ -81,7 +81,11 @@ typedef enum {
   if (section == SendFeedbackSection) {
     return 1;
   } else if (section == StandardSettingsSection) {
-    return 8;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+      return 7;
+    } else {
+      return 8;
+    }
   } else if (section == UpcomingSection) {
     return 1;
   } else if (section == DVDBluraySection) {
@@ -210,17 +214,17 @@ typedef enum {
       on = [Model model].autoUpdateLocation;
       selector = @selector(onAutoUpdateChanged:);
     } else if (row == 5) {
-      text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
-      on = [Model model].useSmallFonts;
-      selector = @selector(onUseSmallFontsChanged:);
-    } else if (row == 6) {
       text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
       on = [Model model].notificationsEnabled;
       selector = @selector(onShowNotificationsChanged:);
-    } else if (row == 7) {
+    } else if (row == 6) {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
       on = [Model model].loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
+    } else if (row == 7) {
+      text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
+      on = [Model model].useSmallFonts;
+      selector = @selector(onUseSmallFontsChanged:);
     }
 
     return [self createSwitchCellWithText:text on:on selector:selector];
