@@ -37,8 +37,11 @@
 
 
 - (id) initWithQuestion:(BOOL) question
-        reuseIdentifier:(NSString*) reuseIdentifier {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
+        reuseIdentifier:(NSString*) reuseIdentifier
+    tableViewController:(UITableViewController*) tableViewController {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
+                   reuseIdentifier:reuseIdentifier
+               tableViewController:tableViewController])) {
     self.backgroundColor = [ColorCache helpBlue];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -76,17 +79,12 @@
 }
 
 
-+ (CGFloat) height:(NSString*) text {
-  CGFloat width;
-  if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-    width = [UIScreen mainScreen].bounds.size.height;
-  } else {
-    width = [UIScreen mainScreen].bounds.size.width;
-  }
+- (CGFloat) height {
+  CGFloat width = self.tableViewController.view.frame.size.width;
 
   width -= (50 + 60);
 
-  CGSize contentSize = [text sizeWithFont:[self contentFont]
+  CGSize contentSize = [contentLabel.text sizeWithFont:[QuestionCell contentFont]
                         constrainedToSize:CGSizeMake(width, 2000)
                             lineBreakMode:UILineBreakModeWordWrap];
 
@@ -97,7 +95,7 @@
 - (void) layoutSubviews {
   [super layoutSubviews];
 
-  CGFloat height = [QuestionCell height:contentLabel.text];
+  CGFloat height = [self height];
 
   CGRect contentFrame = contentLabel.frame;
   contentFrame.size.width = self.contentView.frame.size.width - (30 + 60);

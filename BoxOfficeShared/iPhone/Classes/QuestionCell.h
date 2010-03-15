@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface QuestionCell : UITableViewCell {
+@interface QuestionCell : AbstractTableViewCell {
 @private
   UILabel* contentLabel;
 }
 
-- (id) initWithQuestion:(BOOL) question reuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithQuestion:(BOOL) question
+        reuseIdentifier:(NSString*) reuseIdentifier
+    tableViewController:(UITableViewController*) tableViewController;
 
-+ (CGFloat) height:(NSString*) text;
+- (CGFloat) height;
 - (void) setQuestionText:(NSString*) text;
 
 @end
