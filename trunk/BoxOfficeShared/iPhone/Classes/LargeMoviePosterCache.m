@@ -404,12 +404,19 @@ const NSInteger START_YEAR = 1912;
     return nil;
   }
 
+  NSInteger FULL_SCREEN_POSTER_HEIGHT;
+  NSInteger FULL_SCREEN_POSTER_WIDTH;
+  
+  CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+  FULL_SCREEN_POSTER_HEIGHT = screenSize.height - 20;
+  FULL_SCREEN_POSTER_WIDTH = screenSize.width - 10;
+  
   CGSize size = image.size;
-  if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+  if (size.height >= size.width && image.size.height > FULL_SCREEN_POSTER_HEIGHT) {
     return [ImageUtilities scaleImageData:data
                                  toHeight:FULL_SCREEN_POSTER_HEIGHT];
 
-  } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+  } else if (size.width >= size.height && image.size.width > FULL_SCREEN_POSTER_HEIGHT) {
     return [ImageUtilities scaleImageData:data
                                  toHeight:FULL_SCREEN_POSTER_WIDTH];
   }
@@ -453,7 +460,7 @@ const NSInteger START_YEAR = 1912;
 }
 
 
-- (NSData*) downloadUrlData:(NSString*) url {
+- (NSData*) downloadSmallUrlDataAndCache:(NSString*) url {
   NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@&lookup_only=true",
                                [Application apiHost], [Application apiVersion],
                                [StringUtilities stringByAddingPercentEscapes:url]];
@@ -475,6 +482,21 @@ const NSInteger START_YEAR = 1912;
   }
 
   return data;
+}
+
+
+- (NSData*) downloadLargeUrlData:(NSString*) url {
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
+  return [self resizeImage:data];
+}
+
+
+- (NSData*) downloadUrlData:(NSString*) url {
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    return [self downloadLargeUrlData:url];
+  } else {
+    return [self downloadSmallUrlDataAndCache:url];
+  }
 }
 
 
