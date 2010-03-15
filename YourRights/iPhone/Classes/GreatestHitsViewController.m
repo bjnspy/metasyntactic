@@ -65,7 +65,11 @@
     forControlEvents:UIControlEventValueChanged];
 
   CGRect rect = control.frame;
-  rect.size.width = 250;
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    rect.size.width = 500;
+  } else {
+    rect.size.width = 250;
+  }
   control.frame = rect;
 
   return control;

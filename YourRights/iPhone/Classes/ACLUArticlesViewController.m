@@ -126,7 +126,9 @@
 
     ArticleBodyCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[ArticleBodyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[ArticleBodyCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                     reuseIdentifier:reuseIdentifier
+                                 tableViewController:self] autorelease];
     }
 
     [cell setItem:item];

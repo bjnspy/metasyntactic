@@ -43,6 +43,7 @@
     label.font = [FontCache helvetica14];
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;
+    label.backgroundColor = RGBUIColor(247, 247, 247);
 
     [self.contentView addSubview:label];
   }
@@ -57,7 +58,7 @@
   label.text = item.description;
 
   CGFloat width = self.frame.size.width;
-  width -= 40;
+  width -= (2 * groupedTableViewMargin) + (2 * 10);
   if (item.link.length != 0) {
     width -= 25;
   }
@@ -74,7 +75,7 @@
   } else {
     width = [UIScreen mainScreen].bounds.size.width;
   }
-  width -= 40;
+  width -= (2 * [self groupedTableViewMargin]) + (2 * 10);
   if (item.link.length != 0) {
     width -= 25;
   }
