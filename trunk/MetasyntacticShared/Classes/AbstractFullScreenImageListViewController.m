@@ -35,7 +35,6 @@
 const double TRANSLUCENCY_LEVEL = 0.9;
 const NSInteger ACTIVITY_INDICATOR_TAG = -1;
 const NSInteger LABEL_TAG = -2;
-const NSInteger IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 const NSInteger PAGE_RANGE = 2;
 
@@ -162,9 +161,8 @@ const NSInteger PAGE_RANGE = 2;
 }
 
 
-- (UIImageView*) createImageView:(UIImage*) image {
+- (UIView*) createScaledImageView:(UIImage*) image {
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-  imageView.tag = IMAGE_TAG;
   imageView.contentMode = UIViewContentModeScaleAspectFill;
 
   CGRect frame = [UIScreen mainScreen].bounds;
@@ -183,6 +181,56 @@ const NSInteger PAGE_RANGE = 2;
 
   return imageView;
 }
+
+
+- (UIView*) createEmbeddedImageView:(UIImage*) image {
+  CGSize imageSize = image.size;
+  CGSize normalizedImageSize = imageSize;
+  BOOL isLandcsape = false;
+  
+  if (imageSize.width > imageSize.height) {
+    isLandcsape = true;
+    normalizedImageSize = CGSizeMake(imageSize.height, imageSize.width);
+  }
+  
+  CGRect screenBounds = [UIScreen mainScreen].bounds; 
+  CGSize screenSize = screenBounds.size;
+  if (normalizedImageSize.height > screenSize.height ||
+      normalizedImageSize.width > screenSize.width) {
+    // has to be shrunk.
+    return [self createScaledImageView:image];
+  } else {
+    // smaller than the screen.
+    UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+    CGRect imageFrame = imageView.frame;
+    
+    if (isLandcsape) {
+      // rotate the image
+      imageFrame.size = CGSizeMake(imageFrame.size.height, imageFrame.size.width);
+      
+      imageView.frame = imageFrame;
+      imageView.transform = CGAffineTransformMakeRotation((CGFloat)M_PI / 2);
+    }
+    
+    // Now, center the image in an outer frame.
+    UIView* outerView = [[[UIView alloc] initWithFrame:screenBounds] autorelease];
+    imageFrame.origin.x = (screenSize.width - imageFrame.size.width) / 2;
+    imageFrame.origin.y = (screenSize.height - imageFrame.size.height) / 2;
+    imageView.frame = imageFrame;
+    [outerView addSubview:imageView];
+    
+    return outerView;
+  }
+}
+
+
+- (UIView*) createImageViewContainer:(UIImage*) image {
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    return [self createEmbeddedImageView:image];
+  } else {
+    return [self createScaledImageView:image];
+  }
+}  
 
 
 - (TappableScrollView*) createScrollView {
@@ -220,7 +268,7 @@ const NSInteger PAGE_RANGE = 2;
 - (void) addImage:(UIImage*) image toView:(UIView*) pageView {
   [self disableActivityIndicator:pageView];
 
-  UIImageView* imageView = [self createImageView:image];
+  UIView* imageView = [self createImageViewContainer:image];
   [pageView addSubview:imageView];
   imageView.alpha = 0;
 
@@ -405,6 +453,7 @@ const NSInteger PAGE_RANGE = 2;
                                                                  action:@selector(onRightTapped:)] autorelease];
   [items addObject:rightArrow];
 
+  [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
 
   UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
