@@ -66,7 +66,14 @@
 
 
 - (void) setupTitleView {
-  self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    self.activityView = 
+    [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+  } else {
+    self.activityView =
+    [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+  }
+
   [activityView startAnimating];
 
   CGRect frame = activityView.frame;

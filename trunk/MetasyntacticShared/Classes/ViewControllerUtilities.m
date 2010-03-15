@@ -17,6 +17,7 @@
 #import "ColorCache.h"
 #import "NSArray+Utilities.h"
 #import "StyleSheet.h"
+#import "UIColor+Utilities.h"
 #import "ViewControllerUtilities.h"
 
 @implementation ViewControllerUtilities
@@ -58,8 +59,15 @@ static UIFont* minimumTitleFont = nil;
 
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
-  label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor darkGrayColor];
+  
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0, 1);
+    label.textColor = RGBUIColor(113, 120, 128);
+  } else {
+    label.textColor = [UIColor whiteColor];
+    label.shadowColor = [UIColor darkGrayColor];
+  }
   label.textAlignment = UITextAlignmentCenter;
   label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   label.lineBreakMode = UILineBreakModeMiddleTruncation;
@@ -79,13 +87,23 @@ static UIFont* minimumTitleFont = nil;
 }
 
 
++ (NSInteger) width {
+  CGRect rect = [[UIScreen mainScreen] bounds];
+  return MIN(rect.size.width, rect.size.height);
+}
+
+
 + (UILabel*) createTitleLabel {
-  return [self createTitleLabel:@"" maxWidth:320 forceMultiLine:NO];
+  return [self createTitleLabel:@""
+                       maxWidth:[self width]
+                 forceMultiLine:NO];
 }
 
 
 + (UILabel*) createMultiLineTitleLabel {
-  return [self createTitleLabel:@"" maxWidth:320 forceMultiLine:YES];
+  return [self createTitleLabel:@"" 
+                       maxWidth:[self width] 
+                 forceMultiLine:YES];
 }
 
 
@@ -105,7 +123,12 @@ static UIFont* minimumTitleFont = nil;
     controller.navigationItem.titleView = nil;
     return;
   }
-
+  
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    controller.navigationItem.titleView = nil;
+    return;
+  }
+  
   NSInteger maxWidth = 320;
   const BOOL hasLeftBarItem = [self hasLeftBarItem:controller];
   if (hasLeftBarItem) {

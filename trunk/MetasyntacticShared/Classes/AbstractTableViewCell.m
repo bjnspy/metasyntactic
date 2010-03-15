@@ -24,13 +24,32 @@
   [super dealloc];
 }
 
+static NSInteger s_groupedTableViewMargin;
+
++ (void) initialize {
+  if (self == [AbstractTableViewCell class]) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+      s_groupedTableViewMargin = 44;
+    } else {
+      s_groupedTableViewMargin = 10;
+    }
+  }
+}
+
+
++ (NSInteger) groupedTableViewMargin {
+  return s_groupedTableViewMargin;
+}
+
 
 - (id) initWithStyle:(UITableViewCellStyle)style
      reuseIdentifier:(NSString *)reuseIdentifier
  tableViewController:(UITableViewController*) tableViewController_ {
-  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+  if ((self = [self initWithStyle:style reuseIdentifier:reuseIdentifier])) {
     self.tableViewController = tableViewController_;
+    groupedTableViewMargin = s_groupedTableViewMargin;
   }
+
   return self;
 }
 
