@@ -90,8 +90,12 @@
   if (result == nil) {
     return nil;
   }
-
-  return UIImageJPEGRepresentation(result, 0.5f);
+  
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    return UIImageJPEGRepresentation(result, 0.9f);
+  } else {
+    return UIImageJPEGRepresentation(result, 0.5f);
+  }
 }
 
 
