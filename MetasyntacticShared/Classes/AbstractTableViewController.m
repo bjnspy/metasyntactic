@@ -398,7 +398,13 @@
 
 
 - (UIBarButtonItem*) createActivityIndicator {
-  UIActivityIndicatorView* activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+  UIActivityIndicatorView* activityIndicatorView;
+  
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+  } else {
+    activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+  }
   CGRect frame = activityIndicatorView.frame;
   frame.size.width += 4;
   [activityIndicatorView startAnimating];

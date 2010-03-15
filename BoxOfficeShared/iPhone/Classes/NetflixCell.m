@@ -277,7 +277,7 @@
 
   CGRect frame = self.frame;
   BOOL grouped = self.tableView.style == UITableViewStyleGrouped;
-  NSInteger padding = grouped ? 20 : 0;
+  NSInteger padding = grouped ? (2 * groupedTableViewMargin) : 0;
 
   {
     CGRect formatFrame = formatsLabel.frame;
