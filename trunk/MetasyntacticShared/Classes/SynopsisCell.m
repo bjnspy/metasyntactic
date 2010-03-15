@@ -63,8 +63,11 @@
 
 - (id) initWithSynopsis:(NSString*) synopsis_
               imageView:(UIImageView*) imageView
-            limitLength:(BOOL) limitLength_ {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+            limitLength:(BOOL) limitLength_
+    tableViewController:(UITableViewController*) tableViewController_ {
+  if ((self = [self initWithStyle:UITableViewCellStyleDefault
+                  reuseIdentifier:nil
+              tableViewController:tableViewController_])) {
     self.synopsis = synopsis_;
     self.limitLength = limitLength_;
 
@@ -100,14 +103,22 @@
 
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
                          imageView:(UIImageView*) imageView
-                       limitLength:(BOOL) limitLength {
-  return [[[SynopsisCell alloc] initWithSynopsis:synopsis imageView:imageView limitLength:limitLength] autorelease];
+                       limitLength:(BOOL) limitLength
+               tableViewController:(UITableViewController*) tableViewController {
+  return [[[SynopsisCell alloc] initWithSynopsis:synopsis
+                                       imageView:imageView
+                                     limitLength:limitLength
+                             tableViewController:tableViewController] autorelease];
 }
 
 
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
-                       limitLength:(BOOL) limitLength {
-  return [self cellWithSynopsis:synopsis imageView:nil limitLength:limitLength];
+                       limitLength:(BOOL) limitLength
+               tableViewController:(UITableViewController*) tableViewController {
+  return [self cellWithSynopsis:synopsis
+                      imageView:nil
+                    limitLength:limitLength
+            tableViewController:tableViewController];
 }
 
 
@@ -256,7 +267,9 @@
   [super layoutSubviews];
 
   NSInteger synopsisSplit, synopsisMax;
-  [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:self.contentView.frame.size.width];
+  [self calculateSynopsisSplit:&synopsisSplit
+                   synopsisMax:&synopsisMax
+                      forWidth:self.contentView.frame.size.width];
 
   NSInteger chunk1X = 5 + imageSize.width + 5;
   NSInteger chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
@@ -303,7 +316,9 @@
   }
 
   NSInteger synopsisSplit, synopsisMax;
-  [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:width - 20];
+  [self calculateSynopsisSplit:&synopsisSplit
+                   synopsisMax:&synopsisMax 
+                      forWidth:width - 2 * groupedTableViewMargin];
 
   CGFloat h1 = imageSize.height;
 
@@ -316,7 +331,9 @@
 
   NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
 
-  CGFloat h2 = [self computeTextHeight:remainder forWidth:width - 30];
+  CGFloat h2 =
+   [self computeTextHeight:remainder
+                  forWidth:width - (2 * groupedTableViewMargin) - 10];
 
   return h1 + h2 + 10;
 }
