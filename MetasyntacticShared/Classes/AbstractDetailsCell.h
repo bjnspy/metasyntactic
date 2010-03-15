@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractDetailsCell : UITableViewCell {
+#import "AbstractTableViewCell.h"
+
+@interface AbstractDetailsCell : AbstractTableViewCell {
 }
 
 - (CGFloat) height:(UITableViewController*) controller;

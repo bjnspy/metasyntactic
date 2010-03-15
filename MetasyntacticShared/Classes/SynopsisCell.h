@@ -28,10 +28,12 @@
 
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
                          imageView:(UIImageView*) imageView
-                       limitLength:(BOOL) limitLength;
+                       limitLength:(BOOL) limitLength
+               tableViewController:(UITableViewController*) tableViewController;
 
 
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
-                       limitLength:(BOOL) limitLength;
+                       limitLength:(BOOL) limitLength
+               tableViewController:(UITableViewController*) tableViewController;
 
 @end
