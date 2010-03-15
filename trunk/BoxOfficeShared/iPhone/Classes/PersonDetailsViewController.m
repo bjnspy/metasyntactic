@@ -337,7 +337,8 @@ static const NSInteger POSTER_TAG = -1;
 
     return [SynopsisCell cellWithSynopsis:bio
                                 imageView:posterImageView
-                              limitLength:NO];
+                              limitLength:NO
+                      tableViewController:self];
   }
 
   return nil;

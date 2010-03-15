@@ -698,7 +698,8 @@ typedef enum {
     posterImageView.delegate = self;
     return [SynopsisCell cellWithSynopsis:[[Model model] synopsisForMovie:movie]
                                 imageView:posterImageView
-                              limitLength:YES];
+                              limitLength:YES
+                      tableViewController:self];
   }
 
   if (row == 1) {

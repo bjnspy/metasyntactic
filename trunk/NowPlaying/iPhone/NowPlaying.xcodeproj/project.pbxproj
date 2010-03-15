@@ -34,6 +34,8 @@
 		100000000000002A0000000F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
 		74F22A7F114DD16D00CF9CE3 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
 		74F22CC9114DEFBF00CF9CE3 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
+		74F22D20114DF96F00CF9CE3 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
+		74F22D32114DFC9400CF9CE3 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */; };
 		74FFCA8B10E1558100DF4AC7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +111,8 @@
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
+		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
+		74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Resources-iPad/Default-Portrait.png"; sourceTree = "<group>"; };
 		74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -210,13 +214,12 @@
 		10000000000000170000006E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74F22D1E114DF95B00CF9CE3 /* iPhone */,
+				74F22D1D114DF95400CF9CE3 /* iPad */,
 				1000000000000008000000C9 /* BoxOfficeResources.bundle */,
 				1000000000000012000000CF /* MetasyntacticResources.bundle */,
 				100000000000001300000097 /* NetflixResources.bundle */,
 				100000000000000700000163 /* Info.plist */,
-				100000000000000A00000093 /* Default.png */,
-				74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */,
-				100000000000000F00000056 /* Icon-iPhone.png */,
 				100000000000000F00000065 /* Icon2.png */,
 				1000000000000011000000C5 /* Localizable.strings */,
 				100000000000001100000099 /* License.txt */,
@@ -241,6 +244,25 @@
 				74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */,
 			);
 			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		74F22D1D114DF95400CF9CE3 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */,
+				74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */,
+				74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		74F22D1E114DF95B00CF9CE3 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000A00000093 /* Default.png */,
+				100000000000000F00000056 /* Icon-iPhone.png */,
+			);
+			name = iPhone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +368,8 @@
 				10000000000000110000009C /* License.txt in Resources */,
 				74F22A7F114DD16D00CF9CE3 /* MainWindow-iPad.xib in Resources */,
 				74F22CC9114DEFBF00CF9CE3 /* Icon-iPad.png in Resources */,
+				74F22D20114DF96F00CF9CE3 /* Default-Landscape.png in Resources */,
+				74F22D32114DFC9400CF9CE3 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
