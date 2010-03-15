@@ -8,8 +8,11 @@
 	<string>Now Playing</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>Icon.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon-iPhone.png</string>
+		<string>Icon-iPad.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>org.metasyntactic.BoxOffice</string>
 	<key>CFBundleInfoDictionaryVersion</key>
