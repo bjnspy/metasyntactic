@@ -60,7 +60,13 @@
     self.titles = titles_;
     self.arguments = arguments_;
     self.backgroundColor = [UIColor clearColor];// [UIColor groupTableViewBackgroundColor];
-
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+      marginWidth = 44;
+    } else {
+      marginWidth = 10;
+    }
+    
     UIImage* backgroundImage = MetasyntacticStockImage(@"ActionsViewBackground.png");
     if (backgroundImage != nil) {
       self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
@@ -173,7 +179,13 @@
 - (void) layoutSubviews {
   [super layoutSubviews];
 
-  backgroundImageView.frame = CGRectMake(10, 4, self.frame.size.width - 20, self.frame.size.height + 1);
+  NSInteger outerMargin = marginWidth;
+  NSInteger innerMargin = outerMargin / 2 - 1;
+  
+  backgroundImageView.frame =
+    CGRectMake(marginWidth, 4, 
+               self.frame.size.width - 2 * marginWidth,
+               self.frame.size.height + 1);
 
   BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
@@ -191,7 +203,7 @@
     }
 
     CGRect frame = button.frame;
-    frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
+    frame.origin.x = (column == 0 ? outerMargin : (self.frame.size.width / 2) + innerMargin);
     frame.origin.y = (8 + frame.size.height) * row + 8;
 
     if (backgroundImageView != nil) {
@@ -200,7 +212,7 @@
       }
     }
 
-    frame.size.width = (self.frame.size.width / 2) - 14;
+    frame.size.width = (self.frame.size.width / 2) - outerMargin - innerMargin;
     if (i == 0 && oddNumberOfButtons) {
       if (button.buttonType != UIButtonTypeCustom) {
         frame.size.width = (self.frame.size.width - 2 * frame.origin.x);

@@ -95,7 +95,7 @@
 
 
 - (id) init {
-  if ((self = [super initWithNibName:nil bundle:nil])) {
+  if ((self = [super init])) {
     self.delegate = self;
   }
 

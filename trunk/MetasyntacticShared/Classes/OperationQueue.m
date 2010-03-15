@@ -87,7 +87,11 @@ static OperationQueue* operationQueue = nil;
 - (id) init {
   if ((self = [super init])) {
     self.dataGate = [[[NSLock alloc] init] autorelease];
-
+    
+    // Ugly hack.
+    CGSize size = [[UIScreen mainScreen] bounds].size;
+    maxBoundedOperations = (MAX(size.width, size.height) / 100);
+    
     [self restart];
   }
 
@@ -175,8 +179,7 @@ static OperationQueue* operationQueue = nil;
 - (void) addBoundedOperation:(Operation*) operation {
   [dataGate lock];
   {
-    const NSInteger MAX_BOUNDED_OPERATIONS = 4;
-    if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
+    if (boundedOperations.count > maxBoundedOperations) {
       // too many operations.  cancel the oldest one.
       Operation* staleOperation = boundedOperations.firstObject;
       [staleOperation cancel];

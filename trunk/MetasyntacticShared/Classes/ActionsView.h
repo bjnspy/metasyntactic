@@ -24,6 +24,8 @@
   CGFloat height;
 
   UIImageView* backgroundImageView;
+  
+  NSInteger marginWidth;
 }
 
 @property (readonly) CGFloat height;

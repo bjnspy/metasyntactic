@@ -40,6 +40,15 @@
 }
 
 
+- (id) init {
+  if ((self = [super init])) {
+    
+  }
+  
+  return self;
+}
+
+
 - (void) playMovie:(NSString*) address {
   if (address.length == 0) {
     return;
