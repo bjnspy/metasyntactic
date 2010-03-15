@@ -6,8 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Now Playing</string>
-	<key>UIPrerenderedIcon</key>
-	<true/>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
@@ -26,16 +24,20 @@
 	<string>3.16</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	<key>RootViewControllerClass</key>
-	<string>NowPlayingTabBarController</string>
-	<key>PinchMediaApplicationCode</key>
-	<string>989c6bce5327bb013357eff94148592a</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow-iPad</string>
+	<key>NetflixApplicationName</key>
+	<string>NowPlaying</string>
 	<key>NetflixKey</key>
 	<string>83k9wpqt34hcka5bfb2kkf8s</string>
 	<key>NetflixSecret</key>
 	<string>GGR5uHEucN</string>
-	<key>NetflixApplicationName</key>
-	<string>NowPlaying</string>
+	<key>PinchMediaApplicationCode</key>
+	<string>989c6bce5327bb013357eff94148592a</string>
+	<key>RootViewControllerClass</key>
+	<string>NowPlayingTabBarController</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>iTunesApplicationUrl</key>
 	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=284939567&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
 </dict>

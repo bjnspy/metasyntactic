@@ -260,7 +260,7 @@
 
 
 - (id) init {
-  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+  if ((self = [self initWithStyle:UITableViewStylePlain])) {
   }
 
   return self;

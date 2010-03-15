@@ -267,7 +267,9 @@
   [synopsisChunk1Label sizeToFit];
 
   synopsisChunk2Label.text = @"";
-  if (synopsisSplit < synopsis.length) {
+  if (synopsisSplit >= synopsis.length) {
+    synopsisChunk2Label.frame = CGRectZero;
+  } else {
     NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
     NSInteger end = synopsisMax;
 
