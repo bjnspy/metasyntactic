@@ -76,13 +76,16 @@
 }
 
 
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section % 2 == 0) {
     static NSString* reuseIdentifier = @"questionCell";
     QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     if (cell == nil) {
-      cell = [[[QuestionCell alloc] initWithQuestion:YES reuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[QuestionCell alloc] initWithQuestion:YES
+                                     reuseIdentifier:reuseIdentifier
+                                 tableViewController:self] autorelease];
     }
     NSString* text = [questions objectAtIndex:indexPath.section / 2];
     [cell setQuestionText:text];
@@ -92,7 +95,9 @@
     static NSString* reuseIdentifier = @"answerCell";
     QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[QuestionCell alloc] initWithQuestion:NO reuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[QuestionCell alloc] initWithQuestion:NO
+                                     reuseIdentifier:reuseIdentifier
+                                 tableViewController:self] autorelease];
     }
 
     NSString* text = [answers objectAtIndex:indexPath.section / 2];
@@ -103,17 +108,11 @@
 }
 
 
-- (CGFloat)         tableView:(UITableView*) tableView_
+- (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section % 2 == 0) {
-    NSString* text = [questions objectAtIndex:indexPath.section / 2];
-
-    return [QuestionCell height:text];
-  } else {
-    NSString* text = [answers objectAtIndex:indexPath.section / 2];
-
-    return [QuestionCell height:text];
-  }
+  id cell = [self tableView:tableView 
+      cellForRowAtIndexPath:indexPath];
+  return [cell height];
 }
 
 
