@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ArticleBodyCell : UITableViewCell {
+@interface ArticleBodyCell : AbstractTableViewCell {
 @private
-    Item* item;
-    UILabel* label;
+  Item* item;
+  UILabel* label;
 }
 
 - (void) setItem:(Item*) item;

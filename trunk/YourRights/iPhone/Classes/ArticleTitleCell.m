@@ -39,6 +39,7 @@
     self.titleLabel = [[[UILabel alloc] init] autorelease];
     titleLabel.font = [UIFont boldSystemFontOfSize:14];
     titleLabel.numberOfLines = 0;
+    titleLabel.backgroundColor = RGBUIColor(247, 247, 247);
 
     [self.contentView addSubview:titleLabel];
   }
