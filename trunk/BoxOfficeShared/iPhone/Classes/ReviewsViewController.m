@@ -83,7 +83,8 @@
 
     ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                          tableViewController:self] autorelease];
     }
 
     [cell setReview:review];
@@ -170,9 +171,10 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section < reviews.count) {
     if (indexPath.row == 1) {
-      Review* review = [reviews objectAtIndex:indexPath.section];
+      id cell = [self tableView:tableView
+                    cellForRowAtIndexPath:indexPath];
 
-      return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
+      return MAX([cell height], self.tableView.rowHeight);
     }
   }
 

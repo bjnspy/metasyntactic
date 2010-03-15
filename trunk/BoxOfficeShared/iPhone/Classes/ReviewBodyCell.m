@@ -36,8 +36,11 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
+                   reuseIdentifier:reuseIdentifier
+               tableViewController:tableViewController])) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -52,8 +55,34 @@
 }
 
 
-+ (BOOL) hasReview:(Review*) review {
-  return review.link.length > 0 && ![[Model model] isInReviewPeriod];
+- (BOOL) reviewHasLink {
+  return reviewData.link.length > 0 && ![[Model model] isInReviewPeriod];
+}
+
+
+- (void) height:(CGFloat*) outHeight width:(CGFloat*) outWidth {
+  CGFloat width = self.tableViewController.view.frame.size.width;
+  width -= 2 * groupedTableViewMargin;
+  width -= 2 * 10;
+  
+  if ([self reviewHasLink]) {
+    width -= 25;
+  }
+  
+  CGSize size = CGSizeMake(width, 2000);
+  size = [reviewData.text sizeWithFont:[FontCache helvetica14]
+                     constrainedToSize:size
+                         lineBreakMode:UILineBreakModeWordWrap];
+  
+  *outWidth = width;
+  *outHeight = size.height + 10;
+}
+
+
+- (CGFloat) height {
+  CGFloat height, width;
+  [self height:&height width:&width];
+  return height;
 }
 
 
@@ -61,44 +90,19 @@
   [super layoutSubviews];
 
   label.text = reviewData.text;
+  
+  CGFloat height, width;
+  [self height:&height width:&width];
 
-  CGFloat width = self.frame.size.width;
-  width -= 40;
-  if ([ReviewBodyCell hasReview:reviewData]) {
-    width -= 25;
-  }
-
-  CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:reviewData] - 10);
+  CGRect rect = CGRectMake(10, 5, width, height - 10);
   label.frame = rect;
-}
-
-
-+ (CGFloat) height:(Review*) review {
-  CGFloat width;
-  if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-    width = [UIScreen mainScreen].bounds.size.height;
-  } else {
-    width = [UIScreen mainScreen].bounds.size.width;
-  }
-  width -= 40;
-
-  if ([ReviewBodyCell hasReview:review]) {
-    width -= 25;
-  }
-
-  CGSize size = CGSizeMake(width, 2000);
-  size = [review.text sizeWithFont:[FontCache helvetica14]
-          constrainedToSize:size
-          lineBreakMode:UILineBreakModeWordWrap];
-
-  return size.height + 10;
 }
 
 
 - (void) setReview:(Review*) review {
   self.reviewData = review;
 
-  if ([ReviewBodyCell hasReview:review]) {
+  if ([self reviewHasLink]) {
     self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   } else {
     self.accessoryType = UITableViewCellAccessoryNone;

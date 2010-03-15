@@ -12,16 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ReviewBodyCell : UITableViewCell {
+@interface ReviewBodyCell : AbstractTableViewCell {
 @private
   Review* reviewData;
   UILabel* label;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
 - (void) setReview:(Review*) review;
 
-+ (CGFloat) height:(Review*) review;
+- (CGFloat) height;
 
 @end
