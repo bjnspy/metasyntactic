@@ -67,20 +67,13 @@
 }
 
 
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale
-           tableViewController:(UITableViewController*) tableViewController {
-  NSString* string = [MovieShowtimesCell showtimesString:showtimes];
+- (CGFloat) height {
+  NSString* string = [MovieShowtimesCell showtimesString:showtimesData];
   UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
 
-  CGFloat width;
-  if (UIInterfaceOrientationIsLandscape(tableViewController.interfaceOrientation)) {
-    width = [UIScreen mainScreen].bounds.size.height;
-  } else {
-    width = [UIScreen mainScreen].bounds.size.width;
-  }
+  CGFloat width = self.tableViewController.view.frame.size.width;
 
-  width -= 2 * [self groupedTableViewMargin]; // outer margin
+  width -= 2 * groupedTableViewMargin; // outer margin
 
   if (stale) {
     width -= 32; // image
@@ -141,9 +134,7 @@
   width -= 18; // accessory
 
   showtimesFrame.size.width = width;
-  showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
-                                                                stale:stale
-                                                  tableViewController:self.tableViewController];
+  showtimesFrame.size.height = [self height];
 
   showtimesLabel.frame = showtimesFrame;
 
