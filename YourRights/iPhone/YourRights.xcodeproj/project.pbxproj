@@ -65,6 +65,7 @@
 		10000000000000120000008E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000087 /* MediaPlayer.framework */; };
 		10000000000000290000003D /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000002900000039 /* libMetasyntacticShared.a */; };
 		74BAC6BB10EA5946007C0901 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BAC6BA10EA5946007C0901 /* StoreKit.framework */; };
+		74C50BE9114DC15900613336 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C50BE8114DC15900613336 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +190,7 @@
 		100000000000000B00000023 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
 		100000000000001200000087 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		74BAC6BA10EA5946007C0901 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		74C50BE8114DC15900613336 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 				100000000000000900000017 /* Other Sources */,
 				100000000000000900000045 /* Products */,
 				100000000000000900000071 /* Resources */,
+				74C50BE7114DC15800613336 /* Resources-iPad */,
 				1000000000000007000000E9 /* Entitlements.plist */,
 				10000000000000080000001D /* MetasyntacticShared.xcodeproj */,
 			);
@@ -453,6 +456,14 @@
 			name = Text;
 			sourceTree = "<group>";
 		};
+		74C50BE7114DC15800613336 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				74C50BE8114DC15900613336 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -525,6 +536,7 @@
 				100000000000000800000012 /* Localizable.strings in Resources */,
 				1000000000000007000000E6 /* Default.png in Resources */,
 				10000000000000080000001B /* MetasyntacticResources.bundle in Resources */,
+				74C50BE9114DC15900613336 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,12 +648,20 @@
 		10000000000000070000002D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
 		};
 		1000000000000007000000CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -712,12 +732,20 @@
 		1000000000000007000000E8 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
 		};
 		10000000000000090000006E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
