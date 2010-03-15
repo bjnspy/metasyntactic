@@ -112,14 +112,6 @@ static const NSInteger POSTER_TAG = -1;
 
 + (UIImage*) posterForPerson:(Person*) person {
   return [[PersonPosterCache cache] posterForPerson:person loadFromDisk:YES];
-//  UIImage* image = [model posterForMovie:movie];
-//
-//  if (image != nil) {
-//    return image;
-//  }
-//
-//  return [BoxOfficeStockImages imageNotAvailable];
-  return nil;
 }
 
 

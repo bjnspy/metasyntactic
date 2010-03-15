@@ -435,15 +435,17 @@ typedef enum {
 
 - (void) setupButtons {
   if (readonlyMode) {
-    UIActivityIndicatorView* activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    CGRect frame = activityIndicatorView.frame;
-    frame.size.width += 4;
-    [activityIndicatorView startAnimating];
-
-    UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
-    [activityView addSubview:activityIndicatorView];
-
-    UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+//    UIActivityIndicatorView* activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+//    CGRect frame = activityIndicatorView.frame;
+//    frame.size.width += 4;
+//    [activityIndicatorView startAnimating];
+//
+//    UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+//    [activityView addSubview:activityIndicatorView];
+//
+//    UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+    
+    UIBarButtonItem* right = [self createActivityIndicator];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
     [self.navigationItem setHidesBackButton:YES animated:YES];
   } else {
@@ -899,9 +901,12 @@ typedef enum {
   [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
   filterTheatersByDistance = NO;
-  [self majorRefresh];
+  
+  if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    [self majorRefresh];
+    return;
+  }
 
-/*
   NSInteger oldTheaterCount = self.filteredTheatersArray.count;
   [self initializeTheaterArrays];
 
@@ -933,7 +938,6 @@ typedef enum {
   [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
                         atScrollPosition:UITableViewScrollPositionMiddle
                                 animated:YES];
- */
 }
 
 
