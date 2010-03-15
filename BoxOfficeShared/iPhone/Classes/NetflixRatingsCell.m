@@ -42,14 +42,7 @@
 
 
 - (NSInteger) halfWayPoint {
-  CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-
-  NSInteger width;
-  if (UIInterfaceOrientationIsLandscape(self.tableViewController.interfaceOrientation)) {
-    width = screenSize.height;
-  } else {
-    width = screenSize.width;
-  }
+  NSInteger width = self.tableViewController.view.frame.size.width;
   
   NSInteger halfPoint = width / 2;
   halfPoint -= groupedTableViewMargin;

@@ -763,12 +763,9 @@ typedef enum {
     if (indexPath.row == 0) {
       return tableView.rowHeight;
     } else {
-      NSInteger theaterIndex = [self getTheaterIndex:indexPath.section];
-      Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
-
-      return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
-                                              stale:[[Model model] isStale:theater]
-                                tableViewController:self] + 18;
+      id cell = [self tableView:tableView
+          cellForRowAtIndexPath:indexPath];
+      return [cell height] + 18;
     }
   }
 
@@ -902,6 +899,8 @@ typedef enum {
 
   filterTheatersByDistance = NO;
   
+  [self majorRefresh];
+  /*
   if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
     [self majorRefresh];
     return;
@@ -938,6 +937,7 @@ typedef enum {
   [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
                         atScrollPosition:UITableViewScrollPositionMiddle
                                 animated:YES];
+   */
 }
 
 

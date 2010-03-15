@@ -253,9 +253,9 @@
     if (row == 0) {
       return tableView.rowHeight;
     } else {
-      return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
-                                              stale:NO
-                                tableViewController:self] + 18;
+      id cell = [self tableView:tableView
+          cellForRowAtIndexPath:indexPath];
+      return [cell height] + 18;
     }
   }
 }

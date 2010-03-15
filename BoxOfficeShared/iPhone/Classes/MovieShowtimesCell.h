@@ -21,14 +21,13 @@
   BOOL stale;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier tableViewController:(UITableViewController*) tableViewController;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+           tableViewController:(UITableViewController*) tableViewController;
 
 - (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes;
+- (CGFloat) height;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale
-           tableViewController:(UITableViewController*) tableViewController;
 
 @end
