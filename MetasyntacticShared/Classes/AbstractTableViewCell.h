@@ -15,9 +15,14 @@
 @interface AbstractTableViewCell : UITableViewCell {
 @private
   UITableViewController* tableViewController;
+  
+@protected
+  NSInteger groupedTableViewMargin;
 }
 
 @property (assign) UITableViewController* tableViewController;
+
++ (NSInteger) groupedTableViewMargin;
 
 - (id) initWithStyle:(UITableViewCellStyle)style
      reuseIdentifier:(NSString *)reuseIdentifier

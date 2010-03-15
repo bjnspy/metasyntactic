@@ -1159,6 +1159,7 @@
 				100000000000000B00000001 /* EditorViewController.h */,
 				1000000000000011000000AD /* ListPickerDelegate.h */,
 				1000000000000009000000ED /* ListPickerViewController.h */,
+				74302FC01140D777008F9AC4 /* LogViewController.h */,
 				100000000000001900000147 /* TextFieldEditorViewController.h */,
 				100000000000001B00000003 /* ViewControllerState.h */,
 				100000000000001800000080 /* WebViewController.h */,
@@ -1175,11 +1176,10 @@
 				100000000000000900000071 /* DatePickerViewController.m */,
 				100000000000000B00000003 /* EditorViewController.m */,
 				1000000000000009000000EF /* ListPickerViewController.m */,
+				74302FC11140D777008F9AC4 /* LogViewController.m */,
 				10000000000000090000009A /* TextFieldEditorViewController.m */,
 				100000000000001B00000005 /* ViewControllerState.m */,
 				100000000000001800000082 /* WebViewController.m */,
-				74302FC01140D777008F9AC4 /* LogViewController.h */,
-				74302FC11140D777008F9AC4 /* LogViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

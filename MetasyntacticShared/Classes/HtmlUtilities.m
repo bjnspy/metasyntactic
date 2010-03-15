@@ -45,12 +45,18 @@
   return string;
 }
 
+
 + (NSString*) stripHtmlCodes:(NSString*) string {
   if (string.length == 0) {
     return @"";
   }
 
-  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", @"br ", @"strong", @"tbody", @"tr", @"td", @"span", @"table", @"div", @"font", nil];
+  NSArray* htmlCodes =
+  [NSArray arrayWithObjects:
+   @"a", @"em", @"p", @"b", @"i", @"br", @"br ",
+   @"strong", @"tbody", @"tr", @"td", @"span", 
+   @"table", @"div", @"font", @"P", @"blockquote",
+   @"ul", @"li", nil];
 
   for (NSString* code in htmlCodes) {
     string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
@@ -67,7 +73,9 @@
     return @"";
   }
 
-  NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"p", @"table", @"span", @"div", @"font", nil];
+  NSArray* htmlCodes = 
+  [NSArray arrayWithObjects:
+   @"a", @"p", @"table", @"span", @"div", @"font", @"A", nil];
 
   for (NSString* code in htmlCodes) {
     NSString* startTag = [NSString stringWithFormat:@"<%@ ", code];
@@ -120,8 +128,56 @@
 }
 
 
++ (NSString*) stripHtmlCommentsWorker:(NSString*) string
+                                start:(NSString*) start {
+  NSInteger index = 0;
+  NSRange range;
+  while ((range = [string rangeOfString:start
+                                options:0
+                                  range:NSMakeRange(index, string.length - index)]).length > 0) {
+    NSRange endRange = [string rangeOfString:@"-->" options:0 range:NSMakeRange(range.location, string.length - range.location)];
+    
+    if (endRange.length > 0) {
+      string = [NSString stringWithFormat:@"%@%@",
+                [string substringToIndex:range.location],
+                [string substringFromIndex:endRange.location + endRange.length]];
+    }
+  }
+  return string;
+}
+
+
++ (NSString*) stripHtmlComments:(NSString*) string {
+  string = [self stripHtmlCommentsWorker:string start:@"<!--"];
+  string = [self stripHtmlCommentsWorker:string start:@"</!--"];
+  return string;
+}
+
+
 + (NSString*) replaceParagraphs:(NSString*) string {
   return [string stringByReplacingOccurrencesOfString:@"<p>" withString:@"\n\n"];
+}
+
+
++ (NSString*) collapseWhitespace:(NSString*) string
+                          before:(NSString*) before
+                           after:(NSString*) after {
+  NSInteger oldLength;
+  NSInteger newLength;
+  do {
+    oldLength = string.length;
+    string = [string stringByReplacingOccurrencesOfString:before withString:after];
+    newLength = string.length;
+  } while (newLength < oldLength);
+  
+  return string;
+}
+
+
++ (NSString*) collapseWhitespace:(NSString*) string {
+  string = [self collapseWhitespace:string before:@"  " after:@" "];
+  string = [self collapseWhitespace:string before:@"\n\n\n" after:@"\n\n"];
+  return string;
 }
 
 
@@ -129,13 +185,16 @@
   if (string.length == 0) {
     return @"";
   }
-
+  
   string = [self convertHtmlEntities:
-            [self stripHtmlCodes:
-             [self stripHtmlLinks:
-              [self convertHtmlEncodings:
-               [self replaceParagraphs:string]]]]];
-  return [StringUtilities nonNilString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+            [self stripHtmlComments:
+             [self stripHtmlCodes:
+              [self stripHtmlLinks:
+               [self convertHtmlEncodings:
+                [self replaceParagraphs:string]]]]]];
+  string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  string = [self collapseWhitespace:string];
+  return [StringUtilities nonNilString:string];
 }
 
 @end
