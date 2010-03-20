@@ -6,8 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>PocketFlicks</string>
-	<key>UIPrerenderedIcon</key>
-	<true/>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
@@ -26,25 +24,29 @@
 	<string>1.15</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	<key>RootViewControllerClass</key>
-	<string>PocketFlicksNavigationController</string>
-	<key>PinchMediaApplicationCode</key>
-	<string>f529b846faa3f9498254e10e5b0f49d8</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow-iPad</string>
+	<key>NetflixApplicationName</key>
+	<string>PocketFlicks</string>
 	<key>NetflixKey</key>
 	<string>szqxavgvm6s3ywed2cnwmt69</string>
 	<key>NetflixSecret</key>
 	<string>52EWSSQFrJ</string>
-	<key>NetflixApplicationName</key>
-	<string>PocketFlicks</string>
-	<key>iTunesApplicationUrl</key>
-	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
+	<key>PinchMediaApplicationCode</key>
+	<string>f529b846faa3f9498254e10e5b0f49d8</string>
+	<key>RootViewControllerClass</key>
+	<string>PocketFlicksNavigationController</string>
 	<key>UINavigationBarTintColor</key>
+	<string>0xC3AF69</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UISearchBarTintColor</key>
 	<string>0xC3AF69</string>
 	<key>UISegmentedControlTintColor</key>
 	<string>0xC3AF69</string>
-	<key>UISearchBarTintColor</key>
-	<string>0xC3AF69</string>
 	<key>UITableViewSearchHeaderBackgroundColor</key>
 	<string>0xCBB977</string>
+	<key>iTunesApplicationUrl</key>
+	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
 </dict>
 </plist>
