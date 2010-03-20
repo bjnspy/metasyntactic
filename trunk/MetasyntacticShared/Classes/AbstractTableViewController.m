@@ -415,4 +415,22 @@
   return [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
 }
 
+
+- (UIBarButtonItem*) createInfoButton:(SEL) action {
+  UIButton* infoButton;
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  } else {
+    infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+  }
+  
+  [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+  
+  infoButton.contentMode = UIViewContentModeCenter;
+  CGRect frame = infoButton.frame;
+  frame.size.width += 4;
+  infoButton.frame = frame;
+  return [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
 @end

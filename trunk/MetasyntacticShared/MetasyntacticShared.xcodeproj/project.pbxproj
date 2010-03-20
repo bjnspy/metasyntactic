@@ -299,6 +299,8 @@
 		100000000000001A00000045 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000044 /* UIViewController+Utilities.m */; };
 		100000000000001B00000004 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000003 /* ViewControllerState.h */; };
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
+		741DC08D1155570B0037E201 /* Portability.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DC08B1155570B0037E201 /* Portability.h */; };
+		741DC0C1115558D40037E201 /* Portability.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DC0C0115558D40037E201 /* Portability.m */; };
 		74200CCB1154CA65009F471A /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
@@ -635,6 +637,8 @@
 		100000000000001A00000044 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001B00000003 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
+		741DC08B1155570B0037E201 /* Portability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portability.h; sourceTree = "<group>"; };
+		741DC0C0115558D40037E201 /* Portability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portability.m; sourceTree = "<group>"; };
 		74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
@@ -752,11 +756,13 @@
 				100000000000000A000000AE /* MetasyntacticShared.h */,
 				100000000000000A000000BB /* MetasyntacticSharedApplication.h */,
 				100000000000000B00000018 /* MetasyntacticSharedApplicationDelegate.h */,
+				741DC08B1155570B0037E201 /* Portability.h */,
 				1000000000000015000001E3 /* StyleSheet.h */,
 				100000000000000700000003 /* AbstractApplication.m */,
 				100000000000000700000035 /* AbstractController.m */,
 				10000000000000070000008F /* AbstractModel.m */,
 				100000000000000B00000015 /* MetasyntacticSharedApplication.m */,
+				741DC0C0115558D40037E201 /* Portability.m */,
 				1000000000000015000001ED /* StyleSheet.m */,
 			);
 			path = Classes;
@@ -1417,6 +1423,7 @@
 				1000000000000018000000D5 /* XmlParser.h in Headers */,
 				1000000000000018000000D9 /* XmlSerializer.h in Headers */,
 				1000000000000013000000E7 /* Prefix.pch in Headers */,
+				741DC08D1155570B0037E201 /* Portability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1605,6 +1612,7 @@
 				1000000000000018000000D3 /* XmlElement.m in Sources */,
 				1000000000000018000000D7 /* XmlParser.m in Sources */,
 				1000000000000018000000DB /* XmlSerializer.m in Sources */,
+				741DC0C1115558D40037E201 /* Portability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1621,7 +1629,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1649,7 +1657,8 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos3.2;
-				VALID_ARCHS = armv7;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
@@ -1663,7 +1672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1689,7 +1698,8 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos3.2;
-				VALID_ARCHS = armv7;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};

@@ -118,14 +118,7 @@ typedef enum {
 
 
 - (void) initializeInfoButton {
-  UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-  [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-
-  infoButton.contentMode = UIViewContentModeCenter;
-  CGRect frame = infoButton.frame;
-  frame.size.width += 4;
-  infoButton.frame = frame;
-  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+  self.navigationItem.leftBarButtonItem = [self createInfoButton:@selector(showInfo)];
 }
 
 

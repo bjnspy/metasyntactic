@@ -49,6 +49,15 @@ typedef enum {
 }
 
 
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+  if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+    return YES;
+  }
+  
+  return [MetasyntacticSharedApplication shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+
 - (UserLocationCache*) userLocationCache {
   return [UserLocationCache cache];
 }

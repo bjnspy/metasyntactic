@@ -165,6 +165,7 @@
   } else if ([self shouldShowPeople]) {
     Person* person = [people objectAtIndex:indexPath.row];
     UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = person.name;
     return cell;
   } else {
