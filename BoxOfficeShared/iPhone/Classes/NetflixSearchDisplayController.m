@@ -179,6 +179,10 @@
 
 
 - (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    [self setActive:NO animated:YES];
+  }
+  
   if ([self shouldShowDvd]) {
     Movie* movie = [dvdMovies objectAtIndex:indexPath.row];
     [self.commonNavigationController pushMovieDetails:movie animated:YES];

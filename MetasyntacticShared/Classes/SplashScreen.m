@@ -121,12 +121,19 @@ static SplashScreen* splashScreen = nil;
 
 
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
-  // Will autorelease this in onFadeComplete
-  splashScreen = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
-
-  UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
-  [window addSubview:splashScreen.view];
-  [window makeKeyAndVisible];
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    UIViewController* rootViewController = [delegate viewController];
+    
+    UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
+    [window addSubview:rootViewController.view];
+  } else {
+    // Will autorelease this in onFadeComplete
+    splashScreen = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
+    
+    UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
+    [window addSubview:splashScreen.view];
+    [window makeKeyAndVisible];
+  }
 }
 
 
