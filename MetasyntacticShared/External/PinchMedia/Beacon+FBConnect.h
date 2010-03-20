@@ -37,6 +37,6 @@
 
 // given a valid, logged-in FBSession, allow Beacon
 // to collect user demographic data.
-- (void) setFBConnectSession:(FBSession*) session;
+- (void)setFBConnectSession:(FBSession *)session;
 
 @end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -283,7 +283,6 @@
 		1000000000000018000000D7 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000D6 /* XmlParser.m */; };
 		1000000000000018000000D9 /* XmlSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000D8 /* XmlSerializer.h */; };
 		1000000000000018000000DB /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000DA /* XmlSerializer.m */; };
-		1000000000000018000001F8 /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000018000001F6 /* libPMAnalytics-r64.a */; };
 		1000000000000018000001FB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000018000001F9 /* libsqlite3.dylib */; };
 		100000000000001800000209 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000204 /* xmlparse.c */; };
 		10000000000000180000020B /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000020A /* xmlrole.c */; };
@@ -300,6 +299,7 @@
 		100000000000001A00000045 /* UIViewController+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001A00000044 /* UIViewController+Utilities.m */; };
 		100000000000001B00000004 /* ViewControllerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000003 /* ViewControllerState.h */; };
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
+		74200CCB1154CA65009F471A /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
 		74302FAB1140D563008F9AC4 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FA91140D563008F9AC4 /* Logger.h */; };
@@ -610,7 +610,6 @@
 		1000000000000018000001F1 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
 		1000000000000018000001F2 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
 		1000000000000018000001F4 /* libMetasyntacticShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetasyntacticShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1000000000000018000001F6 /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
 		1000000000000018000001F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1000000000000018000001FD /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
 		1000000000000018000001FF /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
@@ -636,6 +635,7 @@
 		100000000000001A00000044 /* UIViewController+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utilities.m"; sourceTree = "<group>"; };
 		100000000000001B00000003 /* ViewControllerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerState.h; sourceTree = "<group>"; };
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
+		74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
 		74302FA91140D563008F9AC4 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -666,7 +666,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000018000001F8 /* libPMAnalytics-r64.a in Frameworks */,
 				1000000000000018000001FB /* libsqlite3.dylib in Frameworks */,
 				10000000000000090000006A /* CoreGraphics.framework in Frameworks */,
 				1000000000000009000000B6 /* Foundation.framework in Frameworks */,
@@ -675,6 +674,7 @@
 				74FA49D010DD73A50002369F /* StoreKit.framework in Frameworks */,
 				1000000000000015000001FA /* SystemConfiguration.framework in Frameworks */,
 				100000000000001800000069 /* UIKit.framework in Frameworks */,
+				74200CCB1154CA65009F471A /* libPMAnalytics-r91.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,7 +971,7 @@
 		10000000000000120000010C /* PinchMedia */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000018000001F6 /* libPMAnalytics-r64.a */,
+				74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */,
 				10000000000000080000001C /* Beacon+FBConnect.h */,
 				10000000000000080000001E /* Beacon.h */,
 			);
@@ -1446,7 +1446,7 @@
 		100000000000001500000100 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 100000000000000800000162 /* Build configuration list for PBXProject "MetasyntacticShared" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 10000000000000090000006B /* CustomTemplate */;
 			projectDirPath = "";
@@ -1614,10 +1614,6 @@
 		100000000000000900000077 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/External/PinchMedia\"",
-				);
 			};
 			name = Debug;
 		};
@@ -1625,6 +1621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1651,17 +1648,13 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
 		100000000000001500000104 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/External/PinchMedia\"",
-				);
 			};
 			name = Release;
 		};
@@ -1669,6 +1662,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1693,7 +1687,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

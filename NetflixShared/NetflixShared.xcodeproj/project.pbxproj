@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -451,7 +451,7 @@
 		10000000000000080000000F /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000070000003C /* Build configuration list for PBXProject "NetflixShared" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 1000000000000007000000ED /* NetflixShared */;
 			productRefGroup = 10000000000000080000000B /* Products */;
@@ -536,6 +536,7 @@
 		10000000000000070000005A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -554,7 +555,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -567,6 +568,7 @@
 		100000000000000800000015 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
@@ -583,7 +585,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

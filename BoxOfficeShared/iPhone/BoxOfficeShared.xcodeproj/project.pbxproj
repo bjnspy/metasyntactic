@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100000000000000700000002 /* AbstractBoxOfficeAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000700000001 /* AbstractBoxOfficeAppDelegate.h */; };
-		100000000000000700000004 /* AbstractBoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000003 /* AbstractBoxOfficeAppDelegate.m */; };
 		100000000000000700000007 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000006 /* AbstractDVDBlurayCache.m */; };
 		10000000000000070000002C /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000009 /* AbstractDataProvider.m */; };
 		100000000000000700000033 /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000002E /* AbstractDetailsViewController.m */; };
@@ -24,18 +22,12 @@
 		100000000000000700000070 /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000006F /* AllTheatersViewController.m */; };
 		10000000000000070000008E /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000008D /* AmazonCache.m */; };
 		100000000000000700000098 /* AppleMoviePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000090 /* AppleMoviePosterDownloader.m */; };
-		10000000000000070000009B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000009A /* Application.m */; };
 		10000000000000070000009E /* NowPlayingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000070000009D /* NowPlayingTabBarController.m */; };
 		1000000000000007000000A9 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000A8 /* BlurayCache.m */; };
-		1000000000000007000000C7 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000C6 /* BoxOfficeShared.h */; };
-		1000000000000007000000C9 /* BoxOfficeSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000C8 /* BoxOfficeSharedApplication.h */; };
-		1000000000000007000000CB /* BoxOfficeSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CA /* BoxOfficeSharedApplication.m */; };
-		1000000000000007000000CD /* BoxOfficeSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CC /* BoxOfficeSharedApplicationDelegate.h */; };
 		1000000000000007000000D0 /* BoxOfficeStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000CF /* BoxOfficeStockImages.m */; };
 		1000000000000007000000DE /* MovieCacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000DD /* MovieCacheUpdater.m */; };
 		1000000000000007000000E7 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000E6 /* CollapsedMovieDetailsCell.m */; };
 		1000000000000007000000EB /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000EA /* CommonNavigationController.m */; };
-		1000000000000007000000EE /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000000ED /* Controller.m */; };
 		100000000000000700000124 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000123 /* DVD.m */; };
 		1000000000000007000001A3 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001A2 /* DVDCache.m */; };
 		1000000000000007000001B3 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000007000001A5 /* DVDCell.m */; };
@@ -66,7 +58,6 @@
 		1000000000000009000000C4 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000C3 /* NetflixMostPopularMoviesViewController.m */; };
 		1000000000000009000000C9 /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000C8 /* LookupResult.m */; };
 		1000000000000009000000D5 /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000D4 /* MetacriticScoreProvider.m */; };
-		1000000000000009000000DE /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000DD /* Model.m */; };
 		1000000000000009000000E3 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000E2 /* MovieDetailsViewController.m */; };
 		1000000000000009000000E6 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000E5 /* MovieShowtimesCell.m */; };
 		1000000000000009000000EA /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000000E9 /* MovieTitleCell.m */; };
@@ -161,6 +152,17 @@
 		74C22BFC10F91EE30042EB39 /* WikipediaApiPersonPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C22BFA10F91EE30042EB39 /* WikipediaApiPersonPosterDownloader.m */; };
 		74C22CBF10F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C22CBD10F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.h */; };
 		74C22CC010F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C22CBE10F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.m */; };
+		74D2034F1154AA7200FC5C7F /* AbstractBoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203421154AA7200FC5C7F /* AbstractBoxOfficeAppDelegate.m */; };
+		74D203501154AA7200FC5C7F /* Application.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203431154AA7200FC5C7F /* Application.h */; };
+		74D203511154AA7200FC5C7F /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203441154AA7200FC5C7F /* Application.m */; };
+		74D203521154AA7200FC5C7F /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203451154AA7200FC5C7F /* BoxOfficeShared.h */; };
+		74D203531154AA7200FC5C7F /* BoxOfficeSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203461154AA7200FC5C7F /* BoxOfficeSharedApplication.h */; };
+		74D203541154AA7200FC5C7F /* BoxOfficeSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203471154AA7200FC5C7F /* BoxOfficeSharedApplication.m */; };
+		74D203551154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203481154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h */; };
+		74D203581154AA7200FC5C7F /* Controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D2034B1154AA7200FC5C7F /* Controller.h */; };
+		74D203591154AA7200FC5C7F /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D2034C1154AA7200FC5C7F /* Controller.m */; };
+		74D2035A1154AA7200FC5C7F /* Model.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D2034D1154AA7200FC5C7F /* Model.h */; };
+		74D2035B1154AA7200FC5C7F /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D2034E1154AA7200FC5C7F /* Model.m */; };
 		74FFCAC010E159C700DF4AC7 /* BoxOfficeStoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */; };
 		74FFCAC110E159C700DF4AC7 /* BoxOfficeStoreDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */; };
 		74FFCAC410E159CF00DF4AC7 /* DeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */; };
@@ -221,8 +223,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		100000000000000700000001 /* AbstractBoxOfficeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBoxOfficeAppDelegate.h; sourceTree = "<group>"; };
-		100000000000000700000003 /* AbstractBoxOfficeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBoxOfficeAppDelegate.m; sourceTree = "<group>"; };
 		100000000000000700000005 /* AbstractDVDBlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDVDBlurayCache.h; sourceTree = "<group>"; };
 		100000000000000700000006 /* AbstractDVDBlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDVDBlurayCache.m; sourceTree = "<group>"; };
 		100000000000000700000008 /* AbstractDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDataProvider.h; sourceTree = "<group>"; };
@@ -252,17 +252,11 @@
 		10000000000000070000008D /* AmazonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonCache.m; sourceTree = "<group>"; };
 		10000000000000070000008F /* AppleMoviePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMoviePosterDownloader.h; sourceTree = "<group>"; };
 		100000000000000700000090 /* AppleMoviePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMoviePosterDownloader.m; sourceTree = "<group>"; };
-		100000000000000700000099 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
-		10000000000000070000009A /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		10000000000000070000009C /* NowPlayingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingTabBarController.h; sourceTree = "<group>"; };
 		10000000000000070000009D /* NowPlayingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingTabBarController.m; sourceTree = "<group>"; };
 		10000000000000070000009F /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
 		1000000000000007000000A8 /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
 		1000000000000007000000AA /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoxOfficeResources.bundle; sourceTree = "<group>"; };
-		1000000000000007000000C6 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeShared.h; sourceTree = "<group>"; };
-		1000000000000007000000C8 /* BoxOfficeSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplication.h; sourceTree = "<group>"; };
-		1000000000000007000000CA /* BoxOfficeSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeSharedApplication.m; sourceTree = "<group>"; };
-		1000000000000007000000CC /* BoxOfficeSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplicationDelegate.h; sourceTree = "<group>"; };
 		1000000000000007000000CE /* BoxOfficeStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStockImages.h; sourceTree = "<group>"; };
 		1000000000000007000000CF /* BoxOfficeStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeStockImages.m; sourceTree = "<group>"; };
 		1000000000000007000000DB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -272,8 +266,6 @@
 		1000000000000007000000E6 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
 		1000000000000007000000E9 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
 		1000000000000007000000EA /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNavigationController.m; sourceTree = "<group>"; };
-		1000000000000007000000EC /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		1000000000000007000000ED /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		1000000000000007000000EF /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		1000000000000007000000F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1000000000000007000000F1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -343,8 +335,6 @@
 		1000000000000009000000D3 /* MetacriticScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticScoreProvider.h; sourceTree = "<group>"; };
 		1000000000000009000000D4 /* MetacriticScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticScoreProvider.m; sourceTree = "<group>"; };
 		1000000000000009000000D6 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		1000000000000009000000D8 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		1000000000000009000000DD /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		1000000000000009000000E0 /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
 		1000000000000009000000E2 /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		1000000000000009000000E4 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
@@ -535,6 +525,17 @@
 		74C22CBE10F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWikipediaPersonPosterDownloader.m; sourceTree = "<group>"; };
 		74CAC2CF10CDA4D2003E51A3 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Resources/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74CAC2E410CDA83D003E51A3 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74D203421154AA7200FC5C7F /* AbstractBoxOfficeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBoxOfficeAppDelegate.m; sourceTree = "<group>"; };
+		74D203431154AA7200FC5C7F /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		74D203441154AA7200FC5C7F /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		74D203451154AA7200FC5C7F /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeShared.h; sourceTree = "<group>"; };
+		74D203461154AA7200FC5C7F /* BoxOfficeSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplication.h; sourceTree = "<group>"; };
+		74D203471154AA7200FC5C7F /* BoxOfficeSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeSharedApplication.m; sourceTree = "<group>"; };
+		74D203481154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplicationDelegate.h; sourceTree = "<group>"; };
+		74D2034B1154AA7200FC5C7F /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		74D2034C1154AA7200FC5C7F /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		74D2034D1154AA7200FC5C7F /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		74D2034E1154AA7200FC5C7F /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		74FFCABE10E159C700DF4AC7 /* BoxOfficeStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStoreDelegate.h; sourceTree = "<group>"; };
 		74FFCABF10E159C700DF4AC7 /* BoxOfficeStoreDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeStoreDelegate.m; sourceTree = "<group>"; };
 		74FFCAC210E159CF00DF4AC7 /* DeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceStore.h; sourceTree = "<group>"; };
@@ -602,18 +603,17 @@
 				74FFCAA110E155AB00DF4AC7 /* Store */,
 				10000000000000120000009C /* UI */,
 				100000000000001500000104 /* Utilities */,
-				100000000000000700000001 /* AbstractBoxOfficeAppDelegate.h */,
-				100000000000000700000099 /* Application.h */,
-				1000000000000007000000C6 /* BoxOfficeShared.h */,
-				1000000000000007000000C8 /* BoxOfficeSharedApplication.h */,
-				1000000000000007000000CC /* BoxOfficeSharedApplicationDelegate.h */,
-				1000000000000007000000EC /* Controller.h */,
-				1000000000000009000000D8 /* Model.h */,
-				100000000000000700000003 /* AbstractBoxOfficeAppDelegate.m */,
-				10000000000000070000009A /* Application.m */,
-				1000000000000007000000CA /* BoxOfficeSharedApplication.m */,
-				1000000000000007000000ED /* Controller.m */,
-				1000000000000009000000DD /* Model.m */,
+				74D203431154AA7200FC5C7F /* Application.h */,
+				74D203451154AA7200FC5C7F /* BoxOfficeShared.h */,
+				74D203461154AA7200FC5C7F /* BoxOfficeSharedApplication.h */,
+				74D203481154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h */,
+				74D2034B1154AA7200FC5C7F /* Controller.h */,
+				74D2034D1154AA7200FC5C7F /* Model.h */,
+				74D203421154AA7200FC5C7F /* AbstractBoxOfficeAppDelegate.m */,
+				74D203441154AA7200FC5C7F /* Application.m */,
+				74D203471154AA7200FC5C7F /* BoxOfficeSharedApplication.m */,
+				74D2034C1154AA7200FC5C7F /* Controller.m */,
+				74D2034E1154AA7200FC5C7F /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1201,7 +1201,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000700000002 /* AbstractBoxOfficeAppDelegate.h in Headers */,
 				7461F9B910F2F1FD00FBE955 /* AbstractCacheUpdater.h in Headers */,
 				10000000000000070000003F /* AbstractNetflixFilterableViewController.h in Headers */,
 				74C22BF310F91D920042EB39 /* AbstractPersonPosterDownloader.h in Headers */,
@@ -1209,9 +1208,6 @@
 				74C22CBF10F926A00042EB39 /* AbstractWikipediaPersonPosterDownloader.h in Headers */,
 				100000000000000800000074 /* BookmarkCache.h in Headers */,
 				74FFCB3C10E15AB000DF4AC7 /* BoxOfficeItemVault.h in Headers */,
-				1000000000000007000000C7 /* BoxOfficeShared.h in Headers */,
-				1000000000000007000000C9 /* BoxOfficeSharedApplication.h in Headers */,
-				1000000000000007000000CD /* BoxOfficeSharedApplicationDelegate.h in Headers */,
 				74FFCAC010E159C700DF4AC7 /* BoxOfficeStoreDelegate.h in Headers */,
 				74FFCAC410E159CF00DF4AC7 /* DeviceStore.h in Headers */,
 				74FFCB9C10E15DC200DF4AC7 /* Donation.h in Headers */,
@@ -1229,6 +1225,12 @@
 				74FFCAC810E159D800DF4AC7 /* SimulatorStore.h in Headers */,
 				74C22BFB10F91EE30042EB39 /* WikipediaApiPersonPosterDownloader.h in Headers */,
 				74C22BF710F91ECA0042EB39 /* WikipediaScrapePersonPosterDownloader.h in Headers */,
+				74D203501154AA7200FC5C7F /* Application.h in Headers */,
+				74D203521154AA7200FC5C7F /* BoxOfficeShared.h in Headers */,
+				74D203531154AA7200FC5C7F /* BoxOfficeSharedApplication.h in Headers */,
+				74D203551154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h in Headers */,
+				74D203581154AA7200FC5C7F /* Controller.h in Headers */,
+				74D2035A1154AA7200FC5C7F /* Model.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1260,7 +1262,7 @@
 		100000000000000C000000E9 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 1000000000000007000000DA /* Build configuration list for PBXProject "BoxOfficeShared" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1357,7 +1359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000000700000004 /* AbstractBoxOfficeAppDelegate.m in Sources */,
+				74D2034F1154AA7200FC5C7F /* AbstractBoxOfficeAppDelegate.m in Sources */,
 				7461F9BA10F2F1FD00FBE955 /* AbstractCacheUpdater.m in Sources */,
 				10000000000000070000002C /* AbstractDataProvider.m in Sources */,
 				100000000000000700000033 /* AbstractDetailsViewController.m in Sources */,
@@ -1377,16 +1379,16 @@
 				100000000000000700000070 /* AllTheatersViewController.m in Sources */,
 				10000000000000070000008E /* AmazonCache.m in Sources */,
 				100000000000000700000098 /* AppleMoviePosterDownloader.m in Sources */,
-				10000000000000070000009B /* Application.m in Sources */,
+				74D203511154AA7200FC5C7F /* Application.m in Sources */,
 				1000000000000007000000A9 /* BlurayCache.m in Sources */,
 				100000000000000800000076 /* BookmarkCache.m in Sources */,
 				74FFCB3D10E15AB000DF4AC7 /* BoxOfficeItemVault.m in Sources */,
-				1000000000000007000000CB /* BoxOfficeSharedApplication.m in Sources */,
+				74D203541154AA7200FC5C7F /* BoxOfficeSharedApplication.m in Sources */,
 				1000000000000007000000D0 /* BoxOfficeStockImages.m in Sources */,
 				74FFCAC110E159C700DF4AC7 /* BoxOfficeStoreDelegate.m in Sources */,
 				1000000000000007000000E7 /* CollapsedMovieDetailsCell.m in Sources */,
 				1000000000000007000000EB /* CommonNavigationController.m in Sources */,
-				1000000000000007000000EE /* Controller.m in Sources */,
+				74D203591154AA7200FC5C7F /* Controller.m in Sources */,
 				74FFCAC510E159CF00DF4AC7 /* DeviceStore.m in Sources */,
 				74FFCB9D10E15DC200DF4AC7 /* Donation.m in Sources */,
 				100000000000000700000124 /* DVD.m in Sources */,
@@ -1416,7 +1418,7 @@
 				1000000000000009000000C9 /* LookupResult.m in Sources */,
 				747D0E8C10EECBFF00C0360E /* MetacriticCache.m in Sources */,
 				1000000000000009000000D5 /* MetacriticScoreProvider.m in Sources */,
-				1000000000000009000000DE /* Model.m in Sources */,
+				74D2035B1154AA7200FC5C7F /* Model.m in Sources */,
 				1000000000000007000000DE /* MovieCacheUpdater.m in Sources */,
 				1000000000000009000000E3 /* MovieDetailsViewController.m in Sources */,
 				100000000000000C00000061 /* MoviePosterCache.m in Sources */,
@@ -1553,6 +1555,7 @@
 		100000000000000700000068 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1576,7 +1579,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphonesimulator3.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = AdHoc;
 		};
@@ -1595,6 +1598,7 @@
 		100000000000000800000019 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1616,13 +1620,14 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
 		10000000000000080000001A /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1645,7 +1650,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphonesimulator3.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Distribution;
 		};
@@ -1664,6 +1669,7 @@
 		100000000000000E00000013 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1685,7 +1691,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
