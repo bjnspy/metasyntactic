@@ -248,8 +248,6 @@
   if (section == 0 || section == 1) {
     return tableView.rowHeight;
   } else {
-    section -= 2;
-
     if (row == 0) {
       return tableView.rowHeight;
     } else {
