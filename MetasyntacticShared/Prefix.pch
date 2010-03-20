@@ -14,6 +14,7 @@
 #import <MessageUI/MessageUI.h>
 #import <StoreKit/StoreKit.h>
 #import "ForwardDeclarations.h"
+#import "Portability.h"
 #import "Macros.h"
 #import "expat.h"
 #import "MemoryUtilities.h"

@@ -21,6 +21,7 @@
 #import "../External/OAuth/OAuthConsumer.h"
 #import "../External/PinchMedia/Beacon.h"
 #import "../ForwardDeclarations.h"
+#import "Portability.h"
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractCollapsedDetailsCell.h"
