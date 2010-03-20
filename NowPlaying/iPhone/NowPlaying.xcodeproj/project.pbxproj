@@ -121,7 +121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10000000000000290000000F /* libBoxOfficeShared.a in Frameworks */,
 				100000000000002900000062 /* libsqlite3.dylib in Frameworks */,
 				10000000000000070000011B /* AddressBook.framework in Frameworks */,
 				100000000000000900000005 /* CFNetwork.framework in Frameworks */,
@@ -132,9 +131,10 @@
 				10000000000000120000006D /* MapKit.framework in Frameworks */,
 				10000000000000120000008C /* MediaPlayer.framework in Frameworks */,
 				1000000000000012000000BC /* MessageUI.framework in Frameworks */,
+				74FFCA8B10E1558100DF4AC7 /* StoreKit.framework in Frameworks */,
 				100000000000001800000276 /* SystemConfiguration.framework in Frameworks */,
 				100000000000001A00000027 /* UIKit.framework in Frameworks */,
-				74FFCA8B10E1558100DF4AC7 /* StoreKit.framework in Frameworks */,
+				10000000000000290000000F /* libBoxOfficeShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
