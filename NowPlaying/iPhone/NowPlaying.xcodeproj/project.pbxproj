@@ -17,7 +17,7 @@
 		100000000000000A0000009B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000093 /* Default.png */; };
 		100000000000000B00000012 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000C /* Entitlements.plist */; };
 		100000000000000C0000008F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000081 /* Foundation.framework */; };
-		100000000000000F00000061 /* Icon-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000056 /* Icon-iPhone.png */; };
+		100000000000000F00000061 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000056 /* Icon.png */; };
 		100000000000000F00000066 /* Icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000065 /* Icon2.png */; };
 		10000000000000110000009C /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001100000099 /* License.txt */; };
 		1000000000000011000000C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000011000000C5 /* Localizable.strings */; };
@@ -72,7 +72,7 @@
 		100000000000000A00000093 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		100000000000000B0000000C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		100000000000000C00000081 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		100000000000000F00000056 /* Icon-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPhone.png"; path = "Resources/Icon-iPhone.png"; sourceTree = "<group>"; };
+		100000000000000F00000056 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
 		100000000000000F00000065 /* Icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon2.png; path = Resources/Icon2.png; sourceTree = "<group>"; };
 		100000000000001100000099 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = License.txt; path = ../../License.txt; sourceTree = SOURCE_ROOT; };
 		100000000000001200000049 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				100000000000000A00000093 /* Default.png */,
-				100000000000000F00000056 /* Icon-iPhone.png */,
+				100000000000000F00000056 /* Icon.png */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 			files = (
 				100000000000000B00000012 /* Entitlements.plist in Resources */,
 				100000000000000A0000009B /* Default.png in Resources */,
-				100000000000000F00000061 /* Icon-iPhone.png in Resources */,
+				100000000000000F00000061 /* Icon.png in Resources */,
 				100000000000000F00000066 /* Icon2.png in Resources */,
 				10000000000000120000004F /* MainWindow.xib in Resources */,
 				1000000000000011000000C8 /* Localizable.strings in Resources */,

@@ -10,7 +10,7 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon-iPhone.png</string>
+		<string>Icon.png</string>
 		<string>Icon-iPad.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
