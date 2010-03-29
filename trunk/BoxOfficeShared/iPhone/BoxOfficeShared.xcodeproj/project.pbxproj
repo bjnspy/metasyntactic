@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1262,7 +1262,7 @@
 		100000000000000C000000E9 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 1000000000000007000000DA /* Build configuration list for PBXProject "BoxOfficeShared" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,

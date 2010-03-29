@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -451,7 +451,7 @@
 		10000000000000080000000F /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000070000003C /* Build configuration list for PBXProject "NetflixShared" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 1000000000000007000000ED /* NetflixShared */;
 			productRefGroup = 10000000000000080000000B /* Products */;

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1460,7 +1460,7 @@
 		100000000000001500000100 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 100000000000000800000162 /* Build configuration list for PBXProject "MetasyntacticShared" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 10000000000000090000006B /* CustomTemplate */;
 			projectDirPath = "";
