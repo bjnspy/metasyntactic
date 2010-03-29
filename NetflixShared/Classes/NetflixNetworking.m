@@ -20,7 +20,73 @@
 #import "NetflixSiteStatus.h"
 #import "NetflixUtilities.h"
 
+@interface NetflixNetworking()
+@property (retain) NSNumber* serverAndDeviceMatch;
+@end
+
 @implementation NetflixNetworking
+
+static NetflixNetworking* networking = nil;
+
++ (void) initialize {
+  if (self == [NetflixNetworking class]) {
+    networking = [[NetflixNetworking alloc] init];
+  }
+}
+
+@synthesize serverAndDeviceMatch;
+
+- (void) dealloc {
+  self.serverAndDeviceMatch = nil;
+  [super dealloc];
+}
+
+
+- (NSString*) deviceTimestamp {
+  return [NSString stringWithFormat:@"%d", time(NULL)];
+}
+
+
+- (NSString*) serverTimestamp {
+  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/oauth/clock/time?oauth_consumer_key=%@", [NetflixAuthentication key]];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];  
+  NSString* result = [element text];
+  return result;  
+}
+
+
+- (NSString*) netflixTimestampWorker {
+  if (serverAndDeviceMatch == nil) {
+    NSString* serverTimestamp = [self serverTimestamp];
+    NSString* deviceTimestamp = [self deviceTimestamp];
+    
+    serverAndDeviceMatch = [NSNumber numberWithBool:[serverTimestamp isEqual:deviceTimestamp]];
+    return serverTimestamp;
+  } else {
+    if (serverAndDeviceMatch.boolValue) {
+      return [self deviceTimestamp];
+    } else {
+      return [self serverTimestamp];
+    }
+  }
+}
+
+
+- (NSString*) netflixTimestamp {
+  NSString* result;
+  [dataGate lock];
+  {
+    result = [self netflixTimestampWorker];
+  }
+  [dataGate unlock];
+  return result;
+}
+
+
++ (NSString*) netflixTimestamp {
+  return [networking netflixTimestamp];
+}
+
 
 + (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) acccount {
   OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
@@ -33,7 +99,8 @@
   [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
                              consumer:consumer
                                 token:token
-                                realm:nil];
+                                realm:nil
+                            timestamp:[self netflixTimestamp]];
 
   return request;
 }

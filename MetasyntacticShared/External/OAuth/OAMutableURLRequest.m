@@ -69,7 +69,8 @@
 - (id) initWithURL:(NSURL*) url_
           consumer:(OAConsumer*) consumer_
              token:(OAToken*) token_
-             realm:(NSString*) realm_ {
+             realm:(NSString*) realm_
+         timestamp:(NSString*) timestamp_ {
   if ([super initWithURL:url_
              cachePolicy:NSURLRequestReloadIgnoringCacheData
          timeoutInterval:30.0]) {
@@ -77,8 +78,7 @@
     self.consumer = consumer_;
     self.token = token_;
     self.realm = realm_.length == 0 ? @"" : realm_;
-    self.timestamp = [NSString stringWithFormat:@"%d", time(NULL)];
-    
+    self.timestamp = timestamp_;    
     self.nonce = [NSString stringWithNewUUID];
     
     [self setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -92,8 +92,13 @@
 + (OAMutableURLRequest*) requestWithURL:(NSURL*) url
                                consumer:(OAConsumer*) consumer
                                   token:(OAToken*) token
-                                  realm:(NSString*) realm {
-  return [[[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:token realm:realm] autorelease];
+                                  realm:(NSString*) realm 
+                              timestamp:(NSString*) timestamp {
+  return [[[OAMutableURLRequest alloc] initWithURL:url
+                                          consumer:consumer 
+                                             token:token
+                                             realm:realm
+                                         timestamp:timestamp] autorelease];
 }
 
 

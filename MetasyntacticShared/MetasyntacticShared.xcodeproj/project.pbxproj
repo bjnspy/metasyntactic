@@ -310,6 +310,8 @@
 		74302FC31140D777008F9AC4 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FC11140D777008F9AC4 /* LogViewController.m */; };
 		74A8C3C810F6D5A6005A59FB /* AbstractSearchDisplayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */; };
 		74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */; };
+		74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */; };
+		74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */; };
 		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
 		74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499710DD72EB0002369F /* AbstractDeviceStore.m */; };
 		74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */; };
@@ -648,6 +650,8 @@
 		74302FC11140D777008F9AC4 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
 		74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
+		74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtilities.h; sourceTree = "<group>"; };
+		74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtilities.m; sourceTree = "<group>"; };
 		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
 		74FA499710DD72EB0002369F /* AbstractDeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDeviceStore.m; sourceTree = "<group>"; };
 		74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSimulatorStore.h; sourceTree = "<group>"; };
@@ -1143,6 +1147,8 @@
 				100000000000001800000061 /* UIColor+Utilities.m */,
 				100000000000001A00000030 /* UIScrollView+Utilities.m */,
 				100000000000001A00000044 /* UIViewController+Utilities.m */,
+				74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */,
+				74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1424,6 +1430,7 @@
 				1000000000000018000000D9 /* XmlSerializer.h in Headers */,
 				1000000000000013000000E7 /* Prefix.pch in Headers */,
 				741DC08D1155570B0037E201 /* Portability.h in Headers */,
+				74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1613,6 +1620,7 @@
 				1000000000000018000000D7 /* XmlParser.m in Sources */,
 				1000000000000018000000DB /* XmlSerializer.m in Sources */,
 				741DC0C1115558D40037E201 /* Portability.m in Sources */,
+				74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

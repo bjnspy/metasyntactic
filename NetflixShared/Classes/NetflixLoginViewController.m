@@ -18,6 +18,7 @@
 #import "NetflixAccountCache.h"
 #import "NetflixAuthentication.h"
 #import "NetflixCache.h"
+#import "NetflixNetworking.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
 #import "NetflixUserCache.h"
@@ -158,7 +159,8 @@
   OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url
                                                             consumer:consumer
                                                                token:nil   // we don't have a Token yet
-                                                               realm:nil];
+                                                               realm:nil
+                                                           timestamp:[NetflixNetworking netflixTimestamp]];
 
   [request setHTTPMethod:@"POST"];
 
@@ -272,7 +274,8 @@
   OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url
                                                             consumer:consumer
                                                                token:authorizationToken
-                                                               realm:nil]; // use the default method, HMAC-SHA1
+                                                               realm:nil
+                                                           timestamp:[NetflixNetworking netflixTimestamp]]; // use the default method, HMAC-SHA1
 
   [request setHTTPMethod:@"POST"];
 

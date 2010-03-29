@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixNetworking : NSObject {
-
+@interface NetflixNetworking : AbstractCache {
+@private
+  NSNumber* serverAndDeviceMatch;
 }
+
++ (NSString*) netflixTimestamp;
 
 + (NSURLRequest*) createPostURLRequest:(NSString*) address parameters:(NSArray*) parameters account:(NetflixAccount*) account;
 + (NSURLRequest*) createGetURLRequest:(NSString*) address parameters:(NSArray*) parameters account:(NetflixAccount*) account;
