@@ -32,6 +32,31 @@
 		100000000000002900000063 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005F /* libsqlite3.dylib */; };
 		100000000000002A00000010 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
 		74176EC410E4A6560068CEC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74176EC310E4A6560068CEC8 /* StoreKit.framework */; };
+		74C1CF8911612ABE00C33147 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001200000049 /* MainWindow.xib */; };
+		74C1CF8A11612ABE00C33147 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000011000000C5 /* Localizable.strings */; };
+		74C1CF8B11612ABE00C33147 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000094 /* Default.png */; };
+		74C1CF8C11612ABE00C33147 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000058 /* Icon.png */; };
+		74C1CF8D11612ABE00C33147 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000C /* Entitlements.plist */; };
+		74C1CF8E11612ABE00C33147 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000D0 /* MetasyntacticResources.bundle */; };
+		74C1CF8F11612ABE00C33147 /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000008000000CA /* BoxOfficeResources.bundle */; };
+		74C1CF9011612ABE00C33147 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000098 /* NetflixResources.bundle */; };
+		74C1CF9111612ABE00C33147 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000110000009A /* License.txt */; };
+		74C1CF9411612ABE00C33147 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		74C1CF9511612ABE00C33147 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000145 /* AppDelegate.m */; };
+		74C1CF9711612ABE00C33147 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000E /* libBoxOfficeShared.a */; };
+		74C1CF9811612ABE00C33147 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005F /* libsqlite3.dylib */; };
+		74C1CF9911612ABE00C33147 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000700000119 /* AddressBook.framework */; };
+		74C1CF9A11612ABE00C33147 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000002 /* CFNetwork.framework */; };
+		74C1CF9B11612ABE00C33147 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000161 /* CoreFoundation.framework */; };
+		74C1CF9C11612ABE00C33147 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000090000017B /* CoreLocation.framework */; };
+		74C1CF9D11612ABE00C33147 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000090000016A /* CoreGraphics.framework */; };
+		74C1CF9E11612ABE00C33147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000083 /* Foundation.framework */; };
+		74C1CF9F11612ABE00C33147 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000086 /* MediaPlayer.framework */; };
+		74C1CFA011612ABE00C33147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001F /* UIKit.framework */; };
+		74C1CFA111612ABE00C33147 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026F /* SystemConfiguration.framework */; };
+		74C1CFA211612ABE00C33147 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000062 /* MapKit.framework */; };
+		74C1CFA311612ABE00C33147 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000B2 /* MessageUI.framework */; };
+		74C1CFA411612ABE00C33147 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74176EC310E4A6560068CEC8 /* StoreKit.framework */; };
 		74F22ED9114E1D5300CF9CE3 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +69,13 @@
 			remoteInfo = BoxOfficeShared;
 		};
 		100000000000001500000033 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000AB;
+			remoteInfo = BoxOfficeShared;
+		};
+		74C1CF8711612ABE00C33147 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
@@ -105,6 +137,7 @@
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74176EC310E4A6560068CEC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		74C1CFAA11612ABE00C33147 /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +160,27 @@
 				10000000000000120000006E /* MapKit.framework in Frameworks */,
 				1000000000000012000000BD /* MessageUI.framework in Frameworks */,
 				74176EC410E4A6560068CEC8 /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C1CF9611612ABE00C33147 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C1CF9711612ABE00C33147 /* libBoxOfficeShared.a in Frameworks */,
+				74C1CF9811612ABE00C33147 /* libsqlite3.dylib in Frameworks */,
+				74C1CF9911612ABE00C33147 /* AddressBook.framework in Frameworks */,
+				74C1CF9A11612ABE00C33147 /* CFNetwork.framework in Frameworks */,
+				74C1CF9B11612ABE00C33147 /* CoreFoundation.framework in Frameworks */,
+				74C1CF9C11612ABE00C33147 /* CoreLocation.framework in Frameworks */,
+				74C1CF9D11612ABE00C33147 /* CoreGraphics.framework in Frameworks */,
+				74C1CF9E11612ABE00C33147 /* Foundation.framework in Frameworks */,
+				74C1CF9F11612ABE00C33147 /* MediaPlayer.framework in Frameworks */,
+				74C1CFA011612ABE00C33147 /* UIKit.framework in Frameworks */,
+				74C1CFA111612ABE00C33147 /* SystemConfiguration.framework in Frameworks */,
+				74C1CFA211612ABE00C33147 /* MapKit.framework in Frameworks */,
+				74C1CFA311612ABE00C33147 /* MessageUI.framework in Frameworks */,
+				74C1CFA411612ABE00C33147 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				10000000000000150000015E /* PocketFlicks.app */,
+				74C1CFAA11612ABE00C33147 /* PocketFlicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +313,24 @@
 			productReference = 10000000000000150000015E /* PocketFlicks.app */;
 			productType = "com.apple.product-type.application";
 		};
+		74C1CF8511612ABE00C33147 /* PocketFlick-iPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlick-iPhone" */;
+			buildPhases = (
+				74C1CF8811612ABE00C33147 /* Resources */,
+				74C1CF9311612ABE00C33147 /* Sources */,
+				74C1CF9611612ABE00C33147 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74C1CF8611612ABE00C33147 /* PBXTargetDependency */,
+			);
+			name = "PocketFlick-iPhone";
+			productName = PocketFlicks;
+			productReference = 74C1CFAA11612ABE00C33147 /* PocketFlicks.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -309,6 +382,7 @@
 			projectRoot = "";
 			targets = (
 				10000000000000150000015D /* PocketFlicks */,
+				74C1CF8511612ABE00C33147 /* PocketFlick-iPhone */,
 			);
 		};
 /* End PBXProject section */
@@ -341,6 +415,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74C1CF8811612ABE00C33147 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C1CF8911612ABE00C33147 /* MainWindow.xib in Resources */,
+				74C1CF8A11612ABE00C33147 /* Localizable.strings in Resources */,
+				74C1CF8B11612ABE00C33147 /* Default.png in Resources */,
+				74C1CF8C11612ABE00C33147 /* Icon.png in Resources */,
+				74C1CF8D11612ABE00C33147 /* Entitlements.plist in Resources */,
+				74C1CF8E11612ABE00C33147 /* MetasyntacticResources.bundle in Resources */,
+				74C1CF8F11612ABE00C33147 /* BoxOfficeResources.bundle in Resources */,
+				74C1CF9011612ABE00C33147 /* NetflixResources.bundle in Resources */,
+				74C1CF9111612ABE00C33147 /* License.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -353,6 +443,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74C1CF9311612ABE00C33147 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C1CF9411612ABE00C33147 /* main.m in Sources */,
+				74C1CF9511612ABE00C33147 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -360,6 +459,11 @@
 			isa = PBXTargetDependency;
 			name = BoxOfficeShared;
 			targetProxy = 100000000000001500000033 /* PBXContainerItemProxy */;
+		};
+		74C1CF8611612ABE00C33147 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 74C1CF8711612ABE00C33147 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -593,6 +697,30 @@
 			};
 			name = Release;
 		};
+		74C1CFA611612ABE00C33147 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		74C1CFA711612ABE00C33147 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		74C1CFA811612ABE00C33147 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = AdHoc;
+		};
+		74C1CFA911612ABE00C33147 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -614,6 +742,17 @@
 				100000000000001700000058 /* Release */,
 				10000000000000070000010C /* AdHoc */,
 				100000000000000A000000B6 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlick-iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C1CFA611612ABE00C33147 /* Debug */,
+				74C1CFA711612ABE00C33147 /* Release */,
+				74C1CFA811612ABE00C33147 /* AdHoc */,
+				74C1CFA911612ABE00C33147 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
