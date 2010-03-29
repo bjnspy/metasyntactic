@@ -129,14 +129,45 @@
 }
 
 
+- (NSRange) search:(NSString*) string
+           options:(NSStringCompareOptions) options
+             range:(NSRange) range {
+  NSRange searchRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
+                                                  options:options
+                                                    range:range];
+  if (searchRange.length > 0) {
+    return searchRange;
+  }
+  
+  return [synopsis rangeOfCharacterFromSet:[NSCharacterSet punctuationCharacterSet]
+                                   options:options
+                                     range:range];
+}
+
+
+- (NSRange) searchBackward:(NSString*) string
+                     range:(NSRange) range {
+  return [self search:string
+              options:NSBackwardsSearch
+                range:range];
+}
+
+
+- (NSRange) searchForward:(NSString*) string
+                    range:(NSRange) range {
+  return [self search:string
+              options:0
+                range:range];
+}
+
+
 - (NSInteger) searchBackwardForSplit:(NSInteger) currentSplit
                           chunk1Size:(CGSize) chunk1Size {
   while (YES) {
-    NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
-                                                        options:NSBackwardsSearch
-                                                          range:NSMakeRange(0, currentSplit)];
-    NSInteger whitespaceIndex = whitespaceRange.location;
-    if (whitespaceIndex == 0 || whitespaceRange.length == 0) {
+    NSRange searchRange = [self searchBackward:synopsis
+                                         range:NSMakeRange(0, currentSplit)];
+    NSInteger whitespaceIndex = searchRange.location;
+    if (whitespaceIndex == 0 || searchRange.length == 0) {
       return currentSplit;
     }
 
@@ -155,11 +186,10 @@
 - (NSInteger) searchForwardForSplit:(NSInteger) currentSplit
                          chunk1Size:(CGSize) chunk1Size {
   while (YES) {
-    NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
-                                                        options:0
-                                                          range:NSMakeRange(currentSplit + 1, synopsis.length - currentSplit - 1)];
-    NSInteger whitespaceIndex = whitespaceRange.location;
-    if (whitespaceIndex == 0 || whitespaceRange.length == 0) {
+    NSRange searchRange = [self searchForward:synopsis
+                                        range:NSMakeRange(currentSplit + 1, synopsis.length - currentSplit - 1)];
+    NSInteger whitespaceIndex = searchRange.location;
+    if (whitespaceIndex == 0 || searchRange.length == 0) {
       return currentSplit;
     }
 
@@ -197,11 +227,11 @@
   NSInteger guess = (NSInteger)((double)synopsis.length * chunk1Height / entireSynopsisHeight);
   guess = MIN(guess, synopsis.length);
 
-  NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
-                                                      options:NSBackwardsSearch
-                                                        range:NSMakeRange(0, guess)];
-  NSInteger currentSplit = whitespaceRange.location;
-  if (currentSplit == 0 || whitespaceRange.length == 0) {
+  NSRange searchRange = [self searchBackward:synopsis
+                                       range:NSMakeRange(0, guess)];
+  
+  NSInteger currentSplit = searchRange.location;
+  if (currentSplit == 0 || searchRange.length == 0) {
     return synopsis.length;
   }
 
