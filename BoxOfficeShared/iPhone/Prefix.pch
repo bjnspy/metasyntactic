@@ -16,6 +16,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <CommonCrypto/CommonHMAC.h>
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MPMoviePlayerController.h>

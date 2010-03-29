@@ -1579,7 +1579,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
@@ -1622,7 +1622,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
@@ -1654,7 +1654,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
@@ -1697,7 +1697,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
