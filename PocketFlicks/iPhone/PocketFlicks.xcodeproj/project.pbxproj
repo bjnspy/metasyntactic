@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -264,7 +264,7 @@
 		1000000000000015000001E0 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "PocketFlicks" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -431,7 +431,8 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos3.0;
+				VALID_ARCHS = armv6;
 			};
 			name = AdHoc;
 		};
@@ -489,7 +490,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos3.0;
+				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
@@ -527,7 +529,8 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos3.0;
+				VALID_ARCHS = armv6;
 			};
 			name = Distribution;
 		};
@@ -585,7 +588,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos3.0;
+				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};

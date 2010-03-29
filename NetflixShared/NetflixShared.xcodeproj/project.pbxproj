@@ -555,7 +555,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
@@ -587,7 +587,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv6;
 			};
