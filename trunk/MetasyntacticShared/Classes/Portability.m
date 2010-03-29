@@ -8,7 +8,7 @@
 
 #import "Portability.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED <= (__IPHONE_3_1 + 50)
+#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_0
 
 @implementation UIApplication(Portability)
 

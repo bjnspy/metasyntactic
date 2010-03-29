@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED <= (__IPHONE_3_1 + 50)
+#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_0
 typedef enum {
   UIUserInterfaceIdiomPhone,           // iPhone and iPod touch style UI
   UIUserInterfaceIdiomPad,             // iPad style UI
