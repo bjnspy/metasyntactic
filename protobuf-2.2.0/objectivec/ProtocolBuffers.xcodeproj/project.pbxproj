@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -457,7 +457,7 @@
 		1000000000000015000001E0 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "ProtocolBuffers" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 1000000000000009000001D5 /* CustomTemplate */;
 			projectDirPath = "";
