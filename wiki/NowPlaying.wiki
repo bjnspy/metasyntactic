@@ -23,8 +23,8 @@ If anyone would like to help localize this app for foreign languages, let me kno
   * find information on movies that are coming soon
   * keep movie and theater information on your iPhone, even without a network connection
 
-[http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image0.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image0.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image1.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image1.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image3.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image3.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image4.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image4.png]
-[http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image2.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/Image2.png] 
+[http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image0.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image0.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image1.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image1.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image3.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image3.png] [http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image4.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image4.png]
+[http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image2.tiff http://metasyntactic.googlecode.com/svn/trunk/NowPlaying/Resources/iPhone/Image2.png] 
 
 ==Download Now Playing today from the [http://www.apple.com/iphone/appstore/ iPhone app store].==
 
