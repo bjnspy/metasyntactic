@@ -14,8 +14,7 @@
 
 #import "AbstractApplication.h"
 
-#include <sys/sysctl.h>
-
+#import "DeviceUtilities.h"
 #import "MetasyntacticShared.h"
 
 @implementation AbstractApplication
@@ -375,35 +374,8 @@ static NSString* storeDirectory = nil;
 }
 
 
-+ (BOOL) isIPhone {
-  UIDevice* device = [UIDevice currentDevice];
-  return [[device model] isEqual:@"iPhone"];
-}
-
-
-+ (NSString*) hardware {
-  size_t size;
-  sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-  char* machine = malloc(size);
-  sysctlbyname("hw.machine", machine, &size, NULL, 0);
-  NSString* hardware = [NSString stringWithCString:machine encoding: NSUTF8StringEncoding];
-  free(machine);
-  return hardware;
-}
-
-
-+ (BOOL) isIPhone3G {
-  if (![self isIPhone]) {
-    return NO;
-  }
-
-  NSString* hardware = [self hardware];
-  return [hardware hasPrefix:@"iPhone1"];
-}
-
-
 + (void) makeCall:(NSString*) phoneNumber {
-  if (![self isIPhone]) {
+  if (![DeviceUtilities isIPhone]) {
     return;
   }
 

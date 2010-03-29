@@ -39,7 +39,8 @@
 + (OAMutableURLRequest*) requestWithURL:(NSURL*) url
                                consumer:(OAConsumer*) consumer
                                   token:(OAToken*) token
-                                  realm:(NSString*) realm;
+                                  realm:(NSString*) realm
+                              timestamp:(NSString*) timestamp;
 
 - (void) prepare;
 

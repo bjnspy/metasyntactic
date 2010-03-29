@@ -60,6 +60,7 @@
 #import "DatePickerDelegate.h"
 #import "DatePickerViewController.h"
 #import "DateUtilities.h"
+#import "DeviceUtilities.h"
 #import "DifferenceEngine.h"
 #import "EditorViewController.h"
 #import "FileUtilities.h"
