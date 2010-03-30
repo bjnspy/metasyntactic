@@ -21,7 +21,6 @@
 #import "NetflixUtilities.h"
 
 @interface NetflixNetworking()
-@property (retain) NSNumber* serverAndDeviceMatch;
 @end
 
 @implementation NetflixNetworking
@@ -34,10 +33,8 @@ static NetflixNetworking* networking = nil;
   }
 }
 
-@synthesize serverAndDeviceMatch;
 
 - (void) dealloc {
-  self.serverAndDeviceMatch = nil;
   [super dealloc];
 }
 
@@ -56,18 +53,14 @@ static NetflixNetworking* networking = nil;
 
 
 - (NSString*) netflixTimestampWorker {
-  if (serverAndDeviceMatch == nil) {
+  if (serverAndDeviceMatch) {
+    return [self deviceTimestamp];
+  } else {
     NSString* serverTimestamp = [self serverTimestamp];
     NSString* deviceTimestamp = [self deviceTimestamp];
     
-    serverAndDeviceMatch = [NSNumber numberWithBool:[serverTimestamp isEqual:deviceTimestamp]];
+    serverAndDeviceMatch = [serverTimestamp isEqual:deviceTimestamp];
     return serverTimestamp;
-  } else {
-    if (serverAndDeviceMatch.boolValue) {
-      return [self deviceTimestamp];
-    } else {
-      return [self serverTimestamp];
-    }
   }
 }
 

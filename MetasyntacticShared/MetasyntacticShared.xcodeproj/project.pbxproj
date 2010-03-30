@@ -1109,6 +1109,7 @@
 				100000000000000800000018 /* Base64.h */,
 				10000000000000090000002B /* CollectionUtilities.h */,
 				100000000000000900000073 /* DateUtilities.h */,
+				74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */,
 				100000000000000900000079 /* DifferenceEngine.h */,
 				10000000000000090000009C /* FileUtilities.h */,
 				100000000000000E00000027 /* HtmlUtilities.h */,
@@ -1130,6 +1131,7 @@
 				10000000000000080000001A /* Base64.m */,
 				100000000000000900000040 /* CollectionUtilities.m */,
 				100000000000000900000075 /* DateUtilities.m */,
+				74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */,
 				100000000000000900000098 /* DifferenceEngine.m */,
 				1000000000000009000000A7 /* FileUtilities.m */,
 				100000000000000E00000029 /* HtmlUtilities.m */,
@@ -1147,8 +1149,6 @@
 				100000000000001800000061 /* UIColor+Utilities.m */,
 				100000000000001A00000030 /* UIScrollView+Utilities.m */,
 				100000000000001A00000044 /* UIViewController+Utilities.m */,
-				74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */,
-				74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
