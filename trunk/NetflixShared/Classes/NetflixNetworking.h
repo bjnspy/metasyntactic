@@ -14,7 +14,7 @@
 
 @interface NetflixNetworking : AbstractCache {
 @private
-  NSNumber* serverAndDeviceMatch;
+  BOOL serverAndDeviceMatch;
 }
 
 + (NSString*) netflixTimestamp;
