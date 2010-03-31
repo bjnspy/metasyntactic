@@ -61,7 +61,7 @@
     self.arguments = arguments_;
     self.backgroundColor = [UIColor clearColor];// [UIColor groupTableViewBackgroundColor];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
       marginWidth = 44;
     } else {
       marginWidth = 10;

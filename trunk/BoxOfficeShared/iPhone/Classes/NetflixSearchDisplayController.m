@@ -180,7 +180,7 @@
 
 
 - (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
     [self setActive:NO animated:YES];
   }
   

@@ -492,7 +492,7 @@ const NSInteger START_YEAR = 1912;
 
 
 - (NSData*) downloadUrlData:(NSString*) url {
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
     return [self downloadLargeUrlData:url];
   } else {
     return [self downloadSmallUrlDataAndCache:url];
