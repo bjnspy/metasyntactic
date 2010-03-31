@@ -167,7 +167,7 @@ typedef enum {
   NSMutableArray* titles = [NSMutableArray array];
   NSMutableArray* arguments = [NSMutableArray array];
 
-  if (trailersArray.count > 0) {
+  if (trailersArray.count > 0 && ![Model model].isInReviewPeriod) {
     [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
     [titles addObject:LocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
     [arguments addObject:[NSNull null]];

@@ -201,26 +201,14 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
     }
   } else if (section == MyOtherApplicationsSection) {
-    if ([Model model].isInReviewPeriod) {
-      if (row == 0) {
-        cell.textLabel.text = @"Now Playing";
-      } else if (row == 1) {
-        cell.textLabel.text = @"Your Rights";
-      } else if (row == 2) {
-        cell.textLabel.text = @"Comics";
-      } else {
-        cell.textLabel.text = @"ComiXology";
-      }
+    if (row == 0) {
+      cell.textLabel.text = @"Now Playing";
+    } else if (row == 1) {
+      cell.textLabel.text = @"Your Rights";
+    } else if (row == 2) {
+      cell.textLabel.text = @"Comics";
     } else {
-      if (row == 0) {
-        cell.textLabel.text = @"Now Playing (Free)";
-      } else if (row == 1) {
-        cell.textLabel.text = @"Your Rights (Free)";
-      } else if (row == 2) {
-        cell.textLabel.text = @"Comics ($0.99)";
-      } else {
-        cell.textLabel.text = @"ComiXology ($1.99)";
-      }
+      cell.textLabel.text = @"ComiXology";
     }
   } else if (section == GraphicsBySection) {
     cell.textLabel.text = LocalizedString(@"Website", nil);
