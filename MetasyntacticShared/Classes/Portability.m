@@ -22,17 +22,27 @@
 
 @implementation Portability
 
+- (void) setStatusBarHidden:(BOOL) hidden
+                   animated:(BOOL) animated {
+}
+
+- (void) setStatusBarHidden:(BOOL) hidden
+              withAnimation:(UIStatusBarAnimation) animation {
+}
+
+
+- (UIUserInterfaceIdiom) userInterfaceIdiom {
+  return UIUserInterfaceIdiomPhone;
+}
+
+
 + (UIUserInterfaceIdiom) userInterfaceIdiom {
-  UIDevice* device = [UIDevice currentDevice];
+  id device = [UIDevice currentDevice];
   if ([device respondsToSelector:@selector(userInterfaceIdiom)]) {
     return [device userInterfaceIdiom];
   } else {
     return UIUserInterfaceIdiomPhone;
   }
-}
-
-
-- (void) setStatusBarHidden:(BOOL) hidden animated:(BOOL) animated {
 }
 
 

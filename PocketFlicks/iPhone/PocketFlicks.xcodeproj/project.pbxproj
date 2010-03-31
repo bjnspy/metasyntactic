@@ -109,7 +109,7 @@
 		1000000000000012000000E8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		100000000000001300000098 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
 		1000000000000013000000AD /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
-		10000000000000150000015E /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10000000000000150000015E /* PocketFlicks-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PocketFlicks-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1000000000000015000001A4 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		10000000000000180000026F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		100000000000001A0000001F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -137,7 +137,7 @@
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74176EC310E4A6560068CEC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		74C1CFAA11612ABE00C33147 /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C1CFAA11612ABE00C33147 /* PocketFlicks-iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PocketFlicks-iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,8 +252,8 @@
 		1000000000000015000001D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000150000015E /* PocketFlicks.app */,
-				74C1CFAA11612ABE00C33147 /* PocketFlicks.app */,
+				10000000000000150000015E /* PocketFlicks-iPad.app */,
+				74C1CFAA11612ABE00C33147 /* PocketFlicks-iPhone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -295,9 +295,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		10000000000000150000015D /* PocketFlicks */ = {
+		10000000000000150000015D /* PocketFlicks-iPad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000800000124 /* Build configuration list for PBXNativeTarget "PocketFlicks" */;
+			buildConfigurationList = 100000000000000800000124 /* Build configuration list for PBXNativeTarget "PocketFlicks-iPad" */;
 			buildPhases = (
 				100000000000001700000068 /* Resources */,
 				1000000000000018000000EC /* Sources */,
@@ -308,14 +308,14 @@
 			dependencies = (
 				1000000000000015000000A6 /* PBXTargetDependency */,
 			);
-			name = PocketFlicks;
+			name = "PocketFlicks-iPad";
 			productName = PocketFlicks;
-			productReference = 10000000000000150000015E /* PocketFlicks.app */;
+			productReference = 10000000000000150000015E /* PocketFlicks-iPad.app */;
 			productType = "com.apple.product-type.application";
 		};
-		74C1CF8511612ABE00C33147 /* PocketFlick-iPhone */ = {
+		74C1CF8511612ABE00C33147 /* PocketFlicks-iPhone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlick-iPhone" */;
+			buildConfigurationList = 74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlicks-iPhone" */;
 			buildPhases = (
 				74C1CF8811612ABE00C33147 /* Resources */,
 				74C1CF9311612ABE00C33147 /* Sources */,
@@ -326,9 +326,9 @@
 			dependencies = (
 				74C1CF8611612ABE00C33147 /* PBXTargetDependency */,
 			);
-			name = "PocketFlick-iPhone";
+			name = "PocketFlicks-iPhone";
 			productName = PocketFlicks;
-			productReference = 74C1CFAA11612ABE00C33147 /* PocketFlicks.app */;
+			productReference = 74C1CFAA11612ABE00C33147 /* PocketFlicks-iPhone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -381,8 +381,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				10000000000000150000015D /* PocketFlicks */,
-				74C1CF8511612ABE00C33147 /* PocketFlick-iPhone */,
+				10000000000000150000015D /* PocketFlicks-iPad */,
+				74C1CF8511612ABE00C33147 /* PocketFlicks-iPhone */,
 			);
 		};
 /* End PBXProject section */
@@ -535,7 +535,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 				VALID_ARCHS = armv6;
 			};
 			name = AdHoc;
@@ -544,7 +544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -554,7 +554,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -594,7 +594,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Debug;
@@ -632,8 +632,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos3.0;
+				PROVISIONING_PROFILE = "26A706B1-39C4-46AF-BDB2-7799885F9AAF";
+				SDKROOT = iphoneos3.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Distribution;
@@ -642,7 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -652,7 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -692,7 +692,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Release;
@@ -700,31 +700,39 @@
 		74C1CFA611612ABE00C33147 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Debug;
 		};
 		74C1CFA711612ABE00C33147 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Release;
 		};
 		74C1CFA811612ABE00C33147 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = AdHoc;
 		};
 		74C1CFA911612ABE00C33147 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000800000124 /* Build configuration list for PBXNativeTarget "PocketFlicks" */ = {
+		100000000000000800000124 /* Build configuration list for PBXNativeTarget "PocketFlicks-iPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000A00000042 /* Debug */,
@@ -746,7 +754,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlick-iPhone" */ = {
+		74C1CFA511612ABE00C33147 /* Build configuration list for PBXNativeTarget "PocketFlicks-iPhone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74C1CFA611612ABE00C33147 /* Debug */,
