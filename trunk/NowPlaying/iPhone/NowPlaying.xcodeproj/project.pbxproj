@@ -98,7 +98,7 @@
 		10000000000000070000013E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		100000000000000700000144 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		100000000000000700000163 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		100000000000000700000164 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000700000164 /* NowPlaying-iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NowPlaying-iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1000000000000008000000C9 /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
 		1000000000000008000000D0 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoxOfficeShared.h; path = ../../BoxOfficeShared/iPhone/Classes/BoxOfficeShared.h; sourceTree = SOURCE_ROOT; };
 		1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoxOfficeShared.xcodeproj; path = ../../BoxOfficeShared/iPhone/BoxOfficeShared.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -146,7 +146,7 @@
 		100000000000002E00000034 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		745C0E321162F38500093306 /* NowPlaying-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NowPlaying-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
 		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
@@ -265,8 +265,8 @@
 		1000000000000015000001D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000700000164 /* NowPlaying.app */,
-				745C0E321162F38500093306 /* NowPlaying.app */,
+				100000000000000700000164 /* NowPlaying-iPhone.app */,
+				745C0E321162F38500093306 /* NowPlaying-iPad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 			);
 			name = "NowPlaying-iPhone";
 			productName = BoxOffice;
-			productReference = 100000000000000700000164 /* NowPlaying.app */;
+			productReference = 100000000000000700000164 /* NowPlaying-iPhone.app */;
 			productType = "com.apple.product-type.application";
 		};
 		745C0E091162F38500093306 /* NowPlaying-iPad */ = {
@@ -361,7 +361,7 @@
 			);
 			name = "NowPlaying-iPad";
 			productName = BoxOffice;
-			productReference = 745C0E321162F38500093306 /* NowPlaying.app */;
+			productReference = 745C0E321162F38500093306 /* NowPlaying-iPad.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -578,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = AdHoc;
 		};
@@ -585,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Debug;
 		};
@@ -626,6 +628,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Distribution;
 		};
@@ -665,6 +668,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Release;
 		};
@@ -703,24 +707,28 @@
 		745C0E2E1162F38500093306 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 			};
 			name = Debug;
 		};
 		745C0E2F1162F38500093306 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 			};
 			name = Release;
 		};
 		745C0E301162F38500093306 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 			};
 			name = AdHoc;
 		};
 		745C0E311162F38500093306 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)-iPad";
 			};
 			name = Distribution;
 		};

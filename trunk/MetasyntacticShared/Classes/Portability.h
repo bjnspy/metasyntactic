@@ -6,7 +6,6 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30200
 //
 //#define UI_USER_INTERFACE_IDIOM() (UIUserInterfaceIdiomPhone)
 //
@@ -16,18 +15,19 @@
 //
 //@end
 //
-//#endif
 
-//typedef enum {
-//  UIUserInterfaceIdiomPhone,           // iPhone and iPod touch style UI
-//  UIUserInterfaceIdiomPad,             // iPad style UI
-//} UIUserInterfaceIdiom;
-//
-//typedef enum {
-//  UIStatusBarAnimationNone,
-//  UIStatusBarAnimationFade,
-//  UIStatusBarAnimationSlide,
-//} UIStatusBarAnimation;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30200
+typedef enum {
+  UIUserInterfaceIdiomPhone,           // iPhone and iPod touch style UI
+  UIUserInterfaceIdiomPad,             // iPad style UI
+} UIUserInterfaceIdiom;
+
+typedef enum {
+  UIStatusBarAnimationNone,
+  UIStatusBarAnimationFade,
+  UIStatusBarAnimationSlide,
+} UIStatusBarAnimation;
+#endif
 
 @interface Portability : NSObject
 {
