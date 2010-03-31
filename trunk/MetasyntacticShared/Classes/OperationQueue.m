@@ -21,7 +21,7 @@
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
 @property (retain) NSMutableArray* boundedOperations;
-@property (retain) NSLock* dataGate;
+@property (retain) id<NSLocking> dataGate;
 @end
 
 
@@ -86,7 +86,7 @@ static OperationQueue* operationQueue = nil;
 
 - (id) init {
   if ((self = [super init])) {
-    self.dataGate = [[[NSLock alloc] init] autorelease];
+    self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
     
     // Ugly hack.
     CGSize size = [[UIScreen mainScreen] bounds].size;
