@@ -147,7 +147,6 @@
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		745C0E341162F38500093306 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
 		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
@@ -285,7 +284,6 @@
 				1000000000000011000000C5 /* Localizable.strings */,
 				100000000000001100000099 /* License.txt */,
 				100000000000001200000049 /* MainWindow.xib */,
-				745C0E341162F38500093306 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -705,28 +703,24 @@
 		745C0E2E1162F38500093306 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Info copy.plist";
 			};
 			name = Debug;
 		};
 		745C0E2F1162F38500093306 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Info copy.plist";
 			};
 			name = Release;
 		};
 		745C0E301162F38500093306 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Info copy.plist";
 			};
 			name = AdHoc;
 		};
 		745C0E311162F38500093306 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Info copy.plist";
 			};
 			name = Distribution;
 		};
