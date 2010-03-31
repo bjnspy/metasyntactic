@@ -90,7 +90,7 @@ typedef enum {
   if (section == SendFeedbackSection) {
     return 1;
   } else if (section == StandardSettingsSection) {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
       return 7;
     } else {
       return 8;
