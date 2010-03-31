@@ -32,6 +32,36 @@
 		10000000000000290000000F /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
 		100000000000002900000062 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005E /* libsqlite3.dylib */; };
 		100000000000002A0000000F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		745C0E0D1162F38500093306 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000C /* Entitlements.plist */; };
+		745C0E0E1162F38500093306 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000093 /* Default.png */; };
+		745C0E0F1162F38500093306 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000056 /* Icon.png */; };
+		745C0E101162F38500093306 /* Icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000065 /* Icon2.png */; };
+		745C0E111162F38500093306 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001200000049 /* MainWindow.xib */; };
+		745C0E121162F38500093306 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000011000000C5 /* Localizable.strings */; };
+		745C0E131162F38500093306 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000CF /* MetasyntacticResources.bundle */; };
+		745C0E141162F38500093306 /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000008000000C9 /* BoxOfficeResources.bundle */; };
+		745C0E151162F38500093306 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000097 /* NetflixResources.bundle */; };
+		745C0E161162F38500093306 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001100000099 /* License.txt */; };
+		745C0E171162F38500093306 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
+		745C0E181162F38500093306 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
+		745C0E191162F38500093306 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
+		745C0E1A1162F38500093306 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */; };
+		745C0E1C1162F38500093306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		745C0E1D1162F38500093306 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000144 /* AppDelegate.m */; };
+		745C0E1F1162F38500093306 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005E /* libsqlite3.dylib */; };
+		745C0E201162F38500093306 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000700000118 /* AddressBook.framework */; };
+		745C0E211162F38500093306 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000001 /* CFNetwork.framework */; };
+		745C0E221162F38500093306 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000160 /* CoreFoundation.framework */; };
+		745C0E231162F38500093306 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000168 /* CoreGraphics.framework */; };
+		745C0E241162F38500093306 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000090000017A /* CoreLocation.framework */; };
+		745C0E251162F38500093306 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000081 /* Foundation.framework */; };
+		745C0E261162F38500093306 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000061 /* MapKit.framework */; };
+		745C0E271162F38500093306 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000085 /* MediaPlayer.framework */; };
+		745C0E281162F38500093306 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000B1 /* MessageUI.framework */; };
+		745C0E291162F38500093306 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */; };
+		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
+		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
+		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
 		74F22A7F114DD16D00CF9CE3 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
 		74F22CC9114DEFBF00CF9CE3 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
 		74F22D20114DF96F00CF9CE3 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
@@ -48,6 +78,13 @@
 			remoteInfo = BoxOfficeShared;
 		};
 		100000000000001500000031 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000AB;
+			remoteInfo = BoxOfficeShared;
+		};
+		745C0E0B1162F38500093306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
 			proxyType = 1;
@@ -109,6 +146,8 @@
 		100000000000002E00000034 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		745C0E341162F38500093306 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
 		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
@@ -135,6 +174,27 @@
 				100000000000001800000276 /* SystemConfiguration.framework in Frameworks */,
 				100000000000001A00000027 /* UIKit.framework in Frameworks */,
 				10000000000000290000000F /* libBoxOfficeShared.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		745C0E1E1162F38500093306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E1F1162F38500093306 /* libsqlite3.dylib in Frameworks */,
+				745C0E201162F38500093306 /* AddressBook.framework in Frameworks */,
+				745C0E211162F38500093306 /* CFNetwork.framework in Frameworks */,
+				745C0E221162F38500093306 /* CoreFoundation.framework in Frameworks */,
+				745C0E231162F38500093306 /* CoreGraphics.framework in Frameworks */,
+				745C0E241162F38500093306 /* CoreLocation.framework in Frameworks */,
+				745C0E251162F38500093306 /* Foundation.framework in Frameworks */,
+				745C0E261162F38500093306 /* MapKit.framework in Frameworks */,
+				745C0E271162F38500093306 /* MediaPlayer.framework in Frameworks */,
+				745C0E281162F38500093306 /* MessageUI.framework in Frameworks */,
+				745C0E291162F38500093306 /* StoreKit.framework in Frameworks */,
+				745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */,
+				745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */,
+				745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				100000000000000700000164 /* NowPlaying.app */,
+				745C0E321162F38500093306 /* NowPlaying.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +285,7 @@
 				1000000000000011000000C5 /* Localizable.strings */,
 				100000000000001100000099 /* License.txt */,
 				100000000000001200000049 /* MainWindow.xib */,
+				745C0E341162F38500093306 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -268,9 +330,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100000000000000700000162 /* NowPlaying */ = {
+		100000000000000700000162 /* NowPlaying-iPhone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying" */;
+			buildConfigurationList = 10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying-iPhone" */;
 			buildPhases = (
 				100000000000001700000067 /* Resources */,
 				1000000000000018000000E9 /* Sources */,
@@ -281,9 +343,27 @@
 			dependencies = (
 				1000000000000015000000A5 /* PBXTargetDependency */,
 			);
-			name = NowPlaying;
+			name = "NowPlaying-iPhone";
 			productName = BoxOffice;
 			productReference = 100000000000000700000164 /* NowPlaying.app */;
+			productType = "com.apple.product-type.application";
+		};
+		745C0E091162F38500093306 /* NowPlaying-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying-iPad" */;
+			buildPhases = (
+				745C0E0C1162F38500093306 /* Resources */,
+				745C0E1B1162F38500093306 /* Sources */,
+				745C0E1E1162F38500093306 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				745C0E0A1162F38500093306 /* PBXTargetDependency */,
+			);
+			name = "NowPlaying-iPad";
+			productName = BoxOffice;
+			productReference = 745C0E321162F38500093306 /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -336,7 +416,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				100000000000000700000162 /* NowPlaying */,
+				100000000000000700000162 /* NowPlaying-iPhone */,
+				745C0E091162F38500093306 /* NowPlaying-iPad */,
 			);
 		};
 /* End PBXProject section */
@@ -373,6 +454,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		745C0E0C1162F38500093306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E0D1162F38500093306 /* Entitlements.plist in Resources */,
+				745C0E0E1162F38500093306 /* Default.png in Resources */,
+				745C0E0F1162F38500093306 /* Icon.png in Resources */,
+				745C0E101162F38500093306 /* Icon2.png in Resources */,
+				745C0E111162F38500093306 /* MainWindow.xib in Resources */,
+				745C0E121162F38500093306 /* Localizable.strings in Resources */,
+				745C0E131162F38500093306 /* MetasyntacticResources.bundle in Resources */,
+				745C0E141162F38500093306 /* BoxOfficeResources.bundle in Resources */,
+				745C0E151162F38500093306 /* NetflixResources.bundle in Resources */,
+				745C0E161162F38500093306 /* License.txt in Resources */,
+				745C0E171162F38500093306 /* MainWindow-iPad.xib in Resources */,
+				745C0E181162F38500093306 /* Icon-iPad.png in Resources */,
+				745C0E191162F38500093306 /* Default-Landscape.png in Resources */,
+				745C0E1A1162F38500093306 /* Default-Portrait.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -385,6 +487,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		745C0E1B1162F38500093306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E1C1162F38500093306 /* main.m in Sources */,
+				745C0E1D1162F38500093306 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -392,6 +503,11 @@
 			isa = PBXTargetDependency;
 			name = BoxOfficeShared;
 			targetProxy = 100000000000001500000031 /* PBXContainerItemProxy */;
+		};
+		745C0E0A1162F38500093306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 745C0E0B1162F38500093306 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -447,7 +563,6 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -464,12 +579,14 @@
 		10000000000000070000010D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 			};
 			name = AdHoc;
 		};
 		100000000000000A00000041 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 			};
 			name = Debug;
 		};
@@ -494,7 +611,6 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -511,6 +627,7 @@
 		100000000000000A000000B3 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 			};
 			name = Distribution;
 		};
@@ -533,7 +650,6 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -550,6 +666,7 @@
 		100000000000001700000021 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 			};
 			name = Release;
 		};
@@ -572,7 +689,6 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -586,10 +702,38 @@
 			};
 			name = Release;
 		};
+		745C0E2E1162F38500093306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Info copy.plist";
+			};
+			name = Debug;
+		};
+		745C0E2F1162F38500093306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Info copy.plist";
+			};
+			name = Release;
+		};
+		745C0E301162F38500093306 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Info copy.plist";
+			};
+			name = AdHoc;
+		};
+		745C0E311162F38500093306 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Info copy.plist";
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
+		10000000000000080000010D /* Build configuration list for PBXNativeTarget "NowPlaying-iPhone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000A00000041 /* Debug */,
@@ -607,6 +751,17 @@
 				100000000000001700000058 /* Release */,
 				10000000000000070000010C /* AdHoc */,
 				100000000000000A000000B6 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				745C0E2E1162F38500093306 /* Debug */,
+				745C0E2F1162F38500093306 /* Release */,
+				745C0E301162F38500093306 /* AdHoc */,
+				745C0E311162F38500093306 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
