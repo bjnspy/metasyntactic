@@ -535,7 +535,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.1.2;
 				VALID_ARCHS = armv6;
 			};
 			name = AdHoc;
@@ -594,7 +594,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.1.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Debug;
@@ -633,7 +633,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "26A706B1-39C4-46AF-BDB2-7799885F9AAF";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.1.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Distribution;
@@ -692,7 +692,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos3.1.2;
 				VALID_ARCHS = armv6;
 			};
 			name = Release;
@@ -700,7 +700,6 @@
 		74C1CFA611612ABE00C33147 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Debug;
@@ -708,7 +707,6 @@
 		74C1CFA711612ABE00C33147 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Release;
@@ -716,7 +714,6 @@
 		74C1CFA811612ABE00C33147 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = AdHoc;
@@ -724,7 +721,6 @@
 		74C1CFA911612ABE00C33147 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Distribution;

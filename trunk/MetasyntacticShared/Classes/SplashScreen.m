@@ -121,7 +121,7 @@ static SplashScreen* splashScreen = nil;
 
 
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     UIViewController* rootViewController = [delegate viewController];
     
     UIWindow* window = [UIApplication sharedApplication].windows.lastObject;

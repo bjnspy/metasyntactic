@@ -81,7 +81,7 @@ const NSInteger PAGE_RANGE = 2;
 
   [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
 
-  [Portability setApplicationStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+  [Portability setApplicationStatusBarHidden:YES withAnimation:StatusBarAnimationFade];
   [self.abstractNavigationController setToolbarHidden:NO animated:YES];
   self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
   self.abstractNavigationController.toolbar.translucent = YES;
@@ -91,7 +91,7 @@ const NSInteger PAGE_RANGE = 2;
 - (void) onBeforeViewControllerPopped {
   [super onBeforeViewControllerPopped];
   
-  [Portability setApplicationStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+  [Portability setApplicationStatusBarHidden:NO withAnimation:StatusBarAnimationFade];
   [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
 
   [self.abstractNavigationController setToolbarHidden:YES animated:YES];
@@ -225,7 +225,7 @@ const NSInteger PAGE_RANGE = 2;
 
 
 - (UIView*) createImageViewContainer:(UIImage*) image {
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     return [self createEmbeddedImageView:image];
   } else {
     return [self createScaledImageView:image];

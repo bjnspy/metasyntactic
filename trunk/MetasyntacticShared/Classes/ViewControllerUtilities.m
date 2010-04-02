@@ -60,7 +60,7 @@ static UIFont* minimumTitleFont = nil;
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
   
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     label.shadowColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(0, 1);
     label.textColor = RGBUIColor(113, 120, 128);
@@ -124,7 +124,7 @@ static UIFont* minimumTitleFont = nil;
     return;
   }
   
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     controller.navigationItem.titleView = nil;
     return;
   }

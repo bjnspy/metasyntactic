@@ -91,7 +91,7 @@
     return nil;
   }
   
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     return UIImageJPEGRepresentation(result, 0.9f);
   } else {
     return UIImageJPEGRepresentation(result, 0.5f);

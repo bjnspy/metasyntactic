@@ -28,7 +28,7 @@ static NSInteger s_groupedTableViewMargin;
 
 + (void) initialize {
   if (self == [AbstractTableViewCell class]) {
-    if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
       s_groupedTableViewMargin = 44;
     } else {
       s_groupedTableViewMargin = 10;
