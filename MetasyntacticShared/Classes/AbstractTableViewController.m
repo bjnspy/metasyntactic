@@ -400,7 +400,7 @@
 - (UIBarButtonItem*) createActivityIndicator {
   UIActivityIndicatorView* activityIndicatorView;
   
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
   } else {
     activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -418,7 +418,7 @@
 
 - (UIBarButtonItem*) createInfoButton:(SEL) action {
   UIButton* infoButton;
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
   } else {
     infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];

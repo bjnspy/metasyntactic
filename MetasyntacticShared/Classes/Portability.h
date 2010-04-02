@@ -6,36 +6,24 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//
-//#define UI_USER_INTERFACE_IDIOM() (UIUserInterfaceIdiomPhone)
-//
-//@interface UIApplication(Portability)
-//
-//- (void)setStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation;
-//
-//@end
-//
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30200
 typedef enum {
-  UIUserInterfaceIdiomPhone,           // iPhone and iPod touch style UI
-  UIUserInterfaceIdiomPad,             // iPad style UI
-} UIUserInterfaceIdiom;
+  UserInterfaceIdiomPhone,           // iPhone and iPod touch style UI
+  UserInterfaceIdiomPad,             // iPad style UI
+} UserInterfaceIdiom;
 
 typedef enum {
-  UIStatusBarAnimationNone,
-  UIStatusBarAnimationFade,
-  UIStatusBarAnimationSlide,
-} UIStatusBarAnimation;
-#endif
+  StatusBarAnimationNone,
+  StatusBarAnimationFade,
+  StatusBarAnimationSlide,
+} StatusBarAnimation;
 
 @interface Portability : NSObject
 {
 
 }
 
-+ (UIUserInterfaceIdiom) userInterfaceIdiom;
-+ (void)setApplicationStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation;
++ (UserInterfaceIdiom) userInterfaceIdiom;
++ (void)setApplicationStatusBarHidden:(BOOL)hidden withAnimation:(StatusBarAnimation)animation;
 
 @end
 

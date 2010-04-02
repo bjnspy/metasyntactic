@@ -244,7 +244,7 @@
 
 
 - (void) didSelectRowAtIndexPathWorker:(NSIndexPath*) indexPath {
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     [self setActive:NO animated:YES];
   }
   

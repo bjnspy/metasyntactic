@@ -1237,7 +1237,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (BOOL) useSmallFonts {
-  if ([Portability userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     return NO;
   }
   

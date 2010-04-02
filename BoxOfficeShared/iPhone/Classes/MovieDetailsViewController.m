@@ -698,7 +698,7 @@ typedef enum {
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
     posterImageView.tag = ZOOM_POSTER_IMAGE_VIEW_TAG;
     posterImageView.delegate = self;
-    BOOL limitLength = ([Portability userInterfaceIdiom] != UIUserInterfaceIdiomPad);
+    BOOL limitLength = ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad);
     
     return [SynopsisCell cellWithSynopsis:[[Model model] synopsisForMovie:movie]
                                 imageView:posterImageView

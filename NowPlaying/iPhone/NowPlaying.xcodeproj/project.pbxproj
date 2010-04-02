@@ -577,7 +577,7 @@
 		10000000000000070000010D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = AdHoc;
@@ -585,7 +585,7 @@
 		100000000000000A00000041 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Debug;
@@ -627,7 +627,7 @@
 		100000000000000A000000B3 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Distribution;
@@ -667,7 +667,7 @@
 		100000000000001700000021 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
 				PRODUCT_NAME = "$(PROJECT_NAME)-iPhone";
 			};
 			name = Release;

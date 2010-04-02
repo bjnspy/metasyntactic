@@ -6,20 +6,6 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//#import "Portability.h"
-//
-//#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30200
-//
-//@implementation UIApplication(Portability)
-//
-//- (void)setStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation {
-//  [self setStatusBarHidden:hidden animated:animation != UIStatusBarAnimationNone];
-//}
-//
-//@end
-//
-//#endif
-
 @implementation Portability
 
 - (void) setStatusBarHidden:(BOOL) hidden
@@ -27,31 +13,32 @@
 }
 
 - (void) setStatusBarHidden:(BOOL) hidden
-              withAnimation:(UIStatusBarAnimation) animation {
+              withAnimation:(StatusBarAnimation) animation {
 }
 
 
-- (UIUserInterfaceIdiom) userInterfaceIdiom {
-  return UIUserInterfaceIdiomPhone;
+- (UserInterfaceIdiom) userInterfaceIdiom {
+  return UserInterfaceIdiomPhone;
 }
 
 
-+ (UIUserInterfaceIdiom) userInterfaceIdiom {
++ (UserInterfaceIdiom) userInterfaceIdiom {
   id device = [UIDevice currentDevice];
   if ([device respondsToSelector:@selector(userInterfaceIdiom)]) {
     return [device userInterfaceIdiom];
   } else {
-    return UIUserInterfaceIdiomPhone;
+    return UserInterfaceIdiomPhone;
   }
 }
 
 
-+ (void)setApplicationStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation {
++ (void)setApplicationStatusBarHidden:(BOOL)hidden
+                        withAnimation:(StatusBarAnimation)animation {
   id application = [UIApplication sharedApplication];
   if ([application respondsToSelector:@selector(setStatusBarHidden:withAnimation:)]) {
     [application setStatusBarHidden:hidden withAnimation:animation];
   } else {
-    [application setStatusBarHidden:hidden animated:animation != UIStatusBarAnimationNone];
+    [application setStatusBarHidden:hidden animated:animation != StatusBarAnimationNone];
   }
 }
 
