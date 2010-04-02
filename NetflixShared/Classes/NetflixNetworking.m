@@ -21,6 +21,7 @@
 #import "NetflixUtilities.h"
 
 @interface NetflixNetworking()
+@property (retain) NSNumber* timeDrift;
 @end
 
 @implementation NetflixNetworking
@@ -33,35 +34,40 @@ static NetflixNetworking* networking = nil;
   }
 }
 
+@synthesize timeDrift;
+
 
 - (void) dealloc {
+  self.timeDrift = nil;
   [super dealloc];
 }
 
-
-- (NSString*) deviceTimestamp {
-  return [NSString stringWithFormat:@"%d", time(NULL)];
-}
-
-
-- (NSString*) serverTimestamp {
+- (NSInteger) computeTimeDrift {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/oauth/clock/time?oauth_consumer_key=%@", [NetflixAuthentication key]];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];  
-  NSString* result = [element text];
-  return result;  
+  XmlElement* statusElement = [element element:@"status_code"];
+  if (statusElement != nil) {
+    return 0;
+  }
+  
+  NSInteger serverTime = [[element text] integerValue];
+  if (serverTime == 0) {
+    return 0;
+  }
+  
+  NSInteger localTime = time(NULL);
+  
+  return (serverTime - localTime);
 }
 
 
 - (NSString*) netflixTimestampWorker {
-  if (serverAndDeviceMatch) {
-    return [self deviceTimestamp];
-  } else {
-    NSString* serverTimestamp = [self serverTimestamp];
-    NSString* deviceTimestamp = [self deviceTimestamp];
-    
-    serverAndDeviceMatch = [serverTimestamp isEqual:deviceTimestamp];
-    return serverTimestamp;
+  if (timeDrift == nil) {
+    self.timeDrift = [NSNumber numberWithInteger:[self computeTimeDrift]];
   }
+  NSInteger value = time(NULL);
+  value += timeDrift.integerValue;
+  return [NSString stringWithFormat:@"%d", value];
 }
 
 
