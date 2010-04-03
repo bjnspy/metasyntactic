@@ -364,6 +364,16 @@
 }
 
 
+- (BOOL) shouldShowSectionTitles {
+  if (self.sortingByTitle &&
+      self.movies.count > 0) {
+    return YES;
+  }
+  
+  return NO;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if ([self outOfBounds:indexPath]) {
@@ -373,7 +383,7 @@
   Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
   UITableViewCell* cell = [self createCell:movie];
-  if (self.sortingByTitle && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+  if ([self shouldShowSectionTitles]) {
     cell.accessoryType = UITableViewCellAccessoryNone;
   } else {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -431,9 +441,7 @@
 
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-  if (self.sortingByTitle &&
-      self.movies.count > 0 &&
-      UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+  if ([self shouldShowSectionTitles]) {
     return indexTitles;
   }
 
