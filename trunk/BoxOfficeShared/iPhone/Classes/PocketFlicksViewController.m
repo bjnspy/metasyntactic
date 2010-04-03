@@ -360,7 +360,7 @@ typedef enum {
     [self didSelectLoggedInRow:indexPath.row];
   } else {
     if (indexPath.row == 2) {
-      NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
+      NSString* address = @"http://clickserve.cc-dt.com/link/tplclick?lid=41000000029889162&pubid=21000000000265233";
       [self.commonNavigationController pushBrowser:address animated:YES];
     } else if (indexPath.row == 0) {
       NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
