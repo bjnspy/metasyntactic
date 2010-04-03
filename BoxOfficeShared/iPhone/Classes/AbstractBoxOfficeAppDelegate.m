@@ -132,7 +132,11 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+    return YES;
+  } else {
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+  }
 }
 
 

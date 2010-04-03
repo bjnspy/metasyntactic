@@ -350,6 +350,16 @@
 }
 
 
+- (BOOL) showSectionIndexTitles {
+  if ([self sortingByName] &&
+      sortedTheaters.count > 0) {
+    return YES;
+  }
+  
+  return NO;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if ([self outOfBounds:indexPath]) {
@@ -365,7 +375,7 @@
     cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
 
-  if ([self sortingByName] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+  if ([self showSectionIndexTitles]) {
     cell.accessoryType = UITableViewCellAccessoryNone;
   } else {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -388,9 +398,7 @@
 
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-  if ([self sortingByName] &&
-      sortedTheaters.count > 0 &&
-      UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+  if ([self showSectionIndexTitles]) {
     return indexTitles;
   }
 
