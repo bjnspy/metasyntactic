@@ -126,7 +126,11 @@
 
 
 - (void) pushInfoControllerAnimated {
-  [self.moviesNavigationController pushInfoControllerAnimated:YES];
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+    [self.moviesNavigationController pushInfoControllerAnimated:NO];
+  } else {
+    [self.moviesNavigationController pushInfoControllerAnimated:YES];
+  }
 }
 
 
