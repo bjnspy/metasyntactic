@@ -165,7 +165,7 @@
   if (![DeviceUtilities isIPhone3G]) {
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   }
-  [self presentModalViewController:navigationController animated:YES];
+  [self presentModalViewController:navigationController animated:animated];
 }
 
 

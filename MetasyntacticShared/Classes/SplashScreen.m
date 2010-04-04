@@ -126,6 +126,7 @@ static SplashScreen* splashScreen = nil;
     
     UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
     [window addSubview:rootViewController.view];
+    [delegate onSplashScreenFinished];
   } else {
     // Will autorelease this in onFadeComplete
     splashScreen = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
