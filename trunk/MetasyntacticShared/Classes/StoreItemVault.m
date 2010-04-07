@@ -67,4 +67,12 @@
   unlockedItemIdentifiersData.value = set;
 }
 
+
+- (void) lockItem:(NSString *)identifier {
+  NSMutableSet* set = [NSMutableSet setWithSet:self.unlockedItemIdentifiers];
+  [set removeObject:identifier];
+  
+  unlockedItemIdentifiersData.value = set;
+}
+
 @end
