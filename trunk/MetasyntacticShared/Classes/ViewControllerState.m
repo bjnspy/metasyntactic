@@ -145,6 +145,11 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
 
 
 - (void) movieFinishedPlaying:(NSNotification*) notification {
+  [self performSelector:@selector(dismissMovieController) withObject:nil afterDelay:0.2];
+}
+
+
+- (void) dismissMovieController {
   [moviePlayer stop];
   [[moviePlayer retain] autorelease];
   
