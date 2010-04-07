@@ -24,40 +24,43 @@ static const NSInteger MOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG = 1 << 29;
 static const NSInteger REMOVE_NETFLIX_MOVIE_IMAGE_VIEW_TAG = 1 << 28;
 
 @interface MovieDetailsViewController : AbstractDetailsViewController<
-  UIActionSheetDelegate,
-  MapViewControllerDelegate,
-  TappableImageViewDelegate,
-  NetflixAddMovieDelegate,
-  NetflixModifyQueueDelegate,
-  NetflixMoveMovieDelegate,
-  NetflixChangeRatingDelegate> {
+UIActionSheetDelegate,
+MapViewControllerDelegate,
+TappableImageViewDelegate,
+NetflixAddMovieDelegate,
+NetflixModifyQueueDelegate,
+NetflixMoveMovieDelegate,
+NetflixChangeRatingDelegate> {
 @private
   Movie* movie;
   DVD* dvd;
-
+  
   NetflixAccount* netflixAccount;
   Movie* netflixMovie;
   NetflixRatingsCell* netflixRatingsCell;
   NSArray* netflixStatusCells;
-
+  
   NSMutableArray* filteredTheatersArray;
   NSMutableArray* allTheatersArray;
   NSMutableArray* showtimesArray;
   NSArray* trailersArray;
   NSArray* reviewsArray;
   NSDictionary* websites;
-
+  
   ActionsView* actionsView;
   UIButton* bookmarkButton;
-
+  
   BOOL filterTheatersByDistance;
   BOOL expandedDetails;
-
+  
   UIImage* posterImage;
   TappableImageView* posterImageView;
   NSInteger posterCount;
-
+  
   NSDictionary* buttonIndexToActionMap;
+
+  MPMoviePlayerController* moviePlayerController;
+  BOOL playingTrailer;
 }
 
 - (id) initWithMovie:(Movie*) movie;

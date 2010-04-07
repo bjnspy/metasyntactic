@@ -23,8 +23,6 @@
 @property BOOL onBeforeViewControllerPushedCalled;
 @property BOOL onAfterViewControllerPushedCalled;
 @property (retain) MPMoviePlayerController* moviePlayer;
-@property (retain) UIView* movieContainerView;
-@property (retain) UIViewController* owningController;
 @end
 
 
@@ -36,15 +34,11 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
 @synthesize onBeforeViewControllerPushedCalled;
 @synthesize onAfterViewControllerPushedCalled;
 @synthesize moviePlayer;
-@synthesize movieContainerView;
-@synthesize owningController;
 
 - (void) dealloc {
   self.onBeforeViewControllerPushedCalled = NO;
   self.onAfterViewControllerPushedCalled = NO;
   self.moviePlayer = nil;
-  self.movieContainerView = nil;
-  self.owningController = nil;
 
   [super dealloc];
 }
@@ -58,46 +52,7 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
 }
 
 
-- (void) playIPadMovie {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(movieLoadStateChanged:)
-                                               name:MoviePlayerLoadStateDidChangeNotification
-                                             object:moviePlayer];
-  
-  UIViewController* movieViewController = [[[AutorotatingViewController alloc] init] autorelease];
-  self.movieContainerView = movieViewController.view;
-  
-  CGRect formFrame = CGRectMake(0, 0, 540, 620);
-  movieContainerView.frame = formFrame;
-  
-  CGRect movieFrame = CGRectMake(30, 30, 480, 560);
-  moviePlayer.view.frame = movieFrame; 
-  
-  UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-  CGRect activityIndicatorFrame = activityIndicator.frame;
-  activityIndicator.frame = CGRectMake((formFrame.size.width - activityIndicatorFrame.size.width) / 2,
-                                       (formFrame.size.height - activityIndicatorFrame.size.height) / 2,
-                                       activityIndicatorFrame.size.width, 
-                                       activityIndicatorFrame.size.height);
-  activityIndicator.tag = ACTIVITY_INDICATOR_TAG;
-  [activityIndicator startAnimating];
-  
-  [movieContainerView addSubview:moviePlayer.view];
-  [movieContainerView addSubview:activityIndicator];
-  [movieContainerView bringSubviewToFront:activityIndicator];
-  
-  moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-  moviePlayer.shouldAutoplay = NO;
-  
-  movieViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-  movieViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-  
-  [owningController presentModalViewController:movieViewController animated:YES];
-}
-
-
-- (void) playMovie:(NSString*) address
-      inController:(UIViewController*) controller {
+- (void) playMovie:(NSString*) address {
   if (address.length == 0) {
     return;
   }
@@ -115,48 +70,21 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
 
   [[OperationQueue operationQueue] temporarilySuspend:90];
   self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
-  self.owningController = controller;
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:moviePlayer];
   
-  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
-    [self playIPadMovie];
-  } else {
-    [moviePlayer play];
-  }
-}
-
-
-- (void) movieLoadStateChanged:(NSNotification*) notification {
-  if (moviePlayer.loadState == MPMovieLoadStatePlayable &&
-      moviePlayer.playbackState == MPMoviePlaybackStateStopped) {
-    UIView* activityIndicator = [movieContainerView viewWithTag:ACTIVITY_INDICATOR_TAG];
-    [UIView beginAnimations:nil context:NULL];
-    {
-      activityIndicator.alpha = 0;
-    }
-    [UIView commitAnimations];
-    [moviePlayer play];
-  }
+  [moviePlayer play];
 }
 
 
 - (void) movieFinishedPlaying:(NSNotification*) notification {
-  [self performSelector:@selector(dismissMovieController) withObject:nil afterDelay:0.2];
-}
-
-
-- (void) dismissMovieController {
   [moviePlayer stop];
   [[moviePlayer retain] autorelease];
   
-  [owningController dismissModalViewControllerAnimated:YES];
   self.moviePlayer = nil;
-  self.movieContainerView = nil;
-  self.owningController = nil;
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MoviePlayerLoadStateDidChangeNotification

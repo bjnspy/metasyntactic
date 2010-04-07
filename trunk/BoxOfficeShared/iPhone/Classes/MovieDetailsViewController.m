@@ -52,10 +52,18 @@
 @property (retain) TappableImageView* posterImageView;
 @property (retain) UIButton* bookmarkButton;
 @property (retain) NSDictionary* buttonIndexToActionMap;
+@property (retain) MPMoviePlayerController* moviePlayerController;
 @end
 
 
 @implementation MovieDetailsViewController
+
+typedef enum {
+  HeaderSection,
+  TrailerSection,
+  NetflixSection,
+  FirstTheaterSection,
+} Sections;
 
 typedef enum {
   InstantQueue,
@@ -83,6 +91,7 @@ typedef enum {
 @synthesize posterImageView;
 @synthesize bookmarkButton;
 @synthesize buttonIndexToActionMap;
+@synthesize moviePlayerController;
 
 - (void) dealloc {
   self.movie = nil;
@@ -102,6 +111,7 @@ typedef enum {
   self.posterImageView = nil;
   self.bookmarkButton = nil;
   self.buttonIndexToActionMap = nil;
+  self.moviePlayerController = nil;
 
   [super dealloc];
 }
@@ -167,7 +177,9 @@ typedef enum {
   NSMutableArray* titles = [NSMutableArray array];
   NSMutableArray* arguments = [NSMutableArray array];
 
-  if (trailersArray.count > 0 && ![Model model].isInReviewPeriod) {
+  if (trailersArray.count > 0 &&
+      ![Model model].isInReviewPeriod &&
+      [Portability userInterfaceIdiom] == UserInterfaceIdiomPhone) {
     [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
     [titles addObject:LocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
     [arguments addObject:[NSNull null]];
@@ -345,6 +357,66 @@ typedef enum {
 }
 
 
+- (void) disconnectFromMoviePlayer {
+  if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
+    return;
+  }
+  
+  [moviePlayerController stop];
+  playingTrailer = NO;
+}
+
+
+- (BOOL) hasTrailer {
+  return trailersArray.count > 0;
+}
+
+
+- (void) setupMoviePlayer {
+  if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
+    return;
+  }
+  
+  [self disconnectFromMoviePlayer];
+  if (!self.hasTrailer) {
+    return;
+  }
+  
+  NSString* address = trailersArray.firstObject;
+  self.moviePlayerController = [[[MPMoviePlayerController alloc] initWithContentURL:
+                                 [NSURL URLWithString:address]] autorelease];
+
+  moviePlayerController.controlStyle = MPMovieControlStyleFullscreen;
+  moviePlayerController.shouldAutoplay = YES;
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(movieFinishedPlaying:)
+                                               name:MPMoviePlayerPlaybackDidFinishNotification
+                                             object:moviePlayerController];
+  
+  playingTrailer = YES;
+}
+
+
+- (void) updateMovieTrailerRow {
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:TrailerSection];
+  [self.tableView beginUpdates];
+  {
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                     withRowAnimation:UITableViewRowAnimationFade];
+  }
+  [self.tableView endUpdates];
+   
+  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (void) movieFinishedPlaying:(NSNotification*) notification {
+  [self disconnectFromMoviePlayer];
+  [self updateMovieTrailerRow];
+}
+
+
 - (void) initializeData {
   self.netflixAccount = [[NetflixAccountCache cache] currentAccount];
   self.netflixMovie = [[NetflixCache cache] correspondingNetflixMovie:movie];
@@ -368,6 +440,18 @@ typedef enum {
   }
 
   return self;
+}
+
+
+//- (void) viewDidAppear:(BOOL) animated {
+//  [super viewController:controller willAppear:animated];
+//  [self connectToMoviePlayer];
+//}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+  [super viewWillDisappear:animated];
+  [self disconnectFromMoviePlayer];
 }
 
 
@@ -552,6 +636,15 @@ typedef enum {
 }
 
 
+- (void) majorRefresh {
+  if (playingTrailer) {
+    return;
+  }
+  
+  [super majorRefresh];
+}
+
+
 - (NSInteger) hiddenTheaterCount {
   return allTheatersArray.count - filteredTheatersArray.count;
 }
@@ -561,6 +654,9 @@ typedef enum {
   // Header
   NSInteger sections = 1;
 
+  // Trailer
+  sections += 1;
+  
   // Netflix
   sections += 1;
 
@@ -595,11 +691,14 @@ typedef enum {
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-  if (section == 1) {
+  //if (section == TrailerSection && self.hasTrailer) {
+  //  return LocalizedString(@"Trailer", nil);
+  //} else
+  if (section == NetflixSection) {
     if ([self hasNetflixRating] || netflixStatusCells.count > 0) {
       return LocalizedString(@"Netflix", nil);
     }
-  } else if (section == 2 && filteredTheatersArray.count > 0) {
+  } else if (section == FirstTheaterSection && filteredTheatersArray.count > 0) {
     if ([Model model].isSearchDateToday) {
       //[DateUtilities isToday:[Model model].searchDate]) {
       return LocalizedString(@"Today", nil);
@@ -613,7 +712,9 @@ typedef enum {
 
 
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-  return section - 3;
+  // subtract the first 3 sections (header, trailer, netflix) and then 1 more
+  // for the "map" button.
+  return section - 4;
 }
 
 
@@ -632,17 +733,30 @@ typedef enum {
 }
 
 
-- (NSInteger)     tableView:(UITableView*) tableView
-      numberOfRowsInSection:(NSInteger) section {
-  if (section == 0) {
-    return [self numberOfRowsInHeaderSection];
+- (NSInteger) numberOfRowsInTrailerSection {
+  if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
+    return 0;
   }
 
-  if (section == 1) {
+  return self.hasTrailer ? 1 : 0;
+}
+
+
+- (NSInteger)     tableView:(UITableView*) tableView
+      numberOfRowsInSection:(NSInteger) section {
+  if (section == HeaderSection) {
+    return [self numberOfRowsInHeaderSection];
+  }
+  
+  if (section == TrailerSection) {
+    return [self numberOfRowsInTrailerSection];
+  }
+
+  if (section == NetflixSection) {
     return [self numberOfRowsInNetflixSection];
   }
 
-  if (section == 2 && filteredTheatersArray.count > 0) {
+  if (section == FirstTheaterSection && filteredTheatersArray.count > 0) {
     return 1;
   }
 
@@ -750,13 +864,26 @@ typedef enum {
 }
 
 
+- (CGFloat) heightForRowInTrailerSection:(NSInteger) row {
+  if (playingTrailer) {
+    return 321;
+  } else {
+    return self.tableView.rowHeight;
+  }
+}
+
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section == 0) {
+  if (indexPath.section == HeaderSection) {
     return [self heightForRowInHeaderSection:indexPath.row];
   }
+  
+  if (indexPath.section == TrailerSection) {
+    return [self heightForRowInTrailerSection:indexPath.row];
+  }
 
-  if (indexPath.section == 1) {
+  if (indexPath.section == NetflixSection) {
     return [self heightForRowInNetflixSection:indexPath.row];
   }
 
@@ -810,7 +937,7 @@ typedef enum {
 
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
-  if (section == 0) {
+  if (section == HeaderSection) {
     return actionsView;
   }
 
@@ -820,7 +947,7 @@ typedef enum {
 
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger) section {
-  if (section == 0) {
+  if (section == HeaderSection) {
     CGFloat height = [actionsView height];
     return height;
   }
@@ -872,17 +999,62 @@ typedef enum {
 }
 
 
+- (void) setMoviePlayerFrame:(UIInterfaceOrientation) orientation {
+  NSInteger width = UIInterfaceOrientationIsPortrait(orientation) ? 768 : 1024;
+  
+  NSInteger x = (width - (44 * 2) - 480) / 2;
+  NSInteger y = 0;
+  moviePlayerController.view.frame = CGRectMake(x, y, 480, 320);  
+}
+   
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+  [super willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
+  
+  [UIView beginAnimations:nil context:NULL];
+  {
+    [UIView setAnimationDuration:duration];
+    [self setMoviePlayerFrame:interfaceOrientation];
+  }
+  [UIView commitAnimations];
+}
+
+
+- (UITableViewCell*) cellForTrailerRow:(NSInteger) row {
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  if (playingTrailer) {
+    [self setMoviePlayerFrame:self.interfaceOrientation];
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor blackColor];
+    
+    
+    [cell.contentView addSubview:moviePlayerController.view];
+  } else {
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.text = LocalizedString(@"Play Trailer", nil);
+    cell.textLabel.textColor = [ColorCache commandColor];
+  }
+  
+  return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section == 0) {
+  if (indexPath.section == HeaderSection) {
     return [self cellForHeaderRow:indexPath.row];
   }
+  
+  if (indexPath.section == TrailerSection) {
+    return [self cellForTrailerRow:indexPath.row];
+  }
 
-  if (indexPath.section == 1) {
+  if (indexPath.section == NetflixSection) {
     return [self cellForNetflixRow:indexPath.row];
   }
 
-  if (indexPath.section == 2 && filteredTheatersArray.count > 0) {
+  if (indexPath.section == FirstTheaterSection && filteredTheatersArray.count > 0) {
     return [self mapTheatersCell];
   }
 
@@ -1324,17 +1496,33 @@ typedef enum {
 }
 
 
+- (void)                 tableView:(UITableView*) tableView
+    didSelectTrailerRowAtIndexPath:(NSIndexPath*) path {
+  if (playingTrailer) {
+    return;
+  }
+  
+  [tableView deselectRowAtIndexPath:path animated:YES];
+  [self setupMoviePlayer];
+  [self updateMovieTrailerRow];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section == 0) {
+  if (indexPath.section == HeaderSection) {
     return [self tableView:tableView didSelectHeaderRow:indexPath.row];
   }
+  
+  if (indexPath.section == TrailerSection) {
+    return [self tableView:tableView didSelectTrailerRowAtIndexPath:indexPath];
+  }
 
-  if (indexPath.section == 1) {
+  if (indexPath.section == NetflixSection) {
     return;
   }
 
-  if (indexPath.section == 2 && filteredTheatersArray.count > 0) {
+  if (indexPath.section == FirstTheaterSection && filteredTheatersArray.count > 0) {
     return [self didSelectMapTheatersRow];
   }
 
