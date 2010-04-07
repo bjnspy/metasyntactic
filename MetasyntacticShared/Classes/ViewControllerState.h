@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ViewControllerState : NSObject {
+@interface ViewControllerState : NSObject<UIAlertViewDelegate> {
 @private
   BOOL onBeforeViewControllerPushedCalled;
   BOOL onAfterViewControllerPushedCalled;
 
   MPMoviePlayerController* moviePlayer;
+  UIView* movieContainerView;
+  UIViewController* owningController;
 }
 
 - (void) viewController:(UIViewController*) controller willAppear:(BOOL) animated;
@@ -25,6 +27,7 @@
 - (void) viewController:(UIViewController*) controller willDisappear:(BOOL) animated;
 - (void) viewController:(UIViewController*) controller didDisappear:(BOOL) animated;
 
-- (void) playMovie:(NSString *)address;
+- (void) playMovie:(NSString*) address
+      inController:(UIViewController*) controller;
 
 @end

@@ -308,6 +308,8 @@
 		74302FAC1140D563008F9AC4 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FAA1140D563008F9AC4 /* Logger.m */; };
 		74302FC21140D777008F9AC4 /* LogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FC01140D777008F9AC4 /* LogViewController.h */; };
 		74302FC31140D777008F9AC4 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FC11140D777008F9AC4 /* LogViewController.m */; };
+		743FA979116C2D1E0041DF42 /* AutorotatingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */; };
+		743FA97A116C2D1E0041DF42 /* AutorotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */; };
 		74A8C3C810F6D5A6005A59FB /* AbstractSearchDisplayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */; };
 		74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */; };
 		74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */; };
@@ -648,6 +650,8 @@
 		74302FAA1140D563008F9AC4 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		74302FC01140D777008F9AC4 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		74302FC11140D777008F9AC4 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
+		743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutorotatingViewController.h; sourceTree = "<group>"; };
+		743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutorotatingViewController.m; sourceTree = "<group>"; };
 		74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
 		74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtilities.h; sourceTree = "<group>"; };
@@ -1192,6 +1196,8 @@
 				10000000000000090000009A /* TextFieldEditorViewController.m */,
 				100000000000001B00000005 /* ViewControllerState.m */,
 				100000000000001800000082 /* WebViewController.m */,
+				743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */,
+				743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1431,6 +1437,7 @@
 				1000000000000013000000E7 /* Prefix.pch in Headers */,
 				741DC08D1155570B0037E201 /* Portability.h in Headers */,
 				74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */,
+				743FA979116C2D1E0041DF42 /* AutorotatingViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1621,6 +1628,7 @@
 				1000000000000018000000DB /* XmlSerializer.m in Sources */,
 				741DC0C1115558D40037E201 /* Portability.m in Sources */,
 				74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */,
+				743FA97A116C2D1E0041DF42 /* AutorotatingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
