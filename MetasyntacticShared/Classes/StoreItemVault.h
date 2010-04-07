@@ -26,6 +26,7 @@
 
 - (BOOL) isUnlocked:(NSString*) identifier;
 - (void) unlockItem:(NSString*) identifier;
+- (void) lockItem:(NSString*) identifier;
 
 - (NSSet*) unlockedItemIdentifiers;
 
