@@ -69,7 +69,9 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
   
   CGRect formFrame = CGRectMake(0, 0, 540, 620);
   movieContainerView.frame = formFrame;
-  moviePlayer.view.frame = formFrame; 
+  
+  CGRect movieFrame = CGRectMake(30, 30, 480, 560);
+  moviePlayer.view.frame = movieFrame; 
   
   UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
   CGRect activityIndicatorFrame = activityIndicator.frame;
@@ -129,7 +131,8 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
 
 
 - (void) movieLoadStateChanged:(NSNotification*) notification {
-  if (moviePlayer.loadState == MPMovieLoadStatePlayable) {
+  if (moviePlayer.loadState == MPMovieLoadStatePlayable &&
+      moviePlayer.playbackState == MPMoviePlaybackStateStopped) {
     UIView* activityIndicator = [movieContainerView viewWithTag:ACTIVITY_INDICATOR_TAG];
     [UIView beginAnimations:nil context:NULL];
     {

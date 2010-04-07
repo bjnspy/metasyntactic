@@ -7,7 +7,6 @@
 //
 
 @interface AutorotatingViewController : UIViewController {
-
 }
 
 @end
