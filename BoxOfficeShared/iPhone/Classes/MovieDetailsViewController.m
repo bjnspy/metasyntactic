@@ -74,6 +74,13 @@ typedef enum {
   TopOfBlurayQueue
 } AddToQueueAction;
 
+typedef enum {
+  MovieControlStyleNone,
+  MovieControlStyleEmbedded,
+  MovieControlStyleFullscreen,
+  MovieControlStyleDefault = MovieControlStyleFullscreen
+} MovieControlStyle;
+
 @synthesize movie;
 @synthesize dvd;
 @synthesize netflixAccount;
@@ -373,7 +380,10 @@ typedef enum {
 
 
 - (void) setShouldAutoplay:(BOOL) value {
-  
+}
+
+
+- (void) setControlStyle:(MovieControlStyle) style {
 }
 
 
@@ -391,7 +401,7 @@ typedef enum {
   self.moviePlayerController = [[[MPMoviePlayerController alloc] initWithContentURL:
                                  [NSURL URLWithString:address]] autorelease];
 
-  moviePlayerController.controlStyle = MPMovieControlStyleFullscreen;
+  [(id)moviePlayerController setControlStyle:MovieControlStyleFullscreen];
   [(id)moviePlayerController setShouldAutoplay:YES];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
