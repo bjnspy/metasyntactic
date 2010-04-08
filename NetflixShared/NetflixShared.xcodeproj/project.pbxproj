@@ -74,7 +74,6 @@
 		1000000000000013000000CE /* NetflixUserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CD /* NetflixUserCache.m */; };
 		1000000000000013000000D0 /* NetflixUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CF /* NetflixUtilities.h */; };
 		1000000000000013000000D2 /* NetflixUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000D1 /* NetflixUtilities.m */; };
-		10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001F /* libMetasyntacticShared.a */; };
 		7421F08B10F015F8008A5506 /* Person.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F08910F015F8008A5506 /* Person.h */; };
 		7421F08C10F015F8008A5506 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F08A10F015F8008A5506 /* Person.m */; };
 /* End PBXBuildFile section */
@@ -177,7 +176,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				100000000000000700000066 /* Foundation.framework in Frameworks */,
-				10000000000000290000003C /* libMetasyntacticShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

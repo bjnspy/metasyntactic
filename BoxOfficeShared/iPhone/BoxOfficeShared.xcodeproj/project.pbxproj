@@ -129,8 +129,6 @@
 		10000000000000150000017C /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000017A /* WikipediaCache.m */; };
 		100000000000001500000181 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000017F /* YellowMovieTitleCell.m */; };
 		1000000000000015000001BE /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000008F /* UpcomingMoviesNavigationController.m */; };
-		1000000000000015000001F5 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F4 /* libNetflixShared.a */; };
-		1000000000000015000001F7 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000015000001F6 /* libProtocolBuffers.a */; };
 		10000000000000150000020C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000100 /* UpcomingMoviesViewController.m */; };
 		7421F20E10F05E60008A5506 /* PersonDetailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F20C10F05E60008A5506 /* PersonDetailsViewController.h */; };
 		7421F20F10F05E60008A5506 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F20D10F05E60008A5506 /* PersonDetailsViewController.m */; };
@@ -557,8 +555,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1000000000000015000001F7 /* libProtocolBuffers.a in Frameworks */,
-				1000000000000015000001F5 /* libNetflixShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
