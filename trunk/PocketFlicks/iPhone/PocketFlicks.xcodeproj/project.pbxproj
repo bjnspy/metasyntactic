@@ -35,7 +35,6 @@
 		74D98A35116E825800DD76DA /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A22116E824600DD76DA /* libMetasyntacticShared.a */; };
 		74D98A36116E825B00DD76DA /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A28116E824A00DD76DA /* libNetflixShared.a */; };
 		74D98A37116E825F00DD76DA /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A30116E824E00DD76DA /* libProtocolBuffers.a */; };
-		74F22ED9114E1D5300CF9CE3 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,56 +56,56 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1000000000000018000001F4 /* libMetasyntacticShared.a */;
+			remoteGlobalIDString = 1000000000000018000001F4;
 			remoteInfo = MetasyntacticShared;
 		};
 		74D98A27116E824A00DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A23116E824A00DD76DA /* NetflixShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000000800000114 /* libNetflixShared.a */;
+			remoteGlobalIDString = 100000000000000800000114;
 			remoteInfo = NetflixShared;
 		};
 		74D98A2F116E824E00DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000002900000044 /* libProtocolBuffers.a */;
+			remoteGlobalIDString = 100000000000002900000044;
 			remoteInfo = ProtocolBuffers;
 		};
 		74D98A31116E824E00DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000001A00000051 /* UnitTests.octest */;
+			remoteGlobalIDString = 100000000000001A00000051;
 			remoteInfo = UnitTests;
 		};
 		74D98A33116E824E00DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 100000000000000900000123 /* CommandLineTests.app */;
+			remoteGlobalIDString = 100000000000000900000123;
 			remoteInfo = CommandLineTests;
 		};
 		74D98A38116E827400DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A23116E824A00DD76DA /* NetflixShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1000000000000007000000EE /* NetflixShared */;
+			remoteGlobalIDString = 1000000000000007000000EE;
 			remoteInfo = NetflixShared;
 		};
 		74D98A3A116E827800DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000A000000AD /* MetasyntacticShared */;
+			remoteGlobalIDString = 100000000000000A000000AD;
 			remoteInfo = MetasyntacticShared;
 		};
 		74D98A3C116E827A00DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1000000000000015000001E4 /* ProtocolBuffers */;
+			remoteGlobalIDString = 1000000000000015000001E4;
 			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
@@ -167,7 +166,6 @@
 		74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74D98A23116E824A00DD76DA /* NetflixShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetflixShared.xcodeproj; path = ../../NetflixShared/NetflixShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +214,6 @@
 				100000000000001400000040 /* Other Sources */,
 				1000000000000015000001D6 /* Products */,
 				10000000000000170000006E /* Resources */,
-				74F22ED7114E1D5000CF9CE3 /* Resources-iPad */,
 				100000000000000B0000000C /* Entitlements.plist */,
 				1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */,
 				74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */,
@@ -321,14 +318,6 @@
 				74D98A34116E824E00DD76DA /* CommandLineTests.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		74F22ED7114E1D5000CF9CE3 /* Resources-iPad */ = {
-			isa = PBXGroup;
-			children = (
-				74F22ED8114E1D5300CF9CE3 /* MainWindow-iPad.xib */,
-			);
-			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,7 +470,6 @@
 				1000000000000008000000CE /* BoxOfficeResources.bundle in Resources */,
 				10000000000000130000009B /* NetflixResources.bundle in Resources */,
 				10000000000000110000009D /* License.txt in Resources */,
-				74F22ED9114E1D5300CF9CE3 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,8 +579,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos3.1;
 			};
 			name = AdHoc;
 		};
@@ -643,8 +630,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
 		};
@@ -683,8 +669,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "26A706B1-39C4-46AF-BDB2-7799885F9AAF";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos3.1;
 			};
 			name = Distribution;
 		};
@@ -735,8 +720,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
 		};
