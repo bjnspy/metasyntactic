@@ -74,12 +74,12 @@ typedef enum {
   TopOfBlurayQueue
 } AddToQueueAction;
 
-typedef enum {
-  MovieControlStyleNone,
-  MovieControlStyleEmbedded,
-  MovieControlStyleFullscreen,
-  MovieControlStyleDefault = MovieControlStyleFullscreen
-} MovieControlStyle;
+//typedef enum {
+//  MovieControlStyleNone,
+//  MovieControlStyleEmbedded,
+//  MovieControlStyleFullscreen,
+//  MovieControlStyleDefault = MovieControlStyleFullscreen
+//} MovieControlStyle;
 
 @synthesize movie;
 @synthesize dvd;
@@ -248,7 +248,16 @@ typedef enum {
 
 
 + (UIImage*) posterForMovie:(Movie*) movie {
-  UIImage* image = [[Model model] posterForMovie:movie];
+  UIImage* image = nil;
+  
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+    image = [[LargeMoviePosterCache cache] posterForMovie:movie loadFromDisk:YES];
+  }
+  
+  if (image == nil) {
+    image = [[Model model] posterForMovie:movie];
+  }
+
   if (image != nil) {
     return image;
   }
@@ -302,6 +311,7 @@ typedef enum {
 
 - (void) updateImage {
   UIImage* image = [MovieDetailsViewController posterForMovie:movie];
+
   // we currently have a poster.  only replace it if we have something better
   if (image != nil && image != [BoxOfficeStockImages imageNotAvailable]) {
     self.posterImage = image;
@@ -369,7 +379,13 @@ typedef enum {
     return;
   }
   
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:nil];
+  
+  //[moviePlayerController setShouldAutoplay:NO];
   [moviePlayerController stop];
+  moviePlayerController = nil;
   playingTrailer = NO;
 }
 
@@ -379,12 +395,12 @@ typedef enum {
 }
 
 
-- (void) setShouldAutoplay:(BOOL) value {
-}
-
-
-- (void) setControlStyle:(MovieControlStyle) style {
-}
+//- (void) setShouldAutoplay:(BOOL) value {
+//}
+//
+//
+//- (void) setControlStyle:(MovieControlStyle) style {
+//}
 
 
 - (void) setupMoviePlayer {
@@ -401,14 +417,16 @@ typedef enum {
   self.moviePlayerController = [[[MPMoviePlayerController alloc] initWithContentURL:
                                  [NSURL URLWithString:address]] autorelease];
 
-  [(id)moviePlayerController setControlStyle:MovieControlStyleFullscreen];
-  [(id)moviePlayerController setShouldAutoplay:YES];
+  [moviePlayerController setControlStyle:MPMovieControlStyleFullscreen];
+  //[moviePlayerController setShouldAutoplay:YES];
+  
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:moviePlayerController];
   
+  [moviePlayerController play];
   playingTrailer = YES;
 }
 
