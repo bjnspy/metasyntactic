@@ -42,21 +42,39 @@
 }
 
 
++ (UIFont*) synopsisFont {
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+    return [FontCache helvetica18];
+  } else {
+    return [FontCache helvetica14];
+  }
+}
+
+
 - (CGSize) calculatePreferredImageSize:(UIImage*) synopsisImage {
   if (synopsisImage == nil) {
     return CGSizeZero;
   }
 
   CGSize actualSize = synopsisImage.size;
-
-  if (actualSize.width > 140) {
-    actualSize.height *= 140.0f / actualSize.width;
-    actualSize.width = 140;
+  NSInteger lineHeight = 18;
+  NSInteger maxWidth = 140;
+  NSInteger maxHeight = 163;
+  
+  if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+    maxWidth = (NSInteger)(maxWidth * 2);
+    maxHeight = (NSInteger)(maxHeight * 2);
+    lineHeight = 22;
   }
-
-  NSInteger adjustedHeight = 18 * (MIN(163, (NSInteger) actualSize.height) / 18);
+  
+  if (actualSize.width > maxWidth) {
+    actualSize.height *= maxWidth / actualSize.width;
+    actualSize.width = maxWidth;
+  }
+  
+  NSInteger adjustedHeight = lineHeight * (MIN(maxHeight, (NSInteger) actualSize.height) / lineHeight);
   CGFloat ratio = (CGFloat)adjustedHeight / actualSize.height;
-
+  
   return CGSizeMake((NSInteger)(actualSize.width * ratio), adjustedHeight);
 }
 
@@ -82,11 +100,11 @@
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
-    synopsisChunk1Label.font = [FontCache helvetica14];
+    synopsisChunk1Label.font = [SynopsisCell synopsisFont];
     synopsisChunk1Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk1Label.numberOfLines = 0;
 
-    synopsisChunk2Label.font = [FontCache helvetica14];
+    synopsisChunk2Label.font = [SynopsisCell synopsisFont];
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
 
@@ -123,7 +141,7 @@
 
 
 - (CGFloat) computeTextHeight:(NSString*) text forWidth:(CGFloat) width {
-  return [text sizeWithFont:[FontCache helvetica14]
+  return [text sizeWithFont:[SynopsisCell synopsisFont]
                    constrainedToSize:CGSizeMake(width, 2000)
                        lineBreakMode:UILineBreakModeWordWrap].height;
 }
@@ -319,7 +337,7 @@
     NSString* synopsisChunk2 = [synopsis substringWithRange:NSMakeRange(start, end - start)];
 
     CGFloat chunk2Width = self.contentView.frame.size.width - 10;
-    CGFloat chunk2Height = [synopsisChunk2 sizeWithFont:[FontCache helvetica14]
+    CGFloat chunk2Height = [synopsisChunk2 sizeWithFont:[SynopsisCell synopsisFont]
                                       constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                           lineBreakMode:UILineBreakModeWordWrap].height;
 
