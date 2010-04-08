@@ -79,8 +79,6 @@
 		100000000000000800000017 /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000016 /* BackgroundInvocation3.m */; };
 		100000000000000800000019 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000018 /* Base64.h */; };
 		10000000000000080000001B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001A /* Base64.m */; };
-		10000000000000080000001D /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001C /* Beacon+FBConnect.h */; };
-		10000000000000080000001F /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001E /* Beacon.h */; };
 		10000000000000090000003F /* CollectionUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000090000002B /* CollectionUtilities.h */; };
 		100000000000000900000042 /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000900000040 /* CollectionUtilities.m */; };
 		100000000000000900000046 /* ColorCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000900000045 /* ColorCache.h */; };
@@ -284,11 +282,6 @@
 		1000000000000018000000D9 /* XmlSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000D8 /* XmlSerializer.h */; };
 		1000000000000018000000DB /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000018000000DA /* XmlSerializer.m */; };
 		1000000000000018000001FB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000018000001F9 /* libsqlite3.dylib */; };
-		100000000000001800000209 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000204 /* xmlparse.c */; };
-		10000000000000180000020B /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000020A /* xmlrole.c */; };
-		10000000000000180000020E /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000180000020D /* xmltok.c */; };
-		100000000000001800000211 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000210 /* xmltok_impl.c */; };
-		100000000000001800000214 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001800000213 /* xmltok_ns.c */; };
 		100000000000001900000146 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000009A /* TextFieldEditorViewController.m */; };
 		100000000000001900000148 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001900000147 /* TextFieldEditorViewController.h */; };
 		10000000000000190000022C /* ThreadingUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000001200000081 /* ThreadingUtilities.h */; };
@@ -301,7 +294,6 @@
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
 		741DC08D1155570B0037E201 /* Portability.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DC08B1155570B0037E201 /* Portability.h */; };
 		741DC0C1115558D40037E201 /* Portability.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DC0C0115558D40037E201 /* Portability.m */; };
-		74200CCB1154CA65009F471A /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
 		74302FAB1140D563008F9AC4 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FA91140D563008F9AC4 /* Logger.h */; };
@@ -404,8 +396,6 @@
 		100000000000000800000016 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
 		100000000000000800000018 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		10000000000000080000001A /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		10000000000000080000001C /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
-		10000000000000080000001E /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		1000000000000008000000FB /* PersistentDictionaryThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentDictionaryThreadsafeValue.h; sourceTree = "<group>"; };
 		1000000000000008000000FC /* PersistentDictionaryThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionaryThreadsafeValue.m; sourceTree = "<group>"; };
 		10000000000000090000002B /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
@@ -607,28 +597,8 @@
 		1000000000000018000000D6 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		1000000000000018000000D8 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		1000000000000018000000DA /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
-		1000000000000018000000DC /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
-		10000000000000180000011D /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001EA /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001EB /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001ED /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001EF /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = External/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001F1 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001F2 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
 		1000000000000018000001F4 /* libMetasyntacticShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetasyntacticShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1000000000000018000001F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		1000000000000018000001FD /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
-		1000000000000018000001FF /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
-		100000000000001800000200 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = External/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
-		100000000000001800000202 /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = External/Expat/winconfig.h; sourceTree = SOURCE_ROOT; };
-		100000000000001800000204 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = External/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
-		10000000000000180000020A /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = External/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
-		10000000000000180000020C /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = External/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
-		10000000000000180000020D /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = External/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
-		10000000000000180000020F /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = External/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
-		100000000000001800000210 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
-		100000000000001800000212 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
-		100000000000001800000213 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
 		100000000000001800000252 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
 		100000000000001900000147 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		10000000000000190000022E /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
@@ -643,7 +613,6 @@
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
 		741DC08B1155570B0037E201 /* Portability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portability.h; sourceTree = "<group>"; };
 		741DC0C0115558D40037E201 /* Portability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portability.m; sourceTree = "<group>"; };
-		74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
 		74302FA91140D563008F9AC4 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -686,7 +655,6 @@
 				74FA49D010DD73A50002369F /* StoreKit.framework in Frameworks */,
 				1000000000000015000001FA /* SystemConfiguration.framework in Frameworks */,
 				100000000000001800000069 /* UIKit.framework in Frameworks */,
-				74200CCB1154CA65009F471A /* libPMAnalytics-r91.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,9 +802,7 @@
 			isa = PBXGroup;
 			children = (
 				1000000000000008000000FD /* Twitter */,
-				100000000000000B00000023 /* Expat */,
 				1000000000000011000000A6 /* OAuth */,
-				10000000000000120000010C /* PinchMedia */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -865,33 +831,6 @@
 				100000000000000A0000009F /* MapViewController.m */,
 			);
 			name = Mapping;
-			sourceTree = "<group>";
-		};
-		100000000000000B00000023 /* Expat */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000001800000204 /* xmlparse.c */,
-				10000000000000180000020A /* xmlrole.c */,
-				10000000000000180000020D /* xmltok.c */,
-				100000000000001800000210 /* xmltok_impl.c */,
-				100000000000001800000213 /* xmltok_ns.c */,
-				1000000000000018000000DC /* amigaconfig.h */,
-				10000000000000180000011D /* ascii.h */,
-				1000000000000018000001EA /* asciitab.h */,
-				1000000000000018000001EB /* expat.h */,
-				1000000000000018000001ED /* expat_external.h */,
-				1000000000000018000001EF /* iasciitab.h */,
-				1000000000000018000001F1 /* internal.h */,
-				1000000000000018000001F2 /* latin1tab.h */,
-				1000000000000018000001FD /* macconfig.h */,
-				1000000000000018000001FF /* nametab.h */,
-				100000000000001800000200 /* utf8tab.h */,
-				100000000000001800000202 /* winconfig.h */,
-				10000000000000180000020C /* xmlrole.h */,
-				10000000000000180000020F /* xmltok.h */,
-				100000000000001800000212 /* xmltok_impl.h */,
-			);
-			name = Expat;
 			sourceTree = "<group>";
 		};
 		100000000000000D00000011 /* NavigationControllers */ = {
@@ -981,17 +920,6 @@
 			);
 			name = Threading;
 			sourceTree = "<group>";
-		};
-		10000000000000120000010C /* PinchMedia */ = {
-			isa = PBXGroup;
-			children = (
-				74200CCA1154CA65009F471A /* libPMAnalytics-r91.a */,
-				10000000000000080000001C /* Beacon+FBConnect.h */,
-				10000000000000080000001E /* Beacon.h */,
-			);
-			name = PinchMedia;
-			path = External/PinchMedia;
-			sourceTree = SOURCE_ROOT;
 		};
 		100000000000001400000036 /* OperationQueue */ = {
 			isa = PBXGroup;
@@ -1312,8 +1240,6 @@
 				100000000000000800000011 /* BackgroundInvocation2.h in Headers */,
 				100000000000000800000015 /* BackgroundInvocation3.h in Headers */,
 				100000000000000800000019 /* Base64.h in Headers */,
-				10000000000000080000001D /* Beacon+FBConnect.h in Headers */,
-				10000000000000080000001F /* Beacon.h in Headers */,
 				10000000000000090000003F /* CollectionUtilities.h in Headers */,
 				100000000000000900000046 /* ColorCache.h in Headers */,
 				10000000000000090000006E /* DatePickerDelegate.h in Headers */,
@@ -1483,11 +1409,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100000000000001800000209 /* xmlparse.c in Sources */,
-				10000000000000180000020B /* xmlrole.c in Sources */,
-				10000000000000180000020E /* xmltok.c in Sources */,
-				100000000000001800000211 /* xmltok_impl.c in Sources */,
-				100000000000001800000214 /* xmltok_ns.c in Sources */,
 				100000000000000700000004 /* AbstractApplication.m in Sources */,
 				100000000000000700000008 /* AbstractCache.m in Sources */,
 				10000000000000070000002E /* AbstractCollapsedDetailsCell.m in Sources */,
@@ -1645,7 +1566,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1661,10 +1582,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/External/PinchMedia\"",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1672,9 +1590,9 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
@@ -1688,7 +1606,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1702,10 +1620,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/External/PinchMedia\"",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1713,9 +1628,9 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};

@@ -83,7 +83,7 @@
 
 - (void) applicationWillTerminate:(UIApplication*) application {
   [[NSUserDefaults standardUserDefaults] synchronize];
-  [[Beacon shared] endBeacon];
+  //[[Beacon shared] endBeacon];
 }
 
 

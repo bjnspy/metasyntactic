@@ -19,7 +19,7 @@
 #import <StoreKit/StoreKit.h>
 #import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../External/OAuth/OAuthConsumer.h"
-#import "../External/PinchMedia/Beacon.h"
+//#import "../External/PinchMedia/Beacon.h"
 #import "../ForwardDeclarations.h"
 #import "Portability.h"
 #import "AbstractApplication.h"
