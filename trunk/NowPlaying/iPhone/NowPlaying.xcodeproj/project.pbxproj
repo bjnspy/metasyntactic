@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,7 +62,6 @@
 		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
 		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
-		74F22A7F114DD16D00CF9CE3 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
 		74F22CC9114DEFBF00CF9CE3 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
 		74F22D20114DF96F00CF9CE3 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
 		74F22D32114DFC9400CF9CE3 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */; };
@@ -370,7 +369,7 @@
 		1000000000000015000001E0 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "NowPlaying" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -445,7 +444,6 @@
 				1000000000000008000000CD /* BoxOfficeResources.bundle in Resources */,
 				10000000000000130000009A /* NetflixResources.bundle in Resources */,
 				10000000000000110000009C /* License.txt in Resources */,
-				74F22A7F114DD16D00CF9CE3 /* MainWindow-iPad.xib in Resources */,
 				74F22CC9114DEFBF00CF9CE3 /* Icon-iPad.png in Resources */,
 				74F22D20114DF96F00CF9CE3 /* Default-Landscape.png in Resources */,
 				74F22D32114DFC9400CF9CE3 /* Default-Portrait.png in Resources */,
