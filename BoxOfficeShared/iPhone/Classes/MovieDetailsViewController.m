@@ -372,6 +372,11 @@ typedef enum {
 }
 
 
+- (void) setShouldAutoplay:(BOOL) value {
+  
+}
+
+
 - (void) setupMoviePlayer {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
     return;
@@ -387,7 +392,7 @@ typedef enum {
                                  [NSURL URLWithString:address]] autorelease];
 
   moviePlayerController.controlStyle = MPMovieControlStyleFullscreen;
-  moviePlayerController.shouldAutoplay = YES;
+  [(id)moviePlayerController setShouldAutoplay:YES];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
@@ -1000,11 +1005,16 @@ typedef enum {
 
 
 - (void) setMoviePlayerFrame:(UIInterfaceOrientation) orientation {
+  if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
+    return;
+  }
+  
   NSInteger width = UIInterfaceOrientationIsPortrait(orientation) ? 768 : 1024;
   
   NSInteger x = (width - (44 * 2) - 480) / 2;
   NSInteger y = 0;
-  moviePlayerController.view.frame = CGRectMake(x, y, 480, 320);  
+  UIView* view = [(id)moviePlayerController view];
+  view.frame = CGRectMake(x, y, 480, 320);  
 }
    
 
@@ -1029,7 +1039,7 @@ typedef enum {
     cell.backgroundColor = [UIColor blackColor];
     
     
-    [cell.contentView addSubview:moviePlayerController.view];
+    [cell.contentView addSubview:[(id)moviePlayerController view]];
   } else {
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.text = LocalizedString(@"Play Trailer", nil);
