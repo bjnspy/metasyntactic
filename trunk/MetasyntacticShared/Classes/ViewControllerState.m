@@ -29,7 +29,6 @@
 @implementation ViewControllerState
 
 static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
-static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoadStateDidChangeNotification";
 
 @synthesize onBeforeViewControllerPushedCalled;
 @synthesize onAfterViewControllerPushedCalled;
@@ -85,10 +84,7 @@ static NSString* MoviePlayerLoadStateDidChangeNotification = @"MPMoviePlayerLoad
   [[moviePlayer retain] autorelease];
   
   self.moviePlayer = nil;
-  
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:MoviePlayerLoadStateDidChangeNotification
-                                                object:nil];
+
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:nil];
