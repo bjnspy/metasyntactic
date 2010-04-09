@@ -185,6 +185,22 @@ typedef enum {
 }
 
 
+- (void) sendFeedback {
+  NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
+                    [Application version],
+                    [LocaleUtilities englishCountry],
+                    [LocaleUtilities englishLanguage]];
+  
+  NSString* subject = @"Your Rights Feedback";
+  
+  [self openMailTo:@"cyrus.najmabadi@gmail.com"
+       withSubject:subject
+              body:body
+            isHTML:NO];
+}
+
+
+
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
@@ -193,7 +209,8 @@ typedef enum {
   NSString* address = nil;
   if (section == WrittenBySection) {
     if (row == 0) {
-      address = [self.model feedbackUrl];
+      [self sendFeedback];
+      return;
     } else if (row == 1) {
       address = @"http://metasyntactic.googlecode.com";
     } else {

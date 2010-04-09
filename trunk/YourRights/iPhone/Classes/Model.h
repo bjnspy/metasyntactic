@@ -39,8 +39,6 @@
 - (NSInteger) greatestHitsSortIndex;
 - (void) setGreatestHitsSortIndex:(NSInteger) index;
 
-- (NSString*) feedbackUrl;
-
 - (DeclarationOfIndependence*) declarationOfIndependence;
 
 - (BOOL) screenRotationEnabled;

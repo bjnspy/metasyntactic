@@ -19,6 +19,7 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
+#import <MessageUI/MessageUI.h>
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "MetasyntacticShared.h"

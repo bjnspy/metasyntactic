@@ -306,6 +306,7 @@
 		74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */; };
 		74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */; };
 		74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */; };
+		74D98D2C116EA70A00DD76DA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98D2B116EA70A00DD76DA /* MessageUI.framework */; };
 		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
 		74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499710DD72EB0002369F /* AbstractDeviceStore.m */; };
 		74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */; };
@@ -625,6 +626,7 @@
 		74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtilities.h; sourceTree = "<group>"; };
 		74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtilities.m; sourceTree = "<group>"; };
+		74D98D2B116EA70A00DD76DA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
 		74FA499710DD72EB0002369F /* AbstractDeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDeviceStore.m; sourceTree = "<group>"; };
 		74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSimulatorStore.h; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 				74FA49D010DD73A50002369F /* StoreKit.framework in Frameworks */,
 				1000000000000015000001FA /* SystemConfiguration.framework in Frameworks */,
 				100000000000001800000069 /* UIKit.framework in Frameworks */,
+				74D98D2C116EA70A00DD76DA /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +786,7 @@
 				100000000000001200000056 /* Other Sources */,
 				1000000000000015000001D7 /* Products */,
 				100000000000001500000106 /* Resources */,
+				74D98D2B116EA70A00DD76DA /* MessageUI.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

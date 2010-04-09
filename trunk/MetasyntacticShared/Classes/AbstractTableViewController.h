@@ -14,7 +14,7 @@
 
 #import "AbstractViewController.h"
 
-@interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate> {
+@interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate, MFMailComposeViewControllerDelegate> {
 @protected
   BOOL visible;
   BOOL readonlyMode;
@@ -52,5 +52,10 @@
 
 - (UIBarButtonItem*) createActivityIndicator;
 - (UIBarButtonItem*) createInfoButton:(SEL) action;
+
+- (void) openMailTo:(NSString*) recipient
+        withSubject:(NSString*) subject
+               body:(NSString*) body
+             isHTML:(BOOL) isHtml;
 
 @end

@@ -53,21 +53,15 @@
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.title = [Application name];
 
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    CGRect frame = button.frame;
-    frame.size.width += 10;
-    button.frame = frame;
-
-    [button addTarget:self action:@selector(onInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
-
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+    self.navigationItem.leftBarButtonItem = 
+      [self createInfoButton:@selector(onInfoTapped)];
   }
 
   return self;
 }
 
 
-- (void) onInfoTapped:(id) sender {
+- (void) onInfoTapped {
   CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
 
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];

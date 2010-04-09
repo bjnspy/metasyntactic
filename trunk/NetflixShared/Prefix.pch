@@ -4,6 +4,7 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
+#import <MessageUI/MessageUI.h>
 #import "MetasyntacticShared.h"
 #import "ForwardDeclarations.h"
 #import "Macros.h"

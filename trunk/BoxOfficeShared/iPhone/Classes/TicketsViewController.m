@@ -278,8 +278,11 @@
                                                 movie:movie
                                               theater:theater
                                          performances:performances]];
-
-  [self openMailWithSubject:subject body:body];
+  
+  [self openMailTo:nil
+       withSubject:subject
+              body:body
+            isHTML:YES];
 }
 
 
