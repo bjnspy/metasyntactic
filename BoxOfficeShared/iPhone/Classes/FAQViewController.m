@@ -181,21 +181,10 @@
 
   NSString* subject = LocalizedString(@"Now Playing Feedback", nil);
 
-  MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
-  controller.mailComposeDelegate = self;
-
-  [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
-  [controller setSubject:subject];
-  [controller setMessageBody:body isHTML:NO];
-
-  [self presentModalViewController:controller animated:YES];
-}
-
-
-- (void) mailComposeController:(MFMailComposeViewController*) controller
-           didFinishWithResult:(MFMailComposeResult) result
-                         error:(NSError*) error {
-  [self dismissModalViewControllerAnimated:YES];
+  [self openMailTo:@"cyrus.najmabadi@gmail.com"
+       withSubject:subject
+              body:body
+            isHTML:NO];
 }
 
 

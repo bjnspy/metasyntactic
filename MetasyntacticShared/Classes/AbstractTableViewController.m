@@ -424,13 +424,37 @@
     infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   }
   
-  [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+  [infoButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
   
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;
   frame.size.width += 4;
   infoButton.frame = frame;
   return [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
+- (void) openMailTo:(NSString*) recipient
+        withSubject:(NSString*) subject
+               body:(NSString*) body
+             isHTML:(BOOL) isHTML {
+  MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+  controller.mailComposeDelegate = self;
+  
+  if (recipient.length > 0) {
+    [controller setToRecipients:[NSArray arrayWithObject:recipient]];
+  }
+  [controller setSubject:subject];
+  [controller setMessageBody:body isHTML:isHTML];
+  
+  [self presentModalViewController:controller animated:YES];
+}
+
+
+- (void) mailComposeController:(MFMailComposeViewController*) controller
+           didFinishWithResult:(MFMailComposeResult) result
+                         error:(NSError*) error {
+  [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

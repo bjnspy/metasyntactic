@@ -1059,20 +1059,6 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 }
 
 
-- (NSString*) feedbackUrl {
-  NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
-                    [Application version],
-                    [LocaleUtilities englishCountry],
-                    [LocaleUtilities englishLanguage]];
-
-  NSString* subject = @"Your%20Rights%20Feedback";
-
-  NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
-  NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
-  return result;
-}
-
-
 - (Constitution*) federalistPapers {
   return federalistPapers;
 }

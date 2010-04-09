@@ -106,7 +106,8 @@ static SplashScreen* splashScreen = nil;
   }
   self.imagePaths = paths;
 
-  NSString* defaultPath = [self bundlePath:@"Default.png"];
+  NSString* defaultPath;
+  defaultPath = [self bundlePath:@"Default.png"];
   UIImage* image = [UIImage imageWithContentsOfFile:defaultPath];
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
 
