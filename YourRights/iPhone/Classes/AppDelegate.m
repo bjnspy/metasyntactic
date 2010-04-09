@@ -42,6 +42,32 @@
   self.viewController = [[[YourRightsNavigationController alloc] init] autorelease];
 
   [SplashScreen presentSplashScreen:self];
+  if (NO) {
+    NSNumber* number = [NSNumber numberWithInt:0];
+    [self performSelector:@selector(takeScreenShot:)
+               withObject:number
+               afterDelay:10];
+  }
+}
+
+
+- (void) takeScreenShot:(NSNumber*) number {
+  UIView* view = self.viewController.view;
+  UIGraphicsBeginImageContext(view.bounds.size); //self.view.window.frame.size
+  [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+  UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();  
+  
+  NSData* data = UIImagePNGRepresentation(image);
+  
+  NSString* name = [NSString stringWithFormat:@"ScreenShot-%@.png", number];
+  NSString* file = [[AbstractApplication cacheDirectory] stringByAppendingPathComponent:name];
+  [FileUtilities writeData:data toFile:file];
+  
+  NSNumber* next = [NSNumber numberWithInt:number.intValue + 1];
+  [self performSelector:@selector(takeScreenShot:)
+             withObject:next
+             afterDelay:10];
 }
 
 
