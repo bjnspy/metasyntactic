@@ -10,7 +10,9 @@
 
 #import "MGTwitterParserDelegate.h"
 
-@interface MGTwitterXMLParser : NSObject {
+@interface MGTwitterXMLParser : NSObject
+//<NSXMLParserDelegate>
+{
 @protected
   __weak NSObject <MGTwitterParserDelegate> *delegate; // weak ref
   NSString* identifier;

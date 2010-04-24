@@ -39,7 +39,7 @@
   self.elementsStack = nil;
   self.stringBufferStack = nil;
   self.attributesStack = nil;
-
+  
   [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 - (id) init {
   if ((self = [super init])) {
   }
-
+  
   return self;
 }
 
@@ -92,64 +92,25 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
   [stringBufferStack.lastObject appendString:string];
 }
-//
-//
-//- (XmlElement*) run:(NSData*) data {
-//  self.elementsStack = [NSMutableArray array];
-//  self.stringBufferStack = [NSMutableArray array];
-//  self.attributesStack = [NSMutableArray array];
-//
-//  [elementsStack addObject:[NSMutableArray array]];
-//
-//
-//  XML_Parser parser = XML_ParserCreate(NULL);
-//  XML_SetElementHandler(parser, startElementHandler, endElementHandler);
-//  XML_SetCharacterDataHandler(parser, characterDataHandler);
-//  XML_SetUserData(parser, self);
-//
-//  NSInteger result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
-//  if (result == 0) {
-//    NSInteger line = XML_GetCurrentLineNumber(parser);
-//    NSInteger column = XML_GetCurrentColumnNumber(parser);
-//    NSString* xmlText = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-//    NSLog(@"Error at: %d, %d. Text:\n%@", line, column, xmlText);
-//  }
-//  XML_ParserFree(parser);
-//
-//  if (result == 0) {
-//    return nil;
-//  }
-//
-//  if (elementsStack.count == 0) {
-//    return nil;
-//  }
-//
-//  NSArray* array = elementsStack.lastObject;
-//  if (array.count == 0) {
-//    return nil;
-//  }
-//
-//  return array.lastObject;
-//}
 
 
 - (XmlElement*) run:(NSData*) data {
   NSXMLParser* xmlParser = [[[NSXMLParser alloc] initWithData:data] autorelease];
   xmlParser.delegate = self;
-
+  
   self.elementsStack = [NSMutableArray array];
   self.stringBufferStack = [NSMutableArray array];
   self.attributesStack = [NSMutableArray array];
   
   [elementsStack addObject:[NSMutableArray array]];
-
+  
   BOOL result = [xmlParser parse];
   
   if (!result) {
     [Logger log:[NSString stringWithFormat:@"Parse error occurred: %@", xmlParser.parserError]];
     return nil;
   }
-    
+  
   if (elementsStack.count == 0) {
     return nil;
   }
@@ -167,10 +128,10 @@
   if (data == nil || data.length == 0) {
     return nil;
   }
-
-    XmlParser* parser = [[[XmlParser alloc] init] autorelease];
-    XmlElement* result = [parser run:data];
-
+  
+  XmlParser* parser = [[[XmlParser alloc] init] autorelease];
+  XmlElement* result = [parser run:data];
+  
   return result;
 }
 
