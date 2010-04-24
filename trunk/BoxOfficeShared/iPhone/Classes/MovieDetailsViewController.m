@@ -858,9 +858,9 @@ typedef enum {
   }
 
   if (expandedDetails) {
-    return [[[ExpandedMovieDetailsCell alloc] initWithMovie:movie] autorelease];
+    return [[[ExpandedMovieDetailsCell alloc] initWithMovie:movie tableViewController:self] autorelease];
   } else {
-    return [[[CollapsedMovieDetailsCell alloc] initWithMovie:movie] autorelease];
+    return [[[CollapsedMovieDetailsCell alloc] initWithMovie:movie tableViewController:self] autorelease];
   }
 }
 
@@ -875,7 +875,8 @@ typedef enum {
   }
 
   id cell = [self cellForHeaderRow:row];
-  return [cell height:self];
+  CGFloat result = [cell height];
+  return result;
 }
 
 
