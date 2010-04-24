@@ -96,7 +96,7 @@
 
 - (XmlElement*) run:(NSData*) data {
   NSXMLParser* xmlParser = [[[NSXMLParser alloc] initWithData:data] autorelease];
-  xmlParser.delegate = self;
+  xmlParser.delegate = (id)self;
   
   self.elementsStack = [NSMutableArray array];
   self.stringBufferStack = [NSMutableArray array];
