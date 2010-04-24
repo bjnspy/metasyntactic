@@ -143,13 +143,16 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie {
+- (id)    initWithMovie:(Movie*) movie
+    tableViewController:(UITableViewController*) tableViewController {
   MutableMultiDictionary* items = [MutableMultiDictionary dictionary];
   NSMutableArray* itemsArray = [NSMutableArray array];
 
   [ExpandedMovieDetailsCell initializeData:movie items:items itemsArray:itemsArray];
 
-  if ((self = [super initWithItems:items itemsArray:itemsArray])) {
+  if ((self = [super initWithItems:items
+                        itemsArray:itemsArray
+               tableViewController:tableViewController])) {
   }
 
   return self;

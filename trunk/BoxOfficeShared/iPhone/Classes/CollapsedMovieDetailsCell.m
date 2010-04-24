@@ -18,8 +18,9 @@
 
 @implementation CollapsedMovieDetailsCell
 
-- (id) initWithMovie:(Movie*) movie {
-  if ((self = [super init])) {
+- (id)    initWithMovie:(Movie*) movie 
+    tableViewController:(UITableViewController*) tableViewController {
+  if ((self = [self initWithTableViewController:tableViewController])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
       self.textLabel.text = [[Model model] ratingForMovie:movie];
     } else {
