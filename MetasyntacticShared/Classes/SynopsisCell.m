@@ -27,6 +27,8 @@
 
 @implementation SynopsisCell
 
+static const int MARGIN = 5;
+
 @synthesize synopsis;
 @synthesize limitLength;
 @synthesize synopsisChunk1Label;
@@ -108,7 +110,7 @@
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
 
-    imageView.frame = CGRectMake(5, 5, imageSize.width, imageSize.height);
+    imageView.frame = CGRectMake(MARGIN, MARGIN, imageSize.width, imageSize.height);
 
     [self.contentView addSubview:imageView];
     [self.contentView addSubview:synopsisChunk1Label];
@@ -223,7 +225,7 @@
 }
 
 
-- (NSInteger) calculateSynopsisSplit:(float) cellWidth {
+- (NSInteger) calculateSynopsisSplit:(float) contentViewWidth {
   if (synopsis.length == 0) {
     return 0;
   }
@@ -233,11 +235,12 @@
   }
 
   CGFloat chunk1Height = imageSize.height;
-  NSInteger chunk1X = 5 + imageSize.width + 5;
-  NSInteger chunk1Width = cellWidth - 5 - chunk1X;
+  NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
+  NSInteger chunk1Width = contentViewWidth - MARGIN - chunk1X;
   CGSize chunk1Size = CGSizeMake(chunk1Width, chunk1Height);
 
-  CGFloat entireSynopsisHeight = [self computeTextHeight:synopsis forWidth:chunk1Width];
+  CGFloat entireSynopsisHeight = [self computeTextHeight:synopsis
+                                                forWidth:chunk1Width];
   if (entireSynopsisHeight <= chunk1Height) {
     return synopsis.length;
   }
@@ -254,7 +257,8 @@
   }
 
   NSString* synopsisChunk = [synopsis substringToIndex:currentSplit];
-  CGFloat chunkHeight = [self computeTextHeight:synopsisChunk forWidth:chunk1Width];
+  CGFloat chunkHeight = [self computeTextHeight:synopsisChunk
+                                       forWidth:chunk1Width];
 
   // Two options.
   // 1) We're too long and we need to trim
@@ -301,8 +305,8 @@
 
 - (void) calculateSynopsisSplit:(NSInteger*) synopsisSplit
                     synopsisMax:(NSInteger*) synopsisMax
-                       forWidth:(float) width {
-  *synopsisSplit = [self calculateSynopsisSplit:width];
+            forContentViewWidth:(float) contentViewWidth {
+  *synopsisSplit = [self calculateSynopsisSplit:contentViewWidth];
   if (limitLength) {
     *synopsisMax = [self calculateSynopsisMax:*synopsisSplit];
   } else {
@@ -317,12 +321,12 @@
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit
                    synopsisMax:&synopsisMax
-                      forWidth:self.contentView.frame.size.width];
+           forContentViewWidth:self.contentView.frame.size.width];
 
-  NSInteger chunk1X = 5 + imageSize.width + 5;
-  NSInteger chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
+  NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
+  NSInteger chunk1Width = self.contentView.frame.size.width - MARGIN - chunk1X;
 
-  CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, imageSize.height);
+  CGRect chunk1Frame = CGRectMake(chunk1X, MARGIN, chunk1Width, imageSize.height);
   synopsisChunk1Label.frame = chunk1Frame;
   synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
   [synopsisChunk1Label sizeToFit];
@@ -336,37 +340,39 @@
 
     NSString* synopsisChunk2 = [synopsis substringWithRange:NSMakeRange(start, end - start)];
 
-    CGFloat chunk2Width = self.contentView.frame.size.width - 10;
+    CGFloat chunk2Width = self.contentView.frame.size.width - 2 * MARGIN;
     CGFloat chunk2Height = [synopsisChunk2 sizeWithFont:[SynopsisCell synopsisFont]
                                       constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                           lineBreakMode:UILineBreakModeWordWrap].height;
 
-    CGRect chunk2Frame =  CGRectMake(5, imageSize.height + 5, chunk2Width, chunk2Height);
+    CGRect chunk2Frame =  CGRectMake(MARGIN, imageSize.height + MARGIN, chunk2Width, chunk2Height);
     synopsisChunk2Label.text = synopsisChunk2;
     synopsisChunk2Label.frame = chunk2Frame;
 
     // shift the first chunk down to align with the second
 #if 0
     chunk1Frame = synopsisChunk1Label.frame;
-    chunk1Frame.origin.y = imageSize.height + 5 - chunk1Frame.size.height;
+    chunk1Frame.origin.y = imageSize.height + MARGIN - chunk1Frame.size.height;
     synopsisChunk1Label.frame = chunk1Frame;
 #endif
   }
 }
 
 
-- (CGFloat) height:(UITableViewController*) controller {
+- (CGFloat) height {
   CGFloat width;
-  if (UIInterfaceOrientationIsLandscape(controller.interfaceOrientation)) {
+  if (UIInterfaceOrientationIsLandscape(self.tableViewController.interfaceOrientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
     width = [UIScreen mainScreen].bounds.size.width;
   }
 
+  CGFloat contentViewWidth = width - 2 * groupedTableViewMargin - 2;
+  
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit
                    synopsisMax:&synopsisMax 
-                      forWidth:width - 2 * groupedTableViewMargin];
+           forContentViewWidth:contentViewWidth];
 
   CGFloat h1 = imageSize.height;
 
@@ -381,7 +387,7 @@
 
   CGFloat h2 =
    [self computeTextHeight:remainder
-                  forWidth:width - (2 * groupedTableViewMargin) - 10];
+                  forWidth:contentViewWidth - 2 * MARGIN];
 
   return h1 + h2 + 10;
 }
