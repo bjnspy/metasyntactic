@@ -43,7 +43,7 @@ connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType
     
     // Set up the parser object.
     parser = [[NSXMLParser alloc] initWithData:xml];
-    [parser setDelegate:self];
+    [parser setDelegate:(id)self];
     [parser setShouldReportNamespacePrefixes:NO];
     [parser setShouldProcessNamespaces:NO];
     [parser setShouldResolveExternalEntities:NO];
