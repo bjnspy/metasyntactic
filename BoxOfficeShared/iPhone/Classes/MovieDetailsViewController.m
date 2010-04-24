@@ -395,14 +395,6 @@ typedef enum {
 }
 
 
-//- (void) setShouldAutoplay:(BOOL) value {
-//}
-//
-//
-//- (void) setControlStyle:(MovieControlStyle) style {
-//}
-
-
 - (void) setupMoviePlayer {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
     return;
