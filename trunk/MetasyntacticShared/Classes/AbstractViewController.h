@@ -27,4 +27,6 @@
 
 - (void) playMovie:(NSString*) address;
 
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
+
 @end

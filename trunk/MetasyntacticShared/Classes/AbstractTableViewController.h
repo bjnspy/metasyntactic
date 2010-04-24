@@ -58,4 +58,6 @@
                body:(NSString*) body
              isHTML:(BOOL) isHtml;
 
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
+
 @end

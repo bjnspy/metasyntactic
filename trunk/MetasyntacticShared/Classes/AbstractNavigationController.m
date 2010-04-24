@@ -169,26 +169,42 @@
 }
 
 
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+  for (id controller in self.viewControllers) {
+    if ([controller respondsToSelector:@selector(rotateToInterfaceOrientation:duration:)]) {
+      [controller rotateToInterfaceOrientation:interfaceOrientation duration:duration];
+    }
+  }
+}
+
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+  [self rotateToInterfaceOrientation:interfaceOrientation duration:duration];
+}
+
+
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
                                  duration:(NSTimeInterval) duration {
   [NotificationCenter willChangeInterfaceOrientation];
 }
 
 
-- (void) onRotate {
-  for (id controller in self.viewControllers) {
-    if ([controller respondsToSelector:@selector(onRotate)]) {
-      [controller onRotate];
-    }
-  }
-}
-
-
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
   [NotificationCenter didChangeInterfaceOrientation];
   [self majorRefresh];
+}
 
-  [self onRotate];
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+  NSLog(@"%d \"%@\" pushViewController", viewController, viewController.title);
+  [super pushViewController:viewController animated:animated];
+}
+
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+  UIViewController* viewController = [super popViewControllerAnimated:animated];
+  NSLog(@"%d \"%@\" popViewControllerAnimated", viewController, viewController.title);
+  return viewController;
 }
 
 @end

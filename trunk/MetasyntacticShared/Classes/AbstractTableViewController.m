@@ -188,6 +188,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+  NSLog(@"%d \"%@\" viewWillAppear", self, self.title);
   [super viewWillAppear:animated];
   NSAssert(state != nil, @"");
   [state viewController:self willAppear:animated];
@@ -198,6 +199,7 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
+  NSLog(@"%d \"%@\" viewDidAppear", self, self.title);
   [super viewDidAppear:animated];
   NSAssert(state != nil, @"");
   [state viewController:self didAppear:animated];
@@ -208,6 +210,7 @@
 
 
 - (void) viewWillDisappear:(BOOL) animated {
+  NSLog(@"%d \"%@\" viewWillDisappear", self, self.title);
   [super viewWillDisappear:animated];
   self.visible = NO;
   NSAssert(state != nil, @"");
@@ -216,6 +219,7 @@
 
 
 - (void) viewDidDisappear:(BOOL) animated {
+  NSLog(@"%d \"%@\" viewDidDisappear", self, self.title);
   [super viewDidDisappear:animated];
   NSAssert(state != nil, @"");
   [state viewController:self didDisappear:animated];
@@ -291,7 +295,7 @@
 }
 
 
-- (void) onRotate {
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
   [self setupTitleLabel];
 }
 
@@ -455,6 +459,11 @@
            didFinishWithResult:(MFMailComposeResult) result
                          error:(NSError*) error {
   [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+  return [MetasyntacticSharedApplication shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 @end
