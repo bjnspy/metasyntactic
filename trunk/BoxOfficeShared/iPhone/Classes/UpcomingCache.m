@@ -33,9 +33,26 @@
 
 static UpcomingCache* cache;
 
+static NSDictionary* massageMap;
+
 + (void) initialize {
   if (self == [UpcomingCache class]) {
     cache = [[UpcomingCache alloc] init];
+    
+    unichar ndash[] = { (unichar)226, (unichar)128, (unichar)147 };
+    unichar mdash[] = { (unichar)226, (unichar)128, (unichar)148 };
+    unichar quote[] = { (unichar)226, (unichar)128, (unichar)153 };
+    unichar openQuote[] = { (unichar)226, (unichar)128, (unichar)156 };
+    unichar closeQuote[] = { (unichar)226, (unichar)128, (unichar)157 };
+    unichar ellipsis[] = { (unichar)226, (unichar)128, (unichar)166 };
+    
+    massageMap = [[NSDictionary dictionaryWithObjectsAndKeys:
+                   @"-", [NSString stringWithCharacters:ndash length:ArrayLength(ndash)],
+                   @"-", [NSString stringWithCharacters:mdash length:ArrayLength(mdash)],
+                   @"'", [NSString stringWithCharacters:quote length:ArrayLength(quote)],
+                   @"\"", [NSString stringWithCharacters:openQuote length:ArrayLength(openQuote)],
+                   @"\"", [NSString stringWithCharacters:closeQuote length:ArrayLength(closeQuote)],
+                   @"...", [NSString stringWithCharacters:ellipsis length:ArrayLength(ellipsis)], nil] retain];
   }
 }
 
@@ -368,6 +385,23 @@ static UpcomingCache* cache;
 }
 
 
+- (NSString*) massageSynopsis:(NSString*) value {
+  //static NSString* s1 = [[StringUtilities stringFromUnichar:(unichar)221] retain];
+  
+  if (value.length == 0) {
+    return value;
+  }
+  
+  for (NSString* key in massageMap) {
+    value = [value stringByReplacingOccurrencesOfString:key withString:[massageMap objectForKey:key]];
+  }
+  
+  return value;
+  
+  //return [value stringByReplacingOccurrencesOfString:s1 withString:@"'"];
+}
+
+
 - (void) updateSynopsisAndCast:(Movie*) movie
                          force:(BOOL) force
                         studio:(NSString*) studio
@@ -402,6 +436,7 @@ static UpcomingCache* cache;
   }
 
   NSString* synopsis = [element attributeValue:@"synopsis"];
+  synopsis = [self massageSynopsis:synopsis];
   if (synopsis.length == 0) {
     return;
   }
