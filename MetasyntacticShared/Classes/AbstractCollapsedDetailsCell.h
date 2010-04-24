@@ -17,4 +17,6 @@
 @interface AbstractCollapsedDetailsCell : AbstractDetailsCell {
 }
 
+- (id) initWithTableViewController:(UITableViewController *)tableViewController;
+
 @end
