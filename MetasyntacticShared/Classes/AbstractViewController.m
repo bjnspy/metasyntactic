@@ -107,7 +107,7 @@
 
 
 - (void) playMovie:(NSString*) address {
-  [state playMovie:address];
+  [state playMovie:address viewController:self];
 }
 
 @end

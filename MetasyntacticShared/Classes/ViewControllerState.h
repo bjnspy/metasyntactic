@@ -17,7 +17,8 @@
   BOOL onBeforeViewControllerPushedCalled;
   BOOL onAfterViewControllerPushedCalled;
 
-  MPMoviePlayerController* moviePlayer;
+  UIViewController* viewController;
+  MPMoviePlayerViewController* moviePlayerViewController;
 }
 
 - (void) viewController:(UIViewController*) controller willAppear:(BOOL) animated;
@@ -25,6 +26,6 @@
 - (void) viewController:(UIViewController*) controller willDisappear:(BOOL) animated;
 - (void) viewController:(UIViewController*) controller didDisappear:(BOOL) animated;
 
-- (void) playMovie:(NSString*) address;
+- (void) playMovie:(NSString*) address viewController:(UIViewController*) viewController;
 
 @end
