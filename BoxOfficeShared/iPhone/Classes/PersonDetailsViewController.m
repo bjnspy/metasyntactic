@@ -339,7 +339,7 @@ static const NSInteger POSTER_TAG = -1;
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
   id cell = [self cellForHeaderRow:row];
-  return [cell height:self];
+  return [cell height];
 }
 
 
