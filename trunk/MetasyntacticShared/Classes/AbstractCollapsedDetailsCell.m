@@ -18,8 +18,9 @@
 
 @implementation AbstractCollapsedDetailsCell
 
-- (id) init {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+- (id) initWithTableViewController:(UITableViewController *)tableViewController {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
+               tableViewController:tableViewController])) {
     self.textLabel.font = [UIFont boldSystemFontOfSize:14];
     self.textLabel.textAlignment = UITextAlignmentCenter;
 
@@ -38,8 +39,8 @@
 }
 
 
-- (CGFloat) height:(UITableViewController*) controller {
-  return controller.tableView.rowHeight - 14;
+- (CGFloat) height {
+  return self.tableViewController.tableView.rowHeight - 14;
 }
 
 @end

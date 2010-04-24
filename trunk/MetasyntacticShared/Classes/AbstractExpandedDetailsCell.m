@@ -157,8 +157,10 @@
 }
 
 
-- (id) initWithItems:(MultiDictionary*) items itemsArray:(NSArray*) itemsArray {
-  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+- (id)    initWithItems:(MultiDictionary*) items
+             itemsArray:(NSArray*) itemsArray
+    tableViewController:(UITableViewController*) tableViewController {
+  if ((self = [super initWithTableViewController:tableViewController])) {
     NSMutableArray* titlesArray = [NSMutableArray array];
     NSMutableDictionary* titleToLabelDictionary = [NSMutableDictionary dictionary];
     MutableMultiDictionary* titleToValueLabelsDictionary = [MutableMultiDictionary dictionary];
@@ -205,7 +207,7 @@
 }
 
 
-- (CGFloat) height:(UITableViewController*) controller {
+- (CGFloat) height {
   NSString* lastTitle = titles.lastObject;
   NSArray* labels = [titleToValueLabels objectsForKey:lastTitle];
   UILabel* lastLabel = labels.lastObject;

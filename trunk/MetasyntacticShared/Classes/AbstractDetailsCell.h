@@ -17,6 +17,6 @@
 @interface AbstractDetailsCell : AbstractTableViewCell {
 }
 
-- (CGFloat) height:(UITableViewController*) controller;
+- (CGFloat) height;
 
 @end

@@ -22,8 +22,7 @@
 }
 
 /* @protected */
-- (id) initWithItems:(MultiDictionary*) items itemsArray:(NSArray*) itemsArray;
-
+- (id) initWithItems:(MultiDictionary*) items itemsArray:(NSArray*) itemsArray tableViewController:(UITableViewController*) tableViewController;;
 
 
 + (void) addTitle:(NSString*) title
