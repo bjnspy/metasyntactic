@@ -15,6 +15,6 @@
 @interface CollapsedMovieDetailsCell : AbstractCollapsedDetailsCell {
 }
 
-- (id) initWithMovie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie tableViewController:(UITableViewController*) tableViewController;
 
 @end

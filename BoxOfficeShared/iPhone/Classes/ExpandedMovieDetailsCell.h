@@ -15,4 +15,6 @@
 @interface ExpandedMovieDetailsCell : AbstractExpandedDetailsCell {
 }
 
+- (id) initWithMovie:(Movie*) movie tableViewController:(UITableViewController*) tableViewController;
+
 @end
