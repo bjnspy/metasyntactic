@@ -95,7 +95,8 @@ static MainThreadGate* gate = nil;
   NSArray* result;
   [gate lock];
   {
-    result = [[self localFileManager] directoryContentsAtPath:directory];
+    NSError* error = nil;
+    result = [[self localFileManager] contentsOfDirectoryAtPath:directory error:&error];
   }
   [gate unlock];
   return result;
@@ -106,7 +107,8 @@ static MainThreadGate* gate = nil;
   NSMutableArray* result = [NSMutableArray array];
   [gate lock];
   {
-    NSArray* names = [[self localFileManager] directoryContentsAtPath:directory];
+    NSError* error = nil;
+    NSArray* names = [[self localFileManager] contentsOfDirectoryAtPath:directory error:&error];
     for (NSString* name in names) {
       [result addObject:[directory stringByAppendingPathComponent:name]];
     }

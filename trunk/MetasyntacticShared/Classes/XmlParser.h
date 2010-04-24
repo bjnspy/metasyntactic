@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface XmlParser : NSObject {
+@interface XmlParser : NSObject
+//<NSXMLParserDelegate>
+{
 @private
   NSMutableArray/*<NSMutableArray>*/* elementsStack;
   NSMutableArray/*<NSMutableString>*/* stringBufferStack;
