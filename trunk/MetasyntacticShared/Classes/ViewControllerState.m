@@ -22,7 +22,8 @@
 @interface ViewControllerState()
 @property BOOL onBeforeViewControllerPushedCalled;
 @property BOOL onAfterViewControllerPushedCalled;
-@property (retain) MPMoviePlayerController* moviePlayer;
+@property (retain) MPMoviePlayerViewController* moviePlayerViewController;
+@property (retain) UIViewController* viewController;
 @end
 
 
@@ -32,12 +33,14 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
 @synthesize onBeforeViewControllerPushedCalled;
 @synthesize onAfterViewControllerPushedCalled;
-@synthesize moviePlayer;
+@synthesize moviePlayerViewController;
+@synthesize viewController;
 
 - (void) dealloc {
   self.onBeforeViewControllerPushedCalled = NO;
   self.onAfterViewControllerPushedCalled = NO;
-  self.moviePlayer = nil;
+  self.moviePlayerViewController = nil;
+  self.viewController = nil;
 
   [super dealloc];
 }
@@ -51,7 +54,8 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 }
 
 
-- (void) playMovie:(NSString*) address {
+- (void) playMovie:(NSString*) address
+    viewController:(UIViewController*) _viewController {
   if (address.length == 0) {
     return;
   }
@@ -68,22 +72,27 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
   }
 
   [[OperationQueue operationQueue] temporarilySuspend:90];
-  self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
+  
+  self.viewController = _viewController;
+  self.moviePlayerViewController = [[[MPMoviePlayerViewController alloc] initWithContentURL:url] autorelease];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
-                                             object:moviePlayer];
+                                             object:nil];
   
-  [moviePlayer play];
+  [moviePlayerViewController.moviePlayer play];  
+  [_viewController presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
 }
 
 
 - (void) movieFinishedPlaying:(NSNotification*) notification {
-  [moviePlayer stop];
-  [[moviePlayer retain] autorelease];
+  [moviePlayerViewController.moviePlayer stop];
+  [[moviePlayerViewController retain] autorelease];
   
-  self.moviePlayer = nil;
+  [viewController dismissMoviePlayerViewControllerAnimated];
+  self.moviePlayerViewController = nil;
+  self.viewController = nil;
 
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification
