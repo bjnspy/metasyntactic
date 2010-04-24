@@ -62,6 +62,11 @@
 }
 
 
+- (NSDate*) addTimeInterval:(NSTimeInterval) interval {
+  return nil;
+}
+
+
 - (void) tryPulse:(NSDate*) date {
   if (![NSThread isMainThread]) {
     [self performSelectorOnMainThread:@selector(tryPulse:) withObject:date waitUntilDone:NO];
@@ -75,7 +80,7 @@
   }
 
   NSDate* now = [NSDate date];
-  NSDate* nextViablePulseTime = [lastPulseTime addTimeInterval:pulseInterval];
+  NSDate* nextViablePulseTime = [(id)lastPulseTime addTimeInterval:pulseInterval];
   if ([now compare:nextViablePulseTime] == NSOrderedAscending) {
     // too soon since the last pulse.  wait until later.
     //NSLog(@"Pulse at '%@' too soon since last pulse at '%@'.  Will perform later.", date, lastPulseTime);
