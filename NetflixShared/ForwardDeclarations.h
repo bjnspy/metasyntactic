@@ -24,5 +24,6 @@
 @class Person;
 @class Queue;
 @class NetflixAccount;
+@class NetflixLoginView;
 @class NetflixUser;
 @class Status;

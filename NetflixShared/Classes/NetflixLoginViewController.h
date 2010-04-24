@@ -12,13 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixLoginViewController : UIViewController {
+@interface NetflixLoginViewController : AbstractViewController {
 @private
-  UILabel* messageLabel;
-  UILabel* statusLabel;
-  UIActivityIndicatorView* activityIndicator;
-  UIButton* button;
-
+  NetflixLoginView* loginView;
   OAToken* authorizationToken;
   BOOL didShowBrowser;
 }

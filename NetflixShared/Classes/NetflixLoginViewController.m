@@ -18,33 +18,25 @@
 #import "NetflixAccountCache.h"
 #import "NetflixAuthentication.h"
 #import "NetflixCache.h"
+#import "NetflixLoginView.h"
 #import "NetflixNetworking.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
 #import "NetflixUserCache.h"
 
 @interface NetflixLoginViewController()
-@property (retain) UILabel* messageLabel;
-@property (retain) UILabel* statusLabel;
-@property (retain) UIActivityIndicatorView* activityIndicator;
-@property (retain) UIButton* button;
+@property (retain) NetflixLoginView* loginView;
 @property (retain) OAToken* authorizationToken;
 @end
 
 
 @implementation NetflixLoginViewController
 
-@synthesize messageLabel;
-@synthesize statusLabel;
-@synthesize activityIndicator;
-@synthesize button;
+@synthesize loginView;
 @synthesize authorizationToken;
 
 - (void) dealloc {
-  self.messageLabel = nil;
-  self.statusLabel = nil;
-  self.activityIndicator = nil;
-  self.button = nil;
+  self.loginView = nil;
   self.authorizationToken = nil;
 
   [super dealloc];
@@ -58,95 +50,33 @@
 }
 
 
-- (void) setupMessage {
-  self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  messageLabel.backgroundColor = [UIColor clearColor];
-  messageLabel.text =
-  [NSString stringWithFormat:
-   LocalizedString(@"%@ does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.", @"The %@ will be replaced with the program name.  i.e. 'Now Playing'"), [AbstractApplication name]];
-
-  messageLabel.numberOfLines = 0;
-  messageLabel.textColor = [UIColor whiteColor];
-
-  CGRect labelRect = CGRectMake(10, 10, self.view.frame.size.width - 20, self.view.frame.size.height);
-  messageLabel.frame = labelRect;
-  [messageLabel sizeToFit];
-
-  [self.view addSubview:messageLabel];
-}
-
-
-- (void) setupStatus {
-  self.statusLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  statusLabel.backgroundColor = [UIColor clearColor];
-  statusLabel.text = LocalizedString(@"Requesting authorization", nil);
-  statusLabel.textColor = [UIColor whiteColor];
-  [statusLabel sizeToFit];
-
-  CGRect messageFrame = messageLabel.frame;
-  CGRect statusFrame = statusLabel.frame;
-
-  statusFrame.origin.x = messageFrame.origin.x + 30;
-  statusFrame.origin.y = messageFrame.origin.y + messageFrame.size.height + 30;
-  statusFrame.size.width = messageFrame.size.width - statusFrame.origin.x;
-  statusLabel.frame = statusFrame;
-
-  [self.view addSubview:statusLabel];
-}
-
-
-- (void) setupActivityIndicator {
-  self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-  CGRect frame = activityIndicator.frame;
-  frame.origin.y = statusLabel.frame.origin.y;
-  frame.origin.x = messageLabel.frame.origin.x + 5;
-  activityIndicator.frame = frame;
-  [activityIndicator startAnimating];
-
-  [self.view addSubview:activityIndicator];
-}
-
-
-- (void) setupButton {
-  self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [button setTitle:LocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
-  [button setTitle:LocalizedString(@"Please wait", nil) forState:UIControlStateDisabled];
-
-  [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
-  UIImage* image = [NetflixStockImage(@"BlackButton.png") stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-  [button setBackgroundImage:image forState:UIControlStateNormal];
-  [button setBackgroundImage:image forState:UIControlStateDisabled];
-
-  CGRect frame = self.view.frame;
-  CGRect buttonFrame = button.frame;
-  buttonFrame.origin.x = 10;
-  buttonFrame.origin.y = 300;
-  buttonFrame.size.width = frame.size.width - 20;
-  buttonFrame.size.height = image.size.height;
-  button.frame = buttonFrame;
-
-  [button addTarget:self action:@selector(onContinueTapped:) forControlEvents:UIControlEventTouchUpInside];
-  button.enabled = NO;
-
-  [self.view addSubview:button];
-}
-
-
 - (void) loadView {
   [super loadView];
+  CGRect frame = self.view.frame;
+  frame.origin.x = frame.origin.y = 0;
+  self.loginView = [[[NetflixLoginView alloc] initWithFrame:frame viewController:self] autorelease];
 
+  [self.view addSubview:loginView];
+  self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  self.view.autoresizesSubviews = YES;
   self.view.backgroundColor = [UIColor blackColor];
-
-  [self setupMessage];
-  [self setupStatus];
-  [self setupActivityIndicator];
-  [self setupButton];
 
   [[OperationQueue operationQueue] performSelector:@selector(requestAuthorizationToken)
                                           onTarget:self
                                               gate:nil
                                           priority:Now];
+}
+
+
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+  [super rotateToInterfaceOrientation:interfaceOrientation duration:duration];
+  
+  [UIView beginAnimations:nil context:NULL];
+  {
+    [UIView setAnimationDuration:duration];
+    [loginView layoutSubviews];
+  }
+  [UIView commitAnimations];
 }
 
 
@@ -213,9 +143,7 @@
    error.userInfo];
   [AlertUtilities showOkAlert:message];
 
-  [activityIndicator stopAnimating];
-  [button removeFromSuperview];
-  statusLabel.text = LocalizedString(@"Error occurred", nil);
+  [loginView showErrorOccurredMessage];
 }
 
 
@@ -223,15 +151,7 @@
   NSAssert([NSThread isMainThread], nil);
   self.authorizationToken = token;
 
-  button.enabled = YES;
-  [activityIndicator stopAnimating];
-  statusLabel.text = @"";
-}
-
-
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-  return NO;
+  [loginView showOpenAndAuthorizeButton];
 }
 
 
@@ -253,11 +173,8 @@
   }
 
   // we're coming back after showing the user the the access page
-
-  [activityIndicator startAnimating];
-  statusLabel.text = LocalizedString(@"Requesting access", nil);
-  button.enabled = NO;
-
+  [loginView showRequestingAccessMessage];
+  
   [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
                                           onTarget:self
                                               gate:nil
@@ -328,12 +245,7 @@
 
 - (void) reportAccount:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], nil);
-  [activityIndicator stopAnimating];
-  [button removeFromSuperview];
-  statusLabel.text = @"";
-  messageLabel.text =
-  [NSString stringWithFormat:
-   LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [AbstractApplication name]];
+  [loginView showSuccessMessage];
 
   [[NetflixAccountCache cache] addAccount:account];
 }

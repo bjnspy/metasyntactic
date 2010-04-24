@@ -74,6 +74,8 @@
 		1000000000000013000000CE /* NetflixUserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CD /* NetflixUserCache.m */; };
 		1000000000000013000000D0 /* NetflixUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000CF /* NetflixUtilities.h */; };
 		1000000000000013000000D2 /* NetflixUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000013000000D1 /* NetflixUtilities.m */; };
+		740988821183A7BC00AD6CC2 /* NetflixLoginView.h in Headers */ = {isa = PBXBuildFile; fileRef = 740988801183A7BC00AD6CC2 /* NetflixLoginView.h */; };
+		740988831183A7BC00AD6CC2 /* NetflixLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740988811183A7BC00AD6CC2 /* NetflixLoginView.m */; };
 		7421F08B10F015F8008A5506 /* Person.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F08910F015F8008A5506 /* Person.h */; };
 		7421F08C10F015F8008A5506 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F08A10F015F8008A5506 /* Person.m */; };
 /* End PBXBuildFile section */
@@ -166,6 +168,8 @@
 		1000000000000013000000CD /* NetflixUserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUserCache.m; sourceTree = "<group>"; };
 		1000000000000013000000CF /* NetflixUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUtilities.h; sourceTree = "<group>"; };
 		1000000000000013000000D1 /* NetflixUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUtilities.m; sourceTree = "<group>"; };
+		740988801183A7BC00AD6CC2 /* NetflixLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixLoginView.h; sourceTree = "<group>"; };
+		740988811183A7BC00AD6CC2 /* NetflixLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixLoginView.m; sourceTree = "<group>"; };
 		7421F08910F015F8008A5506 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		7421F08A10F015F8008A5506 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,8 +370,10 @@
 			isa = PBXGroup;
 			children = (
 				1000000000000007000000C8 /* NetflixAccountsViewController.h */,
+				740988801183A7BC00AD6CC2 /* NetflixLoginView.h */,
 				1000000000000007000000E0 /* NetflixLoginViewController.h */,
 				1000000000000007000000CA /* NetflixAccountsViewController.m */,
+				740988811183A7BC00AD6CC2 /* NetflixLoginView.m */,
 				1000000000000007000000E6 /* NetflixLoginViewController.m */,
 			);
 			name = ViewControllers;
@@ -419,6 +425,7 @@
 				100000000000000800000011 /* Queue.h in Headers */,
 				10000000000000080000001A /* Status.h in Headers */,
 				10000000000000080000000A /* Prefix.pch in Headers */,
+				740988821183A7BC00AD6CC2 /* NetflixLoginView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +518,7 @@
 				7421F08C10F015F8008A5506 /* Person.m in Sources */,
 				100000000000000800000013 /* Queue.m in Sources */,
 				10000000000000080000001C /* Status.m in Sources */,
+				740988831183A7BC00AD6CC2 /* NetflixLoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
