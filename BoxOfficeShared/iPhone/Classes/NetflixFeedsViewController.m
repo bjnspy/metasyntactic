@@ -52,14 +52,20 @@
 }
 
 
-- (void) onBeforeReloadTableViewData {
-  [super onBeforeReloadTableViewData];
-
+- (void) ensureAccount {
   self.account = [[NetflixAccountCache cache] currentAccount];
 }
 
 
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+
+  [self ensureAccount];
+}
+
+
 - (NSArray*) feeds {
+  [self ensureAccount];
   NSArray* feeds = [[NetflixFeedCache cache] feedsForAccount:account];
 
   NSMutableArray* result = [NSMutableArray array];
