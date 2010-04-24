@@ -104,6 +104,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
 - (void) viewController:(UIViewController*) controller willAppear:(BOOL) animated {
   if (!onBeforeViewControllerPushedCalled) {
+    NSLog(@"%d \"%@\" onBeforeViewControllerPushed", controller, controller.title);
     onBeforeViewControllerPushedCalled = YES;
     [(id)controller onBeforeViewControllerPushed];
   }
@@ -112,6 +113,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
 - (void) viewController:(UIViewController*) controller didAppear:(BOOL) animated {
   if (!onAfterViewControllerPushedCalled) {
+    NSLog(@"%d \"%@\" onAfterViewControllerPushed", controller, controller.title);
     onAfterViewControllerPushedCalled = YES;
     [(id)controller onAfterViewControllerPushed];
   }
@@ -120,6 +122,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
 - (void) viewController:(UIViewController*) controller willDisappear:(BOOL) animated {
   if (![controller.navigationController.viewControllers containsObject:controller]) {
+    NSLog(@"%d \"%@\" onBeforeViewControllerPopped", controller, controller.title);
     [(id)controller onBeforeViewControllerPopped];
   }
 }
@@ -127,6 +130,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
 - (void) viewController:(UIViewController*) controller didDisappear:(BOOL) animated {
   if (controller.navigationController == nil) {
+    NSLog(@"%d \"%@\" onAfterViewControllerPopped", controller, controller.title);
     [(id)controller onAfterViewControllerPopped];
   }
 }

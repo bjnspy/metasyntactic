@@ -22,7 +22,8 @@
 
 - (void) majorRefresh;
 - (void) minorRefresh;
-- (void) onRotate;
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
+                             duration:(NSTimeInterval) duration;
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;

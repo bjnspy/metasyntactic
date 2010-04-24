@@ -14,6 +14,7 @@
 
 #import "AbstractViewController.h"
 
+#import "MetasyntacticSharedApplication.h"
 #import "ViewControllerState.h"
 #import "ViewControllerUtilities.h"
 
@@ -101,13 +102,18 @@
 }
 
 
-- (void) onRotate {
+- (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
   [self setupTitleLabel];
 }
 
 
 - (void) playMovie:(NSString*) address {
   [state playMovie:address viewController:self];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+  return [MetasyntacticSharedApplication shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 @end
