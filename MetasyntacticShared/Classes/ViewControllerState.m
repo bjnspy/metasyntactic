@@ -15,7 +15,6 @@
 #import "ViewControllerState.h"
 
 #import "AbstractViewController.h"
-#import "AutorotatingViewController.h"
 #import "FileUtilities.h"
 #import "OperationQueue.h"
 
