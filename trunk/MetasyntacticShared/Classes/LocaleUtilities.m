@@ -69,6 +69,11 @@ static NSLocale* currentLocale = nil;
 
 + (NSString*) displayCountry {
   NSString* isoCountry = [self isoCountry];
+  return [self displayCountry:isoCountry];
+}
+
+
++ (NSString*) displayCountry:(NSString*) isoCountry {
   return [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCountry];
 }
 

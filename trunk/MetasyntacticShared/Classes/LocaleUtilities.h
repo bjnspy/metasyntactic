@@ -23,6 +23,7 @@
 + (NSString*) englishLanguage;
 + (NSString*) preferredLanguage;
 
++ (NSString*) displayCountry:(NSString*) isoCountry;
 + (NSString*) displayLanguage:(NSString*) isoLanguage;
 
 + (BOOL) isUnitedStates;
