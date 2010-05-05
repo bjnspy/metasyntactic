@@ -23,4 +23,7 @@
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
+// Title -> (StudioKey, TitleKey)
++ (NSDictionary/*<NSString*,(NSString*,NSString*)>*/*) downloadIndex;
+
 @end

@@ -17,6 +17,7 @@
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import <StoreKit/StoreKit.h>
+#import "../External/JSON/JSON.h"
 #import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../External/OAuth/OAuthConsumer.h"
 //#import "../External/PinchMedia/Beacon.h"
@@ -71,6 +72,7 @@
 #import "ImageUtilities.h"
 #import "InteractiveView.h"
 #import "InterceptingView.h"
+#import "InternationalViewController.h"
 #import "LargeActivityIndicatorViewWithBackground.h"
 #import "ListPickerDelegate.h"
 #import "ListPickerViewController.h"
