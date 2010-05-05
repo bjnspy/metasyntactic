@@ -296,12 +296,31 @@
 		741DC0C1115558D40037E201 /* Portability.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DC0C0115558D40037E201 /* Portability.m */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
+		7425796C118E2B1500E65D7F /* InternationalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7425796A118E2B1500E65D7F /* InternationalViewController.h */; };
+		7425796D118E2B1500E65D7F /* InternationalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7425796B118E2B1500E65D7F /* InternationalViewController.m */; };
+		74257A34118E341900E65D7F /* LanguageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74257A32118E341900E65D7F /* LanguageViewController.h */; };
+		74257A35118E341900E65D7F /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74257A33118E341900E65D7F /* LanguageViewController.m */; };
+		74257A38118E342800E65D7F /* CountryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74257A36118E342800E65D7F /* CountryViewController.h */; };
+		74257A39118E342800E65D7F /* CountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74257A37118E342800E65D7F /* CountryViewController.m */; };
 		74302FAB1140D563008F9AC4 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FA91140D563008F9AC4 /* Logger.h */; };
 		74302FAC1140D563008F9AC4 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FAA1140D563008F9AC4 /* Logger.m */; };
 		74302FC21140D777008F9AC4 /* LogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302FC01140D777008F9AC4 /* LogViewController.h */; };
 		74302FC31140D777008F9AC4 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FC11140D777008F9AC4 /* LogViewController.m */; };
 		743FA979116C2D1E0041DF42 /* AutorotatingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */; };
 		743FA97A116C2D1E0041DF42 /* AutorotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */; };
+		748C8F6C119152320081584B /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F5F119152320081584B /* JSON.h */; };
+		748C8F6D119152320081584B /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F60119152320081584B /* NSObject+SBJSON.h */; };
+		748C8F6E119152320081584B /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F61119152320081584B /* NSObject+SBJSON.m */; };
+		748C8F6F119152320081584B /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F62119152320081584B /* NSString+SBJSON.h */; };
+		748C8F70119152320081584B /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F63119152320081584B /* NSString+SBJSON.m */; };
+		748C8F71119152320081584B /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F64119152320081584B /* SBJSON.h */; };
+		748C8F72119152320081584B /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F65119152320081584B /* SBJSON.m */; };
+		748C8F73119152320081584B /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F66119152320081584B /* SBJsonBase.h */; };
+		748C8F74119152320081584B /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F67119152320081584B /* SBJsonBase.m */; };
+		748C8F75119152320081584B /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F68119152320081584B /* SBJsonParser.h */; };
+		748C8F76119152320081584B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F69119152320081584B /* SBJsonParser.m */; };
+		748C8F77119152320081584B /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F6A119152320081584B /* SBJsonWriter.h */; };
+		748C8F78119152320081584B /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F6B119152320081584B /* SBJsonWriter.m */; };
 		74A8C3C810F6D5A6005A59FB /* AbstractSearchDisplayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */; };
 		74A8C3C910F6D5A6005A59FB /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */; };
 		74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */; };
@@ -616,12 +635,31 @@
 		741DC0C0115558D40037E201 /* Portability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portability.m; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
+		7425796A118E2B1500E65D7F /* InternationalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalViewController.h; sourceTree = "<group>"; };
+		7425796B118E2B1500E65D7F /* InternationalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalViewController.m; sourceTree = "<group>"; };
+		74257A32118E341900E65D7F /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
+		74257A33118E341900E65D7F /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
+		74257A36118E342800E65D7F /* CountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryViewController.h; sourceTree = "<group>"; };
+		74257A37118E342800E65D7F /* CountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryViewController.m; sourceTree = "<group>"; };
 		74302FA91140D563008F9AC4 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		74302FAA1140D563008F9AC4 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		74302FC01140D777008F9AC4 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		74302FC11140D777008F9AC4 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutorotatingViewController.h; sourceTree = "<group>"; };
 		743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutorotatingViewController.m; sourceTree = "<group>"; };
+		748C8F5F119152320081584B /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		748C8F60119152320081584B /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		748C8F61119152320081584B /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		748C8F62119152320081584B /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		748C8F63119152320081584B /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		748C8F64119152320081584B /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		748C8F65119152320081584B /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		748C8F66119152320081584B /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		748C8F67119152320081584B /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		748C8F68119152320081584B /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		748C8F69119152320081584B /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		748C8F6A119152320081584B /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		748C8F6B119152320081584B /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		74A8C3C610F6D5A6005A59FB /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
 		74A8C3C710F6D5A6005A59FB /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtilities.h; sourceTree = "<group>"; };
@@ -805,6 +843,7 @@
 		10000000000000090000009B /* External */ = {
 			isa = PBXGroup;
 			children = (
+				748C8F5E119152320081584B /* JSON */,
 				1000000000000008000000FD /* Twitter */,
 				1000000000000011000000A6 /* OAuth */,
 			);
@@ -1092,6 +1131,7 @@
 		100000000000001800000076 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				74257964118E2A9A00E65D7F /* Settings */,
 				10000000000000070000003A /* AbstractCurlableTableViewController.h */,
 				100000000000000700000062 /* AbstractFlippableTableViewController.h */,
 				100000000000000700000066 /* AbstractFullScreenImageListViewController.h */,
@@ -1102,8 +1142,6 @@
 				1000000000000007000000DE /* AbstractStackableTableViewController.h */,
 				1000000000000007000000E6 /* AbstractTableViewController.h */,
 				1000000000000007000000EE /* AbstractViewController.h */,
-				10000000000000090000006D /* DatePickerDelegate.h */,
-				10000000000000090000006F /* DatePickerViewController.h */,
 				100000000000000B00000001 /* EditorViewController.h */,
 				1000000000000011000000AD /* ListPickerDelegate.h */,
 				1000000000000009000000ED /* ListPickerViewController.h */,
@@ -1121,7 +1159,6 @@
 				1000000000000007000000E0 /* AbstractStackableTableViewController.m */,
 				1000000000000007000000E8 /* AbstractTableViewController.m */,
 				1000000000000007000000F0 /* AbstractViewController.m */,
-				100000000000000900000071 /* DatePickerViewController.m */,
 				100000000000000B00000003 /* EditorViewController.m */,
 				1000000000000009000000EF /* ListPickerViewController.m */,
 				74302FC11140D777008F9AC4 /* LogViewController.m */,
@@ -1174,6 +1211,43 @@
 			);
 			name = Xml;
 			sourceTree = "<group>";
+		};
+		74257964118E2A9A00E65D7F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				74257A36118E342800E65D7F /* CountryViewController.h */,
+				10000000000000090000006D /* DatePickerDelegate.h */,
+				10000000000000090000006F /* DatePickerViewController.h */,
+				7425796A118E2B1500E65D7F /* InternationalViewController.h */,
+				74257A32118E341900E65D7F /* LanguageViewController.h */,
+				74257A37118E342800E65D7F /* CountryViewController.m */,
+				100000000000000900000071 /* DatePickerViewController.m */,
+				7425796B118E2B1500E65D7F /* InternationalViewController.m */,
+				74257A33118E341900E65D7F /* LanguageViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		748C8F5E119152320081584B /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				748C8F5F119152320081584B /* JSON.h */,
+				748C8F60119152320081584B /* NSObject+SBJSON.h */,
+				748C8F61119152320081584B /* NSObject+SBJSON.m */,
+				748C8F62119152320081584B /* NSString+SBJSON.h */,
+				748C8F63119152320081584B /* NSString+SBJSON.m */,
+				748C8F64119152320081584B /* SBJSON.h */,
+				748C8F65119152320081584B /* SBJSON.m */,
+				748C8F66119152320081584B /* SBJsonBase.h */,
+				748C8F67119152320081584B /* SBJsonBase.m */,
+				748C8F68119152320081584B /* SBJsonParser.h */,
+				748C8F69119152320081584B /* SBJsonParser.m */,
+				748C8F6A119152320081584B /* SBJsonWriter.h */,
+				748C8F6B119152320081584B /* SBJsonWriter.m */,
+			);
+			name = JSON;
+			path = External/JSON;
+			sourceTree = SOURCE_ROOT;
 		};
 		74FA499510DD72D90002369F /* Store */ = {
 			isa = PBXGroup;
@@ -1368,6 +1442,16 @@
 				741DC08D1155570B0037E201 /* Portability.h in Headers */,
 				74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */,
 				743FA979116C2D1E0041DF42 /* AutorotatingViewController.h in Headers */,
+				7425796C118E2B1500E65D7F /* InternationalViewController.h in Headers */,
+				74257A34118E341900E65D7F /* LanguageViewController.h in Headers */,
+				74257A38118E342800E65D7F /* CountryViewController.h in Headers */,
+				748C8F6C119152320081584B /* JSON.h in Headers */,
+				748C8F6D119152320081584B /* NSObject+SBJSON.h in Headers */,
+				748C8F6F119152320081584B /* NSString+SBJSON.h in Headers */,
+				748C8F71119152320081584B /* SBJSON.h in Headers */,
+				748C8F73119152320081584B /* SBJsonBase.h in Headers */,
+				748C8F75119152320081584B /* SBJsonParser.h in Headers */,
+				748C8F77119152320081584B /* SBJsonWriter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1554,6 +1638,15 @@
 				741DC0C1115558D40037E201 /* Portability.m in Sources */,
 				74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */,
 				743FA97A116C2D1E0041DF42 /* AutorotatingViewController.m in Sources */,
+				7425796D118E2B1500E65D7F /* InternationalViewController.m in Sources */,
+				74257A35118E341900E65D7F /* LanguageViewController.m in Sources */,
+				74257A39118E342800E65D7F /* CountryViewController.m in Sources */,
+				748C8F6E119152320081584B /* NSObject+SBJSON.m in Sources */,
+				748C8F70119152320081584B /* NSString+SBJSON.m in Sources */,
+				748C8F72119152320081584B /* SBJSON.m in Sources */,
+				748C8F74119152320081584B /* SBJsonBase.m in Sources */,
+				748C8F76119152320081584B /* SBJsonParser.m in Sources */,
+				748C8F78119152320081584B /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

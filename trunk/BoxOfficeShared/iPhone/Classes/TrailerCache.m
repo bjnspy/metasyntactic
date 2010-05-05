@@ -54,6 +54,26 @@ static TrailerCache* cache;
 }
 
 
+- (void) processIndex:(XmlElement*) element
+             trailers:(NSMutableArray*) trailers {
+  for (XmlElement* child in element.children) {
+    [self processIndex:child trailers:trailers];
+  }
+  
+  NSString* text = element.text;
+  if ([text hasPrefix:@"http"] && [text hasSuffix:@".m4v"]) {
+    [trailers addObject:text];
+  }
+}
+
+
+- (NSArray*) processIndex:(XmlElement*) element {
+  NSMutableArray* trailers = [NSMutableArray array];
+  [self processIndex:element trailers:trailers];
+  return trailers;
+}
+
+
 - (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
   NSString* file = [self trailerFile:movie];
 
@@ -85,46 +105,91 @@ static TrailerCache* cache;
   NSString* studio = [studioAndLocation objectAtIndex:0];
   NSString* location = [studioAndLocation objectAtIndex:1];
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings%@?studio=%@&name=%@",
-                   [Application apiHost], [Application apiVersion], studio, location];
+  NSString* appleUrl = 
+  [NSString stringWithFormat:@"http://trailers.apple.com/moviesxml/s/%@/%@/index.xml",
+   studio, location];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
+                   [Application apiHost], [Application apiVersion],
+                   [StringUtilities stringByAddingPercentEscapes:appleUrl]];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  
   if (element == nil) {
     // didn't get any data.  ignore this for now.
     return;
   }
 
-  NSMutableArray* final = [NSMutableArray array];
-  for (XmlElement* urlElement in element.children) {
-    NSString* trailer = [urlElement text];
-    if (trailer.length > 0) {
-      [final addObject:trailer];
-    }
-  }
+  NSArray* trailers = [self processIndex:element];
+  [FileUtilities writeObject:trailers toFile:[self trailerFile:movie]];
 
-  [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-
-  if (final.count > 0) {
+  if (trailers.count > 0) {
     [MetasyntacticSharedApplication minorRefresh];
   }
 }
 
 
-- (void) generateIndexWorker:(XmlElement*) element {
-  NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
-  for (XmlElement* itemElement in element.children) {
-    NSString* fullTitle = [itemElement attributeValue:@"title"];
-    NSString* studioKey = [itemElement attributeValue:@"studio_key"];
-    NSString* titleKey = [itemElement attributeValue:@"title_key"];
-
-    if (fullTitle.length > 0 && studioKey.length > 0 && titleKey.length > 0) {
-      [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
-                 forKey:fullTitle.lowercaseString];
-    }
++ (void) processIndexItem:(id) itemElement result:(NSMutableDictionary*) result {
+  if (![itemElement isKindOfClass:[NSDictionary class]]) {
+    return;
   }
 
-  self.index = result;
-  self.indexKeys = index.allKeys;
+  NSDictionary* child = itemElement;
+  id fullTitle = [child objectForKey:@"title"];
+  id location = [child objectForKey:@"location"];
+  
+  if (![fullTitle isKindOfClass:[NSString class]] ||
+      ![location isKindOfClass:[NSString class]]) {
+    return;
+  }
+  
+  NSArray* components = [location componentsSeparatedByString:@"/"];
+  
+  if (components.count < 4) {
+    return;
+  }
+  
+  id studioKey = [components objectAtIndex:2];
+  id titleKey = [components objectAtIndex:3];
+  
+  if (![studioKey isKindOfClass:[NSString class]] ||
+      ![titleKey isKindOfClass:[NSString class]]) {
+    return;
+  }
+  
+  if ([fullTitle length] == 0 || [studioKey length] == 0 || [titleKey length] == 0) {
+    return;
+  }
+  
+  [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
+             forKey:[fullTitle lowercaseString]];
+}
+
+
++ (NSDictionary*) generateIndex:(NSArray*) jsonElement {
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  for (id itemElement in jsonElement) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      [self processIndexItem:itemElement result:result];
+    }
+    [pool release];
+  }
+  return result;
+}
+
+
++ (NSDictionary*) downloadIndex {
+  NSString* appleUrl = @"http://trailers.apple.com/trailers/home/feeds/studios.json";
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
+                   [Application apiHost], [Application apiVersion],
+                   [StringUtilities stringByAddingPercentEscapes:appleUrl]];
+  NSString* contents = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
+  id jsonValue = [contents JSONValue];
+
+  if ([jsonValue isKindOfClass:[NSArray class]]) {
+    return [self generateIndex:jsonValue];
+  }  
+  
+  return nil;
 }
 
 
@@ -132,14 +197,11 @@ static TrailerCache* cache;
   BOOL result;
   [dataGate lock];
   {
-    if (index == nil) {
-      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerIndex%@",
-                       [Application apiHost], [Application apiVersion]];
-      XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
-      if (element != nil) {
-        [self generateIndexWorker:element];
-        [self clearUpdatedMovies];
-      }
+    if (index == nil) {      
+      self.index = [TrailerCache downloadIndex];
+      self.indexKeys = index.allKeys;
+      
+      [self clearUpdatedMovies];
     }
 
     result = index != nil;
