@@ -19,8 +19,6 @@
   // Accessed from different threads.  Needs lock.
   ThreadsafeValue*/*NSString*/ hashData;
   ThreadsafeValue*/*NSDictionary*/ movieMapData;
-  ThreadsafeValue*/*NSDictionary*/ studioKeysData;
-  ThreadsafeValue*/*NSDictionary*/ titleKeysData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
 }
 
@@ -33,7 +31,6 @@
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
-- (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 

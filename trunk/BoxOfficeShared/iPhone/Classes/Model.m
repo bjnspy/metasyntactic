@@ -734,11 +734,6 @@ static Model* model = nil;
     return cast;
   }
 
-  cast = [[UpcomingCache cache] castForMovie:movie];
-  if (cast.count > 0) {
-    return cast;
-  }
-
   return [NSArray array];
 }
 

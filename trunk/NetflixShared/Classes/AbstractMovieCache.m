@@ -110,7 +110,11 @@
     return;
   }
 
-  [self updateMovieDetails:movie force:force];
+  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  {
+    [self updateMovieDetails:movie force:force];
+  }
+  [pool release];
 }
 
 

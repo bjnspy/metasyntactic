@@ -54,7 +54,7 @@ static TrailerCache* cache;
 }
 
 
-- (void) processIndex:(XmlElement*) element
++ (void) processIndex:(XmlElement*) element
              trailers:(NSMutableArray*) trailers {
   for (XmlElement* child in element.children) {
     [self processIndex:child trailers:trailers];
@@ -67,10 +67,45 @@ static TrailerCache* cache;
 }
 
 
-- (NSArray*) processIndex:(XmlElement*) element {
++ (NSArray*) processIndex:(XmlElement*) element {
   NSMutableArray* trailers = [NSMutableArray array];
   [self processIndex:element trailers:trailers];
   return trailers;
+}
+
+
++ (NSString*) xmlAddressForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
+  NSString* appleUrl = 
+  [NSString stringWithFormat:@"http://trailers.apple.com/moviesxml/s/%@/%@/index.xml",
+   studioKey, titleKey];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
+                   [Application apiHost], [Application apiVersion],
+                   [StringUtilities stringByAddingPercentEscapes:appleUrl]];
+  return url;
+}
+
+
++ (NSString*) downloadXmlStringForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
+  NSString* url = [self xmlAddressForStudioKey:studioKey titleKey:titleKey];
+  return [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
+}
+
+
++ (XmlElement*) downloadXmlElementForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
+  NSString* url = [self xmlAddressForStudioKey:studioKey titleKey:titleKey];
+  return [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+}
+
+
++ (NSArray*) downloadTrailersForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
+  XmlElement* element = [self downloadXmlElementForStudioKey:studioKey titleKey:titleKey];
+  
+  if (element == nil) {
+    // didn't get any data.  ignore this for now.
+    return nil;
+  }
+  
+  return [self processIndex:element];
 }
 
 
@@ -101,24 +136,18 @@ static TrailerCache* cache;
     return;
   }
 
-  NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
-  NSString* studio = [studioAndLocation objectAtIndex:0];
-  NSString* location = [studioAndLocation objectAtIndex:1];
-
-  NSString* appleUrl = 
-  [NSString stringWithFormat:@"http://trailers.apple.com/moviesxml/s/%@/%@/index.xml",
-   studio, location];
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
-                   [Application apiHost], [Application apiVersion],
-                   [StringUtilities stringByAddingPercentEscapes:appleUrl]];
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  NSArray* studioAndTitleKey = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
   
-  if (element == nil) {
+  NSString* studioKey = [studioAndTitleKey objectAtIndex:0];
+  NSString* titleKey = [studioAndTitleKey objectAtIndex:1];
+
+  NSArray* trailers = [TrailerCache downloadTrailersForStudioKey:studioKey titleKey:titleKey];
+
+  if (trailers == nil) {
     // didn't get any data.  ignore this for now.
     return;
   }
-
-  NSArray* trailers = [self processIndex:element];
+  
   [FileUtilities writeObject:trailers toFile:[self trailerFile:movie]];
 
   if (trailers.count > 0) {
@@ -164,32 +193,35 @@ static TrailerCache* cache;
 }
 
 
-+ (NSDictionary*) generateIndex:(NSArray*) jsonElement {
++ (NSDictionary*) processJSONIndex:(id) jsonElement {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
-  for (id itemElement in jsonElement) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      [self processIndexItem:itemElement result:result];
+  if ([jsonElement isKindOfClass:[NSArray class]]) {
+    for (id itemElement in jsonElement) {
+      NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+      {
+        [self processIndexItem:itemElement result:result];
+      }
+      [pool release];
     }
-    [pool release];
   }
   return result;
 }
 
 
-+ (NSDictionary*) downloadIndex {
++ (NSString*) downloadIndexString {
   NSString* appleUrl = @"http://trailers.apple.com/trailers/home/feeds/studios.json";
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
                    [Application apiHost], [Application apiVersion],
                    [StringUtilities stringByAddingPercentEscapes:appleUrl]];
   NSString* contents = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-  id jsonValue = [contents JSONValue];
+  return contents;
+}
 
-  if ([jsonValue isKindOfClass:[NSArray class]]) {
-    return [self generateIndex:jsonValue];
-  }  
-  
-  return nil;
+
++ (id) downloadJSONIndex {
+  NSString* indexString = [self downloadIndexString];
+  id jsonValue = [indexString JSONValue];
+  return jsonValue;
 }
 
 
@@ -197,8 +229,9 @@ static TrailerCache* cache;
   BOOL result;
   [dataGate lock];
   {
-    if (index == nil) {      
-      self.index = [TrailerCache downloadIndex];
+    if (index == nil) {  
+      id jsonIndex = [TrailerCache downloadJSONIndex];
+      self.index = [TrailerCache processJSONIndex:jsonIndex];
       self.indexKeys = index.allKeys;
       
       [self clearUpdatedMovies];

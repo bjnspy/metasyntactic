@@ -18,12 +18,13 @@
 #import "BookmarkCache.h"
 #import "Model.h"
 #import "MovieCacheUpdater.h"
+#import "TrailerCache.h"
+
+static NSString* studio_and_title_key = @"studio_and_title_key";
 
 @interface UpcomingCache()
 @property (retain) ThreadsafeValue* hashData;
 @property (retain) ThreadsafeValue* movieMapData;
-@property (retain) ThreadsafeValue* studioKeysData;
-@property (retain) ThreadsafeValue* titleKeysData;
 @property (retain) ThreadsafeValue* bookmarksData;
 @property BOOL updated;
 @end
@@ -65,16 +66,12 @@ static NSDictionary* massageMap;
 
 @synthesize hashData;
 @synthesize movieMapData;
-@synthesize studioKeysData;
-@synthesize titleKeysData;
 @synthesize bookmarksData;
 @synthesize updated;
 
 - (void) dealloc {
   self.hashData = nil;
   self.movieMapData = nil;
-  self.studioKeysData = nil;
-  self.titleKeysData = nil;
   self.bookmarksData = nil;
   self.updated = NO;
 
@@ -87,22 +84,10 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSString*) studiosFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Studios.plist"];
-}
-
-
-- (NSString*) titlesFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Titles.plist"];
-}
-
-
 - (id) init {
   if ((self = [super init])) {
     self.hashData = [PersistentStringThreadsafeValue valueWithGate:dataGate file:self.hashFile];
     self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
-    self.studioKeysData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.studiosFile];
-    self.titleKeysData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.titlesFile];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
   }
 
@@ -126,30 +111,85 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSString*) massageTitle:(NSString*) title {
-  return [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
++ (BOOL) isNilOrString:(id) obj {
+  if (obj == nil) {
+    return YES;
+  }
+  
+  return [obj isKindOfClass:[NSString class]];
 }
 
 
-- (Movie*) processMovieElement:(XmlElement*) movieElement
-                    studioKeys:(NSMutableDictionary*) studioKeys
-                     titleKeys:(NSMutableDictionary*) titleKeys  {
-  NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:[movieElement attributeValue:@"date"]];
-  NSString* poster = [movieElement attributeValue:@"poster"];
-  NSString* rating = [movieElement attributeValue:@"rating"];
-  NSString* studio = [movieElement attributeValue:@"studio"];
-  NSString* title = [movieElement attributeValue:@"title"];
-  title = [self massageTitle:title];
-  NSArray* directors = [self processArray:[movieElement element:@"Directors"] attribute:@"name"];
-  NSArray* cast = [self processArray:[movieElement element:@"Cast"] attribute:@"name"];
-  NSArray* genres = [self processArray:[movieElement element:@"Genres"] attribute:@"value"];
++ (BOOL) isNilOrStringArray:(id) obj {
+  if (obj == nil) {
+    return YES;
+  }
+  
+  if (![obj isKindOfClass:[NSArray class]]) {
+    return NO;
+  }
+  
+  for (id child in obj) {
+    if (![child isKindOfClass:[NSString class]]) {
+      return NO;
+    }
+  }
+  
+  return YES;
+}
 
-  NSString* studioKey = [movieElement attributeValue:@"studio_key"];
-  NSString* titleKey = [movieElement attributeValue:@"title_key"];
+
++ (Movie*) processMovieElement:(id) movieElement
+                          keys:(NSDictionary*) keys {
+  if (![movieElement isKindOfClass:[NSDictionary class]]) {
+    return nil;
+  }
+  
+  id releaseDateString = [movieElement objectForKey:@"releasedate"];
+  id poster = [movieElement objectForKey:@"poster"];
+  id rating = [movieElement objectForKey:@"rating"];
+  id studio = [movieElement objectForKey:@"studio"];
+  id title = [movieElement objectForKey:@"title"];
+  id directors = [movieElement objectForKey:@"directors"];
+  id cast = [movieElement objectForKey:@"actors"];
+  id genres = [movieElement objectForKey:@"genre"];
+  
+  if ([directors isKindOfClass:[NSString class]]) {
+    directors = [NSArray arrayWithObject:directors];
+  }
+  if ([cast isKindOfClass:[NSString class]]) {
+    cast = [NSArray arrayWithObject:cast];
+  }
+  if ([genres isKindOfClass:[NSString class]]) {
+    genres = [NSArray arrayWithObject:genres];
+  }
+  
+  if (![self isNilOrString:releaseDateString] ||
+      ![self isNilOrString:poster] ||
+      ![self isNilOrString:rating] ||
+      ![self isNilOrString:studio] ||
+      ![self isNilOrString:title] ||
+      ![self isNilOrStringArray:directors] ||
+      ![self isNilOrStringArray:cast] ||
+      ![self isNilOrStringArray:genres]) {
+    return nil;
+  }
+  
+  NSArray* studioAndTitleKey = [keys objectForKey:[title lowercaseString]];
+  if (studioAndTitleKey.count != 2) {
+    return nil;
+  }
+  NSString* studioKey = [studioAndTitleKey objectAtIndex:0];
+  NSString* titleKey = [studioAndTitleKey objectAtIndex:1];
   if (studioKey.length == 0 || titleKey.length == 0) {
     return nil;
   }
-
+  
+  NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:releaseDateString];
+  NSDictionary* additionalFields = [NSDictionary dictionaryWithObject:studioAndTitleKey
+                                                               forKey:studio_and_title_key];
+  
+  title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
   Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-Upcoming", title]
                                       title:title
                                      rating:rating
@@ -161,33 +201,32 @@ static NSDictionary* massageMap;
                                      studio:studio
                                   directors:directors
                                        cast:cast
-                                     genres:genres];
-
-  [studioKeys setObject:studioKey forKey:movie.canonicalTitle];
-  [titleKeys setObject:titleKey forKey:movie.canonicalTitle];
+                                     genres:genres
+                           additionalFields:additionalFields];
 
   return movie;
 }
 
 
-- (NSMutableArray*) processResultElement:(XmlElement*) resultElement
-                              studioKeys:(NSMutableDictionary*) studioKeys
-                               titleKeys:(NSMutableDictionary*) titleKeys {
++ (NSMutableArray*) processResultElement:(id) jsonIndex
+                                    keys:(NSDictionary*) keys {
   NSMutableArray* result = [NSMutableArray array];
   NSDate* cutoff = [NSDate dateWithTimeIntervalSinceNow:-2 * ONE_WEEK];
 
-  for (XmlElement* movieElement in resultElement.children) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      Movie* movie = [self processMovieElement:movieElement studioKeys:studioKeys titleKeys:titleKeys];
-
-      if (movie != nil) {
-        if([cutoff compare:movie.releaseDate] != NSOrderedDescending) {
-          [result addObject:movie];
+  if ([jsonIndex isKindOfClass:[NSArray class]]) {
+    for (id child in jsonIndex) {
+      NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+      {
+        Movie* movie = [self processMovieElement:child keys:keys];
+        
+        if (movie != nil) {
+          if([cutoff compare:movie.releaseDate] != NSOrderedDescending) {
+            [result addObject:movie];
+          }
         }
       }
+      [pool release];
     }
-    [pool release];
   }
 
   return result;
@@ -230,16 +269,6 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSDictionary*) studioKeys {
-  return studioKeysData.value;
-}
-
-
-- (NSDictionary*) titleKeys {
-  return titleKeysData.value;
-}
-
-
 - (NSDictionary*) bookmarks {
   return bookmarksData.value;
 }
@@ -265,11 +294,6 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSString*) castFile:(Movie*) movie {
-  return [[[Application upcomingCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
 - (NSString*) synopsisFile:(Movie*) movie {
   return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
@@ -282,10 +306,9 @@ static NSDictionary* massageMap;
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-
-  NSString* address1 = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex%@?hash=true", [Application apiHost], [Application apiVersion]];
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address1
-                                                                 pause:NO];
+  
+  NSString* index = [TrailerCache downloadIndexString];
+  NSString* serverHash = [NSString stringWithFormat:@"%d", [index hash]];
   if (serverHash.length == 0) {
     serverHash = @"0";
   }
@@ -296,13 +319,10 @@ static NSDictionary* massageMap;
     return;
   }
 
-  NSString* address2 = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex%@", [Application apiHost], [Application apiVersion]];
-  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address2
-                                                                   pause:NO];
+  id jsonIndex = [index JSONValue];
+  NSDictionary* keys = [TrailerCache processJSONIndex:jsonIndex];
 
-  NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
-  NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
-  NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
+  NSMutableArray* movies = [UpcomingCache processResultElement:jsonIndex keys:keys];
   if (movies.count == 0) {
     return;
   }
@@ -329,8 +349,6 @@ static NSDictionary* massageMap;
 
   [dataGate lock];
   {
-    titleKeysData.value = titleKeys;
-    studioKeysData.value = studioKeys;
     movieMapData.value = movieMap;
     bookmarksData.value = dictionary;
 
@@ -398,20 +416,24 @@ static NSDictionary* massageMap;
     value = [value stringByReplacingOccurrencesOfString:key withString:[massageMap objectForKey:key]];
   }
   
-  return value;
+  while (YES) {
+    int oldLength = value.length;
+    value = [value stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+    if (value.length == oldLength) {
+      break;
+    }
+  }
+  
+  return [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
   
   //return [value stringByReplacingOccurrencesOfString:s1 withString:@"'"];
 }
 
 
-- (void) updateSynopsisAndCast:(Movie*) movie
-                         force:(BOOL) force
-                        studio:(NSString*) studio
-                         title:(NSString*) title {
-  if (studio.length == 0 || title.length == 0) {
-    return;
-  }
-
+- (void) updateSynopsis:(Movie*) movie
+                  force:(BOOL) force
+              studioKey:(NSString*) studioKey
+               titleKey:(NSString*) titleKey {
   NSString* synopsisFile = [self synopsisFile:movie];
 
   NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
@@ -429,37 +451,46 @@ static NSDictionary* massageMap;
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings%@?studio=%@&name=%@",
-                   [Application apiHost], [Application apiVersion], studio, title];
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
-
-  if (element == nil) {
+  NSString* xmlString = [TrailerCache downloadXmlStringForStudioKey:studioKey
+                                                     titleKey:titleKey];
+  if (xmlString == nil) {
     return;
   }
+  
+  NSRange descriptionRange = [xmlString rangeOfString:@"<!--DESCRIPTION-->"];
+  if (descriptionRange.length == 0) {
+    return;
+  }
+  NSRange textViewRange = [xmlString rangeOfString:@"</TextView>"
+                                                options:0
+                                                  range:NSMakeRange(descriptionRange.location, xmlString.length - descriptionRange.location)];
+  if (textViewRange.length == 0) {
+    return;
+  }
+  
+  NSInteger start = descriptionRange.location;
+  NSInteger end = textViewRange.location + textViewRange.length;
+  
+  NSString* substring =
+  [xmlString substringWithRange:NSMakeRange(start, end - start)];
 
-  NSString* synopsis = [element attributeValue:@"synopsis"];
+  XmlElement* element = [XmlParser parse:[substring dataUsingEncoding:NSUTF8StringEncoding]];
+  NSString* synopsis = [[element element:@"SetFontStyle"] text];
+                        
   synopsis = [self massageSynopsis:synopsis];
   if (synopsis.length == 0) {
     return;
   }
 
-  NSArray* cast = [self processArray:[element element:@"Cast"] attribute:@"name"];
-
-  [FileUtilities writeObject:cast toFile:[self castFile:movie]];
   [FileUtilities writeObject:synopsis toFile:synopsisFile];
-
   [MetasyntacticSharedApplication minorRefresh];
 }
 
 
 - (void) updateTrailers:(Movie*) movie
                   force:(BOOL) force
-                 studio:(NSString*) studio
-                  title:(NSString*) title {
-  if (studio.length == 0 || title.length == 0) {
-    return;
-  }
-
+              studioKey:(NSString*) studioKey
+               titleKey:(NSString*) titleKey {
   NSString* trailersFile = [self trailersFile:movie];
 
   NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
@@ -476,43 +507,44 @@ static NSDictionary* massageMap;
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings%@?studio=%@&name=%@",
-                   [Application apiHost], [Application apiVersion], studio, title];
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
-  if (element == nil) {
+  NSArray* trailers = [TrailerCache downloadTrailersForStudioKey:studioKey titleKey:titleKey];
+  if (trailers == nil) {
     return;
   }
 
-  NSMutableArray* final = [NSMutableArray array];
-  for (XmlElement* urlElement in element.children) {
-    NSString* trailer = [urlElement text];
-    if (trailer.length > 0) {
-      [final addObject:trailer];
-    }
+  [FileUtilities writeObject:trailers toFile:trailersFile];
+  if (trailers.count > 0) {
+    [MetasyntacticSharedApplication minorRefresh];
   }
-
-  [FileUtilities writeObject:final toFile:trailersFile];
-  [MetasyntacticSharedApplication minorRefresh];
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie
                       force:(BOOL) force
-                     studio:(NSString*) studio
-                      title:(NSString*) title {
-  [self updateSynopsisAndCast:movie force:force studio:studio title:title];
-  [self updateTrailers:movie force:force studio:studio title:title];
+                  studioKey:(NSString*) studioKey
+                   titleKey:(NSString*) titleKey {
+  [self updateSynopsis:movie force:force studioKey:studioKey titleKey:titleKey];
+  [self updateTrailers:movie force:force studioKey:studioKey titleKey:titleKey];
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-  NSString* studio = [self.studioKeys objectForKey:movie.canonicalTitle];
-  NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
+  NSArray* studioAndTitle = [movie.additionalFields objectForKey:studio_and_title_key];
+  if (studioAndTitle.count != 2) {
+    return;
+  }
 
+  NSString* studioKey = [studioAndTitle objectAtIndex:0];
+  NSString* titleKey = [studioAndTitle objectAtIndex:1];
+
+  if (studioKey.length == 0 || titleKey.length == 0) {
+    return;
+  }
+  
   [self updateMovieDetails:movie
                      force:force
-                    studio:studio
-                     title:title];
+                 studioKey:studioKey
+                  titleKey:titleKey];
 }
 
 
@@ -523,21 +555,6 @@ static NSDictionary* massageMap;
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
   return [[self.movieMap objectForKey:movie.canonicalTitle] directors];
-}
-
-
-- (NSArray*) castForMovie:(Movie*) movie {
-  NSArray* result = [[self.movieMap objectForKey:movie.canonicalTitle] cast];
-  if (result.count > 0) {
-    return result;
-  }
-
-  result = [FileUtilities readObject:[self castFile:movie]];
-  if (result.count > 0) {
-    return result;
-  }
-
-  return [NSArray array];
 }
 
 
