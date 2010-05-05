@@ -23,7 +23,12 @@
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
-// Title -> (StudioKey, TitleKey)
-+ (NSDictionary/*<NSString*,(NSString*,NSString*)>*/*) downloadIndex;
++ (NSString*) downloadIndexString;
++ (id) downloadJSONIndex;
++ (NSDictionary/*<NSString*,(NSString*,NSString*)>*/*) processJSONIndex:(id) index;
+
++ (NSString*) downloadXmlStringForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey;
++ (XmlElement*) downloadXmlElementForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey;
++ (NSArray*) downloadTrailersForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey;
 
 @end

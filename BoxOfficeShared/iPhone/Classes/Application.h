@@ -44,7 +44,6 @@
 + (NSString*) blurayDetailsDirectory;
 
 + (NSString*) upcomingDirectory;
-+ (NSString*) upcomingCastDirectory;
 + (NSString*) upcomingSynopsesDirectory;
 + (NSString*) upcomingTrailersDirectory;
 
