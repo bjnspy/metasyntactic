@@ -579,7 +579,8 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;
 		};
@@ -630,7 +631,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -669,7 +671,8 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "26A706B1-39C4-46AF-BDB2-7799885F9AAF";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
 		};
@@ -690,7 +693,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
@@ -720,7 +723,9 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos4.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
