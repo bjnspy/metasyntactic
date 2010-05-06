@@ -139,6 +139,19 @@ static NSDictionary* massageMap;
 }
 
 
++ (NSArray*) removeHtml:(NSArray*) array {
+  if (array.count == 0) {
+    return array;
+  }
+  
+  NSMutableArray* result = [NSMutableArray array];
+  for (NSString* val in array) {
+    [result addObject:[HtmlUtilities removeHtml:val]];
+  }
+  return result;
+}
+
+
 + (Movie*) processMovieElement:(id) movieElement
                           keys:(NSDictionary*) keys {
   if (![movieElement isKindOfClass:[NSDictionary class]]) {
@@ -174,6 +187,12 @@ static NSDictionary* massageMap;
       ![self isNilOrStringArray:genres]) {
     return nil;
   }
+  
+  studio = [HtmlUtilities removeHtml:studio];
+  title = [HtmlUtilities removeHtml:title];
+  directors = [self removeHtml:directors];
+  cast = [self removeHtml:cast];
+  genres = [self removeHtml:genres];
   
   NSArray* studioAndTitleKey = [keys objectForKey:[title lowercaseString]];
   if (studioAndTitleKey.count != 2) {
