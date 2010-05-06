@@ -624,51 +624,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		10000000000000070000002C /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
-				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = AdHoc;
-		};
-		10000000000000070000002D /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = AdHoc;
-		};
 		1000000000000007000000CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -683,7 +638,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -708,6 +663,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -717,8 +673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
@@ -740,8 +695,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				PROVISIONING_PROFILE = "286D1493-C67A-4A4C-A29F-1609FF452165";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "286D1493-C67A-4A4C-A29F-1609FF452165";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -808,7 +762,6 @@
 				1000000000000007000000CB /* Debug */,
 				10000000000000090000006E /* Release */,
 				1000000000000007000000E8 /* Distribution */,
-				10000000000000070000002D /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -819,7 +772,6 @@
 				1000000000000007000000CC /* Debug */,
 				10000000000000090000006F /* Release */,
 				1000000000000007000000E7 /* Distribution */,
-				10000000000000070000002C /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
