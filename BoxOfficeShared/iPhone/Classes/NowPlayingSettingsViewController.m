@@ -39,6 +39,18 @@ typedef enum {
   LastSection
 } SettingsSection;
 
+typedef enum {
+  LocationRow,
+  SearchDistanceRow,
+  SearchDateRow,
+  ReviewsRow,
+//  InternationalRow,
+  AutoUpdateLocationRow,
+  ShowNotificationsRow,
+  LoadingIndicatorsRow,
+  UseSmallFontsRow,
+  LastRow
+} StandardSettingsRow;
 
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
@@ -82,9 +94,9 @@ typedef enum {
     return 1;
   } else if (section == StandardSettingsSection) {
     if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
-      return 7;
+      return LastRow - 1;
     } else {
-      return 8;
+      return LastRow;
     }
   } else if (section == UpcomingSection) {
     return 1;
@@ -167,11 +179,11 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-  if (row >= 0 && row <= 3) {
+  if (row >= LocationRow && row < AutoUpdateLocationRow) {
     NSString* key = @"";
     NSString* value = @"";
     NSString* placeholder = @"";
-    if (row == 0) {
+    if (row == LocationRow) {
       key = LocalizedString(@"Location", nil);
       Location* location = [self.userLocationCache locationForUserAddress:[Model model].userAddress];
       if (location.postalCode.length == 0) {
@@ -180,7 +192,7 @@ typedef enum {
         value = location.postalCode;
       }
       placeholder = LocalizedString(@"Tap to enter location", nil);
-    } else if (row == 1) {
+    } else if (row == SearchDistanceRow) {
       key = LocalizedString(@"Search Distance", nil);
 
       if ([Model model].searchRadius == 1) {
@@ -190,7 +202,7 @@ typedef enum {
                  [Model model].searchRadius,
                  ([Application useKilometers] ? LocalizedString(@"kilometers", nil) : LocalizedString(@"miles", nil))];
       }
-    } else if (row == 2) {
+    } else if (row == SearchDateRow) {
       key = LocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
 
       NSDate* date = [Model model].searchDate;
@@ -199,29 +211,31 @@ typedef enum {
       } else {
         value = [DateUtilities formatLongDate:date];
       }
-    } else if (row == 3) {
+    } else if (row == ReviewsRow) {
       key = LocalizedString(@"Reviews", nil);
       value = [Model model].currentScoreProvider;
-    }
+    } //else if (row == InternationalRow) {
+//      key = LocalizedString(@"International", nil);
+//    }
 
     return [self createSettingCellWithKey:key value:value placeholder:placeholder];
-  } else if (row >= 4 && row <= 9) {
+  } else if (row >= AutoUpdateLocationRow && row <= UseSmallFontsRow) {
     NSString* text = @"";
     BOOL on = NO;
     SEL selector = nil;
-    if (row == 4) {
+    if (row == AutoUpdateLocationRow) {
       text = LocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
       on = [Model model].autoUpdateLocation;
       selector = @selector(onAutoUpdateChanged:);
-    } else if (row == 5) {
+    } else if (row == ShowNotificationsRow) {
       text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
       on = [Model model].notificationsEnabled;
       selector = @selector(onShowNotificationsChanged:);
-    } else if (row == 6) {
+    } else if (row == LoadingIndicatorsRow) {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
       on = [Model model].loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
-    } else if (row == 7) {
+    } else if (row == UseSmallFontsRow) {
       text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
       on = [Model model].useSmallFonts;
       selector = @selector(onUseSmallFontsChanged:);
@@ -380,7 +394,7 @@ typedef enum {
 }
 
 
-- (void) pushFilterDistancePicker {
+- (void) pushSearchDistancePicker {
   SearchDistancePickerViewController* controller =
   [[[SearchDistancePickerViewController alloc] init] autorelease];
 
@@ -395,7 +409,7 @@ typedef enum {
 
 
 - (void) didSelectSettingsRow:(NSInteger) row {
-  if (row == 0) {
+  if (row == LocationRow) {
     NSString* message;
 
     if ([Model model].userAddress.length == 0) {
@@ -431,15 +445,18 @@ typedef enum {
                                                      type:UIKeyboardTypeDefault] autorelease];
 
     [self.navigationController pushViewController:controller animated:YES];
-  } else if (row == 1) {
-    [self pushFilterDistancePicker];
-  } else if (row == 2) {
+  } else if (row == SearchDistanceRow) {
+    [self pushSearchDistancePicker];
+  } else if (row == SearchDateRow) {
     [self pushSearchDatePicker];
-  } else if (row == 3) {
+  } else if (row == ReviewsRow) {
     ScoreProviderViewController* controller =
     [[[ScoreProviderViewController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
-  }
+  } //else if (row == InternationalRow) {
+//    UIViewController* controller = [[[InternationalViewController alloc] init] autorelease];
+//    [self.navigationController pushViewController:controller animated:YES];
+//  }
 }
 
 
