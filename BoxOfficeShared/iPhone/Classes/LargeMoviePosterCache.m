@@ -341,7 +341,7 @@ const NSInteger START_YEAR = 1912;
       }
     }
   } else {
-    NSArray* result;
+    NSArray* result = nil;
     if ((result = [self posterUrls:movie year:releaseYear]).count > 0 ||
         (result = [self posterUrls:movie year:releaseYear - 1]).count > 0 ||
         (result = [self posterUrls:movie year:releaseYear - 2]).count > 0 ||
