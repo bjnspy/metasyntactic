@@ -257,8 +257,8 @@
 		100000000000001400000040 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000015000001A3 /* Prefix.pch */,
 				100000000000002A00000008 /* main.m */,
+				1000000000000015000001A3 /* Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -343,8 +343,8 @@
 		74F22D1D114DF95400CF9CE3 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */,
 				74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */,
+				74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */,
 				74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */,
 			);
 			name = iPad;
@@ -586,37 +586,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		10000000000000070000010C /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = AdHoc;
-		};
 		100000000000000A00000073 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -727,12 +696,6 @@
 			};
 			name = Release;
 		};
-		745C0E301162F38500093306 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = AdHoc;
-		};
 		745C0E311162F38500093306 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -747,7 +710,6 @@
 			buildConfigurations = (
 				100000000000000A00000073 /* Debug */,
 				100000000000001700000058 /* Release */,
-				10000000000000070000010C /* AdHoc */,
 				100000000000000A000000B6 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -758,7 +720,6 @@
 			buildConfigurations = (
 				745C0E2E1162F38500093306 /* Debug */,
 				745C0E2F1162F38500093306 /* Release */,
-				745C0E301162F38500093306 /* AdHoc */,
 				745C0E311162F38500093306 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
