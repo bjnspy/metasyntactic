@@ -64,8 +64,8 @@ static const int MARGIN = 5;
   NSInteger maxHeight = 163;
   
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
-    maxWidth = (NSInteger)(maxWidth * 2);
-    maxHeight = (NSInteger)(maxHeight * 2);
+    maxWidth = (maxWidth * 2);
+    maxHeight = (maxHeight * 2);
     lineHeight = 22;
   }
   
@@ -105,10 +105,12 @@ static const int MARGIN = 5;
     synopsisChunk1Label.font = [SynopsisCell synopsisFont];
     synopsisChunk1Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk1Label.numberOfLines = 0;
+    //synopsisChunk1Label.backgroundColor = [UIColor redColor];
 
     synopsisChunk2Label.font = [SynopsisCell synopsisFont];
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
+    //synopsisChunk2Label.backgroundColor = [UIColor blueColor];
 
     imageView.frame = CGRectMake(MARGIN, MARGIN, imageSize.width, imageSize.height);
 
@@ -225,7 +227,7 @@ static const int MARGIN = 5;
 }
 
 
-- (NSInteger) calculateSynopsisSplit:(float) contentViewWidth {
+- (NSInteger) calculateSynopsisSplit:(CGFloat) contentViewWidth {
   if (synopsis.length == 0) {
     return 0;
   }
@@ -235,8 +237,8 @@ static const int MARGIN = 5;
   }
 
   CGFloat chunk1Height = imageSize.height;
-  NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
-  NSInteger chunk1Width = contentViewWidth - MARGIN - chunk1X;
+  CGFloat chunk1X = MARGIN + imageSize.width + MARGIN;
+  CGFloat chunk1Width = contentViewWidth - MARGIN - chunk1X;
   CGSize chunk1Size = CGSizeMake(chunk1Width, chunk1Height);
 
   CGFloat entireSynopsisHeight = [self computeTextHeight:synopsis
@@ -305,7 +307,7 @@ static const int MARGIN = 5;
 
 - (void) calculateSynopsisSplit:(NSInteger*) synopsisSplit
                     synopsisMax:(NSInteger*) synopsisMax
-            forContentViewWidth:(float) contentViewWidth {
+            forContentViewWidth:(CGFloat) contentViewWidth {
   *synopsisSplit = [self calculateSynopsisSplit:contentViewWidth];
   if (limitLength) {
     *synopsisMax = [self calculateSynopsisMax:*synopsisSplit];
@@ -314,48 +316,66 @@ static const int MARGIN = 5;
   }
 }
 
+- (void) computeChunk1:(NSString**) chunk1 chunk2:(NSString**) chunk2
+                frame1:(CGRect*) frame1 frame2:(CGRect*) frame2 
+   forContentViewWidth:(CGFloat) forContentViewWidth {
+  
+  NSInteger synopsisSplit, synopsisMax;
+  [self calculateSynopsisSplit:&synopsisSplit
+                   synopsisMax:&synopsisMax
+           forContentViewWidth:forContentViewWidth];
+  
+  NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
+  NSInteger chunk1Width = forContentViewWidth - MARGIN - chunk1X;
+  
+  CGRect chunk1Frame = CGRectMake(chunk1X, MARGIN, chunk1Width, imageSize.height);
+  NSString* chunk1Text = [synopsis substringToIndex:synopsisSplit];
+  
+  CGRect chunk2Frame = CGRectZero;
+  NSString* chunk2Text = @"";
+  
+  
+  if (synopsisSplit < synopsis.length) {
+    NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
+    NSInteger end = synopsisMax;
+    
+    chunk2Text = [synopsis substringWithRange:NSMakeRange(start, end - start)];
+    
+    CGFloat chunk2Width = forContentViewWidth - 2 * MARGIN;
+    CGFloat chunk2Height = [chunk2Text sizeWithFont:[SynopsisCell synopsisFont]
+                                      constrainedToSize:CGSizeMake(chunk2Width, 2000)
+                                          lineBreakMode:UILineBreakModeWordWrap].height;
+    
+    chunk2Frame =  CGRectMake(MARGIN, imageSize.height + MARGIN, chunk2Width, chunk2Height);
+  }
+  
+  *frame1 = chunk1Frame;
+  *frame2 = chunk2Frame;
+  *chunk1 = chunk1Text;
+  *chunk2 = chunk2Text;
+}
+
 
 - (void) layoutSubviews {
   [super layoutSubviews];
 
-  NSInteger synopsisSplit, synopsisMax;
-  [self calculateSynopsisSplit:&synopsisSplit
-                   synopsisMax:&synopsisMax
-           forContentViewWidth:self.contentView.frame.size.width];
-
-  NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
-  NSInteger chunk1Width = self.contentView.frame.size.width - MARGIN - chunk1X;
-
-  CGRect chunk1Frame = CGRectMake(chunk1X, MARGIN, chunk1Width, imageSize.height);
+  CGRect chunk1Frame;
+  NSString* chunk1Text;
+  CGRect chunk2Frame;
+  NSString* chunk2Text;
+  
+  CGFloat contentViewWidth = self.contentView.frame.size.width;
+  
+  [self computeChunk1:&chunk1Text chunk2:&chunk2Text
+               frame1:&chunk1Frame frame2:&chunk2Frame
+  forContentViewWidth:contentViewWidth];
+  
   synopsisChunk1Label.frame = chunk1Frame;
-  synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
+  synopsisChunk1Label.text = chunk1Text;
   [synopsisChunk1Label sizeToFit];
 
-  synopsisChunk2Label.text = @"";
-  if (synopsisSplit >= synopsis.length) {
-    synopsisChunk2Label.frame = CGRectZero;
-  } else {
-    NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
-    NSInteger end = synopsisMax;
-
-    NSString* synopsisChunk2 = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-
-    CGFloat chunk2Width = self.contentView.frame.size.width - 2 * MARGIN;
-    CGFloat chunk2Height = [synopsisChunk2 sizeWithFont:[SynopsisCell synopsisFont]
-                                      constrainedToSize:CGSizeMake(chunk2Width, 2000)
-                                          lineBreakMode:UILineBreakModeWordWrap].height;
-
-    CGRect chunk2Frame =  CGRectMake(MARGIN, imageSize.height + MARGIN, chunk2Width, chunk2Height);
-    synopsisChunk2Label.text = synopsisChunk2;
-    synopsisChunk2Label.frame = chunk2Frame;
-
-    // shift the first chunk down to align with the second
-#if 0
-    chunk1Frame = synopsisChunk1Label.frame;
-    chunk1Frame.origin.y = imageSize.height + MARGIN - chunk1Frame.size.height;
-    synopsisChunk1Label.frame = chunk1Frame;
-#endif
-  }
+  synopsisChunk2Label.text = chunk2Text;
+  synopsisChunk2Label.frame = chunk2Frame;
 }
 
 
@@ -367,29 +387,18 @@ static const int MARGIN = 5;
     width = [UIScreen mainScreen].bounds.size.width;
   }
 
-  CGFloat contentViewWidth = width - 2 * groupedTableViewMargin - 2;
+  CGFloat contentViewWidth = width - 2 * groupedTableViewMargin;
   
-  NSInteger synopsisSplit, synopsisMax;
-  [self calculateSynopsisSplit:&synopsisSplit
-                   synopsisMax:&synopsisMax 
-           forContentViewWidth:contentViewWidth];
-
-  CGFloat h1 = imageSize.height;
-
-  if (synopsisSplit == synopsis.length) {
-    return h1 + 10;
-  }
-
-  NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
-  NSInteger end = synopsisMax;
-
-  NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-
-  CGFloat h2 =
-   [self computeTextHeight:remainder
-                  forWidth:contentViewWidth - 2 * MARGIN];
-
-  return h1 + h2 + 10;
+  CGRect chunk1Frame;
+  NSString* chunk1Text;
+  CGRect chunk2Frame;
+  NSString* chunk2Text;
+  
+  [self computeChunk1:&chunk1Text chunk2:&chunk2Text
+               frame1:&chunk1Frame frame2:&chunk2Frame
+  forContentViewWidth:contentViewWidth];
+  
+  return chunk2Frame.origin.y + chunk2Frame.size.height + MARGIN;
 }
 
 @end
