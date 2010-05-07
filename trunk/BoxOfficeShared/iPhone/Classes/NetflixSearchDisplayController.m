@@ -183,7 +183,7 @@
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     [self setActive:NO animated:YES];
   }
-  
+
   if ([self shouldShowDvd]) {
     Movie* movie = [dvdMovies objectAtIndex:indexPath.row];
     [self.commonNavigationController pushMovieDetails:movie animated:YES];

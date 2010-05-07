@@ -259,7 +259,7 @@ static NSString* storeDirectory = nil;
            inEnumerator:(NSDirectoryEnumerator*) enumerator
             withManager:(NSFileManager*) manager {
   NSDictionary* attributes = [enumerator fileAttributes];
-  
+
   // don't delete folders
   if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
     NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];

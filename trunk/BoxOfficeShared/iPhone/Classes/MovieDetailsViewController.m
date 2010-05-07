@@ -249,11 +249,11 @@ typedef enum {
 
 + (UIImage*) posterForMovie:(Movie*) movie {
   UIImage* image = nil;
-  
+
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     image = [[LargeMoviePosterCache cache] posterForMovie:movie loadFromDisk:YES];
   }
-  
+
   if (image == nil) {
     image = [[Model model] posterForMovie:movie];
   }
@@ -378,11 +378,11 @@ typedef enum {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
     return;
   }
-  
+
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:nil];
-  
+
   //[moviePlayerController setShouldAutoplay:NO];
   [moviePlayerController stop];
   moviePlayerController = nil;
@@ -399,25 +399,25 @@ typedef enum {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
     return;
   }
-  
+
   [self disconnectFromMoviePlayer];
   if (!self.hasTrailer) {
     return;
   }
-  
+
   NSString* address = trailersArray.firstObject;
   self.moviePlayerController = [[[MPMoviePlayerController alloc] initWithContentURL:
                                  [NSURL URLWithString:address]] autorelease];
 
   [moviePlayerController setControlStyle:MPMovieControlStyleFullscreen];
   //[moviePlayerController setShouldAutoplay:YES];
-  
+
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:moviePlayerController];
-  
+
   [moviePlayerController play];
   playingTrailer = YES;
 }
@@ -431,7 +431,7 @@ typedef enum {
                      withRowAnimation:UITableViewRowAnimationFade];
   }
   [self.tableView endUpdates];
-   
+
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -553,7 +553,7 @@ typedef enum {
 //    [activityView addSubview:activityIndicatorView];
 //
 //    UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
-    
+
     UIBarButtonItem* right = [self createActivityIndicator];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -665,7 +665,7 @@ typedef enum {
   if (playingTrailer) {
     return;
   }
-  
+
   [super majorRefresh];
 }
 
@@ -681,7 +681,7 @@ typedef enum {
 
   // Trailer
   sections += 1;
-  
+
   // Netflix
   sections += 1;
 
@@ -772,7 +772,7 @@ typedef enum {
   if (section == HeaderSection) {
     return [self numberOfRowsInHeaderSection];
   }
-  
+
   if (section == TrailerSection) {
     return [self numberOfRowsInTrailerSection];
   }
@@ -838,7 +838,7 @@ typedef enum {
     posterImageView.tag = ZOOM_POSTER_IMAGE_VIEW_TAG;
     posterImageView.delegate = self;
     BOOL limitLength = ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad);
-    
+
     return [SynopsisCell cellWithSynopsis:[[Model model] synopsisForMovie:movie]
                                 imageView:posterImageView
                               limitLength:limitLength
@@ -904,7 +904,7 @@ typedef enum {
   if (indexPath.section == HeaderSection) {
     return [self heightForRowInHeaderSection:indexPath.row];
   }
-  
+
   if (indexPath.section == TrailerSection) {
     return [self heightForRowInTrailerSection:indexPath.row];
   }
@@ -1029,19 +1029,19 @@ typedef enum {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
     return;
   }
-  
+
   NSInteger width = UIInterfaceOrientationIsPortrait(orientation) ? 768 : 1024;
-  
+
   NSInteger x = (width - (44 * 2) - 480) / 2;
   NSInteger y = 0;
   UIView* view = [(id)moviePlayerController view];
-  view.frame = CGRectMake(x, y, 480, 320);  
+  view.frame = CGRectMake(x, y, 480, 320);
 }
-   
+
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     [UIView setAnimationDuration:duration];
@@ -1058,15 +1058,15 @@ typedef enum {
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor blackColor];
-    
-    
+
+
     [cell.contentView addSubview:[(id)moviePlayerController view]];
   } else {
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.text = LocalizedString(@"Play Trailer", nil);
     cell.textLabel.textColor = [ColorCache commandColor];
   }
-  
+
   return cell;
 }
 
@@ -1076,7 +1076,7 @@ typedef enum {
   if (indexPath.section == HeaderSection) {
     return [self cellForHeaderRow:indexPath.row];
   }
-  
+
   if (indexPath.section == TrailerSection) {
     return [self cellForTrailerRow:indexPath.row];
   }
@@ -1103,7 +1103,7 @@ typedef enum {
   [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
   filterTheatersByDistance = NO;
-  
+
   [self majorRefresh];
   /*
   if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
@@ -1535,7 +1535,7 @@ typedef enum {
   if (playingTrailer) {
     return;
   }
-  
+
   [tableView deselectRowAtIndexPath:path animated:YES];
   [self setupMoviePlayer];
   [self updateMovieTrailerRow];
@@ -1547,7 +1547,7 @@ typedef enum {
   if (indexPath.section == HeaderSection) {
     return [self tableView:tableView didSelectHeaderRow:indexPath.row];
   }
-  
+
   if (indexPath.section == TrailerSection) {
     return [self tableView:tableView didSelectTrailerRowAtIndexPath:indexPath];
   }

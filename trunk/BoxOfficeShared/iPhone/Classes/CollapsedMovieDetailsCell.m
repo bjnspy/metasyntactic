@@ -18,7 +18,7 @@
 
 @implementation CollapsedMovieDetailsCell
 
-- (id)    initWithMovie:(Movie*) movie 
+- (id)    initWithMovie:(Movie*) movie
     tableViewController:(UITableViewController*) tableViewController {
   if ((self = [self initWithTableViewController:tableViewController])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {

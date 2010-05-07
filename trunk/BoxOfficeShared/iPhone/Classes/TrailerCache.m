@@ -59,7 +59,7 @@ static TrailerCache* cache;
   for (XmlElement* child in element.children) {
     [self processIndex:child trailers:trailers];
   }
-  
+
   NSString* text = element.text;
   if ([text hasPrefix:@"http"] && [text hasSuffix:@".m4v"]) {
     [trailers addObject:text];
@@ -75,7 +75,7 @@ static TrailerCache* cache;
 
 
 + (NSString*) xmlAddressForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
-  NSString* appleUrl = 
+  NSString* appleUrl =
   [NSString stringWithFormat:@"http://trailers.apple.com/moviesxml/s/%@/%@/index.xml",
    studioKey, titleKey];
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
@@ -99,12 +99,12 @@ static TrailerCache* cache;
 
 + (NSArray*) downloadTrailersForStudioKey:(NSString*) studioKey titleKey:(NSString*) titleKey {
   XmlElement* element = [self downloadXmlElementForStudioKey:studioKey titleKey:titleKey];
-  
+
   if (element == nil) {
     // didn't get any data.  ignore this for now.
     return nil;
   }
-  
+
   return [self processIndex:element];
 }
 
@@ -137,7 +137,7 @@ static TrailerCache* cache;
   }
 
   NSArray* studioAndTitleKey = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
-  
+
   NSString* studioKey = [studioAndTitleKey objectAtIndex:0];
   NSString* titleKey = [studioAndTitleKey objectAtIndex:1];
 
@@ -147,7 +147,7 @@ static TrailerCache* cache;
     // didn't get any data.  ignore this for now.
     return;
   }
-  
+
   [FileUtilities writeObject:trailers toFile:[self trailerFile:movie]];
 
   if (trailers.count > 0) {
@@ -164,30 +164,30 @@ static TrailerCache* cache;
   NSDictionary* child = itemElement;
   id fullTitle = [child objectForKey:@"title"];
   id location = [child objectForKey:@"location"];
-  
+
   if (![fullTitle isKindOfClass:[NSString class]] ||
       ![location isKindOfClass:[NSString class]]) {
     return;
   }
-  
+
   NSArray* components = [location componentsSeparatedByString:@"/"];
-  
+
   if (components.count < 4) {
     return;
   }
-  
+
   id studioKey = [components objectAtIndex:2];
   id titleKey = [components objectAtIndex:3];
-  
+
   if (![studioKey isKindOfClass:[NSString class]] ||
       ![titleKey isKindOfClass:[NSString class]]) {
     return;
   }
-  
+
   if ([fullTitle length] == 0 || [studioKey length] == 0 || [titleKey length] == 0) {
     return;
   }
-  
+
   [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
              forKey:[fullTitle lowercaseString]];
 }
@@ -229,11 +229,11 @@ static TrailerCache* cache;
   BOOL result;
   [dataGate lock];
   {
-    if (index == nil) {  
+    if (index == nil) {
       id jsonIndex = [TrailerCache downloadJSONIndex];
       self.index = [TrailerCache processJSONIndex:jsonIndex];
       self.indexKeys = index.allKeys;
-      
+
       [self clearUpdatedMovies];
     }
 

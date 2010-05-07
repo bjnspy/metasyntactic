@@ -67,7 +67,7 @@
 
 - (void) setupTitleView {
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
-    self.activityView = 
+    self.activityView =
     [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
   } else {
     self.activityView =

@@ -249,7 +249,7 @@ static Pulser* pulser = nil;
   if (response != NULL) {
     *response = nil;
   }
-  
+
   if (error != NULL) {
     *error = nil;
   }

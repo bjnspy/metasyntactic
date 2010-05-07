@@ -39,7 +39,7 @@ typedef enum {
 
   NSMutableArray* boundedOperations;
   NSInteger priorityOperationsCount;
-  
+
   NSInteger maxBoundedOperations;
 }
 

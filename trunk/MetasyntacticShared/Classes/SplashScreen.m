@@ -124,14 +124,14 @@ static SplashScreen* splashScreen = nil;
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     UIViewController* rootViewController = [delegate viewController];
-    
+
     UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
     [window addSubview:rootViewController.view];
     [delegate onSplashScreenFinished];
   } else {
     // Will autorelease this in onFadeComplete
     splashScreen = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
-    
+
     UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
     [window addSubview:splashScreen.view];
     [window makeKeyAndVisible];

@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  InternationalViewController.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 5/2/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "InternationalViewController.h"
 
@@ -29,10 +35,10 @@
 static NSInteger compareLanguageCodes(id lang1, id lang2, void* context) {
   NSLocale* locale1 = [[[NSLocale alloc] initWithLocaleIdentifier:lang1] autorelease];
   NSLocale* locale2 = [[[NSLocale alloc] initWithLocaleIdentifier:lang2] autorelease];
-  
+
   NSString* display1 = [locale1 displayNameForKey:NSLocaleLanguageCode value:lang1];
   NSString* display2 = [locale2 displayNameForKey:NSLocaleLanguageCode value:lang2];
-  
+
   return [display1 compare:display2];
 }
 
@@ -40,39 +46,39 @@ static NSInteger compareLanguageCodes(id lang1, id lang2, void* context) {
 //static NSInteger compareCountryCodes(id code1, id code2, void* context) {
 //  NSString* countryCode1 = code1;
 //  NSString* countryCode2 = code2;
-//  
+//
 //  NSLocale* locale = context;
 //  NSString* display1 = [locale displayNameForKey:NSLocaleCountryCode value:countryCode1];
 //  NSString* display2 = [locale displayNameForKey:NSLocaleCountryCode value:countryCode2];
-//  
+//
 //  return [display1 compare:display2];
 //}
 
 
 - (void) initializeData {
   NSLog(@"%@", [[NSBundle mainBundle] localizations]);
-  
+
   NSMutableSet* set = [NSMutableSet set];
   for (NSString* localIdentifier in [NSLocale availableLocaleIdentifiers]) {
     NSRange underscoreRange = [localIdentifier rangeOfString:@"_"];
-    
+
     NSString* language = nil;
-    
+
     if (underscoreRange.length == 0) {
       language = localIdentifier;
     } else {
       language = [localIdentifier substringToIndex:underscoreRange.location];
-      
+
       NSString* country = [localIdentifier substringFromIndex:underscoreRange.location + 1];
       underscoreRange = [country rangeOfString:@"_"];
       if (underscoreRange.length > 0) {
         continue;
       }
     }
-    
+
     [set addObject:language];
   }
-  
+
   self.languages = [[set allObjects] sortedArrayUsingFunction:compareLanguageCodes context:NULL];
 }
 
@@ -101,13 +107,13 @@ static NSInteger compareLanguageCodes(id lang1, id lang2, void* context) {
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   NSString* languageCode = [languages objectAtIndex:indexPath.row];
   NSLocale* locale = [[[NSLocale alloc] initWithLocaleIdentifier:languageCode] autorelease];
-  
+
   NSString* displayLanguage = [locale displayNameForKey:NSLocaleLanguageCode value:languageCode];
   cell.textLabel.text = displayLanguage;
-  
+
   return cell;
 }
 
@@ -137,7 +143,7 @@ static NSInteger compareLanguageCodes(id lang1, id lang2, void* context) {
 
   NSString* display1 = [locale1 displayNameForKey:NSLocaleLanguageCode value:lang1];
   NSString* display2 = [locale2 displayNameForKey:NSLocaleLanguageCode value:lang2];
-  
+
   return [display1 compare:display2];
 }
 
@@ -145,7 +151,7 @@ static NSInteger compareLanguageCodes(id lang1, id lang2, void* context) {
 static NSInteger compareCountryCodes(id code1, id code2, void* context) {
   NSString* countryCode1 = code1;
   NSString* countryCode2 = code2;
-  
+
   NSLocale* locale = context;
   NSString* display1 = [locale displayNameForKey:NSLocaleCountryCode value:countryCode1];
   NSString* display2 = [locale displayNameForKey:NSLocaleCountryCode value:countryCode2];
@@ -158,10 +164,10 @@ static NSInteger compareCountryCodes(id code1, id code2, void* context) {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
   for (NSString* localIdentifier in [NSLocale availableLocaleIdentifiers]) {
     NSRange underscoreRange = [localIdentifier rangeOfString:@"_"];
-    
+
     NSString* language = nil;
     NSString* country = nil;
-    
+
     if (underscoreRange.length == 0) {
       language = localIdentifier;
     } else {
@@ -172,25 +178,25 @@ static NSInteger compareCountryCodes(id code1, id code2, void* context) {
         continue;
       }
     }
-    
+
     NSMutableArray* array = [dictionary objectForKey:language];
     if (array == nil) {
       array = [NSMutableArray array];
       [dictionary setObject:array forKey:language];
     }
-    
+
     if (country != nil) {
       [array addObject:country];
     }
   }
-  
+
   for (NSString* language in dictionary) {
     NSMutableArray* array = [dictionary objectForKey:language];
     NSLocale* locale = [[[NSLocale alloc] initWithLocaleIdentifier:language] autorelease];
 
     [array sortUsingFunction:compareCountryCodes context:locale];
   }
-  
+
   self.languages = [[dictionary allKeys] sortedArrayUsingFunction:compareLanguageCodes context:NULL];
   self.languageToCountries = dictionary;
 }
@@ -211,7 +217,7 @@ static NSInteger compareCountryCodes(id code1, id code2, void* context) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   NSString* language = [languages objectAtIndex:section];
-  
+
   return [[languageToCountries objectForKey:language] count] + 1;
 }
 
@@ -222,23 +228,23 @@ static NSInteger compareCountryCodes(id code1, id code2, void* context) {
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
   }
-            
+
   NSString* languageCode = [languages objectAtIndex:indexPath.section];
   NSLocale* locale = [[[NSLocale alloc] initWithLocaleIdentifier:languageCode] autorelease];
-  
+
   if (indexPath.row == 0) {
     NSString* displayLanguage = [locale displayNameForKey:NSLocaleLanguageCode value:languageCode];
-    
+
     cell.textLabel.text = displayLanguage;
     cell.indentationLevel = 0;
   } else {
     NSString* countryCode = [[languageToCountries objectForKey:languageCode] objectAtIndex:indexPath.row - 1];
     NSString* displayCountry = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
-    
+
     cell.textLabel.text = displayCountry;
     cell.indentationLevel = 1;
   }
-  
+
   return cell;
 }
 
@@ -255,4 +261,3 @@ static NSInteger compareCountryCodes(id code1, id code2, void* context) {
 */
 
 @end
-

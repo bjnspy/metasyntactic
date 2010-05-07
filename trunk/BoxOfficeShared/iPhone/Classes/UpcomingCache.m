@@ -39,7 +39,7 @@ static NSDictionary* massageMap;
 + (void) initialize {
   if (self == [UpcomingCache class]) {
     cache = [[UpcomingCache alloc] init];
-    
+
     unichar ndash[] = { (unichar)226, (unichar)128, (unichar)147 };
     unichar mdash[] = { (unichar)226, (unichar)128, (unichar)148 };
     unichar lquote[] = { (unichar)226, (unichar)128, (unichar)152 };
@@ -47,7 +47,7 @@ static NSDictionary* massageMap;
     unichar openQuote[] = { (unichar)226, (unichar)128, (unichar)156 };
     unichar closeQuote[] = { (unichar)226, (unichar)128, (unichar)157 };
     unichar ellipsis[] = { (unichar)226, (unichar)128, (unichar)166 };
-    
+
     massageMap = [[NSDictionary dictionaryWithObjectsAndKeys:
                    @"–", [NSString stringWithCharacters:ndash length:ArrayLength(ndash)],
                    @"—", [NSString stringWithCharacters:mdash length:ArrayLength(mdash)],
@@ -115,7 +115,7 @@ static NSDictionary* massageMap;
   if (obj == nil) {
     return YES;
   }
-  
+
   return [obj isKindOfClass:[NSString class]];
 }
 
@@ -124,17 +124,17 @@ static NSDictionary* massageMap;
   if (obj == nil) {
     return YES;
   }
-  
+
   if (![obj isKindOfClass:[NSArray class]]) {
     return NO;
   }
-  
+
   for (id child in obj) {
     if (![child isKindOfClass:[NSString class]]) {
       return NO;
     }
   }
-  
+
   return YES;
 }
 
@@ -143,7 +143,7 @@ static NSDictionary* massageMap;
   if (array.count == 0) {
     return array;
   }
-  
+
   NSMutableArray* result = [NSMutableArray array];
   for (NSString* val in array) {
     [result addObject:[HtmlUtilities removeHtml:val]];
@@ -157,7 +157,7 @@ static NSDictionary* massageMap;
   if (![movieElement isKindOfClass:[NSDictionary class]]) {
     return nil;
   }
-  
+
   id releaseDateString = [movieElement objectForKey:@"releasedate"];
   id poster = [movieElement objectForKey:@"poster"];
   id rating = [movieElement objectForKey:@"rating"];
@@ -166,7 +166,7 @@ static NSDictionary* massageMap;
   id directors = [movieElement objectForKey:@"directors"];
   id cast = [movieElement objectForKey:@"actors"];
   id genres = [movieElement objectForKey:@"genre"];
-  
+
   if ([directors isKindOfClass:[NSString class]]) {
     directors = [NSArray arrayWithObject:directors];
   }
@@ -176,7 +176,7 @@ static NSDictionary* massageMap;
   if ([genres isKindOfClass:[NSString class]]) {
     genres = [NSArray arrayWithObject:genres];
   }
-  
+
   if (![self isNilOrString:releaseDateString] ||
       ![self isNilOrString:poster] ||
       ![self isNilOrString:rating] ||
@@ -187,13 +187,13 @@ static NSDictionary* massageMap;
       ![self isNilOrStringArray:genres]) {
     return nil;
   }
-  
+
   studio = [HtmlUtilities removeHtml:studio];
   title = [HtmlUtilities removeHtml:title];
   directors = [self removeHtml:directors];
   cast = [self removeHtml:cast];
   genres = [self removeHtml:genres];
-  
+
   NSArray* studioAndTitleKey = [keys objectForKey:[title lowercaseString]];
   if (studioAndTitleKey.count != 2) {
     return nil;
@@ -203,11 +203,11 @@ static NSDictionary* massageMap;
   if (studioKey.length == 0 || titleKey.length == 0) {
     return nil;
   }
-  
+
   NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:releaseDateString];
   NSDictionary* additionalFields = [NSDictionary dictionaryWithObject:studioAndTitleKey
                                                                forKey:studio_and_title_key];
-  
+
   title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
   Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-Upcoming", title]
                                       title:title
@@ -237,7 +237,7 @@ static NSDictionary* massageMap;
       NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
       {
         Movie* movie = [self processMovieElement:child keys:keys];
-        
+
         if (movie != nil) {
           if([cutoff compare:movie.releaseDate] != NSOrderedDescending) {
             [result addObject:movie];
@@ -325,7 +325,7 @@ static NSDictionary* massageMap;
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-  
+
   NSString* index = [TrailerCache downloadIndexString];
   NSString* serverHash = [NSString stringWithFormat:@"%d", [index hash]];
   if (serverHash.length == 0) {
@@ -426,15 +426,15 @@ static NSDictionary* massageMap;
 
 - (NSString*) massageSynopsis:(NSString*) value {
   //static NSString* s1 = [[StringUtilities stringFromUnichar:(unichar)221] retain];
-  
+
   if (value.length == 0) {
     return value;
   }
-  
+
   for (NSString* key in massageMap) {
     value = [value stringByReplacingOccurrencesOfString:key withString:[massageMap objectForKey:key]];
   }
-  
+
   while (YES) {
     int oldLength = value.length;
     value = [value stringByReplacingOccurrencesOfString:@"  " withString:@" "];
@@ -442,9 +442,9 @@ static NSDictionary* massageMap;
       break;
     }
   }
-  
+
   return [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   //return [value stringByReplacingOccurrencesOfString:s1 withString:@"'"];
 }
 
@@ -475,7 +475,7 @@ static NSDictionary* massageMap;
   if (xmlString == nil) {
     return;
   }
-  
+
   NSRange descriptionRange = [xmlString rangeOfString:@"<!--DESCRIPTION-->"];
   if (descriptionRange.length == 0) {
     return;
@@ -486,16 +486,16 @@ static NSDictionary* massageMap;
   if (textViewRange.length == 0) {
     return;
   }
-  
+
   NSInteger start = descriptionRange.location;
   NSInteger end = textViewRange.location + textViewRange.length;
-  
+
   NSString* substring =
   [xmlString substringWithRange:NSMakeRange(start, end - start)];
 
   XmlElement* element = [XmlParser parse:[substring dataUsingEncoding:NSUTF8StringEncoding]];
   NSString* synopsis = [[element element:@"SetFontStyle"] text];
-                        
+
   synopsis = [self massageSynopsis:synopsis];
   if (synopsis.length == 0) {
     return;
@@ -559,7 +559,7 @@ static NSDictionary* massageMap;
   if (studioKey.length == 0 || titleKey.length == 0) {
     return;
   }
-  
+
   [self updateMovieDetails:movie
                      force:force
                  studioKey:studioKey

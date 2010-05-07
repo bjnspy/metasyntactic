@@ -62,12 +62,12 @@
   if (image == nil) {
     return nil;
   }
-  
+
   CGSize imageSize = image.size;
-  
+
   CGFloat height = imageSize.height * (width / imageSize.width);
   CGSize resultSize = CGSizeMake(width, height);
-  
+
   return [self scaleImage:image toSize:resultSize];
 }
 
@@ -90,7 +90,7 @@
   if (result == nil) {
     return nil;
   }
-  
+
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     return UIImageJPEGRepresentation(result, 0.9f);
   } else {
@@ -104,21 +104,21 @@
   if (data.length == 0) {
     return nil;
   }
-  
+
   UIImage* source = [UIImage imageWithData:data];
   if (source == nil) {
     return nil;
   }
-  
+
   if (source.size.width <= width) {
     return data;
   }
-  
+
   UIImage* result = [self scaleImage:source toWidth:width];
   if (result == nil) {
     return nil;
   }
-  
+
   return UIImageJPEGRepresentation(result, 0.5f);
 }
 

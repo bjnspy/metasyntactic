@@ -44,19 +44,19 @@ static NetflixNetworking* networking = nil;
 
 - (NSInteger) computeTimeDrift {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/oauth/clock/time?oauth_consumer_key=%@", [NetflixAuthentication key]];
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];  
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
   XmlElement* statusElement = [element element:@"status_code"];
   if (statusElement != nil) {
     return 0;
   }
-  
+
   NSInteger serverTime = [[element text] integerValue];
   if (serverTime == 0) {
     return 0;
   }
-  
+
   NSInteger localTime = time(NULL);
-  
+
   return (serverTime - localTime);
 }
 

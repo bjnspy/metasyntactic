@@ -37,9 +37,9 @@ static CFHashCode IdentityDictionaryHashCallBack(const void* value) {
   keyCallBacks.equal = IdentityDictionaryEqualCallBack;
   keyCallBacks.hash = IdentityDictionaryHashCallBack;
   keyCallBacks.release = IdentityDictionaryReleaseCallBack;
-  
+
   CFDictionaryValueCallBacks valueCallBacks = kCFTypeDictionaryValueCallBacks;
-  
+
   NSMutableDictionary* result =
   (NSMutableDictionary*) CFDictionaryCreateMutable(NULL,
                                                    0,

@@ -70,7 +70,7 @@
 
 - (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
   [super rotateToInterfaceOrientation:interfaceOrientation duration:duration];
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     [UIView setAnimationDuration:duration];
@@ -135,7 +135,7 @@
 - (void) reportError:(NSError*) error {
   NSAssert([NSThread isMainThread], nil);
   [[NetflixCache cache] setLastError:error];
-  NSString* message = 
+  NSString* message =
   [NSString stringWithFormat:
    @"%@\n\n%@\n%@",
    LocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil),
@@ -174,7 +174,7 @@
 
   // we're coming back after showing the user the the access page
   [loginView showRequestingAccessMessage];
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
                                           onTarget:self
                                               gate:nil

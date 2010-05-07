@@ -338,12 +338,12 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
   NSString* directory = [NetflixPaths rssFeedDirectory:address];
   NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-  
+
   for (NSString* path in paths) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
       NSDictionary* dictionary = [FileUtilities readObject:path];
-      
+
       Movie* movie = [Movie createWithDictionary:dictionary];
       if (movie != nil) {
         NSString* lastPathComponent = [[path stringByDeletingPathExtension] lastPathComponent];
@@ -361,13 +361,13 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
 
 - (NSArray*) moviesForRSSTitle:(NSString*) title {
   NSMutableArray* array = [NSMutableArray array];
-  
+
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
   {
     [self moviesForRSSTitle:title result:array];
   }
   [pool release];
-  
+
   return array;
 }
 

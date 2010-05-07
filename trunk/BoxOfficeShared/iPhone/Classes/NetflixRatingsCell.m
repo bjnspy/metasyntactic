@@ -43,10 +43,10 @@
 
 - (NSInteger) halfWayPoint {
   NSInteger width = self.tableViewController.view.frame.size.width;
-  
+
   NSInteger halfPoint = width / 2;
   halfPoint -= groupedTableViewMargin;
-  
+
   return halfPoint;
 }
 

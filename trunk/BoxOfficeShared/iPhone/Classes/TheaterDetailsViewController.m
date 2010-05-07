@@ -285,7 +285,7 @@
                                                 theater:theater
                                            performances:performances]];
   }
-  
+
   [self openMailTo:nil
        withSubject:subject
               body:body

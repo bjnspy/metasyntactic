@@ -355,7 +355,7 @@
       sortedTheaters.count > 0) {
     return YES;
   }
-  
+
   return NO;
 }
 

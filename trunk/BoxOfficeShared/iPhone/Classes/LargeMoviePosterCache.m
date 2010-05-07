@@ -406,11 +406,11 @@ const NSInteger START_YEAR = 1912;
 
   NSInteger FULL_SCREEN_POSTER_HEIGHT;
   NSInteger FULL_SCREEN_POSTER_WIDTH;
-  
+
   CGSize screenSize = [[UIScreen mainScreen] bounds].size;
   FULL_SCREEN_POSTER_HEIGHT = screenSize.height - 20;
   FULL_SCREEN_POSTER_WIDTH = screenSize.width - 10;
-  
+
   CGSize size = image.size;
   if (size.height >= size.width && image.size.height > FULL_SCREEN_POSTER_HEIGHT) {
     return [ImageUtilities scaleImageData:data

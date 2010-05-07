@@ -15,7 +15,7 @@
 @interface AbstractTableViewCell : UITableViewCell {
 @private
   UITableViewController* tableViewController;
-  
+
 @protected
   NSInteger groupedTableViewMargin;
 }

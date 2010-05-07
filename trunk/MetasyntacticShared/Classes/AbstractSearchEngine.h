@@ -18,7 +18,7 @@
 @private
   // only accessed from the main thread.  needs no lock.
   id<SearchEngineDelegate> delegate;
-  
+
   // only accessed from background thread.  needs no lock.
   NSTimeInterval lastSearchTime;
 
