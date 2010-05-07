@@ -1235,7 +1235,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     return NO;
   }
-  
+
   return ![[NSUserDefaults standardUserDefaults] boolForKey:USE_NORMAL_FONTS];
 }
 

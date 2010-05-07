@@ -34,29 +34,29 @@ NetflixChangeRatingDelegate> {
 @private
   Movie* movie;
   DVD* dvd;
-  
+
   NetflixAccount* netflixAccount;
   Movie* netflixMovie;
   NetflixRatingsCell* netflixRatingsCell;
   NSArray* netflixStatusCells;
-  
+
   NSMutableArray* filteredTheatersArray;
   NSMutableArray* allTheatersArray;
   NSMutableArray* showtimesArray;
   NSArray* trailersArray;
   NSArray* reviewsArray;
   NSDictionary* websites;
-  
+
   ActionsView* actionsView;
   UIButton* bookmarkButton;
-  
+
   BOOL filterTheatersByDistance;
   BOOL expandedDetails;
-  
+
   UIImage* posterImage;
   TappableImageView* posterImageView;
   NSInteger posterCount;
-  
+
   NSDictionary* buttonIndexToActionMap;
 
   MPMoviePlayerController* moviePlayerController;

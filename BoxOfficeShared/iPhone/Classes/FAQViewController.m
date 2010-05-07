@@ -110,7 +110,7 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-  id cell = [self tableView:tableView 
+  id cell = [self tableView:tableView
       cellForRowAtIndexPath:indexPath];
   return [cell height];
 }

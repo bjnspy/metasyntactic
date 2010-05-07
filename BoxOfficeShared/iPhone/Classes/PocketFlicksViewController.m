@@ -201,7 +201,7 @@ typedef enum {
       case MostPopularSection: {
         NSString* title = LocalizedString(@"New / Popular Releases", nil);
         //NSString* title = [NSString stringWithFormat:@"%@ / %@",
-        //                   LocalizedString(@"New Releases", nil), 
+        //                   LocalizedString(@"New Releases", nil),
         //                   LocalizedString(@"Popular", @"The most popular movies currently")];
         //if (mostPopularTitleCount == 0) {
           cell.textLabel.text = title;

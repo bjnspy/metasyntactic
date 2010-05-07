@@ -403,7 +403,7 @@
 
 - (UIBarButtonItem*) createActivityIndicator {
   UIActivityIndicatorView* activityIndicatorView;
-  
+
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
   } else {
@@ -427,9 +427,9 @@
   } else {
     infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   }
-  
+
   [infoButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-  
+
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;
   frame.size.width += 4;
@@ -444,13 +444,13 @@
              isHTML:(BOOL) isHTML {
   MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
   controller.mailComposeDelegate = self;
-  
+
   if (recipient.length > 0) {
     [controller setToRecipients:[NSArray arrayWithObject:recipient]];
   }
   [controller setSubject:subject];
   [controller setMessageBody:body isHTML:isHTML];
-  
+
   [self presentModalViewController:controller animated:YES];
 }
 

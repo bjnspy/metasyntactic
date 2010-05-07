@@ -369,7 +369,7 @@
       self.movies.count > 0) {
     return YES;
   }
-  
+
   return NO;
 }
 

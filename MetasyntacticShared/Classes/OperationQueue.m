@@ -87,11 +87,11 @@ static OperationQueue* operationQueue = nil;
 - (id) init {
   if ((self = [super init])) {
     self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
-    
+
     // Ugly hack.
     CGSize size = [[UIScreen mainScreen] bounds].size;
     maxBoundedOperations = (MAX(size.width, size.height) / 100);
-    
+
     [self restart];
   }
 

@@ -64,16 +64,16 @@
   CGFloat width = self.tableViewController.view.frame.size.width;
   width -= 2 * groupedTableViewMargin;
   width -= 2 * 10;
-  
+
   if ([self reviewHasLink]) {
     width -= 25;
   }
-  
+
   CGSize size = CGSizeMake(width, 2000);
   size = [reviewData.text sizeWithFont:[FontCache helvetica14]
                      constrainedToSize:size
                          lineBreakMode:UILineBreakModeWordWrap];
-  
+
   *outWidth = width;
   *outHeight = size.height + 10;
 }
@@ -90,7 +90,7 @@
   [super layoutSubviews];
 
   label.text = reviewData.text;
-  
+
   CGFloat height, width;
   [self height:&height width:&width];
 

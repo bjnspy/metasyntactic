@@ -54,7 +54,7 @@
   NSArray* htmlCodes =
   [NSArray arrayWithObjects:
    @"a", @"em", @"p", @"b", @"i", @"br", @"br ",
-   @"strong", @"tbody", @"tr", @"td", @"span", 
+   @"strong", @"tbody", @"tr", @"td", @"span",
    @"table", @"div", @"font", @"P", @"blockquote",
    @"ul", @"li", nil];
 
@@ -73,7 +73,7 @@
     return @"";
   }
 
-  NSArray* htmlCodes = 
+  NSArray* htmlCodes =
   [NSArray arrayWithObjects:
    @"a", @"p", @"table", @"span", @"div", @"font", @"A", nil];
 
@@ -136,7 +136,7 @@
                                 options:0
                                   range:NSMakeRange(index, string.length - index)]).length > 0) {
     NSRange endRange = [string rangeOfString:@"-->" options:0 range:NSMakeRange(range.location, string.length - range.location)];
-    
+
     if (endRange.length > 0) {
       string = [NSString stringWithFormat:@"%@%@",
                 [string substringToIndex:range.location],
@@ -169,7 +169,7 @@
     string = [string stringByReplacingOccurrencesOfString:before withString:after];
     newLength = string.length;
   } while (newLength < oldLength);
-  
+
   return string;
 }
 
@@ -185,7 +185,7 @@
   if (string.length == 0) {
     return @"";
   }
-  
+
   string = [self convertHtmlEntities:
             [self stripHtmlComments:
              [self stripHtmlCodes:

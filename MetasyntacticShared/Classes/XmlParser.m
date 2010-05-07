@@ -39,7 +39,7 @@
   self.elementsStack = nil;
   self.stringBufferStack = nil;
   self.attributesStack = nil;
-  
+
   [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -69,22 +69,22 @@
 
 
 - (void)     parser:(NSXMLParser *)parser
-      didEndElement:(NSString *)elementName 
+      didEndElement:(NSString *)elementName
        namespaceURI:(NSString *)namespaceURI
       qualifiedName:(NSString *)qName {
   NSArray* children = elementsStack.lastObject;
   NSString* text = stringBufferStack.lastObject;
   NSDictionary* attributes = attributesStack.lastObject;
-  
+
   [elementsStack removeLastObject];
   [stringBufferStack removeLastObject];
   [attributesStack removeLastObject];
-  
+
   XmlElement* element = [XmlElement elementWithName:elementName
                                          attributes:attributes
                                            children:children
                                                text:text];
-  
+
   [elementsStack.lastObject addObject:element];
 }
 
@@ -97,29 +97,29 @@
 - (XmlElement*) run:(NSData*) data {
   NSXMLParser* xmlParser = [[[NSXMLParser alloc] initWithData:data] autorelease];
   xmlParser.delegate = (id)self;
-  
+
   self.elementsStack = [NSMutableArray array];
   self.stringBufferStack = [NSMutableArray array];
   self.attributesStack = [NSMutableArray array];
-  
+
   [elementsStack addObject:[NSMutableArray array]];
-  
+
   BOOL result = [xmlParser parse];
-  
+
   if (!result) {
     [Logger log:[NSString stringWithFormat:@"Parse error occurred: %@", xmlParser.parserError]];
     return nil;
   }
-  
+
   if (elementsStack.count == 0) {
     return nil;
   }
-  
+
   NSArray* array = elementsStack.lastObject;
   if (array.count == 0) {
     return nil;
   }
-  
+
   return array.lastObject;
 }
 
@@ -128,10 +128,10 @@
   if (data == nil || data.length == 0) {
     return nil;
   }
-  
+
   XmlParser* parser = [[[XmlParser alloc] init] autorelease];
   XmlElement* result = [parser run:data];
-  
+
   return result;
 }
 

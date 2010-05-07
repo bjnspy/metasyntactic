@@ -48,7 +48,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -71,16 +71,16 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
   }
 
   [[OperationQueue operationQueue] temporarilySuspend:90];
-  
+
   self.viewController = _viewController;
   self.moviePlayerViewController = [[[MPMoviePlayerViewController alloc] initWithContentURL:url] autorelease];
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:nil];
-  
-  [moviePlayerViewController.moviePlayer play];  
+
+  [moviePlayerViewController.moviePlayer play];
   [_viewController presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
 }
 
@@ -88,7 +88,7 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 - (void) movieFinishedPlaying:(NSNotification*) notification {
   [moviePlayerViewController.moviePlayer stop];
   [[moviePlayerViewController retain] autorelease];
-  
+
   [viewController dismissMoviePlayerViewControllerAnimated];
   self.moviePlayerViewController = nil;
   self.viewController = nil;

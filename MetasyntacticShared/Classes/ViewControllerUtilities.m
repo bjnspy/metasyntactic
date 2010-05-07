@@ -59,7 +59,7 @@ static UIFont* minimumTitleFont = nil;
 
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
-  
+
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     label.shadowColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(0, 1);
@@ -101,8 +101,8 @@ static UIFont* minimumTitleFont = nil;
 
 
 + (UILabel*) createMultiLineTitleLabel {
-  return [self createTitleLabel:@"" 
-                       maxWidth:[self width] 
+  return [self createTitleLabel:@""
+                       maxWidth:[self width]
                  forceMultiLine:YES];
 }
 
@@ -123,12 +123,12 @@ static UIFont* minimumTitleFont = nil;
     controller.navigationItem.titleView = nil;
     return;
   }
-  
+
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     controller.navigationItem.titleView = nil;
     return;
   }
-  
+
   NSInteger maxWidth = 320;
   const BOOL hasLeftBarItem = [self hasLeftBarItem:controller];
   if (hasLeftBarItem) {

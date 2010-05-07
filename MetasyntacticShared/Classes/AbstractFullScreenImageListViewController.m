@@ -90,7 +90,7 @@ const NSInteger PAGE_RANGE = 2;
 
 - (void) onBeforeViewControllerPopped {
   [super onBeforeViewControllerPopped];
-  
+
   [Portability setApplicationStatusBarHidden:NO withAnimation:StatusBarAnimationFade];
   [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
 
@@ -187,13 +187,13 @@ const NSInteger PAGE_RANGE = 2;
   CGSize imageSize = image.size;
   CGSize normalizedImageSize = imageSize;
   BOOL isLandcsape = false;
-  
+
   if (imageSize.width > imageSize.height) {
     isLandcsape = true;
     normalizedImageSize = CGSizeMake(imageSize.height, imageSize.width);
   }
-  
-  CGRect screenBounds = [UIScreen mainScreen].bounds; 
+
+  CGRect screenBounds = [UIScreen mainScreen].bounds;
   CGSize screenSize = screenBounds.size;
   if (normalizedImageSize.height > screenSize.height ||
       normalizedImageSize.width > screenSize.width) {
@@ -203,22 +203,22 @@ const NSInteger PAGE_RANGE = 2;
     // smaller than the screen.
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
     CGRect imageFrame = imageView.frame;
-    
+
     if (isLandcsape) {
       // rotate the image
       imageFrame.size = CGSizeMake(imageFrame.size.height, imageFrame.size.width);
-      
+
       imageView.frame = imageFrame;
       imageView.transform = CGAffineTransformMakeRotation((CGFloat)M_PI / 2);
     }
-    
+
     // Now, center the image in an outer frame.
     UIView* outerView = [[[UIView alloc] initWithFrame:screenBounds] autorelease];
     imageFrame.origin.x = (screenSize.width - imageFrame.size.width) / 2;
     imageFrame.origin.y = (screenSize.height - imageFrame.size.height) / 2;
     imageView.frame = imageFrame;
     [outerView addSubview:imageView];
-    
+
     return outerView;
   }
 }
@@ -230,7 +230,7 @@ const NSInteger PAGE_RANGE = 2;
   } else {
     return [self createScaledImageView:image];
   }
-}  
+}
 
 
 - (TappableScrollView*) createScrollView {

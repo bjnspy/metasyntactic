@@ -247,7 +247,7 @@
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     [self setActive:NO animated:YES];
   }
-  
+
   if (indexPath.section == 0) {
     [self didSelectMovieRow:indexPath.row];
   } else if (indexPath.section == 1) {

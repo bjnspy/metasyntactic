@@ -60,13 +60,13 @@
     self.titles = titles_;
     self.arguments = arguments_;
     self.backgroundColor = [UIColor clearColor];// [UIColor groupTableViewBackgroundColor];
-    
+
     if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
       marginWidth = 44;
     } else {
       marginWidth = 10;
     }
-    
+
     UIImage* backgroundImage = MetasyntacticStockImage(@"ActionsViewBackground.png");
     if (backgroundImage != nil) {
       self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
@@ -181,9 +181,9 @@
 
   NSInteger outerMargin = marginWidth;
   NSInteger innerMargin = outerMargin / 2 - 1;
-  
+
   backgroundImageView.frame =
-    CGRectMake(marginWidth, 4, 
+    CGRectMake(marginWidth, 4,
                self.frame.size.width - 2 * marginWidth,
                self.frame.size.height + 1);
 

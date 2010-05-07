@@ -24,7 +24,7 @@
   CGFloat height;
 
   UIImageView* backgroundImageView;
-  
+
   NSInteger marginWidth;
 }
 
