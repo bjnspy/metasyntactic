@@ -62,21 +62,21 @@ static const int MARGIN = 5;
   NSInteger lineHeight = 18;
   NSInteger maxWidth = 140;
   NSInteger maxHeight = 163;
-
+  
   if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
     maxWidth = (maxWidth * 2);
     maxHeight = (maxHeight * 2);
     lineHeight = 22;
   }
-
+  
   if (actualSize.width > maxWidth) {
     actualSize.height *= maxWidth / actualSize.width;
     actualSize.width = maxWidth;
   }
-
+  
   NSInteger adjustedHeight = lineHeight * (MIN(maxHeight, (NSInteger) actualSize.height) / lineHeight);
   CGFloat ratio = (CGFloat)adjustedHeight / actualSize.height;
-
+  
   return CGSizeMake((NSInteger)(actualSize.width * ratio), adjustedHeight);
 }
 
@@ -94,14 +94,23 @@ static const int MARGIN = 5;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     imageSize = [self calculatePreferredImageSize:imageView.image];
 
-    if (imageSize.height > 0) {
-      UIImage* backgroundImage = [MetasyntacticStockImage(@"SynopsisBackground.png") stretchableImageWithLeftCapWidth:1 topCapHeight:1];
-      self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+    if (imageSize.height > 0 && [Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
+      UIImage* backgroundImage = MetasyntacticStockImage(@"SynopsisBackground.png");
+      UIView* view = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+      CGRect frame = view.frame;
+      frame.origin = CGPointMake(-1, -1);
+      view.frame = frame;
+      [self.contentView addSubview:view];
     }
 
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
+    if ([Portability userInterfaceIdiom] == UserInterfaceIdiomPad) {
+      synopsisChunk1Label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+      synopsisChunk2Label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    }
+    
     synopsisChunk1Label.font = [SynopsisCell synopsisFont];
     synopsisChunk1Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk1Label.numberOfLines = 0;
@@ -160,7 +169,7 @@ static const int MARGIN = 5;
   if (searchRange.length > 0) {
     return searchRange;
   }
-
+  
   return [synopsis rangeOfCharacterFromSet:[NSCharacterSet punctuationCharacterSet]
                                    options:options
                                      range:range];
@@ -252,7 +261,7 @@ static const int MARGIN = 5;
 
   NSRange searchRange = [self searchBackward:synopsis
                                        range:NSMakeRange(0, guess)];
-
+  
   NSInteger currentSplit = searchRange.location;
   if (currentSplit == 0 || searchRange.length == 0) {
     return synopsis.length;
@@ -317,38 +326,37 @@ static const int MARGIN = 5;
 }
 
 - (void) computeChunk1:(NSString**) chunk1 chunk2:(NSString**) chunk2
-                frame1:(CGRect*) frame1 frame2:(CGRect*) frame2
+                frame1:(CGRect*) frame1 frame2:(CGRect*) frame2 
    forContentViewWidth:(CGFloat) forContentViewWidth {
-
+  
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit
                    synopsisMax:&synopsisMax
            forContentViewWidth:forContentViewWidth];
-
+  
   NSInteger chunk1X = MARGIN + imageSize.width + MARGIN;
   NSInteger chunk1Width = forContentViewWidth - MARGIN - chunk1X;
-
+  
   CGRect chunk1Frame = CGRectMake(chunk1X, MARGIN, chunk1Width, imageSize.height);
   NSString* chunk1Text = [synopsis substringToIndex:synopsisSplit];
-
+  
   CGRect chunk2Frame = CGRectZero;
   NSString* chunk2Text = @"";
-
-
+  
   if (synopsisSplit < synopsis.length) {
     NSInteger start = synopsisSplit == 0 ? 0 : synopsisSplit + 1;
     NSInteger end = synopsisMax;
-
+    
     chunk2Text = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-
+    
     CGFloat chunk2Width = forContentViewWidth - 2 * MARGIN;
     CGFloat chunk2Height = [chunk2Text sizeWithFont:[SynopsisCell synopsisFont]
                                       constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                           lineBreakMode:UILineBreakModeWordWrap].height;
-
+    
     chunk2Frame =  CGRectMake(MARGIN, imageSize.height + MARGIN, chunk2Width, chunk2Height);
   }
-
+  
   *frame1 = chunk1Frame;
   *frame2 = chunk2Frame;
   *chunk1 = chunk1Text;
@@ -363,13 +371,13 @@ static const int MARGIN = 5;
   NSString* chunk1Text;
   CGRect chunk2Frame;
   NSString* chunk2Text;
-
+  
   CGFloat contentViewWidth = self.contentView.frame.size.width;
-
+  
   [self computeChunk1:&chunk1Text chunk2:&chunk2Text
                frame1:&chunk1Frame frame2:&chunk2Frame
   forContentViewWidth:contentViewWidth];
-
+  
   synopsisChunk1Label.frame = chunk1Frame;
   synopsisChunk1Label.text = chunk1Text;
   [synopsisChunk1Label sizeToFit];
@@ -388,17 +396,24 @@ static const int MARGIN = 5;
   }
 
   CGFloat contentViewWidth = width - 2 * groupedTableViewMargin;
-
+  
   CGRect chunk1Frame;
   NSString* chunk1Text;
   CGRect chunk2Frame;
   NSString* chunk2Text;
-
+  
   [self computeChunk1:&chunk1Text chunk2:&chunk2Text
                frame1:&chunk1Frame frame2:&chunk2Frame
   forContentViewWidth:contentViewWidth];
 
-  return chunk2Frame.origin.y + chunk2Frame.size.height + MARGIN;
+  CGRect frame;
+  if (chunk2Frame.size.height == 0) {
+    frame = chunk1Frame;
+  } else {
+    frame = chunk2Frame;
+  }
+  
+  return frame.origin.y + frame.size.height + MARGIN;
 }
 
 @end
