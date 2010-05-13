@@ -1,0 +1,22 @@
+//
+// Prefix header for all source files of the 'iPhoneShared' target in the 'iPhoneShared' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonHMAC.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import <MediaPlayer/MPMoviePlayerController.h>
+#import <MediaPlayer/MPMoviePlayerViewController.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
+#import <UIKit/UIKit.h>
+#import <netinet/in.h>
+#import <MessageUI/MessageUI.h>
+#import <StoreKit/StoreKit.h>
+#import "ForwardDeclarations.h"
+#import "Portability.h"
+#import "Macros.h"
+#import "MemoryUtilities.h"
+#import "MGTwitterEngine.h"
+#endif
