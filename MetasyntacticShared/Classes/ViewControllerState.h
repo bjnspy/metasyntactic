@@ -18,6 +18,8 @@
   BOOL onAfterViewControllerPushedCalled;
 
   UIViewController* viewController;
+  
+  MPMoviePlayerController* moviePlayerController;
   MPMoviePlayerViewController* moviePlayerViewController;
 }
 
