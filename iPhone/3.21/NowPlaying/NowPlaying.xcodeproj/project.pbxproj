@@ -1,0 +1,731 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		741405F1116E80C9003B5263 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405E8116E80B1003B5263 /* libProtocolBuffers.a */; };
+		741405F2116E80CE003B5263 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405E0116E80A8003B5263 /* libNetflixShared.a */; };
+		74140606116E8113003B5263 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405FD116E80EC003B5263 /* libMetasyntacticShared.a */; };
+		745C0E0D1162F38500093306 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000C /* Entitlements.plist */; };
+		745C0E0E1162F38500093306 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000093 /* Default.png */; };
+		745C0E0F1162F38500093306 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000056 /* Icon.png */; };
+		745C0E101162F38500093306 /* Icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000065 /* Icon2.png */; };
+		745C0E111162F38500093306 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001200000049 /* MainWindow.xib */; };
+		745C0E121162F38500093306 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000011000000C5 /* Localizable.strings */; };
+		745C0E131162F38500093306 /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000CF /* MetasyntacticResources.bundle */; };
+		745C0E141162F38500093306 /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000008000000C9 /* BoxOfficeResources.bundle */; };
+		745C0E151162F38500093306 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000097 /* NetflixResources.bundle */; };
+		745C0E161162F38500093306 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001100000099 /* License.txt */; };
+		745C0E171162F38500093306 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
+		745C0E181162F38500093306 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
+		745C0E191162F38500093306 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
+		745C0E1A1162F38500093306 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */; };
+		745C0E1C1162F38500093306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		745C0E1D1162F38500093306 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000144 /* AppDelegate.m */; };
+		745C0E1F1162F38500093306 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005E /* libsqlite3.dylib */; };
+		745C0E201162F38500093306 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000700000118 /* AddressBook.framework */; };
+		745C0E211162F38500093306 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000001 /* CFNetwork.framework */; };
+		745C0E221162F38500093306 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000160 /* CoreFoundation.framework */; };
+		745C0E231162F38500093306 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000168 /* CoreGraphics.framework */; };
+		745C0E241162F38500093306 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000090000017A /* CoreLocation.framework */; };
+		745C0E251162F38500093306 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000081 /* Foundation.framework */; };
+		745C0E261162F38500093306 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000061 /* MapKit.framework */; };
+		745C0E271162F38500093306 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000085 /* MediaPlayer.framework */; };
+		745C0E281162F38500093306 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000B1 /* MessageUI.framework */; };
+		745C0E291162F38500093306 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */; };
+		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
+		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
+		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		100000000000001500000030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74FB7D1F1017A2B3001B5CB9;
+			remoteInfo = BoxOfficeShared;
+		};
+		741405DF116E80A8003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 100000000000000800000114;
+			remoteInfo = NetflixShared;
+		};
+		741405E7116E80B1003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 100000000000002900000044;
+			remoteInfo = ProtocolBuffers;
+		};
+		741405E9116E80B1003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 100000000000001A00000051;
+			remoteInfo = UnitTests;
+		};
+		741405EB116E80B1003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 100000000000000900000123;
+			remoteInfo = CommandLineTests;
+		};
+		741405ED116E80C0003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000EE;
+			remoteInfo = NetflixShared;
+		};
+		741405EF116E80C2003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000015000001E4;
+			remoteInfo = ProtocolBuffers;
+		};
+		741405FC116E80EC003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1000000000000018000001F4;
+			remoteInfo = MetasyntacticShared;
+		};
+		74140604116E810D003B5263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000A000000AD;
+			remoteInfo = MetasyntacticShared;
+		};
+		745C0E0B1162F38500093306 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000AB;
+			remoteInfo = BoxOfficeShared;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		100000000000000700000118 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		10000000000000070000013E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		100000000000000700000144 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		100000000000000700000163 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1000000000000008000000C9 /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
+		1000000000000008000000D0 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoxOfficeShared.h; path = ../../BoxOfficeShared/iPhone/Classes/BoxOfficeShared.h; sourceTree = SOURCE_ROOT; };
+		1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoxOfficeShared.xcodeproj; path = ../../BoxOfficeShared/iPhone/BoxOfficeShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		100000000000000900000001 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		100000000000000900000160 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		100000000000000900000168 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		10000000000000090000017A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		100000000000000A00000093 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		100000000000000B0000000C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		100000000000000C00000081 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		100000000000000F00000056 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		100000000000000F00000065 /* Icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon2.png; path = Resources/Icon2.png; sourceTree = "<group>"; };
+		100000000000001100000099 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = License.txt; path = ../../License.txt; sourceTree = SOURCE_ROOT; };
+		100000000000001200000049 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		100000000000001200000061 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		100000000000001200000085 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1000000000000012000000B1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1000000000000012000000CF /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
+		1000000000000012000000E7 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		100000000000001300000097 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
+		1000000000000013000000AC /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
+		1000000000000015000001A3 /* Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Prefix.pch; sourceTree = "<group>"; };
+		10000000000000180000026E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		100000000000001A0000001E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		100000000000002100000005 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002200000002 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002200000004 /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = ../../BoxOfficeShared/iPhone/Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002300000002 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = ../../BoxOfficeShared/iPhone/Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002300000005 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002400000003 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002400000005 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = ../../BoxOfficeShared/iPhone/Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002600000002 /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = ../../BoxOfficeShared/iPhone/Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002600000004 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = ../../BoxOfficeShared/iPhone/Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002600000007 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002700000026 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = ../../BoxOfficeShared/iPhone/Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002800000002 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = ../../BoxOfficeShared/iPhone/Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10000000000000290000005E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		100000000000002A00000008 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		100000000000002B00000004 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = ../../BoxOfficeShared/iPhone/Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002B00000006 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002C00000060 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = ../../BoxOfficeShared/iPhone/Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002C00000066 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = ../../BoxOfficeShared/iPhone/Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002D00000002 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = ../../BoxOfficeShared/iPhone/Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002D00000004 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = ../../BoxOfficeShared/iPhone/Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002E00000034 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetflixShared.xcodeproj; path = ../../NetflixShared/NetflixShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
+		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
+		74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Resources-iPad/Default-Portrait.png"; sourceTree = "<group>"; };
+		74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		745C0E1E1162F38500093306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E1F1162F38500093306 /* libsqlite3.dylib in Frameworks */,
+				745C0E201162F38500093306 /* AddressBook.framework in Frameworks */,
+				745C0E211162F38500093306 /* CFNetwork.framework in Frameworks */,
+				745C0E221162F38500093306 /* CoreFoundation.framework in Frameworks */,
+				745C0E231162F38500093306 /* CoreGraphics.framework in Frameworks */,
+				745C0E241162F38500093306 /* CoreLocation.framework in Frameworks */,
+				745C0E251162F38500093306 /* Foundation.framework in Frameworks */,
+				745C0E261162F38500093306 /* MapKit.framework in Frameworks */,
+				745C0E271162F38500093306 /* MediaPlayer.framework in Frameworks */,
+				745C0E281162F38500093306 /* MessageUI.framework in Frameworks */,
+				745C0E291162F38500093306 /* StoreKit.framework in Frameworks */,
+				745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */,
+				745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */,
+				74140606116E8113003B5263 /* libMetasyntacticShared.a in Frameworks */,
+				741405F2116E80CE003B5263 /* libNetflixShared.a in Frameworks */,
+				741405F1116E80C9003B5263 /* libProtocolBuffers.a in Frameworks */,
+				745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		100000000000000900000026 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000018000000A0 /* Shared */,
+				10000000000000070000013E /* AppDelegate.h */,
+				100000000000000700000144 /* AppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1000000000000009000001D5 /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000900000026 /* Classes */,
+				100000000000000C000000A3 /* Frameworks */,
+				100000000000001400000040 /* Other Sources */,
+				1000000000000015000001D6 /* Products */,
+				10000000000000170000006E /* Resources */,
+				74F22A7D114DD16D00CF9CE3 /* Resources-iPad */,
+				100000000000000B0000000C /* Entitlements.plist */,
+				1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */,
+				741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */,
+				741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */,
+				741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		100000000000000C000000A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000290000005E /* libsqlite3.dylib */,
+				100000000000000700000118 /* AddressBook.framework */,
+				100000000000000900000001 /* CFNetwork.framework */,
+				100000000000000900000160 /* CoreFoundation.framework */,
+				100000000000000900000168 /* CoreGraphics.framework */,
+				10000000000000090000017A /* CoreLocation.framework */,
+				100000000000000C00000081 /* Foundation.framework */,
+				100000000000001200000061 /* MapKit.framework */,
+				100000000000001200000085 /* MediaPlayer.framework */,
+				1000000000000012000000B1 /* MessageUI.framework */,
+				74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */,
+				10000000000000180000026E /* SystemConfiguration.framework */,
+				100000000000001A0000001E /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		100000000000001400000040 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000002A00000008 /* main.m */,
+				1000000000000015000001A3 /* Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		1000000000000015000001D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000290000000D /* libBoxOfficeShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1000000000000015000001D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				745C0E321162F38500093306 /* NowPlaying.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10000000000000170000006E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74F22D1D114DF95400CF9CE3 /* iPad */,
+				74F22D1E114DF95B00CF9CE3 /* iPhone */,
+				1000000000000008000000C9 /* BoxOfficeResources.bundle */,
+				1000000000000012000000CF /* MetasyntacticResources.bundle */,
+				100000000000001300000097 /* NetflixResources.bundle */,
+				100000000000000700000163 /* Info.plist */,
+				100000000000000F00000065 /* Icon2.png */,
+				1000000000000011000000C5 /* Localizable.strings */,
+				100000000000001100000099 /* License.txt */,
+				100000000000001200000049 /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1000000000000018000000A0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000008000000D0 /* BoxOfficeShared.h */,
+				1000000000000012000000E7 /* MetasyntacticShared.h */,
+				1000000000000013000000AC /* NetflixShared.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		741405DC116E80A8003B5263 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741405E0116E80A8003B5263 /* libNetflixShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		741405E2116E80B1003B5263 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741405E8116E80B1003B5263 /* libProtocolBuffers.a */,
+				741405EA116E80B1003B5263 /* UnitTests.octest */,
+				741405EC116E80B1003B5263 /* CommandLineTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		741405F9116E80EC003B5263 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741405FD116E80EC003B5263 /* libMetasyntacticShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74F22A7D114DD16D00CF9CE3 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		74F22D1D114DF95400CF9CE3 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */,
+				74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */,
+				74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		74F22D1E114DF95B00CF9CE3 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000A00000093 /* Default.png */,
+				100000000000000F00000056 /* Icon.png */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		745C0E091162F38500093306 /* NowPlaying */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying" */;
+			buildPhases = (
+				745C0E0C1162F38500093306 /* Resources */,
+				745C0E1B1162F38500093306 /* Sources */,
+				745C0E1E1162F38500093306 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				745C0E0A1162F38500093306 /* PBXTargetDependency */,
+				741405EE116E80C0003B5263 /* PBXTargetDependency */,
+				741405F0116E80C2003B5263 /* PBXTargetDependency */,
+				74140605116E810D003B5263 /* PBXTargetDependency */,
+			);
+			name = NowPlaying;
+			productName = BoxOffice;
+			productReference = 745C0E321162F38500093306 /* NowPlaying.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1000000000000015000001E0 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "NowPlaying" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+				pt,
+				jp,
+				ja,
+				fr,
+				de,
+				es,
+				ar,
+				cs,
+				da,
+				he,
+				hu,
+				it,
+				nl,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				en_GB,
+				fi,
+				en_AU,
+				no,
+				pl,
+				hi,
+			);
+			mainGroup = 1000000000000009000001D5 /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1000000000000015000001D0 /* Products */;
+					ProjectRef = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+				},
+				{
+					ProductGroup = 741405F9116E80EC003B5263 /* Products */;
+					ProjectRef = 741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */;
+				},
+				{
+					ProductGroup = 741405DC116E80A8003B5263 /* Products */;
+					ProjectRef = 741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */;
+				},
+				{
+					ProductGroup = 741405E2116E80B1003B5263 /* Products */;
+					ProjectRef = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				745C0E091162F38500093306 /* NowPlaying */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		10000000000000290000000D /* libBoxOfficeShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBoxOfficeShared.a;
+			remoteRef = 100000000000001500000030 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		741405E0116E80A8003B5263 /* libNetflixShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNetflixShared.a;
+			remoteRef = 741405DF116E80A8003B5263 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		741405E8116E80B1003B5263 /* libProtocolBuffers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libProtocolBuffers.a;
+			remoteRef = 741405E7116E80B1003B5263 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		741405EA116E80B1003B5263 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 741405E9116E80B1003B5263 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		741405EC116E80B1003B5263 /* CommandLineTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommandLineTests.app;
+			remoteRef = 741405EB116E80B1003B5263 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		741405FD116E80EC003B5263 /* libMetasyntacticShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMetasyntacticShared.a;
+			remoteRef = 741405FC116E80EC003B5263 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		745C0E0C1162F38500093306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E0D1162F38500093306 /* Entitlements.plist in Resources */,
+				745C0E0E1162F38500093306 /* Default.png in Resources */,
+				745C0E0F1162F38500093306 /* Icon.png in Resources */,
+				745C0E101162F38500093306 /* Icon2.png in Resources */,
+				745C0E111162F38500093306 /* MainWindow.xib in Resources */,
+				745C0E121162F38500093306 /* Localizable.strings in Resources */,
+				745C0E131162F38500093306 /* MetasyntacticResources.bundle in Resources */,
+				745C0E141162F38500093306 /* BoxOfficeResources.bundle in Resources */,
+				745C0E151162F38500093306 /* NetflixResources.bundle in Resources */,
+				745C0E161162F38500093306 /* License.txt in Resources */,
+				745C0E171162F38500093306 /* MainWindow-iPad.xib in Resources */,
+				745C0E181162F38500093306 /* Icon-iPad.png in Resources */,
+				745C0E191162F38500093306 /* Default-Landscape.png in Resources */,
+				745C0E1A1162F38500093306 /* Default-Portrait.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		745C0E1B1162F38500093306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				745C0E1C1162F38500093306 /* main.m in Sources */,
+				745C0E1D1162F38500093306 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		741405EE116E80C0003B5263 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NetflixShared;
+			targetProxy = 741405ED116E80C0003B5263 /* PBXContainerItemProxy */;
+		};
+		741405F0116E80C2003B5263 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 741405EF116E80C2003B5263 /* PBXContainerItemProxy */;
+		};
+		74140605116E810D003B5263 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MetasyntacticShared;
+			targetProxy = 74140604116E810D003B5263 /* PBXContainerItemProxy */;
+		};
+		745C0E0A1162F38500093306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 745C0E0B1162F38500093306 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1000000000000011000000C5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				100000000000002100000005 /* cs */,
+				100000000000002200000002 /* da */,
+				100000000000002200000004 /* de */,
+				100000000000002300000002 /* en */,
+				100000000000002300000005 /* es */,
+				100000000000002400000003 /* fi */,
+				100000000000002400000005 /* fr */,
+				100000000000002600000002 /* he */,
+				100000000000002700000026 /* it */,
+				100000000000002800000002 /* ja */,
+				100000000000002B00000004 /* nl */,
+				100000000000002B00000006 /* no */,
+				100000000000002C00000060 /* pl */,
+				100000000000002C00000066 /* pt */,
+				100000000000002D00000002 /* ro */,
+				100000000000002D00000004 /* ru */,
+				100000000000002E00000034 /* sk */,
+				100000000000002F00000007 /* tr */,
+				100000000000002600000007 /* hu */,
+				100000000000002600000004 /* hi */,
+				100000000000002E00000039 /* sv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		100000000000000A00000073 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		100000000000000A000000B6 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		100000000000001700000058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		745C0E2E1162F38500093306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		745C0E2F1162F38500093306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		745C0E311162F38500093306 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Distribution;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10000000000000080000015A /* Build configuration list for PBXProject "NowPlaying" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000000000000A00000073 /* Debug */,
+				100000000000001700000058 /* Release */,
+				100000000000000A000000B6 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				745C0E2E1162F38500093306 /* Debug */,
+				745C0E2F1162F38500093306 /* Release */,
+				745C0E311162F38500093306 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1000000000000015000001E0 /* Project object */;
+}
