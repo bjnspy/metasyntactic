@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Now Playing</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon.png</string>
+		<string>Icon-iPad.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>org.metasyntactic.BoxOffice</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>BoxOffice</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>3.22</string>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow-iPad</string>
+	<key>NetflixApplicationName</key>
+	<string>NowPlaying</string>
+	<key>NetflixKey</key>
+	<string>83k9wpqt34hcka5bfb2kkf8s</string>
+	<key>NetflixSecret</key>
+	<string>GGR5uHEucN</string>
+	<key>PinchMediaApplicationCode</key>
+	<string>989c6bce5327bb013357eff94148592a</string>
+	<key>RootViewControllerClass</key>
+	<string>NowPlayingTabBarController</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>iTunesApplicationUrl</key>
+	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=284939567&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
+</dict>
+</plist>
