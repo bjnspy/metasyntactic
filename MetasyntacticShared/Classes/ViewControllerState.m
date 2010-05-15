@@ -132,11 +132,10 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 
   self.viewController = _viewController;
     
-  Class class = NSClassFromString(@"MPMoviePlayerViewController");
-  if (class == nil) {
-    [self playMovieUsingMoviePlayer:url];
-  } else {
+  if ([MPMoviePlayerViewController instancesRespondToSelector:@selector(moviePlayer)]) {
     [self playMovieUsingMoviePlayerView:url];
+  } else {
+    [self playMovieUsingMoviePlayer:url];
   }
 }
 
