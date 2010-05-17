@@ -25,8 +25,10 @@
 
 + (NSString*) scoresDirectory;
 + (NSString*) reviewsDirectory;
-+ (NSString*) trailersDirectory;
 + (NSString*) localizableStringsDirectory;
+
++ (NSString*) trailersDirectory;
++ (NSString*) trailersMoviesDirectory;
 
 + (NSString*) sentinelsMoviesPostersDirectory;
 + (NSString*) moviesPostersDirectory;

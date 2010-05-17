@@ -146,6 +146,9 @@
 - (BOOL) netflixCacheAlwaysEnabled AbstractMethod;
 
 
+- (BOOL) trailerCacheAlwaysEnabled AbstractMethod;
+
+
 - (BOOL) netflixEnabled {
   return [Model model].netflixCacheEnabled;
 }

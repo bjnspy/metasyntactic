@@ -17,7 +17,6 @@
   BOOL updated;
 
   // Accessed from different threads.  Needs lock.
-  ThreadsafeValue*/*NSString*/ hashData;
   ThreadsafeValue*/*NSDictionary*/ movieMapData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
 }

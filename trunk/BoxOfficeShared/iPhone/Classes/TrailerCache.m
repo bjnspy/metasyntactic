@@ -15,10 +15,12 @@
 #import "TrailerCache.h"
 
 #import "Application.h"
+#import "Model.h"
 
 @interface TrailerCache()
-@property (retain) NSDictionary* index;
-@property (retain) NSArray* indexKeys;
+@property (retain) PersistentDictionaryThreadsafeValue*/*NSDictionary*/ indexData;
+@property (retain) ThreadsafeValue*/*NSArray*/ indexKeysData;
+@property BOOL updated;
 @end
 
 
@@ -37,20 +39,57 @@ static TrailerCache* cache;
   return cache;
 }
 
-@synthesize index;
-@synthesize indexKeys;
+@synthesize indexData;
+@synthesize indexKeysData;
+@synthesize updated;
 
 - (void) dealloc {
-  self.index = nil;
-  self.indexKeys = nil;
+  self.indexData = nil;
+  self.indexKeysData = nil;
+  self.updated = NO;
 
   [super dealloc];
 }
 
 
+- (NSString*) indexFile {
+  return [[Application trailersDirectory] stringByAppendingPathComponent:@"Index.plist"];  
+}
+
+
+- (id) init {
+  if ((self = [super init])) {
+    self.indexData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.indexFile];
+    self.indexKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadIndexKeys)];
+  }
+  
+  return self;
+}
+
+
+- (NSDictionary*) index {
+  return indexData.value;
+}
+
+
+- (NSArray*) indexKeys {
+  return indexKeysData.value;
+}
+
+
+- (NSArray*) loadIndexKeys {
+  NSArray* result = self.index.allKeys;
+  if (result.count == 0) {
+    return [NSArray array];
+  }
+  
+  return result;
+}
+
+
 - (NSString*) trailerFile:(Movie*) movie {
   NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-  return [[Application trailersDirectory] stringByAppendingPathComponent:name];
+  return [[Application trailersMoviesDirectory] stringByAppendingPathComponent:name];
 }
 
 
@@ -109,7 +148,7 @@ static TrailerCache* cache;
 }
 
 
-- (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
   NSString* file = [self trailerFile:movie];
 
   NSDate* downloadDate = [FileUtilities modificationDate:file];
@@ -128,7 +167,7 @@ static TrailerCache* cache;
 
   DifferenceEngine* engine = [DifferenceEngine engine];
   NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
-                                               inArray:indexKeys];
+                                               inArray:self.indexKeys];
   if (arrayIndex == NSNotFound) {
     // no trailer for this movie.  record that fact.  we'll try again later
     [FileUtilities writeObject:[NSArray array]
@@ -136,7 +175,7 @@ static TrailerCache* cache;
     return;
   }
 
-  NSArray* studioAndTitleKey = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
+  NSArray* studioAndTitleKey = [self.index objectForKey:[self.indexKeys objectAtIndex:arrayIndex]];
 
   NSString* studioKey = [studioAndTitleKey objectAtIndex:0];
   NSString* titleKey = [studioAndTitleKey objectAtIndex:1];
@@ -225,38 +264,49 @@ static TrailerCache* cache;
 }
 
 
-- (BOOL) tryGenerateIndex {
-  BOOL result;
-  [dataGate lock];
-  {
-    if (index == nil) {
-      id jsonIndex = [TrailerCache downloadJSONIndex];
-      self.index = [TrailerCache processJSONIndex:jsonIndex];
-      self.indexKeys = index.allKeys;
-
-      [self clearUpdatedMovies];
-    }
-
-    result = index != nil;
-  }
-  [dataGate unlock];
-  return result;
-}
-
-
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-  if ([self tryGenerateIndex]) {
-    [self updateMovieDetailsWorker:movie force:force];
-  }
-}
-
-
 - (NSArray*) trailersForMovie:(Movie*) movie {
   NSArray* trailers = [FileUtilities readObject:[self trailerFile:movie]];
   if (trailers == nil) {
     return [NSArray array];
   }
   return trailers;
+}
+
+
+- (BOOL) tooSoon {
+  NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
+  return lastLookupDate != nil &&
+  (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS);
+}
+
+
+- (void) updateIndexBackgroundEntryPoint {
+  if ([self tooSoon]) {
+    return;
+  }
+  
+  id jsonIndex = [TrailerCache downloadJSONIndex];
+  NSDictionary* dictionary = [TrailerCache processJSONIndex:jsonIndex];
+  indexData.value = dictionary;
+  indexKeysData.value = dictionary.allKeys;
+  [self clearUpdatedMovies];
+}
+
+
+- (void) update {
+  if (![[Model model] trailerCacheEnabled]) {
+    return;
+  }
+  
+  if (updated) {
+    return;
+  }
+  self.updated = YES;
+  
+  [[OperationQueue operationQueue] performSelector:@selector(updateIndexBackgroundEntryPoint)
+                                          onTarget:self
+                                              gate:nil
+                                          priority:Priority];
 }
 
 @end

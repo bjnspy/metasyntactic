@@ -247,6 +247,14 @@ static Model* model = nil;
 }
 
 
+- (BOOL) trailerCacheEnabled {
+  if ([BoxOfficeSharedApplication trailerCacheAlwaysEnabled]) {
+    return YES;
+  }
+  return self.userAddress.length > 0;
+}
+
+
 - (BOOL) helpCacheEnabled {
   return self.userAddress.length > 0;
 }

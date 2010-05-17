@@ -23,7 +23,6 @@
 static NSString* studio_and_title_key = @"studio_and_title_key";
 
 @interface UpcomingCache()
-@property (retain) ThreadsafeValue* hashData;
 @property (retain) ThreadsafeValue* movieMapData;
 @property (retain) ThreadsafeValue* bookmarksData;
 @property BOOL updated;
@@ -64,13 +63,11 @@ static NSDictionary* massageMap;
   return cache;
 }
 
-@synthesize hashData;
 @synthesize movieMapData;
 @synthesize bookmarksData;
 @synthesize updated;
 
 - (void) dealloc {
-  self.hashData = nil;
   self.movieMapData = nil;
   self.bookmarksData = nil;
   self.updated = NO;
@@ -79,14 +76,8 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSString*) hashFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Hash.plist"];
-}
-
-
 - (id) init {
   if ((self = [super init])) {
-    self.hashData = [PersistentStringThreadsafeValue valueWithGate:dataGate file:self.hashFile];
     self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
   }
@@ -283,11 +274,6 @@ static NSDictionary* massageMap;
 }
 
 
-- (NSString*) hashValue {
-  return hashData.value;
-}
-
-
 - (NSDictionary*) bookmarks {
   return bookmarksData.value;
 }
@@ -324,19 +310,7 @@ static NSDictionary* massageMap;
 
 
 - (void) updateIndexBackgroundEntryPointWorker {
-  NSString* localHash = self.hashValue;
-
   NSString* index = [TrailerCache downloadIndexString];
-  NSString* serverHash = [NSString stringWithFormat:@"%d", [index hash]];
-  if (serverHash.length == 0) {
-    serverHash = @"0";
-  }
-
-  if ([localHash isEqual:serverHash]) {
-    // save the hash again so we don't check for a few more days.
-    [FileUtilities writeObject:serverHash toFile:self.hashFile];
-    return;
-  }
 
   id jsonIndex = [index JSONValue];
   NSDictionary* keys = [TrailerCache processJSONIndex:jsonIndex];
@@ -368,11 +342,10 @@ static NSDictionary* massageMap;
 
   [dataGate lock];
   {
-    movieMapData.value = movieMap;
     bookmarksData.value = dictionary;
+    movieMapData.value = movieMap;
 
     // do this last, it signifies that we're done.
-    hashData.value = serverHash;
     [self clearUpdatedMovies];
   }
   [dataGate unlock];
@@ -382,7 +355,7 @@ static NSDictionary* massageMap;
 
 
 - (BOOL) tooSoon {
-  NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
+  NSDate* lastLookupDate = [FileUtilities modificationDate:self.moviesFile];
   return lastLookupDate != nil &&
   (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS);
 }

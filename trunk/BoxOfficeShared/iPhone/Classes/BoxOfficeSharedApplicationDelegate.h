@@ -16,4 +16,5 @@
 - (void) resetTabs;
 - (BOOL) largePosterCacheAlwaysEnabled;
 - (BOOL) netflixCacheAlwaysEnabled;
+- (BOOL) trailerCacheAlwaysEnabled;
 @end

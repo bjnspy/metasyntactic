@@ -29,6 +29,7 @@
 #import "Store.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
+#import "TrailerCache.h"
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;
@@ -148,6 +149,11 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateTrailerCache {
+  [[TrailerCache cache] update];
+}
+
+
 - (void) updateLocalizableStringsCache {
   [LocalizableStringsCache update];
 }
@@ -155,6 +161,7 @@ static Controller* controller = nil;
 
 - (void) updateAllCaches:(BOOL) force {
   [self updateLocalizableStringsCache];
+  [self updateTrailerCache];
   [self updateScoreCache];
   [self updateLargePosterCache];
   [self updateInternationalDataCache];

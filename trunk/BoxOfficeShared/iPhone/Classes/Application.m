@@ -26,8 +26,10 @@ static NSString* rottenTomatoesDirectory = nil;
 static NSString* userLocationsDirectory = nil;
 static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
-static NSString* trailersDirectory = nil;
 static NSString* localizableStringsDirectory = nil;
+
+static NSString* trailersDirectory = nil;
+static NSString* trailersMoviesDirectory = nil;
 
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
@@ -65,9 +67,11 @@ static NSString* helpDirectory = nil;
   [self addDirectory:userLocationsDirectory = [cacheDirectory stringByAppendingPathComponent:@"UserLocations"]];
   [self addDirectory:scoresDirectory = [cacheDirectory stringByAppendingPathComponent:@"Scores"]];
   [self addDirectory:reviewsDirectory = [cacheDirectory stringByAppendingPathComponent:@"Reviews"]];
-  [self addDirectory:trailersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trailers"]];
   [self addDirectory:localizableStringsDirectory = [cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"]];
 
+  [self addDirectory:trailersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Trailers"]];
+  [self addDirectory:trailersMoviesDirectory = [trailersDirectory stringByAppendingPathComponent:@"Movies"]];
+  
   [self addDirectory:postersDirectory = [cacheDirectory stringByAppendingPathComponent:@"Posters"]];
   [self addDirectory:moviesPostersDirectory = [postersDirectory stringByAppendingPathComponent:@"Movies"]];
   [self addDirectory:sentinelsMoviesPostersDirectory = [moviesPostersDirectory stringByAppendingPathComponent:@"Sentinels"]];
@@ -197,6 +201,11 @@ static NSString* helpDirectory = nil;
 
 + (NSString*) trailersDirectory {
   return trailersDirectory;
+}
+
+
++ (NSString*) trailersMoviesDirectory {
+  return trailersMoviesDirectory;
 }
 
 
