@@ -596,6 +596,7 @@ static NetflixCache* cache;
 
 
 - (void) updateSpecificDiscDetails:(Movie*) movie
+                             force:(BOOL) force
                             expand:(NSString*) expand
                            account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
@@ -609,7 +610,7 @@ static NetflixCache* cache;
   }
 
   NSString* path = [NetflixPaths detailsFile:movie];
-  if ([FileUtilities fileExists:path]) {
+  if (!force && [FileUtilities fileExists:path]) {
     return;
   }
 
@@ -633,7 +634,7 @@ static NetflixCache* cache;
   if (![self canContinue:account]) { return; }
 
   // we don't download this stuff on a per disc basis.  only for a series.
-  [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats" account:account];
+  [self updateSpecificDiscDetails:movie force:force expand:@"synopsis,cast,directors,formats" account:account];
   [self updateRatings:movie force:force account:account];
 }
 
@@ -685,7 +686,7 @@ static NetflixCache* cache;
 
         // for a disc that's a member of a series, we only need a couple
         // of bits of data.
-        [self updateSpecificDiscDetails:movie expand:@"synopsis,formats" account:account];
+        [self updateSpecificDiscDetails:movie force:force expand:@"synopsis,formats" account:account];
       } else {
         // Otherwise, update all the details.
         [self updateAllDiscDetails:movie force:force account:account];
