@@ -41,4 +41,9 @@ static id<BoxOfficeSharedApplicationDelegate> delegate = nil;
   return [delegate netflixCacheAlwaysEnabled];
 }
 
+
++ (BOOL) trailerCacheAlwaysEnabled {
+  return [delegate trailerCacheAlwaysEnabled];
+}
+
 @end

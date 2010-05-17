@@ -39,4 +39,9 @@
   return YES;
 }
 
+
+- (BOOL) trailerCacheAlwaysEnabled {
+  return YES;
+}
+
 @end

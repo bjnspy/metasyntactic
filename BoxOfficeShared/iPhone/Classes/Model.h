@@ -57,6 +57,7 @@ enum ViewControllerType {
 - (BOOL) dvdBlurayCacheEnabled;
 - (BOOL) upcomingCacheEnabled;
 - (BOOL) netflixCacheEnabled;
+- (BOOL) trailerCacheEnabled;
 
 - (void) setDvdBlurayCacheEnabled:(BOOL) value;
 - (void) setUpcomingCacheEnabled:(BOOL) value;
