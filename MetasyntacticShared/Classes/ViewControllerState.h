@@ -20,7 +20,7 @@
   UIViewController* viewController;
   
   MPMoviePlayerController* moviePlayerController;
-  MPMoviePlayerViewController* moviePlayerViewController;
+  id moviePlayerViewController;
 }
 
 - (void) viewController:(UIViewController*) controller willAppear:(BOOL) animated;

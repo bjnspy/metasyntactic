@@ -22,7 +22,7 @@
 @property BOOL onBeforeViewControllerPushedCalled;
 @property BOOL onAfterViewControllerPushedCalled;
 @property (retain) MPMoviePlayerController* moviePlayerController;
-@property (retain) MPMoviePlayerViewController* moviePlayerViewController;
+@property (retain) id moviePlayerViewController;
 @property (retain) UIViewController* viewController;
 @end
 
@@ -89,24 +89,38 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
 }
 
 
+- (MPMoviePlayerController*) moviePlayer {
+  return nil;
+}
+
+
+- (void) presentMoviePlayerViewControllerAnimated:(id) player {
+}
+
+
+- (void) dismissMoviePlayerViewControllerAnimated {
+}
+
+
 - (void) playMovieUsingMoviePlayerView:(NSURL*) url {
-  self.moviePlayerViewController = [[[MPMoviePlayerViewController alloc] initWithContentURL:url] autorelease];
+	Class class = NSClassFromString(@"MPMoviePlayerViewController");
+  self.moviePlayerViewController = [[[class alloc] initWithContentURL:url] autorelease];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(moviePlayerViewFinishedPlaying:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:nil];
   
-  [moviePlayerViewController.moviePlayer play];
-  [viewController presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
+  [[(id)moviePlayerViewController moviePlayer] play];
+  [(id)viewController presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
 }
 
 
 - (void) moviePlayerViewFinishedPlaying:(NSNotification*) notification {
-  [moviePlayerViewController.moviePlayer stop];
+  [[(id)moviePlayerViewController moviePlayer] stop];
   [[moviePlayerViewController retain] autorelease];
   
-  [viewController dismissMoviePlayerViewControllerAnimated];
+  [(id)viewController dismissMoviePlayerViewControllerAnimated];
   [self moviePlaybackCleanup];
 }
 
@@ -131,8 +145,9 @@ static const NSInteger ACTIVITY_INDICATOR_TAG = 1;
   [[OperationQueue operationQueue] temporarilySuspend:90];
 
   self.viewController = _viewController;
-    
-  if ([MPMoviePlayerViewController instancesRespondToSelector:@selector(moviePlayer)]) {
+  
+	Class class = NSClassFromString(@"MPMoviePlayerViewController");
+  if (class != nil && [class instancesRespondToSelector:@selector(moviePlayer)]) {
     [self playMovieUsingMoviePlayerView:url];
   } else {
     [self playMovieUsingMoviePlayer:url];
