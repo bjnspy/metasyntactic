@@ -394,6 +394,17 @@ typedef enum {
   return trailersArray.count > 0;
 }
 
+enum {
+  MovieControlStyleNone,
+  MovieControlStyleEmbedded,
+  MovieControlStyleFullscreen,
+  MovieControlStyleDefault = MovieControlStyleFullscreen
+};
+typedef NSInteger MovieControlStyle;
+
+- (void) setControlStyle:(MovieControlStyle) style {
+}
+
 
 - (void) setupMoviePlayer {
   if ([Portability userInterfaceIdiom] != UserInterfaceIdiomPad) {
@@ -409,9 +420,7 @@ typedef enum {
   self.moviePlayerController = [[[MPMoviePlayerController alloc] initWithContentURL:
                                  [NSURL URLWithString:address]] autorelease];
 
-  [moviePlayerController setControlStyle:MPMovieControlStyleFullscreen];
-  //[moviePlayerController setShouldAutoplay:YES];
-
+  [(id)moviePlayerController setControlStyle:MovieControlStyleFullscreen];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
