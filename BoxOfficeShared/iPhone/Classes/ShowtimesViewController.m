@@ -411,8 +411,7 @@ typedef enum {
 }
 
 
-- (id) setMessageComposeDelegate:(id) arg {
-  return nil;
+- (void) setMessageComposeDelegate:(id) arg {
 }
 
 
