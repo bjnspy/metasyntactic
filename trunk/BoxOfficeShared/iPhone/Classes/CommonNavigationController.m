@@ -23,7 +23,7 @@
 #import "ReviewsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
-#import "TicketsViewController.h"
+#import "ShowtimesViewController.h"
 
 @implementation CommonNavigationController
 
@@ -128,7 +128,7 @@
     return;
   }
 
-  UIViewController* viewController = [[[TicketsViewController alloc] initWithTheater:theater
+  UIViewController* viewController = [[[ShowtimesViewController alloc] initWithTheater:theater
                                                                                movie:movie
                                                                                title:title] autorelease];
 

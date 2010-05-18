@@ -37,7 +37,7 @@
 #import "ScoreCache.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
-#import "TicketsViewController.h"
+#import "ShowtimesViewController.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
@@ -81,6 +81,7 @@ static NSString* UPCOMING_DISABLED                          = @"upcomingDisabled
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX     = @"upcomingMoviesSelectedSegmentIndex";
 static NSString* USE_NORMAL_FONTS                           = @"useNormalFonts";
 static NSString* USER_ADDRESS                               = @"userLocation";
+static NSString* CALENDAR_DATA                              = @"calendarData";
 
 @synthesize dataProvider;
 
@@ -1269,7 +1270,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     } else if ([viewController isKindOfClass:[ReviewsViewController class]]) {
       type = Reviews;
       value = [[viewController movie] canonicalTitle];
-    } else if ([viewController isKindOfClass:[TicketsViewController class]]) {
+    } else if ([viewController isKindOfClass:[ShowtimesViewController class]]) {
       type = Tickets;
       value = [NSArray arrayWithObjects:[[viewController movie] canonicalTitle], [[viewController theater] name], [viewController title], nil];
     } else if ([viewController isKindOfClass:[AllMoviesViewController class]] ||
@@ -1318,6 +1319,30 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_TYPES];
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_VALUES];
   [self synchronize];
+}
+
+
+- (void) setEventIdentifier:(NSString*) eventIdentifier
+      forPerformanceIdentifier:(NSString*) performanceIdentifier {
+  NSDictionary* calendarData = [[NSUserDefaults standardUserDefaults] objectForKey:CALENDAR_DATA];
+  NSMutableDictionary* result;
+  if (calendarData.count == 0) {
+    result = [NSMutableDictionary dictionary];
+  } else {
+    result = [NSMutableDictionary dictionaryWithDictionary:calendarData];
+  }
+  
+  [result setObject:eventIdentifier forKey:performanceIdentifier];
+  [[NSUserDefaults standardUserDefaults] setObject:result forKey:CALENDAR_DATA];
+  
+  [self synchronize];
+}
+
+
+- (NSString*) eventIdentifierForPerformanceIdentifier:(NSString*) performanceIdentifier {
+  NSDictionary* calendarData = [[NSUserDefaults standardUserDefaults] objectForKey:CALENDAR_DATA];
+  NSString* result = [calendarData objectForKey:performanceIdentifier];
+  return result.length == 0 ? @"" : result;
 }
 
 @end

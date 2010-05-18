@@ -40,6 +40,7 @@
 		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
 		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
+		748D54E011A281550010BD59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748D54DF11A281550010BD59 /* EventKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		748D54DF11A281550010BD59 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
 		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				741405F2116E80CE003B5263 /* libNetflixShared.a in Frameworks */,
 				741405F1116E80C9003B5263 /* libProtocolBuffers.a in Frameworks */,
 				745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */,
+				748D54E011A281550010BD59 /* EventKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +233,7 @@
 				741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */,
 				741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */,
 				741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */,
+				748D54DF11A281550010BD59 /* EventKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -614,7 +618,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -646,7 +650,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -678,7 +682,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
