@@ -109,6 +109,11 @@ typedef enum {
 }
 
 
+- (id) eventWithIdentifier:(id) arg {
+  return nil;
+}
+
+
 - (void) initializeCalendarData {
   NSMutableArray* result = [NSMutableArray array];
   
@@ -117,7 +122,7 @@ typedef enum {
     id store = [[[class alloc] init] autorelease];
     
     for (Performance* performance in performances) {
-      EKEvent* event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
+      id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
       BOOL inCalendar = event != nil;
       
       [result addObject:[NSNumber numberWithBool:inCalendar]];
@@ -406,6 +411,15 @@ typedef enum {
 }
 
 
+- (id) setMessageComposeDelegate:(id) arg {
+  return nil;
+}
+
+
+- (void) setBody:(id) body {
+}
+
+
 - (void) sendSMS:(Performance*) performance {
   Class class = NSClassFromString(@"MFMessageComposeViewController");
   id controller =
@@ -433,8 +447,43 @@ typedef enum {
 }
 
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+- (void)messageComposeViewController:(id)controller didFinishWithResult:(NSInteger)result {
   [self dismissModalViewControllerAnimated:YES];
+}
+
+
++ (id) eventWithEventStore:(id) store {
+  return nil;
+}
+
+
+- (void) setLocation:(id) location {
+}
+
+
+- (void) setStartDate:(id) date {
+}
+
+
+- (void) setEndDate:(id) date {
+}
+
+
+- (id) defaultCalendarForNewEvents {
+  return nil;
+}
+
+
+- (id) eventIdentifier {
+  return nil;
+}
+
+
+- (void) saveEvent:(id) event span:(EventSpan) span error:(NSError**) error {
+}
+
+
+- (void) removeEvent:(id) event span:(EventSpan) span error:(NSError**) error {
 }
 
 
@@ -462,7 +511,7 @@ typedef enum {
   [fullComponents setMinute:timeComponents.minute];
   
   NSDate* fullStartDate = [calendar dateFromComponents:fullComponents];
-  NSDate* fullEndDate = [NSDate dateWithTimeInterval:2 * ONE_HOUR sinceDate:fullStartDate];
+  NSDate* fullEndDate = [[[NSDate alloc] initWithTimeInterval:2 * ONE_HOUR sinceDate:fullStartDate] autorelease];
   
   [event setTitle:movie.canonicalTitle];
   [event setLocation:(id)theater.name];
@@ -471,7 +520,7 @@ typedef enum {
   [event setCalendar:(id)[store defaultCalendarForNewEvents]];
   
   NSError* error = nil;
-  [store saveEvent:event span:EKSpanThisEvent error:&error];
+  [store saveEvent:event span:SpanThisEvent error:&error];
 
   if (error != nil) {
     [AlertUtilities showOkAlert:error.localizedDescription];
@@ -491,7 +540,7 @@ typedef enum {
 
   if (event != nil) {  
     NSError* error = nil;
-    [store removeEvent:event span:EKSpanThisEvent error:&error];
+    [store removeEvent:event span:SpanThisEvent error:&error];
     [self majorRefresh];
   }
 }
