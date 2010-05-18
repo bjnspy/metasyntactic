@@ -41,6 +41,7 @@
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
 + (BOOL) canSendText;
++ (BOOL) canAccessCalendar;
 
 /* @protected */
 + (void) clearStaleData;

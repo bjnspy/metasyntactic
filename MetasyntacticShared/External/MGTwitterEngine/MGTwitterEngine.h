@@ -141,7 +141,7 @@
 - (NSString*) checkUserCredentials; // account/verify_credentials
 - (NSString*) endUserSession; // account/end_session
 
-- (NSString*) setLocation:(NSString*) location; // account/update_location (deprecated, use account/update_profile instead)
+//- (NSString*) setLocation:(NSString*) location; // account/update_location (deprecated, use account/update_profile instead)
 
 - (NSString*) setNotificationsDeliveryMethod:(NSString*) method; // account/update_delivery_device
 
