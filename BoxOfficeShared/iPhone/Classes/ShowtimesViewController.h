@@ -14,12 +14,15 @@
 
 #import "AbstractDetailsViewController.h"
 
-@interface TicketsViewController : AbstractDetailsViewController {
+@interface ShowtimesViewController : AbstractDetailsViewController<UIActionSheetDelegate, MFMessageComposeViewControllerDelegate> {
 @private
   Movie* movie;
   Theater* theater;
 
   NSArray* performances;
+  NSArray* calendarData;
+  
+  NSMutableDictionary* indexToActionMap;
 }
 
 - (id) initWithTheater:(Theater*) theater

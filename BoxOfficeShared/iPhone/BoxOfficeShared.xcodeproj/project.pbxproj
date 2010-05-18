@@ -37,7 +37,7 @@
 		10000000000000080000001F /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000080000001E /* ExpandedMovieDetailsCell.m */; };
 		100000000000000800000074 /* BookmarkCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000800000073 /* BookmarkCache.h */; };
 		100000000000000800000076 /* BookmarkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000075 /* BookmarkCache.m */; };
-		1000000000000008000000FC /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000132 /* TicketsViewController.m */; };
+		1000000000000008000000FC /* ShowtimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000132 /* ShowtimesViewController.m */; };
 		100000000000000900000017 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000162 /* FAQViewController.m */; };
 		10000000000000090000003F /* FandangoMoviePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000002B /* FandangoMoviePosterDownloader.m */; };
 		100000000000000900000044 /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000900000042 /* FavoriteTheater.m */; };
@@ -286,7 +286,7 @@
 		10000000000000080000001E /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
 		100000000000000800000073 /* BookmarkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkCache.h; sourceTree = "<group>"; };
 		100000000000000800000075 /* BookmarkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkCache.m; sourceTree = "<group>"; };
-		1000000000000008000000FB /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
+		1000000000000008000000FB /* ShowtimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowtimesViewController.h; sourceTree = "<group>"; };
 		100000000000000800000114 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
 		100000000000000800000162 /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		10000000000000090000001C /* FandangoMoviePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoMoviePosterDownloader.h; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 		100000000000001500000102 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		100000000000001500000105 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		100000000000001500000106 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		100000000000001500000132 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		100000000000001500000132 /* ShowtimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowtimesViewController.m; sourceTree = "<group>"; };
 		100000000000001500000134 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
 		100000000000001500000135 /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
 		100000000000001500000171 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
@@ -1074,11 +1074,11 @@
 				10000000000000070000002D /* AbstractDetailsViewController.h */,
 				10000000000000070000003A /* AbstractMovieListViewController.h */,
 				100000000000000C00000064 /* PostersViewController.h */,
-				1000000000000008000000FB /* TicketsViewController.h */,
+				1000000000000008000000FB /* ShowtimesViewController.h */,
 				10000000000000070000002E /* AbstractDetailsViewController.m */,
 				10000000000000070000003B /* AbstractMovieListViewController.m */,
 				100000000000000C00000066 /* PostersViewController.m */,
-				100000000000001500000132 /* TicketsViewController.m */,
+				100000000000001500000132 /* ShowtimesViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1475,7 +1475,7 @@
 				100000000000001200000034 /* TheaterDetailsViewController.m in Sources */,
 				100000000000001200000056 /* TheaterNameCell.m in Sources */,
 				100000000000001200000070 /* TheatersNavigationController.m in Sources */,
-				1000000000000008000000FC /* TicketsViewController.m in Sources */,
+				1000000000000008000000FC /* ShowtimesViewController.m in Sources */,
 				1000000000000009000000FA /* TomatoMovieTitleCell.m in Sources */,
 				10000000000000090000009F /* TrailerCache.m in Sources */,
 				100000000000001200000111 /* UnknownMovieTitleCell.m in Sources */,
@@ -1576,7 +1576,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1620,7 +1620,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1653,7 +1653,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1697,7 +1697,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

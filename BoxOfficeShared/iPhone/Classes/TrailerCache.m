@@ -169,9 +169,7 @@ static TrailerCache* cache;
   NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
                                                inArray:self.indexKeys];
   if (arrayIndex == NSNotFound) {
-    // no trailer for this movie.  record that fact.  we'll try again later
-    [FileUtilities writeObject:[NSArray array]
-                        toFile:[self trailerFile:movie]];
+    // no trailer for this movie.  we'll try again later
     return;
   }
 
@@ -287,9 +285,13 @@ static TrailerCache* cache;
   
   id jsonIndex = [TrailerCache downloadJSONIndex];
   NSDictionary* dictionary = [TrailerCache processJSONIndex:jsonIndex];
-  indexData.value = dictionary;
-  indexKeysData.value = dictionary.allKeys;
-  [self clearUpdatedMovies];
+  
+  if (dictionary.count > 0) {
+    indexData.value = dictionary;
+    indexKeysData.value = dictionary.allKeys;
+    [self clearUpdatedMovies];
+    [MetasyntacticSharedApplication minorRefresh];
+  }
 }
 
 

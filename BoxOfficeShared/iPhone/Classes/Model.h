@@ -203,4 +203,9 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context);
 - (BOOL) netflixTheming;
 - (void) setNetflixTheming:(BOOL) netflixTheming;
 
+- (void) setEventIdentifier:(NSString*) eventIdentifier
+      forPerformanceIdentifier:(NSString*) performanceIdentifier;
+- (NSString*) eventIdentifierForPerformanceIdentifier:(NSString*) performanceIdentifier;
+
+
 @end
