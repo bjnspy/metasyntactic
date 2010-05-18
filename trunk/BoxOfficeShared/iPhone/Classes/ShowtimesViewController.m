@@ -397,11 +397,19 @@ typedef enum {
   [[[MFMessageComposeViewController alloc] init] autorelease];
   
   controller.messageComposeDelegate = self;
-  controller.body = [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
-                     movie.canonicalTitle,
-                     theater.name,
-                     [DateUtilities formatShortDate:[Model model].searchDate],
-                     performance.timeString];
+  
+  if ([DateUtilities isToday:[Model model].searchDate]) {
+    controller.body = [NSString stringWithFormat:@"%@ - %@ - %@",
+                       movie.canonicalTitle,
+                       theater.name,
+                       performance.timeString];
+  } else {
+    controller.body = [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
+                       movie.canonicalTitle,
+                       theater.name,
+                       [DateUtilities formatShortDate:[Model model].searchDate],
+                       performance.timeString];
+  }
   
   [self presentModalViewController:controller animated:YES];
 }
