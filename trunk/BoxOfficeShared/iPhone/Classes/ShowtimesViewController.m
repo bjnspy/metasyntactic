@@ -42,6 +42,11 @@ typedef enum {
   OrderTickets
 } ShowtimeAction;
 
+typedef enum {
+  SpanThisEvent,
+  SpanFutureEvents
+} EventSpan;
+
 @synthesize theater;
 @synthesize movie;
 @synthesize performances;
