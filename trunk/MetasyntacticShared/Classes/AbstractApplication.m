@@ -415,4 +415,12 @@ static NSString* storeDirectory = nil;
     [class canSendText];
 }
 
+
++ (BOOL) canAccessCalendar {
+  Class class = NSClassFromString(@"EKEventStore");
+  return
+  class != nil &&
+  [class instancesRespondToSelector:@selector(eventWithIdentifier:)];
+}
+
 @end

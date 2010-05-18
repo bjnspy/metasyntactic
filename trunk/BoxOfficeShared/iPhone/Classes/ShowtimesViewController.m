@@ -105,14 +105,22 @@ typedef enum {
 
 
 - (void) initializeCalendarData {
-  EKEventStore* store = [[[EKEventStore alloc] init] autorelease];
-  
   NSMutableArray* result = [NSMutableArray array];
-  for (Performance* performance in performances) {
-    EKEvent* event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
-    BOOL inCalendar = event != nil;
+  
+  if ([Application canAccessCalendar]) {
+    Class class = NSClassFromString(@"EKEventStore");
+    id store = [[[class alloc] init] autorelease];
     
-    [result addObject:[NSNumber numberWithBool:inCalendar]];
+    for (Performance* performance in performances) {
+      EKEvent* event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
+      BOOL inCalendar = event != nil;
+      
+      [result addObject:[NSNumber numberWithBool:inCalendar]];
+    }
+  } else {
+    for (Performance* performance in performances) {
+      [result addObject:[NSNumber numberWithBool:NO]];
+    }
   }
   
   self.calendarData = result;
@@ -218,7 +226,6 @@ typedef enum {
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:reuseIdentifier] autorelease];
-    //cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     cell.textLabel.textColor = [ColorCache commandColor];
     cell.indentationLevel = 10;
@@ -342,10 +349,12 @@ typedef enum {
     [self addAction:SendSMS title:LocalizedString(@"Send SMS", nil) toSheet:actionSheet];
   }
   
-  if (isInCalendar) {
-    [self addAction:RemoveFromCalendar title:LocalizedString(@"Remove from Calendar", nil) toSheet:actionSheet];
-  } else {
-    [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
+  if ([Application canAccessCalendar]) {
+    if (isInCalendar) {
+      [self addAction:RemoveFromCalendar title:LocalizedString(@"Remove from Calendar", nil) toSheet:actionSheet];
+    } else {
+      [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
+    }
   }
   
   if (performance.url.length > 0) {
@@ -425,8 +434,11 @@ typedef enum {
 
 
 - (void) addToCalendar:(Performance*) performance {
-  EKEventStore* store = [[[EKEventStore alloc] init] autorelease];
-  EKEvent* event = [EKEvent eventWithEventStore:store];
+  Class storeClass = NSClassFromString(@"EKEventStore");
+  Class eventClass = NSClassFromString(@"EKEvent");
+  
+  id store = [[[storeClass alloc] init] autorelease];
+  id event = [eventClass eventWithEventStore:store];
   
   NSCalendar* calendar = [NSCalendar currentCalendar];
   
@@ -447,11 +459,11 @@ typedef enum {
   NSDate* fullStartDate = [calendar dateFromComponents:fullComponents];
   NSDate* fullEndDate = [NSDate dateWithTimeInterval:2 * ONE_HOUR sinceDate:fullStartDate];
   
-  event.title = movie.canonicalTitle;
-  event.location = theater.name;
-  event.startDate = fullStartDate;
-  event.endDate = fullEndDate;
-  event.calendar = [store defaultCalendarForNewEvents];
+  [event setTitle:movie.canonicalTitle];
+  [event setLocation:(id)theater.name];
+  [event setStartDate:fullStartDate];
+  [event setEndDate:fullEndDate];
+  [event setCalendar:(id)[store defaultCalendarForNewEvents]];
   
   NSError* error = nil;
   [store saveEvent:event span:EKSpanThisEvent error:&error];
@@ -460,15 +472,17 @@ typedef enum {
     [AlertUtilities showOkAlert:error.localizedDescription];
   }
 
-  [[Model model] setEventIdentifier:event.eventIdentifier
+  [[Model model] setEventIdentifier:[event eventIdentifier]
            forPerformanceIdentifier:[self performanceIdentifier:performance]];
   [self majorRefresh];
 }
 
 
 - (void) removeFromCalendar:(Performance*) performance {
-  EKEventStore* store = [[[EKEventStore alloc] init] autorelease];
-  EKEvent* event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
+  Class storeClass = NSClassFromString(@"EKEventStore");
+  
+  id store = [[[storeClass alloc] init] autorelease];
+  id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
 
   if (event != nil) {  
     NSError* error = nil;
