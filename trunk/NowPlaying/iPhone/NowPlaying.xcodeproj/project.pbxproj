@@ -40,7 +40,7 @@
 		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
 		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
-		748D54E011A281550010BD59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748D54DF11A281550010BD59 /* EventKit.framework */; };
+		748D54E011A281550010BD59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748D54DF11A281550010BD59 /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
