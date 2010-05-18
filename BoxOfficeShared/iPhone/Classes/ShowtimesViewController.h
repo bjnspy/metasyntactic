@@ -14,7 +14,9 @@
 
 #import "AbstractDetailsViewController.h"
 
-@interface ShowtimesViewController : AbstractDetailsViewController<UIActionSheetDelegate, MFMessageComposeViewControllerDelegate> {
+@interface ShowtimesViewController : AbstractDetailsViewController<UIActionSheetDelegate
+//, MFMessageComposeViewControllerDelegate
+> {
 @private
   Movie* movie;
   Theater* theater;

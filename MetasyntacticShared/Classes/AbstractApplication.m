@@ -406,4 +406,13 @@ static NSString* storeDirectory = nil;
   return [MFMailComposeViewController canSendMail];
 }
 
+
++ (BOOL) canSendText {
+  Class class = NSClassFromString(@"MFMessageComposeViewController");
+  return
+    class != nil &&
+    [class respondsToSelector:@selector(canSendText)] &&
+    [class canSendText];
+}
+
 @end

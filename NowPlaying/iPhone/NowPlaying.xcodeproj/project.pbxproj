@@ -233,7 +233,6 @@
 				741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */,
 				741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */,
 				741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */,
-				748D54DF11A281550010BD59 /* EventKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 		100000000000000C000000A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				748D54DF11A281550010BD59 /* EventKit.framework */,
 				10000000000000290000005E /* libsqlite3.dylib */,
 				100000000000000700000118 /* AddressBook.framework */,
 				100000000000000900000001 /* CFNetwork.framework */,
@@ -618,7 +618,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -650,7 +650,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -682,7 +682,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

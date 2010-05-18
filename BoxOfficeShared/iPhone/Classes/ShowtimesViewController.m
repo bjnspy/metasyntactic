@@ -338,7 +338,7 @@ typedef enum {
   self.indexToActionMap = [NSMutableDictionary dictionary];
   [self addAction:EmailListing title:LocalizedString(@"E-mail listings", nil) toSheet:actionSheet];
   
-  if ([MFMessageComposeViewController canSendText]) {
+  if ([AbstractApplication canSendText]) {
     [self addAction:SendSMS title:LocalizedString(@"Send SMS", nil) toSheet:actionSheet];
   }
   
@@ -393,23 +393,27 @@ typedef enum {
 
 
 - (void) sendSMS:(Performance*) performance {
-  MFMessageComposeViewController* controller =
-  [[[MFMessageComposeViewController alloc] init] autorelease];
+  Class class = NSClassFromString(@"MFMessageComposeViewController");
+  id controller =
+  [[[class alloc] init] autorelease];
   
-  controller.messageComposeDelegate = self;
+  [(id)controller setMessageComposeDelegate:(id)self];
   
+  NSString* body;
   if ([DateUtilities isToday:[Model model].searchDate]) {
-    controller.body = [NSString stringWithFormat:@"%@ - %@ - %@",
+    body = [NSString stringWithFormat:@"%@ - %@ - %@",
                        movie.canonicalTitle,
                        theater.name,
                        performance.timeString];
   } else {
-    controller.body = [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
+    body = [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
                        movie.canonicalTitle,
                        theater.name,
                        [DateUtilities formatShortDate:[Model model].searchDate],
                        performance.timeString];
   }
+  
+  [controller setBody:body];
   
   [self presentModalViewController:controller animated:YES];
 }

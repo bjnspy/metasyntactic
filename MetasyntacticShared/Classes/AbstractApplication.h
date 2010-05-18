@@ -40,6 +40,7 @@
 
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
++ (BOOL) canSendText;
 
 /* @protected */
 + (void) clearStaleData;
