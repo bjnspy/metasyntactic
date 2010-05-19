@@ -1,10 +1,18 @@
+// Copyright 2010 Cyrus Najmabadi
 //
-//  TweetViewController.m
-//  MetasyntacticShared
+// This program is free software; you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 of the License, or (at your option) any
+// later version.
 //
-//  Created by Cyrus Najmabadi on 5/18/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
 //
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, write to the Free Software Foundation, Inc., 51
+// Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TweetViewController.h"
 
@@ -47,7 +55,7 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
     text = [text substringToIndex:MAX_TWITTER_LENGTH];
     textView.text = text;
   }
-  
+
   label.text = [self labelText];
 }
 
@@ -60,38 +68,38 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
 }
 
 
-- (id) initWithTweet:(NSString*) tweet_ 
+- (id) initWithTweet:(NSString*) tweet_
              account:(AbstractTwitterAccount*) account_ {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.account = account_;
-    
+
     self.textView = [[[UITextView alloc] initWithFrame:CGRectZero] autorelease];
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+
     textView.text = tweet_;
     textView.font = [UIFont boldSystemFontOfSize:17];
     textView.delegate = self;
     textView.backgroundColor = [UIColor clearColor];
     textView.returnKeyType = UIReturnKeyDefault;
-    
+
     self.label = [self createGroupedFooterLabel:[UIColor grayColor]
                                            text:[self labelText]];
-    
+
     [self.view addSubview:textView];
-    
+
     self.title = LocalizedString(@"Tweet", nil);
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.rowHeight = CELL_HEIGHT;
-    
-    self.navigationItem.rightBarButtonItem = 
+
+    self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:LocalizedString(@"Send", nil)
                                       style:UIBarButtonItemStyleDone
                                      target:self
                                      action:@selector(onSend)] autorelease];
-      
+
     [self enforceConstraints];
   }
-  
+
   return self;
 }
 
@@ -110,7 +118,7 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
   [cell.contentView addSubview:textView];
-  
+
   return cell;
 }
 
@@ -122,18 +130,18 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
 
 - (void) loadView {
   [super loadView];
-  
-  textView.frame = 
-    CGRectMake(0, 0, 
+
+  textView.frame =
+    CGRectMake(0, 0,
                self.view.frame.size.width,
                CELL_HEIGHT);
-  
+
   CGRect frame = label.frame;
   frame.origin.x = textView.frame.origin.x;
   frame.origin.y = textView.frame.origin.y + textView.frame.size.height + 10;
   frame.size.width = textView.frame.size.width;
   label.frame = frame;
-  
+
   [textView becomeFirstResponder];
 }
 

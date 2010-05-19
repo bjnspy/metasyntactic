@@ -297,10 +297,10 @@ typedef enum {
                                  selector:@selector(onTwitterEnabledChanged:)];
   } else {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    
+
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = LocalizedString(@"Account Settings", @"Button to change the username and password for twitter.");
-   
+
     return cell;
   }
 }
@@ -385,7 +385,7 @@ typedef enum {
 
 - (void) onTwitterEnabledChanged:(UISwitch*) sender {
   [[BoxOfficeTwitterAccount account] setEnabled:sender.on];
-  
+
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:TwitterSection]];
   if (sender.on) {
     [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];

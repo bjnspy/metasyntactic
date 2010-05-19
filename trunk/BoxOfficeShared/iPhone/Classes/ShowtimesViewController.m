@@ -357,11 +357,11 @@ typedef enum {
                        otherButtonTitles:nil] autorelease];
 
   self.indexToActionMap = [NSMutableDictionary dictionary];
-  
+
   if (performance.url.length > 0) {
     [self addAction:OrderTickets title:LocalizedString(@"Order Tickets", nil) toSheet:actionSheet];
   }
-  
+
   [self addAction:EmailListing title:LocalizedString(@"E-mail listings", nil) toSheet:actionSheet];
 
   if ([AbstractApplication canSendText]) {
@@ -375,7 +375,7 @@ typedef enum {
       [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
     }
   }
-  
+
   if ([[BoxOfficeTwitterAccount account] enabled]) {
     [self addAction:Tweet title:LocalizedString(@"Tweet", nil) toSheet:actionSheet];
   }
