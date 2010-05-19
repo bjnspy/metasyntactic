@@ -35,6 +35,7 @@
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;
 @class AbstractSearchResult;
+@class AbstractTwitterAccount;
 @class AbstractUnlockRequest;
 @class AutoreleasingMutableArray;
 @class AutoreleasingMutableDictionary;

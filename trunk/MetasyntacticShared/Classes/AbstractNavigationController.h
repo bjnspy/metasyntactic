@@ -37,4 +37,6 @@
 - (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations animated:(BOOL) animated;
 - (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations delegate:(id<MapViewControllerDelegate>) delegate animated:(BOOL) animated;
 
+- (void) pushTweetController:(NSString*) tweet account:(AbstractTwitterAccount*) account;
+
 @end

@@ -353,6 +353,37 @@
 }
 
 
+- (UILabel*) createGroupedFooterLabel:(UIColor*) textColor
+                                 text:(NSString*) text {
+  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 0)] autorelease];
+  label.text = text;
+  label.textAlignment = UITextAlignmentCenter;
+  label.font = [UIFont systemFontOfSize:15];
+  label.textColor = textColor;
+  label.opaque = NO;
+  label.backgroundColor = [UIColor clearColor];
+  label.numberOfLines = 0;
+  [label sizeToFit];
+  return label;
+}
+
+
+- (UIView*) createGroupedFooterLabelView:(UILabel*) label {
+  UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, label.frame.size.height + 6 + 11)] autorelease];
+  view.backgroundColor = [UIColor clearColor];
+  
+  CGRect frame = label.frame;
+  frame.origin.y = 6;
+  frame.size.width = 320;
+  label.frame = frame;
+  
+  [view addSubview:label];
+  [view sizeToFit];
+  
+  return view;
+}
+    
+
 - (UIView*)       tableView:(UITableView*) tableView
      viewForFooterInSection:(NSInteger) section {
   if (self.isGroupedStyle &&
@@ -361,28 +392,8 @@
     if (groupedFooterColor != nil) {
       NSString* text = [self tableView:tableView titleForFooterInSection:section];
       if (text.length > 0) {
-        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 0)] autorelease];
-        label.text = text;
-        label.textAlignment = UITextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:15];
-        label.textColor = groupedFooterColor;
-        label.opaque = NO;
-        label.backgroundColor = [UIColor clearColor];
-        label.numberOfLines = 0;
-        [label sizeToFit];
-
-        UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, label.frame.size.height + 6 + 11)] autorelease];
-        view.backgroundColor = [UIColor clearColor];
-
-        CGRect frame = label.frame;
-        frame.origin.y = 6;
-        frame.size.width = 320;
-        label.frame = frame;
-
-        [view addSubview:label];
-        [view sizeToFit];
-
-        return view;
+        UILabel* label = [self createGroupedFooterLabel:groupedFooterColor text:text];
+        return [self createGroupedFooterLabelView:label];
       }
     }
   }

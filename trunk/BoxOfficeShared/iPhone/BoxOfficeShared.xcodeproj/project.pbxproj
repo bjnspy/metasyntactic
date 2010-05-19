@@ -130,6 +130,10 @@
 		100000000000001500000181 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000017F /* YellowMovieTitleCell.m */; };
 		1000000000000015000001BE /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000150000008F /* UpcomingMoviesNavigationController.m */; };
 		10000000000000150000020C /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001500000100 /* UpcomingMoviesViewController.m */; };
+		741DD85D11A39E89002C92E2 /* BoxOfficeTwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DD85B11A39E89002C92E2 /* BoxOfficeTwitterAccount.h */; };
+		741DD85E11A39E89002C92E2 /* BoxOfficeTwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DD85C11A39E89002C92E2 /* BoxOfficeTwitterAccount.m */; };
+		741DD8F111A3A1C1002C92E2 /* TwitterOptionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DD8EF11A3A1C1002C92E2 /* TwitterOptionsViewController.h */; };
+		741DD8F211A3A1C1002C92E2 /* TwitterOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DD8F011A3A1C1002C92E2 /* TwitterOptionsViewController.m */; };
 		7421F20E10F05E60008A5506 /* PersonDetailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F20C10F05E60008A5506 /* PersonDetailsViewController.h */; };
 		7421F20F10F05E60008A5506 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F20D10F05E60008A5506 /* PersonDetailsViewController.m */; };
 		7461F9B510F2F19C00FBE955 /* PersonCacheUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 7461F9B310F2F19C00FBE955 /* PersonCacheUpdater.h */; };
@@ -501,6 +505,10 @@
 		100000000000001800000252 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002600000005 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000003400000001 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = Resources/zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
+		741DD85B11A39E89002C92E2 /* BoxOfficeTwitterAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeTwitterAccount.h; sourceTree = "<group>"; };
+		741DD85C11A39E89002C92E2 /* BoxOfficeTwitterAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeTwitterAccount.m; sourceTree = "<group>"; };
+		741DD8EF11A3A1C1002C92E2 /* TwitterOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterOptionsViewController.h; sourceTree = "<group>"; };
+		741DD8F011A3A1C1002C92E2 /* TwitterOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterOptionsViewController.m; sourceTree = "<group>"; };
 		7421F20C10F05E60008A5506 /* PersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailsViewController.h; sourceTree = "<group>"; };
 		7421F20D10F05E60008A5506 /* PersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailsViewController.m; sourceTree = "<group>"; };
 		7461F9B310F2F19C00FBE955 /* PersonCacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCacheUpdater.h; sourceTree = "<group>"; };
@@ -591,6 +599,7 @@
 		1000000000000007000000E0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				741DD85A11A39E6F002C92E2 /* Twitter */,
 				1000000000000007000000DF /* Caches */,
 				100000000000000800000012 /* Data */,
 				100000000000000800000013 /* DataProvider */,
@@ -960,12 +969,14 @@
 				100000000000001100000082 /* ScoreProviderViewController.h */,
 				100000000000001100000096 /* SearchDatePickerViewController.h */,
 				1000000000000011000000A3 /* SearchDistancePickerViewController.h */,
+				741DD8EF11A3A1C1002C92E2 /* TwitterOptionsViewController.h */,
 				100000000000000800000162 /* FAQViewController.m */,
 				100000000000000A00000026 /* NowPlayingSettingsViewController.m */,
 				100000000000000C0000002B /* PocketFlicksSettingsViewController.m */,
 				100000000000001100000084 /* ScoreProviderViewController.m */,
 				100000000000001100000097 /* SearchDatePickerViewController.m */,
 				1000000000000011000000A4 /* SearchDistancePickerViewController.m */,
+				741DD8F011A3A1C1002C92E2 /* TwitterOptionsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1111,6 +1122,15 @@
 			name = Websites;
 			sourceTree = "<group>";
 		};
+		741DD85A11A39E6F002C92E2 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				741DD85B11A39E89002C92E2 /* BoxOfficeTwitterAccount.h */,
+				741DD85C11A39E89002C92E2 /* BoxOfficeTwitterAccount.m */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
 		7421F20B10F05E47008A5506 /* People */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,6 +1247,8 @@
 				74D203551154AA7200FC5C7F /* BoxOfficeSharedApplicationDelegate.h in Headers */,
 				74D203581154AA7200FC5C7F /* Controller.h in Headers */,
 				74D2035A1154AA7200FC5C7F /* Model.h in Headers */,
+				741DD85D11A39E89002C92E2 /* BoxOfficeTwitterAccount.h in Headers */,
+				741DD8F111A3A1C1002C92E2 /* TwitterOptionsViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,6 +1513,8 @@
 				10000000000000150000017C /* WikipediaCache.m in Sources */,
 				74C22BF810F91ECA0042EB39 /* WikipediaScrapePersonPosterDownloader.m in Sources */,
 				100000000000001500000181 /* YellowMovieTitleCell.m in Sources */,
+				741DD85E11A39E89002C92E2 /* BoxOfficeTwitterAccount.m in Sources */,
+				741DD8F211A3A1C1002C92E2 /* TwitterOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

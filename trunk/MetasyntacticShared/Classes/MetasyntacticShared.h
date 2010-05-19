@@ -129,6 +129,7 @@
 #import "ThreadingUtilities.h"
 #import "ThreadsafeValue.h"
 #import "TouchableViewDelegate.h"
+#import "TweetViewController.h"
 #import "UIColor+Utilities.h"
 #import "UIScrollView+Utilities.h"
 #import "UIViewController+Utilities.h"
