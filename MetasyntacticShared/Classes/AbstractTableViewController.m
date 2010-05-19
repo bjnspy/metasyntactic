@@ -371,18 +371,18 @@
 - (UIView*) createGroupedFooterLabelView:(UILabel*) label {
   UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, label.frame.size.height + 6 + 11)] autorelease];
   view.backgroundColor = [UIColor clearColor];
-  
+
   CGRect frame = label.frame;
   frame.origin.y = 6;
   frame.size.width = 320;
   label.frame = frame;
-  
+
   [view addSubview:label];
   [view sizeToFit];
-  
+
   return view;
 }
-    
+
 
 - (UIView*)       tableView:(UITableView*) tableView
      viewForFooterInSection:(NSInteger) section {
