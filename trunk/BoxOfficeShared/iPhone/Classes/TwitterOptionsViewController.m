@@ -145,7 +145,7 @@ const NSInteger ENABLED_TAG = 1;
     [passwordField becomeFirstResponder];
   } else if (textField == passwordField) {
     [passwordField resignFirstResponder];
-    [self login];
+    [self.navigationController popViewControllerAnimated:YES];
   }
 
   return NO;
