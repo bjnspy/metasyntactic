@@ -427,11 +427,15 @@ static NetflixCache* cache;
 
   NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
   BOOL force = forceValue.boolValue;
-
+  Queue* queue = [[NetflixFeedCache cache] queueForFeed:feed account:account];
+  BOOL queueIsEmpty = queue.movies.count == 0 && queue.saved.count == 0;
+  
   // first download and check the feed's current etag against the current one.
-  if (force || [self etagChanged:feed account:account]) {
+  if (force || queueIsEmpty || [self etagChanged:feed account:account]) {
     if (force) {
       NSLog(@"Forcing update of '%@'.", feed.name);
+    } else if (queueIsEmpty) {
+      NSLog(@"Redownloading empty queue '%@'.", feed.name);
     } else {
       NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
     }
@@ -446,7 +450,7 @@ static NetflixCache* cache;
     NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
   }
 
-  Queue* queue = [[NetflixFeedCache cache] queueForFeed:feed account:account];
+  queue = [[NetflixFeedCache cache] queueForFeed:feed account:account];
 
   [NetflixSharedApplication reportNetflixMovies:queue.movies];
   [NetflixSharedApplication reportNetflixMovies:queue.saved];
