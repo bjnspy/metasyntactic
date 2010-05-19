@@ -1,16 +1,18 @@
-// Copyright 2008 Cyrus Najmabadi
+// Copyright 2010 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+// This program is free software; you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 of the License, or (at your option) any
+// later version.
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, write to the Free Software Foundation, Inc., 51
+// Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "ShowtimesViewController.h"
 
@@ -68,16 +70,16 @@ typedef enum {
   NSArray* allPerformances =  [[Model model] moviePerformances:movie
                                                     forTheater:theater];
   NSMutableArray* result = [NSMutableArray array];
-  
+
   NSDate* now = [DateUtilities currentTime];
-  
+
   for (Performance* performance in allPerformances) {
     if ([DateUtilities isToday:[Model model].searchDate]) {
       NSDate* time = performance.time;
-      
+
       // skip times that have already passed.
       if ([now compare:time] == NSOrderedDescending) {
-        
+
         // except for times that are before 4 AM
         NSDateComponents* components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit
                                                                        fromDate:time];
@@ -86,10 +88,10 @@ typedef enum {
         }
       }
     }
-    
+
     [result addObject:performance];
   }
-  
+
   self.performances = result;
 }
 
@@ -116,15 +118,15 @@ typedef enum {
 
 - (void) initializeCalendarData {
   NSMutableArray* result = [NSMutableArray array];
-  
+
   if ([Application canAccessCalendar]) {
     Class class = NSClassFromString(@"EKEventStore");
     id store = [[[class alloc] init] autorelease];
-    
+
     for (Performance* performance in performances) {
       id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
       BOOL inCalendar = event != nil;
-      
+
       [result addObject:[NSNumber numberWithBool:inCalendar]];
     }
   } else {
@@ -132,14 +134,14 @@ typedef enum {
       [result addObject:[NSNumber numberWithBool:NO]];
     }
   }
-  
+
   self.calendarData = result;
 }
 
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  
+
   [self initializePerformances];
   [self initializeCalendarData];
 }
@@ -243,34 +245,34 @@ typedef enum {
 
   Performance* performance = [performances objectAtIndex:row];
   BOOL isInCalendar = [[calendarData objectAtIndex:row] boolValue];
-  
+
   cell.textLabel.text = performance.timeString;
-  
+
   UIImage* actionImage = BoxOfficeStockImage(@"Action.png");
   UIImage* calendarImage = BoxOfficeStockImage(@"CalendarChecked.png");
-  
+
   UIImageView* actionImageView = [[[UIImageView alloc] initWithImage:actionImage] autorelease];
   UIImageView* calendarImageView = [[[UIImageView alloc] initWithImage:calendarImage] autorelease];
 
   CGRect calendarFrame = calendarImageView.frame;
-  
+
   CGRect actionFrame = actionImageView.frame;
   actionFrame.origin.x = calendarFrame.size.width + 10;
-  actionFrame.origin.y = 
+  actionFrame.origin.y =
   (NSInteger)((calendarFrame.size.height - actionFrame.size.height) / 2);
   actionImageView.frame = actionFrame;
-  
-  CGRect frame = CGRectMake(0, 0, 
+
+  CGRect frame = CGRectMake(0, 0,
                             actionFrame.size.width + calendarFrame.size.width + 10 + 10,
                             MAX(actionFrame.size.height, calendarFrame.size.height));
-  
+
   UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
-  
-  [view addSubview:actionImageView]; 
+
+  [view addSubview:actionImageView];
   if (isInCalendar) {
     [view addSubview:calendarImageView];
   }
-  
+
   cell.accessoryView = view;
 
   return cell;
@@ -341,24 +343,24 @@ typedef enum {
 
 - (void) didSelectShowtimeAtRow:(NSIndexPath*) indexPath {
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
+
   Performance* performance = [performances objectAtIndex:indexPath.row];
   BOOL isInCalendar = [[calendarData objectAtIndex:indexPath.row] boolValue];
-  
+
   UIActionSheet* actionSheet =
    [[[UIActionSheet alloc] initWithTitle:nil
                                 delegate:self
                        cancelButtonTitle:nil
-                  destructiveButtonTitle:nil 
+                  destructiveButtonTitle:nil
                        otherButtonTitles:nil] autorelease];
-  
+
   self.indexToActionMap = [NSMutableDictionary dictionary];
   [self addAction:EmailListing title:LocalizedString(@"E-mail listings", nil) toSheet:actionSheet];
-  
+
   if ([AbstractApplication canSendText]) {
     [self addAction:SendSMS title:LocalizedString(@"Send SMS", nil) toSheet:actionSheet];
   }
-  
+
   if ([Application canAccessCalendar]) {
     if (isInCalendar) {
       [self addAction:RemoveFromCalendar title:LocalizedString(@"Remove from Calendar", nil) toSheet:actionSheet];
@@ -366,16 +368,16 @@ typedef enum {
       [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
     }
   }
-  
+
   if (performance.url.length > 0) {
     [self addAction:OrderTickets title:LocalizedString(@"Order Tickets", nil) toSheet:actionSheet];
   }
-  
+
   actionSheet.cancelButtonIndex =
     [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
-  
+
   actionSheet.tag = indexPath.row;
-  
+
   [self showActionSheet:actionSheet];
 }
 
@@ -385,7 +387,7 @@ typedef enum {
                        movie.canonicalTitle,
                        [DateUtilities formatFullDate:[Model model].searchDate]];
   NSMutableString* body = [NSMutableString string];
-  
+
   [body appendString:@"<p>"];
   [body appendString:theater.name];
   [body appendString:@"<br/>"];
@@ -394,16 +396,16 @@ typedef enum {
   [body appendString:@"\">"];
   [body appendString:[[Model model] simpleAddressForTheater:theater]];
   [body appendString:@"</a>"];
-  
+
   [body appendString:@"<p>"];
   [body appendString:movie.canonicalTitle];
   [body appendString:@"<br/>"];
-  
+
   [body appendString:[Utilities generateShowtimeLinks:[Model model]
                                                 movie:movie
                                               theater:theater
                                          performances:listings]];
-  
+
   [self openMailTo:nil
        withSubject:subject
               body:body
@@ -423,9 +425,9 @@ typedef enum {
   Class class = NSClassFromString(@"MFMessageComposeViewController");
   id controller =
   [[[class alloc] init] autorelease];
-  
+
   [(id)controller setMessageComposeDelegate:(id)self];
-  
+
   NSString* body;
   if ([DateUtilities isToday:[Model model].searchDate]) {
     body = [NSString stringWithFormat:@"%@ - %@ - %@",
@@ -439,9 +441,9 @@ typedef enum {
                        [DateUtilities formatShortDate:[Model model].searchDate],
                        performance.timeString];
   }
-  
+
   [controller setBody:body];
-  
+
   [self presentModalViewController:controller animated:YES];
 }
 
@@ -489,15 +491,15 @@ typedef enum {
 - (void) addToCalendar:(Performance*) performance {
   Class storeClass = NSClassFromString(@"EKEventStore");
   Class eventClass = NSClassFromString(@"EKEvent");
-  
+
   id store = [[[storeClass alloc] init] autorelease];
   id event = [eventClass eventWithEventStore:store];
-  
+
   NSCalendar* calendar = [NSCalendar currentCalendar];
-  
+
   NSDate* day = [Model model].searchDate;
   NSDate* time = performance.time;
-  
+
   NSDateComponents* dayComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
                                                 fromDate:day];
   NSDateComponents* timeComponents = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit
@@ -508,16 +510,16 @@ typedef enum {
   [fullComponents setDay:dayComponents.day];
   [fullComponents setHour:timeComponents.hour];
   [fullComponents setMinute:timeComponents.minute];
-  
+
   NSDate* fullStartDate = [calendar dateFromComponents:fullComponents];
   NSDate* fullEndDate = [[[NSDate alloc] initWithTimeInterval:2 * ONE_HOUR sinceDate:fullStartDate] autorelease];
-  
+
   [event setTitle:movie.canonicalTitle];
   [event setLocation:(id)theater.name];
   [event setStartDate:fullStartDate];
   [event setEndDate:fullEndDate];
   [event setCalendar:(id)[store defaultCalendarForNewEvents]];
-  
+
   NSError* error = nil;
   [store saveEvent:event span:SpanThisEvent error:&error];
 
@@ -533,11 +535,11 @@ typedef enum {
 
 - (void) removeFromCalendar:(Performance*) performance {
   Class storeClass = NSClassFromString(@"EKEventStore");
-  
+
   id store = [[[storeClass alloc] init] autorelease];
   id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
 
-  if (event != nil) {  
+  if (event != nil) {
     NSError* error = nil;
     [store removeEvent:event span:SpanThisEvent error:&error];
     [self majorRefresh];
@@ -549,12 +551,12 @@ typedef enum {
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
-  
+
   NSInteger row = actionSheet.tag;
   Performance* performance = [performances objectAtIndex:row];
-  
+
   ShowtimeAction action = [[indexToActionMap objectForKey:[NSNumber numberWithInteger:buttonIndex]] integerValue];
-  
+
   if (action == EmailListing) {
     [self didSelectEmailListings:[NSArray arrayWithObject:performance]];
   } else if (action == SendSMS) {
