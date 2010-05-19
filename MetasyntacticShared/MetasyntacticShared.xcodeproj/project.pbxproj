@@ -328,6 +328,26 @@
 		74B8B84C1161199A0096AEA2 /* DeviceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */; };
 		74B8B84D1161199A0096AEA2 /* DeviceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */; };
 		74D98D2C116EA70A00DD76DA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98D2B116EA70A00DD76DA /* MessageUI.framework */; };
+		74E779D411A3B330009442BD /* amigaconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C011A3B330009442BD /* amigaconfig.h */; };
+		74E779D511A3B330009442BD /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C111A3B330009442BD /* ascii.h */; };
+		74E779D611A3B330009442BD /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C211A3B330009442BD /* asciitab.h */; };
+		74E779D711A3B330009442BD /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C311A3B330009442BD /* expat_external.h */; };
+		74E779D811A3B330009442BD /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C411A3B330009442BD /* expat.h */; };
+		74E779D911A3B330009442BD /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C511A3B330009442BD /* iasciitab.h */; };
+		74E779DA11A3B330009442BD /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C611A3B330009442BD /* internal.h */; };
+		74E779DB11A3B330009442BD /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C711A3B330009442BD /* latin1tab.h */; };
+		74E779DC11A3B330009442BD /* macconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C811A3B330009442BD /* macconfig.h */; };
+		74E779DD11A3B330009442BD /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779C911A3B330009442BD /* nametab.h */; };
+		74E779DE11A3B330009442BD /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779CA11A3B330009442BD /* utf8tab.h */; };
+		74E779DF11A3B330009442BD /* winconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779CB11A3B330009442BD /* winconfig.h */; };
+		74E779E011A3B330009442BD /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74E779CC11A3B330009442BD /* xmlparse.c */; };
+		74E779E111A3B330009442BD /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74E779CD11A3B330009442BD /* xmlrole.c */; };
+		74E779E211A3B330009442BD /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779CE11A3B330009442BD /* xmlrole.h */; };
+		74E779E311A3B330009442BD /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 74E779CF11A3B330009442BD /* xmltok_impl.c */; };
+		74E779E411A3B330009442BD /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779D011A3B330009442BD /* xmltok_impl.h */; };
+		74E779E511A3B330009442BD /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 74E779D111A3B330009442BD /* xmltok_ns.c */; };
+		74E779E611A3B330009442BD /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74E779D211A3B330009442BD /* xmltok.c */; };
+		74E779E711A3B330009442BD /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E779D311A3B330009442BD /* xmltok.h */; };
 		74FA49A310DD72EB0002369F /* AbstractDeviceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499610DD72EB0002369F /* AbstractDeviceStore.h */; };
 		74FA49A410DD72EB0002369F /* AbstractDeviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA499710DD72EB0002369F /* AbstractDeviceStore.m */; };
 		74FA49A510DD72EB0002369F /* AbstractSimulatorStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */; };
@@ -669,6 +689,26 @@
 		74B8B84A1161199A0096AEA2 /* DeviceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtilities.h; sourceTree = "<group>"; };
 		74B8B84B1161199A0096AEA2 /* DeviceUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtilities.m; sourceTree = "<group>"; };
 		74D98D2B116EA70A00DD76DA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74E779C011A3B330009442BD /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
+		74E779C111A3B330009442BD /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
+		74E779C211A3B330009442BD /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
+		74E779C311A3B330009442BD /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		74E779C411A3B330009442BD /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
+		74E779C511A3B330009442BD /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = External/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
+		74E779C611A3B330009442BD /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
+		74E779C711A3B330009442BD /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		74E779C811A3B330009442BD /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
+		74E779C911A3B330009442BD /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
+		74E779CA11A3B330009442BD /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = External/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
+		74E779CB11A3B330009442BD /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = External/Expat/winconfig.h; sourceTree = SOURCE_ROOT; };
+		74E779CC11A3B330009442BD /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = External/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
+		74E779CD11A3B330009442BD /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = External/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
+		74E779CE11A3B330009442BD /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = External/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
+		74E779CF11A3B330009442BD /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
+		74E779D011A3B330009442BD /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
+		74E779D111A3B330009442BD /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74E779D211A3B330009442BD /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = External/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
+		74E779D311A3B330009442BD /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = External/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
 		74FA499610DD72EB0002369F /* AbstractDeviceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDeviceStore.h; sourceTree = "<group>"; };
 		74FA499710DD72EB0002369F /* AbstractDeviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDeviceStore.m; sourceTree = "<group>"; };
 		74FA499810DD72EB0002369F /* AbstractSimulatorStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSimulatorStore.h; sourceTree = "<group>"; };
@@ -847,6 +887,7 @@
 		10000000000000090000009B /* External */ = {
 			isa = PBXGroup;
 			children = (
+				74E779BF11A3B321009442BD /* Expat */,
 				748C8F5E119152320081584B /* JSON */,
 				1000000000000008000000FD /* Twitter */,
 				1000000000000011000000A6 /* OAuth */,
@@ -1255,6 +1296,33 @@
 			path = External/JSON;
 			sourceTree = SOURCE_ROOT;
 		};
+		74E779BF11A3B321009442BD /* Expat */ = {
+			isa = PBXGroup;
+			children = (
+				74E779C011A3B330009442BD /* amigaconfig.h */,
+				74E779C111A3B330009442BD /* ascii.h */,
+				74E779C211A3B330009442BD /* asciitab.h */,
+				74E779C311A3B330009442BD /* expat_external.h */,
+				74E779C411A3B330009442BD /* expat.h */,
+				74E779C511A3B330009442BD /* iasciitab.h */,
+				74E779C611A3B330009442BD /* internal.h */,
+				74E779C711A3B330009442BD /* latin1tab.h */,
+				74E779C811A3B330009442BD /* macconfig.h */,
+				74E779C911A3B330009442BD /* nametab.h */,
+				74E779CA11A3B330009442BD /* utf8tab.h */,
+				74E779CB11A3B330009442BD /* winconfig.h */,
+				74E779CC11A3B330009442BD /* xmlparse.c */,
+				74E779CD11A3B330009442BD /* xmlrole.c */,
+				74E779CE11A3B330009442BD /* xmlrole.h */,
+				74E779CF11A3B330009442BD /* xmltok_impl.c */,
+				74E779D011A3B330009442BD /* xmltok_impl.h */,
+				74E779D111A3B330009442BD /* xmltok_ns.c */,
+				74E779D211A3B330009442BD /* xmltok.c */,
+				74E779D311A3B330009442BD /* xmltok.h */,
+			);
+			name = Expat;
+			sourceTree = "<group>";
+		};
 		74FA499510DD72D90002369F /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1527,21 @@
 				748C8F75119152320081584B /* SBJsonParser.h in Headers */,
 				748C8F77119152320081584B /* SBJsonWriter.h in Headers */,
 				741DD92611A3A654002C92E2 /* TweetViewController.h in Headers */,
+				74E779D411A3B330009442BD /* amigaconfig.h in Headers */,
+				74E779D511A3B330009442BD /* ascii.h in Headers */,
+				74E779D611A3B330009442BD /* asciitab.h in Headers */,
+				74E779D711A3B330009442BD /* expat_external.h in Headers */,
+				74E779D811A3B330009442BD /* expat.h in Headers */,
+				74E779D911A3B330009442BD /* iasciitab.h in Headers */,
+				74E779DA11A3B330009442BD /* internal.h in Headers */,
+				74E779DB11A3B330009442BD /* latin1tab.h in Headers */,
+				74E779DC11A3B330009442BD /* macconfig.h in Headers */,
+				74E779DD11A3B330009442BD /* nametab.h in Headers */,
+				74E779DE11A3B330009442BD /* utf8tab.h in Headers */,
+				74E779DF11A3B330009442BD /* winconfig.h in Headers */,
+				74E779E211A3B330009442BD /* xmlrole.h in Headers */,
+				74E779E411A3B330009442BD /* xmltok_impl.h in Headers */,
+				74E779E711A3B330009442BD /* xmltok.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1655,6 +1738,11 @@
 				748C8F76119152320081584B /* SBJsonParser.m in Sources */,
 				748C8F78119152320081584B /* SBJsonWriter.m in Sources */,
 				741DD92711A3A654002C92E2 /* TweetViewController.m in Sources */,
+				74E779E011A3B330009442BD /* xmlparse.c in Sources */,
+				74E779E111A3B330009442BD /* xmlrole.c in Sources */,
+				74E779E311A3B330009442BD /* xmltok_impl.c in Sources */,
+				74E779E511A3B330009442BD /* xmltok_ns.c in Sources */,
+				74E779E611A3B330009442BD /* xmltok.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
