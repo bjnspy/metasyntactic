@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "BlurayCache.h"
 #import "BoxOfficeSharedApplication.h"
+#import "BoxOfficeTwitterAccount.h"
 #import "DataProvider.h"
 #import "DVDCache.h"
 #import "HelpCache.h"
@@ -161,6 +162,11 @@ static Controller* controller = nil;
 }
 
 
+- (void) loginToTwitter {
+  [[BoxOfficeTwitterAccount account] login];
+}
+
+
 - (void) updateAllCaches:(BOOL) force {
   [self updateLocalizableStringsCache];
   [self updateTrailerCache];
@@ -171,6 +177,7 @@ static Controller* controller = nil;
   [self updateDVDCache];
   [self updateNetflixCache:force];
   [self updateHelpCache];
+  [self loginToTwitter];
 
   NSArray* movies = [Model model].movies;
   [[MovieCacheUpdater updater] addMovies:movies];

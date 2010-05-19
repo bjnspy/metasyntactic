@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
+#import "BoxOfficeTwitterAccount.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Performance.h"
@@ -37,11 +38,12 @@
 @implementation ShowtimesViewController
 
 typedef enum {
+  OrderTickets,
   EmailListing,
   SendSMS,
   AddToCalendar,
   RemoveFromCalendar,
-  OrderTickets
+  Tweet,
 } ShowtimeAction;
 
 typedef enum {
@@ -355,6 +357,11 @@ typedef enum {
                        otherButtonTitles:nil] autorelease];
 
   self.indexToActionMap = [NSMutableDictionary dictionary];
+  
+  if (performance.url.length > 0) {
+    [self addAction:OrderTickets title:LocalizedString(@"Order Tickets", nil) toSheet:actionSheet];
+  }
+  
   [self addAction:EmailListing title:LocalizedString(@"E-mail listings", nil) toSheet:actionSheet];
 
   if ([AbstractApplication canSendText]) {
@@ -368,9 +375,9 @@ typedef enum {
       [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
     }
   }
-
-  if (performance.url.length > 0) {
-    [self addAction:OrderTickets title:LocalizedString(@"Order Tickets", nil) toSheet:actionSheet];
+  
+  if ([[BoxOfficeTwitterAccount account] enabled]) {
+    [self addAction:Tweet title:LocalizedString(@"Tweet", nil) toSheet:actionSheet];
   }
 
   actionSheet.cancelButtonIndex =
@@ -421,6 +428,22 @@ typedef enum {
 }
 
 
+- (NSString*) shortMessage:(Performance*) performance {
+  if ([DateUtilities isToday:[Model model].searchDate]) {
+    return [NSString stringWithFormat:@"%@ - %@ - %@",
+            movie.canonicalTitle,
+            theater.name,
+            performance.timeString];
+  } else {
+    return [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
+            movie.canonicalTitle,
+            theater.name,
+            [DateUtilities formatShortDate:[Model model].searchDate],
+            performance.timeString];
+  }
+}
+
+
 - (void) sendSMS:(Performance*) performance {
   Class class = NSClassFromString(@"MFMessageComposeViewController");
   id controller =
@@ -428,20 +451,7 @@ typedef enum {
 
   [(id)controller setMessageComposeDelegate:(id)self];
 
-  NSString* body;
-  if ([DateUtilities isToday:[Model model].searchDate]) {
-    body = [NSString stringWithFormat:@"%@ - %@ - %@",
-                       movie.canonicalTitle,
-                       theater.name,
-                       performance.timeString];
-  } else {
-    body = [NSString stringWithFormat:@"%@ - %@ - %@ - %@",
-                       movie.canonicalTitle,
-                       theater.name,
-                       [DateUtilities formatShortDate:[Model model].searchDate],
-                       performance.timeString];
-  }
-
+  NSString* body = [self shortMessage:performance];
   [controller setBody:body];
 
   [self presentModalViewController:controller animated:YES];
@@ -547,6 +557,17 @@ typedef enum {
 }
 
 
+- (void) orderTickets:(Performance*) performance {
+  [self.commonNavigationController pushBrowser:performance.url animated:YES];
+}
+
+
+- (void) tweet:(Performance*) performance {
+  [self.commonNavigationController pushTweetController:[self shortMessage:performance]
+                                               account:[BoxOfficeTwitterAccount account]];
+}
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
@@ -566,7 +587,9 @@ typedef enum {
   } else if (action == RemoveFromCalendar) {
     [self removeFromCalendar:performance];
   } else if (action == OrderTickets) {
-    [self.commonNavigationController pushBrowser:performance.url animated:YES];
+    [self orderTickets:performance];
+  } else if (action == Tweet) {
+    [self tweet:performance];
   }
 }
 

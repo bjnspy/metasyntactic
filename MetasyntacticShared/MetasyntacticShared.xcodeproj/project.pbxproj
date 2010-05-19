@@ -294,6 +294,8 @@
 		100000000000001B00000006 /* ViewControllerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000001B00000005 /* ViewControllerState.m */; };
 		741DC08D1155570B0037E201 /* Portability.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DC08B1155570B0037E201 /* Portability.h */; };
 		741DC0C1115558D40037E201 /* Portability.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DC0C0115558D40037E201 /* Portability.m */; };
+		741DD92611A3A654002C92E2 /* TweetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741DD92411A3A654002C92E2 /* TweetViewController.h */; };
+		741DD92711A3A654002C92E2 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DD92511A3A654002C92E2 /* TweetViewController.m */; };
 		7421F0CF10F02115008A5506 /* NSMutableString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */; };
 		7421F0D010F02115008A5506 /* NSMutableString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */; };
 		7425796C118E2B1500E65D7F /* InternationalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7425796A118E2B1500E65D7F /* InternationalViewController.h */; };
@@ -633,6 +635,8 @@
 		100000000000001B00000005 /* ViewControllerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerState.m; sourceTree = "<group>"; };
 		741DC08B1155570B0037E201 /* Portability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portability.h; sourceTree = "<group>"; };
 		741DC0C0115558D40037E201 /* Portability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portability.m; sourceTree = "<group>"; };
+		741DD92411A3A654002C92E2 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		741DD92511A3A654002C92E2 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		7421F0CD10F02115008A5506 /* NSMutableString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Utilities.h"; sourceTree = "<group>"; };
 		7421F0CE10F02115008A5506 /* NSMutableString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Utilities.m"; sourceTree = "<group>"; };
 		7425796A118E2B1500E65D7F /* InternationalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalViewController.h; sourceTree = "<group>"; };
@@ -1167,6 +1171,8 @@
 				100000000000001800000082 /* WebViewController.m */,
 				743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */,
 				743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */,
+				741DD92411A3A654002C92E2 /* TweetViewController.h */,
+				741DD92511A3A654002C92E2 /* TweetViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1452,6 +1458,7 @@
 				748C8F73119152320081584B /* SBJsonBase.h in Headers */,
 				748C8F75119152320081584B /* SBJsonParser.h in Headers */,
 				748C8F77119152320081584B /* SBJsonWriter.h in Headers */,
+				741DD92611A3A654002C92E2 /* TweetViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1654,7 @@
 				748C8F74119152320081584B /* SBJsonBase.m in Sources */,
 				748C8F76119152320081584B /* SBJsonParser.m in Sources */,
 				748C8F78119152320081584B /* SBJsonWriter.m in Sources */,
+				741DD92711A3A654002C92E2 /* TweetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,7 +27,6 @@
   CGSize imageSize;
 }
 
-
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
                          imageView:(UIImageView*) imageView
                        limitLength:(BOOL) limitLength

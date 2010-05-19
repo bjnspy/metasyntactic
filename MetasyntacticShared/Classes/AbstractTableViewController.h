@@ -62,4 +62,8 @@
 
 - (void) rotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 
+- (UILabel*) createGroupedFooterLabel:(UIColor*) textColor
+                                 text:(NSString*) text;
+- (UIView*) createGroupedFooterLabelView:(UILabel*) label;
+
 @end

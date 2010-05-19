@@ -21,6 +21,7 @@
 #import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 #import "StyleSheet.h"
+#import "TweetViewController.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
@@ -207,6 +208,12 @@
   UIViewController* viewController = [super popViewControllerAnimated:animated];
   NSLog(@"%d \"%@\" popViewControllerAnimated", viewController, viewController.title);
   return viewController;
+}
+
+
+- (void) pushTweetController:(NSString*) tweet account:(AbstractTwitterAccount*) account {
+  UIViewController* controller = [[[TweetViewController alloc] initWithTweet:tweet account:account] autorelease];
+  [self pushViewController:controller animated:YES];
 }
 
 @end

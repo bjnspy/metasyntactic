@@ -17,6 +17,7 @@
 #import "NowPlayingSettingsViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeTwitterAccount.h"
 #import "Controller.h"
 #import "DVDFilterViewController.h"
 #import "LocationManager.h"
@@ -25,6 +26,7 @@
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
+#import "TwitterOptionsViewController.h"
 #import "UserLocationCache.h"
 
 @implementation NowPlayingSettingsViewController
@@ -37,6 +39,7 @@ typedef enum {
   UpcomingSection,
   DVDBluraySection,
   NetflixSection,
+  TwitterSection,
   RefreshSection,
   LastSection
 } SettingsSection;
@@ -110,6 +113,12 @@ typedef enum {
     }
   } else if (section == NetflixSection) {
     if ([Model model].netflixCacheEnabled) {
+      return 2;
+    } else {
+      return 1;
+    }
+  } else if (section == TwitterSection) {
+    if ([[BoxOfficeTwitterAccount account] enabled]) {
       return 2;
     } else {
       return 1;
@@ -281,6 +290,22 @@ typedef enum {
 }
 
 
+- (UITableViewCell*) cellForTwitterRow:(NSInteger) row {
+  if (row == 0) {
+    return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
+                                       on:[[BoxOfficeTwitterAccount account] enabled]
+                                 selector:@selector(onTwitterEnabledChanged:)];
+  } else {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = LocalizedString(@"Account Settings", @"Button to change the username and password for twitter.");
+   
+    return cell;
+  }
+}
+
+
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
   if (row == 0) {
     return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
@@ -321,6 +346,8 @@ typedef enum {
     return [self cellForDvdBlurayRow:indexPath.row];
   } else if (indexPath.section == NetflixSection) {
     return [self cellForNetflixRow:indexPath.row];
+  } else if (indexPath.section == TwitterSection) {
+    return [self cellForTwitterRow:indexPath.row];
   } else {
     return [self cellForRefreshRow:indexPath.row];
   }
@@ -348,6 +375,18 @@ typedef enum {
   [[Controller controller] setDvdBlurayEnabled:sender.on];
 
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
+  if (sender.on) {
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  } else {
+    [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  }
+}
+
+
+- (void) onTwitterEnabledChanged:(UISwitch*) sender {
+  [[BoxOfficeTwitterAccount account] setEnabled:sender.on];
+  
+  NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:TwitterSection]];
   if (sender.on) {
     [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
   } else {
@@ -491,6 +530,12 @@ typedef enum {
 }
 
 
+- (void) didSelectTwitterRow:(NSInteger) row {
+  UIViewController* controller = [[[TwitterOptionsViewController alloc] init] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section == SendFeedbackSection) {
@@ -503,6 +548,8 @@ typedef enum {
     [self didSelectDvdBlurayRow:indexPath.row];
   } else if (indexPath.section == NetflixSection) {
     [self didSelectNetflixRow:indexPath.row];
+  } else if (indexPath.section == TwitterSection) {
+    [self didSelectTwitterRow:indexPath.row];
   } else {
     [self didSelectRefreshRow:indexPath.row];
   }
@@ -525,6 +572,8 @@ typedef enum {
     return LocalizedString(@"DVD/Blu-ray", nil);
   } else if (section == NetflixSection) {
     return LocalizedString(@"Netflix", nil);
+  } else if (section == TwitterSection) {
+    return LocalizedString(@"Twitter", nil);
   }
 
   return nil;
