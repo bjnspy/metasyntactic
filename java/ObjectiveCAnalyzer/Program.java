@@ -759,6 +759,11 @@ public class Program {
     if (child.getParentFile().getPath().contains("PinchMedia")) {
       return true;
     }
+
+    if (child.getParentFile().getPath().contains("JSON")) {
+      return true;
+    }
+
     if (child.getParentFile().getPath().contains("MGTwitterEngine")) {
       return true;
     }
