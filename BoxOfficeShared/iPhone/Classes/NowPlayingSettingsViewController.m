@@ -312,7 +312,7 @@ typedef enum {
     frame.origin.y = 6;
     control.frame = frame;
     [cell.contentView addSubview:control];
-    
+
     return cell;
   }
 }
@@ -415,7 +415,7 @@ typedef enum {
 
 - (void) onFacebookEnabledChanged:(UISwitch*) sender {
   [[FacebookAccount account] setEnabled:sender.on];
-  
+
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:FacebookSection]];
   if (sender.on) {
     [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];

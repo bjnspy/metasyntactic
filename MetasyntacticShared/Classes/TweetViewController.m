@@ -88,9 +88,9 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
     self.label = [self createGroupedFooterLabel:[UIColor grayColor]
                                            text:[self labelText]];
 
-    
+
     self.dummyTextView = [[[UITextView alloc] initWithFrame:CGRectZero] autorelease];
-    
+
     [self.view addSubview:textView];
     [self.view addSubview:dummyTextView];
 
