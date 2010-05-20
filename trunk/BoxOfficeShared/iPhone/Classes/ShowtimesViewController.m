@@ -386,7 +386,7 @@ typedef enum {
       [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
     }
   }
-  
+
   if ([[FacebookAccount account] enabled]) {
     [self addAction:Facebook title:LocalizedString(@"Facebook", nil) toSheet:actionSheet];
   }
@@ -582,18 +582,18 @@ typedef enum {
   if (![[FacebookAccount account] isLoggedIn]) {
     FBLoginDialog* dialog = [[[FBLoginDialog alloc] initWithSession:(id)[[FacebookAccount account] session]] autorelease];
     dialog.delegate = self;
-    [dialog show]; 
+    [dialog show];
     return;
   }
-  
+
 	FBStreamDialog* dialog = [[[FBStreamDialog alloc] init] autorelease];
 	dialog.delegate = self;
 	dialog.userMessagePrompt = @"Post to your Wall";
-  
-  NSDictionary* dictionary = 
+
+  NSDictionary* dictionary =
     [NSDictionary dictionaryWithObject:[self shortMessage:performance]
                                 forKey:@"description"];
-  
+
 	dialog.attachment = [dictionary JSONRepresentation];
 	[dialog show];
 }
@@ -606,10 +606,10 @@ typedef enum {
   } else {
     notification = LocalizedString(@"Posting to Facebook", nil);
   }
-  
+
   [NotificationCenter addNotification:notification];
-  
-  [[NotificationCenter class] 
+
+  [[NotificationCenter class]
    performSelector:@selector(removeNotification:) withObject:notification afterDelay:3];
 }
 

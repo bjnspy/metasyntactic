@@ -25,7 +25,7 @@
   NSArray* calendarData;
 
   NSMutableDictionary* indexToActionMap;
-  
+
   id eventStoreData;
 }
 
