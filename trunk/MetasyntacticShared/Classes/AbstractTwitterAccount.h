@@ -24,6 +24,8 @@
 
 - (void) login;
 
+- (BOOL) twitterReady;
+
 - (BOOL) enabled;
 - (void) setEnabled:(BOOL) enabled;
 
