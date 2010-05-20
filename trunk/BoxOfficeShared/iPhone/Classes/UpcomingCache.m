@@ -446,7 +446,7 @@ static NSDictionary* massageMap;
   }
 
   NSString* xmlString = [TrailerCache downloadXmlStringForStudioKey:studioKey
-                                                     titleKey:titleKey];
+                                                           titleKey:titleKey];
   if (xmlString == nil) {
     return;
   }

@@ -71,7 +71,7 @@ static FacebookAccount* account;
     [FBSession setSession:session];
 
     self.loginButton = [[[FBLoginButton alloc] init] autorelease];
-    loginButton.style = FBLoginButtonStyleWide;
+    //loginButton.style = FBLoginButtonStyleWide;
     loginButton.session = session;
   }
 }
