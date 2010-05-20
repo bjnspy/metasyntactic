@@ -391,7 +391,7 @@ typedef enum {
     [self addAction:Facebook title:LocalizedString(@"Facebook", nil) toSheet:actionSheet];
   }
 
-  if ([[BoxOfficeTwitterAccount account] enabled]) {
+  if ([[BoxOfficeTwitterAccount account] twitterReady]) {
     [self addAction:Tweet title:LocalizedString(@"Tweet", nil) toSheet:actionSheet];
   }
 
