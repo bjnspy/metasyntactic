@@ -310,6 +310,10 @@
 		74302FC31140D777008F9AC4 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302FC11140D777008F9AC4 /* LogViewController.m */; };
 		743FA979116C2D1E0041DF42 /* AutorotatingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */; };
 		743FA97A116C2D1E0041DF42 /* AutorotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */; };
+		745D5DEB11A4DB5500CCC895 /* FacebookAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 745D5DE911A4DB5500CCC895 /* FacebookAccount.h */; };
+		745D5DEC11A4DB5500CCC895 /* FacebookAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 745D5DEA11A4DB5500CCC895 /* FacebookAccount.m */; };
+		745D5E1811A4DD9B00CCC895 /* FacebookAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 745D5E1611A4DD9B00CCC895 /* FacebookAuthentication.h */; };
+		745D5E1911A4DD9B00CCC895 /* FacebookAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 745D5E1711A4DD9B00CCC895 /* FacebookAuthentication.m */; };
 		748C8F6C119152320081584B /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F5F119152320081584B /* JSON.h */; };
 		748C8F6D119152320081584B /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C8F60119152320081584B /* NSObject+SBJSON.h */; };
 		748C8F6E119152320081584B /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 748C8F61119152320081584B /* NSObject+SBJSON.m */; };
@@ -364,6 +368,23 @@
 		74FA4A6F10DD75E40002369F /* StoreItemVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FA4A6D10DD75E40002369F /* StoreItemVault.m */; };
 		74FFC96310E1524C00DF4AC7 /* StoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FFC96110E1524C00DF4AC7 /* StoreDelegate.h */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		745D5DB611A4D81400CCC895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 745D5DB211A4D81400CCC895 /* FBConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9;
+			remoteInfo = FBPlatform;
+		};
+		745D5DB911A4D81E00CCC895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 745D5DB211A4D81400CCC895 /* FBConnect.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE61A71A0DE2551300D4F7B9;
+			remoteInfo = FBPlatform;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		100000000000000700000001 /* AbstractApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractApplication.h; sourceTree = "<group>"; };
@@ -671,6 +692,11 @@
 		74302FC11140D777008F9AC4 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutorotatingViewController.h; sourceTree = "<group>"; };
 		743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutorotatingViewController.m; sourceTree = "<group>"; };
+		745D5DB211A4D81400CCC895 /* FBConnect.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBConnect.xcodeproj; path = ../FacebookConnect/src/FBConnect.xcodeproj; sourceTree = SOURCE_ROOT; };
+		745D5DE911A4DB5500CCC895 /* FacebookAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAccount.h; sourceTree = "<group>"; };
+		745D5DEA11A4DB5500CCC895 /* FacebookAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAccount.m; sourceTree = "<group>"; };
+		745D5E1611A4DD9B00CCC895 /* FacebookAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookAuthentication.h; sourceTree = "<group>"; };
+		745D5E1711A4DD9B00CCC895 /* FacebookAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookAuthentication.m; sourceTree = "<group>"; };
 		748C8F5F119152320081584B /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		748C8F60119152320081584B /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		748C8F61119152320081584B /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -803,6 +829,7 @@
 				100000000000000900000044 /* Collections */,
 				10000000000000090000006C /* Data */,
 				10000000000000090000009B /* External */,
+				745D5DE811A4DB4300CCC895 /* Facebook */,
 				100000000000000A000000A3 /* Mapping */,
 				100000000000001500000107 /* Search */,
 				74FA499510DD72D90002369F /* Store */,
@@ -869,6 +896,7 @@
 				1000000000000015000001D7 /* Products */,
 				100000000000001500000106 /* Resources */,
 				74D98D2B116EA70A00DD76DA /* MessageUI.framework */,
+				745D5DB211A4D81400CCC895 /* FBConnect.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1187,11 +1215,13 @@
 				1000000000000007000000DE /* AbstractStackableTableViewController.h */,
 				1000000000000007000000E6 /* AbstractTableViewController.h */,
 				1000000000000007000000EE /* AbstractViewController.h */,
+				743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */,
 				100000000000000B00000001 /* EditorViewController.h */,
 				1000000000000011000000AD /* ListPickerDelegate.h */,
 				1000000000000009000000ED /* ListPickerViewController.h */,
 				74302FC01140D777008F9AC4 /* LogViewController.h */,
 				100000000000001900000147 /* TextFieldEditorViewController.h */,
+				741DD92411A3A654002C92E2 /* TweetViewController.h */,
 				100000000000001B00000003 /* ViewControllerState.h */,
 				100000000000001800000080 /* WebViewController.h */,
 				10000000000000070000003C /* AbstractCurlableTableViewController.m */,
@@ -1204,16 +1234,14 @@
 				1000000000000007000000E0 /* AbstractStackableTableViewController.m */,
 				1000000000000007000000E8 /* AbstractTableViewController.m */,
 				1000000000000007000000F0 /* AbstractViewController.m */,
+				743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */,
 				100000000000000B00000003 /* EditorViewController.m */,
 				1000000000000009000000EF /* ListPickerViewController.m */,
 				74302FC11140D777008F9AC4 /* LogViewController.m */,
 				10000000000000090000009A /* TextFieldEditorViewController.m */,
+				741DD92511A3A654002C92E2 /* TweetViewController.m */,
 				100000000000001B00000005 /* ViewControllerState.m */,
 				100000000000001800000082 /* WebViewController.m */,
-				743FA977116C2D1E0041DF42 /* AutorotatingViewController.h */,
-				743FA978116C2D1E0041DF42 /* AutorotatingViewController.m */,
-				741DD92411A3A654002C92E2 /* TweetViewController.h */,
-				741DD92511A3A654002C92E2 /* TweetViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1273,6 +1301,25 @@
 				74257A33118E341900E65D7F /* LanguageViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		745D5DB311A4D81400CCC895 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				745D5DB711A4D81400CCC895 /* libFBPlatform.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		745D5DE811A4DB4300CCC895 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				745D5DE911A4DB5500CCC895 /* FacebookAccount.h */,
+				745D5E1611A4DD9B00CCC895 /* FacebookAuthentication.h */,
+				745D5DEA11A4DB5500CCC895 /* FacebookAccount.m */,
+				745D5E1711A4DD9B00CCC895 /* FacebookAuthentication.m */,
+			);
+			name = Facebook;
 			sourceTree = "<group>";
 		};
 		748C8F5E119152320081584B /* JSON */ = {
@@ -1542,6 +1589,8 @@
 				74E779E211A3B330009442BD /* xmlrole.h in Headers */,
 				74E779E411A3B330009442BD /* xmltok_impl.h in Headers */,
 				74E779E711A3B330009442BD /* xmltok.h in Headers */,
+				745D5DEB11A4DB5500CCC895 /* FacebookAccount.h in Headers */,
+				745D5E1811A4DD9B00CCC895 /* FacebookAuthentication.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1608,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				745D5DBA11A4D81E00CCC895 /* PBXTargetDependency */,
 			);
 			name = MetasyntacticShared;
 			productName = iPhoneShared2;
@@ -1575,12 +1625,28 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 10000000000000090000006B /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 745D5DB311A4D81400CCC895 /* Products */;
+					ProjectRef = 745D5DB211A4D81400CCC895 /* FBConnect.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				100000000000000A000000AD /* MetasyntacticShared */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		745D5DB711A4D81400CCC895 /* libFBPlatform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBPlatform.a;
+			remoteRef = 745D5DB611A4D81400CCC895 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		10000000000000150000017F /* Sources */ = {
@@ -1743,10 +1809,20 @@
 				74E779E311A3B330009442BD /* xmltok_impl.c in Sources */,
 				74E779E511A3B330009442BD /* xmltok_ns.c in Sources */,
 				74E779E611A3B330009442BD /* xmltok.c in Sources */,
+				745D5DEC11A4DB5500CCC895 /* FacebookAccount.m in Sources */,
+				745D5E1911A4DD9B00CCC895 /* FacebookAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		745D5DBA11A4D81E00CCC895 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBPlatform;
+			targetProxy = 745D5DB911A4D81E00CCC895 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		100000000000000900000077 /* Debug */ = {
@@ -1776,6 +1852,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../FacebookConnect/src/;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1815,6 +1892,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../FacebookConnect/src/;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
