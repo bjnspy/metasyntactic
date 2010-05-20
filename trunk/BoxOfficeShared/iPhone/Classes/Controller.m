@@ -206,8 +206,9 @@ static Controller* controller = nil;
 - (void) startWorker:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
   [[Model model] checkCountry];
-
+  [[FacebookAccount account] login];
   [[Store store] updatePrices:[NSSet setWithArray:[Store donationsArray]]];
+
   [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
 }

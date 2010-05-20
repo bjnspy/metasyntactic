@@ -19,6 +19,7 @@
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import <StoreKit/StoreKit.h>
+#import "../../FacebookConnect/src/FBConnect/FBConnect.h"
 #import "../External/JSON/JSON.h"
 #import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../External/OAuth/OAuthConsumer.h"
@@ -64,6 +65,7 @@
 #import "DeviceUtilities.h"
 #import "DifferenceEngine.h"
 #import "EditorViewController.h"
+#import "FacebookAccount.h"
 #import "FileUtilities.h"
 #import "FontCache.h"
 #import "HtmlUtilities.h"

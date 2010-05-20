@@ -19,4 +19,5 @@
 #import "expat.h"
 #import "MemoryUtilities.h"
 #import "MGTwitterEngine.h"
+#import "FBConnect/FBConnect.h"
 #endif

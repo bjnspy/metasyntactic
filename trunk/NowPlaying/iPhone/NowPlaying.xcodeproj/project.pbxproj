@@ -40,6 +40,8 @@
 		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
 		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
+		745D5F3A11A4E59E00CCC895 /* libFBPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 745D5F3911A4E59100CCC895 /* libFBPlatform.a */; };
+		745D5FA211A4E80800CCC895 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 745D5FA111A4E80800CCC895 /* FBConnect.bundle */; };
 		748D54E011A281550010BD59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748D54DF11A281550010BD59 /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -114,6 +116,13 @@
 			remoteGlobalIDString = 1000000000000007000000AB;
 			remoteInfo = BoxOfficeShared;
 		};
+		745D5F3811A4E59100CCC895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 745D5F3411A4E59100CCC895 /* FBConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9;
+			remoteInfo = FBPlatform;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +181,8 @@
 		741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		745C0E321162F38500093306 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		745D5F3411A4E59100CCC895 /* FBConnect.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBConnect.xcodeproj; path = ../../FacebookConnect/src/FBConnect.xcodeproj; sourceTree = SOURCE_ROOT; };
+		745D5FA111A4E80800CCC895 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = ../../FacebookConnect/src/FBConnect.bundle; sourceTree = SOURCE_ROOT; };
 		748D54DF11A281550010BD59 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
@@ -191,6 +202,7 @@
 				745C0E221162F38500093306 /* CoreFoundation.framework in Frameworks */,
 				745C0E231162F38500093306 /* CoreGraphics.framework in Frameworks */,
 				745C0E241162F38500093306 /* CoreLocation.framework in Frameworks */,
+				748D54E011A281550010BD59 /* EventKit.framework in Frameworks */,
 				745C0E251162F38500093306 /* Foundation.framework in Frameworks */,
 				745C0E261162F38500093306 /* MapKit.framework in Frameworks */,
 				745C0E271162F38500093306 /* MediaPlayer.framework in Frameworks */,
@@ -198,11 +210,11 @@
 				745C0E291162F38500093306 /* StoreKit.framework in Frameworks */,
 				745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */,
 				745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */,
+				745D5F3A11A4E59E00CCC895 /* libFBPlatform.a in Frameworks */,
 				74140606116E8113003B5263 /* libMetasyntacticShared.a in Frameworks */,
 				741405F2116E80CE003B5263 /* libNetflixShared.a in Frameworks */,
 				741405F1116E80C9003B5263 /* libProtocolBuffers.a in Frameworks */,
 				745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */,
-				748D54E011A281550010BD59 /* EventKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +242,7 @@
 				74F22A7D114DD16D00CF9CE3 /* Resources-iPad */,
 				100000000000000B0000000C /* Entitlements.plist */,
 				1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */,
+				745D5F3411A4E59100CCC895 /* FBConnect.xcodeproj */,
 				741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */,
 				741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */,
 				741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */,
@@ -289,6 +302,7 @@
 				74F22D1D114DF95400CF9CE3 /* iPad */,
 				74F22D1E114DF95B00CF9CE3 /* iPhone */,
 				1000000000000008000000C9 /* BoxOfficeResources.bundle */,
+				745D5FA111A4E80800CCC895 /* FBConnect.bundle */,
 				1000000000000012000000CF /* MetasyntacticResources.bundle */,
 				100000000000001300000097 /* NetflixResources.bundle */,
 				100000000000000700000163 /* Info.plist */,
@@ -332,6 +346,14 @@
 			isa = PBXGroup;
 			children = (
 				741405FD116E80EC003B5263 /* libMetasyntacticShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		745D5F3511A4E59100CCC895 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				745D5F3911A4E59100CCC895 /* libFBPlatform.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,6 +457,10 @@
 					ProjectRef = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
 				},
 				{
+					ProductGroup = 745D5F3511A4E59100CCC895 /* Products */;
+					ProjectRef = 745D5F3411A4E59100CCC895 /* FBConnect.xcodeproj */;
+				},
+				{
 					ProductGroup = 741405F9116E80EC003B5263 /* Products */;
 					ProjectRef = 741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */;
 				},
@@ -497,6 +523,13 @@
 			remoteRef = 741405FC116E80EC003B5263 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		745D5F3911A4E59100CCC895 /* libFBPlatform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBPlatform.a;
+			remoteRef = 745D5F3811A4E59100CCC895 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -518,6 +551,7 @@
 				745C0E181162F38500093306 /* Icon-iPad.png in Resources */,
 				745C0E191162F38500093306 /* Default-Landscape.png in Resources */,
 				745C0E1A1162F38500093306 /* Default-Portrait.png in Resources */,
+				745D5FA211A4E80800CCC895 /* FBConnect.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +644,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
@@ -642,6 +677,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
@@ -674,6 +710,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (

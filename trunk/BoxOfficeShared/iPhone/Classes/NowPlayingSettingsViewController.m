@@ -39,6 +39,7 @@ typedef enum {
   UpcomingSection,
   DVDBluraySection,
   NetflixSection,
+  FacebookSection,
   TwitterSection,
   RefreshSection,
   LastSection
@@ -113,6 +114,12 @@ typedef enum {
     }
   } else if (section == NetflixSection) {
     if ([Model model].netflixCacheEnabled) {
+      return 2;
+    } else {
+      return 1;
+    }
+  } else if (section == FacebookSection) {
+    if ([[FacebookAccount account] enabled]) {
       return 2;
     } else {
       return 1;
@@ -290,6 +297,27 @@ typedef enum {
 }
 
 
+- (UITableViewCell*) cellForFacebookRow:(NSInteger) row {
+  if (row == 0) {
+    return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
+                                       on:[[FacebookAccount account] enabled]
+                                 selector:@selector(onFacebookEnabledChanged:)];
+  } else {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    UIControl* control = [[FacebookAccount account] loginButton];
+    CGRect frame = control.frame;
+    frame.origin.x = 50;
+    frame.origin.y = 6;
+    control.frame = frame;
+    [cell.contentView addSubview:control];
+    
+    return cell;
+  }
+}
+
+
 - (UITableViewCell*) cellForTwitterRow:(NSInteger) row {
   if (row == 0) {
     return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
@@ -346,6 +374,8 @@ typedef enum {
     return [self cellForDvdBlurayRow:indexPath.row];
   } else if (indexPath.section == NetflixSection) {
     return [self cellForNetflixRow:indexPath.row];
+  } else if (indexPath.section == FacebookSection) {
+    return [self cellForFacebookRow:indexPath.row];
   } else if (indexPath.section == TwitterSection) {
     return [self cellForTwitterRow:indexPath.row];
   } else {
@@ -375,6 +405,18 @@ typedef enum {
   [[Controller controller] setDvdBlurayEnabled:sender.on];
 
   NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
+  if (sender.on) {
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  } else {
+    [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  }
+}
+
+
+- (void) onFacebookEnabledChanged:(UISwitch*) sender {
+  [[FacebookAccount account] setEnabled:sender.on];
+  
+  NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:FacebookSection]];
   if (sender.on) {
     [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
   } else {
@@ -548,6 +590,8 @@ typedef enum {
     [self didSelectDvdBlurayRow:indexPath.row];
   } else if (indexPath.section == NetflixSection) {
     [self didSelectNetflixRow:indexPath.row];
+  } else if (indexPath.section == FacebookSection) {
+    // nothing to do.
   } else if (indexPath.section == TwitterSection) {
     [self didSelectTwitterRow:indexPath.row];
   } else {
@@ -572,6 +616,8 @@ typedef enum {
     return LocalizedString(@"DVD/Blu-ray", nil);
   } else if (section == NetflixSection) {
     return LocalizedString(@"Netflix", nil);
+  } else if (section == FacebookSection) {
+    return LocalizedString(@"Facebook", nil);
   } else if (section == TwitterSection) {
     return LocalizedString(@"Twitter", nil);
   }

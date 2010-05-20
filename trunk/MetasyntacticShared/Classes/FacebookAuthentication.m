@@ -14,17 +14,23 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "AbstractTableViewController.h"
+#import "FacebookAuthentication.h"
 
-@interface TweetViewController : AbstractTableViewController<UITextViewDelegate> {
-@private
-  UITextView* textView;
-  UITextView* dummyTextView;
-  UILabel* label;
-  AbstractTwitterAccount* account;
+
+@implementation FacebookAuthentication
+
++ (NSString*) apiKey {
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"FacebookAPIKey"];
 }
 
-- (id) initWithTweet:(NSString*) tweet
-             account:(AbstractTwitterAccount*) account;
+
++ (NSString*) applicationSecret {
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"FacebookApplicationSecret"];
+}
+
+
++ (NSString*) applicationID {
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"FacebookApplicationID"];
+}
 
 @end

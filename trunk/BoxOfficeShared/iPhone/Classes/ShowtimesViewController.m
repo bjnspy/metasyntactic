@@ -32,6 +32,7 @@
 @property (retain) NSArray* performances;
 @property (retain) NSArray* calendarData;
 @property (retain) NSMutableDictionary* indexToActionMap;
+@property (retain) id eventStoreData;
 @end
 
 
@@ -43,6 +44,7 @@ typedef enum {
   SendSMS,
   AddToCalendar,
   RemoveFromCalendar,
+  Facebook,
   Tweet,
 } ShowtimeAction;
 
@@ -56,6 +58,7 @@ typedef enum {
 @synthesize performances;
 @synthesize calendarData;
 @synthesize indexToActionMap;
+@synthesize eventStoreData;
 
 - (void) dealloc {
   self.theater = nil;
@@ -63,6 +66,7 @@ typedef enum {
   self.performances = nil;
   self.calendarData = nil;
   self.indexToActionMap = nil;
+  self.eventStoreData = nil;
 
   [super dealloc];
 }
@@ -118,15 +122,22 @@ typedef enum {
 }
 
 
+- (id) eventStore {
+  if (eventStoreData == nil) {
+    Class class = NSClassFromString(@"EKEventStore");
+    self.eventStoreData = [[[class alloc] init] autorelease];
+  }
+  return eventStoreData;
+}
+
+
 - (void) initializeCalendarData {
   NSMutableArray* result = [NSMutableArray array];
 
   if ([Application canAccessCalendar]) {
-    Class class = NSClassFromString(@"EKEventStore");
-    id store = [[[class alloc] init] autorelease];
 
     for (Performance* performance in performances) {
-      id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
+      id event = [self.eventStore eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
       BOOL inCalendar = event != nil;
 
       [result addObject:[NSNumber numberWithBool:inCalendar]];
@@ -375,6 +386,10 @@ typedef enum {
       [self addAction:AddToCalendar title:LocalizedString(@"Add to Calendar", nil) toSheet:actionSheet];
     }
   }
+  
+  if ([[FacebookAccount account] enabled]) {
+    [self addAction:Facebook title:LocalizedString(@"Facebook", nil) toSheet:actionSheet];
+  }
 
   if ([[BoxOfficeTwitterAccount account] enabled]) {
     [self addAction:Tweet title:LocalizedString(@"Tweet", nil) toSheet:actionSheet];
@@ -499,11 +514,9 @@ typedef enum {
 
 
 - (void) addToCalendar:(Performance*) performance {
-  Class storeClass = NSClassFromString(@"EKEventStore");
   Class eventClass = NSClassFromString(@"EKEvent");
 
-  id store = [[[storeClass alloc] init] autorelease];
-  id event = [eventClass eventWithEventStore:store];
+  id event = [eventClass eventWithEventStore:self.eventStore];
 
   NSCalendar* calendar = [NSCalendar currentCalendar];
 
@@ -528,10 +541,10 @@ typedef enum {
   [event setLocation:(id)theater.name];
   [event setStartDate:fullStartDate];
   [event setEndDate:fullEndDate];
-  [event setCalendar:(id)[store defaultCalendarForNewEvents]];
+  [event setCalendar:(id)[self.eventStore defaultCalendarForNewEvents]];
 
   NSError* error = nil;
-  [store saveEvent:event span:SpanThisEvent error:&error];
+  [self.eventStore saveEvent:event span:SpanThisEvent error:&error];
 
   if (error != nil) {
     [AlertUtilities showOkAlert:error.localizedDescription];
@@ -544,14 +557,11 @@ typedef enum {
 
 
 - (void) removeFromCalendar:(Performance*) performance {
-  Class storeClass = NSClassFromString(@"EKEventStore");
-
-  id store = [[[storeClass alloc] init] autorelease];
-  id event = [store eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
+  id event = [self.eventStore eventWithIdentifier:[self eventIdentifierForPerformance:performance]];
 
   if (event != nil) {
     NSError* error = nil;
-    [store removeEvent:event span:SpanThisEvent error:&error];
+    [self.eventStore removeEvent:event span:SpanThisEvent error:&error];
     [self majorRefresh];
   }
 }
@@ -565,6 +575,42 @@ typedef enum {
 - (void) tweet:(Performance*) performance {
   [self.commonNavigationController pushTweetController:[self shortMessage:performance]
                                                account:[BoxOfficeTwitterAccount account]];
+}
+
+
+- (void) facebook:(Performance*) performance {
+  if (![[FacebookAccount account] isLoggedIn]) {
+    FBLoginDialog* dialog = [[[FBLoginDialog alloc] initWithSession:(id)[[FacebookAccount account] session]] autorelease];
+    dialog.delegate = self;
+    [dialog show]; 
+    return;
+  }
+  
+	FBStreamDialog* dialog = [[[FBStreamDialog alloc] init] autorelease];
+	dialog.delegate = self;
+	dialog.userMessagePrompt = @"Post to your Wall";
+  
+  NSDictionary* dictionary = 
+    [NSDictionary dictionaryWithObject:[self shortMessage:performance]
+                                forKey:@"description"];
+  
+	dialog.attachment = [dictionary JSONRepresentation];
+	[dialog show];
+}
+
+
+- (void)dialogDidSucceed:(FBDialog*)dialog {
+  NSString* notification;
+  if ([dialog isKindOfClass:[FBLoginDialog class]]) {
+    notification = LocalizedString(@"Logging in to Facebook", nil);
+  } else {
+    notification = LocalizedString(@"Posting to Facebook", nil);
+  }
+  
+  [NotificationCenter addNotification:notification];
+  
+  [[NotificationCenter class] 
+   performSelector:@selector(removeNotification:) withObject:notification afterDelay:3];
 }
 
 
@@ -588,6 +634,8 @@ typedef enum {
     [self removeFromCalendar:performance];
   } else if (action == OrderTickets) {
     [self orderTickets:performance];
+  } else if (action == Facebook) {
+    [self performSelector:@selector(facebook:) withObject:performance afterDelay:0.5];
   } else if (action == Tweet) {
     [self tweet:performance];
   }

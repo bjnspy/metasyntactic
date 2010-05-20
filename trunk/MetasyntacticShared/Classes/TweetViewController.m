@@ -21,6 +21,7 @@
 
 @interface TweetViewController()
 @property (retain) UITextView* textView;
+@property (retain) UITextView* dummyTextView;
 @property (retain) UILabel* label;
 @property (retain) AbstractTwitterAccount* account;
 @end
@@ -29,11 +30,13 @@
 @implementation TweetViewController
 
 @synthesize textView;
+@synthesize dummyTextView;
 @synthesize label;
 @synthesize account;
 
 - (void) dealloc {
   self.textView = nil;
+  self.dummyTextView = nil;
   self.label = nil;
   self.account = nil;
 
@@ -85,7 +88,11 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
     self.label = [self createGroupedFooterLabel:[UIColor grayColor]
                                            text:[self labelText]];
 
+    
+    self.dummyTextView = [[[UITextView alloc] initWithFrame:CGRectZero] autorelease];
+    
     [self.view addSubview:textView];
+    [self.view addSubview:dummyTextView];
 
     self.title = LocalizedString(@"Tweet", nil);
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -146,14 +153,25 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
 }
 
 
+- (void) dismissKeyboard {
+  [dummyTextView becomeFirstResponder];
+  [dummyTextView resignFirstResponder];
+}
+
+
 - (void) viewWillDisappear:(BOOL)animated {
+  [self dismissKeyboard];
   [super viewWillDisappear:animated];
-  [textView resignFirstResponder];
 }
 
 
 - (void)textViewDidChange:(UITextView *)textView {
   [self enforceConstraints];
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)textView_ {
+  [textView_ resignFirstResponder];
 }
 
 
@@ -165,7 +183,7 @@ static const NSInteger MAX_TWITTER_LENGTH = 140;
 
 - (void) onSend {
   [account sendUpdate:textView.text];
-  [textView resignFirstResponder];
+  [self dismissKeyboard];
   [self.navigationController popViewControllerAnimated:YES];
 }
 

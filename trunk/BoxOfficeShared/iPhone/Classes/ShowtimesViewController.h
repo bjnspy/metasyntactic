@@ -16,9 +16,7 @@
 
 #import "AbstractDetailsViewController.h"
 
-@interface ShowtimesViewController : AbstractDetailsViewController<UIActionSheetDelegate
-//, MFMessageComposeViewControllerDelegate
-> {
+@interface ShowtimesViewController : AbstractDetailsViewController<UIActionSheetDelegate,FBDialogDelegate> {
 @private
   Movie* movie;
   Theater* theater;
@@ -27,6 +25,8 @@
   NSArray* calendarData;
 
   NSMutableDictionary* indexToActionMap;
+  
+  id eventStoreData;
 }
 
 - (id) initWithTheater:(Theater*) theater
