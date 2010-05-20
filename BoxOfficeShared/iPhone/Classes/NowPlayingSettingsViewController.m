@@ -308,7 +308,7 @@ typedef enum {
 
     UIControl* control = [[FacebookAccount account] loginButton];
     CGRect frame = control.frame;
-    frame.origin.x = 50;
+    frame.origin.x = 10;
     frame.origin.y = 6;
     control.frame = frame;
     [cell.contentView addSubview:control];
