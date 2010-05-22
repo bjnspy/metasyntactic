@@ -329,7 +329,7 @@ static Controller* controller = nil;
   NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupApplicationInformation%@?name=%@&version=%@",
                        [Application apiHost], [Application apiVersion],
                        [[NSBundle mainBundle] bundleIdentifier],
-                       [Application version]];
+                        [Application version]];
   XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address];
   if ([@"false" isEqual:[result attributeValue:@"in_review"]]) {
     [ThreadingUtilities foregroundSelector:@selector(clearInReviewPeriod) onTarget:[Model model]];

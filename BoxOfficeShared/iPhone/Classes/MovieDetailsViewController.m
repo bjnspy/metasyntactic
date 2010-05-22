@@ -774,7 +774,12 @@ typedef NSInteger MovieControlStyle;
     return 0;
   }
 
-  return self.hasTrailer ? 1 : 0;
+  if (self.hasTrailer && ![[Model model] isInReviewPeriod]) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
 }
 
 

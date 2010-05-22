@@ -39,20 +39,48 @@
 		745C0E291162F38500093306 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */; };
 		745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
 		745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
-		745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000000D /* libBoxOfficeShared.a */; };
 		745D5F3A11A4E59E00CCC895 /* libFBPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 745D5F3911A4E59100CCC895 /* libFBPlatform.a */; };
 		745D5FA211A4E80800CCC895 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 745D5FA111A4E80800CCC895 /* FBConnect.bundle */; };
 		748D54E011A281550010BD59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748D54DF11A281550010BD59 /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		74F26D5611A7735500E2E78D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000B0000000C /* Entitlements.plist */; };
+		74F26D5711A7735500E2E78D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000093 /* Default.png */; };
+		74F26D5811A7735500E2E78D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000056 /* Icon.png */; };
+		74F26D5911A7735500E2E78D /* Icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000F00000065 /* Icon2.png */; };
+		74F26D5A11A7735500E2E78D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001200000049 /* MainWindow.xib */; };
+		74F26D5B11A7735500E2E78D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000011000000C5 /* Localizable.strings */; };
+		74F26D5C11A7735500E2E78D /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000CF /* MetasyntacticResources.bundle */; };
+		74F26D5D11A7735500E2E78D /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1000000000000008000000C9 /* BoxOfficeResources.bundle */; };
+		74F26D5E11A7735500E2E78D /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001300000097 /* NetflixResources.bundle */; };
+		74F26D5F11A7735500E2E78D /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000001100000099 /* License.txt */; };
+		74F26D6011A7735500E2E78D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F22A7E114DD16D00CF9CE3 /* MainWindow-iPad.xib */; };
+		74F26D6111A7735500E2E78D /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */; };
+		74F26D6211A7735500E2E78D /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */; };
+		74F26D6311A7735500E2E78D /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */; };
+		74F26D6411A7735500E2E78D /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 745D5FA111A4E80800CCC895 /* FBConnect.bundle */; };
+		74F26D6611A7735500E2E78D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
+		74F26D6711A7735500E2E78D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000700000144 /* AppDelegate.m */; };
+		74F26D6911A7735500E2E78D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005E /* libsqlite3.dylib */; };
+		74F26D6A11A7735500E2E78D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000700000118 /* AddressBook.framework */; };
+		74F26D6B11A7735500E2E78D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000001 /* CFNetwork.framework */; };
+		74F26D6C11A7735500E2E78D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000160 /* CoreFoundation.framework */; };
+		74F26D6D11A7735500E2E78D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000900000168 /* CoreGraphics.framework */; };
+		74F26D6E11A7735500E2E78D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000090000017A /* CoreLocation.framework */; };
+		74F26D7011A7735500E2E78D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000C00000081 /* Foundation.framework */; };
+		74F26D7111A7735500E2E78D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000061 /* MapKit.framework */; };
+		74F26D7211A7735500E2E78D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001200000085 /* MediaPlayer.framework */; };
+		74F26D7311A7735500E2E78D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000012000000B1 /* MessageUI.framework */; };
+		74F26D7411A7735500E2E78D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */; };
+		74F26D7511A7735500E2E78D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000180000026E /* SystemConfiguration.framework */; };
+		74F26D7611A7735500E2E78D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000001A0000001E /* UIKit.framework */; };
+		74F26D7711A7735500E2E78D /* libFBPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 745D5F3911A4E59100CCC895 /* libFBPlatform.a */; };
+		74F26D7811A7735500E2E78D /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405FD116E80EC003B5263 /* libMetasyntacticShared.a */; };
+		74F26D7911A7735500E2E78D /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405E0116E80A8003B5263 /* libNetflixShared.a */; };
+		74F26D7A11A7735500E2E78D /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741405E8116E80B1003B5263 /* libProtocolBuffers.a */; };
+		74F26DBB11A7740F00E2E78D /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F26CDB11A7734400E2E78D /* libBoxOfficeShared.a */; };
+		74F26DBE11A7742400E2E78D /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F26CDB11A7734400E2E78D /* libBoxOfficeShared.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		100000000000001500000030 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 74FB7D1F1017A2B3001B5CB9;
-			remoteInfo = BoxOfficeShared;
-		};
 		741405DF116E80A8003B5263 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */;
@@ -123,6 +151,41 @@
 			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9;
 			remoteInfo = FBPlatform;
 		};
+		74F26CDA11A7734400E2E78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1000000000000015000001F1 /* libBoxOfficeShared.a */;
+			remoteInfo = "BoxOfficeShared-v4";
+		};
+		74F26D4E11A7735500E2E78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1000000000000008000000D4 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000AB;
+			remoteInfo = BoxOfficeShared;
+		};
+		74F26D5011A7735500E2E78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405DB116E80A8003B5263 /* NetflixShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000007000000EE;
+			remoteInfo = NetflixShared;
+		};
+		74F26D5211A7735500E2E78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405E1116E80B1003B5263 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000000000000015000001E4;
+			remoteInfo = ProtocolBuffers;
+		};
+		74F26D5411A7735500E2E78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741405F8116E80EB003B5263 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000A000000AD;
+			remoteInfo = MetasyntacticShared;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +251,7 @@
 		74F22CC8114DEFBF00CF9CE3 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-iPad.png"; path = "Resources-iPad/Icon-iPad.png"; sourceTree = "<group>"; };
 		74F22D1F114DF96F00CF9CE3 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources-iPad/Default-Landscape.png"; sourceTree = "<group>"; };
 		74F22D31114DFC9400CF9CE3 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Resources-iPad/Default-Portrait.png"; sourceTree = "<group>"; };
+		74F26D7F11A7735500E2E78D /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FFCA8A10E1558100DF4AC7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -210,11 +274,36 @@
 				745C0E291162F38500093306 /* StoreKit.framework in Frameworks */,
 				745C0E2A1162F38500093306 /* SystemConfiguration.framework in Frameworks */,
 				745C0E2B1162F38500093306 /* UIKit.framework in Frameworks */,
+				74F26DBE11A7742400E2E78D /* libBoxOfficeShared.a in Frameworks */,
 				745D5F3A11A4E59E00CCC895 /* libFBPlatform.a in Frameworks */,
 				74140606116E8113003B5263 /* libMetasyntacticShared.a in Frameworks */,
 				741405F2116E80CE003B5263 /* libNetflixShared.a in Frameworks */,
 				741405F1116E80C9003B5263 /* libProtocolBuffers.a in Frameworks */,
-				745C0E2C1162F38500093306 /* libBoxOfficeShared.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74F26D6811A7735500E2E78D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F26D6911A7735500E2E78D /* libsqlite3.dylib in Frameworks */,
+				74F26D6A11A7735500E2E78D /* AddressBook.framework in Frameworks */,
+				74F26D6B11A7735500E2E78D /* CFNetwork.framework in Frameworks */,
+				74F26D6C11A7735500E2E78D /* CoreFoundation.framework in Frameworks */,
+				74F26D6D11A7735500E2E78D /* CoreGraphics.framework in Frameworks */,
+				74F26D6E11A7735500E2E78D /* CoreLocation.framework in Frameworks */,
+				74F26D7011A7735500E2E78D /* Foundation.framework in Frameworks */,
+				74F26D7111A7735500E2E78D /* MapKit.framework in Frameworks */,
+				74F26D7211A7735500E2E78D /* MediaPlayer.framework in Frameworks */,
+				74F26D7311A7735500E2E78D /* MessageUI.framework in Frameworks */,
+				74F26D7411A7735500E2E78D /* StoreKit.framework in Frameworks */,
+				74F26D7511A7735500E2E78D /* SystemConfiguration.framework in Frameworks */,
+				74F26D7611A7735500E2E78D /* UIKit.framework in Frameworks */,
+				74F26DBB11A7740F00E2E78D /* libBoxOfficeShared.a in Frameworks */,
+				74F26D7711A7735500E2E78D /* libFBPlatform.a in Frameworks */,
+				74F26D7811A7735500E2E78D /* libMetasyntacticShared.a in Frameworks */,
+				74F26D7911A7735500E2E78D /* libNetflixShared.a in Frameworks */,
+				74F26D7A11A7735500E2E78D /* libProtocolBuffers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +372,7 @@
 		1000000000000015000001D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10000000000000290000000D /* libBoxOfficeShared.a */,
+				74F26CDB11A7734400E2E78D /* libBoxOfficeShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				745C0E321162F38500093306 /* NowPlaying.app */,
+				74F26D7F11A7735500E2E78D /* NowPlaying.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -388,9 +478,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		745C0E091162F38500093306 /* NowPlaying */ = {
+		745C0E091162F38500093306 /* NowPlaying-v4 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying" */;
+			buildConfigurationList = 745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying-v4" */;
 			buildPhases = (
 				745C0E0C1162F38500093306 /* Resources */,
 				745C0E1B1162F38500093306 /* Sources */,
@@ -404,9 +494,30 @@
 				741405F0116E80C2003B5263 /* PBXTargetDependency */,
 				74140605116E810D003B5263 /* PBXTargetDependency */,
 			);
-			name = NowPlaying;
+			name = "NowPlaying-v4";
 			productName = BoxOffice;
 			productReference = 745C0E321162F38500093306 /* NowPlaying.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74F26D4C11A7735500E2E78D /* NowPlaying-v3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74F26D7B11A7735500E2E78D /* Build configuration list for PBXNativeTarget "NowPlaying-v3" */;
+			buildPhases = (
+				74F26D5511A7735500E2E78D /* Resources */,
+				74F26D6511A7735500E2E78D /* Sources */,
+				74F26D6811A7735500E2E78D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74F26D4D11A7735500E2E78D /* PBXTargetDependency */,
+				74F26D4F11A7735500E2E78D /* PBXTargetDependency */,
+				74F26D5111A7735500E2E78D /* PBXTargetDependency */,
+				74F26D5311A7735500E2E78D /* PBXTargetDependency */,
+			);
+			name = "NowPlaying-v3";
+			productName = BoxOffice;
+			productReference = 74F26D7F11A7735500E2E78D /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -475,19 +586,13 @@
 			);
 			projectRoot = "";
 			targets = (
-				745C0E091162F38500093306 /* NowPlaying */,
+				745C0E091162F38500093306 /* NowPlaying-v4 */,
+				74F26D4C11A7735500E2E78D /* NowPlaying-v3 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		10000000000000290000000D /* libBoxOfficeShared.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBoxOfficeShared.a;
-			remoteRef = 100000000000001500000030 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		741405E0116E80A8003B5263 /* libNetflixShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -530,6 +635,13 @@
 			remoteRef = 745D5F3811A4E59100CCC895 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		74F26CDB11A7734400E2E78D /* libBoxOfficeShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBoxOfficeShared.a;
+			remoteRef = 74F26CDA11A7734400E2E78D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -555,6 +667,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74F26D5511A7735500E2E78D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F26D5611A7735500E2E78D /* Entitlements.plist in Resources */,
+				74F26D5711A7735500E2E78D /* Default.png in Resources */,
+				74F26D5811A7735500E2E78D /* Icon.png in Resources */,
+				74F26D5911A7735500E2E78D /* Icon2.png in Resources */,
+				74F26D5A11A7735500E2E78D /* MainWindow.xib in Resources */,
+				74F26D5B11A7735500E2E78D /* Localizable.strings in Resources */,
+				74F26D5C11A7735500E2E78D /* MetasyntacticResources.bundle in Resources */,
+				74F26D5D11A7735500E2E78D /* BoxOfficeResources.bundle in Resources */,
+				74F26D5E11A7735500E2E78D /* NetflixResources.bundle in Resources */,
+				74F26D5F11A7735500E2E78D /* License.txt in Resources */,
+				74F26D6011A7735500E2E78D /* MainWindow-iPad.xib in Resources */,
+				74F26D6111A7735500E2E78D /* Icon-iPad.png in Resources */,
+				74F26D6211A7735500E2E78D /* Default-Landscape.png in Resources */,
+				74F26D6311A7735500E2E78D /* Default-Portrait.png in Resources */,
+				74F26D6411A7735500E2E78D /* FBConnect.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -564,6 +698,15 @@
 			files = (
 				745C0E1C1162F38500093306 /* main.m in Sources */,
 				745C0E1D1162F38500093306 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74F26D6511A7735500E2E78D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F26D6611A7735500E2E78D /* main.m in Sources */,
+				74F26D6711A7735500E2E78D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +732,26 @@
 			isa = PBXTargetDependency;
 			name = BoxOfficeShared;
 			targetProxy = 745C0E0B1162F38500093306 /* PBXContainerItemProxy */;
+		};
+		74F26D4D11A7735500E2E78D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 74F26D4E11A7735500E2E78D /* PBXContainerItemProxy */;
+		};
+		74F26D4F11A7735500E2E78D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NetflixShared;
+			targetProxy = 74F26D5011A7735500E2E78D /* PBXContainerItemProxy */;
+		};
+		74F26D5111A7735500E2E78D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 74F26D5211A7735500E2E78D /* PBXContainerItemProxy */;
+		};
+		74F26D5311A7735500E2E78D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MetasyntacticShared;
+			targetProxy = 74F26D5411A7735500E2E78D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -653,7 +816,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphonesimulator3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -686,7 +849,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphonesimulator3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -719,7 +882,7 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphonesimulator3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -743,6 +906,24 @@
 			};
 			name = Distribution;
 		};
+		74F26D7C11A7735500E2E78D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		74F26D7D11A7735500E2E78D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		74F26D7E11A7735500E2E78D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -756,12 +937,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
+		745C0E2D1162F38500093306 /* Build configuration list for PBXNativeTarget "NowPlaying-v4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				745C0E2E1162F38500093306 /* Debug */,
 				745C0E2F1162F38500093306 /* Release */,
 				745C0E311162F38500093306 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74F26D7B11A7735500E2E78D /* Build configuration list for PBXNativeTarget "NowPlaying-v3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74F26D7C11A7735500E2E78D /* Debug */,
+				74F26D7D11A7735500E2E78D /* Release */,
+				74F26D7E11A7735500E2E78D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

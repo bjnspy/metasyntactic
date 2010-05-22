@@ -103,7 +103,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 
 
 - (BOOL) isInReviewPeriod {
-  return NO;
+  //return NO;
 
   if (isInReviewPeriodData == nil) {
     self.isInReviewPeriodData = [NSNumber numberWithBool:[self isInReviewPeriodWorker]];

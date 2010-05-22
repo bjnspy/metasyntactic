@@ -119,12 +119,14 @@ typedef enum {
       return 1;
     }
   } else if (section == FacebookSection) {
+    return 0;
     if ([[FacebookAccount account] enabled]) {
       return 2;
     } else {
       return 1;
     }
   } else if (section == TwitterSection) {
+    return 0;
     if ([[BoxOfficeTwitterAccount account] enabled]) {
       return 2;
     } else {
@@ -617,8 +619,10 @@ typedef enum {
   } else if (section == NetflixSection) {
     return LocalizedString(@"Netflix", nil);
   } else if (section == FacebookSection) {
+    return nil;
     return LocalizedString(@"Facebook", nil);
   } else if (section == TwitterSection) {
+    return nil;
     return LocalizedString(@"Twitter", nil);
   }
 
