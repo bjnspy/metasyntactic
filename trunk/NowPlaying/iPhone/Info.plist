@@ -24,7 +24,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3.22</string>
+	<string>3.23</string>
+	<key>FacebookAPIKey</key>
+	<string>25b0d8040e8bd021562e7d180b6b5b96</string>
+	<key>FacebookApplicationID</key>
+	<string>124021817622313</string>
+	<key>FacebookApplicationSecret</key>
+	<string>ac67df98e9e5264f49c029ca353d6a40</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSMainNibFile~ipad</key>
@@ -37,12 +43,6 @@
 	<string>GGR5uHEucN</string>
 	<key>PinchMediaApplicationCode</key>
 	<string>989c6bce5327bb013357eff94148592a</string>
-	<key>FacebookAPIKey</key>
-	<string>25b0d8040e8bd021562e7d180b6b5b96</string>
-	<key>FacebookApplicationSecret</key>
-	<string>ac67df98e9e5264f49c029ca353d6a40</string>
-	<key>FacebookApplicationID</key>
-	<string>124021817622313</string>
 	<key>RootViewControllerClass</key>
 	<string>NowPlayingTabBarController</string>
 	<key>UIPrerenderedIcon</key>

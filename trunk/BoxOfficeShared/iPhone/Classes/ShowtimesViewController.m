@@ -253,7 +253,7 @@ typedef enum {
                                    reuseIdentifier:reuseIdentifier] autorelease];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     cell.textLabel.textColor = [ColorCache commandColor];
-    cell.indentationLevel = 10;
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
   }
 
   Performance* performance = [performances objectAtIndex:row];
