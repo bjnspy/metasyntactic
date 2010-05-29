@@ -41,7 +41,6 @@
 		100000000000000900000017 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000800000162 /* FAQViewController.m */; };
 		10000000000000090000003F /* FandangoMoviePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000002B /* FandangoMoviePosterDownloader.m */; };
 		100000000000000900000044 /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000900000042 /* FavoriteTheater.m */; };
-		10000000000000090000006B /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000006A /* GoogleDataProvider.m */; };
 		10000000000000090000006E /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000090000006D /* GoogleScoreProvider.m */; };
 		100000000000000900000071 /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000900000070 /* GreenMovieTitleCell.m */; };
 		100000000000000900000075 /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000900000074 /* HelpCache.m */; };
@@ -78,7 +77,6 @@
 		1000000000000009000001BE /* NetflixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000001BD /* NetflixViewController.m */; };
 		1000000000000009000001C5 /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000001C4 /* NoScoreMovieTitleCell.m */; };
 		1000000000000009000001C8 /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000001C7 /* NoneScoreProvider.m */; };
-		1000000000000009000001D0 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000009000001CD /* NowPlaying.pb.m */; };
 		100000000000000A00000024 /* NowPlayingCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000A0000001C /* NowPlayingCreditsViewController.m */; };
 		100000000000000A00000027 /* NowPlayingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000A00000026 /* NowPlayingSettingsViewController.m */; };
 		100000000000000A000000BA /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000A000000AE /* PerfectGreenMovieTitleCell.m */; };
@@ -299,8 +297,6 @@
 		100000000000000900000042 /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
 		100000000000000900000045 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		100000000000000900000046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		100000000000000900000068 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
-		10000000000000090000006A /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		10000000000000090000006C /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
 		10000000000000090000006D /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
 		10000000000000090000006F /* GreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenMovieTitleCell.h; sourceTree = "<group>"; };
@@ -374,8 +370,6 @@
 		1000000000000009000001C4 /* NoScoreMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoScoreMovieTitleCell.m; sourceTree = "<group>"; };
 		1000000000000009000001C6 /* NoneScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoneScoreProvider.h; sourceTree = "<group>"; };
 		1000000000000009000001C7 /* NoneScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoneScoreProvider.m; sourceTree = "<group>"; };
-		1000000000000009000001CC /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
-		1000000000000009000001CD /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
 		1000000000000009000001D3 /* NowPlayingCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingCreditsViewController.h; sourceTree = "<group>"; };
 		100000000000000A0000001C /* NowPlayingCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingCreditsViewController.m; sourceTree = "<group>"; };
 		100000000000000A00000025 /* NowPlayingSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingSettingsViewController.h; sourceTree = "<group>"; };
@@ -700,15 +694,11 @@
 				100000000000000700000008 /* AbstractDataProvider.h */,
 				100000000000000800000014 /* DataProvider.h */,
 				100000000000000800000017 /* DataProviderUpdateDelegate.h */,
-				100000000000000900000068 /* GoogleDataProvider.h */,
 				1000000000000009000000BF /* LookupRequest.h */,
 				1000000000000009000000C2 /* LookupResult.h */,
-				1000000000000009000001CC /* NowPlaying.pb.h */,
 				100000000000000700000009 /* AbstractDataProvider.m */,
-				10000000000000090000006A /* GoogleDataProvider.m */,
 				1000000000000009000000C0 /* LookupRequest.m */,
 				1000000000000009000000C8 /* LookupResult.m */,
-				1000000000000009000001CD /* NowPlaying.pb.m */,
 			);
 			name = DataProvider;
 			sourceTree = "<group>";
@@ -1420,7 +1410,6 @@
 				100000000000000900000017 /* FAQViewController.m in Sources */,
 				100000000000000900000044 /* FavoriteTheater.m in Sources */,
 				100000000000000C0000000D /* FavoriteTheaterCache.m in Sources */,
-				10000000000000090000006B /* GoogleDataProvider.m in Sources */,
 				10000000000000090000006E /* GoogleScoreProvider.m in Sources */,
 				100000000000000900000071 /* GreenMovieTitleCell.m in Sources */,
 				100000000000000900000075 /* HelpCache.m in Sources */,
@@ -1459,7 +1448,6 @@
 				1000000000000009000001BE /* NetflixViewController.m in Sources */,
 				1000000000000009000001C8 /* NoneScoreProvider.m in Sources */,
 				1000000000000009000001C5 /* NoScoreMovieTitleCell.m in Sources */,
-				1000000000000009000001D0 /* NowPlaying.pb.m in Sources */,
 				100000000000000A00000024 /* NowPlayingCreditsViewController.m in Sources */,
 				100000000000000A00000027 /* NowPlayingSettingsViewController.m in Sources */,
 				10000000000000070000009E /* NowPlayingTabBarController.m in Sources */,
