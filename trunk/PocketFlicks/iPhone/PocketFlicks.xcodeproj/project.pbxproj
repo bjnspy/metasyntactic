@@ -32,6 +32,7 @@
 		100000000000002900000063 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000290000005F /* libsqlite3.dylib */; };
 		100000000000002A00000010 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000002A00000008 /* main.m */; };
 		74176EC410E4A6560068CEC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74176EC310E4A6560068CEC8 /* StoreKit.framework */; };
+		7418EB2811BDFB3C00F1F521 /* libFBPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7418EB2311BDFB0100F1F521 /* libFBPlatform.a */; };
 		74D98A35116E825800DD76DA /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A22116E824600DD76DA /* libMetasyntacticShared.a */; };
 		74D98A36116E825B00DD76DA /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A28116E824A00DD76DA /* libNetflixShared.a */; };
 		74D98A37116E825F00DD76DA /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D98A30116E824E00DD76DA /* libProtocolBuffers.a */; };
@@ -51,6 +52,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1000000000000007000000AB;
 			remoteInfo = BoxOfficeShared;
+		};
+		7418EB2211BDFB0100F1F521 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9 /* libFBPlatform.a */;
+			remoteInfo = FBPlatform;
+		};
+		7418EB2411BDFB1000F1F521 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE61A71A0DE2551300D4F7B9 /* FBPlatform */;
+			remoteInfo = FBPlatform;
 		};
 		74D98A21116E824600DD76DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,6 +178,7 @@
 		100000000000002E00000039 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100000000000002F00000007 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74176EC310E4A6560068CEC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBConnect.xcodeproj; path = ../../FacebookConnect/src/FBConnect.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74D98A23116E824A00DD76DA /* NetflixShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetflixShared.xcodeproj; path = ../../NetflixShared/NetflixShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -173,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7418EB2811BDFB3C00F1F521 /* libFBPlatform.a in Frameworks */,
 				100000000000002900000063 /* libsqlite3.dylib in Frameworks */,
 				10000000000000070000011C /* AddressBook.framework in Frameworks */,
 				100000000000000900000006 /* CFNetwork.framework in Frameworks */,
@@ -216,6 +233,7 @@
 				10000000000000170000006E /* Resources */,
 				100000000000000B0000000C /* Entitlements.plist */,
 				1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */,
+				7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */,
 				74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */,
 				74D98A23116E824A00DD76DA /* NetflixShared.xcodeproj */,
 				74D98A29116E824E00DD76DA /* ProtocolBuffers.xcodeproj */,
@@ -294,6 +312,14 @@
 			name = Shared;
 			sourceTree = "<group>";
 		};
+		7418EB1F11BDFB0100F1F521 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7418EB2311BDFB0100F1F521 /* libFBPlatform.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		74D98A1E116E824600DD76DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +364,7 @@
 				74D98A39116E827400DD76DA /* PBXTargetDependency */,
 				74D98A3B116E827800DD76DA /* PBXTargetDependency */,
 				74D98A3D116E827A00DD76DA /* PBXTargetDependency */,
+				7418EB2511BDFB1000F1F521 /* PBXTargetDependency */,
 			);
 			name = PocketFlicks;
 			productName = PocketFlicks;
@@ -392,6 +419,10 @@
 					ProjectRef = 1000000000000008000000D5 /* BoxOfficeShared.xcodeproj */;
 				},
 				{
+					ProductGroup = 7418EB1F11BDFB0100F1F521 /* Products */;
+					ProjectRef = 7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */;
+				},
+				{
 					ProductGroup = 74D98A1E116E824600DD76DA /* Products */;
 					ProjectRef = 74D98A1D116E824600DD76DA /* MetasyntacticShared.xcodeproj */;
 				},
@@ -417,6 +448,13 @@
 			fileType = archive.ar;
 			path = libBoxOfficeShared.a;
 			remoteRef = 100000000000001500000032 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7418EB2311BDFB0100F1F521 /* libFBPlatform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBPlatform.a;
+			remoteRef = 7418EB2211BDFB0100F1F521 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		74D98A22116E824600DD76DA /* libMetasyntacticShared.a */ = {
@@ -492,6 +530,11 @@
 			isa = PBXTargetDependency;
 			name = BoxOfficeShared;
 			targetProxy = 100000000000001500000033 /* PBXContainerItemProxy */;
+		};
+		7418EB2511BDFB1000F1F521 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBPlatform;
+			targetProxy = 7418EB2411BDFB1000F1F521 /* PBXContainerItemProxy */;
 		};
 		74D98A39116E827400DD76DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -573,6 +616,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -583,7 +627,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
@@ -613,6 +657,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
@@ -622,7 +667,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -664,6 +709,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../FacebookConnect/src/;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -674,7 +720,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
