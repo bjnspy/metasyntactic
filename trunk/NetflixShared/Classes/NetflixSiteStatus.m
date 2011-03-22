@@ -18,6 +18,7 @@
 
 @interface NetflixSiteStatus()
 @property BOOL overQuota;
+@property BOOL internalError;
 @end
 
 
@@ -38,9 +39,11 @@ static NetflixSiteStatus* status = nil;
 
 
 @synthesize overQuota;
+@synthesize internalError;
 
 - (void) dealloc {
   self.overQuota = NO;
+  self.internalError = NO;
   [super dealloc];
 }
 
@@ -52,6 +55,9 @@ static NetflixSiteStatus* status = nil;
   // to extract it ourselves.  Bleagh.
   if ([@"Over queries per day limit" isEqual:message]) {
     overQuota = YES;
+    [MetasyntacticSharedApplication minorRefresh];
+  } else if ([@"Internal Error" isEqual:message]) {
+    internalError = YES;
     [MetasyntacticSharedApplication minorRefresh];
   }
 }

@@ -134,6 +134,10 @@ typedef enum {
     UILabel* label = [ViewControllerUtilities createTitleLabel];
     label.text = LocalizedString(@"Over Quota - Try Again Later", nil);
     self.navigationItem.titleView = label;
+  } else if ([[NetflixSiteStatus status] internalError]) {
+    UILabel* label = [ViewControllerUtilities createTitleLabel];
+    label.text = LocalizedString(@"Netflix Error - Try Again Later", nil);
+    self.navigationItem.titleView = label;  
   }
 }
 

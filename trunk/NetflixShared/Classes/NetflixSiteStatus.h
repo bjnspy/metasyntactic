@@ -17,9 +17,11 @@
 @interface NetflixSiteStatus : NSObject {
 @private
   BOOL overQuota;
+  BOOL internalError;
 }
 
 @property (readonly) BOOL overQuota;
+@property (readonly) BOOL internalError;
 
 + (NetflixSiteStatus*) status;
 

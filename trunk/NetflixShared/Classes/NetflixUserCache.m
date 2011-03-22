@@ -41,11 +41,9 @@ static NetflixUserCache* cache;
 - (XmlElement*) downloadXml:(NSURLRequest*) request
                     account:(NetflixAccount*) account {
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
   [[NetflixSiteStatus status] checkApiResult:element];
 
   return element;
-
 }
 
 
