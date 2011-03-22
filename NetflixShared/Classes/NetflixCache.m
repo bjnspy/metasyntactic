@@ -358,6 +358,10 @@ static NetflixCache* cache;
   XmlElement* element = [NetflixCache downloadXml:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]
                                   account:account
                                  response:&response];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
+  if (statusCode == 500) {
+    return;
+  }
 
   NSString* etag = [NetflixCache extractEtagFromElement:element andResponse:response];
 
@@ -373,7 +377,7 @@ static NetflixCache* cache;
       }
     }
   }
-
+  
   if (element != nil) {
     Queue* queue = [Queue queueWithFeed:feed
                                    etag:etag

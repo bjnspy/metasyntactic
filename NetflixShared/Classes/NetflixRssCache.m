@@ -269,9 +269,8 @@ static NSDictionary* mostPopularAddressesToTitles = nil;
   NSURLRequest* request = [NetflixNetworking createGetURLRequest:address account:account];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
   [[NetflixSiteStatus status] checkApiResult:element];
-
+  
   return [NetflixUtilities processMovieItem:element saved:NULL];
 }
 
