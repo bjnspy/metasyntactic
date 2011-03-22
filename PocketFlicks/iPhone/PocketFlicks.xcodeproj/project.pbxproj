@@ -57,14 +57,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9 /* libFBPlatform.a */;
+			remoteGlobalIDString = BE61A71B0DE2551300D4F7B9;
 			remoteInfo = FBPlatform;
 		};
 		7418EB2411BDFB1000F1F521 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7418EB1E11BDFB0000F1F521 /* FBConnect.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BE61A71A0DE2551300D4F7B9 /* FBPlatform */;
+			remoteGlobalIDString = BE61A71A0DE2551300D4F7B9;
 			remoteInfo = FBPlatform;
 		};
 		74D98A21116E824600DD76DA /* PBXContainerItemProxy */ = {
@@ -378,6 +378,7 @@
 			isa = PBXProject;
 			buildConfigurationList = 10000000000000080000015A /* Build configuration list for PBXProject "PocketFlicks" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -627,7 +628,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
@@ -667,7 +668,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -720,7 +721,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
